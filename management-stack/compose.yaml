@@ -1,4 +1,19 @@
 services:
+  # image used to:
+# scan, index, manage and serve: 
+  autoheal:
+    container_name: autoheal-management
+    deploy:
+      replicas: 1
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: autoheal
+    image: willfarrell/autoheal:latest
+    network_mode: none
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
@@ -191,28 +206,6 @@ services:
     labels:
       autoheal-app: true
 
-  watchtower:
-    image: "containrrr/watchtower:latest"
-    restart: unless-stopped
-    container_name: watchtower-management-stack
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    # command: --debug --http-api-update
-    # environment:
-    #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
-    networks:
-      - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
-    labels:
-      - "com.centurylinklabs.watchtower.enable=false"
-      - "autoheal-app=true"
-    depends_on:
-      - dockge
-      - portainer
-      - grafana
-      # - nginx-proxy-manager
 
   grafana:
     image: grafana/grafana
@@ -281,24 +274,6 @@ services:
       - docker-proxy
     labels:
       autoheal-app: true
-
-  autoheal:
-    container_name: autoheal-management-stack
-    deploy:
-      replicas: 1
-    environment:
-      AUTOHEAL_CONTAINER_LABEL: autoheal-app
-    image: willfarrell/autoheal:latest
-    # network_mode: none
-    networks:
-      - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
-    restart: always
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock
 
   # postgres:
   #   image: ${ZABBIX_POSTGRES_IMAGE_TAG}
@@ -529,6 +504,43 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
+
+  watchtower:
+    image: "containrrr/watchtower:latest"
+    restart: unless-stopped
+    container_name: watchtower-management-stack
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # command: --debug --http-api-update
+    # environment:
+    #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+    networks:
+      - ai-stack
+      - management-stack
+      - kuma_network
+      - cloud
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+      - "autoheal-app=true"
+    depends_on:
+      - autoheal
+      - collabora
+      - dashy
+      - docker-proxy
+      - dockge
+      - grafana
+      - n8n
+      - netdata
+      - nextcloud
+      - nextclouddb
+      - nginx-proxy-manager
+      - portainer
+      - portracker
+      - redis
+      - uptime-kuma
+      - wg-easy
+      # - watchtower
+
 
 volumes:
   data:

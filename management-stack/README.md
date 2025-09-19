@@ -3,30 +3,19 @@
 Includes the following services:
 
       - autoheal
-      - bazarr
-      - calibre-web
-      - emby
-      - flaresolverr
-      - gaseous-server
-      - gsdb
-      - jellyfin
-      - jellyseerr
-      - lidarr
-      - mattermost
-      - mylar3
-      - organizr
-      - overseerr
-      - plex
-      - prowlarr
-      - radarr
-      - requestrr
-      - retroarch
-      - romm
-      - romm-db
-      - rreading-glasses
-      - rreading-glasses-db
-      - sonarr
-      - tvs99
+      - collabora
+      - dashy
+      - docker-proxy
+      - dockge
+      - grafana
+      - n8n
+      - netdata
+      - nextcloud
+      - nextclouddb
+      - nginx-proxy-manager
+      - portainer
+      - portracker
+      - redis
+      - uptime-kuma
+      - wg-easy
       - watchtower
-      - webrcade
-      - whisparr
