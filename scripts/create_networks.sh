@@ -6,6 +6,7 @@ function CREATE_NETWORKS(){
     docker network create management-stack
     docker network create kuma_network
     docker network create ai-stack
+    docker network create cloud
     
     docker network create -d macvlan \
     --subnet=192.168.1.0/24 \

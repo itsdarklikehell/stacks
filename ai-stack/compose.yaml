@@ -2,11 +2,11 @@ services:
 # image used to:
 # scan, index, manage and serve: 
   autoheal:
-    container_name: autoheal-media
+    container_name: autoheal-ai
     deploy:
       replicas: 1
     environment:
-      AUTOHEAL_CONTAINER_LABEL: autoheal
+      AUTOHEAL_CONTAINER_LABEL: keep_healthy
     image: willfarrell/autoheal:latest
     network_mode: none
     restart: always
@@ -586,10 +586,10 @@ services:
     ports:
       - ${WATCHTOWER_PORT:-8082}:8080
     depends_on:
+      - autoheal
       - basic-memory
       - faster-whisper-gpu
       - homeassistant
-      - healthcheck
       - letta-db
       - letta-mcp
       - letta-server
@@ -601,9 +601,9 @@ services:
       - stable-diffusion-models-download
       - stable-diffusion-webui
       - swarmui
-      - watchtower
       - whisper
       - wyoming-piper
+      # - watchtower
 
 volumes:
   # Named volume for persistent configuration and database

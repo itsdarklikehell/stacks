@@ -60,6 +60,6 @@ CREATE_SWARMUI_DOCKERFILE
 # echo "Installing additional MCP servers..."
 # INSTALL_ADDITIONAL_MCP_SERVERS
 
-echo "*** START COMPOSING: management-stack ****"
+echo "*** START COMPOSING: ai-stack ****"
 DOCKER_COMPOSE_STACK
-echo "*** FINISHED COMPOSING: management-stack ****"
+echo "*** FINISHED COMPOSING: ai-stack ****"

@@ -1,25 +1,30 @@
 services:
-  # image used to:
+# image used to:
 # scan, index, manage and serve: 
   autoheal:
-    container_name: autoheal-management
+    image: willfarrell/autoheal:latest
+    container_name: "${autoheal.container_name:-autoheal}"
+    env_file:
+      .env
     deploy:
       replicas: 1
     environment:
-      AUTOHEAL_CONTAINER_LABEL: autoheal
-    image: willfarrell/autoheal:latest
-    network_mode: none
-    restart: always
+      AUTOHEAL_CONTAINER_LABEL: "${autoheal.environment.AUTOHEAL_CONTAINER_LABEL:-keep_healthy}"
+    network_mode: "${autoheal.container_network_mode:-none}"
+    restart: "${autoheal_restart:-always}"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
-
+# image used to:
+# scan, index, manage and serve: 
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
+    env_file:
+      .env
     restart: always
     ports:
-      - "3002:3001" # This maps the container port "3001" to the host port "3001"
+      - "3002:3002" # This maps the container port "3001" to the host port "3001"
     volumes:
       - ./uptime-kuma/data:/app/data # Configuring persistent storage
     environment:
@@ -41,7 +46,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
+# image used to:
+# scan, index, manage and serve: 
   netdata:
     image: netdata/netdata:edge
     container_name: netdata
@@ -71,7 +77,8 @@ services:
       - NETDATA_CLAIM_TOKEN=3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=1a9352b6-d34d-4688-bab5-06a719586033
-
+# image used to:
+# scan, index, manage and serve: 
   n8n:
     image: docker.n8n.io/n8nio/n8n
     restart: always
@@ -96,7 +103,8 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./n8n/local-files:/files
-
+# image used to:
+# scan, index, manage and serve: 
   dashy:
     image: lissy93/dashy
     # To build from source, replace 'image: lissy93/dashy' with 'build: .'
@@ -129,7 +137,8 @@ services:
       start_period: 40s
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   dockge:
     container_name: dockge
     image: louislam/dockge:1
@@ -155,7 +164,8 @@ services:
       - DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   portainer:
     container_name: portainer
     hostname: portainer
@@ -174,7 +184,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   nginx-proxy-manager:
     image: "jc21/nginx-proxy-manager:latest"
     restart: unless-stopped
@@ -205,8 +216,8 @@ services:
       - ./nginx-proxy-manager/letsencrypt:/etc/letsencrypt
     labels:
       autoheal-app: true
-
-
+# image used to:
+# scan, index, manage and serve: 
   grafana:
     image: grafana/grafana
     container_name: grafana
@@ -221,12 +232,13 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${grafana_password} #change the password
       - GF_INSTALL_PLUGINS=
     ports:
-      - "3000:3000"
+      - "3004:3004"
     volumes:
       - grafana_data:/var/lib/grafana
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   docker-proxy:
     image: tecnativa/docker-socket-proxy:latest
     container_name: portracker-docker-proxy
@@ -248,7 +260,8 @@ services:
       - cloud
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   portracker:
     image: mostafawahied/portracker:latest
     container_name: portracker
@@ -274,7 +287,8 @@ services:
       - docker-proxy
     labels:
       autoheal-app: true
-
+# image used to:
+# scan, index, manage and serve: 
   # postgres:
   #   image: ${ZABBIX_POSTGRES_IMAGE_TAG}
   #   volumes:
@@ -393,6 +407,8 @@ services:
   #     postgres:
   #       condition: service_healthy
 
+# image used to:
+# scan, index, manage and serve: 
   nextcloud:
     image: nextcloud
     container_name: nextcloud
@@ -406,7 +422,7 @@ services:
       - nextclouddb
       - redis
     ports:
-      - 8082:80
+      - 8087:80
     volumes:
       - ./nextcloud/html:/var/www/html
       - ./nextcloud/custom_apps:/var/www/html/custom_apps
@@ -421,7 +437,8 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_HOST=nextclouddb
       - REDIS_HOST=redis
-
+# image used to:
+# scan, index, manage and serve: 
   nextclouddb:
     image: mariadb
     container_name: nextcloud-db
@@ -442,7 +459,8 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-
+# image used to:
+# scan, index, manage and serve: 
   collabora:
     image: collabora/code
     container_name: collabora
@@ -462,7 +480,8 @@ services:
       - extra_params=--o:ssl.enable=true
     ports:
       - 9980:9980
-
+# image used to:
+# scan, index, manage and serve: 
   redis:
     image: redis:alpine
     container_name: redis
@@ -473,7 +492,8 @@ services:
       - management-stack
       - kuma_network
       - cloud
-
+# image used to:
+# scan, index, manage and serve: 
   wg-easy:
     #environment:
     #  Optional:
@@ -504,7 +524,8 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
-
+# image used to:
+# scan, index, manage and serve: 
   watchtower:
     image: "containrrr/watchtower:latest"
     restart: unless-stopped
