@@ -16,9 +16,9 @@ services:
     
     volumes:
       - basic-memory-config:/root/.basic-memory:rw
-      - ../basic-memory/knowledge:/app/data:rw
-      - ../basic-memory/work-notes:/app/data/work:rw
-      - ../basic-memory/personal-notes:/app/data/personal:rw
+      - ../DATA/basic-memory/knowledge:/app/data:rw
+      - ../DATA/basic-memory/work-notes:/app/data/work:rw
+      - ../DATA/basic-memory/personal-notes:/app/data/personal:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
     
     hostname: basic-memory

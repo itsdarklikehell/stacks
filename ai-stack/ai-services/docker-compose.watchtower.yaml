@@ -1,7 +1,7 @@
 services:
   watchtower:
     image: "containrrr/watchtower:latest"
-    container_name: watchtower-ai-stack
+    container_name: watchtower-ai-services
     restart: unless-stopped
 
     labels:

@@ -13,7 +13,7 @@ services:
       - DOCKER_HOST=tcp://docker-proxy:2375
 
     volumes:
-      - ../portracker/data:/data
+      - ../DATA/portracker/data:/data
 
     hostname: portracker
 

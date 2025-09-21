@@ -12,7 +12,7 @@ services:
       - UMASK=${UPTIME_KUMA_UMASK:-0022}
     
     volumes:
-      - ../uptime-kuma/data:/app/data
+      - ../DATA/uptime-kuma/data:/app/data
     
     hostname: uptime-kuma
 

@@ -11,7 +11,7 @@ services:
     #   - GID=1000
 
     # volumes:
-    #   - ../dashy/config.yml:/app/user-data/conf.yml
+    #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
 
     networks:
       - management-services

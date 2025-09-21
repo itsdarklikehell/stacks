@@ -1,7 +1,7 @@
 services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
-    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-ai-stack}
+    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-ai-services}
     restart: ${AUTOHEAL_RESTART:-always}
     
     labels:

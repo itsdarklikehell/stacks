@@ -16,7 +16,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./wyoming-piper/data:/data
+      - ../DATA/wyoming-piper/data:/data
 
     hostname: wyoming-piper
 

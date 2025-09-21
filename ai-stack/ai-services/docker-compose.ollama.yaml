@@ -19,7 +19,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../ollama:/root/.ollama
+      - ../DATA/ollama:/root/.ollama
 
     hostname: ollama
 

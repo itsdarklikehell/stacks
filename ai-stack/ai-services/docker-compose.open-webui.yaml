@@ -22,7 +22,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./open-webui:/app/backend/data
+      - ../DATA/open-webui:/app/backend/data
 
     hostname: open-webui
 

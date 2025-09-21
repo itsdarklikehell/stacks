@@ -15,9 +15,9 @@ services:
       - swarmbackend:/SwarmUI/dlbackend
       - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
       - swarmextensions:/SwarmUI/src/Extensions
-      - ./swarmui/Models:/SwarmUI/Models
-      - ./swarmui/Output:/SwarmUI/Output
-      - ./swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - ../DATA/swarmui/Models:/SwarmUI/Models
+      - ../DATA/swarmui/Output:/SwarmUI/Output
+      - ../DATA/swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: swarmui
 
@@ -35,7 +35,7 @@ services:
       - ALL
 
     build:
-      context: .
+      context: ..
       args:
         UID: ${HOST_UID:-1000}
       dockerfile: swarmui/launchtools/CustomDockerfile.docker

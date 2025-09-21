@@ -18,7 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../faster-whisper/data:/config
+      - ../DATA/faster-whisper/data:/config
 
     networks:
       - ai-services

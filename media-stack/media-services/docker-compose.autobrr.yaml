@@ -3,12 +3,33 @@ services:
     container_name: autobrr
     image: ghcr.io/autobrr/autobrr:latest
     restart: unless-stopped
-    user: 1000:1000
-    env_file:
-      - ../.env
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     environment:
       - TZ=${TZ}
+    
     volumes:
-      - ${BASE_DOCKER_DATA_PATH:-../autobrr/config}/autobrr/config:/config
+      - ../DATA/autobrr/config:/config
+
+    hostname: autobrr
+
+    networks:
+      - media-services
+      - host    
+    
     ports:
       - 7474:7474
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+    
+    user: 1000:1000
+    
+  

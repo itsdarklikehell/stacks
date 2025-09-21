@@ -17,9 +17,9 @@ services:
       - POSTGRES_PASSWORD=${LETTA_PG_PASSWORD:-letta}
       - POSTGRES_DB=${LETTA_PG_DB:-letta}
     volumes:
-      - ../letta/.persist/pgdata:/var/lib/postgresql/data
+      - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
       # - ~/.letta/.persist/pgdata:/var/lib/postgresql/data
-      - ../letta/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - ${LETTA_PG_PORT:-5432}:5432
     healthcheck:

@@ -22,21 +22,6 @@ function CREATE_NETWORKS(){
 function CREATE_SECRETS(){
     scripts/create_secrets.sh
 }
-function CREATE_SERVICES(){
-    scripts/create_services.sh
-}
-function STOP_SERVICES(){
-    scripts/stop_services.sh
-}
-function START_SERVICES(){
-    scripts/start_services.sh
-}
-function STATUS_SERVICES(){
-    scripts/status_services.sh
-}
-function ENABLE_SERVICES(){
-    scripts/enable_services.sh
-}
 
 function INSTALL_management-stack_STACK(){
     management-stack/install-management-stack.sh
@@ -59,14 +44,14 @@ CREATE_NETWORKS
 
 ## STACKS:
 
-echo "Installing Docker Management Stack"
-INSTALL_management-stack_STACK
+# echo "Installing Docker Management Stack"
+# INSTALL_management-stack_STACK
 
 # echo "Installing media Stack"
 # INSTALL_MEDIA_STACK
 
-# echo "Installing AI Stack"
-# INSTALL_AI_STACK
+echo "Installing AI Stack"
+INSTALL_AI_STACK
 
 # dockly # lazydocker
 

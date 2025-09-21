@@ -18,8 +18,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./stable-diffusion-webui-docker/data:/data
-      - ./stable-diffusion-webui-docker/output:/output
+      - ../DATA/stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/output:/output
 
     hostname: stable-diffusion-webui
 

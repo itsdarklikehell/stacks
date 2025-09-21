@@ -28,26 +28,20 @@ function INSTALL_OPEN_LLM_VTUBER(){
 function INSTALL_SWARMUI(){
     ../scripts/install_swarmui.sh
 }
-function INSTALL_ADDITIONAL_MCP_SERVERS(){
-    ../scripts/install_mcp_servers.sh
-}
 
 function DOCKER_COMPOSE_STACK(){
     cd ai-services || exit 1
     ./compose-up.sh
 }
 
-../scripts/create_env_file.sh
+# echo "Cloning repositories..."
+# CLONE_REPOS
 
+# echo "Creating ComfyUI Dockerfile..."
+# CREATE_COMFYUI_DOCKERFILE
 
-echo "Cloning repositories..."
-CLONE_REPOS
-
-echo "Creating ComfyUI Dockerfile..."
-CREATE_COMFYUI_DOCKERFILE
-
-echo "Creating SwarmUI Dockerfile..."
-CREATE_SWARMUI_DOCKERFILE
+# echo "Creating SwarmUI Dockerfile..."
+# CREATE_SWARMUI_DOCKERFILE
 
 # echo "Installing SwarmUI..."
 # INSTALL_SWARMUI
@@ -55,8 +49,6 @@ CREATE_SWARMUI_DOCKERFILE
 # echo "Installing Open-LLM-Vtuber..."
 # INSTALL_OPEN_LLM_VTUBER
 
-# echo "Installing additional MCP servers..."
-# INSTALL_ADDITIONAL_MCP_SERVERS
 
 echo "*** START COMPOSING: ai-stack ****"
 DOCKER_COMPOSE_STACK

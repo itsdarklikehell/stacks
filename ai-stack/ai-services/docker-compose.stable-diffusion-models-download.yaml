@@ -17,7 +17,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/data:/data
 
     hostname: stable-diffusion-models-download
 

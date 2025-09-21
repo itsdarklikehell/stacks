@@ -23,9 +23,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../whisper/uploads:/app/uploads
-      - ../whisper/logs:/var/log/whishper
-      - ../whisper/models:/app/models
+      - ../DATA/whisper/uploads:/app/uploads
+      - ../DATA/whisper/logs:/var/log/whishper
+      - ../DATA/whisper/models:/app/models
 
     hostname: whisper
 

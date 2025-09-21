@@ -30,8 +30,8 @@ services:
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
     volumes:
-      # - ../letta/configs/server_config.yaml:/root/.letta/config # config file
-      # - ../letta/credentials:/root/.letta/credentials # credentials file
+      # - ../DATA/letta/configs/server_config.yaml:/root/.letta/config # config file
+      # - ../DATA/letta/credentials:/root/.letta/credentials # credentials file
       # Uncomment this line to mount a local directory for tool execution, and specify the mount path
       # before running docker compose: `export LETTA_SANDBOX_MOUNT_PATH=$PWD/directory`
       - ${LETTA_SANDBOX_MOUNT_PATH:-/letta}:/root/.letta/tool_execution_dir # mounted volume for tool execution
