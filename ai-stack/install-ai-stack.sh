@@ -16,7 +16,6 @@ function INSTALL_UV(){
 function CLONE_REPOS(){
     ../scripts/clone_repos.sh
 }
-
 function CREATE_COMFYUI_DOCKERFILE(){
     ../scripts/create_comfyui_dockerfile.sh
 }
