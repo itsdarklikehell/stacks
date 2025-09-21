@@ -19,7 +19,7 @@ services:
     hostname: searxng
 
     networks:
-      - ai-stack
+      - ai-services
       # - mhost
 
     ports:

@@ -4,6 +4,8 @@ services:
     container_name: letta-db
     hostname: letta-db
     networks:
+      ai-sevices:
+      host:
       default:
         aliases:
           - pgvector_db

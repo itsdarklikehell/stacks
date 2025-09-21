@@ -34,7 +34,7 @@ services:
       - BASIC_MEMORY_LOG_LEVEL=INFO
       - BASIC_MEMORY_SYNC_DELAY=1000
     networks:
-      - ai-stack
+      - ai-services
     env_file:
       - .env
     ports:
@@ -74,7 +74,7 @@ services:
     restart: unless-stopped
     hostname: faster-whisper-gpu
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -222,7 +222,7 @@ services:
     env_file:
       - .env
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -257,7 +257,7 @@ services:
     env_file:
       - .env
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -283,7 +283,7 @@ services:
     hostname: ollama
     restart: unless-stopped
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -316,7 +316,7 @@ services:
     hostname: open-webui
     restart: unless-stopped
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -349,7 +349,7 @@ services:
     hostname: searxng
     restart: unless-stopped
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -372,7 +372,7 @@ services:
     container_name: stable-diffusion-models-download
     hostname: stable-diffusion-models-download
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -393,7 +393,7 @@ services:
     container_name: stable-diffusion-webui
     hostname: stable-diffusion-webui
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -433,7 +433,7 @@ services:
     restart: unless-stopped
     hostname: swarmui
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -475,7 +475,7 @@ services:
     env_file:
       - .env
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -515,7 +515,7 @@ services:
     restart: unless-stopped
     hostname: wyoming-piper
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -568,7 +568,7 @@ services:
     restart: unless-stopped
     hostname: watchtower
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud

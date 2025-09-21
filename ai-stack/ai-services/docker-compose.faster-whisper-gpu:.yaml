@@ -20,8 +20,8 @@ services:
       - ../faster-whisper/data:/config
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
 
     # # ports:
     # #   - "80:80"

@@ -100,7 +100,7 @@ services:
     restart: ${n8n_restart:-always}
     container_name: ${n8n_container_name:-n8n}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -132,7 +132,7 @@ services:
     #   - ./dashy/config.yml:/app/user-data/conf.yml
     restart: ${dashy_restart:-unless-stopped}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -163,7 +163,7 @@ services:
     hostname: ${dockge_hostname:-dockge}
     restart: ${dockge_restart:-unless-stopped}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -214,7 +214,7 @@ services:
       - 8000:8000
       - 9443:9443
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -231,7 +231,7 @@ services:
     hostname: ${nginx_proxy_manager_hostname:-nginx-proxy-manager}
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -262,7 +262,7 @@ services:
     container_name: ${grafana_container_name:-grafana}
     restart: ${grafana_restart:-unless-stopped}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -293,7 +293,7 @@ services:
     ports:
       - "2375:2375"
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -316,7 +316,7 @@ services:
     ports:
       - "4999:4999"
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -451,7 +451,7 @@ services:
     container_name: ubuntu-desktop-lxde-vnc
     restart: unless-stopped
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -475,7 +475,7 @@ services:
     container_name: ${nextcloud_container_name:-nextcloud}
     restart: ${nextcloud_restart:-unless-stopped}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -506,7 +506,7 @@ services:
     restart: ${nextclouddb_restart:-unless-stopped}
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -527,7 +527,7 @@ services:
     container_name: ${collabora_container_name:-collabora}
     restart: ${collabora_restart:-unless-stopped}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -549,7 +549,7 @@ services:
     volumes:
       - ./redis/redis:/data
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud
@@ -597,7 +597,7 @@ services:
     # environment:
     #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud

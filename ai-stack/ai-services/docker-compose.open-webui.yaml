@@ -25,8 +25,8 @@ services:
     hostname: open-webui
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
 
     ports:
       - ${OPEN_WEBUI_PORT:-8080}:8080

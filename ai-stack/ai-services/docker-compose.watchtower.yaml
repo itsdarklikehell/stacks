@@ -19,7 +19,7 @@ services:
     # command: --debug --http-api-update
 
     networks:
-      - ai-stack
+      - ai-services
       - management-stack
       - kuma_network
       - cloud

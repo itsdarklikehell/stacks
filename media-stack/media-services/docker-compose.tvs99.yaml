@@ -15,7 +15,7 @@ services:
     hostname: tvs99
     restart: unless-stopped
     networks:
-      - ai-stack
+      - ai-services
     ports:
       - ${TVS99_PORT:-8085}:3000
     volumes:

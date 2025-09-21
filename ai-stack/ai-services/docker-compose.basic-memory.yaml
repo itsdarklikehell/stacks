@@ -52,8 +52,8 @@ services:
     #       cpus: '0.25'
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
     
     ports:
       - "8004:8004"

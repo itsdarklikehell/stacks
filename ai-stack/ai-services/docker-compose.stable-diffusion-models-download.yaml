@@ -20,8 +20,8 @@ services:
     hostname: stable-diffusion-models-download
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
 
     env_file:
       - .env

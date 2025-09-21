@@ -28,8 +28,8 @@ services:
     hostname: whisper
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
 
     ports:
       - ${WHISPER_PORT:-8000}:80

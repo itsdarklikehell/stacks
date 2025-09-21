@@ -20,8 +20,8 @@ services:
     hostname: swarmui
 
     networks:
-      - ai-stack
-      # - host
+      - ai-services
+      - host
 
     ports:
       - "7801:7801"
