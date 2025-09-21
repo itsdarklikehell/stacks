@@ -9,7 +9,7 @@ services:
       args:
         UID: ${HOST_UID:-1000}
         GID: ${HOST_GID:-1000}
-      dockerfile: ../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
+      # dockerfile: ../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
     
     labels:
       - autoheal-app=true
