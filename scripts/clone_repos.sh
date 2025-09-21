@@ -16,8 +16,8 @@ function CLONE_OLLMVT(){
 
 function CLONE_SWARMUI(){
     git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git ../ai-stack/DATA/SwarmUI
-    cp -f CustomDockerfile-swarmui "../ai-stack/DATA/SwarmUI/launchtools/CustomDockerfile.docker"
-    cp -f custom-launch-docker.sh "../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh"
+    cp -f ./CustomDockerfile-swarmui "../ai-stack/DATA/SwarmUI/launchtools/CustomDockerfile.docker"
+    cp -f ./custom-launch-docker.sh "../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh"
     
     ../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh fixch
     ../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh
