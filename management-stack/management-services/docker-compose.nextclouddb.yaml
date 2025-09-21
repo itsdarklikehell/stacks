@@ -1,0 +1,19 @@
+services:
+  nextclouddb:
+    image: ${NEXTCLOUDDB_IMAGE:-mariadb}
+    container_name: ${nextclouddb_container_name:-nextcloud-db}
+    restart: ${nextclouddb_restart:-unless-stopped}
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    networks:
+      - management-services
+      - host
+    volumes:
+      - ./nextclouddb/nextclouddb:/var/lib/mysql
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_PASSWORD=dbpassword
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud

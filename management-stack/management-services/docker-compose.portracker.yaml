@@ -1,0 +1,24 @@
+services:
+  portracker:
+    image: ${PORTRACKER_IMAGE:-mostafawahied/portracker:latest}
+    container_name: ${portracker_container_name:-portracker}
+    restart: ${portracker_restart:-unless-stopped}
+    pid: "host"
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./portracker/data:/data
+    ports:
+      - "4999:4999"
+    networks:
+      - management-services
+      - host
+    environment:
+      - DOCKER_HOST=tcp://docker-proxy:2375
+    depends_on:
+      - docker-proxy
+    labels:
+      autoheal-app: true

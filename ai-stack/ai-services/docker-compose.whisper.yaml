@@ -6,6 +6,7 @@ services:
     # pull_policy: always
 
     labels:
+      - autoheal-app=true
       - keep_healthy
 
     environment:

@@ -20,9 +20,7 @@ services:
 
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
 
     ports:
       - ${WATCHTOWER_PORT:-8082}:8080

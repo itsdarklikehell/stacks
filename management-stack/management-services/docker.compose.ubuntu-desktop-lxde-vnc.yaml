@@ -1,0 +1,20 @@
+services:
+  ubuntu-desktop-lxde-vnc:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: ubuntu-desktop-lxde-vnc
+    restart: unless-stopped
+    networks:
+      - management-services
+      - host
+    ports:
+      - "6080:80"
+      - "5900:5900"
+    environment:
+      - "ALSADEV=hw:2,0"
+      - "USER=${UBUNTU_USER:-ubuntu}"
+      - "PASSWORD=${UBUNTU_PASSWORD:-ubuntu}"
+      - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"
+    volumes:
+      - "/dev/shm:/dev/shm"
+    devices:
+      - "/dev/snd"

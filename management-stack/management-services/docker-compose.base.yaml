@@ -12,12 +12,15 @@
 networks:
   management-services:
   host:
-# volumes:
-#   netdataconfig:
-#   netdatalib:
-#   netdatacache:
-#   n8n_data:
-#   dockge_data:
+  wg:
+volumes:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
+  n8n_data:
+  etc_wireguard:
+  dockge_data:
+  grafana_data:
 # # secrets:
 #   letta_pg_password:
 #     file: ../../secrets/letta_pg_password

@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
 
     labels:
+      - autoheal-app=true
       - keep_healthy
 
     environment:

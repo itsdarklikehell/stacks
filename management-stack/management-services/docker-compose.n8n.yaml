@@ -1,0 +1,37 @@
+services:
+  n8n:
+    image: ${N8N_IMAGE:-docker.n8n.io/n8nio/n8n}
+    restart: ${n8n_restart:-always}
+    container_name: ${n8n_container_name:-n8n}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+
+    environment:
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - N8N_RUNNERS_ENABLED=true
+      - NODE_ENV=production
+      - WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-Europe/Amsterdam}
+      - TZ=${GENERIC_TIMEZONE:-Europe/Amsterdam}
+
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n/local-files:/files
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - "5678:5678"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

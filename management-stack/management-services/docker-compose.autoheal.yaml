@@ -5,11 +5,11 @@ services:
     restart: ${AUTOHEAL_RESTART:-always}
 
     labels:
+      - autoheal-app=true
       - keep_healthy
 
     environment:
       AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
-    # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -20,7 +20,7 @@ services:
     # command: [ "ollama", "pull", "qwen3:latest"]
 
     networks:
-      - ai-services
+      - management-services
       - host
 
     # # ports:

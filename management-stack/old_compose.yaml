@@ -102,9 +102,7 @@ services:
     container_name: ${n8n_container_name:-n8n}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     ports:
       - "127.0.0.1:5678:5678"
     environment:
@@ -134,9 +132,7 @@ services:
     restart: ${dashy_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     ports:
       - 8383:8080
     # Set any environmental variables
@@ -165,9 +161,7 @@ services:
     restart: ${dockge_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     ports:
       - 5001:5001
     volumes:
@@ -216,9 +210,7 @@ services:
       - 9443:9443
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     volumes:
       - ./portainer/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -233,9 +225,7 @@ services:
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     ports:
       # These ports are in format <host-port>:<container-port>
       - "80:80" # Public HTTP Port
@@ -264,9 +254,7 @@ services:
     restart: ${grafana_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     environment:
       - GF_SECURITY_ADMIN_USER=${grafana_admin}
       - GF_SECURITY_ADMIN_PASSWORD=${grafana_password}
@@ -295,9 +283,7 @@ services:
       - "2375:2375"
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     labels:
       autoheal-app: true
   # image used to:
@@ -318,9 +304,7 @@ services:
       - "4999:4999"
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     environment:
       - DOCKER_HOST=tcp://docker-proxy:2375
     depends_on:
@@ -453,9 +437,7 @@ services:
     restart: unless-stopped
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     ports:
       - "6080:80"
       - "5900:5900"
@@ -477,9 +459,7 @@ services:
     restart: ${nextcloud_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     depends_on:
       - nextclouddb
       - redis
@@ -508,9 +488,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     volumes:
       - ./nextclouddb/nextclouddb:/var/lib/mysql
     environment:
@@ -529,9 +507,7 @@ services:
     restart: ${collabora_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     environment:
       - PUID=1000
       - PGID=1000
@@ -551,9 +527,7 @@ services:
       - ./redis/redis:/data
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
   # image used to:
   # scan, index, manage and serve:
   wg-easy:
@@ -599,9 +573,7 @@ services:
     #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
       - "autoheal-app=true"

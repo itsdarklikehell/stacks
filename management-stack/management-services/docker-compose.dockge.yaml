@@ -1,0 +1,36 @@
+services:
+  dockge:
+    container_name: ${dockge_container_name:-dockge}
+    image: ${DOCKGE_IMAGE:-louislam/dockge:1}
+    hostname: ${dockge_hostname:-dockge}
+    restart: ${dockge_restart:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+
+    environment:
+      # Tell Dockge where to find the stacks
+      - DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./dockge/data:/app/data
+      # Stacks Directory
+      # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
+      # ⚠️ 1. FULL path only. No relative path (MUST)
+      # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
+      - /media/rizzo/RAIDSTATION/stacks/management-stack/dockge:/media/rizzo/RAIDSTATION/stacks/management-stack/dockge
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - 5001:5001
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

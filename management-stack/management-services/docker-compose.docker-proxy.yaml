@@ -1,0 +1,34 @@
+services:
+  docker-proxy:
+    image: ${DOCKER_PROXY_IMAGE:-tecnativa/docker-socket-proxy:latest}
+    container_name: ${docker_proxy_container_name:-portracker-docker-proxy}
+    restart: ${docker_proxy_restart:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - INFO=1
+      - NETWORKS=1
+      - POST=0
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    hostname: docker-proxy
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - "2375:2375"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

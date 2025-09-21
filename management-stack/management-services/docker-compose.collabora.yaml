@@ -1,0 +1,31 @@
+services:
+  collabora:
+    image: ${COLLABORA_IMAGE:-collabora/code}
+    container_name: ${collabora_container_name:-collabora}
+    restart: ${collabora_restart:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - password=password
+      - username=nextcloud
+      - domain=example.com
+      - extra_params=--o:ssl.enable=true
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - 9980:9980
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

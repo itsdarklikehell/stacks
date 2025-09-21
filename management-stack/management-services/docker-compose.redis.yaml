@@ -1,0 +1,9 @@
+services:
+  redis:
+    image: ${REDIS_IMAGE:-redis:alpine}
+    container_name: ${redis_container_name:-redis}
+    volumes:
+      - ./redis/redis:/data
+    networks:
+      - management-services
+      - host

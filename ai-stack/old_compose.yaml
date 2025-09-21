@@ -75,9 +75,7 @@ services:
     hostname: faster-whisper-gpu
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -223,9 +221,7 @@ services:
       - .env
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
@@ -258,9 +254,7 @@ services:
       - .env
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -284,9 +278,7 @@ services:
     restart: unless-stopped
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     environment:
@@ -317,9 +309,7 @@ services:
     restart: unless-stopped
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     environment:
@@ -350,9 +340,7 @@ services:
     restart: unless-stopped
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     environment:
@@ -373,9 +361,7 @@ services:
     hostname: stable-diffusion-models-download
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     environment:
@@ -394,9 +380,7 @@ services:
     hostname: stable-diffusion-webui
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     environment:
@@ -434,9 +418,7 @@ services:
     hostname: swarmui
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     cap_drop:
@@ -476,9 +458,7 @@ services:
       - .env
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -516,9 +496,7 @@ services:
     hostname: wyoming-piper
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -569,9 +547,7 @@ services:
     hostname: watchtower
     networks:
       - ai-services
-      - management-services
-      - kuma_network
-      - cloud
+      - host
     env_file:
       - .env
     volumes:

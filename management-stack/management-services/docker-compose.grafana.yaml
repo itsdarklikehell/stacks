@@ -1,0 +1,30 @@
+services:
+  grafana:
+    image: ${GRAFANA_IMAGE:-grafana/grafana}
+    container_name: ${grafana_container_name:-grafana}
+    restart: ${grafana_restart:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+
+    environment:
+      - GF_SECURITY_ADMIN_USER=${grafana_admin:-grafana}
+      - GF_SECURITY_ADMIN_PASSWORD=${grafana_password:-grafana}
+      - GF_INSTALL_PLUGINS=
+
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - "3004:3004"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

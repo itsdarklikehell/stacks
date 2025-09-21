@@ -1,0 +1,36 @@
+services:
+  dashy:
+    image: ${DASHY_IMAGE:-lissy93/dashy}
+    container_name: ${dashy_container_name:-Dashy}
+    restart: ${dashy_restart:-unless-stopped}
+
+    environment:
+      - NODE_ENV=production
+    # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
+    #   - UID=1000
+    #   - GID=1000
+
+    volumes:
+      - ../dashy/config.yml:/app/user-data/conf.yml
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - 8383:8080
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+
+    healthcheck:
+      test: ["CMD", "node", "/app/services/healthcheck"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      autoheal-app: true

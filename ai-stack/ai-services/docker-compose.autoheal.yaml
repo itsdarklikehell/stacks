@@ -5,6 +5,7 @@ services:
     restart: ${AUTOHEAL_RESTART:-always}
     
     labels:
+      - autoheal-app=true
       - keep_healthy
 
     environment:

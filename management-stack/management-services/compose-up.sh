@@ -3,11 +3,11 @@
 set -e
 cd "$(dirname "$0")"
 
+  # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
   docker-compose.autoheal.yaml
   docker-compose.base.yaml
   docker-compose.collabora.yaml
-  docker-compose.clickhouse-server.yaml
   docker-compose.dashy.yaml
   docker-compose.docker-proxy.yaml
   docker-compose.dockge.yaml
@@ -20,7 +20,7 @@ COMPOSE_FILES=(
   docker-compose.portainer.yaml
   docker-compose.portracker.yaml
   docker-compose.redis.yaml
-  docker-compose.ubuntu-desktop-lxde-vnc.yaml
+  docker.compose.ubuntu-desktop-lxde-vnc.yaml
   docker-compose.uptime-kuma.yaml
   docker-compose.watchtower.yaml
   docker-compose.wg-easy.yaml
