@@ -29,4 +29,4 @@ services:
       autoheal: true
       keep_healthy: true
     networks:
-      - media-stack
+      - media-services

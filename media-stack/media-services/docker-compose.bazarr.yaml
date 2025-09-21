@@ -1,6 +1,6 @@
 services:
   bazarr:
-    image: ${BAZARR_IMAGE}
+    image: ${BAZARR_IMAGE:-lscr.io/linuxserver/bazarr:latest}
     container_name: ${BAZARR_CONTAINER_NAME:-arr-suite-bazarr}
     env_file:
       - ../.env
@@ -34,4 +34,4 @@ services:
       autoheal: true
       keep_healthy:
     networks:
-      - media-stack
+      - media-services

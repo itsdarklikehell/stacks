@@ -10,7 +10,7 @@ services:
           cpus: "0.50"
     env_file:
       - ../.env
-    image: ${EMBY_IMAGE}
+    image: ${EMBY_IMAGE:-linuxserver/emby:latest}
     container_name: ${EMBY_CONTAINER_NAME:-arr-suite-emby}
     environment:
       - PUID=1000

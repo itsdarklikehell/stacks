@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 512M
           cpus: "0.50"
-    image: ${ROMM_DB_IMAGE}
+    image: ${ROMM_DB_IMAGE:-mariadb:latest}
     container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
     env_file:
       - ../.env

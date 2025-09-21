@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 256M
           cpus: "0.25"
-    image: ${OVERSEERR_IMAGE}
+    image: ${OVERSEERR_IMAGE:-sctx/overseerr:latest}
     container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
     env_file:
       - ../.env

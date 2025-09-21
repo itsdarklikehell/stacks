@@ -10,7 +10,7 @@ services:
           cpus: "0.10"
     env_file:
       - ../.env
-    image: ${FLARESOLVERR_IMAGE}
+    image: ${FLARESOLVERR_IMAGE:-flaresolverr/flaresolverr:latest}
     container_name: ${FLARESOLVERR_CONTAINER_NAME:-arr-suite-flaresolverr}
     environment:
       - LOG_LEVEL=info

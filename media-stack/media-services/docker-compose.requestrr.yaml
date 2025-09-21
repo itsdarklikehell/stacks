@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: ${REQUESTRR_IMAGE}
+    image: ${REQUESTRR_IMAGE:-thomst08/requestrr}
     container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
     env_file:
       - ../.env
