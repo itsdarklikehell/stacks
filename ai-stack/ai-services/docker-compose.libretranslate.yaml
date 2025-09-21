@@ -1,0 +1,35 @@
+services:
+  libretranslate:
+    container_name: libretranslate
+    image: libretranslate/libretranslate:latest-cuda
+    hostname: libretranslate
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - ai-stack
+      - management-stack
+      - kuma_network
+      - cloud
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - ./whisper/libretranslate/data:/home/libretranslate/.local/share
+      - ./whisper/libretranslate/cache:/home/libretranslate/.local/cache
+    user: root
+    tty: true
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - LT_DISABLE_WEB_UI=True
+      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}
+      - LT_UPDATE_MODELS=True
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - ${LIBRETRANSLATE_PORT:-5000}:5000

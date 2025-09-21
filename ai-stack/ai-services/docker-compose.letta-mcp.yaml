@@ -1,0 +1,14 @@
+services:
+  letta-mcp:
+    image: ghcr.io/oculairmedia/letta-mcp-server:latest
+    container_name: letta-mcp
+    hostname: letta-mcp
+    restart: unless-stopped
+    ports:
+      - ${LETTA_MCP_PORT:-3001}:3001
+    env_file:
+      - .env
+    environment:
+      - LETTA_BASE_URL=${LETTA_BASE_URL:-http://host.docker.internal:8283}
+      - LETTA_PASSWORD=${LETTA_PASSWORD}
+      - NODE_ENV=${NODE_ENV:-production}

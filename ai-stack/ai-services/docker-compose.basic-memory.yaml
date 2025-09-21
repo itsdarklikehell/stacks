@@ -1,0 +1,52 @@
+services:
+  basic-memory:
+    image: ghcr.io/basicmachines-co/basic-memory:latest
+    container_name: basic-memory-server
+    restart: unless-stopped
+    hostname: basic-memory
+    # Uncomment to build locally instead:
+    # build: .
+    volumes:
+      - basic-memory-config:/root/.basic-memory:rw
+      - ../basic-memory/knowledge:/app/data:rw
+      - ../basic-memory/work-notes:/app/data/work:rw
+      - ../basic-memory/personal-notes:/app/data/personal:rw
+      # OPTIONAL: Mount additional knowledge directories for multiple projects
+    environment:
+      - BASIC_MEMORY_DEFAULT_PROJECT=main
+      - BASIC_MEMORY_SYNC_CHANGES=true
+      - BASIC_MEMORY_LOG_LEVEL=INFO
+      - BASIC_MEMORY_SYNC_DELAY=1000
+    networks:
+      - ai-stack
+    env_file:
+      - .env
+    ports:
+      - "8004:8004"
+    command:
+      [
+        "basic-memory",
+        "mcp",
+        "--transport",
+        "sse",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8004",
+      ]
+    healthcheck:
+      test: ["CMD", "basic-memory", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+    # Optional: Resource limits
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 512M
+    #       cpus: '0.5'
+    #     reservations:
+    #       memory: 256M
+    #       cpus: '0.25'
