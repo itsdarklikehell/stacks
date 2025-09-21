@@ -19,7 +19,7 @@ COMPOSE_FILES=(
   docker-compose.searxng.yaml
   docker-compose.stable-diffusion-models-download.yaml
   docker-compose.stable-diffusion-webui.yaml
-  docker-compose.swarmui.yaml
+  # docker-compose.swarmui.yaml
   docker-compose.watchtower.yaml
   docker-compose.whisper.yaml
   docker-compose.wyoming-piper.yaml
