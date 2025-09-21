@@ -24,6 +24,9 @@ services:
         ipv4_address: 192.168.1.11 #optional, I am using mac vlan, if you don't want to, remove iot_macvlan and don't create the network above
       ai-services:
       host:
+
+    env_file:
+      - ../.env
         
     ports:
       - ${HASSPORT:-8123}:8123

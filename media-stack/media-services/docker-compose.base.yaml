@@ -10,8 +10,37 @@
 # - Keep this file and .env in sync
 
 networks:
-  media-services:
   host:
+  media-services:
+    external: true
+  ai-stack:
+    external: true
+  iot_macvlan:
+    external: true
+  basic-memory-net:
+  management-stack:
+    external: true
+  gaseous:
+    driver: bridge
+  proxy:
+    external: true
+  cloud:
+    name: cloud
+    driver: bridge
+    external: true
+  zabbix-network:
+    external: true
+  kuma_network:
+    driver: bridge
+    external: true
+  wg:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64
 
 volumes:
   netdataconfig:
@@ -19,6 +48,8 @@ volumes:
   netdatacache:
   n8n_data:
   dockge_data:
+  etc_wireguard:
+  grafana_data:
 
 secrets:
   letta_pg_password:

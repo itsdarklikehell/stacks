@@ -28,7 +28,7 @@ services:
       - ${SEARXNG_PORT:-8081}:8080
 
     env_file:
-      - .env
+      - ../.env
 
     deploy:
       replicas: 1
