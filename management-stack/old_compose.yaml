@@ -15,7 +15,7 @@ services:
   #
   # scan, index, manage and serve:
   autoheal:
-    # TODO: Add resource limits if supported by image
+    
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal}
     env_file:
@@ -32,7 +32,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   uptime-kuma:
-    # TODO: Add resource limits if supported by image
+    
     image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:latest}
     container_name: ${uptime_kuma_container_name:-uptime-kuma}
     env_file:
@@ -61,7 +61,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   netdata:
-    # TODO: Add resource limits if supported by image
+    
     image: ${NETDATA_IMAGE:-netdata/netdata:edge}
     container_name: ${netdata_container_name:-netdata}
     pid: host
@@ -95,7 +95,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   n8n:
-    # TODO: Add resource limits if supported by image
+    
     image: ${N8N_IMAGE:-docker.n8n.io/n8nio/n8n}
     restart: ${n8n_restart:-always}
     container_name: ${n8n_container_name:-n8n}
@@ -122,7 +122,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   dashy:
-    # TODO: Add resource limits if supported by image
+    
     image: ${DASHY_IMAGE:-lissy93/dashy}
     # To build from source, replace 'image: lissy93/dashy' with 'build: .'
     # build: .
@@ -157,7 +157,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   dockge:
-    # TODO: Add resource limits if supported by image
+    
     container_name: ${dockge_container_name:-dockge}
     image: ${DOCKGE_IMAGE:-louislam/dockge:1}
     hostname: ${dockge_hostname:-dockge}
@@ -185,7 +185,7 @@ services:
   # image used to:
   # scan, index, manage and serve:
   portainer:
-    # TODO: Add resource limits if supported by image
+    
     #
     # BACKUP STRATEGY:
     # - Ensure all named volumes are included in regular backups

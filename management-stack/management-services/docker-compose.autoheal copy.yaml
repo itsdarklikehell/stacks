@@ -1,0 +1,27 @@
+services:
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:latest}
+    container_name: ${uptime_kuma_container_name:-uptime-kuma}
+    env_file:
+      - .env
+    restart: ${uptime_kuma_restart:-always}
+    ports:
+      - "${UPTIME_KUMA_PORT:-3002}:3002"
+    volumes:
+      - ./uptime-kuma/data:/app/data
+    environment:
+      - TZ=${UPTIME_KUMA_TZ:-Europe/Amsterdam}
+      - UMASK=${UPTIME_KUMA_UMASK:-0022}
+    networks:
+      - management-stack
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
