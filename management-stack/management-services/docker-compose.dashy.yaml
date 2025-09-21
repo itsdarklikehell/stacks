@@ -10,8 +10,8 @@ services:
     #   - UID=1000
     #   - GID=1000
 
-    volumes:
-      - ../dashy/config.yml:/app/user-data/conf.yml
+    # volumes:
+    #   - ../dashy/config.yml:/app/user-data/conf.yml
 
     networks:
       - management-services
