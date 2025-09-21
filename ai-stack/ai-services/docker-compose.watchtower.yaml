@@ -46,7 +46,7 @@ services:
       - searxng
       - stable-diffusion-models-download
       - stable-diffusion-webui
-      - swarmui
       - whisper
       - wyoming-piper
+      # - swarmui
       # - watchtower
