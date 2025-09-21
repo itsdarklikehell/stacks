@@ -1,3 +1,4 @@
 # Ignore Docker secrets and local overrides
 .env
 DATA/*
+# secrets/*
