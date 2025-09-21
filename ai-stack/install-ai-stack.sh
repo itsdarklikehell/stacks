@@ -1,14 +1,13 @@
 #!/bin/bash
+# sudo apt update && sudo apt upgrade -y
 
-export WD="$(dirname "$(realpath $0)")"
-export LETTA_SANDBOX_MOUNT_PATH=./letta
+WD="$(dirname "$(realpath "$0")")"
+export WD
+export LETTA_SANDBOX_MOUNT_PATH="../letta"
 export UV_LINK_MODE=copy
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
-
-# sudo apt update && sudo apt upgrade -y
-
 
 function INSTALL_UV(){
     ../scripts/install_uv.sh
@@ -30,18 +29,12 @@ function INSTALL_SWARMUI(){
 }
 
 function DOCKER_COMPOSE_STACK(){
-    cd ai-services || exit 1
+    cd ../ai-services/ || exit 1
     ./compose-up.sh
 }
 
-# echo "Cloning repositories..."
-# CLONE_REPOS
-
-# echo "Creating ComfyUI Dockerfile..."
-# CREATE_COMFYUI_DOCKERFILE
-
-# echo "Creating SwarmUI Dockerfile..."
-# CREATE_SWARMUI_DOCKERFILE
+echo "Cloning repositories..."
+CLONE_REPOS
 
 # echo "Installing SwarmUI..."
 # INSTALL_SWARMUI
