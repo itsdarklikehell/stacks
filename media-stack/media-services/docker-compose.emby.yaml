@@ -1,0 +1,35 @@
+services:
+  emby:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    env_file:
+      - ../.env
+    image: ${EMBY_IMAGE}
+    container_name: ${EMBY_CONTAINER_NAME:-arr-suite-emby}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
+    expose:
+      - 8097/tcp
+      - 8920/tcp
+    ports:
+      - ${EMBY_PORT:-8097}:8097/tcp
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8097"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

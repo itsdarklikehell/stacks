@@ -1,0 +1,11 @@
+services:
+  buildarr:
+    image: "callum027/buildarr:latest"
+    container_name: buildarr
+    env_file:
+      - ../.env
+    environment:
+      - "PUID=$(id"
+      - "PGID=$(id"
+    volumes:
+      - ./buildarr/config:/config

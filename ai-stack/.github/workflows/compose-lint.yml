@@ -1,0 +1,26 @@
+name: Docker Compose Lint
+
+on:
+  push:
+    paths:
+      - "**/compose*.yaml"
+      - "**/.env"
+  pull_request:
+    paths:
+      - "**/compose*.yaml"
+      - "**/.env"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install docker-compose-linter
+        run: pip install docker-compose-linter
+      - name: Lint all compose files
+        run: |
+          find . -name 'compose*.yaml' -exec docker-compose-linter {} +

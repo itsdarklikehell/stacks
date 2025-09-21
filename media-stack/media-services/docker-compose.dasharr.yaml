@@ -1,0 +1,32 @@
+services:
+  dasharr:
+    image: ghcr.io/dasharr/dasharr:latest
+    container_name: ${DASHARR_CONTAINER_NAME:-dasharr}
+    env_file:
+      - ../.env
+    environment:
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    ports:
+      - ${DASHARR_PORT:-8780}:8780
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8780"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    labels:
+      autoheal: true
+      keep_healthy: true
+    networks:
+      - media-stack

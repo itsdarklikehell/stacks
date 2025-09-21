@@ -1,0 +1,26 @@
+services:
+  overseerr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${OVERSEERR_IMAGE}
+    container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
+    env_file:
+      - ../.env
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Amsterdam
+      - PORT=5056
+    ports:
+      - ${OVERSEERR_PORT:-5056}:5056
+    volumes:
+      - ./overseerr/appdata/config:/app/config
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:

@@ -1,0 +1,1231 @@
+services:
+  # image used to:
+  #   - provide a dashboard for all services in the stack (not just *arr)
+  dasharr:
+    image: ghcr.io/dasharr/dasharr:latest
+    container_name: ${DASHARR_CONTAINER_NAME:-dasharr}
+    environment:
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    ports:
+      - ${DASHARR_PORT:-8780}:8780 # Dasharr web UI/API
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8780"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    labels:
+      autoheal: true
+      keep_healthy: true
+  ###############################################################
+  # MEDIA STACK - DOCKER COMPOSE
+  #
+  # Best Practices:
+  # - Use variable substitution for all sensitive/configurable values
+  # - Resource limits set via deploy.resources (mem_limit is deprecated)
+  # - Use Docker secrets for passwords/keys
+  # - Use Docker secrets for sensitive values
+  # - Pin image version if available
+  # - Add healthchecks for all services
+  # - Use resource limits (mem_limit, cpus) where possible
+  # - Segment networks for security
+  # - Add comments for clarity
+  # - Plan for backups and CI/CD
+  # - Ensure this service is included in backup/restore plans
+  # - Document all customizations and reduce any manual steps neccasairy
+  ###############################################################
+  # - Ensure all named volumes are included in regular backups
+  # - Use offsite/cloud backup for critical data
+  # - Document restore procedures
+
+  # image used to:
+  #   - manage subtitles
+  bazarr:
+    image: ${BAZARR_IMAGE} # TODO: Pin version if available
+    container_name: ${BAZARR_CONTAINER_NAME:-arr-suite-bazarr}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library (optional)
+    expose:
+      - 6767/tcp # web ui
+    ports:
+      - ${BAZARR_PORT:-6767}:6767/tcp # web ui
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6767"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  calibre-web:
+    image: linuxserver/calibre-web
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    ports:
+      - ${CALIBRE_WEB_PORT:-8084}:8084
+    volumes:
+      - ./calibre-web/calibre-library:/calibre-library
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  emby:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${EMBY_IMAGE} # TODO: Pin version if available
+    container_name: ${EMBY_CONTAINER_NAME:-arr-suite-emby}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # location of database and configs; can grow very large
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # location of media library
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby/lib:/opt/vc/lib # location for Raspberry Pi OpenMAX libs (optional)
+    expose:
+      - 8097/tcp # http web ui
+      - 8920/tcp # https web ui
+    ports:
+      - ${EMBY_PORT:-8097}:8097/tcp # http web ui
+    #devices:
+    #  - /dev/dri:/dev/dri #optional
+    #  - /dev/vchiq:/dev/vchiq #optional
+    #  - /dev/video10:/dev/video10 #optional
+    #  - /dev/video11:/dev/video11 #optional
+    #  - /dev/video12:/dev/video12 #optional
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.emby.rule=Host(`emby.example.com`)
+    #  - traefik.http.services.emby.loadbalancer.server.port=8097
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.emby.middlewares=local-ipwhitelist@file
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8097"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  flaresolverr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${FLARESOLVERR_IMAGE}
+    container_name: ${FLARESOLVERR_CONTAINER_NAME:-arr-suite-flaresolverr}
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=Europe/Amsterdam
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  romm-db:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${ROMM_DB_IMAGE}
+    container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+    secrets:
+      - mariadb_root_password
+      - mariadb_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    # healthcheck for romm-db is already defined above; only one block needed
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    ports:
+      - ${ROMM_DB_PORT:-3306}:3306
+
+  gaseous-server:
+    container_name: gaseous-server
+    image: gaseousgames/gaseousserver:latest
+    restart: unless-stopped
+    networks:
+      - gaseous
+    depends_on:
+      - gsdb
+    ports:
+      - 5198:80
+    volumes:
+      - gs:/root/.gaseous-server
+    environment:
+      - TZ=Europe/Amsterdam
+      - dbhost=gsdb
+      - dbuser=root
+      - dbpass=gaseous
+      - igdbclientid=
+      - igdbclientsecret=
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  gsdb:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${GSDB_IMAGE}
+    container_name: ${GSDB_CONTAINER_NAME:-gsdb}
+    restart: unless-stopped
+    networks:
+      - gaseous
+    volumes:
+      - gsdb:/var/lib/mysql
+    environment:
+      - MARIADB_USER=gaseous
+    secrets:
+      - gsdb_root_password
+      - gsdb_password
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:32400"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # healthcheck for gsdb is not needed here; only for its own service
+
+  jellyfin:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${JELLYFIN_IMAGE}
+    container_name: ${JELLYFIN_CONTAINER_NAME:-arr-suite-jellyfin}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    # volumes:
+    #   - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin:/config # location of database and configs; can grow very large
+    #   - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # location of media library
+    #   #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin/lib:/opt/vc/lib # location for Raspberry Pi OpenMAX libs (optional)
+    expose:
+      - 8096/tcp # http web ui
+    ports:
+      - ${JELLYFIN_PORT:-8096}:8096/tcp # http web ui
+    #devices:
+    #  - /dev/dri:/dev/dri #optional
+    #  - /dev/vchiq:/dev/vchiq #optional
+    #  - /dev/video10:/dev/video10 #optional
+    #  - /dev/video11:/dev/video11 #optional
+    #  - /dev/video12:/dev/video12 #optional
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.jellyfin.rule=Host(`jellyfin.example.com`)
+    #  - traefik.http.services.jellyfin.loadbalancer.server.port=8096
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.jellyfin.middlewares=local-ipwhitelist@file
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9696"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # healthcheck for jellyfin is not needed here; only for its own service
+
+  jellyseerr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${JELLYSEERR_IMAGE}
+    container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Amsterdam
+    ports:
+      - ${JELLYSEERR_PORT:-5055}:5055
+    volumes:
+      - ./jellyseerr/appdata/config:/app/config
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7878"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  lidarr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${LIDARR_IMAGE}
+    container_name: ${LIDARR_CONTAINER_NAME:-arr-suite-lidarr}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
+    expose:
+      - 8686/tcp # web ui
+    ports:
+      - ${LIDARR_PORT:-8686}:8686/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4545"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.lidarr.rule=Host(`lidarr.example.com`)
+    #  - traefik.http.services.lidarr.loadbalancer.server.port=8686
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.lidarr.middlewares=local-ipwhitelist@file
+
+  mattermost:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${MATTERMOST_IMAGE}
+    container_name: ${MATTERMOST_CONTAINER_NAME:-mattermost}
+    ports:
+      - ${MATTERMOST_PORT:-8065}:8065
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  mylar3:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${MYLAR3_IMAGE}
+    container_name: ${MYLAR3_CONTAINER_NAME:-mylar3}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ./mylar3/mylar3/config:/config
+      - ./mylar3/comics:/comics
+      - ./mylar3/downloads:/downloads
+    ports:
+      - ${MYLAR3_PORT:-8091}:8091
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:85"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  organizr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${ORGANIZR_IMAGE}
+    container_name: ${ORGANIZR_CONTAINER_NAME:-organizr}
+    ports:
+      - ${ORGANIZR_PORT:-8086}:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ./organizr/config:/config
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  overseerr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${OVERSEERR_IMAGE}
+    container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Amsterdam
+      - PORT=5056 #optional
+    ports:
+      - ${OVERSEERR_PORT:-5056}:5056
+    volumes:
+      - ./overseerr/appdata/config:/app/config
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  plex:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.00"
+        reservations:
+          memory: 1G
+          cpus: "1.00"
+    image: ${PLEX_IMAGE}
+    container_name: ${PLEX_CONTAINER_NAME:-plex}
+    ports:
+      - ${PLEX_PORT:-32400}:32400
+    volumes:
+      - ./plex/config:/config
+      - ./plex/transcode:/transcode
+      - ./plex/media:/data
+    labels:
+      autoheal: true
+      keep_healthy:
+  # image used to:
+  # scan, index, manage and serve: torrent links from the internet
+  prowlarr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${PROWLARR_IMAGE}
+    container_name: ${PROWLARR_CONTAINER_NAME:-arr-suite-prowlarr}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config # location of database and configs
+    expose:
+      - 9696/tcp # web ui
+    ports:
+      - ${PROWLARR_PORT:-9696}:9696/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.prowlarr.rule=Host(`prowlarr.example.com`)
+    #  - traefik.http.services.prowlarr.loadbalancer.server.port=9696
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.prowlarr.middlewares=local-ipwhitelist@file
+    labels:
+      autoheal: true
+      keep_healthy:
+  # image used to:
+  # scan, index, manage and serve: movies
+  radarr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: ${RADARR_IMAGE}
+    container_name: ${RADARR_CONTAINER_NAME:-arr-suite-radarr}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
+    expose:
+      - 7878/tcp # web ui
+    ports:
+      - ${RADARR_PORT:-7878}:7878/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    labels:
+      autoheal: true
+      keep_healthy:
+  #  - traefik.enable=true
+  #  - traefik.docker.network=proxy
+  #  - traefik.http.routers.radarr.rule=Host(`radarr.example.com`)
+  #  - traefik.http.services.radarr.loadbalancer.server.port=7878
+  #  # Optional part for traefik middlewares
+  #  - traefik.http.routers.radarr.middlewares=local-ipwhitelist@file
+
+  requestrr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${REQUESTRR_IMAGE}
+    container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
+    ports:
+      - ${REQUESTRR_PORT:-4545}:4545
+    volumes:
+      - ./requestrr/config:/root/config
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  retroarch:
+    # deploy block merged below
+    image: ${RETROARCH_IMAGE}
+    container_name: ${RETROARCH_CONTAINER_NAME:-retroarch}
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amstedam
+    volumes:
+      - ./retroarch/config:/config
+    ports:
+      - ${RETROARCH_PORT:-3000}:3000
+      - 3003:3003
+    shm_size: "1gb"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [compute, video, graphics, utility]
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  retroarchz:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${RETROARCHZ_IMAGE}
+    container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
+    ports:
+      - ${RETROARCHZ_PORT:-85}:85
+    volumes:
+      - "/home/rizzo/RetroPie/roms:/roms"
+
+  romm:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${ROMM_IMAGE}
+    container_name: ${ROMM_CONTAINER_NAME:-romm}
+    restart: unless-stopped
+    environment:
+      - DB_HOST=romm-db
+      - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+      - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+      - HASHEOUS_API_ENABLED=true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
+    secrets:
+      - romm_db_password
+      - romm_auth_secret_key
+      - screenscraper_password
+      - retroachievements_api_key
+      - steamgriddb_api_key
+    volumes:
+      - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - romm_redis_data:/redis-data # Cached data for background tasks
+      - ./romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      - ./romm/assets:/romm/assets # Uploaded saves, states, etc.
+      - ./romm/config:/romm/config # Path where config.yml is stored
+    ports:
+      - ${ROMM_PORT:-8080}:8080
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+    labels:
+      autoheal: true
+      keep_healthy:
+  rreading-glasses:
+    # Resource limits are set below; mem_limit is deprecated in Compose v3+
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    depends_on:
+      rreading-glasses-db:
+        condition: service_started
+    image: blampe/rreading-glasses:hardcover # TODO: Pin version if available
+    pull_policy: always
+    container_name: rreading-glasses
+    hostname: rreading-glasses
+    entrypoint: ["/main", "serve"]
+    command:
+      - --verbose
+    restart: unless-stopped
+    # mem_limit is not needed; use deploy.resources.limits above
+    environment:
+      POSTGRES_HOST: rreading-glasses-db
+      POSTGRES_DATABASE: rreading-glasses
+      POSTGRES_USER: rreading-glasses
+    secrets:
+      - hardcover_auth
+      - rreading_glasses_db_password
+    ports:
+      - "8788:8788"
+    labels:
+      autoheal: true
+      keep_healthy:
+  rreading-glasses-db:
+    image: postgres:17.0
+    container_name: rreading-glasses-db
+    hostname: rreading-glasses-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rreading-glasses
+      POSTGRES_DB: rreading-glasses
+    secrets:
+      - rreading_glasses_db_password
+    ports:
+      - "5433:5433"
+    volumes:
+      - rreading_glasses_data:/var/lib/postgresql/data
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  sonarr:
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    image: lscr.io/linuxserver/sonarr:4.0.5.1710
+    container_name: arr-suite-sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
+    expose:
+      - 8989/tcp # web ui
+    ports:
+      - 8989:8989/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    labels:
+      autoheal: true
+      keep_healthy:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)
+    #  - traefik.http.services.sonarr.loadbalancer.server.port=8989
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.sonarr.middlewares=local-ipwhitelist@file
+
+  tvs99:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: "zshall/television-simulator:1.0.0" # version guessed, please verify
+    container_name: tvs99
+    hostname: tvs99
+    restart: unless-stopped
+    networks:
+      - ai-stack
+    ports:
+      - ${TVS99_PORT:-8085}:3000
+    volumes:
+      - ./tvs99/config/config.tvs.yml:/home/static/config.tvs.yml:ro
+      - ./tvs99/content:/home/static/content:ro
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  webrcade:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: "webrcade/webrcade:2.2.0"
+    container_name: webrcade
+    ports:
+      - "87:87"
+      - "447:447"
+    volumes:
+      - ./webrcade/content:/var/www/html/content"
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  sickgear:
+    container_name: sickgear
+    image: sickgear/sickgear:latest
+    environment:
+      - APP_UID=1000
+      - APP_GID=44
+      - TZ=UTC
+    ports:
+      - 8081:8081/tcp
+    volumes:
+      - ./sickgear/sickgear-data:/data
+      - ./sickgear/incoming:/incoming
+      - ./sickgear/tv:/tv
+
+  kapowarr:
+    container_name: kapowarr
+    image: mrcas/kapowarr:latest
+    volumes:
+      - kapowarr-db:/app/db
+      - ./kapowarr/download_folder:/app/temp_downloads
+      - ./kapowarr/root_folder:/comics-1
+    ports:
+      - 5656:5656
+
+  flexget:
+    image: flexget/flexget
+    container_name: flexget
+    command:
+      - daemon
+      - start
+      - --autoreload-config # optional
+    ports:
+      - 5050:5050 # optional: for webui
+    environment:
+      - TZ=$TIMEZONE # optional: defaults to UTC
+    volumes:
+      - ./flexget/config:/config # required
+      - ./flexget/downloads:/downloads
+  buildarr:
+    image: "callum027/buildarr:latest"
+    container_name: buildarr
+    environment:
+      - "PUID=$(id"
+      - "PGID=$(id"
+    volumes:
+      - ./buildarr/config:/config'
+  byparr:
+    image: "ghcr.io/thephaseless/byparr:latest"
+    ports:
+      - "8191:8191"
+
+  autopulse:
+    image: "autopulse"
+    container_name: autopulse
+    command: ghcr.io/dan-online/autopulse
+    environment:
+      - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"
+
+  calendarr:
+    image: ghcr.io/jordanlambrecht/calendarr:latest
+    restart: "unless-stopped"
+    container_name: calendarr
+    environment:
+      # --- Required ---
+
+      TZ:
+        ${TZ}
+        # At least one calendar URL is needed
+      CALENDAR_URLS: >
+        [{
+          "url":"${ICS_URL_SONARR_1}",
+          "type":"tv"
+        },
+        {
+          "url":"${ICS_URL_SONARR_2}",
+          "type":"tv"
+        },
+        {
+          "url":"${ICS_URL_RADARR_1}",
+          "type":"movie"
+        }]
+
+      # Required for Discord
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
+      USE_DISCORD: true
+
+      # Required for Slack
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      USE_SLACK: false
+
+      # --- Kitchen Sink (All are optional - Defaults are usually fine) ---
+      ADD_LEADING_ZERO: true
+      CALENDAR_RANGE: "AUTO" # AUTO, DAY, or WEEK
+      CRON_SCHEDULE: "" # Example: "0 10 * * 1" (10:00 every Monday) - Overrides SCHEDULE_TYPE/DAY/RUN_TIME
+      CUSTOM_HEADER: "TV Guide - Shows and Movies airing this week"
+      DEBUG: false
+      DEDUPLICATE_EVENTS: true
+      DISCORD_HIDE_MENTION_INSTRUCTIONS: false
+      DISCORD_MENTION_ROLE_ID: ${DISCORD_MENTION_ROLE_ID}
+      DISPLAY_TIME: true
+      ENABLE_CUSTOM_DISCORD_FOOTER: false
+      ENABLE_CUSTOM_SLACK_FOOTER: false
+      HTTP_TIMEOUT: "30"
+      LOG_BACKUP_COUNT: "15"
+      LOG_DIR: "/app/logs"
+      LOG_FILE: "calendarr.log"
+      LOG_MAX_SIZE_MB: "1"
+      PASSED_EVENT_HANDLING: "STRIKE" # DISPLAY, HIDE, or STRIKE
+      RUN_ON_STARTUP: true
+      RUN_TIME: "09:30" # Time in HH:MM format (24-hour)
+      SCHEDULE_DAY: "1" # 0=Sun, 1=Mon, ..., 6=Sat (Only used if SCHEDULE_TYPE is WEEKLY and CRON_SCHEDULE is not set)
+      SCHEDULE_TYPE: "WEEKLY" # DAILY or WEEKLY (Only used if CRON_SCHEDULE is not set)
+      SHOW_DATE_RANGE: true
+      SHOW_TIMEZONE_IN_SUBHEADER: true
+      START_WEEK_ON_MONDAY: true
+      USE_24_HOUR: true
+
+    volumes:
+      # Mount logs directory (optional but recommended)
+      - ./calendarr/logs:/app/logs:rw
+      # Mount custom footers directory (required if ENABLE_CUSTOM_*_FOOTER is true)
+      - ./calendarr/custom_footers:/app/custom_footers:rw
+
+    healthcheck: # You can delete this if  you don't care about healthchecks
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  autobrr:
+    container_name: autobrr
+    image: ghcr.io/autobrr/autobrr:latest
+    restart: unless-stopped
+    #logging:
+    #  driver: json-file
+    #  options:
+    #    max-file: ${DOCKERLOGGING_MAXFILE}
+    #    max-size: ${DOCKERLOGGING_MAXSIZE}
+    user: 1000:1000
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${BASE_DOCKER_DATA_PATH:-../autobrr/config}/autobrr/config:/config
+    ports:
+      - 7474:7474
+
+  checkrr:
+    container_name: checkrr
+    image: aetaric/checkrr:latest
+    volumes:
+      - /path/to/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
+      - /path/to/checkrr/config/checkrr.db:/checkrr.db
+      - /path/to/media/to/scan:/media
+    ports:
+      - 8585:8585
+    restart: on-failure
+    # checkpath:
+    #   - /media/TV_Shows
+    #   - /media/Movies
+
+  flemmarr:
+    container_name: flemmarr
+    image: pierremesure/flemmarr
+    volumes:
+      - ./flemmarr/config:/config
+
+  whisparr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ghcr.io/hotio/whisparr:1.0.0.1234 # version guessed, please verify
+    container_name: whisparr
+    restart: unless-stopped
+    ports:
+      - "6969:6969"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Europe/Amstedam
+    volumes:
+      - ./whisparr/config:/config
+      - ./whisparr/data:/data
+    labels:
+      autoheal: true
+      keep_healthy:
+
+  #   image: linuxserver/readarr:develop
+  #   container_name: arr-suite-readarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config # location of database and configs
+  #     - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
+  #   expose:
+  #     - 8787/tcp # web ui
+  #   ports:
+  #     - 8787:8787/tcp # web ui
+  #   restart: unless-stopped
+  #   #networks:
+  #   #  - proxy
+  #   #  labels:
+  #   #  autoheal: true
+  #   #  - traefik.enable=true
+  #   #  - traefik.docker.network=proxy
+  #   #  - traefik.http.routers.readarr.rule=Host(`readarr.example.com`)
+  #   #  - traefik.http.services.readarr.loadbalancer.server.port=8787
+  #   #  # Optional part for traefik middlewares
+  #   #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
+
+  # gluetun:
+  #   image: qmcgaw/gluetun:latest
+  #   container_name: arr-suite-gluetun
+  #   cap_add:
+  #     - NET_ADMIN
+  #   ports:
+  #     - 8080:8080 # qbittorrent http web ui
+  #   environment:
+  #     # see https://github.com/qdm12/gluetun-wiki for more details
+  #     # example envs based on https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/mullvad.md
+  #     - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER:-mullvad} # define the vpn provider
+  #     - VPN_TYPE=${VPN_TYPE:-wireguard} # define the vpn protocol to use
+  #     # - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?WIREGUARD_PRIVATE_KEY must be set} # define your wireguard private key here
+  #     # - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?WIREGUARD_ADDRESSES must be set} # define the ipv4 vpn network subnet here
+  #     - SERVER_CITIES=${SERVER_CITIES:?SERVER_CITIES must be set} # define the server cities
+  #   volumes:
+  #     - ./gluetun/configs/gluetun:/gluetun
+  #   restart: unless-stopped
+  #   #networks:
+  #   #  - proxy
+  #   #    labels:
+  #   #      autoheal: true
+
+  #   #  - traefik.enable=true
+  #   #  - traefik.docker.network=proxy
+  #   #  - traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.example.com`)
+  #   #  - traefik.http.services.qbittorrent.loadbalancer.server.port=8080
+  #   #  # Optional part for traefik middlewares
+  #   #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
+
+  # # qbittorrent:
+  # #   image: linuxserver/qbittorrent:5.0.2-libtorrentv1
+  # #   container_name: arr-suite-qbittorrent
+  # #   environment:
+  # #     - PUID=1000
+  # #     - PGID=1000
+  # #     - TZ=Europe/Amsterdam
+  # #     - WEBUI_PORT=8080
+  # #   volumes:
+  # #     - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # location of database and configs
+  # #     - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
+  # #   depends_on:
+  # #     - gluetun
+  # #   network_mode: container:arr-suite-gluetun # use the gluetun container network (vpn killswitch)
+  # #   restart: unless-stopped
+
+  watchtower:
+    image: "containrrr/watchtower:1.7.1"
+    restart: unless-stopped
+    container_name: watchtower-media-stack
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # command: --debug --http-api-update
+    # environment:
+    #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+    labels:
+      - autoheal=true
+      - "com.centurylinklabs.watchtower.enable=false"
+    depends_on:
+      - autoheal
+      - bazarr
+      - calibre-web
+      - emby
+      - flaresolverr
+      - gaseous-server
+      - gsdb
+      - jellyfin
+      - jellyseerr
+      - lidarr
+      - mattermost
+      - mylar3
+      - organizr
+      - overseerr
+      - plex
+      - prowlarr
+      - radarr
+      - requestrr
+      - retroarch
+      - romm
+      - romm-db
+      - rreading-glasses
+      - rreading-glasses-db
+      - sonarr
+      - tvs99
+      - webrcade
+      - whisparr
+
+  autoheal:
+    image: willfarrell/autoheal:1.2.0
+    container_name: autoheal-media
+    deploy:
+      replicas: 1
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: keep_healthy
+    network_mode: none
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  #
+  # BACKUP STRATEGY:
+
+  rreading_glasses_data:
+  mysql_data:
+  romm_resources:
+  romm_redis_data:
+  gs:
+  gsdb:
+  kapowarr-db:
+
+secrets:
+  #
+  # SECRETS MANAGEMENT:
+  # - Store all secret files securely
+  # - Rotate secrets regularly
+  # - Never commit secrets to version control
+  mariadb_root_password:
+    file: ./secrets/mariadb_root_password.txt
+  mariadb_password:
+    file: ./secrets/mariadb_password.txt
+  gsdb_root_password:
+    file: ./secrets/gsdb_root_password.txt
+  gsdb_password:
+    file: ./secrets/gsdb_password.txt
+  romm_db_password:
+    file: ./secrets/romm_db_password.txt
+  romm_auth_secret_key:
+    file: ./secrets/romm_auth_secret_key.txt
+  screenscraper_password:
+    file: ./secrets/screenscraper_password.txt
+  retroachievements_api_key:
+    file: ./secrets/retroachievements_api_key.txt
+  steamgriddb_api_key:
+    file: ./secrets/steamgriddb_api_key.txt
+  hardcover_auth:
+    file: ./secrets/hardcover_auth.txt
+  rreading_glasses_db_password:
+    file: ./secrets/rreading_glasses_db_password.txt
+
+networks:
+  #
+  # NETWORK SEGMENTATION:
+  # - Use dedicated networks for each stack
+  # - Restrict inter-stack communication unless required
+  # - Document network policies
+  #
+  # CI/CD & DOCUMENTATION:
+  # - Use GitHub Actions or similar for automated testing/deployment
+  # - Document all customizations and manual steps in README.md
+  # - Keep this file and .env in sync
+  ai-stack:
+    external: true
+  iot_macvlan:
+    external: true
+  basic-memory-net:
+  management-stack:
+    external: true
+  gaseous:
+    driver: bridge
+  proxy:
+    external: true
+  cloud:
+    name: cloud
+    driver: bridge
+    external: true
+  zabbix-network:
+    external: true
+  kuma_network:
+    driver: bridge
+    external: true
+  wg:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64

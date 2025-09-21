@@ -1,0 +1,14 @@
+services:
+  autobrr:
+    container_name: autobrr
+    image: ghcr.io/autobrr/autobrr:latest
+    restart: unless-stopped
+    user: 1000:1000
+    env_file:
+      - ../.env
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${BASE_DOCKER_DATA_PATH:-../autobrr/config}/autobrr/config:/config
+    ports:
+      - 7474:7474

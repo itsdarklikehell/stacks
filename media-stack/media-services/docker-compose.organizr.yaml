@@ -1,0 +1,25 @@
+services:
+  organizr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${ORGANIZR_IMAGE}
+    container_name: ${ORGANIZR_CONTAINER_NAME:-organizr}
+    env_file:
+      - ../.env
+    ports:
+      - ${ORGANIZR_PORT:-8086}:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ./organizr/config:/config
+    labels:
+      autoheal: true
+      keep_healthy:

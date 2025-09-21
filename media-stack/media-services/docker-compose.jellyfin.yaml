@@ -1,0 +1,32 @@
+services:
+  jellyfin:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${JELLYFIN_IMAGE}
+    container_name: ${JELLYFIN_CONTAINER_NAME:-arr-suite-jellyfin}
+    env_file:
+      - ../.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    expose:
+      - 8096/tcp
+    ports:
+      - ${JELLYFIN_PORT:-8096}:8096/tcp
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9696"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Twitch Bot Manager</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Twitch Bot Manager</h1>
+      <div class="user-info">
+        <span>Logged in as: {{ user }}</span>
+        <a href="/logout">Logout</a>
+      </div>
+    </header>
+    <main>
+      <section class="bot-config">
+        <h2>Bot Configuration</h2>
+        <form method="post" action="/update" autocomplete="off">
+          <label for="TWITCH_CHANNEL">Twitch Channel</label>
+          <input
+            type="text"
+            id="TWITCH_CHANNEL"
+            name="TWITCH_CHANNEL"
+            value="{{ config.TWITCH_CHANNEL or '' }}"
+            required
+          />
+          <label for="TWITCH_BOT_OAUTH">Bot OAuth Token</label>
+          <input
+            type="text"
+            id="TWITCH_BOT_OAUTH"
+            name="TWITCH_BOT_OAUTH"
+            value="{{ config.TWITCH_BOT_OAUTH or '' }}"
+            required
+          />
+          <button type="submit">Update Config</button>
+        </form>
+      </section>
+
+      <section class="bot-status">
+        <h2>Bot Status</h2>
+        <div id="status-box">Loading status...</div>
+        <button onclick="refreshStatus()">Refresh Status</button>
+      </section>
+
+      <section class="bot-logs">
+        <h2>Bot Logs</h2>
+        <pre id="logs-box">Loading logs...</pre>
+        <button onclick="refreshLogs()">Refresh Logs</button>
+      </section>
+
+      <section class="bot-chat">
+        <h2>Live Chat Monitor</h2>
+        <div id="chat-box" class="chat-box">Connecting...</div>
+      </section>
+    </main>
+    <script>
+      async function refreshStatus() {
+        const res = await fetch("/api/bot-status");
+        document.getElementById("status-box").textContent = await res.text();
+      }
+      async function refreshLogs() {
+        const res = await fetch("/api/bot-logs");
+        document.getElementById("logs-box").textContent = await res.text();
+      }
+      // Live chat monitor (polling for demo)
+      async function pollChat() {
+        try {
+          const res = await fetch("/api/bot-chat");
+          document.getElementById("chat-box").textContent = await res.text();
+        } catch (e) {
+          document.getElementById("chat-box").textContent =
+            "Error connecting to chat.";
+        }
+        setTimeout(pollChat, 3000);
+      }
+      refreshStatus();
+      refreshLogs();
+      pollChat();
+    </script>
+  </body>
+</html>

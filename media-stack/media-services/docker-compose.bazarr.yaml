@@ -1,0 +1,37 @@
+services:
+  bazarr:
+    image: ${BAZARR_IMAGE}
+    container_name: ${BAZARR_CONTAINER_NAME:-arr-suite-bazarr}
+    env_file:
+      - ../.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+    expose:
+      - 6767/tcp
+    ports:
+      - ${BAZARR_PORT:-6767}:6767/tcp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6767"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    labels:
+      autoheal: true
+      keep_healthy:
+    networks:
+      - media-stack

@@ -1,0 +1,16 @@
+services:
+  sickgear:
+    container_name: sickgear
+    image: sickgear/sickgear:latest
+    env_file:
+      - ../.env
+    environment:
+      - APP_UID=1000
+      - APP_GID=44
+      - TZ=UTC
+    ports:
+      - 8081:8081/tcp
+    volumes:
+      - ./sickgear/sickgear-data:/data
+      - ./sickgear/incoming:/incoming
+      - ./sickgear/tv:/tv

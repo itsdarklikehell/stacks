@@ -1,0 +1,52 @@
+name: vtuber-twitch-bot-ci
+
+on:
+  push:
+    paths:
+      - "ai-stack/llm-vtuber-twitch-bot/**"
+      - ".github/workflows/vtuber-twitch-bot-ci.yml"
+  pull_request:
+    paths:
+      - "ai-stack/llm-vtuber-twitch-bot/**"
+      - ".github/workflows/vtuber-twitch-bot-ci.yml"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-stack/llm-vtuber-twitch-bot
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install markdownlint-cli
+
+      - name: Lint Markdown
+        run: |
+          npx markdownlint-cli2 README.md
+
+      - name: Lint Python
+        run: |
+          pip install ruff
+          ruff .
+
+      - name: Run tests (if present)
+        run: |
+          if [ -f test.py ]; then python test.py; fi
+
+      - name: Validate Dockerfile
+        run: |
+          hadolint Dockerfile || true
+
+      - name: Validate Compose YAML
+        run: |
+          docker compose -f ../compose.llm-vtuber-twitch.yaml config

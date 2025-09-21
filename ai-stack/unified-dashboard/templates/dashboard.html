@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unified Bot & TVS99 Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Unified Bot & TVS99 Dashboard</h1>
+      <div class="user-info">
+        <span>Logged in as: {{ user }}</span>
+        <a href="/logout">Logout</a>
+      </div>
+    </header>
+    <main>
+      <nav>
+        <button onclick="showTab('bot')">Twitch Bot</button>
+        <button onclick="showTab('tvs99')">TVS99</button>
+        <button onclick="showTab('media')">Media</button>
+      </nav>
+      <section id="tab-bot" class="tab-section active">
+        <h2>Twitch Bot</h2>
+        <div>
+          <h3>Status</h3>
+          <div id="bot-status">Loading...</div>
+          <button onclick="refreshBotStatus()">Refresh</button>
+        </div>
+        <div>
+          <h3>Logs</h3>
+          <pre id="bot-logs">Loading...</pre>
+          <button onclick="refreshBotLogs()">Refresh</button>
+        </div>
+        <div>
+          <h3>Live Chat</h3>
+          <div id="bot-chat">Loading...</div>
+        </div>
+      </section>
+      <section id="tab-tvs99" class="tab-section">
+        <h2>TVS99</h2>
+        <div>
+          <h3>Config</h3>
+          <pre id="tvs99-config">Loading...</pre>
+        </div>
+        <div>
+          <h3>Programming</h3>
+          <pre id="tvs99-programming">Loading...</pre>
+        </div>
+      </section>
+      <section id="tab-media" class="tab-section">
+        <h2>Media</h2>
+        <pre id="media-list">Loading...</pre>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

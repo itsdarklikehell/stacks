@@ -1,0 +1,30 @@
+services:
+  tvs99:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: "zshall/television-simulator:1.0.0"
+    env_file:
+      - ../.env
+    container_name: tvs99
+    hostname: tvs99
+    restart: unless-stopped
+    networks:
+      - ai-stack
+    ports:
+      - ${TVS99_PORT:-8085}:3000
+    volumes:
+      - ./tvs99/config:/config
+      - ./tvs99/data:/data
+    labels:
+      autoheal: true
+      keep_healthy:
+
+networks:
+  ai-stack:
+    name: ai-stack

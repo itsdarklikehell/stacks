@@ -17,12 +17,14 @@ The stack is designed for privacy, flexibility, and full local control, making i
 3. Access dashboards and web UIs via the ports defined in `compose.yaml` (e.g., Netdata, Grafana, Portainer, Nextcloud).
 4. Ensure required Docker networks (`ai-stack`, `management-stack`, `kuma_network`, `cloud`) exist and are set as `external: true` in all relevant `compose.yaml` files.  
    - If missing, create them with:
+
      ```bash
      docker network create ai-stack
      docker network create management-stack
      docker network create kuma_network
      docker network create cloud
      ```
+
 5. To integrate with other stacks (AI, media), simply bring up those stacks, services should auto-discover each other via the shared networks.
 6. For troubleshooting, use Portainer or Dockge to inspect containers, logs, and network connections.
 7. To update services, rerun `./install-stack.sh` or use Watchtower for automated updates.

@@ -1,0 +1,16 @@
+[Unit]
+Description=LLM VTuber Twitch Streaming & Chat Bot Stack
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/media/rizzo/RAIDSTATION/stacks/ai-stack
+ExecStart=/media/rizzo/RAIDSTATION/stacks/ai-stack/manage-stack.sh start
+ExecStop=/media/rizzo/RAIDSTATION/stacks/ai-stack/manage-stack.sh stop
+ExecReload=/media/rizzo/RAIDSTATION/stacks/ai-stack/manage-stack.sh restart
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+services:
+  autopulse:
+    image: "autopulse"
+    container_name: autopulse
+    command: ghcr.io/dan-online/autopulse
+    env_file:
+      - ../.env
+    environment:
+      - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"

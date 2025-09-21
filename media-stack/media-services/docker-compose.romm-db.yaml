@@ -1,0 +1,38 @@
+services:
+  romm-db:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${ROMM_DB_IMAGE}
+    container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
+    env_file:
+      - ../.env
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+    secrets:
+      - mariadb_root_password
+      - mariadb_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    ports:
+      - ${ROMM_DB_PORT:-3306}:3306
+
+volumes:
+  mysql_data:
+    name: mysql_data

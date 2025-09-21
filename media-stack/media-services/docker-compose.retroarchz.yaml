@@ -1,0 +1,18 @@
+services:
+  retroarchz:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${RETROARCHZ_IMAGE}
+    container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
+    env_file:
+      - ../.env
+    ports:
+      - ${RETROARCHZ_PORT:-85}:85
+    volumes:
+      - "/home/rizzo/RetroPie/roms:/roms"

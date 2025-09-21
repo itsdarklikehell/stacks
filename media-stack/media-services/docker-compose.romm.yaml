@@ -1,0 +1,47 @@
+services:
+  romm:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${ROMM_IMAGE:-rommapp/romm:latest}
+    container_name: ${ROMM_CONTAINER_NAME:-romm}
+    env_file:
+      - ../.env
+    restart: unless-stopped
+    environment:
+      - DB_HOST=romm-db
+      - DB_NAME=romm
+      - DB_USER=romm-user
+      - HASHEOUS_API_ENABLED=true
+    secrets:
+      - romm_db_password
+      - romm_auth_secret_key
+      - screenscraper_password
+      - retroachievements_api_key
+      - steamgriddb_api_key
+    volumes:
+      - romm_resources:/romm/resources
+      - romm_redis_data:/redis-data
+      - ./romm/library:/romm/library
+      - ./romm/assets:/romm/assets
+      - ./romm/config:/romm/config
+    ports:
+      - ${ROMM_PORT:-8080}:8080
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+    labels:
+      autoheal: true
+      keep_healthy:
+
+volumes:
+  romm_resources:
+    name: romm_resources
+  romm_redis_data:
+    name: romm_redis_data

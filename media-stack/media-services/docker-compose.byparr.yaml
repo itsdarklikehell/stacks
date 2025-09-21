@@ -1,0 +1,7 @@
+services:
+  byparr:
+    image: "ghcr.io/thephaseless/byparr:latest"
+    env_file:
+      - ../.env
+    ports:
+      - "8191:8191"

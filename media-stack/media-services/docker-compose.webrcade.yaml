@@ -1,0 +1,23 @@
+services:
+  webrcade:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: "webrcade/webrcade:2.2.0"
+    container_name: webrcade
+    env_file:
+      - ../.env
+    ports:
+      - "87:87"
+      - "447:447"
+    volumes:
+      - ./webrcade/content:/var/www/html/content
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:

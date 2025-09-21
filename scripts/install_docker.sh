@@ -33,6 +33,23 @@ function INSTALL_DOCKER(){
 
         echo "Docker installation completed."
     fi
+    # check if lazydocker is installed and if not install it
+    if command -v lazydocker &> /dev/null
+    then
+        echo "Lazydocker is already installed"
+    else
+        curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+        echo "Lazyocker installation completed."
+    fi
+    # check if dockly is installed and if not install it
+    if command -v dockly &> /dev/null
+    then
+        echo "dockly is already installed"
+    else
+        npm install -g dockly
+        echo "dockly installation completed."
+    fi
+
 }
 # Call the function to install Docker
 INSTALL_DOCKER 

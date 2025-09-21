@@ -1,0 +1,28 @@
+services:
+  calibre-web:
+    image: linuxserver/calibre-web
+    env_file:
+      - ../.env
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.50"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    ports:
+      - ${CALIBRE_WEB_PORT:-8084}:8084
+    volumes:
+      - ../calibre-web/calibre-library:/calibre-library
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - media-stack

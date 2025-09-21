@@ -1,0 +1,28 @@
+services:
+  flaresolverr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    env_file:
+      - ../.env
+    image: ${FLARESOLVERR_IMAGE}
+    container_name: ${FLARESOLVERR_CONTAINER_NAME:-arr-suite-flaresolverr}
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=Europe/Amsterdam
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

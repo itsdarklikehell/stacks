@@ -1,0 +1,8 @@
+services:
+  flemmarr:
+    container_name: flemmarr
+    image: pierremesure/flemmarr
+    env_file:
+      - ../.env
+    volumes:
+      - ./flemmarr/config:/config

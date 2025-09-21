@@ -1,0 +1,23 @@
+services:
+  plex:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.00"
+        reservations:
+          memory: 1G
+          cpus: "1.00"
+    image: ${PLEX_IMAGE}
+    container_name: ${PLEX_CONTAINER_NAME:-plex}
+    env_file:
+      - ../.env
+    ports:
+      - ${PLEX_PORT:-32400}:32400
+    volumes:
+      - ./plex/config:/config
+      - ./plex/transcode:/transcode
+      - ./plex/media:/data
+    labels:
+      autoheal: true
+      keep_healthy:

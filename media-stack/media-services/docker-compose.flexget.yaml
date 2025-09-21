@@ -1,0 +1,17 @@
+services:
+  flexget:
+    image: flexget/flexget
+    container_name: flexget
+    env_file:
+      - ../.env
+    command:
+      - daemon
+      - start
+      - --autoreload-config
+    ports:
+      - 5050:5050
+    environment:
+      - TZ=$TIMEZONE
+    volumes:
+      - ./flexget/config:/config
+      - ./flexget/downloads:/downloads

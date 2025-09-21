@@ -6,6 +6,7 @@ function CREATE_NETWORKS(){
     docker network create management-stack
     docker network create kuma_network
     docker network create ai-stack
+    docker network create wg
     docker network create cloud
     
     docker network create -d macvlan \
@@ -14,4 +15,5 @@ function CREATE_NETWORKS(){
     -o parent=enp2s0 \
     iot_macvlan
 }
+
 CREATE_NETWORKS 

@@ -1,0 +1,12 @@
+services:
+  vtuber-tvs99-manager:
+    build: .
+    container_name: vtuber-tvs99-manager
+    environment:
+      - TVS99_CONFIG=/data/config.tvs.yml
+    volumes:
+      - ../tvs99/config.tvs.yml:/data/config.tvs.yml
+    ports:
+      - "8000:8000" # REST API
+      - "8088:8088" # Web UI
+    restart: unless-stopped

@@ -1,0 +1,34 @@
+services:
+  retroarch:
+    image: ${RETROARCH_IMAGE}
+    container_name: ${RETROARCH_CONTAINER_NAME:-retroarch}
+    env_file:
+      - ../.env
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amstedam
+    volumes:
+      - ./retroarch/config:/config
+    ports:
+      - ${RETROARCH_PORT:-3000}:3000
+      - 3003:3003
+    shm_size: "1gb"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [compute, video, graphics, utility]
+    labels:
+      autoheal: true
+      keep_healthy:

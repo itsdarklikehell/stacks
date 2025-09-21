@@ -1,0 +1,29 @@
+services:
+  whisparr:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"
+    image: ${WHISPARR_IMAGE}
+    container_name: ${WHISPARR_CONTAINER_NAME:-whisparr}
+    env_file:
+      - ../.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/whisparr:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+    expose:
+      - 6969/tcp
+    ports:
+      - ${WHISPARR_PORT:-6969}:6969/tcp
+    restart: unless-stopped
+    labels:
+      autoheal: true
+      keep_healthy:

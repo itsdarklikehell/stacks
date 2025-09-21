@@ -1,0 +1,33 @@
+services:
+  gaseous-server:
+    container_name: gaseous-server
+    image: gaseousgames/gaseousserver:latest
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    networks:
+      - gaseous
+    depends_on:
+      - gsdb
+    ports:
+      - 5198:80
+    volumes:
+      - gs:/root/.gaseous-server
+    environment:
+      - TZ=Europe/Amsterdam
+      - dbhost=gsdb
+      - dbuser=root
+      - dbpass=gaseous
+      - igdbclientid=
+      - igdbclientsecret=
+    labels:
+      autoheal: true
+      keep_healthy:
+
+networks:
+  gaseous:
+    name: gaseous
+
+volumes:
+  gs:
+    name: gs

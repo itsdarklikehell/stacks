@@ -1,0 +1,41 @@
+services:
+  gsdb:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.00"
+        reservations:
+          memory: 512M
+          cpus: "0.50"
+    image: ${GSDB_IMAGE}
+    container_name: ${GSDB_CONTAINER_NAME:-gsdb}
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    networks:
+      - gaseous
+    volumes:
+      - gsdb:/var/lib/mysql
+    environment:
+      - MARIADB_USER=gaseous
+    secrets:
+      - gsdb_root_password
+      - gsdb_password
+    labels:
+      autoheal: true
+      keep_healthy:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:32400"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  gaseous:
+    name: gaseous
+
+volumes:
+  gsdb:
+    name: gsdb
