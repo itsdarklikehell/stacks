@@ -9,7 +9,7 @@ cd "${WD}" || exit
 mkdir -p ../ai-stack/DATA
 
 function CLONE_OLLMVT(){
-
+    cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber  &>/dev/null
@@ -27,7 +27,7 @@ function CLONE_OLLMVT(){
 }
 
 function CLONE_SWARMUI(){
-
+    cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI  &>/dev/null
@@ -40,7 +40,7 @@ function CLONE_SWARMUI(){
 }
 
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
-
+    cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker  &>/dev/null

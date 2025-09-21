@@ -1,9 +1,15 @@
 services:
   stable-diffusion-webui:
     image: comfy-ui:latest
-    build: ./stable-diffusion-webui-docker/services/comfy/
     container_name: stable-diffusion-webui
     restart: unless-stopped
+
+    build: 
+      context: ../DATA/stable-diffusion-webui-docker/services/comfy
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
+      dockerfile: ../DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile
 
     labels:
       - autoheal-app=true
