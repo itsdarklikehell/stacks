@@ -2,8 +2,25 @@ services:
   redis:
     image: ${REDIS_IMAGE:-redis:alpine}
     container_name: ${redis_container_name:-redis}
+    restart: unless-stopped
+    
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     volumes:
       - ./redis/redis:/data
+  
+
+    hostname: redis
+
     networks:
       - management-services
       - host
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

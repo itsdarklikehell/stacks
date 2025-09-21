@@ -3,19 +3,12 @@ services:
     image: ${NEXTCLOUD_IMAGE:-nextcloud}
     container_name: ${nextcloud_container_name:-nextcloud}
     restart: ${nextcloud_restart:-unless-stopped}
-    networks:
-      - management-services
-      - host
-    depends_on:
-      - nextclouddb
-      - redis
-    ports:
-      - 8087:80
-    volumes:
-      - ./nextcloud/html:/var/www/html
-      - ./nextcloud/custom_apps:/var/www/html/custom_apps
-      - ./nextcloud/config:/var/www/html/config
-      - ./nextcloud/data:/var/www/html/data
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       - PUID=1000
       - PGID=1000
@@ -25,3 +18,28 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_HOST=nextclouddb
       - REDIS_HOST=redis
+
+    volumes:
+      - ../nextcloud/html:/var/www/html
+      - ../nextcloud/custom_apps:/var/www/html/custom_apps
+      - ../nextcloud/config:/var/www/html/config
+      - ../nextcloud/data:/var/www/html/data
+
+    hostname: nextcloud
+
+    networks:
+      - management-services
+      - host
+
+    ports:
+      - 8087:80
+
+    depends_on:
+      - nextclouddb
+      - redis
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

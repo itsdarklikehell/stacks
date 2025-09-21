@@ -3,22 +3,41 @@ services:
     image: ${PORTRACKER_IMAGE:-mostafawahied/portracker:latest}
     container_name: ${portracker_container_name:-portracker}
     restart: ${portracker_restart:-unless-stopped}
-    pid: "host"
-    cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
+    environment:
+      - DOCKER_HOST=tcp://docker-proxy:2375
+
     volumes:
-      - ./portracker/data:/data
-    ports:
-      - "4999:4999"
+      - ../portracker/data:/data
+
+    hostname: portracker
+
     networks:
       - management-services
       - host
-    environment:
-      - DOCKER_HOST=tcp://docker-proxy:2375
+    
+    ports:
+      - "4999:4999"
+    
+    pid: "host"
+    
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    
+    security_opt:
+      - apparmor:unconfined
+    
     depends_on:
       - docker-proxy
-    labels:
-      autoheal-app: true
+    
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

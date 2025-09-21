@@ -8,14 +8,15 @@ services:
     labels:
       - autoheal-app=true
       - keep_healthy
-
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       # Tell Dockge where to find the stacks
       - DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./dockge/data:/app/data
+      - ../dockge/data:/app/data
       # Stacks Directory
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)

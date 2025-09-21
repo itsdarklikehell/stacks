@@ -1,37 +1,30 @@
 services:
   portainer:
-    #
-    # BACKUP STRATEGY:
-    # - Ensure all named volumes are included in regular backups
-    # - Use offsite/cloud backup for critical data
-    # - Document restore procedures
-    #
-    # SECRETS MANAGEMENT:
-    # - Store all secret files securely
-    # - Rotate secrets regularly
-    # - Never commit secrets to version control
-    #
-    # NETWORK SEGMENTATION:
-    # - Use dedicated networks for each stack
-    # - Restrict inter-stack communication unless required
-    # - Document network policies
-    #
-    # CI/CD & DOCUMENTATION:
-    # - Use GitHub Actions or similar for automated testing/deployment
-    # - Document all customizations and manual steps in README.md
-    # - Keep this file and .env in sync
     container_name: ${portainer_container_name:-portainer}
-    hostname: ${portainer_hostname:-portainer}
     restart: ${portainer_restart:-unless-stopped}
     image: ${PORTAINER_IMAGE:-portainer/portainer-ce:latest}
-    ports:
-      - 8000:8000
-      - 9443:9443
+    
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
+    volumes:
+      - ../portainer/portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: ${portainer_hostname:-portainer}
+
     networks:
       - management-services
       - host
-    volumes:
-      - ./portainer/portainer_data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    labels:
-      autoheal-app: true
+
+    ports:
+      - 8000:8000
+      - 9443:9443
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

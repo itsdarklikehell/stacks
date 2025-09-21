@@ -2,11 +2,32 @@ services:
   nginx-proxy-manager:
     image: ${NGINX_PROXY_MANAGER_IMAGE:-jc21/nginx-proxy-manager:latest}
     restart: ${nginx_proxy_manager_restart:-unless-stopped}
-    hostname: ${nginx_proxy_manager_hostname:-nginx-proxy-manager}
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
+    
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
+    environment:
+      INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_USERNAME:-bauke.molenaar@gmail.com}
+      INITIAL_ADMIN_PASSWORD: ${NGINX_PROXY_MANAGER_PASSWORD:-changeme}
+    # Uncomment this if you want to change the location of
+    # the SQLite DB file within the container
+    # DB_SQLITE_FILE: "/data/database.sqlite"
+    # Uncomment this if IPv6 is not enabled on your host
+    # DISABLE_IPV6: 'true'
+    
+    volumes:
+      - ../nginx-proxy-manager/data:/data
+      - ../nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+    
+    hostname: ${nginx_proxy_manager_hostname:-nginx-proxy-manager}
+    
     networks:
       - management-services
       - host
+    
     ports:
       # These ports are in format <host-port>:<container-port>
       - "80:80" # Public HTTP Port
@@ -14,16 +35,9 @@ services:
       - "81:81" # Admin Web Port
       # Add any other Stream port you want to expose
       # - "21:21" # FTP
-    # environment:
-    #   INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_USERNAME:-bauke.molenaar@gmail.com}
-    #   INITIAL_ADMIN_PASSWORD: ${NGINX_PROXY_MANAGER_PASSWORD:-changeme}
-    # Uncomment this if you want to change the location of
-    # the SQLite DB file within the container
-    # DB_SQLITE_FILE: "/data/database.sqlite"
-    # Uncomment this if IPv6 is not enabled on your host
-    # DISABLE_IPV6: 'true'
-    volumes:
-      - ./nginx-proxy-manager/data:/data
-      - ./nginx-proxy-manager/letsencrypt:/etc/letsencrypt
-    labels:
-      autoheal-app: true
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
