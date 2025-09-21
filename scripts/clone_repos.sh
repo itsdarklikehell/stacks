@@ -39,6 +39,6 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker  &>/dev/null
     mkdir -p stable-diffusion-webui-docker/data/models/CLIPEncoder
 }
-# CLONE_OLLMVT
+CLONE_OLLMVT
 # CLONE_SWARMUI
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
