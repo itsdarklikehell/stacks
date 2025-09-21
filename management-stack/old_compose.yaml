@@ -46,7 +46,8 @@ services:
       - TZ=${UPTIME_KUMA_TZ:-Europe/Amsterdam}
       - UMASK=${UPTIME_KUMA_UMASK:-0022}
     networks:
-      - management-stack
+      - management-services
+      - host
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002"]
       interval: 30s
@@ -101,7 +102,7 @@ services:
     container_name: ${n8n_container_name:-n8n}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     ports:
@@ -133,7 +134,7 @@ services:
     restart: ${dashy_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     ports:
@@ -164,7 +165,7 @@ services:
     restart: ${dockge_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     ports:
@@ -215,7 +216,7 @@ services:
       - 9443:9443
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     volumes:
@@ -232,7 +233,7 @@ services:
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     ports:
@@ -263,7 +264,7 @@ services:
     restart: ${grafana_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     environment:
@@ -294,7 +295,7 @@ services:
       - "2375:2375"
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     labels:
@@ -317,7 +318,7 @@ services:
       - "4999:4999"
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     environment:
@@ -452,7 +453,7 @@ services:
     restart: unless-stopped
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     ports:
@@ -476,7 +477,7 @@ services:
     restart: ${nextcloud_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     depends_on:
@@ -507,7 +508,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     volumes:
@@ -528,7 +529,7 @@ services:
     restart: ${collabora_restart:-unless-stopped}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     environment:
@@ -550,7 +551,7 @@ services:
       - ./redis/redis:/data
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
   # image used to:
@@ -598,7 +599,7 @@ services:
     #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
     labels:

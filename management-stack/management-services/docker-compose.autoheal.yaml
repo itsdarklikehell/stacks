@@ -15,7 +15,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ai-stack-autoheal
+    hostname: management-services-autoheal
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 

@@ -20,7 +20,7 @@ services:
 
     networks:
       - ai-services
-      - management-stack
+      - management-services
       - kuma_network
       - cloud
 

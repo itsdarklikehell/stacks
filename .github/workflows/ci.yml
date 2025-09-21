@@ -43,7 +43,7 @@ jobs:
 
       - name: Validate README/checklist presence
         run: |
-          for d in ai-stack media-stack management-stack; do
+          for d in ai-services media-services management-services; do
             test -f "$d/README.md" && grep -q 'Best Practice Checklist' "$d/README.md" || (echo "Missing or incomplete README in $d" && exit 1)
           done
 

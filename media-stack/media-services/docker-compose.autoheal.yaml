@@ -1,7 +1,7 @@
 services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
-    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-media-stack}
+    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-media-services}
     env_file:
       - ../.env
     deploy:
@@ -14,4 +14,5 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - management-stack
+      - media-services
+      - host
