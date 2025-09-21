@@ -18,7 +18,8 @@ function CLONE_OLLMVT(){
     uv sync
     uv run run_server.py
 
-    docker build -t open-llm-vtuber .
+    docker build -t open-llm-vtuber --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true .
+    
 }
 
 function CLONE_SWARMUI(){
