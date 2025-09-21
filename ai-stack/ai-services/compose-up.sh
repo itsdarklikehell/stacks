@@ -20,6 +20,7 @@ COMPOSE_FILES=(
   docker-compose.stable-diffusion-models-download.yaml
   docker-compose.stable-diffusion-webui.yaml
   # docker-compose.swarmui.yaml
+  # docker-compose.open-llm-vtuber.yaml
   docker-compose.watchtower.yaml
   docker-compose.whisper.yaml
   docker-compose.wyoming-piper.yaml

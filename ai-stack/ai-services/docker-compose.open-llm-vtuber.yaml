@@ -1,9 +1,38 @@
 services:
   open-llm-vtuber:
     image: "open-llm-vtuber"
-    ports:
-      - "12393:12393"
+    container_name: "open-llm-vtuber"
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     volumes:
       - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
+
+    hostname: ai-services-autoheal
+
+    # command: [ "ollama", "pull", "qwen3:latest"]
+
+    networks:
+      - ai-services
+      - host
+    
+    ports:
+      - "12393:12393"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
+
     stdin_open: true
+
     tty: true
