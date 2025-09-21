@@ -44,8 +44,8 @@ CREATE_NETWORKS &>/dev/null
 
 ## STACKS:
 
-# echo "Installing Docker Management Stack"
-# INSTALL_management-stack_STACK
+echo "Installing Docker Management Stack"
+INSTALL_management-stack_STACK
 
 # echo "Installing media Stack"
 # INSTALL_MEDIA_STACK

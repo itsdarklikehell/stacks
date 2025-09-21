@@ -44,9 +44,9 @@ services:
       - ollama
       - open-webui
       - searxng
-      - stable-diffusion-models-download
-      - stable-diffusion-webui
       - whisper
       - wyoming-piper
+      # - stable-diffusion-models-download
+      # - stable-diffusion-webui
       # - swarmui
       # - watchtower

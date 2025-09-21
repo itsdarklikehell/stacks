@@ -34,7 +34,7 @@ services:
       - host
 
     ports:
-      - ${WHISPER_PORT:-8000}:80
+      - ${WHISPER_PORT:-8001}:80
       - 10300:10300
       
 
