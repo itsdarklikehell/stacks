@@ -36,7 +36,7 @@ services:
     ports:
       - ${WHISPER_PORT:-8000}:80
       - 10300:10300
-      - cloud
+      
 
     env_file:
       - ../.env

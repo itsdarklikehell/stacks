@@ -42,7 +42,7 @@ services:
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
     networks:
-      ai-sevices:
+      ai-services:
       host:
       default:
         aliases:

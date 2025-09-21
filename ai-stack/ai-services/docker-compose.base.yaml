@@ -12,12 +12,16 @@
 networks:
   ai-services:
   host:
-# volumes:
-#   netdataconfig:
-#   netdatalib:
-#   netdatacache:
-#   n8n_data:
-#   dockge_data:
+volumes:
+  netdataconfig:
+  basic-memory-config:
+  netdatalib:
+  netdatacache:
+  n8n_data:
+  dockge_data:
+  swarmdata:
+  swarmbackend:
+  swarmdlnodes:
 # # secrets:
 #   letta_pg_password:
 #     file: ../../secrets/letta_pg_password

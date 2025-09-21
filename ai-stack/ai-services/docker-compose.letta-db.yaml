@@ -4,14 +4,14 @@ services:
     container_name: letta-db
     hostname: letta-db
     networks:
-      ai-sevices:
+      ai-services:
       host:
       default:
         aliases:
           - pgvector_db
           - letta-db
     env_file:
-      - .env
+      - ../.env
     environment:
       - POSTGRES_USER=${LETTA_PG_USER:-letta}
       - POSTGRES_PASSWORD=${LETTA_PG_PASSWORD:-letta}
