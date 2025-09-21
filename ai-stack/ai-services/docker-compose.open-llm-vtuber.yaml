@@ -4,6 +4,13 @@ services:
     container_name: "open-llm-vtuber"
     restart: unless-stopped
 
+    build:
+      context: ..
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
+      dockerfile: ../DATA/Open-LLM-VTuber/dockerfile
+
     labels:
       - autoheal-app=true
       - keep_healthy
@@ -11,8 +18,18 @@ services:
 
     volumes:
       - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
-
-    hostname: ai-services-autoheal
+      - "../DATA/Open-LLM-VTuber/avatars:/app/avatars"
+      - "../DATA/Open-LLM-VTuber/avatars:/app/backgrounds"
+      - "../DATA/Open-LLM-VTuber/characters:/app/characters"
+      - "../DATA/Open-LLM-VTuber/chat_history:/app/chat_history"
+      - "../DATA/Open-LLM-VTuber/live2d-models:/app/live2d-models"
+      - "../DATA/Open-LLM-VTuber/logs:/app/logs"
+      - "../DATA/Open-LLM-VTuber/prompts/utils:/app/prompts/utils"
+      - "../DATA/Open-LLM-VTuber/scripts:/app/scripts"
+      - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
+      - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
+    
+    hostname: open-llm-vtuber
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
@@ -27,7 +44,12 @@ services:
       - ../.env
 
     deploy:
-      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
     # depends_on:
     #   - faster-whisper-gpu

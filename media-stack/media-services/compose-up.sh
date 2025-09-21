@@ -4,9 +4,9 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
+  docker-compose.base.yaml
   docker-compose.autobrr.yaml
   docker-compose.autopulse.yaml
-  docker-compose.base.yaml
   docker-compose.bazarr.yaml
   docker-compose.buildarr.yaml
   docker-compose.byparr.yaml

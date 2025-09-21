@@ -15,12 +15,15 @@ function CLONE_OLLMVT(){
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber  &>/dev/null
     cd Open-LLM-VTuber || exit
     
-    uv sync
-    uv run run_server.py
+    # uv sync
+    # uv run run_server.py
 
-    docker build -t open-llm-vtuber . 
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber" dockerfile
+    
+    # export INSTALL_WHISPER=false
+    # export INSTALL_BARK=false
+    # docker build -t open-llm-vtuber . 
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
-
 }
 
 function CLONE_SWARMUI(){
@@ -28,14 +31,12 @@ function CLONE_SWARMUI(){
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI  &>/dev/null
-    cp -f "${WD}/CustomDockerfile-swarmui" SwarmUI/launchtools/CustomDockerfile.docker
-    cp -f "${WD}/custom-launch-docker.sh" SwarmUI/launchtools/custom-launch-docker.sh
+    cd SwarmUI || exit 1
+    cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
+    cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 
-    docker stop swarmui
-    docker rm swarmui
-
-    ./SwarmUI/launchtools/custom-launch-docker.sh fixch
-    # ./SwarmUI/launchtools/custom-launch-docker.sh
+    ./launchtools/custom-launch-docker.sh fixch
+    # ./launchtools/custom-launch-docker.sh
 }
 
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
