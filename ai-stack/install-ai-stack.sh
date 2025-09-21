@@ -27,7 +27,6 @@ function INSTALL_OPEN_LLM_VTUBER(){
 function INSTALL_SWARMUI(){
     ../scripts/install_swarmui.sh
 }
-
 function DOCKER_COMPOSE_STACK(){
     cd "${WD}/ai-services" || exit 1
     ./compose-up.sh

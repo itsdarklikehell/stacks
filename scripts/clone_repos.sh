@@ -14,8 +14,11 @@ function CLONE_OLLMVT(){
 
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber  &>/dev/null
     cd Open-LLM-VTuber || exit
+    
     uv sync
     uv run run_server.py
+
+    docker build -t open-llm-vtuber .
 }
 
 function CLONE_SWARMUI(){
