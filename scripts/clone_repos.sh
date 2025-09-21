@@ -22,14 +22,14 @@ function CLONE_SWARMUI(){
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI  &>/dev/null
-    cp -f CustomDockerfile-swarmui SwarmUI/launchtools/CustomDockerfile.docker
-    cp -f custom-launch-docker.sh SwarmUI/launchtools/custom-launch-docker.sh
+    cp -f "${WD}/CustomDockerfile-swarmui" SwarmUI/launchtools/CustomDockerfile.docker
+    cp -f "${WD}/custom-launch-docker.sh" SwarmUI/launchtools/custom-launch-docker.sh
 
     docker stop swarmui
     docker rm swarmui
 
     ./SwarmUI/launchtools/custom-launch-docker.sh fixch
-    ./SwarmUI/launchtools/custom-launch-docker.sh
+    # ./SwarmUI/launchtools/custom-launch-docker.sh
 }
 
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
