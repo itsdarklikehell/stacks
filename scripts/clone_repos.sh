@@ -1,29 +1,32 @@
 #!/bin/bash
+WD="$(dirname "$(realpath "$0")")"
+export WD
+export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
+export UV_LINK_MODE=copy
 
-mkdir -p "${WD}/DATA" 
-cd "${WD}/DATA" || exit 1
+echo "Working directory is set to ${WD}"
+cd "${WD}" || exit
 
+mkdir -p "../ai-stack/DATA" 
 function CLONE_OLLMVT(){
-    git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git "${WD}/DATA/Open-LLM-VTuber"
-    cd "${WD}/DATA/Open-LLM-VTuber" || exit
+    git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git ../ai-stack/DATA/Open-LLM-VTuber
+    cd ../ai-stack/DATA/Open-LLM-VTuber || exit
     uv sync
 }
-function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
-    git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git "stable-diffusion-webui-docker"
-    cp -f "../scripts/CustomDockerfile-comfyui" "${WD}/DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile"
 
-}
 function CLONE_SWARMUI(){
-    cd "${WD}/ai-services/DATA" || exit 1
-    git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI "SwarmUI"
-    cp -f "${WD}/scripts/CustomDockerfile-swarmui" "${WD}/DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile"
+    git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git ../ai-stack/DATA/SwarmUI
+    cp -f CustomDockerfile-swarmui "../ai-stack/DATA/SwarmUI/launchtools/CustomDockerfile.docker"
+    cp -f custom-launch-docker.sh "../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh"
     
-    # cp -f "${WD}/DATA/stable-diffusion-webui-docker/launchtools/launch-standard-docker.sh" custom-launch-docker.sh
-    # ./launch-standard-docker.sh fixch
-    # ./custom-launch-docker.sh &
+    ../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh fixch
+    ../ai-stack/DATA/SwarmUI/launchtools/custom-launch-docker.sh
 }
 
-# CLONE_OLLMVT
-# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-# CLONE_SWARMUI
-# CLONE_REPOS 
+function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
+    git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git ../ai-stack/DATA/stable-diffusion-webui-docker
+    mkdir -p ../ai-stack/DATA/stable-diffusion-webui-docker/data/models/CLIPEncoder
+}
+CLONE_OLLMVT
+CLONE_SWARMUI
+CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

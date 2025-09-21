@@ -29,7 +29,7 @@ function INSTALL_SWARMUI(){
 }
 
 function DOCKER_COMPOSE_STACK(){
-    cd ../ai-services/ || exit 1
+    cd "${WD}/ai-services" || exit 1
     ./compose-up.sh
 }
 
@@ -44,5 +44,5 @@ CLONE_REPOS
 
 
 echo "*** START COMPOSING: ai-stack ****"
-DOCKER_COMPOSE_STACK
+# DOCKER_COMPOSE_STACK
 echo "*** FINISHED COMPOSING: ai-stack ****"
