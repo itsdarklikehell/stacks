@@ -16,8 +16,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./whisper/db_data:/data/db
-      - ./whisper/db_data/logs/:/var/log/mongodb/
+      - ../whisper/db_data:/data/db
+      - ../whisper/db_data/logs/:/var/log/mongodb/
 
     hostname: mongo
 
@@ -25,15 +25,13 @@ services:
 
     networks:
       - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
+      # - host
 
     ports:
       - ${MONGODB_PORT:-27017}:27017
 
     env_file:
-      - .env
+      - ../.env
 
     deploy:
       replicas: 1

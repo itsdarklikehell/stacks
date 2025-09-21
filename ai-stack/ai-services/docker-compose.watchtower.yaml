@@ -1,0 +1,54 @@
+services:
+  watchtower:
+    image: "containrrr/watchtower:latest"
+    container_name: watchtower-ai-stack
+    restart: unless-stopped
+
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+      - keep_healthy
+
+    # environment:
+    #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: watchtower
+
+    # command: --debug --http-api-update
+
+    networks:
+      - ai-stack
+      - management-stack
+      - kuma_network
+      - cloud
+
+    ports:
+      - ${WATCHTOWER_PORT:-8082}:8080
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+
+    depends_on:
+      - autoheal
+      - basic-memory
+      - faster-whisper-gpu
+      - homeassistant
+      - letta-db
+      - letta-mcp
+      - letta-server
+      - libretranslate
+      - mongo
+      - ollama
+      - open-webui
+      - searxng
+      - stable-diffusion-models-download
+      - stable-diffusion-webui
+      - swarmui
+      - whisper
+      - wyoming-piper
+      # - watchtower

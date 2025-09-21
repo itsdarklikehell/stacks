@@ -1,0 +1,52 @@
+services:
+  whisper:
+    image: pluja/whishper:latest-gpu
+    container_name: whisper
+    restart: unless-stopped
+    # pull_policy: always
+
+    labels:
+      - keep_healthy
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST}
+      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST}
+      - PUBLIC_API_HOST=${WHISHPER_HOST:-}
+      - PUBLIC_WHISHPER_PROFILE=gpu
+      - WHISPER_MODELS_DIR=/app/models
+      - UPLOAD_DIR=/app/uploads
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../whisper/uploads:/app/uploads
+      - ../whisper/logs:/var/log/whishper
+      - ../whisper/models:/app/models
+
+    hostname: whisper
+
+    networks:
+      - ai-stack
+      # - host
+
+    ports:
+      - ${WHISPER_PORT:-8000}:80
+      - 10300:10300
+      - cloud
+
+    env_file:
+      - ../.env
+
+    depends_on:
+      - mongo
+      - libretranslate
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

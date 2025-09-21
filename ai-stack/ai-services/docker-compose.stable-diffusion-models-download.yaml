@@ -21,9 +21,7 @@ services:
 
     networks:
       - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
+      # - host
 
     env_file:
       - .env

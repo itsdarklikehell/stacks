@@ -1,0 +1,44 @@
+services:
+  stable-diffusion-webui:
+    image: comfy-ui:latest
+    build: ./stable-diffusion-webui-docker/services/comfy/
+    container_name: stable-diffusion-webui
+    restart: unless-stopped
+
+    labels:
+      - keep_healthy
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - CLI_ARGS=
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./stable-diffusion-webui-docker/data:/data
+      - ./stable-diffusion-webui-docker/output:/output
+
+    hostname: stable-diffusion-webui
+
+    networks:
+      - ai-stack
+      # - host
+
+    ports:
+      - ${COMFYUI_PORT:-7860}:7860
+
+    env_file:
+      - ../.env
+
+    stop_signal: SIGKILL
+
+    tty: true
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [compute, utility]

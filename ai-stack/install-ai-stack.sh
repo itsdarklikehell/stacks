@@ -11,26 +11,26 @@ cd "${WD}" || exit
 
 
 function INSTALL_UV(){
-    scripts/install_uv.sh
+    ../scripts/install_uv.sh
 }
 function CLONE_REPOS(){
-    scripts/clone_repos.sh
+    ../scripts/clone_repos.sh
 }
 
 function CREATE_COMFYUI_DOCKERFILE(){
-    scripts/create_comfyui_dockerfile.sh
+    ../scripts/create_comfyui_dockerfile.sh
 }
 function CREATE_SWARMUI_DOCKERFILE(){
-    scripts/create_swarmui_dockerfile.sh
+    ../scripts/create_swarmui_dockerfile.sh
 }
 function INSTALL_OPEN_LLM_VTUBER(){
-    scripts/install_openllm_vtuber.sh
+    ../scripts/install_openllm_vtuber.sh
 }
 function INSTALL_SWARMUI(){
-    scripts/install_swarmui.sh
+    ../scripts/install_swarmui.sh
 }
 function INSTALL_ADDITIONAL_MCP_SERVERS(){
-    scripts/install_mcp_servers.sh
+    ../scripts/install_mcp_servers.sh
 }
 
 function DOCKER_COMPOSE_STACK(){
@@ -38,7 +38,7 @@ function DOCKER_COMPOSE_STACK(){
     ./compose-up.sh
 }
 
-scripts/create_env_file.sh
+../scripts/create_env_file.sh
 
 
 echo "Cloning repositories..."

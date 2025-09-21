@@ -20,9 +20,7 @@ services:
 
     networks:
       - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
+      # - mhost
 
     ports:
       - ${SEARXNG_PORT:-8081}:8080

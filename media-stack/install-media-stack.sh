@@ -45,5 +45,5 @@ function COMPOSE_SUNSHINE(){
 
 }
 echo "*** START COMPOSING: sunshine ****"
-COMPOSE_SUNSHINE
+# COMPOSE_SUNSHINE
 echo "*** FINISHED COMPOSING: sunshine ****"

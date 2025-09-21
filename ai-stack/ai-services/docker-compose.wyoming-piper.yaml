@@ -1,7 +1,7 @@
 services:
-  ollama:
-    image: ollama/ollama:latest
-    container_name: ollama
+  wyoming-piper:
+    image: rhasspy/wyoming-piper # no gpu
+    container_name: wyoming-piper
     restart: unless-stopped
 
     labels:
@@ -10,26 +10,25 @@ services:
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-      - OLLAMA_KEEP_ALIVE=24h
-      - ENABLE_IMAGE_GENERATION=True
-      - COMFYUI_BASE_URL=http://comfyui:7860
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../ollama:/root/.ollama
+      - ./wyoming-piper/data:/data
 
-    hostname: ollama
+    hostname: wyoming-piper
+
+    command: ["--voice en_US-lessac-medium"]
 
     networks:
       - ai-stack
       # - host
 
     ports:
-      - ${OLLAMA_PORT:-11434}:11434
+      - ${PIPER_PORT:-10200}:10200
 
     env_file:
-      - .env
+      - ../.env
 
     deploy:
       resources:

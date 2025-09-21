@@ -24,9 +24,7 @@ services:
     
     networks:
       - ai-stack
-      - management-stack
-      - kuma_network
-      - cloud
+      # - host
     
     ports:
       - ${LIBRETRANSLATE_PORT:-5000}:5000
