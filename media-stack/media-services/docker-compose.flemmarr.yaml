@@ -5,4 +5,4 @@ services:
     env_file:
       - ../.env
     volumes:
-      - ./flemmarr/config:/config
+      - ../DATA/flemmarr/config:/config

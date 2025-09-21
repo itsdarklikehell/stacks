@@ -17,9 +17,9 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - ./mylar3/mylar3/config:/config
-      - ./mylar3/comics:/comics
-      - ./mylar3/downloads:/downloads
+      - ../DATA/mylar3/mylar3/config:/config
+      - ../DATA/mylar3/comics:/comics
+      - ../DATA/mylar3/downloads:/downloads
     ports:
       - ${MYLAR3_PORT:-8091}:8091
     restart: unless-stopped

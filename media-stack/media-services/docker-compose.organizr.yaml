@@ -19,7 +19,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - ./organizr/config:/config
+      - ../DATA/organizr/config:/config
     labels:
       autoheal: true
       keep_healthy:

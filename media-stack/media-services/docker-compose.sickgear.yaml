@@ -11,6 +11,6 @@ services:
     ports:
       - 8081:8081/tcp
     volumes:
-      - ./sickgear/sickgear-data:/data
-      - ./sickgear/incoming:/incoming
-      - ./sickgear/tv:/tv
+      - ../DATA/sickgear/sickgear-data:/data
+      - ../DATA/sickgear/incoming:/incoming
+      - ../DATA/sickgear/tv:/tv

@@ -11,7 +11,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amstedam
     volumes:
-      - ./retroarch/config:/config
+      - ../DATA/retroarch/config:/config
     ports:
       - ${RETROARCH_PORT:-3000}:3000
       - 3003:3003

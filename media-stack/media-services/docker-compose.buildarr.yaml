@@ -8,4 +8,4 @@ services:
       - "PUID=$(id"
       - "PGID=$(id"
     volumes:
-      - ./buildarr/config:/config
+      - ../DATA/buildarr/config:/config

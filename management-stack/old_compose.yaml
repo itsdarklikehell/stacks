@@ -15,7 +15,6 @@ services:
   #
   # scan, index, manage and serve:
   autoheal:
-    
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal}
     env_file:
@@ -32,7 +31,6 @@ services:
   # image used to:
   # scan, index, manage and serve:
   uptime-kuma:
-    
     image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:latest}
     container_name: ${uptime_kuma_container_name:-uptime-kuma}
     env_file:
@@ -41,7 +39,7 @@ services:
     ports:
       - "${UPTIME_KUMA_PORT:-3002}:3002"
     volumes:
-      - ./uptime-kuma/data:/app/data
+      - ../DATA/uptime-kuma/data:/app/data
     environment:
       - TZ=${UPTIME_KUMA_TZ:-Europe/Amsterdam}
       - UMASK=${UPTIME_KUMA_UMASK:-0022}
@@ -62,7 +60,6 @@ services:
   # image used to:
   # scan, index, manage and serve:
   netdata:
-    
     image: ${NETDATA_IMAGE:-netdata/netdata:edge}
     container_name: ${netdata_container_name:-netdata}
     pid: host
@@ -96,7 +93,6 @@ services:
   # image used to:
   # scan, index, manage and serve:
   n8n:
-    
     image: ${N8N_IMAGE:-docker.n8n.io/n8nio/n8n}
     restart: ${n8n_restart:-always}
     container_name: ${n8n_container_name:-n8n}
@@ -117,18 +113,17 @@ services:
       - TZ=${GENERIC_TIMEZONE:-Europe/Amsterdam}
     volumes:
       - n8n_data:/home/node/.n8n
-      - ./n8n/local-files:/files
+      - ../DATA/n8n/local-files:/files
   # image used to:
   # scan, index, manage and serve:
   dashy:
-    
     image: ${DASHY_IMAGE:-lissy93/dashy}
     # To build from source, replace 'image: lissy93/dashy' with 'build: .'
     # build: .
     container_name: ${dashy_container_name:-Dashy}
     # Pass in your config file below, by specifying the path on your host machine
     # volumes:
-    #   - ./dashy/config.yml:/app/user-data/conf.yml
+    #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
     restart: ${dashy_restart:-unless-stopped}
     networks:
       - ai-services
@@ -154,7 +149,6 @@ services:
   # image used to:
   # scan, index, manage and serve:
   dockge:
-    
     container_name: ${dockge_container_name:-dockge}
     image: ${DOCKGE_IMAGE:-louislam/dockge:1}
     hostname: ${dockge_hostname:-dockge}
@@ -166,7 +160,7 @@ services:
       - 5001:5001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./dockge/data:/app/data
+      - ../DATA/dockge/data:/app/data
       # Stacks Directory
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
@@ -180,7 +174,6 @@ services:
   # image used to:
   # scan, index, manage and serve:
   portainer:
-    
     #
     # BACKUP STRATEGY:
     # - Ensure all named volumes are included in regular backups
@@ -212,7 +205,7 @@ services:
       - ai-services
       - host
     volumes:
-      - ./portainer/portainer_data:/data
+      - ../DATA/portainer/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       autoheal-app: true
@@ -242,8 +235,8 @@ services:
     # Uncomment this if IPv6 is not enabled on your host
     # DISABLE_IPV6: 'true'
     volumes:
-      - ./nginx-proxy-manager/data:/data
-      - ./nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - ../DATA/nginx-proxy-manager/data:/data
+      - ../DATA/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
     labels:
       autoheal-app: true
   # image used to:
@@ -299,7 +292,7 @@ services:
     security_opt:
       - apparmor:unconfined
     volumes:
-      - ./portracker/data:/data
+      - ../DATA/portracker/data:/data
     ports:
       - "4999:4999"
     networks:
@@ -466,10 +459,10 @@ services:
     ports:
       - 8087:80
     volumes:
-      - ./nextcloud/html:/var/www/html
-      - ./nextcloud/custom_apps:/var/www/html/custom_apps
-      - ./nextcloud/config:/var/www/html/config
-      - ./nextcloud/data:/var/www/html/data
+      - ../DATA/nextcloud/html:/var/www/html
+      - ../DATA/nextcloud/custom_apps:/var/www/html/custom_apps
+      - ../DATA/nextcloud/config:/var/www/html/config
+      - ../DATA/nextcloud/data:/var/www/html/data
     environment:
       - PUID=1000
       - PGID=1000
@@ -490,7 +483,7 @@ services:
       - ai-services
       - host
     volumes:
-      - ./nextclouddb/nextclouddb:/var/lib/mysql
+      - ../DATA/nextclouddb/nextclouddb:/var/lib/mysql
     environment:
       - PUID=1000
       - PGID=1000
@@ -524,7 +517,7 @@ services:
     image: ${REDIS_IMAGE:-redis:alpine}
     container_name: ${redis_container_name:-redis}
     volumes:
-      - ./redis/redis:/data
+      - ../DATA/redis/redis:/data
     networks:
       - ai-services
       - host

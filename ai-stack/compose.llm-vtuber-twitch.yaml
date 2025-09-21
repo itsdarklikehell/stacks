@@ -17,7 +17,7 @@ services:
       - DISPLAY=:99
       - TWITCH_STREAM_KEY=${TWITCH_STREAM_KEY}
     volumes:
-      - ./output:/input
+      - ../DATA/output:/input
     command: >
       bash -c "\
         apt-get update && apt-get install -y xvfb chromium-driver chromium-browser && \

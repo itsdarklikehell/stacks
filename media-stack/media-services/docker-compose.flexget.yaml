@@ -13,5 +13,5 @@ services:
     environment:
       - TZ=$TIMEZONE
     volumes:
-      - ./flexget/config:/config
-      - ./flexget/downloads:/downloads
+      - ../DATA/flexget/config:/config
+      - ../DATA/flexget/downloads:/downloads

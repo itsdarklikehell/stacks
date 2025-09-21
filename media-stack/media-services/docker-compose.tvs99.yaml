@@ -19,8 +19,8 @@ services:
     ports:
       - ${TVS99_PORT:-8085}:3000
     volumes:
-      - ./tvs99/config:/config
-      - ./tvs99/data:/data
+      - ../DATA/tvs99/config:/config
+      - ../DATA/tvs99/data:/data
     labels:
       autoheal: true
       keep_healthy:

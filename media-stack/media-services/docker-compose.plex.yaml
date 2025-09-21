@@ -15,9 +15,9 @@ services:
     ports:
       - ${PLEX_PORT:-32400}:32400
     volumes:
-      - ./plex/config:/config
-      - ./plex/transcode:/transcode
-      - ./plex/media:/data
+      - ../DATA/plex/config:/config
+      - ../DATA/plex/transcode:/transcode
+      - ../DATA/plex/media:/data
     labels:
       autoheal: true
       keep_healthy:

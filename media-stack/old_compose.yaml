@@ -97,7 +97,7 @@ services:
     ports:
       - ${CALIBRE_WEB_PORT:-8084}:8084
     volumes:
-      - ./calibre-web/calibre-library:/calibre-library
+      - ../DATA/calibre-web/calibre-library:/calibre-library
     labels:
       autoheal: true
       keep_healthy:
@@ -338,7 +338,7 @@ services:
     ports:
       - ${JELLYSEERR_PORT:-5055}:5055
     volumes:
-      - ./jellyseerr/appdata/config:/app/config
+      - ../DATA/jellyseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
       autoheal: true
@@ -430,9 +430,9 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - ./mylar3/mylar3/config:/config
-      - ./mylar3/comics:/comics
-      - ./mylar3/downloads:/downloads
+      - ../DATA/mylar3/mylar3/config:/config
+      - ../DATA/mylar3/comics:/comics
+      - ../DATA/mylar3/downloads:/downloads
     ports:
       - ${MYLAR3_PORT:-8091}:8091
     restart: unless-stopped
@@ -464,7 +464,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - ./organizr/config:/config
+      - ../DATA/organizr/config:/config
     labels:
       autoheal: true
       keep_healthy:
@@ -487,7 +487,7 @@ services:
     ports:
       - ${OVERSEERR_PORT:-5056}:5056
     volumes:
-      - ./overseerr/appdata/config:/app/config
+      - ../DATA/overseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
       autoheal: true
@@ -507,9 +507,9 @@ services:
     ports:
       - ${PLEX_PORT:-32400}:32400
     volumes:
-      - ./plex/config:/config
-      - ./plex/transcode:/transcode
-      - ./plex/media:/data
+      - ../DATA/plex/config:/config
+      - ../DATA/plex/transcode:/transcode
+      - ../DATA/plex/media:/data
     labels:
       autoheal: true
       keep_healthy:
@@ -600,7 +600,7 @@ services:
     ports:
       - ${REQUESTRR_PORT:-4545}:4545
     volumes:
-      - ./requestrr/config:/root/config
+      - ../DATA/requestrr/config:/root/config
     restart: unless-stopped
     labels:
       autoheal: true
@@ -617,7 +617,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amstedam
     volumes:
-      - ./retroarch/config:/config
+      - ../DATA/retroarch/config:/config
     ports:
       - ${RETROARCH_PORT:-3000}:3000
       - 3003:3003
@@ -681,9 +681,9 @@ services:
     volumes:
       - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
       - romm_redis_data:/redis-data # Cached data for background tasks
-      - ./romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
-      - ./romm/assets:/romm/assets # Uploaded saves, states, etc.
-      - ./romm/config:/romm/config # Path where config.yml is stored
+      - ../DATA/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      - ../DATA/romm/assets:/romm/assets # Uploaded saves, states, etc.
+      - ../DATA/romm/config:/romm/config # Path where config.yml is stored
     ports:
       - ${ROMM_PORT:-8080}:8080
     depends_on:
@@ -798,8 +798,8 @@ services:
     ports:
       - ${TVS99_PORT:-8085}:3000
     volumes:
-      - ./tvs99/config/config.tvs.yml:/home/static/config.tvs.yml:ro
-      - ./tvs99/content:/home/static/content:ro
+      - ../DATA/tvs99/config/config.tvs.yml:/home/static/config.tvs.yml:ro
+      - ../DATA/tvs99/content:/home/static/content:ro
     labels:
       autoheal: true
       keep_healthy:
@@ -819,7 +819,7 @@ services:
       - "87:87"
       - "447:447"
     volumes:
-      - ./webrcade/content:/var/www/html/content"
+      - ../DATA/webrcade/content:/var/www/html/content"
     restart: unless-stopped
     labels:
       autoheal: true
@@ -835,17 +835,17 @@ services:
     ports:
       - 8081:8081/tcp
     volumes:
-      - ./sickgear/sickgear-data:/data
-      - ./sickgear/incoming:/incoming
-      - ./sickgear/tv:/tv
+      - ../DATA/sickgear/sickgear-data:/data
+      - ../DATA/sickgear/incoming:/incoming
+      - ../DATA/sickgear/tv:/tv
 
   kapowarr:
     container_name: kapowarr
     image: mrcas/kapowarr:latest
     volumes:
       - kapowarr-db:/app/db
-      - ./kapowarr/download_folder:/app/temp_downloads
-      - ./kapowarr/root_folder:/comics-1
+      - ../DATA/kapowarr/download_folder:/app/temp_downloads
+      - ../DATA/kapowarr/root_folder:/comics-1
     ports:
       - 5656:5656
 
@@ -861,8 +861,8 @@ services:
     environment:
       - TZ=$TIMEZONE # optional: defaults to UTC
     volumes:
-      - ./flexget/config:/config # required
-      - ./flexget/downloads:/downloads
+      - ../DATA/flexget/config:/config # required
+      - ../DATA/flexget/downloads:/downloads
   buildarr:
     image: "callum027/buildarr:latest"
     container_name: buildarr
@@ -870,7 +870,7 @@ services:
       - "PUID=$(id"
       - "PGID=$(id"
     volumes:
-      - ./buildarr/config:/config'
+      - ../DATA/buildarr/config:/config'
   byparr:
     image: "ghcr.io/thephaseless/byparr:latest"
     ports:
@@ -944,9 +944,9 @@ services:
 
     volumes:
       # Mount logs directory (optional but recommended)
-      - ./calendarr/logs:/app/logs:rw
+      - ../DATA/calendarr/logs:/app/logs:rw
       # Mount custom footers directory (required if ENABLE_CUSTOM_*_FOOTER is true)
-      - ./calendarr/custom_footers:/app/custom_footers:rw
+      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
 
     healthcheck: # You can delete this if  you don't care about healthchecks
       test:
@@ -996,7 +996,7 @@ services:
     container_name: flemmarr
     image: pierremesure/flemmarr
     volumes:
-      - ./flemmarr/config:/config
+      - ../DATA/flemmarr/config:/config
 
   whisparr:
     deploy:
@@ -1018,8 +1018,8 @@ services:
       - UMASK=002
       - TZ=Europe/Amstedam
     volumes:
-      - ./whisparr/config:/config
-      - ./whisparr/data:/data
+      - ../DATA/whisparr/config:/config
+      - ../DATA/whisparr/data:/data
     labels:
       autoheal: true
       keep_healthy:
@@ -1065,7 +1065,7 @@ services:
   #     # - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?WIREGUARD_ADDRESSES must be set} # define the ipv4 vpn network subnet here
   #     - SERVER_CITIES=${SERVER_CITIES:?SERVER_CITIES must be set} # define the server cities
   #   volumes:
-  #     - ./gluetun/configs/gluetun:/gluetun
+  #     - ../DATA/gluetun/configs/gluetun:/gluetun
   #   restart: unless-stopped
   #   #networks:
   #   #  - proxy

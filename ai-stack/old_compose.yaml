@@ -24,10 +24,10 @@ services:
     # build: .
     volumes:
       - basic-memory-config:/root/.basic-memory:rw
-      - ./basic-memory/knowledge:/app/data:rw
+      - ../DATA/basic-memory/knowledge:/app/data:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
-      # - ./basic-memory/work-notes:/app/data/work:rw
-      # - ./basic-memory/personal-notes:/app/data/personal:rw
+      # - ../DATA/basic-memory/work-notes:/app/data/work:rw
+      # - ../DATA/basic-memory/personal-notes:/app/data/personal:rw
     environment:
       - BASIC_MEMORY_DEFAULT_PROJECT=main
       - BASIC_MEMORY_SYNC_CHANGES=true
@@ -85,7 +85,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./faster-whisper/data:/config
+      - ../DATA/faster-whisper/data:/config
     deploy:
       resources:
         reservations:
@@ -113,7 +113,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./home-assistant/config:/config
+      - ../DATA/home-assistant/config:/config
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -138,9 +138,9 @@ services:
       - POSTGRES_PASSWORD=${LETTA_PG_PASSWORD:-letta}
       - POSTGRES_DB=${LETTA_PG_DB:-letta}
     volumes:
-      - ./letta/.persist/pgdata:/var/lib/postgresql/data
+      - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
       # - ~/.letta/.persist/pgdata:/var/lib/postgresql/data
-      - ./letta/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - ${LETTA_PG_PORT:-5432}:5432
     healthcheck:
@@ -205,8 +205,8 @@ services:
       - CLICKHOUSE_USERNAME=${CLICKHOUSE_USERNAME}
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
     volumes:
-      # - ./letta/configs/server_config.yaml:/root/.letta/config # config file
-      # - ./letta/credentials:/root/.letta/credentials # credentials file
+      # - ../DATA/letta/configs/server_config.yaml:/root/.letta/config # config file
+      # - ../DATA/letta/credentials:/root/.letta/credentials # credentials file
       # Uncomment this line to mount a local directory for tool execution, and specify the mount path
       # before running docker compose: `export LETTA_SANDBOX_MOUNT_PATH=$PWD/directory`
       - ${LETTA_SANDBOX_MOUNT_PATH:-/letta}:/root/.letta/tool_execution_dir # mounted volume for tool execution
@@ -225,8 +225,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - ./whisper/libretranslate/data:/home/libretranslate/.local/share
-      - ./whisper/libretranslate/cache:/home/libretranslate/.local/cache
+      - ../DATA/whisper/libretranslate/data:/home/libretranslate/.local/share
+      - ../DATA/whisper/libretranslate/cache:/home/libretranslate/.local/cache
     user: root
     tty: true
     environment:
@@ -259,8 +259,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./whisper/db_data:/data/db
-      - ./whisper/db_data/logs/:/var/log/mongodb/
+      - ../DATA/whisper/db_data:/data/db
+      - ../DATA/whisper/db_data/logs/:/var/log/mongodb/
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -290,7 +290,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./ollama:/root/.ollama
+      - ../DATA/ollama:/root/.ollama
     ports:
       - ${OLLAMA_PORT:-11434}:11434
     deploy:
@@ -324,7 +324,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./open-webui:/app/backend/data
+      - ../DATA/open-webui:/app/backend/data
     depends_on:
       - ollama
     extra_hosts:
@@ -349,7 +349,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./searxng:/etc/searxng
+      - ../DATA/searxng:/etc/searxng
     ports:
       - ${SEARXNG_PORT:-8081}:8080
   # image used to:
@@ -370,7 +370,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/data:/data
   # image used to:
   # scan, index, manage and serve:
   stable-diffusion-webui:
@@ -390,8 +390,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./stable-diffusion-webui-docker/data:/data
-      - ./stable-diffusion-webui-docker/output:/output
+      - ../DATA/stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/output:/output
     stop_signal: SIGKILL
     tty: true
     deploy:
@@ -435,9 +435,9 @@ services:
       - swarmbackend:/SwarmUI/dlbackend
       - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
       - swarmextensions:/SwarmUI/src/Extensions
-      - ./swarmui/Models:/SwarmUI/Models
-      - ./swarmui/Output:/SwarmUI/Output
-      - ./swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - ../DATA/swarmui/Models:/SwarmUI/Models
+      - ../DATA/swarmui/Output:/SwarmUI/Output
+      - ../DATA/swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
     ports:
       - "7801:7801"
     deploy:
@@ -462,9 +462,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./whisper/uploads:/app/uploads
-      - ./whisper/logs:/var/log/whishper
-      - ./whisper/models:/app/models
+      - ../DATA/whisper/uploads:/app/uploads
+      - ../DATA/whisper/logs:/var/log/whishper
+      - ../DATA/whisper/models:/app/models
     depends_on:
       - mongo
       - libretranslate
@@ -500,7 +500,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./wyoming-piper/data:/data
+      - ../DATA/wyoming-piper/data:/data
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -538,7 +538,7 @@ services:
   #   ports:
   #     - ${OLLMVTUBER_PORT:-12393}:12393
   #   volumes:
-  #     - ./open-llm-vtuber/conf.yaml:/app/conf.yaml:ro
+  #     - ../DATA/open-llm-vtuber/conf.yaml:/app/conf.yaml:ro
 
   watchtower:
     image: "containrrr/watchtower:latest"

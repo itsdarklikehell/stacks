@@ -50,8 +50,8 @@ services:
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
     volumes:
-      - ./calendarr/logs:/app/logs:rw
-      - ./calendarr/custom_footers:/app/custom_footers:rw
+      - ../DATA/calendarr/logs:/app/logs:rw
+      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
     healthcheck:
       test:
         [

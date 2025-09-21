@@ -16,7 +16,7 @@ services:
       - "87:87"
       - "447:447"
     volumes:
-      - ./webrcade/content:/var/www/html/content
+      - ../DATA/webrcade/content:/var/www/html/content
     restart: unless-stopped
     labels:
       autoheal: true

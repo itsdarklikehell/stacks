@@ -19,7 +19,7 @@ services:
     ports:
       - ${OVERSEERR_PORT:-5056}:5056
     volumes:
-      - ./overseerr/appdata/config:/app/config
+      - ../DATA/overseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
       autoheal: true

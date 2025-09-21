@@ -27,9 +27,9 @@ services:
     volumes:
       - romm_resources:/romm/resources
       - romm_redis_data:/redis-data
-      - ./romm/library:/romm/library
-      - ./romm/assets:/romm/assets
-      - ./romm/config:/romm/config
+      - ../DATA/romm/library:/romm/library
+      - ../DATA/romm/assets:/romm/assets
+      - ../DATA/romm/config:/romm/config
     ports:
       - ${ROMM_PORT:-8080}:8080
     depends_on:

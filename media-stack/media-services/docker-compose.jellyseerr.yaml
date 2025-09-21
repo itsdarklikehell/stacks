@@ -18,7 +18,7 @@ services:
     ports:
       - ${JELLYSEERR_PORT:-5055}:5055
     volumes:
-      - ./jellyseerr/appdata/config:/app/config
+      - ../DATA/jellyseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
       autoheal: true
