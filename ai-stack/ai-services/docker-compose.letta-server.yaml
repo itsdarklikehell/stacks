@@ -3,21 +3,10 @@ services:
     image: letta/letta:latest
     container_name: letta-server
     restart: unless-stopped
-    hostname: letta-server
-    # network_mode: host
-    networks:
-      default:
-        aliases:
-          - pgvector_db
-          - letta-db
-    depends_on:
-      letta-db:
-        condition: service_healthy
-    ports:
-      - 8283:8283
-      - 8083:8083
-    env_file:
-      - .env
+    
+    labels:
+      - keep_healthy
+    
     environment:
       - LETTA_PG_URI=${LETTA_PG_URI:-postgresql://${LETTA_PG_USER:-letta}:${LETTA_PG_PASSWORD:-letta}@${LETTA_DB_HOST:-letta-db}:${LETTA_PG_PORT:-5432}/${LETTA_PG_DB:-letta}}
       - LETTA_DEBUG=${LETTA_DEBUG:-True}
@@ -38,9 +27,39 @@ services:
       - CLICKHOUSE_DATABASE=${CLICKHOUSE_DATABASE}
       - CLICKHOUSE_USERNAME=${CLICKHOUSE_USERNAME}
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
+
     volumes:
       # - ./letta/configs/server_config.yaml:/root/.letta/config # config file
       # - ./letta/credentials:/root/.letta/credentials # credentials file
       # Uncomment this line to mount a local directory for tool execution, and specify the mount path
       # before running docker compose: `export LETTA_SANDBOX_MOUNT_PATH=$PWD/directory`
       - ${LETTA_SANDBOX_MOUNT_PATH:-/letta}:/root/.letta/tool_execution_dir # mounted volume for tool execution
+
+
+    hostname: letta-server
+
+    # command: ["--logpath", "/var/log/mongodb/mongod.log"]
+
+    networks:
+      host:
+      default:
+        aliases:
+          - pgvector_db
+          - letta-db
+
+    ports:
+      - 8283:8283
+      - 8083:8083
+
+    env_file:
+      - ../.env
+      
+    deploy:
+      replicas: 1
+
+    depends_on:
+      letta-db:
+        condition: service_healthy
+
+
+

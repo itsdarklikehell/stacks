@@ -1,0 +1,38 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+
+    labels:
+      - keep_healthy
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./searxng:/etc/searxng
+
+    hostname: searxng
+
+    networks:
+      - ai-stack
+      - management-stack
+      - kuma_network
+      - cloud
+
+    ports:
+      - ${SEARXNG_PORT:-8081}:8080
+
+    env_file:
+      - .env
+
+    deploy:
+      replicas: 1
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper

@@ -2,16 +2,36 @@ services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-ai-stack}
-    env_file:
-      - ../.env
-    deploy:
-      replicas: 1
+    restart: ${AUTOHEAL_RESTART:-always}
+    
+    labels:
+      - keep_healthy
+
     environment:
       AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
     # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
-    restart: ${AUTOHEAL_RESTART:-always}
+
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: ai-stack-autoheal
+
+    # command: [ "ollama", "pull", "qwen3:latest"]
+
     networks:
-      - management-stack
+      - ai-stack
+      # - host
+    
+    # # ports:
+    # #   - "80:80"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
