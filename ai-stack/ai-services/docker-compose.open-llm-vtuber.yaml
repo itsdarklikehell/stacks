@@ -1,0 +1,9 @@
+services:
+  open-llm-vtuber:
+    image: "open-llm-vtuber"
+    ports:
+      - "12393:12393"
+    volumes:
+      - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
+    stdin_open: true
+    tty: true

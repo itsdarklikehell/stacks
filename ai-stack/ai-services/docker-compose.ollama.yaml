@@ -22,7 +22,9 @@ services:
       - ../DATA/ollama:/root/.ollama
 
     hostname: ollama
-
+    
+    command: ["ollama pull", "llama3.2:latest"]
+    
     networks:
       - ai-services
       - host

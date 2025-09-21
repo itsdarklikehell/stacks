@@ -36,13 +36,6 @@ function DOCKER_COMPOSE_STACK(){
 echo "Cloning repositories..."
 CLONE_REPOS
 
-# echo "Installing SwarmUI..."
-# INSTALL_SWARMUI
-
-# echo "Installing Open-LLM-Vtuber..."
-# INSTALL_OPEN_LLM_VTUBER
-
-
 echo "*** START COMPOSING: ai-stack ****"
 DOCKER_COMPOSE_STACK
 echo "*** FINISHED COMPOSING: ai-stack ****"
