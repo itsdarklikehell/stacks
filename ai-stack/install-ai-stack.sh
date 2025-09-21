@@ -44,5 +44,5 @@ CLONE_REPOS
 
 
 echo "*** START COMPOSING: ai-stack ****"
-# DOCKER_COMPOSE_STACK
+DOCKER_COMPOSE_STACK
 echo "*** FINISHED COMPOSING: ai-stack ****"
