@@ -11,7 +11,7 @@ services:
     
     environment:
       - LETTA_BASE_URL=${LETTA_BASE_URL:-http://host.docker.internal:8283}
-      - LETTA_PASSWORD=${LETTA_PASSWORD}
+      - LETTA_PASSWORD=${LETTA_PASSWORD:-lettapassword}
       - NODE_ENV=${NODE_ENV:-production}
 
     hostname: letta-mcp
@@ -23,7 +23,7 @@ services:
       - host
     
     ports:
-      - ${LETTA_MCP_PORT:-3001}:3001
+      - ${LETTA_MCP_PORT:-3005}:3005
     
     env_file:
       - ../.env
