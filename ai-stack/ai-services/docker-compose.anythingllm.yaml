@@ -14,7 +14,7 @@ services:
 
     volumes:
       - "../DATA/anythingllm/storage:/app/server/storage"
-      - "../DATA/anythingllm/.env:/app/server/.env"
+      # - "../DATA/anythingllm/.env:/app/server/.env"
 
     hostname: anythingllm
 
