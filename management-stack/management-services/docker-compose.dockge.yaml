@@ -20,7 +20,7 @@ services:
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
       # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
-      - /media/rizzo/RAIDSTATION/stacks/management-stack/dockge:/media/rizzo/RAIDSTATION/stacks/management-stack/dockge
+      - ../DATA/dockge:/DATA/dockge
 
     hostname: ${dockge_hostname:-dockge}
 
