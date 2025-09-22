@@ -5,26 +5,26 @@ cd "$(dirname "$0")"
 
   # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
-  docker-compose.base.yaml
-  docker-compose.autoheal.yaml
-  docker-compose.collabora.yaml
-  docker-compose.dashy.yaml
-  docker-compose.docker-proxy.yaml
-  docker-compose.dockge.yaml
-  docker-compose.grafana.yaml
-  docker-compose.n8n.yaml
-  docker-compose.netdata.yaml
-  docker-compose.nextcloud.yaml
-  docker-compose.nextclouddb.yaml
-  docker-compose.nginx-proxy-manager.yaml
-  docker-compose.organizr.yaml
-  docker-compose.portainer.yaml
-  docker-compose.portracker.yaml
-  docker-compose.redis.yaml
-  docker-compose.uptime-kuma.yaml
-  docker-compose.watchtower.yaml
-  docker-compose.wg-easy.yaml
-  docker.compose.ubuntu-desktop-lxde-vnc.yaml
+  base.docker-compose.yaml
+  autoheal.docker-compose.yaml
+  collabora.docker-compose.yaml
+  dashy.docker-compose.yaml
+  docker-proxy.docker-compose.yaml
+  docker.compose.ubuntu-desktop-lxde-vnc.docker-compose.yaml
+  dockge.docker-compose.yaml
+  grafana.docker-compose.yaml
+  n8n.docker-compose.yaml
+  netdata.docker-compose.yaml
+  nextcloud.docker-compose.yaml
+  nextclouddb.docker-compose.yaml
+  nginx-proxy-manager.docker-compose.yaml
+  organizr.docker-compose.yaml
+  portainer.docker-compose.yaml
+  portracker.docker-compose.yaml
+  redis.docker-compose.yaml
+  uptime-kuma.docker-compose.yaml
+  watchtower.docker-compose.yaml
+  wg-easy.docker-compose.yaml
 )
 
 ARGS=""

@@ -4,30 +4,30 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-  docker-compose.base.yaml
-  docker-compose.autoheal.yaml
-  docker-compose.anythingllm.yaml
-  docker-compose.chroma.yaml
-  docker-compose.clickhouse-server.yaml
-  docker-compose.basic-memory.yaml
-  docker-compose.faster-whisper-gpu.yaml
-  docker-compose.homeassistant.yaml
-  docker-compose.letta-db.yaml
-  docker-compose.letta-mcp.yaml
-  docker-compose.letta-server.yaml
-  docker-compose.libretranslate.yaml
-  docker-compose.librechat.yaml
-  docker-compose.mongo.yaml
-  docker-compose.ollama.yaml
-  docker-compose.open-webui.yaml
-  docker-compose.searxng.yaml
-  # docker-compose.open-llm-vtuber.yaml
-  # docker-compose.stable-diffusion-models-download.yaml
-  # docker-compose.stable-diffusion-webui.yaml
-  # docker-compose.swarmui.yaml
-  docker-compose.watchtower.yaml
-  docker-compose.whisper.yaml
-  docker-compose.wyoming-piper.yaml
+  base.docker-compose.yaml
+  anythingllm.docker-compose.yaml
+  autoheal.docker-compose.yaml
+  basic-memory.docker-compose.yaml
+  chroma.docker-compose.yaml
+  clickhouse-server.docker-compose.yaml
+  faster-whisper-gpu.docker-compose.yaml
+  homeassistant.docker-compose.yaml
+  letta-db.docker-compose.yaml
+  letta-mcp.docker-compose.yaml
+  letta-server.docker-compose.yaml
+  librechat.docker-compose.yaml
+  libretranslate.docker-compose.yaml
+  mongo.docker-compose.yaml
+  ollama.docker-compose.yaml
+  # open-llm-vtuber.docker-compose.yaml
+  open-webui.docker-compose.yaml
+  searxng.docker-compose.yaml
+  # stable-diffusion-models-download.docker-compose.yaml
+  # stable-diffusion-webui.docker-compose.yaml
+  # swarmui.docker-compose.yaml
+  watchtower.docker-compose.yaml
+  whisper.docker-compose.yaml
+  wyoming-piper.docker-compose.yaml
 )
 
 ARGS=""
