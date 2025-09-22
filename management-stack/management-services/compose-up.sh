@@ -23,7 +23,7 @@ COMPOSE_FILES=(
   docker-compose.redis.yaml
   docker-compose.uptime-kuma.yaml
   docker-compose.watchtower.yaml
-  # docker-compose.wg-easy.yaml
+  docker-compose.wg-easy.yaml
   docker.compose.ubuntu-desktop-lxde-vnc.yaml
 )
 
