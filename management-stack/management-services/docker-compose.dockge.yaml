@@ -4,10 +4,10 @@ services:
     image: ${DOCKGE_IMAGE:-louislam/dockge:latest}
     restart: ${dockge_restart:-unless-stopped}
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       # Tell Dockge where to find the stacks

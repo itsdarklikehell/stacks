@@ -4,10 +4,10 @@ services:
     restart: ${portainer_restart:-unless-stopped}
     image: ${PORTAINER_IMAGE:-portainer/portainer-ce:latest}
     
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     
     volumes:
       - ../DATA/portainer/portainer_data:/data

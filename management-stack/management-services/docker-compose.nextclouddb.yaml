@@ -4,10 +4,10 @@ services:
     container_name: ${nextclouddb_container_name:-nextcloud-db}
     restart: ${nextclouddb_restart:-unless-stopped}
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - PUID=1000

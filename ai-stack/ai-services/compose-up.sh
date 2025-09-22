@@ -17,6 +17,7 @@ COMPOSE_FILES=(
   docker-compose.letta-mcp.yaml
   docker-compose.letta-server.yaml
   docker-compose.libretranslate.yaml
+  docker-compose.librechat.yaml
   docker-compose.mongo.yaml
   docker-compose.ollama.yaml
   # docker-compose.open-llm-vtuber.yaml

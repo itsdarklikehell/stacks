@@ -4,10 +4,10 @@ services:
     container_name: ${portracker_container_name:-portracker}
     restart: ${portracker_restart:-unless-stopped}
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - DOCKER_HOST=tcp://docker-proxy:2375

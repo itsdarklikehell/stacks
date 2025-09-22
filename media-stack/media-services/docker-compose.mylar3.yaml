@@ -4,10 +4,10 @@ services:
     container_name: ${MYLAR3_CONTAINER_NAME:-mylar3}
     restart: unless-stopped
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       - PUID=1000

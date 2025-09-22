@@ -4,10 +4,10 @@ services:
     container_name: ${PLEX_CONTAINER_NAME:-plex}
     restart: unless-stopped
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
     volumes:
       - ../DATA/plex/config:/config

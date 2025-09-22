@@ -4,10 +4,10 @@ services:
     container_name: ${netdata_container_name:-netdata}
     restart: ${netdata_restart:-unless-stopped}
     
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - NETDATA_CLAIM_TOKEN=3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o

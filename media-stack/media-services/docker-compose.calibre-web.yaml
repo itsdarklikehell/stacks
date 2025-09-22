@@ -4,10 +4,10 @@ services:
     container_name: calibre-web
     restart: unless-stopped
 
-    # labels:
-    #   - autoheal-app=true
-    #   - keep_healthy
-    #   - "com.centurylinklabs.watchtower.enable=false"
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
     volumes:
       - ../calibre-web/calibre-library:/calibre-library
