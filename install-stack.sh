@@ -7,7 +7,8 @@ export UV_LINK_MODE=copy
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
-
+git pull
+exit 1
 # sudo apt update && sudo apt upgrade -y
 
 function INSTALL_DRIVERS(){

@@ -15,6 +15,8 @@ networks:
   host:
   ai-services:
     external: true
+  media-services:
+    external: true
   iot_macvlan:
     external: true
   management-services:
