@@ -186,7 +186,7 @@ channels: # starts a list of channels. Every channel below begins with a "-" as 
   abbr: BLEND
   backgroundAudio: placeholders/bgm-2.mp3
   video:
-    volume: false # You can mute the video entirely if you want.
+    volume: 0 # You can mute the video entirely if you want.
     provider: hls # The HTTP live streaming provider can be utilized if you have such a video stream.
     src: https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
 

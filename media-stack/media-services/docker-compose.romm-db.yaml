@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
-      - MARIADB_DATABASE=${MARIADB_DATABASE:romm}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-romm}
       - MARIADB_USER=${MARIADB_USER:-romm-user}
 
     volumes:
