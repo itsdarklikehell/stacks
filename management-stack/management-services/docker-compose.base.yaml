@@ -48,24 +48,24 @@ volumes:
 #   letta_password:
 #     file: ../../secrets/letta_password
 #   mariadb_root_password:
-#     file: ../../secrets/mariadb_root_password.txt
+#     file: ../../secrets/mariadb_root_password
 #   mariadb_password:
-#     file: ../../secrets/mariadb_password.txt
+#     file: ../../secrets/mariadb_password
 #   gsdb_root_password:
-#     file: ../../secrets/gsdb_root_password.txt
+#     file: ../../secrets/gsdb_root_password
 #   gsdb_password:
-#     file: ../../secrets/gsdb_password.txt
+#     file: ../../secrets/gsdb_password
 #   romm_db_password:
-#     file: ../../secrets/romm_db_password.txt
+#     file: ../../secrets/romm_db_password
 #   romm_auth_secret_key:
-#     file: ../../secrets/romm_auth_secret_key.txt
+#     file: ../../secrets/romm_auth_secret_key
 #   screenscraper_password:
-#     file: ../../secrets/screenscraper_password.txt
+#     file: ../../secrets/screenscraper_password
 #   retroachievements_api_key:
-#     file: ../../secrets/retroachievements_api_key.txt
+#     file: ../../secrets/retroachievements_api_key
 #   steamgriddb_api_key:
-#     file: ../../secrets/steamgriddb_api_key.txt
+#     file: ../../secrets/steamgriddb_api_key
 #   hardcover_auth:
-#     file: ../../secrets/hardcover_auth.txt
+#     file: ../../secrets/hardcover_auth
 #   rreading_glasses_db_password:
-#     file: ../../secrets/rreading_glasses_db_password.txt
+#     file: ../../secrets/rreading_glasses_db_password
