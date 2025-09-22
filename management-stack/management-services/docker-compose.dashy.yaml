@@ -4,6 +4,11 @@ services:
     container_name: ${dashy_container_name:-dashy}
     restart: ${dashy_restart:-unless-stopped}
 
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       - NODE_ENV=production
     # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
@@ -25,6 +30,13 @@ services:
 
     deploy:
       replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
 
     healthcheck:
       test: ["CMD", "node", "/app/services/healthcheck"]
@@ -32,5 +44,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      autoheal-app: true

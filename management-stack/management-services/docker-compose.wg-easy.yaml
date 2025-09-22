@@ -24,9 +24,9 @@ services:
     networks:
       management-services:
       host:
-    #   wg:
-    #     ipv4_address: 10.42.42.42
-    #     ipv6_address: fdcc:ad94:bacf:61a3::2a
+      wg:
+        ipv4_address: 10.42.42.42
+        ipv6_address: fdcc:ad94:bacf:61a3::2a
     
     ports:
       - "51820:51820/udp"
@@ -49,3 +49,10 @@ services:
 
     deploy:
       replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
