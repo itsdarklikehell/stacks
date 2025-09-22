@@ -10,7 +10,10 @@ services:
     #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
-      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
+      AUTOHEAL_START_PERIOD: 0
+      AUTOHEAL_INTERVAL: 5
+      AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
+      AUTOHEAL_ONLY_MONITOR_RUNNING: false
     # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
 
     volumes:
