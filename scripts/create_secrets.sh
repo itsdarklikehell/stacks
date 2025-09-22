@@ -16,4 +16,4 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/hardcover_auth"
     touch "${WD}/secrets/rreading_glasses_db_password"
 }
-CREATE_SECRETS 
+# CREATE_SECRETS 

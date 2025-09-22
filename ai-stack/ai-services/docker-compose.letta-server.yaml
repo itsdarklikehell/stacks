@@ -35,7 +35,7 @@ services:
       # - ../DATA/letta/credentials:/root/.letta/credentials # credentials file
       # Uncomment this line to mount a local directory for tool execution, and specify the mount path
       # before running docker compose: `export LETTA_SANDBOX_MOUNT_PATH=$PWD/directory`
-      - ${LETTA_SANDBOX_MOUNT_PATH:-/letta}:/root/.letta/tool_execution_dir # mounted volume for tool execution
+      - ../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir # mounted volume for tool execution
 
 
     hostname: letta-server
