@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 
   # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
-  docker-compose.autoheal.yaml
   docker-compose.base.yaml
+  docker-compose.autoheal.yaml
   docker-compose.collabora.yaml
   docker-compose.dashy.yaml
   docker-compose.docker-proxy.yaml

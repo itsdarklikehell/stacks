@@ -45,9 +45,9 @@ services:
       - libretranslate
       - mongo
       - ollama
-      - open-llm-vtuber
       - open-webui
       - searxng
+      # - open-llm-vtuber
       # - stable-diffusion-models-download
       # - stable-diffusion-webui
       # - swarmui
