@@ -15,8 +15,8 @@ services:
       - HOST=0.0.0.0
       - MONGO_URI=mongodb://mongodb:27017/LibreChat
       - MEILI_HOST=http://meilisearch:7700
-      - RAG_PORT=${RAG_PORT:-8000}
-      - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
+      - RAG_PORT=${RAG_PORT:-8003}
+      - RAG_API_URL=http://rag_api:${RAG_PORT:-8003}
     volumes:
       - type: bind
         source: ../.env
@@ -62,7 +62,7 @@ services:
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
     environment:
       - DB_HOST=librechat-vectordb
-      - RAG_PORT=${RAG_PORT:-8000}
+      - RAG_PORT=${RAG_PORT:-8003}
     restart: unless-stopped
     depends_on:
       - librechat-vectordb
