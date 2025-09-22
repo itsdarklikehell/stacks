@@ -13,18 +13,18 @@ COMPOSE_FILES=(
   docker-compose.dockge.yaml
   docker-compose.grafana.yaml
   docker-compose.n8n.yaml
-  # docker-compose.netdata.yaml
-  # docker-compose.organizr.yaml
-  # docker-compose.nextcloud.yaml
-  # docker-compose.nextclouddb.yaml
-  # docker-compose.nginx-proxy-manager.yaml
-  # docker-compose.portainer.yaml
-  # docker-compose.portracker.yaml
-  # docker-compose.redis.yaml
-  # docker-compose.uptime-kuma.yaml
-  # docker-compose.watchtower.yaml
+  docker-compose.netdata.yaml
+  docker-compose.organizr.yaml
+  docker-compose.nextcloud.yaml
+  docker-compose.nextclouddb.yaml
+  docker-compose.nginx-proxy-manager.yaml
+  docker-compose.portainer.yaml
+  docker-compose.portracker.yaml
+  docker-compose.redis.yaml
+  docker-compose.uptime-kuma.yaml
+  docker-compose.watchtower.yaml
   # docker-compose.wg-easy.yaml
-  # docker.compose.ubuntu-desktop-lxde-vnc.yaml
+  docker.compose.ubuntu-desktop-lxde-vnc.yaml
 )
 
 ARGS=""

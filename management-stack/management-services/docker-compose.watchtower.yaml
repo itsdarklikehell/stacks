@@ -51,5 +51,5 @@ services:
       - portracker
       - redis
       - uptime-kuma
-      - wg-easy
+      # - wg-easy
       # - watchtower
