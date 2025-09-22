@@ -17,7 +17,7 @@ networks:
     external: true
   iot_macvlan:
     external: true
-  management-stack:
+  management-services:
     external: true
   wg:
     driver: bridge
