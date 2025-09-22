@@ -1,7 +1,7 @@
 services:
   flaresolverr:
     image: ${FLARESOLVERR_IMAGE:-flaresolverr/flaresolverr:latest}
-    container_name: ${FLARESOLVERR_CONTAINER_NAME:-arr-suite-flaresolverr}
+    container_name: ${FLARESOLVERR_CONTAINER_NAME:-flaresolverr}
     restart: unless-stopped
 
     labels:

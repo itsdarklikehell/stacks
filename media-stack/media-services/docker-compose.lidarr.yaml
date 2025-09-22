@@ -9,7 +9,7 @@ services:
           memory: 256M
           cpus: "0.25"
     image: ${LIDARR_IMAGE:-linuxserver/lidarr:latest}
-    container_name: ${LIDARR_CONTAINER_NAME:-arr-suite-lidarr}
+    container_name: ${LIDARR_CONTAINER_NAME:-lidarr}
     env_file:
       - ../.env
     environment:

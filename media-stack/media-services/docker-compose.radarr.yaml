@@ -9,7 +9,7 @@ services:
           memory: 256M
           cpus: "0.25"
     image: ${RADARR_IMAGE:-linuxserver/radarr:latest}
-    container_name: ${RADARR_CONTAINER_NAME:-arr-suite-radarr}
+    container_name: ${RADARR_CONTAINER_NAME:-radarr}
     env_file:
       - ../.env
     environment:

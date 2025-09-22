@@ -9,7 +9,7 @@ services:
           memory: 512M
           cpus: "0.50"
     image: ${JELLYFIN_IMAGE:-linuxserver/jellyfin:latest}
-    container_name: ${JELLYFIN_CONTAINER_NAME:-arr-suite-jellyfin}
+    container_name: ${JELLYFIN_CONTAINER_NAME:-jellyfin}
     env_file:
       - ../.env
     environment:

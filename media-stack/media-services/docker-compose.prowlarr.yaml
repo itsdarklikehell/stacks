@@ -9,7 +9,7 @@ services:
           memory: 128M
           cpus: "0.10"
     image: ${PROWLARR_IMAGE:-linuxserver/prowlarr:latest}
-    container_name: ${PROWLARR_CONTAINER_NAME:-arr-suite-prowlarr}
+    container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
     env_file:
       - ../.env
     environment:
