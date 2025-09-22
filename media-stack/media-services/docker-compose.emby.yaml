@@ -1,6 +1,48 @@
 services:
   emby:
+    image: ${EMBY_IMAGE:-linuxserver/emby:latest}
+    container_name: ${EMBY_CONTAINER_NAME:-arr-suite-emby}
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
+
+    hostname: emby
+    
+    networks:
+      - media-services
+      - host
+    
+    expose:
+      - 8097/tcp
+      - 8920/tcp
+    
+    ports:
+      - ${EMBY_PORT:-8097}:8097/tcp
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8097"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 1G
@@ -8,28 +50,3 @@ services:
         reservations:
           memory: 512M
           cpus: "0.50"
-    env_file:
-      - ../.env
-    image: ${EMBY_IMAGE:-linuxserver/emby:latest}
-    container_name: ${EMBY_CONTAINER_NAME:-arr-suite-emby}
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
-    expose:
-      - 8097/tcp
-      - 8920/tcp
-    ports:
-      - ${EMBY_PORT:-8097}:8097/tcp
-    labels:
-      autoheal: true
-      keep_healthy:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8097"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s

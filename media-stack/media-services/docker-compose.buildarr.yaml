@@ -2,10 +2,28 @@ services:
   buildarr:
     image: "callum027/buildarr:latest"
     container_name: buildarr
-    env_file:
-      - ../.env
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       - "PUID=$(id"
       - "PGID=$(id"
+    
     volumes:
       - ../DATA/buildarr/config:/config
+
+    hostname: buildarr
+
+    networks:
+      - media-services
+      - host
+    
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

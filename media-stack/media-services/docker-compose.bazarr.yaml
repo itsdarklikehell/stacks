@@ -2,27 +2,46 @@ services:
   bazarr:
     image: ${BAZARR_IMAGE:-lscr.io/linuxserver/bazarr:latest}
     container_name: ${BAZARR_CONTAINER_NAME:-arr-suite-bazarr}
-    env_file:
-      - ../.env
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
+
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+
+    hostname: bazarr
+
+    networks:
+      - media-services
+      - host
+
     expose:
       - 6767/tcp
+
     ports:
       - ${BAZARR_PORT:-6767}:6767/tcp
-    restart: unless-stopped
+
+    env_file:
+      - ../.env
+
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:6767"]
       interval: 1m30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 512M
@@ -30,8 +49,3 @@ services:
         reservations:
           memory: 256M
           cpus: "0.25"
-    labels:
-      autoheal: true
-      keep_healthy:
-    networks:
-      - media-services

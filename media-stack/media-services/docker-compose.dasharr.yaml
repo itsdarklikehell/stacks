@@ -1,23 +1,43 @@
 services:
   dasharr:
-    image: ghcr.io/dasharr/dasharr:latest
+    image: schenanigans/dasharr:latest
     container_name: ${DASHARR_CONTAINER_NAME:-dasharr}
-    env_file:
-      - ../.env
+    restart: unless-stopped
+
+    labels:
+      autoheal: true
+      keep_healthy: true
+    
     environment:
       - TZ=${TZ:-Europe/Amsterdam}
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
+    
+    volumes:
+      - ../DATA/dasharr/dasharr_config:/app/config  # or use bind mount: ./config:/app/config
+    
+    hostname: dasharr
+
+    networks:
+      - media-services
+      - host
+
     ports:
       - ${DASHARR_PORT:-8780}:8780
-    restart: unless-stopped
+
+    env_file:
+      - ../.env
+    
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8780"]
-      interval: 1m30s
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8780/api/health"]
+      # test: ["CMD", "curl", "-f", "http://localhost:8780"]
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 256M
@@ -25,8 +45,4 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    labels:
-      autoheal: true
-      keep_healthy: true
-    networks:
-      - media-services
+    

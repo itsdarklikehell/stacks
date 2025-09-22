@@ -1,7 +1,25 @@
 services:
   byparr:
     image: "ghcr.io/thephaseless/byparr:latest"
-    env_file:
-      - ../.env
+    container_name: byparr
+    restart: unless-stopped
+    
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    hostname: byparr
+
+    networks:
+      - media-services
+      - host
+    
     ports:
       - "8191:8191"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

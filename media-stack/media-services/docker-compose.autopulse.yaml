@@ -1,9 +1,27 @@
 services:
   autopulse:
-    image: "autopulse"
+    image: ghcr.io/dan-online/autopulse
     container_name: autopulse
-    command: ghcr.io/dan-online/autopulse
-    env_file:
-      - ../.env
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     environment:
       - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"
+
+    networks:
+      - media-services
+      - host
+
+    env_file:
+      - ../.env
+    
+    deploy:
+      replicas: 1
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper

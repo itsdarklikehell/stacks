@@ -1,10 +1,14 @@
 services:
   calendarr:
     image: ghcr.io/jordanlambrecht/calendarr:latest
-    restart: "unless-stopped"
     container_name: calendarr
-    env_file:
-      - ../.env
+    restart: "unless-stopped"
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       TZ: ${TZ}
       CALENDAR_URLS: >
@@ -49,9 +53,17 @@ services:
       SHOW_TIMEZONE_IN_SUBHEADER: true
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
+    
     volumes:
       - ../DATA/calendarr/logs:/app/logs:rw
       - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
+    
+    hostname: calendarr
+
+    networks:
+      - media-services
+      - host
+    
     healthcheck:
       test:
         [
@@ -64,3 +76,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 20s
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1

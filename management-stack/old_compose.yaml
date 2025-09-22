@@ -24,7 +24,7 @@ services:
     environment:
       AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
     # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
-    restart: ${AUTOHEAL_RESTART:-always}
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock

@@ -2,13 +2,13 @@ services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-media-services}
-    restart: ${AUTOHEAL_RESTART:-always}
-    
+    restart: unless-stopped
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=false"
-    
+
     environment:
       AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
     # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
@@ -24,7 +24,7 @@ services:
     networks:
       - media-services
       - host
-    
+
     # # ports:
     # #   - "80:80"
 

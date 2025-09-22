@@ -1,7 +1,7 @@
 services:
   dashy:
     image: ${DASHY_IMAGE:-lissy93/dashy}
-    container_name: ${dashy_container_name:-Dashy}
+    container_name: ${dashy_container_name:-dashy}
     restart: ${dashy_restart:-unless-stopped}
 
     environment:

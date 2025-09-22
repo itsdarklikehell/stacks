@@ -1,7 +1,7 @@
 services:
   flemmarr:
     container_name: flemmarr
-    image: pierremesure/flemmarr
+    image: pierremesure/flemmarr:latest
     env_file:
       - ../.env
     volumes:

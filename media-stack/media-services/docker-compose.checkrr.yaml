@@ -1,13 +1,30 @@
 services:
   checkrr:
-    container_name: checkrr
     image: aetaric/checkrr:latest
-    env_file:
-      - ../.env
+    container_name: checkrr
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     volumes:
       - /path/to/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
       - /path/to/checkrr/config/checkrr.db:/checkrr.db
       - /path/to/media/to/scan:/media
+
+    hostname: ai-services-autoheal
+
+    networks:
+      - media-services
+      - host
+
     ports:
       - 8585:8585
-    restart: on-failure
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
