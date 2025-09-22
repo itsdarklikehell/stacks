@@ -4,10 +4,10 @@ services:
     container_name: ${ROMM_CONTAINER_NAME:-romm}
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       - DB_HOST=romm-db

@@ -4,10 +4,10 @@ services:
     container_name: letta-mcp
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - LETTA_BASE_URL=${LETTA_BASE_URL:-http://host.docker.internal:8283}

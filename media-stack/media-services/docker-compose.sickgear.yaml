@@ -3,10 +3,10 @@ services:
     image: sickgear/sickgear:latest
     container_name: sickgear
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       - APP_UID=1000

@@ -4,10 +4,10 @@ services:
     container_name: ollama
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - PUID=${PUID:-1000}

@@ -4,9 +4,10 @@ services:
     container_name: letta-server
     restart: unless-stopped
     
-    labels:
-      - autoheal-app=true
-      - keep_healthy
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - LETTA_PG_URI=${LETTA_PG_URI:-postgresql://${LETTA_PG_USER:-letta}:${LETTA_PG_PASSWORD:-letta}@${LETTA_DB_HOST:-letta-db}:${LETTA_PG_PORT:-5432}/${LETTA_PG_DB:-letta}}

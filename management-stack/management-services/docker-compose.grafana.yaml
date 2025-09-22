@@ -4,10 +4,10 @@ services:
     container_name: ${grafana_container_name:-grafana}
     restart: ${grafana_restart:-unless-stopped}
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - GF_SECURITY_ADMIN_USER=${grafana_admin:-grafana}

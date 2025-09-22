@@ -4,10 +4,10 @@ services:
     image: gaseousgames/gaseousserver:latest
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       - TZ=Europe/Amsterdam

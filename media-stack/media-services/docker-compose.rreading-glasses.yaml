@@ -4,10 +4,10 @@ services:
     container_name: rreading-glasses
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       POSTGRES_HOST: rreading-glasses-db
@@ -58,10 +58,10 @@ services:
     container_name: rreading-glasses-db
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       POSTGRES_USER: rreading-glasses

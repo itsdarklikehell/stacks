@@ -4,10 +4,10 @@ services:
     restart: ${nginx_proxy_manager_restart:-unless-stopped}
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
     
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_USERNAME:-bauke.molenaar@gmail.com}

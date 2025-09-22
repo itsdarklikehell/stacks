@@ -4,10 +4,10 @@ services:
     container_name: checkrr
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     volumes:
       - /path/to/checkrr/config/checkrr.yaml:/etc/checkrr.yaml

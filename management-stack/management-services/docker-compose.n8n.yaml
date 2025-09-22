@@ -4,10 +4,10 @@ services:
     restart: ${n8n_restart:-always}
     container_name: ${n8n_container_name:-n8n}
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true

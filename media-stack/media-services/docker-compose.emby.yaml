@@ -4,10 +4,10 @@ services:
     container_name: ${EMBY_CONTAINER_NAME:-emby}
     restart: unless-stopped
 
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
       - PUID=1000
