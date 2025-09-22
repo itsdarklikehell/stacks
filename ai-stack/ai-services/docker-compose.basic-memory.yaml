@@ -7,7 +7,7 @@ services:
     labels:
       - autoheal-app=true
       - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
       
     environment:
       - BASIC_MEMORY_DEFAULT_PROJECT=main

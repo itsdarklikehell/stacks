@@ -7,7 +7,7 @@ services:
     labels:
       - autoheal-app=true
       - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
     
     environment:
       - DOCKER_HOST=tcp://docker-proxy:2375

@@ -14,7 +14,7 @@ services:
     labels:
       - autoheal-app=true
       - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
       - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
