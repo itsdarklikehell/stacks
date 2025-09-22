@@ -26,7 +26,6 @@ COMPOSE_FILES=(
   docker-compose.lidarr.yaml
   docker-compose.mattermost.yaml
   docker-compose.mylar3.yaml
-  docker-compose.organizr.yaml
   docker-compose.overseerr.yaml
   docker-compose.plex.yaml
   docker-compose.prowlarr.yaml
@@ -51,5 +50,5 @@ done
 
 echo "Running: docker compose $ARGS up -d"
 
-# docker compose $ARGS up -d
-docker compose $ARGS up -d --build --force-recreate --remove-orphans
+docker compose $ARGS up -d
+# docker compose $ARGS up -d --build --force-recreate --remove-orphans

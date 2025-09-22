@@ -1,6 +1,6 @@
 services:
   netdata:
-    image: ${NETDATA_IMAGE:-netdata/netdata:edge}
+    image: ${NETDATA_IMAGE:-netdata/netdata:latest}
     container_name: ${netdata_container_name:-netdata}
     restart: ${netdata_restart:-unless-stopped}
     

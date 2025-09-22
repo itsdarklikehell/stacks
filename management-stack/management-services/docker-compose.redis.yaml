@@ -12,6 +12,8 @@ services:
     volumes:
       - ../DATA/redis/redis:/data
   
+    ports:
+      - 6379:6379
 
     hostname: redis
 

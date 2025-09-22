@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: ${RETROARCHZ_IMAGE:-blaize/retroarch}
+    image: ${RETROARCHZ_IMAGE:-blaize/retroarch:latest}
     container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
     env_file:
       - ../.env

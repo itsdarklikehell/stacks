@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: ${WHISPARR_IMAGE:-ghcr.io/hotio/whisparr}
+    image: ${WHISPARR_IMAGE:-ghcr.io/hotio/whisparr:latest}
     container_name: ${WHISPARR_CONTAINER_NAME:-whisparr}
     env_file:
       - ../.env

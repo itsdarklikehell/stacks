@@ -8,7 +8,7 @@ services:
       - autoheal-app=true
       - keep_healthy
     environment:
-      - TZ=${UPTIME_KUMA_TZ:-Europe/Amsterdam}
+      - TZ=${TZ:-Europe/Amsterdam}
       - UMASK=${UPTIME_KUMA_UMASK:-0022}
     
     volumes:

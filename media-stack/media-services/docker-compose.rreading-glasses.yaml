@@ -34,7 +34,7 @@ services:
       autoheal: true
       keep_healthy:
   rreading-glasses-db:
-    image: postgres:17.0
+    image: postgres:latest
     container_name: rreading-glasses-db
     hostname: rreading-glasses-db
     restart: unless-stopped

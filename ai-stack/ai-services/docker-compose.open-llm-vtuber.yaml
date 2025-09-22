@@ -1,7 +1,7 @@
 services:
   open-llm-vtuber:
-    image: "open-llm-vtuber"
-    container_name: "open-llm-vtuber"
+    image: open-llm-vtuber:latest
+    container_name: open-llm-vtuber
     restart: unless-stopped
 
     build:

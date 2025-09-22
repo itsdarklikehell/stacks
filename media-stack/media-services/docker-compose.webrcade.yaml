@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: "webrcade/webrcade:2.2.0"
+    image: "webrcade/webrcade:latest"
     container_name: webrcade
     env_file:
       - ../.env

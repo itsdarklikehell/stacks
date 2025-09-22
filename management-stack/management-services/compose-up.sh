@@ -14,6 +14,7 @@ COMPOSE_FILES=(
   docker-compose.grafana.yaml
   docker-compose.n8n.yaml
   docker-compose.netdata.yaml
+  docker-compose.organizr.yaml
   docker-compose.nextcloud.yaml
   docker-compose.nextclouddb.yaml
   docker-compose.nginx-proxy-manager.yaml
@@ -33,5 +34,5 @@ done
 
 echo "Running: docker compose $ARGS up -d"
 
-# docker compose $ARGS up -d
-docker compose $ARGS up -d --build --force-recreate --remove-orphans
+docker compose $ARGS up -d
+# docker compose $ARGS up -d --build --force-recreate --remove-orphans

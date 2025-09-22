@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: ${GRAFANA_IMAGE:-grafana/grafana}
+    image: ${GRAFANA_IMAGE:-grafana/grafana:latest}
     container_name: ${grafana_container_name:-grafana}
     restart: ${grafana_restart:-unless-stopped}
 

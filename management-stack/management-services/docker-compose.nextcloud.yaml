@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: ${NEXTCLOUD_IMAGE:-nextcloud}
+    image: ${NEXTCLOUD_IMAGE:-nextcloud:latest}
     container_name: ${nextcloud_container_name:-nextcloud}
     restart: ${nextcloud_restart:-unless-stopped}
 
@@ -12,12 +12,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=dbpassword
-      - MYSQL_HOST=nextclouddb
-      - REDIS_HOST=redis
+      - TZ=${TZ:-Europe/Amsterdam}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_USER=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextclouddbpassword}
+      - MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}
+      - REDIS_HOST=${MYSQL_DATABASE:-redis}
 
     volumes:
       - ../DATA/nextcloud/html:/var/www/html

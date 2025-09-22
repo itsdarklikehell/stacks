@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: "zshall/television-simulator:1.0.0"
+    image: "zshall/television-simulator:latest"
     env_file:
       - ../.env
     container_name: tvs99

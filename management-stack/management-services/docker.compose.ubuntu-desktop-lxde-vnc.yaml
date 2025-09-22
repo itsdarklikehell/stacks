@@ -1,7 +1,7 @@
 services:
   ubuntu-desktop-lxde-vnc:
     image: dorowu/ubuntu-desktop-lxde-vnc
-    container_name: ubuntu-desktop-lxde-vnc
+    container_name: ubuntu-desktop-lxde-vnc:latest
     restart: unless-stopped
 
     labels:
@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
-      - "ALSADEV=hw:2,0"
+      - "ALSADEV=hw:1,0"
       - "USER=${UBUNTU_USER:-ubuntu}"
       - "PASSWORD=${UBUNTU_PASSWORD:-ubuntu}"
       - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"

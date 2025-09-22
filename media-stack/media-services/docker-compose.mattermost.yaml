@@ -8,7 +8,7 @@ services:
         reservations:
           memory: 512M
           cpus: "0.50"
-    image: ${MATTERMOST_IMAGE:-mattermost/mattermost-team-edition}
+    image: ${MATTERMOST_IMAGE:-mattermost/mattermost-team-edition:latest}
     container_name: ${MATTERMOST_CONTAINER_NAME:-mattermost}
     env_file:
       - ../.env

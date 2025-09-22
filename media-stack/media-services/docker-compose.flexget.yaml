@@ -1,6 +1,6 @@
 services:
   flexget:
-    image: flexget/flexget
+    image: flexget/flexget:latest
     container_name: flexget
     env_file:
       - ../.env
