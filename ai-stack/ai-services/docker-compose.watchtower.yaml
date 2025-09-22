@@ -32,21 +32,25 @@ services:
       replicas: 1
 
     depends_on:
+      - anythingllm
       - autoheal
       - basic-memory
+      - chroma
       - faster-whisper-gpu
       - homeassistant
       - letta-db
       - letta-mcp
       - letta-server
+      - librechat
       - libretranslate
       - mongo
       - ollama
+      - open-llm-vtuber
       - open-webui
       - searxng
-      - whisper
-      - wyoming-piper
       # - stable-diffusion-models-download
       # - stable-diffusion-webui
       # - swarmui
       # - watchtower
+      - whisper
+      - wyoming-piper

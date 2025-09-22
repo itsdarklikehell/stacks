@@ -7,6 +7,7 @@ COMPOSE_FILES=(
   docker-compose.autoheal.yaml
   docker-compose.anythingllm.yaml
   docker-compose.chroma.yaml
+  docker-compose.clickhouse-server.yaml
   # docker-compose.librechat.yaml
   docker-compose.base.yaml
   docker-compose.basic-memory.yaml

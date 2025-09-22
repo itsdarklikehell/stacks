@@ -11,7 +11,7 @@ services:
 
     environment:
       - LOG_LEVEL=debug
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ:-Europe/Amsterdam}
     
     volumes:
       - ../DATA/jellyseerr/appdata/config:/app/config

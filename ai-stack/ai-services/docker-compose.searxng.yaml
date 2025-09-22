@@ -22,7 +22,7 @@ services:
 
     networks:
       - ai-services
-      # - mhost
+      - host
 
     ports:
       - ${SEARXNG_PORT:-8081}:8080

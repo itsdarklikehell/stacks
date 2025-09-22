@@ -17,8 +17,8 @@ services:
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/
-      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-Europe/Amsterdam}
-      - TZ=${GENERIC_TIMEZONE:-Europe/Amsterdam}
+      - GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}
+      - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - n8n_data:/home/node/.n8n

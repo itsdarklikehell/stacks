@@ -10,7 +10,7 @@ services:
     #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
-      - TZ=${TZ}
+      - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ../DATA/autobrr/config:/config

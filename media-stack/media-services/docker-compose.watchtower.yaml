@@ -36,20 +36,41 @@ services:
       #     cpus: "0.25"
 
     depends_on:
-      - autoheal
-      - collabora
-      - dashy
-      - docker-proxy
-      - dockge
-      - grafana
-      - n8n
-      - netdata
-      - nextcloud
-      - nextclouddb
-      - nginx-proxy-manager
-      - portainer
-      - portracker
-      - redis
-      - uptime-kuma
-      # - wg-easy
-      # - watchtower
+    - autobrr
+    - autoheal
+    - autopulse
+    - bazarr
+    - buildarr
+    - byparr
+    - calendarr
+    - calibre-web
+    - checkrr
+    - dasharr
+    - emby
+    - flaresolverr
+    - flemmarr
+    - flexget
+    - gaseous-server
+    - gsdb
+    - jellyfin
+    - jellyseerr
+    - kapowarr
+    - lidarr
+    - mattermost
+    - mylar3
+    - overseerr
+    - plex
+    - prowlarr
+    - radarr
+    - requestrr
+    - retroarch
+    - retroarchz
+    - romm-db
+    - romm
+    - rreading-glasses
+    - sickgear
+    - sonarr
+    - tvs99
+    # - watchtower
+    - webrcade
+    - whisparr

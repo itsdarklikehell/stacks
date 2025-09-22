@@ -1,0 +1,56 @@
+services:
+  clickhouse-server:
+    image: ${CLICKHOUSE_SERVER_IMAGE:-lickhouse/clickhouse-server:latest}
+    container_name: clickhouse-server
+    restart: unless-stopped
+
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
+
+    # environment:
+    #   - 'STORAGE_DIR="/app/server/storage"'
+
+    # ulimits:
+    #   - "nofile=262144:262144"
+
+    volumes:
+      - ../DATA/clickhouse-server/data:/var/lib/clickhouse/
+      - ../DATA/clickhouse-server/logs:/var/log/clickhouse-server/
+      - ../DATA/clickhouse-server/configs:/etc/clickhouse-server/config.d/
+      - ../DATA/clickhouse-server/users:/etc/clickhouse-server/users.d/
+      - ../DATA/clickhouse-server/initdb:/docker-entrypoint-initdb.d/
+      # - ../DATA/clickhouse-server/customconfig.xml:/etc/clickhouse-server/config.xml
+
+    hostname: clickhouse
+
+    command:
+      [
+        "--cap-add=SYS_NICE",
+        "--cap-add=NET_ADMIN",
+        "--cap-add=IPC_LOCK",
+        "--ulimits nofile=262144:262144",
+      ]
+
+    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
+
+    networks:
+      - ai-services
+      - host
+
+    ports:
+      - ${CLICKHOUSE_PORT:-18123}:8123
+      - ${CLICKHOUSE_DBPORT:-19000}:19000
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

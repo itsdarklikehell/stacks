@@ -10,7 +10,7 @@ services:
     #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
-      - TZ=$TIMEZONE
+      - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ../DATA/flexget/config:/config

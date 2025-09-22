@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_USER=${MYSQL_DATABASE:-nextcloud}
-      - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextclouddbpassword}
+      - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}
       - REDIS_HOST=${MYSQL_DATABASE:-redis}
 

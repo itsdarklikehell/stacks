@@ -10,7 +10,7 @@ services:
     #   - "com.centurylinklabs.watchtower.enable=false"
 
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ:-Europe/Amsterdam}
       - dbhost=gsdb
       - dbuser=root
       - dbpass=gaseous

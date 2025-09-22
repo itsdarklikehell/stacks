@@ -36,20 +36,22 @@ services:
       #     cpus: "0.25"
 
     depends_on:
-      - autoheal
-      - collabora
-      - dashy
-      - docker-proxy
-      - dockge
-      - grafana
-      - n8n
-      - netdata
-      - nextcloud
-      - nextclouddb
-      - nginx-proxy-manager
-      - portainer
-      - portracker
-      - redis
-      - uptime-kuma
-      # - wg-easy
-      # - watchtower
+    - autoheal
+    - collabora
+    - dashy
+    - docker-proxy
+    - dockge
+    - grafana
+    - n8n
+    - netdata
+    - nextcloud
+    - nextclouddb
+    - nginx-proxy-manager
+    - organizr
+    - portainer
+    - portracker
+    - redis
+    - uptime-kuma
+    # - watchtower
+    # - wg-easy
+    - ubuntu-desktop-lxde-vnc
