@@ -1,13 +1,13 @@
 services:
   organizr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${ORGANIZR_IMAGE:-linuxserver/organizr}
     container_name: ${ORGANIZR_CONTAINER_NAME:-organizr}
     env_file:

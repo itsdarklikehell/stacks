@@ -18,13 +18,13 @@ services:
       retries: 3
       start_period: 40s
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     labels:
       - autoheal-app=true
       - keep_healthy
@@ -74,13 +74,13 @@ services:
       retries: 3
       start_period: 40s
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     labels:
       - autoheal-app=true
       - keep_healthy
@@ -89,13 +89,13 @@ services:
   calibre-web:
     image: linuxserver/calibre-web
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     ports:
       - ${CALIBRE_WEB_PORT:-8084}:8084
     volumes:
@@ -113,13 +113,13 @@ services:
 
   emby:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${EMBY_IMAGE} # TODO: Pin version if available
     container_name: ${EMBY_CONTAINER_NAME:-emby}
     environment:
@@ -163,13 +163,13 @@ services:
 
   flaresolverr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${FLARESOLVERR_IMAGE}
     container_name: ${FLARESOLVERR_CONTAINER_NAME:-flaresolverr}
     environment:
@@ -190,13 +190,13 @@ services:
 
   romm-db:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${ROMM_DB_IMAGE}
     container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
     restart: unless-stopped
@@ -248,13 +248,13 @@ services:
 
   gsdb:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${GSDB_IMAGE}
     container_name: ${GSDB_CONTAINER_NAME:-gsdb}
     restart: unless-stopped
@@ -281,13 +281,13 @@ services:
 
   jellyfin:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${JELLYFIN_IMAGE}
     container_name: ${JELLYFIN_CONTAINER_NAME:-jellyfin}
     environment:
@@ -332,13 +332,13 @@ services:
 
   jellyseerr:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: ${JELLYSEERR_IMAGE}
     container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
     environment:
@@ -362,13 +362,13 @@ services:
 
   lidarr:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: ${LIDARR_IMAGE}
     container_name: ${LIDARR_CONTAINER_NAME:-lidarr}
     environment:
@@ -404,13 +404,13 @@ services:
 
   mattermost:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${MATTERMOST_IMAGE}
     container_name: ${MATTERMOST_CONTAINER_NAME:-mattermost}
     ports:
@@ -428,13 +428,13 @@ services:
 
   mylar3:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: ${MYLAR3_IMAGE}
     container_name: ${MYLAR3_CONTAINER_NAME:-mylar3}
     environment:
@@ -461,13 +461,13 @@ services:
 
   organizr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${ORGANIZR_IMAGE}
     container_name: ${ORGANIZR_CONTAINER_NAME:-organizr}
     ports:
@@ -485,13 +485,13 @@ services:
 
   overseerr:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: ${OVERSEERR_IMAGE}
     container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
     environment:
@@ -510,13 +510,13 @@ services:
 
   plex:
     deploy:
-      resources:
-        limits:
-          memory: 2G
-          cpus: "2.00"
-        reservations:
-          memory: 1G
-          cpus: "1.00"
+      # resources:
+      #   limits:
+      #     memory: 2G
+      #     cpus: "2.00"
+      #   reservations:
+      #     memory: 1G
+      #     cpus: "1.00"
     image: ${PLEX_IMAGE}
     container_name: ${PLEX_CONTAINER_NAME:-plex}
     ports:
@@ -533,13 +533,13 @@ services:
   # scan, index, manage and serve: torrent links from the internet
   prowlarr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${PROWLARR_IMAGE}
     container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
     environment:
@@ -570,13 +570,13 @@ services:
   # scan, index, manage and serve: movies
   radarr:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: ${RADARR_IMAGE}
     container_name: ${RADARR_CONTAINER_NAME:-radarr}
     environment:
@@ -606,13 +606,13 @@ services:
 
   requestrr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${REQUESTRR_IMAGE}
     container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
     ports:
@@ -643,13 +643,13 @@ services:
     shm_size: "1gb"
     restart: unless-stopped
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
           devices:
             - driver: nvidia
               count: 1
@@ -661,13 +661,13 @@ services:
 
   retroarchz:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ${RETROARCHZ_IMAGE}
     container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
     ports:
@@ -677,13 +677,13 @@ services:
 
   romm:
     deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: "1.00"
-        reservations:
-          memory: 512M
-          cpus: "0.50"
+      # resources:
+      #   limits:
+      #     memory: 1G
+      #     cpus: "1.00"
+      #   reservations:
+      #     memory: 512M
+      #     cpus: "0.50"
     image: ${ROMM_IMAGE}
     container_name: ${ROMM_CONTAINER_NAME:-romm}
     restart: unless-stopped
@@ -717,13 +717,13 @@ services:
   rreading-glasses:
     # Resource limits are set below; mem_limit is deprecated in Compose v3+
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     depends_on:
       rreading-glasses-db:
         condition: service_started
@@ -770,13 +770,13 @@ services:
 
   sonarr:
     deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.50"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
     image: lscr.io/linuxserver/sonarr:4.0.5.1710
     container_name: sonarr
     environment:
@@ -806,13 +806,13 @@ services:
 
   tvs99:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: "zshall/television-simulator:1.0.0" # version guessed, please verify
     container_name: tvs99
     hostname: tvs99
@@ -831,13 +831,13 @@ services:
 
   webrcade:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: "webrcade/webrcade:2.2.0"
     container_name: webrcade
     ports:
@@ -1026,13 +1026,13 @@ services:
 
   whisparr:
     deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"
     image: ghcr.io/hotio/whisparr:1.0.0.1234 # version guessed, please verify
     container_name: whisparr
     restart: unless-stopped

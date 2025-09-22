@@ -27,10 +27,10 @@ services:
 
     deploy:
       replicas: 1
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
-        reservations:
-          memory: 128M
-          cpus: "0.10"
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"

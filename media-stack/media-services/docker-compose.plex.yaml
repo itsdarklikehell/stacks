@@ -28,10 +28,10 @@ services:
 
     deploy:
       replicas: 1
-      resources:
-        limits:
-          memory: 2G
-          cpus: "2.00"
-        reservations:
-          memory: 1G
-          cpus: "1.00"
+      # resources:
+      #   limits:
+      #     memory: 2G
+      #     cpus: "2.00"
+      #   reservations:
+      #     memory: 1G
+      #     cpus: "1.00"

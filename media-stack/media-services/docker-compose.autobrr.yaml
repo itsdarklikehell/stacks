@@ -29,6 +29,13 @@ services:
 
     deploy:
       replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
 
-    user: 1000:1000
+    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
 
