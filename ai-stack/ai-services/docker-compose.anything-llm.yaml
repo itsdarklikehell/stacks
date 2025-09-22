@@ -13,8 +13,8 @@ services:
       - 'STORAGE_DIR="/app/server/storage"'
 
     volumes:
-      - "${STORAGE_LOCATION}:/app/server/storage"
-      - "${STORAGE_LOCATION}/.env:/app/server/.env"
+      - "../DATA/anythingllm/storage:/app/server/storage"
+      - "../DATA/anythingllm/.env:/app/server/.env"
 
     hostname: anythingllm
 
