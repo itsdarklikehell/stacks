@@ -1,0 +1,40 @@
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: anythingllm
+    restart: unless-stopped
+
+    # labels:
+    #   - autoheal-app=true
+    #   - keep_healthy
+    #   - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      - 'STORAGE_DIR="/app/server/storage"'
+
+    volumes:
+      - "${STORAGE_LOCATION}:/app/server/storage"
+      - "${STORAGE_LOCATION}/.env:/app/server/.env"
+
+    hostname: anythingllm
+
+    command: ["--cap-add", "SYS_ADMIN"]
+
+    networks:
+      - ai-services
+      - host
+
+    ports:
+      - ${ANYTHINGLLM_PORT:-3001}:3001
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

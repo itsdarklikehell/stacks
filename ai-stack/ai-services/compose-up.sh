@@ -4,12 +4,9 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-  docker-compose.base.yaml
-  # docker-compose.open-llm-vtuber.yaml
-  # docker-compose.swarmui.yaml
-  # docker-compose.stable-diffusion-models-download.yaml
-  # docker-compose.stable-diffusion-webui.yaml
   docker-compose.autoheal.yaml
+  docker-compose.anything-llm.yaml
+  docker-compose.base.yaml
   docker-compose.basic-memory.yaml
   docker-compose.faster-whisper-gpu.yaml
   docker-compose.homeassistant.yaml
@@ -19,8 +16,12 @@ COMPOSE_FILES=(
   docker-compose.libretranslate.yaml
   docker-compose.mongo.yaml
   docker-compose.ollama.yaml
+  docker-compose.open-llm-vtuber.yaml
   docker-compose.open-webui.yaml
   docker-compose.searxng.yaml
+  docker-compose.stable-diffusion-models-download.yaml
+  docker-compose.stable-diffusion-webui.yaml
+  docker-compose.swarmui.yaml
   docker-compose.watchtower.yaml
   docker-compose.whisper.yaml
   docker-compose.wyoming-piper.yaml
