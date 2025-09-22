@@ -19,12 +19,12 @@ COMPOSE_FILES=(
   docker-compose.librechat.yaml
   docker-compose.mongo.yaml
   docker-compose.ollama.yaml
-  # docker-compose.open-llm-vtuber.yaml
+  docker-compose.open-llm-vtuber.yaml
   docker-compose.open-webui.yaml
   docker-compose.searxng.yaml
-  # docker-compose.stable-diffusion-models-download.yaml
-  # docker-compose.stable-diffusion-webui.yaml
-  # docker-compose.swarmui.yaml
+  docker-compose.stable-diffusion-models-download.yaml
+  docker-compose.stable-diffusion-webui.yaml
+  docker-compose.swarmui.yaml
   docker-compose.watchtower.yaml
   docker-compose.whisper.yaml
   docker-compose.wyoming-piper.yaml
