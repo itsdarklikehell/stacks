@@ -1,6 +1,40 @@
 services:
   radarr:
+    image: ${RADARR_IMAGE:-linuxserver/radarr:latest}
+    container_name: ${RADARR_CONTAINER_NAME:-radarr}
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+    
+    hostname: radarr
+
+    networks:
+      - media-services
+      - host
+
+    expose:
+      - 7878/tcp
+    
+    ports:
+      - ${RADARR_PORT:-7878}:7878/tcp
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 512M
@@ -8,22 +42,3 @@ services:
         reservations:
           memory: 256M
           cpus: "0.25"
-    image: ${RADARR_IMAGE:-linuxserver/radarr:latest}
-    container_name: ${RADARR_CONTAINER_NAME:-radarr}
-    env_file:
-      - ../.env
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
-    expose:
-      - 7878/tcp
-    ports:
-      - ${RADARR_PORT:-7878}:7878/tcp
-    restart: unless-stopped
-    labels:
-      autoheal: true
-      keep_healthy:

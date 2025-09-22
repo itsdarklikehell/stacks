@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8780"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -26,8 +26,9 @@ services:
           memory: 128M
           cpus: "0.10"
     labels:
-      autoheal: true
-      keep_healthy: true
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   ###############################################################
   # MEDIA STACK - DOCKER COMPOSE
   #
@@ -68,7 +69,7 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:6767"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -81,8 +82,9 @@ services:
           memory: 256M
           cpus: "0.25"
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   calibre-web:
     image: linuxserver/calibre-web
@@ -99,11 +101,12 @@ services:
     volumes:
       - ../DATA/calibre-web/calibre-library:/calibre-library
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8084"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -148,11 +151,12 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.emby.middlewares=local-ipwhitelist@file
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8097"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -174,11 +178,12 @@ services:
       - CAPTCHA_SOLVER=none
       - TZ=Europe/Amsterdam
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8086"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -205,8 +210,9 @@ services:
       - mysql_data:/var/lib/mysql
     # healthcheck for romm-db is already defined above; only one block needed
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 30s
@@ -236,8 +242,9 @@ services:
       - igdbclientid=
       - igdbclientsecret=
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   gsdb:
     deploy:
@@ -261,11 +268,12 @@ services:
       - gsdb_root_password
       - gsdb_password
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:32400"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -311,11 +319,12 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.jellyfin.middlewares=local-ipwhitelist@file
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9696"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -341,11 +350,12 @@ services:
       - ../DATA/jellyseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7878"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -376,11 +386,12 @@ services:
     #networks:
     #  - proxy
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4545"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -405,11 +416,12 @@ services:
     ports:
       - ${MATTERMOST_PORT:-8065}:8065
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -437,11 +449,12 @@ services:
       - ${MYLAR3_PORT:-8091}:8091
     restart: unless-stopped
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:85"]
-      interval: 1m30s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
@@ -466,8 +479,9 @@ services:
     volumes:
       - ../DATA/organizr/config:/config
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   overseerr:
     deploy:
@@ -490,8 +504,9 @@ services:
       - ../DATA/overseerr/appdata/config:/app/config
     restart: unless-stopped
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   plex:
     deploy:
@@ -511,8 +526,9 @@ services:
       - ../DATA/plex/transcode:/transcode
       - ../DATA/plex/media:/data
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   # image used to:
   # scan, index, manage and serve: torrent links from the internet
   prowlarr:
@@ -547,8 +563,9 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.prowlarr.middlewares=local-ipwhitelist@file
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   # image used to:
   # scan, index, manage and serve: movies
   radarr:
@@ -577,8 +594,9 @@ services:
     #networks:
     #  - proxy
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   #  - traefik.enable=true
   #  - traefik.docker.network=proxy
   #  - traefik.http.routers.radarr.rule=Host(`radarr.example.com`)
@@ -603,8 +621,9 @@ services:
       - ../DATA/requestrr/config:/root/config
     restart: unless-stopped
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   retroarch:
     # deploy block merged below
@@ -636,8 +655,9 @@ services:
               count: 1
               capabilities: [compute, video, graphics, utility]
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   retroarchz:
     deploy:
@@ -691,8 +711,9 @@ services:
         condition: service_healthy
         restart: true
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   rreading-glasses:
     # Resource limits are set below; mem_limit is deprecated in Compose v3+
     deploy:
@@ -725,8 +746,9 @@ services:
     ports:
       - "8788:8788"
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
   rreading-glasses-db:
     image: postgres:17.0
     container_name: rreading-glasses-db
@@ -742,8 +764,9 @@ services:
     volumes:
       - rreading_glasses_data:/var/lib/postgresql/data
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   sonarr:
     deploy:
@@ -771,8 +794,9 @@ services:
     #networks:
     #  - proxy
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)
@@ -801,8 +825,9 @@ services:
       - ../DATA/tvs99/config/config.tvs.yml:/home/static/config.tvs.yml:ro
       - ../DATA/tvs99/content:/home/static/content:ro
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   webrcade:
     deploy:
@@ -822,8 +847,9 @@ services:
       - ../DATA/webrcade/content:/var/www/html/content"
     restart: unless-stopped
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   sickgear:
     container_name: sickgear
@@ -1021,8 +1047,9 @@ services:
       - ../DATA/whisparr/config:/config
       - ../DATA/whisparr/data:/data
     labels:
-      autoheal: true
-      keep_healthy:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
 
   #   image: linuxserver/readarr:develop
   #   container_name: readarr

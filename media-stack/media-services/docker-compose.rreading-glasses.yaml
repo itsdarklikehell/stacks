@@ -1,6 +1,50 @@
 services:
   rreading-glasses:
+    image: blampe/rreading-glasses:hardcover
+    container_name: rreading-glasses
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      POSTGRES_HOST: rreading-glasses-db
+      POSTGRES_DATABASE: rreading-glasses
+      POSTGRES_USER: rreading-glasses
+
+    # volumes:
+    #   - /etc/localtime:/etc/localtime:ro
+    #   - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: rreading-glasses
+
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - "8788:8788"
+
+    entrypoint: ["/main", "serve"]
+
+    command:
+      - --verbose
+
+    secrets:
+      - hardcover_auth
+      - rreading_glasses_db_password
+
+    depends_on:
+      rreading-glasses-db:
+        condition: service_started
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 256M
@@ -8,51 +52,45 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    depends_on:
-      rreading-glasses-db:
-        condition: service_started
-    image: blampe/rreading-glasses:hardcover
-    env_file:
-      - ../.env
-    pull_policy: always
-    container_name: rreading-glasses
-    hostname: rreading-glasses
-    entrypoint: ["/main", "serve"]
-    command:
-      - --verbose
-    restart: unless-stopped
-    environment:
-      POSTGRES_HOST: rreading-glasses-db
-      POSTGRES_DATABASE: rreading-glasses
-      POSTGRES_USER: rreading-glasses
-    secrets:
-      - hardcover_auth
-      - rreading_glasses_db_password
-    ports:
-      - "8788:8788"
-    labels:
-      autoheal: true
-      keep_healthy:
+
   rreading-glasses-db:
     image: postgres:latest
     container_name: rreading-glasses-db
-    hostname: rreading-glasses-db
     restart: unless-stopped
-    env_file:
-      - ../.env
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+    
     environment:
       POSTGRES_USER: rreading-glasses
       POSTGRES_DB: rreading-glasses
-    secrets:
-      - rreading_glasses_db_password
-    ports:
-      - "5433:5433"
+    
     volumes:
       - rreading_glasses_data:/var/lib/postgresql/data
-    labels:
-      autoheal: true
-      keep_healthy:
+    
+    secrets:
+      - rreading_glasses_db_password
+    
+    hostname: rreading-glasses-db
 
-volumes:
-  rreading_glasses_data:
-    name: rreading_glasses_data
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - "5433:5433"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 128M
+          cpus: "0.10"

@@ -1,6 +1,28 @@
 services:
   webrcade:
+    image: "webrcade/webrcade:latest"
+    container_name: webrcade
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    volumes:
+      - ../DATA/webrcade/content:/var/www/html/content
+    
+    hostname: webrcade
+
+    ports:
+      - "87:87"
+      - "447:447"
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 256M
@@ -8,16 +30,3 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: "webrcade/webrcade:latest"
-    container_name: webrcade
-    env_file:
-      - ../.env
-    ports:
-      - "87:87"
-      - "447:447"
-    volumes:
-      - ../DATA/webrcade/content:/var/www/html/content
-    restart: unless-stopped
-    labels:
-      autoheal: true
-      keep_healthy:

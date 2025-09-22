@@ -2,7 +2,33 @@ services:
   flemmarr:
     container_name: flemmarr
     image: pierremesure/flemmarr:latest
-    env_file:
-      - ../.env
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     volumes:
       - ../DATA/flemmarr/config:/config
+
+    hostname: flemmarr
+
+    # command: [ "ollama", "pull", "qwen3:latest"]
+
+    networks:
+      - media-services
+      - host
+
+    # # ports:
+    # #   - "80:80"
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper

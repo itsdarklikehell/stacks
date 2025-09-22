@@ -2,16 +2,38 @@ services:
   flexget:
     image: flexget/flexget:latest
     container_name: flexget
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      - TZ=$TIMEZONE
+
+    volumes:
+      - ../DATA/flexget/config:/config
+      - ../DATA/flexget/downloads:/downloads
+
+    hostname: flexget
+
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - 5050:5050
+
     env_file:
       - ../.env
+
+    deploy:
+      replicas: 1
+
     command:
       - daemon
       - start
       - --autoreload-config
-    ports:
-      - 5050:5050
-    environment:
-      - TZ=$TIMEZONE
-    volumes:
-      - ../DATA/flexget/config:/config
-      - ../DATA/flexget/downloads:/downloads
+
+

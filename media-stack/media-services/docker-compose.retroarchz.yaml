@@ -1,6 +1,30 @@
 services:
   retroarchz:
+    image: ${RETROARCHZ_IMAGE:-blaize/retroarch:latest}
+    container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    volumes:
+      - "/home/rizzo/RetroPie/roms:/roms"
+
+    hostname: retroarchz
+    
+    networks:
+      - media-services
+      - host
+    
+    ports:
+      - ${RETROARCHZ_PORT:-85}:85
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 256M
@@ -8,11 +32,3 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: ${RETROARCHZ_IMAGE:-blaize/retroarch:latest}
-    container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
-    env_file:
-      - ../.env
-    ports:
-      - ${RETROARCHZ_PORT:-85}:85
-    volumes:
-      - "/home/rizzo/RetroPie/roms:/roms"

@@ -1,6 +1,32 @@
 services:
   tvs99:
+    image: "zshall/television-simulator:latest"
+    container_name: tvs99
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    volumes:
+      - ../DATA/tvs99/config:/config
+      - ../DATA/tvs99/data:/data
+
+    hostname: tvs99
+
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - ${TVS99_PORT:-8085}:3000
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 256M
@@ -8,23 +34,3 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: "zshall/television-simulator:latest"
-    env_file:
-      - ../.env
-    container_name: tvs99
-    hostname: tvs99
-    restart: unless-stopped
-    networks:
-      - media-services
-    ports:
-      - ${TVS99_PORT:-8085}:3000
-    volumes:
-      - ../DATA/tvs99/config:/config
-      - ../DATA/tvs99/data:/data
-    labels:
-      autoheal: true
-      keep_healthy:
-
-networks:
-  ai-stack:
-    name: ai-stack

@@ -5,8 +5,9 @@ services:
     restart: unless-stopped
 
     labels:
-      autoheal: true
-      keep_healthy: true
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
     
     environment:
       - TZ=${TZ:-Europe/Amsterdam}

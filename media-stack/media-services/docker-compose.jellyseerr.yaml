@@ -1,6 +1,42 @@
 services:
   jellyseerr:
+    image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr:latest}
+    container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Amsterdam
+    
+    volumes:
+      - ../DATA/jellyseerr/appdata/config:/app/config
+    
+    hostname: jellyseerr
+
+    ports:
+      - ${JELLYSEERR_PORT:-5055}:5055
+    
+    networks:
+      - media-services
+      - host
+
+    env_file:
+      - ../.env
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7878"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 512M
@@ -8,24 +44,3 @@ services:
         reservations:
           memory: 256M
           cpus: "0.25"
-    image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr:latest}
-    container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
-    env_file:
-      - ../.env
-    environment:
-      - LOG_LEVEL=debug
-      - TZ=Europe/Amsterdam
-    ports:
-      - ${JELLYSEERR_PORT:-5055}:5055
-    volumes:
-      - ../DATA/jellyseerr/appdata/config:/app/config
-    restart: unless-stopped
-    labels:
-      autoheal: true
-      keep_healthy:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7878"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s

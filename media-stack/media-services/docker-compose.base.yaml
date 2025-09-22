@@ -22,8 +22,6 @@ networks:
   basic-memory-net:
   management-stack:
     external: true
-  gaseous:
-    driver: bridge
   proxy:
     external: true
   cloud:
@@ -52,6 +50,13 @@ volumes:
   dockge_data:
   etc_wireguard:
   grafana_data:
+  gaseous_data:
+  gsdb:
+  kapowarr-db:
+  mysql_data:
+  romm_resources:
+  romm_redis_data:
+  rreading_glasses_data:
 
 secrets:
   letta_pg_password:

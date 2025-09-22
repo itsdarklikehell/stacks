@@ -1,5 +1,37 @@
 services:
   prowlarr:
+    image: ${PROWLARR_IMAGE:-linuxserver/prowlarr:latest}
+    container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config
+
+    hostname: prowlarr
+
+    networks:
+      - media-services
+      - host
+
+    expose:
+      - 9696/tcp
+
+    ports:
+      - ${PROWLARR_PORT:-9696}:9696/tcp
+
+    env_file:
+      - ../.env
+
     deploy:
       resources:
         limits:
@@ -8,21 +40,3 @@ services:
         reservations:
           memory: 128M
           cpus: "0.10"
-    image: ${PROWLARR_IMAGE:-linuxserver/prowlarr:latest}
-    container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
-    env_file:
-      - ../.env
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config
-    expose:
-      - 9696/tcp
-    ports:
-      - ${PROWLARR_PORT:-9696}:9696/tcp
-    restart: unless-stopped
-    labels:
-      autoheal: true
-      keep_healthy:

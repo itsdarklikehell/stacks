@@ -1,16 +1,41 @@
 services:
   sickgear:
-    container_name: sickgear
     image: sickgear/sickgear:latest
-    env_file:
-      - ../.env
+    container_name: sickgear
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
     environment:
       - APP_UID=1000
       - APP_GID=44
       - TZ=UTC
-    ports:
-      - 8081:8081/tcp
+
     volumes:
       - ../DATA/sickgear/sickgear-data:/data
       - ../DATA/sickgear/incoming:/incoming
       - ../DATA/sickgear/tv:/tv
+
+    hostname: sickgear
+
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - 8081:8081/tcp
+
+    env_file:
+      - ../.env
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"

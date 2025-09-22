@@ -1,6 +1,33 @@
 services:
   plex:
+    image: ${PLEX_IMAGE:-plexinc/pms-docker:latest}
+    container_name: ${PLEX_CONTAINER_NAME:-plex}
+    restart: unless-stopped
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=false"
+
+    volumes:
+      - ../DATA/plex/config:/config
+      - ../DATA/plex/transcode:/transcode
+      - ../DATA/plex/media:/data
+
+    hostname: plex
+
+    networks:
+      - media-services
+      - host
+
+    ports:
+      - ${PLEX_PORT:-32400}:32400
+
+    env_file:
+      - ../.env
+
     deploy:
+      replicas: 1
       resources:
         limits:
           memory: 2G
@@ -8,16 +35,3 @@ services:
         reservations:
           memory: 1G
           cpus: "1.00"
-    image: ${PLEX_IMAGE:-plexinc/pms-docker:latest}
-    container_name: ${PLEX_CONTAINER_NAME:-plex}
-    env_file:
-      - ../.env
-    ports:
-      - ${PLEX_PORT:-32400}:32400
-    volumes:
-      - ../DATA/plex/config:/config
-      - ../DATA/plex/transcode:/transcode
-      - ../DATA/plex/media:/data
-    labels:
-      autoheal: true
-      keep_healthy:
