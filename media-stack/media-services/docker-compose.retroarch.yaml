@@ -26,7 +26,7 @@ services:
       - host
 
     ports:
-      - ${RETROARCH_PORT:-3000}:3000
+      - ${RETROARCH_PORT:-3007}:3007
       - 3003:3003
     
     shm_size: "1gb"

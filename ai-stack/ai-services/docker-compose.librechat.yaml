@@ -4,7 +4,7 @@ services:
     image: ghcr.io/danny-avila/librechat-dev:latest
     restart: unless-stopped
     ports:
-      - "${LCHAT_PORT:-3000}:3000"
+      - "${LCHAT_PORT:-3006}:3006"
     depends_on:
       - librechat-mongodb
       - librechat-rag_api

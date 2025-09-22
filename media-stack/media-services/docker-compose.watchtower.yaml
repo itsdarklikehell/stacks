@@ -2,7 +2,7 @@ services:
   watchtower:
     image: containrrr/watchtower:latest
     restart: unless-stopped
-    container_name: watchtower-management-services
+    container_name: watchtower-media-services
 
     labels:
       - autoheal-app=true
