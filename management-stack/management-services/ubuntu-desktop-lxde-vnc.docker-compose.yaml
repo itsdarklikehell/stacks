@@ -2,7 +2,7 @@ services:
   ubuntu-desktop-lxde-vnc:
     image: dorowu/ubuntu-desktop-lxde-vnc:latest
     container_name: ubuntu-desktop-lxde-vnc
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

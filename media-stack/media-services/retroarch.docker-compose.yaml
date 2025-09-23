@@ -2,7 +2,7 @@ services:
   retroarch:
     image: ${RETROARCH_IMAGE:-lscr.io/linuxserver/retroarch:latest}
     container_name: ${RETROARCH_CONTAINER_NAME:-retroarch}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

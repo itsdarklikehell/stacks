@@ -1,8 +1,8 @@
 services:
   watchtower:
-    image: containrrr/watchtower:latest
-    container_name: watchtower-ai-services
-    restart: unless-stopped
+    image: ${IMAGE:-containrrr/watchtower:latest}
+    container_name: ${NAME:-watchtower-ai}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -14,7 +14,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: watchtower
+    hostname: ${NAME:-watchtower-ai}
 
     # command: --debug --http-api-update
 
@@ -23,7 +23,7 @@ services:
     #   - host
 
     ports:
-      - ${WATCHTOWER_PORT:-8082}:8080
+      - ${PORT:-8080}:8080
 
     env_file:
       - .env.watchtower

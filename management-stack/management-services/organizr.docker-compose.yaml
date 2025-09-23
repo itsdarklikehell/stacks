@@ -2,7 +2,7 @@ services:
   organizr:
     image: ${ORGANIZR_IMAGE:-linuxserver/organizr}
     container_name: ${ORGANIZR_CONTAINER_NAME:-organizr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

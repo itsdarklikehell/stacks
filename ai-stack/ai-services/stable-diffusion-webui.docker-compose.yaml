@@ -1,8 +1,8 @@
 services:
   stable-diffusion-webui:
-    image: comfy-ui:latest
-    container_name: stable-diffusion-webui
-    restart: unless-stopped
+    image: ${IMAGE:-comfy-ui:latest}
+    container_name: ${NAME:-stable-diffusion-webui}
+    restart: ${RESTART:-unless-stopped}
 
     build:
       context: ../DATA/stable-diffusion-webui-docker/services/comfy

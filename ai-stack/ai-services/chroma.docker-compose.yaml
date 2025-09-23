@@ -1,7 +1,7 @@
 services:
   chroma:
     container_name: chroma
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     build:
       context: .

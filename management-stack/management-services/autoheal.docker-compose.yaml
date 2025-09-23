@@ -2,7 +2,7 @@ services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-management-services}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

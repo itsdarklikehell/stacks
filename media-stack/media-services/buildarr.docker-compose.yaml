@@ -2,7 +2,7 @@ services:
   buildarr:
     image: "callum027/buildarr:latest"
     container_name: buildarr
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

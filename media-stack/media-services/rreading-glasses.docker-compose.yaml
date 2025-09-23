@@ -2,7 +2,7 @@ services:
   rreading-glasses:
     image: blampe/rreading-glasses:hardcover
     container_name: rreading-glasses
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -56,7 +56,7 @@ services:
   rreading-glasses-db:
     image: postgres:latest
     container_name: rreading-glasses-db
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

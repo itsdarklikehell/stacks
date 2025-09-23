@@ -2,7 +2,7 @@ services:
   stable-diffusion-models-download:
     image: comfy-download:latest
     container_name: stable-diffusion-models-download
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     build:
       context: ../DATA/stable-diffusion-webui-docker/services/download/

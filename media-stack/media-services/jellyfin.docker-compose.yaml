@@ -2,7 +2,7 @@ services:
   jellyfin:
     image: ${JELLYFIN_IMAGE:-linuxserver/jellyfin:latest}
     container_name: ${JELLYFIN_CONTAINER_NAME:-jellyfin}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

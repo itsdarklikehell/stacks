@@ -2,7 +2,7 @@ services:
   lidarr:
     image: ${LIDARR_IMAGE:-linuxserver/lidarr:latest}
     container_name: ${LIDARR_CONTAINER_NAME:-lidarr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

@@ -2,7 +2,7 @@ services:
   prowlarr:
     image: ${PROWLARR_IMAGE:-linuxserver/prowlarr:latest}
     container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

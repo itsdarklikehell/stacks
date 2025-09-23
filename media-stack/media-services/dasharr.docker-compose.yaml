@@ -2,7 +2,7 @@ services:
   dasharr:
     image: schenanigans/dasharr:latest
     container_name: ${DASHARR_CONTAINER_NAME:-dasharr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

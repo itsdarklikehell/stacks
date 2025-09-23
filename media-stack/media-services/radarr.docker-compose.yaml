@@ -2,7 +2,7 @@ services:
   radarr:
     image: ${RADARR_IMAGE:-linuxserver/radarr:latest}
     container_name: ${RADARR_CONTAINER_NAME:-radarr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

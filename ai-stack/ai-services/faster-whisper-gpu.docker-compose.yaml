@@ -2,7 +2,7 @@ services:
   faster-whisper-gpu:
     image: lscr.io/linuxserver/faster-whisper:gpu
     container_name: faster-whisper-gpu
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

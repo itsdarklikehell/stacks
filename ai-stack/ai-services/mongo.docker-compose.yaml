@@ -2,7 +2,7 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongo
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

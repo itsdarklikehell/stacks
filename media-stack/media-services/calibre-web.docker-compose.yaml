@@ -2,7 +2,7 @@ services:
   calibre-web:
     image: linuxserver/calibre-web:latest
     container_name: calibre-web
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

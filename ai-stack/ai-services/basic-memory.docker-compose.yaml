@@ -2,7 +2,7 @@ services:
   basic-memory:
     image: ghcr.io/basicmachines-co/basic-memory:latest
     container_name: basic-memory-server
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

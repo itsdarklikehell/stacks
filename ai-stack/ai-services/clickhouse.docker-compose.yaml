@@ -22,7 +22,7 @@ services:
   # clickhouse-server:
   #   image: ${CLICKHOUSE_SERVER_IMAGE:-clickhouse/clickhouse-server:latest}
   #   container_name: clickhouse-server
-  #   restart: unless-stopped
+  #   restart: ${RESTART:-unless-stopped}
 
   #   labels:
   #     - autoheal-app=true

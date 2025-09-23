@@ -2,7 +2,7 @@ services:
   romm:
     image: ${ROMM_IMAGE:-rommapp/romm:latest}
     container_name: ${ROMM_CONTAINER_NAME:-romm}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

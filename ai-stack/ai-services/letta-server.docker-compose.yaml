@@ -2,7 +2,7 @@ services:
   letta-server:
     image: letta/letta:latest
     container_name: letta-server
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

@@ -2,7 +2,7 @@ services:
   mattermost:
     image: ${MATTERMOST_IMAGE:-mattermost/mattermost-team-edition:latest}
     container_name: ${MATTERMOST_CONTAINER_NAME:-mattermost}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

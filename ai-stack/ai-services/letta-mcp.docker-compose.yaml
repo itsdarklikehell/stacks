@@ -2,7 +2,7 @@ services:
   letta-mcp:
     image: ghcr.io/oculairmedia/letta-mcp-server:latest
     container_name: letta-mcp
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

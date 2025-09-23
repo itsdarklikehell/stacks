@@ -2,7 +2,7 @@ services:
   emby:
     image: ${EMBY_IMAGE:-linuxserver/emby:latest}
     container_name: ${EMBY_CONTAINER_NAME:-emby}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

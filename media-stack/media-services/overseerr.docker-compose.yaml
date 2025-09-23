@@ -2,7 +2,7 @@ services:
   overseerr:
     image: ${OVERSEERR_IMAGE:-sctx/overseerr:latest}
     container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

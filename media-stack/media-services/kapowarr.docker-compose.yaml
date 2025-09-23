@@ -3,7 +3,7 @@ services:
     container_name: kapowarr
     image: mrcas/kapowarr:latest
 
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

@@ -2,7 +2,7 @@ services:
   gaseous-server:
     container_name: gaseous-server
     image: gaseousgames/gaseousserver:latest
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

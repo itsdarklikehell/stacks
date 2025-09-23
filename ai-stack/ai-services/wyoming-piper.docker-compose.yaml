@@ -1,8 +1,8 @@
 services:
   wyoming-piper:
-    image: rhasspy/wyoming-piper # no gpu
-    container_name: wyoming-piper
-    restart: unless-stopped
+    image: ${IMAGE:-rhasspy/wyoming-piper} # no gpu
+    container_name: ${NAME:-wyoming-piper}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -18,7 +18,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/wyoming-piper/data:/data
 
-    hostname: wyoming-piper
+    hostname: ${NAME:-wyoming-piper}
 
     command: ["--voice en_US-lessac-medium"]
 
@@ -27,7 +27,7 @@ services:
     #   - host
 
     ports:
-      - ${PIPER_PORT:-10200}:10200
+      - ${PORT:-10200}:10200
 
     env_file:
       - .env.wyoming-piper

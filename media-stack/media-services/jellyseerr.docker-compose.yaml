@@ -2,7 +2,7 @@ services:
   jellyseerr:
     image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr:latest}
     container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

@@ -2,7 +2,7 @@ services:
   redis:
     image: ${REDIS_IMAGE:-redis:alpine}
     container_name: ${redis_container_name:-redis}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

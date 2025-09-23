@@ -2,7 +2,7 @@ services:
   romm-db:
     image: ${ROMM_DB_IMAGE:-mariadb:latest}
     container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

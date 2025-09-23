@@ -1,9 +1,9 @@
 services:
   swarmui:
-    image: swarmui
-    container_name: swarmui
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
-    restart: unless-stopped
+    image: ${IMAGE:-swarmui}
+    container_name: ${NAME:-swarmui}
+    user: ${PUID:-1000}:${GUID:-1000}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -19,14 +19,14 @@ services:
       - ../DATA/swarmui/Output:/SwarmUI/Output
       - ../DATA/swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
-    hostname: swarmui
+    hostname: ${NAME:-swarmui}
 
     # networks:
     #   - ai-services
     #   - host
 
     ports:
-      - "7801:7801"
+      - ${PORT:-7801}:7801
 
     env_file:
       - .env.swarmui

@@ -2,7 +2,7 @@ services:
   byparr:
     image: "ghcr.io/thephaseless/byparr:latest"
     container_name: byparr
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

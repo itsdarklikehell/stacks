@@ -2,7 +2,7 @@ services:
   flexget:
     image: flexget/flexget:latest
     container_name: flexget
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

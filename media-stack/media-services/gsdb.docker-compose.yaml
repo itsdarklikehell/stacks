@@ -2,7 +2,7 @@ services:
   gsdb:
     image: ${GSDB_IMAGE:-mariadb:latest}
     container_name: ${GSDB_CONTAINER_NAME:-gsdb}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

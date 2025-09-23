@@ -2,7 +2,7 @@ services:
   autopulse:
     image: ghcr.io/dan-online/autopulse
     container_name: autopulse
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

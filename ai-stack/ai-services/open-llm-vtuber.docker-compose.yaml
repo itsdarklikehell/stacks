@@ -2,7 +2,7 @@ services:
   open-llm-vtuber:
     image: open-llm-vtuber:latest
     container_name: open-llm-vtuber
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     build:
       context: ../DATA/Open-LLM-VTuber

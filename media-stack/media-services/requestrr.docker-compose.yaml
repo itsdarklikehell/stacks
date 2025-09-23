@@ -2,7 +2,7 @@ services:
   requestrr:
     image: ${REQUESTRR_IMAGE:-thomst08/requestrr:latest}
     container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

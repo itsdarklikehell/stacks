@@ -2,7 +2,7 @@ services:
   flemmarr:
     container_name: flemmarr
     image: pierremesure/flemmarr:latest
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

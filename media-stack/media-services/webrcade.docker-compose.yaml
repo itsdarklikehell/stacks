@@ -2,7 +2,7 @@ services:
   webrcade:
     image: "webrcade/webrcade:latest"
     container_name: webrcade
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

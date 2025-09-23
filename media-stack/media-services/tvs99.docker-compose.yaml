@@ -2,7 +2,7 @@ services:
   tvs99:
     image: "zshall/television-simulator:latest"
     container_name: tvs99
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true

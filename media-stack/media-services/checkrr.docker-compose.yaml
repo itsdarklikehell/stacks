@@ -2,7 +2,7 @@ services:
   checkrr:
     image: aetaric/checkrr:latest
     container_name: checkrr
-    restart: unless-stopped
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
