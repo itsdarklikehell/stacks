@@ -83,7 +83,7 @@ services:
       - "5433:5433"
 
     env_file:
-      - ../.env
+      - .env.rreading-glasses-db
 
     deploy:
       replicas: 1
