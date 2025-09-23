@@ -15,8 +15,10 @@ services:
       - OLLAMA_KEEP_ALIVE=24h
       - ENABLE_IMAGE_GENERATION=True
       - COMFYUI_BASE_URL=http://comfyui:7860
+      - OLLAMA_MODELS=/root/.ollama/models
 
     volumes:
+      - ollama-data:/root/.ollama
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/ollama:/root/.ollama
@@ -40,3 +42,19 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+
+  ollama-assistant:
+    image: node:18
+    volumes:
+      - ../DATA/ollama/assistant:/app
+    working_dir: /app
+    depends_on:
+      - ollama
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - OLLAMA_KEEP_ALIVE=24h
+      - ENABLE_IMAGE_GENERATION=True
+      - COMFYUI_BASE_URL=http://comfyui:7860
+      - OLLAMA_MODELS=/root/.ollama/models
