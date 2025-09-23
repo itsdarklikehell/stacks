@@ -5,6 +5,6 @@
     }
   ],
   "settings": {
-    "llm-complete-me.selectedModel": "auto"
+    "llm-complete-me.selectedModel": "llama3.2"
   }
 }
