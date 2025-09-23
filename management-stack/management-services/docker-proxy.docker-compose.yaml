@@ -29,7 +29,7 @@ services:
       - "2375:2375"
 
     env_file:
-      - ../.env
+      - .env.docker-proxy
 
     deploy:
       replicas: 1

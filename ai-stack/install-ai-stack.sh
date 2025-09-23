@@ -12,9 +12,6 @@ cd "${WD}" || exit
 function INSTALL_UV(){
     ../scripts/install_uv.sh
 }
-function CLONE_REPOS(){
-    ../scripts/clone_repos.sh
-}
 function CREATE_COMFYUI_DOCKERFILE(){
     ../scripts/create_comfyui_dockerfile.sh
 }
@@ -31,9 +28,6 @@ function DOCKER_COMPOSE_STACK(){
     cd "${WD}/ai-services" || exit 1
     ./compose-up.sh
 }
-
-echo "Cloning repositories..."
-CLONE_REPOS
 
 echo "*** START COMPOSING: ai-stack ****"
 DOCKER_COMPOSE_STACK

@@ -23,7 +23,9 @@ function CREATE_NETWORKS(){
 function CREATE_SECRETS(){
     scripts/create_secrets.sh
 }
-
+function CLONE_REPOS(){
+    scripts/clone_repos.sh
+}
 function INSTALL_management-stack_STACK(){
     management-stack/install-management-stack.sh
 }
@@ -43,6 +45,7 @@ CREATE_SECRETS
 echo "Creating Docker Networks"
 CREATE_NETWORKS
 
+CLONE_REPOS
 ## STACKS:
 echo "Installing AI Stack"
 INSTALL_AI_STACK

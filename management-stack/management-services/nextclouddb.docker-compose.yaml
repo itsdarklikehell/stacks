@@ -30,7 +30,7 @@ services:
       - host
 
     env_file:
-      - ../.env
+      - .env.nextclouddb
 
     deploy:
       replicas: 1

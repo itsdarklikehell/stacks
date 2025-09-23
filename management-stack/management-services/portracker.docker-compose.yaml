@@ -37,7 +37,7 @@ services:
       - docker-proxy
 
     env_file:
-      - ../.env
+      - .env.portracker
 
     deploy:
       replicas: 1

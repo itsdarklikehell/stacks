@@ -32,7 +32,7 @@ services:
       - "/dev/snd"
 
     env_file:
-      - ../.env
+      - .env.ubuntu-desktop-lxde-vnc
 
     deploy:
       replicas: 1

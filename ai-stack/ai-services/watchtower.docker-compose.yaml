@@ -35,7 +35,7 @@ services:
       - anythingllm
       - autoheal
       - basic-memory
-      - chroma
+      # - chroma
       - faster-whisper-gpu
       - homeassistant
       - letta-db

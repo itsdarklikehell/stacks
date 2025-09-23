@@ -8,8 +8,8 @@ COMPOSE_FILES=(
   anythingllm.docker-compose.yaml
   autoheal.docker-compose.yaml
   basic-memory.docker-compose.yaml
-  chroma.docker-compose.yaml
-  clickhouse-server.docker-compose.yaml
+  # chroma.docker-compose.yaml
+  # clickhouse.docker-compose.yaml
   faster-whisper-gpu.docker-compose.yaml
   homeassistant.docker-compose.yaml
   letta-db.docker-compose.yaml

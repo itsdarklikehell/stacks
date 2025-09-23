@@ -34,7 +34,7 @@ services:
       - "5678:5678"
 
     env_file:
-      - ../.env
+      - .env.n8n
 
     deploy:
       replicas: 1

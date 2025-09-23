@@ -23,7 +23,7 @@ services:
       - host
 
     env_file:
-      - ../.env
+      - .env.watchtower
 
     deploy:
       replicas: 1
