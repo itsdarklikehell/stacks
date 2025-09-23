@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
   base.docker-compose.yaml
+  portainer.docker-compose.yaml
 )
 
 ARGS=""

@@ -29,8 +29,8 @@ function CLONE_REPOS(){
 
 
 
-function INSTALL_ESSENTIAL_STACK(){
-    essential-stack/install-stack.sh
+function INSTALL_ESSENTIALS_STACK(){
+    essentials-stack/install-stack.sh
 }
 function INSTALL_management-stack_STACK(){
     management-stack/install-stack.sh
@@ -50,17 +50,24 @@ echo "Creating Docker Secrets"
 CREATE_SECRETS
 echo "Creating Docker Networks"
 CREATE_NETWORKS
-
+echo "Cloning repos"
 CLONE_REPOS
+
+
 ## STACKS:
-echo "Installing AI Stack"
-INSTALL_AI_STACK
 
-echo "Installing Docker Management Stack"
-INSTALL_management-stack_STACK
 
-echo "Installing media Stack"
-INSTALL_MEDIA_STACK
+echo "Installing Essentials Stack"
+INSTALL_ESSENTIALS_STACK
+
+# echo "Installing AI Stack"
+# INSTALL_AI_STACK
+
+# echo "Installing Docker Management Stack"
+# INSTALL_management-stack_STACK
+
+# echo "Installing media Stack"
+# INSTALL_MEDIA_STACK
 
 
 # dockly # lazydocker
