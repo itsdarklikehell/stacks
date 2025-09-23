@@ -1,7 +1,6 @@
 #!/bin/bash
 WD="$(dirname "$(realpath "$0")")"
 export WD
-export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
 echo "Working directory is set to ${WD}"
@@ -9,6 +8,7 @@ cd "${WD}" || exit
 mkdir -p ../ai-stack/DATA
 
 function CLONE_OLLMVT(){
+    ./install_uv.sh
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 

@@ -26,14 +26,20 @@ function CREATE_SECRETS(){
 function CLONE_REPOS(){
     scripts/clone_repos.sh
 }
+
+
+
+function INSTALL_ESSENTIAL_STACK(){
+    essential-stack/install-stack.sh
+}
 function INSTALL_management-stack_STACK(){
-    management-stack/install-management-stack.sh
+    management-stack/install-stack.sh
 }
 function INSTALL_MEDIA_STACK(){
-    media-stack/install-media-stack.sh
+    media-stack/install-stack.sh
 }
 function INSTALL_AI_STACK(){
-    ai-stack/install-ai-stack.sh
+    ai-stack/install-stack.sh
 }
 
 echo "Installing Drivers"
