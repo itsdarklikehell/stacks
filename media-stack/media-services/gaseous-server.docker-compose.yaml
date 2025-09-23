@@ -28,7 +28,7 @@ services:
       - 5198:80
 
     env_file:
-      - .env.gaseous
+      - .env.gaseous-server
 
     depends_on:
       - gsdb
