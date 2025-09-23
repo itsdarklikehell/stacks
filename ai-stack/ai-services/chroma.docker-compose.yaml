@@ -1,0 +1,28 @@
+services:
+  chroma:
+    container_name: chroma
+    restart: unless-stopped
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ../DATA/chroma:/chroma
+      - index_data:/index_data
+
+    command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-config log_config.yml
+
+    environment:
+      - CHROMA_DB_IMPL=clickhouse
+      - CLICKHOUSE_HOST=clickhouse
+      - CLICKHOUSE_PORT=8123
+
+    ports:
+      - 8000:8000
+
+    depends_on:
+      - clickhouse
+
+    networks:
+      - ai-services

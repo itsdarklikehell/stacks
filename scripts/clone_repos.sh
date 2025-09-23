@@ -38,7 +38,6 @@ function CLONE_SWARMUI(){
     ./launchtools/custom-launch-docker.sh fixch
     # ./launchtools/custom-launch-docker.sh
 }
-
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
@@ -46,6 +45,14 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker  &>/dev/null
     mkdir -p stable-diffusion-webui-docker/data/models/CLIPEncoder
 }
+function CLONE_CHROMA(){
+    cd "${WD}" || exit
+    cd ../ai-stack/DATA || exit 1
+
+    git clone --recursive https://github.com/ecsricktorzynski/chroma chroma  &>/dev/null
+}
+
 CLONE_OLLMVT
-# CLONE_SWARMUI
-# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+CLONE_CHROMA
+CLONE_SWARMUI
+CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

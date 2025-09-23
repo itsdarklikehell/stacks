@@ -43,6 +43,10 @@ volumes:
   swarmbackend:
   swarmdlnodes:
   swarmextensions:
+  clickhouse_data:
+  index_data:
+  backups:
+    
 # # secrets:
 #   letta_pg_password:
 #     file: ../../secrets/letta_pg_password

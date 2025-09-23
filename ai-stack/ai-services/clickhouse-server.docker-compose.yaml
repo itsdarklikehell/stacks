@@ -1,56 +1,74 @@
 services:
-  clickhouse-server:
-    image: ${CLICKHOUSE_SERVER_IMAGE:-clickhouse/clickhouse-server:latest}
-    container_name: clickhouse-server
-    restart: unless-stopped
-
-    labels:
-      - autoheal-app=true
-      - keep_healthy
-      - "com.centurylinklabs.watchtower.enable=true"
-
-    # environment:
-    #   - 'STORAGE_DIR="/app/server/storage"'
-
-    # ulimits:
-    #   - "nofile=262144:262144"
-
+  clickhouse:
+    image: clickhouse/clickhouse-server:22.9-alpine
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - CLICKHOUSE_TCP_PORT=9000
+      - CLICKHOUSE_HTTP_PORT=8123
+    ports:
+      - "8123:8123"
+      - "9000:9000"
     volumes:
-      - ../DATA/clickhouse-server/data:/var/lib/clickhouse/
-      - ../DATA/clickhouse-server/logs:/var/log/clickhouse-server/
-      - ../DATA/clickhouse-server/configs:/etc/clickhouse-server/config.d/
-      - ../DATA/clickhouse-server/users:/etc/clickhouse-server/users.d/
-      - ../DATA/clickhouse-server/initdb:/docker-entrypoint-initdb.d/
-      # - ../DATA/clickhouse-server/customconfig.xml:/etc/clickhouse-server/config.xml
-
-    hostname: clickhouse
-
-    command:
-      [
-        "--cap-add=SYS_NICE",
-        "--cap-add=NET_ADMIN",
-        "--cap-add=IPC_LOCK",
-        "--ulimits nofile=262144:262144",
-      ]
-
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
-
+      - clickhouse_data:/bitnami/clickhouse
+      - backups:/backups
+      - ../DATA/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
+      - ../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
     networks:
       - ai-services
-      - host
 
-    ports:
-      - ${CLICKHOUSE_PORT:-18123}:8123
-      - ${CLICKHOUSE_DBPORT:-19000}:19000
 
-    env_file:
-      - .env.clickhouse-server
+  # clickhouse-server:
+  #   image: ${CLICKHOUSE_SERVER_IMAGE:-clickhouse/clickhouse-server:latest}
+  #   container_name: clickhouse-server
+  #   restart: unless-stopped
 
-    deploy:
-      replicas: 1
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+  #   labels:
+  #     - autoheal-app=true
+  #     - keep_healthy
+  #     - "com.centurylinklabs.watchtower.enable=true"
+
+  #   # environment:
+  #   #   - 'STORAGE_DIR="/app/server/storage"'
+
+  #   # ulimits:
+  #   #   - "nofile=262144:262144"
+
+  #   volumes:
+  #     - ../DATA/clickhouse-server/data:/var/lib/clickhouse/
+  #     - ../DATA/clickhouse-server/logs:/var/log/clickhouse-server/
+  #     - ../DATA/clickhouse-server/configs:/etc/clickhouse-server/config.d/
+  #     - ../DATA/clickhouse-server/users:/etc/clickhouse-server/users.d/
+  #     - ../DATA/clickhouse-server/initdb:/docker-entrypoint-initdb.d/
+  #     # - ../DATA/clickhouse-server/customconfig.xml:/etc/clickhouse-server/config.xml
+
+  #   hostname: clickhouse
+
+  #   command:
+  #     [
+  #       "--cap-add=SYS_NICE",
+  #       "--cap-add=NET_ADMIN",
+  #       "--cap-add=IPC_LOCK",
+  #       "--ulimits nofile=262144:262144",
+  #     ]
+
+  #   user: ${HOST_UID:-1000}:${HOST_GID:-1000}
+
+  #   networks:
+  #     - ai-services
+  #     - host
+
+  #   ports:
+  #     - ${CLICKHOUSE_PORT:-18123}:8123
+  #     - ${CLICKHOUSE_DBPORT:-19000}:19000
+
+  #   env_file:
+  #     - .env.clickhouse-server
+
+  #   deploy:
+  #     replicas: 1
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
