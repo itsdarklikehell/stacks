@@ -46,6 +46,7 @@ volumes:
   clickhouse_data:
   index_data:
   backups:
+  pgdata2:
 
 # # secrets:
 #   letta_pg_password:

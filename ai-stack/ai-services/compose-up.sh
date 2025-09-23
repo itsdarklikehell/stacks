@@ -16,6 +16,10 @@ COMPOSE_FILES=(
   letta-mcp.docker-compose.yaml
   letta-server.docker-compose.yaml
   librechat.docker-compose.yaml
+  librechat-meilisearch.docker-compose.yaml 
+  librechat-mongodb.docker-compose.yaml 
+  librechat-rag_api.docker-compose.yaml 
+  librechat-vectordb.docker-compose.yaml
   libretranslate.docker-compose.yaml
   mongo.docker-compose.yaml
   ollama.docker-compose.yaml
