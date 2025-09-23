@@ -1,6 +1,6 @@
 services:
   sickgear:
-    image: sickgear/sickgear:latest
+    image: sickgear/sickgear
     container_name: sickgear
 
     labels:

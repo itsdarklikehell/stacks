@@ -1,6 +1,6 @@
 services:
   webrcade:
-    image: "webrcade/webrcade:latest"
+    image: "webrcade/webrcade"
     container_name: webrcade
     restart: ${RESTART:-unless-stopped}
 

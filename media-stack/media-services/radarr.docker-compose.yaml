@@ -1,6 +1,6 @@
 services:
   radarr:
-    image: ${RADARR_IMAGE:-linuxserver/radarr:latest}
+    image: ${RADARR_IMAGE:-linuxserver/radarr}
     container_name: ${RADARR_CONTAINER_NAME:-radarr}
     restart: ${RESTART:-unless-stopped}
 

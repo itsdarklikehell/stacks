@@ -1,6 +1,6 @@
 services:
   collabora:
-    image: ${COLLABORA_IMAGE:-collabora/code:latest}
+    image: ${COLLABORA_IMAGE:-collabora/code}
     container_name: ${collabora_container_name:-collabora}
     restart: ${collabora_restart:-unless-stopped}
 

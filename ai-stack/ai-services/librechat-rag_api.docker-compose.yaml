@@ -1,6 +1,6 @@
 services:
   librechat-rag_api:
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite
     container_name: librechat-rag_api
     restart: ${RESTART:-unless-stopped}
 

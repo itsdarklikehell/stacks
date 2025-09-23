@@ -2,7 +2,7 @@ services:
   portainer:
     container_name: ${portainer_container_name:-portainer}
     restart: ${portainer_restart:-unless-stopped}
-    image: ${PORTAINER_IMAGE:-portainer/portainer-ce:latest}
+    image: ${PORTAINER_IMAGE:-portainer/portainer-ce}
 
     labels:
       - autoheal-app=true

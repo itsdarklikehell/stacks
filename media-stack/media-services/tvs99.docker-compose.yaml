@@ -1,6 +1,6 @@
 services:
   tvs99:
-    image: "zshall/television-simulator:latest"
+    image: "zshall/television-simulator"
     container_name: tvs99
     restart: ${RESTART:-unless-stopped}
 

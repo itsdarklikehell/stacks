@@ -20,7 +20,7 @@ services:
 
 
   # clickhouse-server:
-  #   image: ${CLICKHOUSE_SERVER_IMAGE:-clickhouse/clickhouse-server:latest}
+  #   image: ${CLICKHOUSE_SERVER_IMAGE:-clickhouse/clickhouse-server}
   #   container_name: clickhouse-server
   #   restart: ${RESTART:-unless-stopped}
 

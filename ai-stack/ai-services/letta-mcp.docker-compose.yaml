@@ -1,6 +1,6 @@
 services:
   letta-mcp:
-    image: ghcr.io/oculairmedia/letta-mcp-server:latest
+    image: ghcr.io/oculairmedia/letta-mcp-server
     container_name: letta-mcp
     restart: ${RESTART:-unless-stopped}
 

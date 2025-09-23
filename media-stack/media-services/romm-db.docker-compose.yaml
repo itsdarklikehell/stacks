@@ -1,6 +1,6 @@
 services:
   romm-db:
-    image: ${ROMM_DB_IMAGE:-mariadb:latest}
+    image: ${ROMM_DB_IMAGE:-mariadb}
     container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
     restart: ${RESTART:-unless-stopped}
 

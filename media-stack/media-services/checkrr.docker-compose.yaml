@@ -1,6 +1,6 @@
 services:
   checkrr:
-    image: aetaric/checkrr:latest
+    image: aetaric/checkrr
     container_name: checkrr
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   librechat-mongodb:
-    image: mongo:latest
+    image: mongo
     container_name: librechat-mongodb
     restart: ${RESTART:-unless-stopped}
 

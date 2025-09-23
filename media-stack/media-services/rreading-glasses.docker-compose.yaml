@@ -54,7 +54,7 @@ services:
       #     cpus: "0.10"
 
   rreading-glasses-db:
-    image: postgres:latest
+    image: postgres
     container_name: rreading-glasses-db
     restart: ${RESTART:-unless-stopped}
 

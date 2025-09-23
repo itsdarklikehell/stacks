@@ -1,6 +1,6 @@
 services:
   autoheal:
-    image: ${IMAGE:-willfarrell/autoheal:latest}
+    image: ${IMAGE:-willfarrell/autoheal}
     container_name: ${NAME:-autoheal-ai}
     restart: ${RESTART:-unless-stopped}
 
@@ -23,7 +23,7 @@ services:
 
     hostname: ${NAME:-autoheal-ai}
 
-    # command: [ "ollama", "pull", "qwen3:latest"]
+    # command: [ "ollama", "pull", "qwen3"]
 
     # networks:
     #   - ai-services

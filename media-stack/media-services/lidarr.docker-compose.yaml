@@ -1,6 +1,6 @@
 services:
   lidarr:
-    image: ${LIDARR_IMAGE:-linuxserver/lidarr:latest}
+    image: ${LIDARR_IMAGE:-linuxserver/lidarr}
     container_name: ${LIDARR_CONTAINER_NAME:-lidarr}
     restart: ${RESTART:-unless-stopped}
 

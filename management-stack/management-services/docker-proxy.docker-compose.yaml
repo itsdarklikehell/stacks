@@ -1,6 +1,6 @@
 services:
   docker-proxy:
-    image: ${DOCKER_PROXY_IMAGE:-tecnativa/docker-socket-proxy:latest}
+    image: ${DOCKER_PROXY_IMAGE:-tecnativa/docker-socket-proxy}
     container_name: ${docker_proxy_container_name:-portracker-docker-proxy}
     restart: ${docker_proxy_restart:-unless-stopped}
 

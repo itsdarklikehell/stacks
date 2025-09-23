@@ -1,6 +1,6 @@
 services:
   open-webui:
-    image: ${IMAGE:-ghcr.io/open-webui/open-webui:latest}
+    image: ${IMAGE:-ghcr.io/open-webui/open-webui}
     container_name: ${NAME:-open-webui}
     restart: ${RESTART:-unless-stopped}
 

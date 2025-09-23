@@ -1,7 +1,7 @@
 services:
   kapowarr:
     container_name: kapowarr
-    image: mrcas/kapowarr:latest
+    image: mrcas/kapowarr
 
     restart: ${RESTART:-unless-stopped}
 

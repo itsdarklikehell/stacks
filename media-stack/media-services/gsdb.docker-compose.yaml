@@ -1,6 +1,6 @@
 services:
   gsdb:
-    image: ${GSDB_IMAGE:-mariadb:latest}
+    image: ${GSDB_IMAGE:-mariadb}
     container_name: ${GSDB_CONTAINER_NAME:-gsdb}
     restart: ${RESTART:-unless-stopped}
 

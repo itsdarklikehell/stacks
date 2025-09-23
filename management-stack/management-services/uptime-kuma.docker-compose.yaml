@@ -1,6 +1,6 @@
 services:
   uptime-kuma:
-    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:latest}
+    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma}
     container_name: ${uptime_kuma_container_name:-uptime-kuma}
     restart: ${uptime_kuma_restart:-always}
 

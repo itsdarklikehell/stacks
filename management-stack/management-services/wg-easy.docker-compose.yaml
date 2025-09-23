@@ -1,6 +1,6 @@
 services:
   wg-easy:
-    image: ${WG_EASY_IMAGE:-ghcr.io/wg-easy/wg-easy:latest}
+    image: ${WG_EASY_IMAGE:-ghcr.io/wg-easy/wg-easy}
     container_name: ${wg_easy_container_name:-wg-easy}
     restart: ${RESTART:-unless-stopped}
 

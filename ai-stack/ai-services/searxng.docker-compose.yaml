@@ -1,6 +1,6 @@
 services:
   searxng:
-    image: ${IMAGE:-searxng/searxng:latest}
+    image: ${IMAGE:-searxng/searxng}
     container_name: ${NAME:-searxng}
     restart: ${RESTART:-unless-stopped}
 

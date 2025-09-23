@@ -1,6 +1,6 @@
 services:
   emby:
-    image: ${EMBY_IMAGE:-linuxserver/emby:latest}
+    image: ${EMBY_IMAGE:-linuxserver/emby}
     container_name: ${EMBY_CONTAINER_NAME:-emby}
     restart: ${RESTART:-unless-stopped}
 

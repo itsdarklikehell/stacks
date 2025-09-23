@@ -1,6 +1,6 @@
 services:
   nextclouddb:
-    image: ${NEXTCLOUDDB_IMAGE:-mariadb:latest}
+    image: ${NEXTCLOUDDB_IMAGE:-mariadb}
     container_name: ${nextclouddb_container_name:-nextcloud-db}
     restart: ${nextclouddb_restart:-unless-stopped}
 

@@ -1,7 +1,7 @@
 services:
   dockge:
     container_name: ${dockge_container_name:-dockge}
-    image: ${DOCKGE_IMAGE:-louislam/dockge:latest}
+    image: ${DOCKGE_IMAGE:-louislam/dockge}
     restart: ${dockge_restart:-unless-stopped}
 
     labels:

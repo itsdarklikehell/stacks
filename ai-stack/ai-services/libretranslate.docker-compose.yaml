@@ -1,6 +1,6 @@
 services:
   libretranslate:
-    image: ${IMAGE:-libretranslate/libretranslate:latest-cuda}
+    image: ${IMAGE:-libretranslate/libretranslate-cuda}
     container_name: ${NAME:-libretranslate}
     restart: ${RESTART:-unless-stopped}
 

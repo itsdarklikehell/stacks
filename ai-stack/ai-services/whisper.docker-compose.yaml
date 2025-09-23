@@ -1,6 +1,6 @@
 services:
   whisper:
-    image: ${IMAGE:-pluja/whishper:latest-gpu}
+    image: ${IMAGE:-pluja/whishper-gpu}
     container_name: ${NAME:-whisper}
     restart: ${RESTART:-unless-stopped}
     # pull_policy: always

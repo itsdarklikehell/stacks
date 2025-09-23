@@ -1,6 +1,6 @@
 services:
   buildarr:
-    image: "callum027/buildarr:latest"
+    image: "callum027/buildarr"
     container_name: buildarr
     restart: ${RESTART:-unless-stopped}
 

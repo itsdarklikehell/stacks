@@ -1,6 +1,6 @@
 services:
   prowlarr:
-    image: ${PROWLARR_IMAGE:-linuxserver/prowlarr:latest}
+    image: ${PROWLARR_IMAGE:-linuxserver/prowlarr}
     container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
     restart: ${RESTART:-unless-stopped}
 

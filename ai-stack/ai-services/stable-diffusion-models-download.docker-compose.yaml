@@ -1,6 +1,6 @@
 services:
   stable-diffusion-models-download:
-    image: ${IMAGE:-comfy-download:latest}
+    image: ${IMAGE:-comfy-download}
     container_name: ${NAME:-stable-diffusion-models-download}
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   letta-db:
-    image: ankane/pgvector:latest
+    image: ankane/pgvector
     container_name: letta-db
     restart: ${RESTART:-unless-stopped}
 

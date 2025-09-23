@@ -1,6 +1,6 @@
 services:
   flexget:
-    image: flexget/flexget:latest
+    image: flexget/flexget
     container_name: flexget
     restart: ${RESTART:-unless-stopped}
 

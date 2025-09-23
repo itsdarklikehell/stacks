@@ -1,6 +1,6 @@
 services:
   calendarr:
-    image: ghcr.io/jordanlambrecht/calendarr:latest
+    image: ghcr.io/jordanlambrecht/calendarr
     container_name: calendarr
     restart: "unless-stopped"
 

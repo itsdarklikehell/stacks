@@ -1,6 +1,6 @@
 services:
   calibre-web:
-    image: linuxserver/calibre-web:latest
+    image: linuxserver/calibre-web
     container_name: calibre-web
     restart: ${RESTART:-unless-stopped}
 

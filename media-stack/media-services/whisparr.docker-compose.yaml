@@ -1,6 +1,6 @@
 services:
   whisparr:
-    image: ${WHISPARR_IMAGE:-ghcr.io/hotio/whisparr:latest}
+    image: ${WHISPARR_IMAGE:-ghcr.io/hotio/whisparr}
     container_name: ${WHISPARR_CONTAINER_NAME:-whisparr}
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   overseerr:
-    image: ${OVERSEERR_IMAGE:-sctx/overseerr:latest}
+    image: ${OVERSEERR_IMAGE:-sctx/overseerr}
     container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
     restart: ${RESTART:-unless-stopped}
 

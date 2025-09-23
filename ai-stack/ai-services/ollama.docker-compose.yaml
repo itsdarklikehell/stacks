@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ${IMAGE:-ollama/ollama:latest}
+    image: ${IMAGE:-ollama/ollama}
     container_name: ${NAME:-ollama}
     restart: ${RESTART:-unless-stopped}
 

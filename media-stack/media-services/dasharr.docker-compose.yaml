@@ -1,6 +1,6 @@
 services:
   dasharr:
-    image: schenanigans/dasharr:latest
+    image: schenanigans/dasharr
     container_name: ${DASHARR_CONTAINER_NAME:-dasharr}
     restart: ${RESTART:-unless-stopped}
 

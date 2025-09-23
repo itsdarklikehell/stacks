@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: ${NEXTCLOUD_IMAGE:-nextcloud:latest}
+    image: ${NEXTCLOUD_IMAGE:-nextcloud}
     container_name: ${nextcloud_container_name:-nextcloud}
     restart: ${nextcloud_restart:-unless-stopped}
 

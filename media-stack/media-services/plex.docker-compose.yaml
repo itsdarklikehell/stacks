@@ -1,6 +1,6 @@
 services:
   plex:
-    image: ${PLEX_IMAGE:-plexinc/pms-docker:latest}
+    image: ${PLEX_IMAGE:-plexinc/pms-docker}
     container_name: ${PLEX_CONTAINER_NAME:-plex}
     restart: ${RESTART:-unless-stopped}
 

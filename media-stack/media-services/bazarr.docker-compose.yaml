@@ -1,6 +1,6 @@
 services:
   bazarr:
-    image: ${BAZARR_IMAGE:-lscr.io/linuxserver/bazarr:latest}
+    image: ${BAZARR_IMAGE:-lscr.io/linuxserver/bazarr}
     container_name: ${BAZARR_CONTAINER_NAME:-bazarr}
     restart: ${RESTART:-unless-stopped}
 

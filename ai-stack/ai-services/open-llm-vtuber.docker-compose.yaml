@@ -1,6 +1,6 @@
 services:
   open-llm-vtuber:
-    image: ${IMAGE:-open-llm-vtuber:latest}
+    image: ${IMAGE:-open-llm-vtuber}
     container_name: ${NAME:open-llm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
@@ -31,7 +31,7 @@ services:
 
     hostname: ${NAME:open-llm-vtuber}
 
-    # command: [ "ollama", "pull", "qwen3:latest"]
+    # command: [ "ollama", "pull", "qwen3"]
 
     # networks:
     #   - ai-services

@@ -1,6 +1,6 @@
 services:
   stable-diffusion-webui:
-    image: ${IMAGE:-comfy-ui:latest}
+    image: ${IMAGE:-comfy-ui}
     container_name: ${NAME:-stable-diffusion-webui}
     restart: ${RESTART:-unless-stopped}
 

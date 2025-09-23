@@ -1,6 +1,6 @@
 services:
   watchtower:
-    image: containrrr/watchtower:latest
+    image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
     container_name: watchtower-management-services
 

@@ -1,6 +1,6 @@
 services:
   romm:
-    image: ${ROMM_IMAGE:-rommapp/romm:latest}
+    image: ${ROMM_IMAGE:-rommapp/romm}
     container_name: ${ROMM_CONTAINER_NAME:-romm}
     restart: ${RESTART:-unless-stopped}
 

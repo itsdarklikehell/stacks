@@ -1,6 +1,6 @@
 services:
   portracker:
-    image: ${PORTRACKER_IMAGE:-mostafawahied/portracker:latest}
+    image: ${PORTRACKER_IMAGE:-mostafawahied/portracker}
     container_name: ${portracker_container_name:-portracker}
     restart: ${portracker_restart:-unless-stopped}
 

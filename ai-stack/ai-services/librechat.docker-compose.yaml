@@ -1,6 +1,6 @@
 services:
   librechat:
-    image: ${IMAGE:-ghcr.io/danny-avila/librechat-dev:latest}
+    image: ${IMAGE:-ghcr.io/danny-avila/librechat-dev}
     container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
     
@@ -50,7 +50,7 @@ services:
 
   # librechat-mongodb:
     
-  #   image: mongo:latest
+  #   image: mongo
   #   container_name: librechat-mongodb
   #   restart: ${RESTART:-unless-stopped}
 
@@ -101,7 +101,7 @@ services:
   #     replicas: 1
 
   # librechat-rag_api:
-  #   image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+  #   image: ghcr.io/danny-avila/librechat-rag-api-dev-lite
   #   container_name: librechat-rag_api
   #   restart: ${RESTART:-unless-stopped}
 

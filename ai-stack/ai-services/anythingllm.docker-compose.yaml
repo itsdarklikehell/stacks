@@ -1,6 +1,6 @@
 services:
   anythingllm:
-    image: ${IMAGE:-mintplexlabs/anythingllm:latest}
+    image: ${IMAGE:-mintplexlabs/anythingllm}
     container_name: ${NAME:-anythingllm}
     restart: ${RESTART:-unless-stopped}
 

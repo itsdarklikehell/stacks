@@ -1,6 +1,6 @@
 services:
   jellyseerr:
-    image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr:latest}
+    image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr}
     container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
     restart: ${RESTART:-unless-stopped}
 

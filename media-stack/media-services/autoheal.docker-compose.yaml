@@ -1,6 +1,6 @@
 services:
   autoheal:
-    image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
+    image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-media-services}
     restart: ${RESTART:-unless-stopped}
 
@@ -24,7 +24,7 @@ services:
 
     hostname: ai-services-autoheal
 
-    # command: [ "ollama", "pull", "qwen3:latest"]
+    # command: [ "ollama", "pull", "qwen3"]
 
     # networks:
     #   - media-services

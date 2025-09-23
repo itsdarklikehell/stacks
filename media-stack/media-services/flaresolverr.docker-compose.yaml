@@ -1,6 +1,6 @@
 services:
   flaresolverr:
-    image: ${FLARESOLVERR_IMAGE:-flaresolverr/flaresolverr:latest}
+    image: ${FLARESOLVERR_IMAGE:-flaresolverr/flaresolverr}
     container_name: ${FLARESOLVERR_CONTAINER_NAME:-flaresolverr}
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: ${JELLYFIN_IMAGE:-linuxserver/jellyfin:latest}
+    image: ${JELLYFIN_IMAGE:-linuxserver/jellyfin}
     container_name: ${JELLYFIN_CONTAINER_NAME:-jellyfin}
     restart: ${RESTART:-unless-stopped}
 

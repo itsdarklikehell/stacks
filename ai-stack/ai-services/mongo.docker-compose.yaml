@@ -1,6 +1,6 @@
 services:
   mongo:
-    image: ${IMAGE:-mongo:latest}
+    image: ${IMAGE:-mongo}
     container_name: ${NAME:-mongo}
     restart: ${RESTART:-unless-stopped}
 

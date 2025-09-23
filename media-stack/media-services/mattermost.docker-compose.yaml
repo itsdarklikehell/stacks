@@ -1,6 +1,6 @@
 services:
   mattermost:
-    image: ${MATTERMOST_IMAGE:-mattermost/mattermost-team-edition:latest}
+    image: ${MATTERMOST_IMAGE:-mattermost/mattermost-team-edition}
     container_name: ${MATTERMOST_CONTAINER_NAME:-mattermost}
     restart: ${RESTART:-unless-stopped}
 

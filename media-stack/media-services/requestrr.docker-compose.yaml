@@ -1,6 +1,6 @@
 services:
   requestrr:
-    image: ${REQUESTRR_IMAGE:-thomst08/requestrr:latest}
+    image: ${REQUESTRR_IMAGE:-thomst08/requestrr}
     container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
     restart: ${RESTART:-unless-stopped}
 
@@ -14,7 +14,7 @@ services:
 
     hostname: ai-services-autoheal
 
-    # command: [ "ollama", "pull", "qwen3:latest"]
+    # command: [ "ollama", "pull", "qwen3"]
 
     # networks:
     #   - media-services

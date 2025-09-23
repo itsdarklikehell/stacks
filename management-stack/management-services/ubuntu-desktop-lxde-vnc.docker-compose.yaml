@@ -1,6 +1,6 @@
 services:
   ubuntu-desktop-lxde-vnc:
-    image: dorowu/ubuntu-desktop-lxde-vnc:latest
+    image: dorowu/ubuntu-desktop-lxde-vnc
     container_name: ubuntu-desktop-lxde-vnc
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   retroarch:
-    image: ${RETROARCH_IMAGE:-lscr.io/linuxserver/retroarch:latest}
+    image: ${RETROARCH_IMAGE:-lscr.io/linuxserver/retroarch}
     container_name: ${RETROARCH_CONTAINER_NAME:-retroarch}
     restart: ${RESTART:-unless-stopped}
 
@@ -19,7 +19,7 @@ services:
 
     hostname: ai-services-autoheal
 
-    # command: [ "ollama", "pull", "qwen3:latest"]
+    # command: [ "ollama", "pull", "qwen3"]
 
     # networks:
     #   - media-services

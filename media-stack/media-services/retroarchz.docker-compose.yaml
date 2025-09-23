@@ -1,6 +1,6 @@
 services:
   retroarchz:
-    image: ${RETROARCHZ_IMAGE:-blaize/retroarch:latest}
+    image: ${RETROARCHZ_IMAGE:-blaize/retroarch}
     container_name: ${RETROARCHZ_CONTAINER_NAME:-retroarchz}
 
     labels:
