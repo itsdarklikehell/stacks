@@ -21,9 +21,9 @@ services:
 
     hostname: swarmui
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - "7801:7801"

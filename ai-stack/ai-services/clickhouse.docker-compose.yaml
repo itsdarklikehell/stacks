@@ -13,8 +13,10 @@ services:
       - backups:/backups
       - ../DATA/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
       - ../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
-    networks:
-      - ai-services
+    # networks:
+    #   - ai-services
+    #   - host
+
 
 
   # clickhouse-server:

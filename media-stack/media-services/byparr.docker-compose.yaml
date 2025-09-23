@@ -11,15 +11,15 @@ services:
 
     hostname: byparr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - "8191:8191"
 
     env_file:
-      - ../.env
+      - .env.byparr
 
     deploy:
       replicas: 1

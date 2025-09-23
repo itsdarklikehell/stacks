@@ -15,9 +15,9 @@ services:
 
     hostname: ${portainer_hostname:-portainer}
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     ports:
       - 8000:8000

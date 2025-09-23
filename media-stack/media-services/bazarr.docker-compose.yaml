@@ -20,9 +20,9 @@ services:
 
     hostname: bazarr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 6767/tcp
@@ -31,7 +31,7 @@ services:
       - ${BAZARR_PORT:-6767}:6767/tcp
 
     env_file:
-      - ../.env
+      - .env.bazarr
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:6767"]

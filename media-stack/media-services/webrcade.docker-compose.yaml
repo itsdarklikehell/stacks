@@ -18,6 +18,10 @@ services:
       - "87:87"
       - "447:447"
 
+    # networks:
+    #   - media-services
+    #   - host
+
     env_file:
       - ../.env
 

@@ -20,9 +20,9 @@ services:
 
     hostname: searxng
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${SEARXNG_PORT:-8081}:8080

@@ -16,9 +16,9 @@ services:
 
     hostname: plex
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${PLEX_PORT:-32400}:32400

@@ -19,9 +19,9 @@ services:
 
     hostname: dasharr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${DASHARR_PORT:-8780}:8780
@@ -35,7 +35,7 @@ services:
       start_period: 40s
 
     env_file:
-      - ../.env
+      - .env.dasharr
 
     deploy:
       replicas: 1

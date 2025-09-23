@@ -11,9 +11,9 @@ services:
 
     hostname: mattermost
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${MATTERMOST_PORT:-8065}:8065

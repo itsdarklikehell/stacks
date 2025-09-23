@@ -20,9 +20,9 @@ services:
 
     hostname: emby
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 8097/tcp
@@ -39,7 +39,7 @@ services:
       start_period: 40s
 
     env_file:
-      - ../.env
+      - .env.emby
 
     deploy:
       replicas: 1

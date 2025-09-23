@@ -13,9 +13,9 @@ services:
 
     hostname: retroarchz
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${RETROARCHZ_PORT:-85}:85

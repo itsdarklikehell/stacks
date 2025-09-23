@@ -12,12 +12,12 @@ services:
     environment:
       - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     env_file:
-      - ../.env
+      - .env.autopulse
 
     deploy:
       replicas: 1

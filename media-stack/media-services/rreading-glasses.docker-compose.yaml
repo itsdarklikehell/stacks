@@ -20,9 +20,9 @@ services:
 
     hostname: rreading-glasses
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - "8788:8788"
@@ -75,9 +75,9 @@ services:
 
     hostname: rreading-glasses-db
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - "5433:5433"

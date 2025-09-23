@@ -20,15 +20,15 @@ services:
     volumes:
       - gaseous_data:/root/.gaseous-server
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - 5198:80
 
     env_file:
-      - ../.env
+      - .env.gaseous
 
     depends_on:
       - gsdb

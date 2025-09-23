@@ -53,9 +53,9 @@ services:
     #       memory: 256M
     #       cpus: '0.25'
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - "8004:8004"

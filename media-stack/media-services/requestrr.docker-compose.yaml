@@ -16,9 +16,9 @@ services:
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${REQUESTRR_PORT:-4545}:4545

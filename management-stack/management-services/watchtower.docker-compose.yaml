@@ -18,9 +18,9 @@ services:
 
     hostname: watchtower
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     env_file:
       - .env.watchtower

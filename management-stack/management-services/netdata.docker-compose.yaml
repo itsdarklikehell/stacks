@@ -31,9 +31,9 @@ services:
 
     hostname: netdata
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     ports:
       - "${NETDATA_PORT:-19996}:19996"

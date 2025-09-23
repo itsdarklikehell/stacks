@@ -15,9 +15,9 @@ services:
 
     hostname: tvs99
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${TVS99_PORT:-8085}:3000

@@ -21,9 +21,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/faster-whisper/data:/config
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     # # ports:
     # #   - "80:80"

@@ -18,15 +18,15 @@ services:
 
     hostname: flexget
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - 5050:5050
 
     env_file:
-      - ../.env
+      - .env.flexget
 
     deploy:
       replicas: 1

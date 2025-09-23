@@ -18,9 +18,9 @@ services:
 
     hostname: uptime-kuma
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     ports:
       - "${UPTIME_KUMA_PORT:-3002}:3002"

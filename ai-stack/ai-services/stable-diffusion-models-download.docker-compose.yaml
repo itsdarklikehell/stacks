@@ -27,9 +27,9 @@ services:
 
     hostname: stable-diffusion-models-download
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     env_file:
       - .env.stable-diffusion-models-download

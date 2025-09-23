@@ -20,9 +20,9 @@ services:
 
     hostname: ubuntu-desktop-lxde-vnc
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     ports:
       - "6080:80"

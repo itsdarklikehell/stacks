@@ -20,9 +20,9 @@ services:
       - mariadb_root_password
       - mariadb_password
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${ROMM_DB_PORT:-3306}:3306

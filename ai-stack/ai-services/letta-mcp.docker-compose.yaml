@@ -18,9 +18,9 @@ services:
 
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${LETTA_MCP_PORT:-3005}:3005

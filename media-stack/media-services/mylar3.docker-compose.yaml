@@ -21,9 +21,9 @@ services:
 
     hostname: mylar3
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${MYLAR3_PORT:-8091}:8091

@@ -19,9 +19,9 @@ services:
 
     hostname: grafana
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     ports:
       - "3004:3004"

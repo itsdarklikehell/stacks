@@ -18,9 +18,9 @@ services:
 
     # command: --debug --http-api-update
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${WATCHTOWER_PORT:-8082}:8080

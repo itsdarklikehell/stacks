@@ -25,9 +25,9 @@ services:
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
-    networks:
-      - management-services
-      - host
+    # networks:
+    #   - management-services
+    #   - host
 
     # # ports:
     # #   - "80:80"

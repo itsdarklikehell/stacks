@@ -29,9 +29,9 @@ services:
 
     hostname: whisper
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${WHISPER_PORT:-8001}:80

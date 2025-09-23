@@ -31,9 +31,9 @@ services:
 
     hostname: romm
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${ROMM_PORT:-8080}:8080

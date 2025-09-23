@@ -17,16 +17,16 @@ services:
 
     hostname: gsdb
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     secrets:
       - gsdb_root_password
       - gsdb_password
 
     env_file:
-      - ../.env
+      - .env.gsdb
 
 
     healthcheck:

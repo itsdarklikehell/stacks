@@ -20,9 +20,9 @@ services:
 
     hostname: sonarr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 8989/tcp

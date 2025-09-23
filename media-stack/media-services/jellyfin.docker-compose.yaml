@@ -18,9 +18,9 @@ services:
     #   - /etc/localtime:/etc/localtime:ro
     #   - /var/run/docker.sock:/var/run/docker.sock
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 8096/tcp

@@ -14,15 +14,15 @@ services:
 
     hostname: calibre-web
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - ${CALIBRE_WEB_PORT:-8084}:8084
 
     env_file:
-      - ../.env
+      - .env.calibre-web
 
     deploy:
       replicas: 1

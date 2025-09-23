@@ -22,9 +22,9 @@ services:
 
     command: ["--voice en_US-lessac-medium"]
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${PIPER_PORT:-10200}:10200

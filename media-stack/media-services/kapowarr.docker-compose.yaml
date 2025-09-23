@@ -17,9 +17,9 @@ services:
 
     hostname: kapowarr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - 5656:5656

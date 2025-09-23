@@ -20,9 +20,9 @@ services:
 
     hostname: whisparr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 6969/tcp

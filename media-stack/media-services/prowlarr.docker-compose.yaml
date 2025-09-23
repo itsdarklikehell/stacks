@@ -19,9 +19,9 @@ services:
 
     hostname: prowlarr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     expose:
       - 9696/tcp

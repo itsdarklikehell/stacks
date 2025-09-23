@@ -21,9 +21,9 @@ services:
     ports:
       - ${JELLYSEERR_PORT:-5055}:5055
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     env_file:
       - ../.env

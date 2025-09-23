@@ -18,12 +18,12 @@ services:
 
     hostname: buildarr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     env_file:
-      - ../.env
+      - .env.buildarr
 
     deploy:
       replicas: 1

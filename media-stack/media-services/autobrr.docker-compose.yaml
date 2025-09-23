@@ -17,15 +17,15 @@ services:
 
     hostname: autobrr
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - 7474:7474
 
     env_file:
-      - ../.env
+      - .env.autobrr
 
     deploy:
       replicas: 1

@@ -20,9 +20,9 @@ services:
 
     hostname: sickgear
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     ports:
       - 8088:8088/tcp

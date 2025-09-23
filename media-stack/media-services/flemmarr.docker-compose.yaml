@@ -16,15 +16,15 @@ services:
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
-    networks:
-      - media-services
-      - host
+    # networks:
+    #   - media-services
+    #   - host
 
     # # ports:
     # #   - "80:80"
 
     env_file:
-      - ../.env
+      - .env.flemmarr
 
     deploy:
       replicas: 1

@@ -29,9 +29,9 @@ services:
 
     hostname: stable-diffusion-webui
 
-    networks:
-      - ai-services
-      - host
+    # networks:
+    #   - ai-services
+    #   - host
 
     ports:
       - ${COMFYUI_PORT:-7860}:7860
