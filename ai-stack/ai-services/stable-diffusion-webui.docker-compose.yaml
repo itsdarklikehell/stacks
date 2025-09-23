@@ -7,8 +7,8 @@ services:
     build:
       context: ../DATA/stable-diffusion-webui-docker/services/comfy
       args:
-        UID: ${HOST_UID:-1000}
-        GID: ${HOST_GID:-1000}
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
       dockerfile: ../DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile
 
     labels:
@@ -19,7 +19,7 @@ services:
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-      - CLI_ARGS=
+      - CLI_ARGS=${CLI_ARGS:-}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -27,14 +27,14 @@ services:
       - ../DATA/stable-diffusion-webui-docker/data:/data
       - ../DATA/stable-diffusion-webui-docker/output:/output
 
-    hostname: stable-diffusion-webui
+    hostname: ${NAME:-stable-diffusion-webui}
 
     # networks:
     #   - ai-services
     #   - host
 
     ports:
-      - ${COMFYUI_PORT:-7860}:7860
+      - ${PORT:-7860}:7860
 
     env_file:
       - .env.stable-diffusion-webui

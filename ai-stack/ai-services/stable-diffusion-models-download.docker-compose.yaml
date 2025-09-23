@@ -1,7 +1,7 @@
 services:
   stable-diffusion-models-download:
-    image: comfy-download:latest
-    container_name: stable-diffusion-models-download
+    image: ${IMAGE:-comfy-download:latest}
+    container_name: ${NAME:-stable-diffusion-models-download}
     restart: ${RESTART:-unless-stopped}
 
     build:
@@ -25,7 +25,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/stable-diffusion-webui-docker/data:/data
 
-    hostname: stable-diffusion-models-download
+    hostname: ${NAME:-stable-diffusion-models-download}
 
     # networks:
     #   - ai-services
