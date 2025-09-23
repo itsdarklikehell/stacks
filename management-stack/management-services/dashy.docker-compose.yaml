@@ -23,7 +23,7 @@ services:
     #   - host
 
     ports:
-      - 8383:8080
+      - 8383:8383
 
     env_file:
       - .env.dashy

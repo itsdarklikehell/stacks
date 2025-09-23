@@ -41,7 +41,6 @@ services:
       - letta-db
       - letta-mcp
       - letta-server
-      - librechat
       - libretranslate
       - mongo
       - ollama
@@ -51,6 +50,7 @@ services:
       # - stable-diffusion-models-download
       # - stable-diffusion-webui
       # - swarmui
+      # - librechat
       # - watchtower
       - whisper
       - wyoming-piper

@@ -1,7 +1,7 @@
 services:
   autoheal:
-    image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
-    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-ai-services}
+    image: ${IMAGE:-willfarrell/autoheal:latest}
+    container_name: ${NAME:-autoheal-ai}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,6 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
+      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
@@ -20,7 +21,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ai-services-autoheal
+    hostname: ${NAME:-autoheal-ai}
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
