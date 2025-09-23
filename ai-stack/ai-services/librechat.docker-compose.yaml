@@ -1,93 +1,49 @@
 services:
   librechat:
-    container_name: librechat
-    image: ghcr.io/danny-avila/librechat-dev:latest
+    image: ${IMAGE:-ghcr.io/danny-avila/librechat-dev:latest}
+    container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
-    ports:
-      - "${LCHAT_PORT:-3006}:3006"
-    depends_on:
-      - librechat-mongodb
-      - librechat-rag_api
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
+
     environment:
       - HOST=0.0.0.0
       - MONGO_URI=mongodb://mongodb:27017/LibreChat
       - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8003}
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8003}
+    
     volumes:
       - type: bind
         source: .env.librechat
         target: /app/.env
       - ../DATA/librechat/images:/app/client/public/images
       - ../DATA/librechat/uploads:/app/uploads
-      - ../DATA/librechat/logs:/app/api/logs
+      - ../DATA/librechat/logs:/app/api/logs    
+    
+    hostname: ${NAME:-librechat}
+    
     # networks:
     #   - ai-services
     #   - host
 
-
-  librechat-mongodb:
-    container_name: librechat-mongodb
-    image: mongo:latest
-    restart: ${RESTART:-unless-stopped}
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
-    volumes:
-      - ../DATA/librechat-mongodb/data-node:/data/db
-    command: mongod --noauth
-    # networks:
-    #   - ai-services
-    #   - host
-
-
-  librechat-meilisearch:
-    container_name: librechat-meilisearch
-    image: getmeili/meilisearch:v1.12.3
-    restart: ${RESTART:-unless-stopped}
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
-    environment:
-      - MEILI_HOST=http://meilisearch:7700
-      - MEILI_NO_ANALYTICS=true
-      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
-    volumes:
-      - ../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
-    # networks:
-    #   - ai-services
-    #   - host
-
-
-  librechat-vectordb:
-    container_name: librechat-vectordb
-    image: pgvector/pgvector:0.8.0-pg15-trixie
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-    restart: ${RESTART:-unless-stopped}
-    volumes:
-      - pgdata2:/var/lib/postgresql/data
-    # networks:
-    #   - ai-services
-    #   - host
-
-
-  librechat-rag_api:
-    container_name: librechat-rag_api
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
-    environment:
-      - DB_HOST=librechat-vectordb
-      - RAG_PORT=${RAG_PORT:-8003}
-    restart: ${RESTART:-unless-stopped}
+    ports:
+      - "${PORT:-3006}:3006"
+    
     depends_on:
-      - librechat-vectordb
+      - librechat-mongodb
+      - librechat-rag_api
+    
+    user: ${PUID:-1000}:${PGID:-1000}
+    
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    
     env_file:
       - .env.librechat
-    # networks:
-    #   - ai-services
-    #   - host
 
-
-volumes:
-  pgdata2:
+    deploy:
+      replicas: 1

@@ -1,0 +1,28 @@
+services:
+  librechat-meilisearch:
+    image: getmeili/meilisearch:v1.12.3
+    container_name: librechat-meilisearch
+    restart: ${RESTART:-unless-stopped}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    environment:
+      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+
+    volumes:
+      - ../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
+
+    # networks:
+    #   - ai-services
+    #   - host
+
+    ports:
+      - ${PORT:-3001}:3001
+
+    env_file:
+      - .env.librechat-meilisearch
+
+    deploy:
+      replicas: 1

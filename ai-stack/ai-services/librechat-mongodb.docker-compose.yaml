@@ -1,0 +1,25 @@
+services:
+  librechat-mongodb:
+    image: mongo:latest
+    container_name: librechat-mongodb
+    restart: ${RESTART:-unless-stopped}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    volumes:
+      - ../DATA/librechat-mongodb/data-node:/data/db
+
+    command: mongod --noauth
+
+    # networks:
+    #   - ai-services
+    #   - host
+
+    ports:
+      - ${PORT:-3001}:3001
+
+    env_file:
+      - .env.librechat-mongodb
+
+    deploy:
+      replicas: 1

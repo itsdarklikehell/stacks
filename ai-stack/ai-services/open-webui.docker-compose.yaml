@@ -1,7 +1,7 @@
 services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:latest
-    container_name: open-webui
+    image: ${IMAGE:-ghcr.io/open-webui/open-webui:latest}
+    container_name: ${NAME:-open-webui}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,7 +12,7 @@ services:
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-11434}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
       - ENABLE_RAG_WEB_SEARCH=True
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
@@ -24,14 +24,14 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/open-webui:/app/backend/data
 
-    hostname: open-webui
+    hostname: ${NAME:-open-webui}
 
     # networks:
     #   - ai-services
     #   - host
 
     ports:
-      - ${OPEN_WEBUI_PORT:-8080}:8080
+      - ${PORT:-8080}:8080
 
     env_file:
       - .env.open-webui

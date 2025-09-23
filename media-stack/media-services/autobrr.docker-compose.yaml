@@ -37,5 +37,5 @@ services:
       #     memory: 256M
       #     cpus: "0.25"
 
-    user: ${HOST_UID:-1000}:${HOST_GID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 

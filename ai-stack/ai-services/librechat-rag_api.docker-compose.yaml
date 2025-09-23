@@ -1,0 +1,25 @@
+services:
+  librechat-rag_api:
+    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    container_name: librechat-rag_api
+    restart: ${RESTART:-unless-stopped}
+
+    environment:
+      - DB_HOST=librechat-vectordb
+      - RAG_PORT=${RAG_PORT:-8003}
+
+    depends_on:
+      - librechat-vectordb
+
+    # networks:
+    #   - ai-services
+    #   - host
+
+    ports:
+      - ${PORT:-3001}:3001
+
+    env_file:
+      - .env.librechat-rag_api
+
+    deploy:
+      replicas: 1

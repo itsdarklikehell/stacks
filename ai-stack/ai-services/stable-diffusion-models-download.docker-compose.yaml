@@ -7,8 +7,8 @@ services:
     build:
       context: ../DATA/stable-diffusion-webui-docker/services/download/
       args:
-        UID: ${HOST_UID:-1000}
-        GID: ${HOST_GID:-1000}
+        UID: ${PUID:-1000}
+        GID: ${PUID:-1000}
       # dockerfile: ../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
 
     labels:

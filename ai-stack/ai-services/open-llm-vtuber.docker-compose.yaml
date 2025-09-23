@@ -1,14 +1,14 @@
 services:
   open-llm-vtuber:
-    image: open-llm-vtuber:latest
-    container_name: open-llm-vtuber
+    image: ${IMAGE:-open-llm-vtuber:latest}
+    container_name: ${NAME:open-llm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
     build:
       context: ../DATA/Open-LLM-VTuber
       args:
-        UID: ${HOST_UID:-1000}
-        GID: ${HOST_GID:-1000}
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
       dockerfile: ../DATA/Open-LLM-VTuber/dockerfile
 
     labels:
@@ -29,7 +29,7 @@ services:
       - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
       - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
 
-    hostname: open-llm-vtuber
+    hostname: ${NAME:open-llm-vtuber}
 
     # command: [ "ollama", "pull", "qwen3:latest"]
 
@@ -38,7 +38,7 @@ services:
     #   - host
 
     ports:
-      - "12393:12393"
+      - "${PORT:-12393}:12393"
 
     env_file:
       - .env.open-llm-vtuber

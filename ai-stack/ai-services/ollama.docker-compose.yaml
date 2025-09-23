@@ -1,7 +1,7 @@
 services:
   ollama:
-    image: ollama/ollama:latest
-    container_name: ollama
+    image: ${IMAGE:-ollama/ollama:latest}
+    container_name: ${NAME:-ollama}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -21,7 +21,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/ollama:/root/.ollama
 
-    hostname: ollama
+    hostname: ${NAME:-ollama}
 
     # networks:
     #   - ai-services

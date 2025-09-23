@@ -1,7 +1,7 @@
 services:
   searxng:
-    image: searxng/searxng:latest
-    container_name: searxng
+    image: ${IMAGE:-searxng/searxng:latest}
+    container_name: ${NAME:-searxng}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,14 +18,14 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/searxng:/etc/searxng
 
-    hostname: searxng
+    hostname: ${NAME:-searxng}
 
     # networks:
     #   - ai-services
     #   - host
 
     ports:
-      - ${SEARXNG_PORT:-8081}:8080
+      - ${PORT:-8080}:8080
 
     env_file:
       - .env.searxng
