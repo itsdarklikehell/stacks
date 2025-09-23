@@ -31,7 +31,7 @@ services:
       - ${WHISPARR_PORT:-6969}:6969/tcp
 
     env_file:
-      - ../.env
+      - .env.whisparr
 
     deploy:
       replicas: 1

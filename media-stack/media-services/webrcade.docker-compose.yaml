@@ -23,7 +23,7 @@ services:
     #   - host
 
     env_file:
-      - ../.env
+      - .env.webrcade
 
     deploy:
       replicas: 1

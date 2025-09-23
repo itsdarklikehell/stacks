@@ -26,7 +26,7 @@ services:
     #   - host
 
     env_file:
-      - ../.env
+      - .env.jellyseerr
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7878"]

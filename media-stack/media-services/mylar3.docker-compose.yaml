@@ -36,7 +36,7 @@ services:
       start_period: 40s
 
     env_file:
-      - ../.env
+      - .env.mylar3
 
     deploy:
       replicas: 1

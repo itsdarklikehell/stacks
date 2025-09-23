@@ -31,7 +31,7 @@ services:
       - ${RADARR_PORT:-7878}:7878/tcp
 
     env_file:
-      - ../.env
+      - .env.radarr
 
     deploy:
       replicas: 1

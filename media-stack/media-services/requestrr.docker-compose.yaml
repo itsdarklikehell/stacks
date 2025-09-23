@@ -24,7 +24,7 @@ services:
       - ${REQUESTRR_PORT:-4545}:4545
 
     env_file:
-      - ../.env
+      - .env.requestrr
 
     deploy:
       replicas: 1
