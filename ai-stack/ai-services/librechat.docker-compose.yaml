@@ -67,7 +67,7 @@ services:
     depends_on:
       - librechat-vectordb
     env_file:
-      - ../.env
+      - .env.librechat
 
 volumes:
   pgdata2:

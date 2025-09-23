@@ -39,7 +39,7 @@ services:
       
 
     env_file:
-      - ../.env
+      - .env.whisper
 
     depends_on:
       - mongo

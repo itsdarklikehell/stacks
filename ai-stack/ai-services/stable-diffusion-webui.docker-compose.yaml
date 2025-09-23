@@ -37,7 +37,7 @@ services:
       - ${COMFYUI_PORT:-7860}:7860
 
     env_file:
-      - ../.env
+      - .env.stable-diffusion-webui
 
     stop_signal: SIGKILL
 

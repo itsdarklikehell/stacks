@@ -26,7 +26,7 @@ services:
       - ${LETTA_MCP_PORT:-3005}:3005
     
     env_file:
-      - ../.env
+      - .env.letta-mcp
 
     deploy:
       replicas: 1

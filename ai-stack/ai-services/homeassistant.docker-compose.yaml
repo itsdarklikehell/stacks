@@ -27,7 +27,7 @@ services:
       host:
 
     env_file:
-      - ../.env
+      - .env.homeassistant
         
     ports:
       - ${HASSPORT:-8123}:8123

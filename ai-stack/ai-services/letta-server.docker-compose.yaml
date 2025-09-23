@@ -55,7 +55,7 @@ services:
       - 8083:8083
 
     env_file:
-      - ../.env
+      - .env.letta-server
       
     deploy:
       replicas: 1

@@ -32,8 +32,8 @@ services:
       - host
 
     env_file:
-      - ../.env
-
+      - .env.stable-diffusion-models-download
+      
     deploy:
       replicas: 1
 

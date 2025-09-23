@@ -41,7 +41,7 @@ services:
       - "12393:12393"
 
     env_file:
-      - ../.env
+      - .env.open-llm-vtuber
 
     deploy:
       resources:

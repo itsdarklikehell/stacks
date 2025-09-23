@@ -33,7 +33,7 @@ services:
       - ${LETTA_PG_PORT:-5432}:5432
 
     env_file:
-      - ../.env
+      - .env.letta-db
     
     deploy:
       replicas: 1

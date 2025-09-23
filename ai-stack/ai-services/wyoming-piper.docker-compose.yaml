@@ -30,7 +30,7 @@ services:
       - ${PIPER_PORT:-10200}:10200
 
     env_file:
-      - ../.env
+      - .env.wyoming-piper
 
     deploy:
       resources:

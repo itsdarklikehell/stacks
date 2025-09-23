@@ -61,7 +61,7 @@ services:
       - "8004:8004"
     
     env_file:
-      - ../.env
+      - .env.basic-memory
     
     deploy:
       replicas: 1

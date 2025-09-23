@@ -44,7 +44,7 @@ services:
       - ${CLICKHOUSE_DBPORT:-19000}:19000
 
     env_file:
-      - ../.env
+      - .env.clickhouse-server
 
     deploy:
       replicas: 1

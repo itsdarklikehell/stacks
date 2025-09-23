@@ -31,7 +31,7 @@ services:
     hostname: faster-whisper-gpu
 
     env_file:
-      - ../.env
+      - .env.faster-whisper-gpu
 
     deploy:
       replicas: 1

@@ -35,7 +35,7 @@ services:
     tty: true
     
     env_file:
-      - ../.env
+      - .env.libretranslate
     
     deploy:
       resources:
