@@ -28,7 +28,7 @@ services:
       - "../DATA/Open-LLM-VTuber/scripts:/app/scripts"
       - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
       - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
-    
+
     hostname: open-llm-vtuber
 
     # command: [ "ollama", "pull", "qwen3:latest"]
@@ -36,7 +36,7 @@ services:
     networks:
       - ai-services
       - host
-    
+
     ports:
       - "12393:12393"
 

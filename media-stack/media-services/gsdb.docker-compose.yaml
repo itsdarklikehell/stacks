@@ -8,27 +8,27 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-        
+
     environment:
       - MARIADB_USER=gaseous
-    
+
     volumes:
       - gsdb:/var/lib/mysql
-    
+
     hostname: gsdb
 
     networks:
       - media-services
       - host
-    
+
     secrets:
       - gsdb_root_password
       - gsdb_password
 
     env_file:
       - ../.env
-    
-    
+
+
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:32400"]
       interval: 30s

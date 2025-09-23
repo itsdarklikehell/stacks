@@ -8,12 +8,12 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-Europe/Amsterdam}
-    
+
     volumes:
       - ../DATA/retroarch/config:/config
 
@@ -28,9 +28,9 @@ services:
     ports:
       - ${RETROARCH_PORT:-3007}:3007
       - 3003:3003
-    
+
     shm_size: "1gb"
-    
+
     security_opt:
       - seccomp:unconfined
 

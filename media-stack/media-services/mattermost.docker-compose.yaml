@@ -14,7 +14,7 @@ services:
     networks:
       - media-services
       - host
-    
+
     ports:
       - ${MATTERMOST_PORT:-8065}:8065
 

@@ -3,12 +3,12 @@ services:
     image: letta/letta:latest
     container_name: letta-server
     restart: unless-stopped
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - LETTA_PG_URI=${LETTA_PG_URI:-postgresql://${LETTA_PG_USER:-letta}:${LETTA_PG_PASSWORD:-letta}@${LETTA_DB_HOST:-letta-db}:${LETTA_PG_PORT:-5432}/${LETTA_PG_DB:-letta}}
       - LETTA_DEBUG=${LETTA_DEBUG:-True}
@@ -56,7 +56,7 @@ services:
 
     env_file:
       - .env.letta-server
-      
+
     deploy:
       replicas: 1
 

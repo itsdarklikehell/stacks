@@ -9,7 +9,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     volumes:
       - swarmdata:/SwarmUI/Data
       - swarmbackend:/SwarmUI/dlbackend

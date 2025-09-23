@@ -8,23 +8,23 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - LETTA_BASE_URL=${LETTA_BASE_URL:-http://host.docker.internal:8283}
       - LETTA_PASSWORD=${LETTA_PASSWORD:-lettapassword}
       - NODE_ENV=${NODE_ENV:-production}
 
     hostname: letta-mcp
-        
+
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
     networks:
       - ai-services
       - host
-    
+
     ports:
       - ${LETTA_MCP_PORT:-3005}:3005
-    
+
     env_file:
       - .env.letta-mcp
 

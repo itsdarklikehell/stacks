@@ -26,7 +26,7 @@ function INSTALL_DOCKER(){
         curl -fsSL https://get.docker.com -o get-docker.sh
         sh get-docker.sh
         sudo usermod -aG docker "${USER}"
-        
+
         # Post-installation steps:
         # sudo groupadd docker
         # newgrp docker
@@ -52,4 +52,4 @@ function INSTALL_DOCKER(){
 
 }
 # Call the function to install Docker
-INSTALL_DOCKER 
+INSTALL_DOCKER

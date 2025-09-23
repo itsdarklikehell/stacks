@@ -8,11 +8,11 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - "PUID=$(id"
       - "PGID=$(id"
-    
+
     volumes:
       - ../DATA/buildarr/config:/config
 
@@ -21,7 +21,7 @@ services:
     networks:
       - media-services
       - host
-    
+
     env_file:
       - ../.env
 

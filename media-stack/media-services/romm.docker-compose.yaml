@@ -14,7 +14,7 @@ services:
       - DB_NAME=romm
       - DB_USER=romm-user
       - HASHEOUS_API_ENABLED=true
-    
+
     volumes:
       - romm_resources:/romm/resources
       - romm_redis_data:/redis-data
@@ -28,24 +28,24 @@ services:
       - screenscraper_password
       - retroachievements_api_key
       - steamgriddb_api_key
-    
+
     hostname: romm
-    
+
     networks:
       - media-services
       - host
-    
+
     ports:
       - ${ROMM_PORT:-8080}:8080
-    
+
     depends_on:
       romm-db:
         condition: service_healthy
         restart: true
-    
+
     env_file:
       - ../.env
-      
+
     deploy:
       replicas: 1
       # resources:

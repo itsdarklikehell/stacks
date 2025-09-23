@@ -8,7 +8,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - "ALSADEV=hw:1,0"
       - "USER=${UBUNTU_USER:-ubuntu}"
@@ -19,15 +19,15 @@ services:
       - "/dev/shm:/dev/shm"
 
     hostname: ubuntu-desktop-lxde-vnc
-    
+
     networks:
       - management-services
       - host
-    
+
     ports:
       - "6080:80"
       - "5900:5900"
-    
+
     devices:
       - "/dev/snd"
 

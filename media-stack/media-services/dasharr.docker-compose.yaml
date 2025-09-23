@@ -8,15 +8,15 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - TZ=${TZ:-Europe/Amsterdam}
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-    
+
     volumes:
       - ../DATA/dasharr/dasharr_config:/app/config  # or use bind mount: ./config:/app/config
-    
+
     hostname: dasharr
 
     networks:
@@ -33,10 +33,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    
+
     env_file:
       - ../.env
-    
+
     deploy:
       replicas: 1
       # resources:
@@ -46,4 +46,4 @@ services:
       #   reservations:
       #     memory: 128M
       #     cpus: "0.10"
-    
+

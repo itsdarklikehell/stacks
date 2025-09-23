@@ -6,7 +6,7 @@ function CREATE_NETWORKS(){
     docker network create management-services
     docker network create media-services
     docker network create ai-services
-    
+
     docker network create -d iot_macvlan \
     --subnet=192.168.1.0/24 \
     --gateway=192.168.1.1 \
@@ -14,4 +14,4 @@ function CREATE_NETWORKS(){
     iot_macvlan
 }
 
-CREATE_NETWORKS 
+CREATE_NETWORKS

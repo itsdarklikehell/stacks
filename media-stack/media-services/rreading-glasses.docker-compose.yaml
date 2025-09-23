@@ -62,17 +62,17 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       POSTGRES_USER: rreading-glasses
       POSTGRES_DB: rreading-glasses
-    
+
     volumes:
       - rreading_glasses_data:/var/lib/postgresql/data
-    
+
     secrets:
       - rreading_glasses_db_password
-    
+
     hostname: rreading-glasses-db
 
     networks:

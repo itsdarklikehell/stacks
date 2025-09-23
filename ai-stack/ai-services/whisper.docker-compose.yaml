@@ -9,7 +9,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -36,7 +36,7 @@ services:
     ports:
       - ${WHISPER_PORT:-8001}:80
       - 10300:10300
-      
+
 
     env_file:
       - .env.whisper

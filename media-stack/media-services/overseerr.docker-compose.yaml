@@ -8,12 +8,12 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - LOG_LEVEL=debug
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=5056
-    
+
     volumes:
       - ../DATA/overseerr/appdata/config:/app/config
 
@@ -21,10 +21,10 @@ services:
 
     ports:
       - ${OVERSEERR_PORT:-5056}:5056
-    
+
     env_file:
       - ../.env
-    
+
     deploy:
       replicas: 1
       # resources:

@@ -3,7 +3,7 @@ services:
     image: "ghcr.io/thephaseless/byparr:latest"
     container_name: byparr
     restart: unless-stopped
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
@@ -14,7 +14,7 @@ services:
     networks:
       - media-services
       - host
-    
+
     ports:
       - "8191:8191"
 

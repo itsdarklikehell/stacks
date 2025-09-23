@@ -19,15 +19,15 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
 
     hostname: emby
-    
+
     networks:
       - media-services
       - host
-    
+
     expose:
       - 8097/tcp
       - 8920/tcp
-    
+
     ports:
       - ${EMBY_PORT:-8097}:8097/tcp
 
@@ -37,7 +37,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    
+
     env_file:
       - ../.env
 

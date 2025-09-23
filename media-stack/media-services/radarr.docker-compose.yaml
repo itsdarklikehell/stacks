@@ -8,16 +8,16 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-Europe/Amsterdam}
-    
+
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
-    
+
     hostname: radarr
 
     networks:
@@ -26,7 +26,7 @@ services:
 
     expose:
       - 7878/tcp
-    
+
     ports:
       - ${RADARR_PORT:-7878}:7878/tcp
 

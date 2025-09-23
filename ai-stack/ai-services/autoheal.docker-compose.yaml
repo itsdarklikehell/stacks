@@ -3,12 +3,12 @@ services:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal:latest}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-ai-services}
     restart: unless-stopped
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
@@ -27,7 +27,7 @@ services:
     networks:
       - ai-services
       - host
-    
+
     # # ports:
     # #   - "80:80"
 

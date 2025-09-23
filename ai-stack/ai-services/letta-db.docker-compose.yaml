@@ -34,7 +34,7 @@ services:
 
     env_file:
       - .env.letta-db
-    
+
     deploy:
       replicas: 1
 

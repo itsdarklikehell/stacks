@@ -3,12 +3,12 @@ services:
     container_name: ${portainer_container_name:-portainer}
     restart: ${portainer_restart:-unless-stopped}
     image: ${PORTAINER_IMAGE:-portainer/portainer-ce:latest}
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     volumes:
       - ../DATA/portainer/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock

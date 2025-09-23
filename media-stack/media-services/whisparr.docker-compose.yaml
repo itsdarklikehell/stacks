@@ -8,16 +8,16 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-Europe/Amsterdam}
-    
+
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/whisparr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
-    
+
     hostname: whisparr
 
     networks:
@@ -26,13 +26,13 @@ services:
 
     expose:
       - 6969/tcp
-    
+
     ports:
       - ${WHISPARR_PORT:-6969}:6969/tcp
-    
+
     env_file:
       - ../.env
-    
+
     deploy:
       replicas: 1
       # resources:

@@ -35,13 +35,13 @@ function INSTALL_AI_STACK(){
 }
 
 echo "Installing Drivers"
-INSTALL_DRIVERS &>/dev/null
+INSTALL_DRIVERS
 echo "Installing Docker"
-INSTALL_DOCKER &>/dev/null
+INSTALL_DOCKER
 echo "Creating Docker Secrets"
-CREATE_SECRETS &>/dev/null
+CREATE_SECRETS
 echo "Creating Docker Networks"
-CREATE_NETWORKS &>/dev/null
+CREATE_NETWORKS
 
 ## STACKS:
 echo "Installing AI Stack"

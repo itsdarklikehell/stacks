@@ -11,7 +11,7 @@ services:
 
     volumes:
       - ../DATA/webrcade/content:/var/www/html/content
-    
+
     hostname: webrcade
 
     ports:

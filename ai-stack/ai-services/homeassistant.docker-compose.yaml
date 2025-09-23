@@ -8,16 +8,16 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}    
-    
+      - PGID=${PGID:-1000}
+
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/home-assistant/config:/config
-    
+
     hostname: homeassistant
 
     networks:
@@ -28,7 +28,7 @@ services:
 
     env_file:
       - .env.homeassistant
-        
+
     ports:
       - ${HASSPORT:-8123}:8123
 

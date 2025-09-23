@@ -3,12 +3,12 @@ services:
     image: ${NGINX_PROXY_MANAGER_IMAGE:-jc21/nginx-proxy-manager:latest}
     restart: ${nginx_proxy_manager_restart:-unless-stopped}
     container_name: ${nginx_proxy_manager_container_name:-nginx-proxy-manager}
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_USERNAME:-bauke.molenaar@gmail.com}
       INITIAL_ADMIN_PASSWORD: ${NGINX_PROXY_MANAGER_PASSWORD:-changeme}
@@ -17,17 +17,17 @@ services:
     # DB_SQLITE_FILE: "/data/database.sqlite"
     # Uncomment this if IPv6 is not enabled on your host
     # DISABLE_IPV6: 'true'
-    
+
     volumes:
       - ../DATA/nginx-proxy-manager/data:/data
       - ../DATA/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
-    
+
     hostname: ${nginx_proxy_manager_hostname:-nginx-proxy-manager}
-    
+
     networks:
       - management-services
       - host
-    
+
     ports:
       # These ports are in format <host-port>:<container-port>
       - "80:80" # Public HTTP Port

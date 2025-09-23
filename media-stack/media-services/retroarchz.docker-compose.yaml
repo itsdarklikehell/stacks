@@ -12,11 +12,11 @@ services:
       - "/home/rizzo/RetroPie/roms:/roms"
 
     hostname: retroarchz
-    
+
     networks:
       - media-services
       - host
-    
+
     ports:
       - ${RETROARCHZ_PORT:-85}:85
 

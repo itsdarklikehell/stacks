@@ -4,7 +4,7 @@ services:
     container_name: stable-diffusion-webui
     restart: unless-stopped
 
-    build: 
+    build:
       context: ../DATA/stable-diffusion-webui-docker/services/comfy
       args:
         UID: ${HOST_UID:-1000}
@@ -15,7 +15,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}

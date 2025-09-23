@@ -12,15 +12,15 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=${TZ:-Europe/Amsterdam}
-    
+
     volumes:
       - ../DATA/jellyseerr/appdata/config:/app/config
-    
+
     hostname: jellyseerr
 
     ports:
       - ${JELLYSEERR_PORT:-5055}:5055
-    
+
     networks:
       - media-services
       - host

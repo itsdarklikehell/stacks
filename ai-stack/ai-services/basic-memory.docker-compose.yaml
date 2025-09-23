@@ -3,27 +3,27 @@ services:
     image: ghcr.io/basicmachines-co/basic-memory:latest
     container_name: basic-memory-server
     restart: unless-stopped
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-      
+
     environment:
       - BASIC_MEMORY_DEFAULT_PROJECT=main
       - BASIC_MEMORY_SYNC_CHANGES=true
       - BASIC_MEMORY_LOG_LEVEL=INFO
       - BASIC_MEMORY_SYNC_DELAY=1000
-    
+
     volumes:
       - basic-memory-config:/root/.basic-memory:rw
       - ../DATA/basic-memory/knowledge:/app/data:rw
       - ../DATA/basic-memory/work-notes:/app/data/work:rw
       - ../DATA/basic-memory/personal-notes:/app/data/personal:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
-    
+
     hostname: basic-memory
-    
+
     command:
       [
         "basic-memory",
@@ -35,7 +35,7 @@ services:
         "--port",
         "8004",
       ]
-    
+
     healthcheck:
       test: ["CMD", "basic-memory", "--version"]
       interval: 30s
@@ -56,12 +56,12 @@ services:
     networks:
       - ai-services
       - host
-    
+
     ports:
       - "8004:8004"
-    
+
     env_file:
       - .env.basic-memory
-    
+
     deploy:
       replicas: 1

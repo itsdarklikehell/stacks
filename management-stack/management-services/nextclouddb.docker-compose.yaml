@@ -8,7 +8,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - PUID=1000
       - PGID=1000
@@ -17,18 +17,18 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-    
+
     volumes:
       - ../DATA/nextclouddb/nextclouddb:/var/lib/mysql
-    
+
     hostname: nextclouddb
 
     command: ["--transaction-isolation=READ-COMMITTED --binlog-format=ROW"]
-    
+
     networks:
       - management-services
       - host
-    
+
     env_file:
       - ../.env
 

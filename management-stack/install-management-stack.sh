@@ -26,7 +26,7 @@ echo "*** FINISHED COMPOSING: management-stack ****"
 #     else
 #         echo "Cloning repository docker-ubuntu-vnc-desktop..."
 #         git clone --recursive --quiet "https://github.com/fcwu/docker-ubuntu-vnc-desktop" "docker-ubuntu-vnc-desktop"
-#         cd "docker-ubuntu-vnc-desktop" || exit 1 
+#         cd "docker-ubuntu-vnc-desktop" || exit 1
 #         docker build --tag "docker-ubuntu-vnc-desktop" .
 #         docker run --detach "docker-ubuntu-vnc-desktop"
 #     fi

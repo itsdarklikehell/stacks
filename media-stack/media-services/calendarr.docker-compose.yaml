@@ -8,7 +8,7 @@ services:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       TZ: ${TZ:-Europe/Amsterdam}
       CALENDAR_URLS: >
@@ -53,17 +53,17 @@ services:
       SHOW_TIMEZONE_IN_SUBHEADER: true
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
-    
+
     volumes:
       - ../DATA/calendarr/logs:/app/logs:rw
       - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
-    
+
     hostname: calendarr
 
     networks:
       - media-services
       - host
-    
+
     healthcheck:
       test:
         [

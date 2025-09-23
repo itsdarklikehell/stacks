@@ -3,25 +3,25 @@ services:
     image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:latest}
     container_name: ${uptime_kuma_container_name:-uptime-kuma}
     restart: ${uptime_kuma_restart:-always}
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     environment:
       - TZ=${TZ:-Europe/Amsterdam}
       - UMASK=${UPTIME_KUMA_UMASK:-0022}
-    
+
     volumes:
       - ../DATA/uptime-kuma/data:/app/data
-    
+
     hostname: uptime-kuma
 
     networks:
       - management-services
       - host
-    
+
     ports:
       - "${UPTIME_KUMA_PORT:-3002}:3002"
 
@@ -31,7 +31,7 @@ services:
       retries: 3
       start_period: 10s
       timeout: 5s
-    
+
     logging:
       driver: "json-file"
       options:

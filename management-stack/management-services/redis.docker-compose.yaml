@@ -3,12 +3,12 @@ services:
     image: ${REDIS_IMAGE:-redis:alpine}
     container_name: ${redis_container_name:-redis}
     restart: unless-stopped
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
-    
+
     volumes:
       - ../DATA/redis/redis:/data
 
@@ -17,7 +17,7 @@ services:
     networks:
       - management-services
       - host
-  
+
     ports:
       - 6379:6379
 
