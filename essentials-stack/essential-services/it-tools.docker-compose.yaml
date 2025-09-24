@@ -29,8 +29,8 @@ services:
     #   - management-services
     #   - host
 
-    # ports:
-    #   - "8080:80"
+    ports:
+      - "8080:80"
 
     env_file:
       - .env.it-tools

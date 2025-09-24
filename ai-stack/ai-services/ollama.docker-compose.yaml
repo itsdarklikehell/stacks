@@ -45,12 +45,18 @@ services:
 
 
   ollama-assistant:
-    image: node:18
+    image: ${IMAGE:-node:18} 
+    container_name: ${NAME:-ollama-assistant}
+    restart: ${RESTART:-unless-stopped}
+
     volumes:
       - ../DATA/ollama/assistant:/app
+
     working_dir: /app
+
     depends_on:
       - ollama
+
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}

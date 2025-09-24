@@ -6,7 +6,6 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
   base.docker-compose.yaml
   anythingllm.docker-compose.yaml
-  autoheal.docker-compose.yaml
   basic-memory.docker-compose.yaml
   # chroma.docker-compose.yaml
   # clickhouse.docker-compose.yaml
@@ -29,7 +28,6 @@ COMPOSE_FILES=(
   # stable-diffusion-models-download.docker-compose.yaml
   # stable-diffusion-webui.docker-compose.yaml
   # swarmui.docker-compose.yaml
-  watchtower.docker-compose.yaml
   whisper.docker-compose.yaml
   wyoming-piper.docker-compose.yaml
 )

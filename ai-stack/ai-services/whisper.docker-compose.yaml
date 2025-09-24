@@ -1,6 +1,6 @@
 services:
   whisper:
-    image: ${IMAGE:-pluja/whisper-gpu}
+    image: ${IMAGE:-pluja/whishper:latest-gpu}
     container_name: ${NAME:-whisper}
     restart: ${RESTART:-unless-stopped}
     # pull_policy: always
@@ -15,7 +15,7 @@ services:
       - PGID=${PGID:-1000}
       - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-whishper}
       - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}
-      - PUBLIC_API_HOST=${WHISHPER_HOST:-}whishper
+      - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}
       - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
       - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
       - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}

@@ -9,10 +9,12 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: ai-services
+name: essential-services
 
 networks:
   host:
+  essential-services:
+    external: true  
   ai-services:
     external: true
   media-services:
