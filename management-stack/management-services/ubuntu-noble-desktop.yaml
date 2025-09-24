@@ -1,7 +1,7 @@
 services:
-  ubuntu-desktop-lxde-vnc:
-    image: ${IMAGE:-dorowu/ubuntu-desktop-lxde-vnc}
-    container_name: ${NAME:-ubuntu-desktop-lxde-vnc}
+  ubuntu-noble-desktop:
+    image: ${IMAGE:-kasmweb/ubuntu-noble-desktop:1.17.0}
+    container_name: ${NAME:-ubuntu-noble-desktop}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,29 +10,26 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - "ALSADEV=hw:1,0"
-      - "USER=${UBUNTU_USER:-ubuntu}"
-      - "PASSWORD=${UBUNTU_PASSWORD:-ubuntu}"
       - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"
 
     volumes:
       - "/dev/shm:/dev/shm"
 
-    hostname: ${NAME:-ubuntu-desktop-lxde-vnc}
+    hostname: ${NAME:-ubuntu-noble-desktop}
 
     networks:
       host:
       management-services:
 
     ports:
-      - "6080:80"
-      - "5900:5900"
+      - "6901:6901"
 
-    devices:
-      - "/dev/snd"
+    shm_size: 512m
+    tty: true
+    stdin_open: true
 
     env_file:
-      - .env.ubuntu-desktop-lxde-vnc
+      - .env.ubuntu-noble-desktop
 
     deploy:
       replicas: 1

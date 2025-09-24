@@ -13,7 +13,7 @@ COMPOSE_FILES=(
   nextcloud.docker-compose.yaml
   nextclouddb.docker-compose.yaml
   redis.docker-compose.yaml
-  ubuntu-desktop-lxde-vnc.docker-compose.yaml
+  ubuntu-noble-desktop.docker-compose.yaml
   wg-easy.docker-compose.yaml
 )
 
