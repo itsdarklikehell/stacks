@@ -18,7 +18,7 @@ services:
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
       - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
-      - SEARXNG_QUERY_URL=http://searxng:8080/search?q=<query>
+      - SEARXNG_QUERY_URL=http://searxng:8081/search?q=<query>
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -32,7 +32,7 @@ services:
     #   - host
 
     ports:
-      - ${PORT:-3000}:8080
+      - ${PORT:-8080}:8080
 
     env_file:
       - .env.open-webui

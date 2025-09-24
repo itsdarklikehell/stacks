@@ -9,9 +9,7 @@ COMPOSE_FILES=(
   docker-proxy.docker-compose.yaml
   dockge.docker-compose.yaml
   grafana.docker-compose.yaml
-  it-tools.docker-compose.yaml
   nginx-proxy-manager.docker-compose.yaml
-  organizr.docker-compose.yaml
   portainer.docker-compose.yaml
   portracker.docker-compose.yaml
   uptime-kuma.docker-compose.yaml
@@ -26,5 +24,5 @@ done
 echo "Running: docker compose $ARGS up -d"
 
 docker login
-# docker compose $ARGS up -d
-docker compose $ARGS up -d --build --force-recreate --remove-orphans
+docker compose $ARGS up -d
+# docker compose $ARGS up -d --build --force-recreate --remove-orphans
