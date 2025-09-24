@@ -15,9 +15,9 @@ services:
 
     hostname: ${NAME:-portainer}
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       - 8000:8000

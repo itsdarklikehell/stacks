@@ -25,9 +25,9 @@ services:
 
     command: ["--transaction-isolation=READ-COMMITTED --binlog-format=ROW"]
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     env_file:
       - .env.nextclouddb

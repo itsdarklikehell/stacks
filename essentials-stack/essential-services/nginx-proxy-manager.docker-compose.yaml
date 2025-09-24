@@ -24,9 +24,9 @@ services:
 
     hostname: ${nginx_proxy_manager_hostname:-nginx-proxy-manager}
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       # These ports are in format <host-port>:<container-port>

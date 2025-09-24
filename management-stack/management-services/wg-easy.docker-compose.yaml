@@ -21,9 +21,9 @@ services:
 
     hostname: wg-easy
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - "51820:51820/udp"

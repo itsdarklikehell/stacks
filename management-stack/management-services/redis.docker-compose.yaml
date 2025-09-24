@@ -14,9 +14,9 @@ services:
 
     hostname: redis
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - 6379:6379

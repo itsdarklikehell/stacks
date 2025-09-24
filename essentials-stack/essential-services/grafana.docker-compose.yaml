@@ -19,9 +19,9 @@ services:
 
     hostname: grafana
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       - "3000:3000"

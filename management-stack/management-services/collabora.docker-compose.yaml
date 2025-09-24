@@ -24,9 +24,9 @@ services:
 
     hostname: collabora
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - 9980:9980

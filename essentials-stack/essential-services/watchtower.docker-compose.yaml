@@ -18,9 +18,9 @@ services:
 
     hostname: ${NAME:-watchtower}
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     env_file:
       - .env.watchtower

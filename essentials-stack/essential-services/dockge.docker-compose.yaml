@@ -25,9 +25,9 @@ services:
 
     hostname: ${dockge_hostname:-dockge}
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       - 5001:5001

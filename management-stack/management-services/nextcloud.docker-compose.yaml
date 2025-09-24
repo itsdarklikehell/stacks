@@ -27,9 +27,9 @@ services:
 
     hostname: nextcloud
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - 8087:80

@@ -17,9 +17,9 @@ services:
 
     hostname: portracker
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       - "4999:4999"

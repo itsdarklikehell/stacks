@@ -21,9 +21,9 @@ services:
 
     hostname: docker-proxy
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      essential-services:
 
     ports:
       - "2375:2375"

@@ -26,9 +26,9 @@ services:
 
     hostname: n8n
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - "5678:5678"

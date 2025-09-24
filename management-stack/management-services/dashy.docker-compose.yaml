@@ -18,9 +18,9 @@ services:
     # volumes:
     #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
 
-    # networks:
-    #   - management-services
-    #   - host
+    networks:
+      host:
+      management-services:
 
     ports:
       - 8383:8383
