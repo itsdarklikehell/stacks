@@ -27,7 +27,7 @@ services:
       media-services:
 
     ports:
-      - "8080:80"
+      - "${PORT:-8080}:80"
       - "27960:27960"
 
     env_file:
