@@ -1,10 +1,11 @@
 services:
   chroma:
-    container_name: chroma
+    image: ${IMAGE:-chroma}
+    container_name: ${NAME:-chroma}
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: .
+      context: ../DATA/chroma
       dockerfile: Dockerfile
 
     volumes:

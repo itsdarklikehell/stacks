@@ -35,8 +35,8 @@ function CLONE_SWARMUI(){
     cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
     cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 
-    # ./launchtools/custom-launch-docker.sh fixch
-    # ./launchtools/custom-launch-docker.sh
+    ./launchtools/custom-launch-docker.sh fixch
+    ./launchtools/custom-launch-docker.sh
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
