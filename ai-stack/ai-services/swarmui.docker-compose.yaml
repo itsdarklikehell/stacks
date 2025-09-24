@@ -2,7 +2,7 @@ services:
   swarmui:
     image: ${IMAGE:-swarmui}
     container_name: ${NAME:-swarmui}
-    user: ${PUID:-1000}:${GUID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
     restart: ${RESTART:-unless-stopped}
 
     labels:

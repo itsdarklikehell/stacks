@@ -11,7 +11,7 @@ services:
 
     environment:
       - PUID=1000
-      - GUID=1000
+      - PGID=1000
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
@@ -26,13 +26,13 @@ services:
     #   - host
 
     ports:
-      - ${RETROARCH_PORT:-3007}:3007
-      - 3003:3003
+      - ${RETROARCH_PORT:-3000}:3000
+      - 3001:3001
 
     shm_size: "1gb"
 
-    security_opt:
-      - seccomp:unconfined
+    # security_opt:
+    #   - seccomp:unconfined
 
     env_file:
       - .env.retroarch

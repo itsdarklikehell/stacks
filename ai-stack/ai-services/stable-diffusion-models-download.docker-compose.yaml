@@ -18,7 +18,7 @@ services:
 
     environment:
       - PUID=${PUID:-1000}
-      - GUID=${GUID:-1000}
+      - PGID=${PGID:-1000}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

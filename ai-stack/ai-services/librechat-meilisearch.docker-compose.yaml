@@ -4,7 +4,7 @@ services:
     container_name: librechat-meilisearch
     restart: ${RESTART:-unless-stopped}
 
-    user: ${PUID:-1000}:${GUID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     environment:
       - MEILI_HOST=http://meilisearch:7700

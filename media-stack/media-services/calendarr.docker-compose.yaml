@@ -31,7 +31,7 @@ services:
       ADD_LEADING_ZERO: true
       CALENDAR_RANGE: "AUTO"
       CRON_SCHEDULE: ""
-      CUSTOM_HEADER: "TV Guide - Shows and Movies airing this week"
+      CUSTOM_HEADER: "TV PGIDe - Shows and Movies airing this week"
       DEBUG: false
       DEDUPLICATE_EVENTS: true
       DISCORD_HIDE_MENTION_INSTRUCTIONS: false

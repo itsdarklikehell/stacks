@@ -1,6 +1,6 @@
 services:
   sickgear:
-    image: sickgear/sickgear
+    image: lscr.io/linuxserver/sickgear:latest
     container_name: sickgear
 
     labels:
@@ -9,8 +9,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - APP_UID=1000
-      - APP_GID=44
+      - PUID=1000
+      - PGID=1000
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
@@ -25,7 +25,7 @@ services:
     #   - host
 
     ports:
-      - 8088:8088/tcp
+      - "8081:8081"
 
     env_file:
       - .env.sickgear

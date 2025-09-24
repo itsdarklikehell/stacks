@@ -27,7 +27,7 @@ services:
 
     hostname: ${NAME:-anythingllm}
 
-    user: ${PUID:-1000}:${GUID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     command: ["--cap-add", "SYS_ADMIN"]
 
