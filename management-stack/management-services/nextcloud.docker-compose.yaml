@@ -18,6 +18,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}
       - REDIS_HOST=${MYSQL_DATABASE:-redis}
+      # - PORT=8087
 
     volumes:
       - ../DATA/nextcloud/html:/var/www/html
