@@ -1,7 +1,7 @@
 services:
   letta-server:
-    image: letta/letta
-    container_name: letta-server
+    image: ${IMAGE:-letta/letta}
+    container_name: ${NAME:-letta-server}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -38,7 +38,7 @@ services:
       - ../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir # mounted volume for tool execution
 
 
-    hostname: letta-server
+    hostname: ${NAME:-letta-server}
 
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
@@ -51,8 +51,8 @@ services:
           - letta-db
 
     ports:
-      - 8283:8283
-      - 8083:8083
+      - "8283:8283"
+      - "8083:8083"
 
     env_file:
       - .env.letta-server

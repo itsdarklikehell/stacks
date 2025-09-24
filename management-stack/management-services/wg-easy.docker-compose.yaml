@@ -10,13 +10,13 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-    #  Optional:
-     - PORT=51821
-     - HOST=0.0.0.0
-     - INSECURE=false
+      #  Optional:
+      - PORT=51821
+      - HOST=0.0.0.0
+      - INSECURE=false
 
     volumes:
-      - etc_wireguard:/etc/wireguard
+      - wireguard:/etc/wireguard
       - /lib/modules:/lib/modules:ro
 
     hostname: wg-easy

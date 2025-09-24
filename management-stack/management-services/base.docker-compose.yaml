@@ -15,29 +15,13 @@ networks:
   host:
   management-services:
     external: true
-#   iot_macvlan:
-#     external: true
-#   wg:
-#     driver: bridge
-#     enable_ipv6: true
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 10.42.42.0/24
-#         - subnet: fdcc:ad94:bacf:61a3::/64
 
-# volumes:
-#   netdataconfig:
-#   basic-memory-config:
-#   netdatalib:
-#   netdatacache:
-#   n8n_data:
-#   dockge_data:
-#   etc_wireguard:
-#   grafana_data:
-#   swarmdata:
-#   swarmbackend:
-#   swarmdlnodes:
+volumes:
+  n8n_data:
+  wireguard:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
 
 # # secrets:
 #   letta_pg_password:

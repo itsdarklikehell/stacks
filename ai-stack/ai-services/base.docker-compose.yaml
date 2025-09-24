@@ -37,7 +37,7 @@ volumes:
 #   netdatacache:
 #   n8n_data:
 #   dockge_data:
-#   etc_wireguard:
+#   wireguard:
 #   grafana_data:
 #   swarmdata:
 #   swarmbackend:

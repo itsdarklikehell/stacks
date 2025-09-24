@@ -15,57 +15,36 @@ networks:
   host:
   media-services:
     external: true
-#   iot_macvlan:
-#     external: true
-#   wg:
-#     driver: bridge
-#     enable_ipv6: true
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 10.42.42.0/24
-#         - subnet: fdcc:ad94:bacf:61a3::/64
 
-# volumes:
-#   netdataconfig:
-#   netdatalib:
-#   netdatacache:
-#   n8n_data:
-#   dockge_data:
-#   etc_wireguard:
-#   grafana_data:
-#   gaseous_data:
-#   gsdb:
-#   kapowarr-db:
-#   mysql_data:
-#   romm_resources:
-#   romm_redis_data:
-#   rreading_glasses_data:
+volumes:
+  rreading_glasses_data:
+  gsdb:
+  mysql_data:
+  gaseous_data:
+  romm_resources:
+  romm_redis_data:
+  kapowarr-db:
 
-# secrets:
-#   letta_pg_password:
-#     file: ../../secrets/letta_pg_password
-#   letta_password:
-#     file: ../../secrets/letta_password
-#   mariadb_root_password:
-#     file: ../../secrets/mariadb_root_password
-#   mariadb_password:
-#     file: ../../secrets/mariadb_password
-#   gsdb_root_password:
-#     file: ../../secrets/gsdb_root_password
-#   gsdb_password:
-#     file: ../../secrets/gsdb_password
-#   romm_db_password:
-#     file: ../../secrets/romm_db_password
-#   romm_auth_secret_key:
-#     file: ../../secrets/romm_auth_secret_key
-#   screenscraper_password:
-#     file: ../../secrets/screenscraper_password
-#   retroachievements_api_key:
-#     file: ../../secrets/retroachievements_api_key
-#   steamgriddb_api_key:
-#     file: ../../secrets/steamgriddb_api_key
-#   hardcover_auth:
-#     file: ../../secrets/hardcover_auth
-#   rreading_glasses_db_password:
-#     file: ../../secrets/rreading_glasses_db_password
+secrets:
+  rreading_glasses_db_password:
+    file: ../../secrets/rreading_glasses_db_password
+  romm_db_password:
+    file: ../../secrets/romm_db_password
+  romm_auth_secret_key:
+    file: ../../secrets/romm_auth_secret_key
+  gsdb_root_password:
+    file: ../../secrets/gsdb_root_password
+  gsdb_password:
+    file: ../../secrets/gsdb_password
+  mariadb_root_password:
+    file: ../../secrets/mariadb_root_password
+  mariadb_password:
+    file: ../../secrets/mariadb_password
+  screenscraper_password:
+    file: ../../secrets/screenscraper_password
+  retroachievements_api_key:
+    file: ../../secrets/retroachievements_api_key
+  steamgriddb_api_key:
+    file: ../../secrets/steamgriddb_api_key
+  hardcover_auth:
+    file: ../../secrets/hardcover_auth

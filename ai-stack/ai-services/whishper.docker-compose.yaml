@@ -1,7 +1,7 @@
 services:
-  whisper:
+  whishper:
     image: ${IMAGE:-pluja/whishper:latest-gpu}
-    container_name: ${NAME:-whisper}
+    container_name: ${NAME:-whishper}
     restart: ${RESTART:-unless-stopped}
     # pull_policy: always
 
@@ -23,23 +23,22 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/whisper/uploads:/app/uploads
-      - ../DATA/whisper/logs:/var/log/whishper
-      - ../DATA/whisper/models:/app/models
+      - ../DATA/whishper/uploads:/app/uploads
+      - ../DATA/whishper/logs:/var/log/whishper
+      - ../DATA/whishper/models:/app/models
 
-    hostname: whisper
+    hostname: whishper
 
     # networks:
     #   - ai-services
     #   - host
 
     ports:
-      - ${WHISPER_PORT:-8001}:80
+      - ${whishper_PORT:-8001}:80
       - 10300:10300
 
-
     env_file:
-      - .env.whisper
+      - .env.whishper
 
     depends_on:
       - mongo

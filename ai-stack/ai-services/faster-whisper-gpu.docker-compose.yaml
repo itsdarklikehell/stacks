@@ -15,7 +15,8 @@ services:
       - WHISPER_MODEL=tiny-int8
       - WHISPER_BEAM=1 #optional
       - WHISPER_LANG=en #optional
-
+      # - LOCAL_ONLY= #optional
+    
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -25,8 +26,8 @@ services:
     #   - ai-services
     #   - host
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "10300:10300"
 
     hostname: faster-whisper-gpu
 

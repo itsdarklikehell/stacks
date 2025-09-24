@@ -32,7 +32,7 @@ function CLONE_REPOS(){
 function INSTALL_ESSENTIALS_STACK(){
     essentials-stack/install-stack.sh
 }
-function INSTALL_management-stack_STACK(){
+function INSTALL_MANAGEMENT-STACK_STACK(){
     management-stack/install-stack.sh
 }
 function INSTALL_MEDIA_STACK(){
@@ -64,11 +64,11 @@ INSTALL_ESSENTIALS_STACK
 echo "Installing AI Stack"
 INSTALL_AI_STACK
 
-# echo "Installing Docker Management Stack"
-# INSTALL_management-stack_STACK
+echo "Installing Docker Management Stack"
+INSTALL_MANAGEMENT-STACK_STACK
 
-# echo "Installing media Stack"
-# INSTALL_MEDIA_STACK
+echo "Installing media Stack"
+INSTALL_MEDIA_STACK
 
 
 # dockly # lazydocker

@@ -28,7 +28,7 @@ COMPOSE_FILES=(
   # stable-diffusion-models-download.docker-compose.yaml
   # stable-diffusion-webui.docker-compose.yaml
   # swarmui.docker-compose.yaml
-  whisper.docker-compose.yaml
+  whishper.docker-compose.yaml
   wyoming-piper.docker-compose.yaml
 )
 
