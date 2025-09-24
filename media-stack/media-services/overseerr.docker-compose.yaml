@@ -24,7 +24,7 @@ services:
     hostname: ${NAME:-overseerr}
 
     ports:
-      - ${OVERSEERR_PORT:-5056}:5056
+      - ${PORT:-5056}:5056
 
     env_file:
       - .env.overseerr

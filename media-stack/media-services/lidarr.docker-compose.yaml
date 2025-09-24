@@ -28,7 +28,7 @@ services:
       - 8686/tcp
 
     ports:
-      - ${LIDARR_PORT:-8686}:8686/tcp
+      - ${PORT:-8686}:8686/tcp
 
     env_file:
       - .env.lidarr

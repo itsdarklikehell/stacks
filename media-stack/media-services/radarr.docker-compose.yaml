@@ -28,7 +28,7 @@ services:
       - "7878/tcp"
 
     ports:
-      - "${RADARR_PORT:-7878}:7878/tcp"
+      - "${PORT:-7878}:7878/tcp"
 
     env_file:
       - .env.radarr

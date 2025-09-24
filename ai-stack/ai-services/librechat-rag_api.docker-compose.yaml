@@ -11,7 +11,7 @@ services:
 
     environment:
       - DB_HOST=librechat-vectordb
-      - RAG_PORT=${RAG_PORT:-8003}
+      - RAG_PORT=${PORT:-8003}
 
     depends_on:
       - librechat-vectordb

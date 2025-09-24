@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-jellyseerr}
 
     ports:
-      - ${JELLYSEERR_PORT:-5055}:5055
+      - ${PORT:-5055}:5055
 
     networks:
       host:

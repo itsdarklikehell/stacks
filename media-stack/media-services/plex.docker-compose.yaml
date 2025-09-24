@@ -21,7 +21,7 @@ services:
       media-services:
 
     ports:
-      - ${PLEX_PORT:-32400}:32400
+      - ${PORT:-32400}:32400
 
     env_file:
       - .env.plex

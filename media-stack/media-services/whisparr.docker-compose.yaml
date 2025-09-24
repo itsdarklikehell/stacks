@@ -1,7 +1,7 @@
 services:
   whisparr:
-    image: ghcr.io/hotio/whisparr}
-    container_name: ${IMAGE:-${NAME:-whisparr}
+    image: ${IMAGE:-ghcr.io/hotio/whisparr}
+    container_name: ${NAME:-whisparr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -28,7 +28,7 @@ services:
       - "6969/tcp"
 
     ports:
-      - "${WHISPARR_PORT:-6969}:6969/tcp"
+      - "${PORT:-6969}:6969/tcp"
 
     env_file:
       - .env.whisparr

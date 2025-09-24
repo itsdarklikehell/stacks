@@ -28,7 +28,7 @@ services:
       - "6767/tcp"
 
     ports:
-      - "${BAZARR_PORT:-6767}:6767/tcp"
+      - "${PORT:-6767}:6767/tcp"
 
     env_file:
       - .env.bazarr
