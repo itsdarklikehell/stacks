@@ -1,8 +1,8 @@
 services:
   dockge:
-    container_name: ${dockge_container_name:-dockge}
-    image: ${DOCKGE_IMAGE:-louislam/dockge}
-    restart: ${dockge_restart:-unless-stopped}
+    container_name: ${NAME:-dockge}
+    image: ${IMAGE:-louislam/dockge}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -23,14 +23,14 @@ services:
       - /media/rizzo/RAIDSTATION/stacks:/opt/stacks
       # - DOCKGE_STACKS_DIR=/opt/stacks
 
-    hostname: ${dockge_hostname:-dockge}
+    hostname: ${NAME:-dockge}
 
     networks:
       host:
       essential-services:
 
     ports:
-      - 5001:5001
+      - "5001:5001"
 
     env_file:
       - .env.dockge

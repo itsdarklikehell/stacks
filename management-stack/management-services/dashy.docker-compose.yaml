@@ -1,8 +1,8 @@
 services:
   dashy:
-    image: ${DASHY_IMAGE:-lissy93/dashy}
-    container_name: ${dashy_container_name:-dashy}
-    restart: ${dashy_restart:-unless-stopped}
+    image: ${IMAGE:-lissy93/dashy}
+    container_name: ${NAME:-dashy}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -18,12 +18,14 @@ services:
     # volumes:
     #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
 
+    hostname: ${NAME:-dashy}
+
     networks:
       host:
       management-services:
 
     ports:
-      - 8383:8383
+      - "8383:8383"
 
     env_file:
       - .env.dashy

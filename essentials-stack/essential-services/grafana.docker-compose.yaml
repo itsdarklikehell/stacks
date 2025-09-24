@@ -1,8 +1,8 @@
 services:
   grafana:
-    image: ${GRAFANA_IMAGE:-grafana/grafana}
-    container_name: ${grafana_container_name:-grafana}
-    restart: ${grafana_restart:-unless-stopped}
+    image: ${IMAGE:-grafana/grafana}
+    container_name: ${NAME=grafana:-grafana}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -10,14 +10,14 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - GF_SECURITY_ADMIN_USER=${grafana_admin:-grafana}
-      - GF_SECURITY_ADMIN_PASSWORD=${grafana_password:-grafana}
+      - GF_SECURITY_ADMIN_USER=${USERNAME:-grafana}
+      - GF_SECURITY_ADMIN_PASSWORD=${PASSWORD:-grafana}
       - GF_INSTALL_PLUGINS=
 
     volumes:
       - grafana_data:/var/lib/grafana
 
-    hostname: grafana
+    hostname: ${NAME=grafana:-grafana}
 
     networks:
       host:

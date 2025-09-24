@@ -1,8 +1,8 @@
 services:
   n8n:
-    image: ${N8N_IMAGE:-docker.n8n.io/n8nio/n8n}
-    restart: ${n8n_restart:-always}
-    container_name: ${n8n_container_name:-n8n}
+    image: ${IMAGE:-docker.n8n.io/n8nio/n8n}
+    restart: ${RESTART:-always}
+    container_name: ${NAME:-n8n}
 
     labels:
       - autoheal-app=true
@@ -24,7 +24,7 @@ services:
       - n8n_data:/home/node/.n8n
       - ../DATA/n8n/local-files:/files
 
-    hostname: n8n
+    hostname: ${NAME:-n8n}
 
     networks:
       host:

@@ -1,7 +1,7 @@
 services:
   portainer:
     container_name: ${NAME:-portainer}
-    image: ${PORTAINER_IMAGE:-portainer/portainer-ce}
+    image: ${IMAGE:-portainer/portainer-ce}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,8 +20,8 @@ services:
       essential-services:
 
     ports:
-      - 8000:8000
-      - 9443:9443
+      - "8000:8000"
+      - "9443:9443"
 
     env_file:
       - .env.portainer

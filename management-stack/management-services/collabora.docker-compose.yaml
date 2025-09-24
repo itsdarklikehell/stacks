@@ -1,8 +1,8 @@
 services:
   collabora:
-    image: ${COLLABORA_IMAGE:-collabora/code}
-    container_name: ${collabora_container_name:-collabora}
-    restart: ${collabora_restart:-unless-stopped}
+    image: ${IMAGE:-collabora/code}
+    container_name: ${NAME:-collabora}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -22,14 +22,14 @@ services:
     #   - /etc/localtime:/etc/localtime:ro
     #   - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: collabora
+    hostname: ${NAME:-collabora}
 
     networks:
       host:
       management-services:
 
     ports:
-      - 9980:9980
+      - "9980:9980"
 
     env_file:
       - .env.collabora

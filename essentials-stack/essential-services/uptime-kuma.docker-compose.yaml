@@ -1,8 +1,8 @@
 services:
   uptime-kuma:
-    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma}
-    container_name: ${uptime_kuma_container_name:-uptime-kuma}
-    restart: ${uptime_kuma_restart:-always}
+    image: ${IMAGE:-louislam/uptime-kuma}
+    container_name: ${NAME:-uptime-kuma}
+    restart: ${RESTART:-always}
 
     labels:
       - autoheal-app=true
@@ -11,19 +11,19 @@ services:
 
     environment:
       - TZ=${TZ:-Europe/Amsterdam}
-      - UMASK=${UPTIME_KUMA_UMASK:-0022}
+      - UMASK=${UMASK:-0022}
 
     volumes:
       - ../DATA/uptime-kuma/data:/app/data
 
-    hostname: uptime-kuma
+    hostname: ${NAME:-uptime-kuma}
 
     networks:
       host:
       essential-services:
 
     ports:
-      - "${UPTIME_KUMA_PORT:-3002}:3002"
+      - "${PORT:-3002}:3002"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002"]

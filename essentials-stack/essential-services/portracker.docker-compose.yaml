@@ -1,8 +1,8 @@
 services:
   portracker:
-    image: ${PORTRACKER_IMAGE:-mostafawahied/portracker}
-    container_name: ${portracker_container_name:-portracker}
-    restart: ${portracker_restart:-unless-stopped}
+    image: ${IMAGES:-mostafawahied/portracker}
+    container_name: ${NAME:-portracker}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -15,7 +15,7 @@ services:
     volumes:
       - ../DATA/portracker/data:/data
 
-    hostname: portracker
+    hostname: ${NAME:-portracker}
 
     networks:
       host:
