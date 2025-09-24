@@ -8,7 +8,7 @@ services:
       context: ../DATA/stable-diffusion-webui-docker/services/comfy
       args:
         UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        GID: ${GUID:-1000}
       dockerfile: ../DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile
 
     labels:
@@ -18,7 +18,7 @@ services:
 
     environment:
       - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - GUID=${GUID:-1000}
       - CLI_ARGS=${CLI_ARGS:-}
 
     volumes:

@@ -11,14 +11,23 @@ services:
 
     environment:
       - 'STORAGE_DIR="/app/server/storage"'
+      - SERVER_PORT=3009
+
+    cap_add:
+      - SYS_ADMIN
 
     volumes:
-      - "../DATA/anythingllm/storage:${STORAGE_DIR:-/app/server/storage}"
+      # - anythingllm_storage:${STORAGE_DIR:-/app/server/storage}
+      # - anythingllm_hotdir:/app/collector/hotdir
+      # - anythingllm_outputs:/app/collector/outputs
+      - ../DATA/anythingllm/anythingllm_storage:${STORAGE_DIR:-/app/server/storage}
+      - ../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir
+      - ../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs
       # - ".env.anythingllm:/app/server/.env"
 
     hostname: ${NAME:-anythingllm}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${GUID:-1000}
 
     command: ["--cap-add", "SYS_ADMIN"]
 

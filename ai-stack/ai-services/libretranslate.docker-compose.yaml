@@ -11,7 +11,7 @@ services:
 
     environment:
       - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - GUID=${GUID:-1000}
       - LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-False}
       - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}
       - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}

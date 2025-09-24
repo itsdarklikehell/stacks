@@ -11,7 +11,7 @@ services:
 
     environment:
       - "PUID=$(id"
-      - "PGID=$(id"
+      - "GUID=$(id"
 
     volumes:
       - ../DATA/buildarr/config:/config

@@ -12,7 +12,7 @@ services:
     environment:
       - PORT=${PORT:-8080}
       - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - GUID=${GUID:-1000}
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
       - ENABLE_RAG_WEB_SEARCH=True
       - RAG_WEB_SEARCH_ENGINE=searxng
