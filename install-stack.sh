@@ -50,6 +50,7 @@ echo "Creating Docker Secrets"
 CREATE_SECRETS
 echo "Creating Docker Networks"
 CREATE_NETWORKS
+
 echo "Cloning repos"
 CLONE_REPOS
 
@@ -60,8 +61,8 @@ CLONE_REPOS
 echo "Installing Essentials Stack"
 INSTALL_ESSENTIALS_STACK
 
-# echo "Installing AI Stack"
-# INSTALL_AI_STACK
+echo "Installing AI Stack"
+INSTALL_AI_STACK
 
 # echo "Installing Docker Management Stack"
 # INSTALL_management-stack_STACK

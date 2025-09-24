@@ -5,7 +5,14 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
   base.docker-compose.yaml
+  autoheal.docker-compose.yaml
+  dockge.docker-compose.yaml
+  docker-proxy.docker-compose.yaml
+  nginx-proxy-manager.docker-compose.yaml
   portainer.docker-compose.yaml
+  portracker.docker-compose.yaml
+  uptime-kuma.docker-compose.yaml
+  watchtower.docker-compose.yaml
 )
 
 ARGS=""
