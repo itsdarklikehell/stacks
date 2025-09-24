@@ -1,7 +1,7 @@
 services:
   watchtower:
-    image: containrrr/watchtower
-    container_name: ${NAME:-watchtower]
+    image: ${IMAGE:-containrrr/watchtower}
+    container_name: ${NAME:-watchtower}
     restart: ${RESTART:-unless-stopped}
 
     labels:

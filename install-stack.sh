@@ -62,17 +62,17 @@ echo "Installing Essentials Stack"
 echo ""
 INSTALL_ESSENTIALS_STACK
 
-echo "Installing AI Stack"
-echo ""
-INSTALL_AI_STACK
+# echo "Installing AI Stack"
+# echo ""
+# INSTALL_AI_STACK
 
-echo "Installing Management Stack"
-echo ""
-INSTALL_MANAGEMENT-STACK_STACK
+# echo "Installing Management Stack"
+# echo ""
+# INSTALL_MANAGEMENT-STACK_STACK
 
-echo "Installing media Stack"
-echo ""
-INSTALL_MEDIA_STACK
+# echo "Installing media Stack"
+# echo ""
+# INSTALL_MEDIA_STACK
 
 
 # dockly # lazydocker
