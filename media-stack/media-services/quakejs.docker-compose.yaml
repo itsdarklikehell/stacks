@@ -1,7 +1,7 @@
 services:
-  retroarch:
-    image: ${IMAGE:-lscr.io/linuxserver/retroarch}
-    container_name: ${NAME:-retroarch}
+  quakejs:
+    image: ${IMAGE:-treyyoder/quakejs:latest}
+    container_name: ${NAME:-quakejs}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,14 +10,15 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
+      - HTTP_PORT=8080
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/retroarch/config:/config
+      - ../DATA/quakejs/config:/config
 
-    hostname: ${NAME:-retroarch}
+    hostname: ${NAME:-quakejs}
 
     # command: [ "ollama", "pull", "qwen3"]
 
@@ -26,16 +27,11 @@ services:
       media-services:
 
     ports:
-      - "3000:3000"
-      - "3001:3001"
-
-    shm_size: "1gb"
-
-    # security_opt:
-    #   - seccomp:unconfined
+      - "8080:80"
+      - "27960:27960"
 
     env_file:
-      - .env.retroarch
+      - .env.quakejs
 
     deploy:
       replicas: 1
