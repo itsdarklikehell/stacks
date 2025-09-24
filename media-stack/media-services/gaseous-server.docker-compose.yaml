@@ -1,7 +1,7 @@
 services:
   gaseous-server:
-    container_name: gaseous-server
-    image: gaseousgames/gaseousserver
+    container_name: ${NAME:-gaseous-server}
+    image: ${IMAGE:-gaseousgames/gaseousserver}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,12 +20,14 @@ services:
     volumes:
       - gaseous_data:/root/.gaseous-server
 
-    # networks:
-    #   - media-services
-    #   - host
+    hostname: ${NAME:-gaseous-server}
+
+    networks:
+      host:
+      media-services:
 
     ports:
-      - 5198:80
+      - "5198:80"
 
     env_file:
       - .env.gaseous-server

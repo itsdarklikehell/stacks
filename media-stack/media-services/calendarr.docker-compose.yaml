@@ -1,8 +1,8 @@
 services:
   calendarr:
-    image: ghcr.io/jordanlambrecht/calendarr
-    container_name: calendarr
-    restart: "unless-stopped"
+    image: ${IMAGE:-ghcr.io/jordanlambrecht/calendarr}
+    container_name: ${NAME:-calendarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -58,11 +58,11 @@ services:
       - ../DATA/calendarr/logs:/app/logs:rw
       - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
 
-    hostname: calendarr
+    hostname: ${NAME:-calendarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     healthcheck:
       test:

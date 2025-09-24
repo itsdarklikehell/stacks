@@ -1,7 +1,7 @@
 services:
   requestrr:
-    image: ${REQUESTRR_IMAGE:-thomst08/requestrr}
-    container_name: ${REQUESTRR_CONTAINER_NAME:-requestrr}
+    image: ${IMAGE:-thomst08/requestrr}
+    container_name: ${NAME:-requestrr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,16 +12,16 @@ services:
     volumes:
       - ../DATA/requestrr/config:/root/config
 
-    hostname: ai-services-autoheal
+    hostname: ${NAME:-requestrr}
 
     # command: [ "ollama", "pull", "qwen3"]
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
-      - ${REQUESTRR_PORT:-4545}:4545
+      - ${PORT:-4545}:4545
 
     env_file:
       - .env.requestrr

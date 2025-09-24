@@ -1,7 +1,7 @@
 services:
   tvs99:
-    image: "zshall/television-simulator"
-    container_name: tvs99
+    image: ${IMAGE:-zshall/television-simulator}
+    container_name: ${NAME:-tvs99}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -13,14 +13,14 @@ services:
       - ../DATA/tvs99/config:/config
       - ../DATA/tvs99/data:/data
 
-    hostname: tvs99
+    hostname: ${NAME:-tvs99}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
-      - ${TVS99_PORT:-8085}:3000
+      - ${PORT:-8085}:3000
 
     env_file:
       - .env.tvs99

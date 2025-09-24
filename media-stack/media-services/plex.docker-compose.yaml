@@ -1,7 +1,7 @@
 services:
   plex:
-    image: ${PLEX_IMAGE:-plexinc/pms-docker}
-    container_name: ${PLEX_CONTAINER_NAME:-plex}
+    image: ${IMAGE:-plexinc/pms-docker}
+    container_name: ${NAME:-plex}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,11 +14,11 @@ services:
       - ../DATA/plex/transcode:/transcode
       - ../DATA/plex/media:/data
 
-    hostname: plex
+    hostname: ${NAME:-plex}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - ${PLEX_PORT:-32400}:32400

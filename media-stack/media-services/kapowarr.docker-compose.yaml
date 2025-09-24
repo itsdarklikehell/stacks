@@ -1,8 +1,7 @@
 services:
   kapowarr:
-    container_name: kapowarr
-    image: mrcas/kapowarr
-
+    container_name: ${NAME:-kapowarr}
+    image: ${IMAGE:-mrcas/kapowarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -15,14 +14,14 @@ services:
       - ../DATA/kapowarr/download_folder:/app/temp_downloads
       - ../DATA/kapowarr/root_folder:/comics-1
 
-    hostname: kapowarr
+    hostname: ${NAME:-kapowarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
-      - 5656:5656
+      - "5656:5656"
 
     env_file:
       - .env.kapowarr

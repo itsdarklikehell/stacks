@@ -1,7 +1,7 @@
 services:
   radarr:
-    image: ${RADARR_IMAGE:-linuxserver/radarr}
-    container_name: ${RADARR_CONTAINER_NAME:-radarr}
+    image: ${IMAGE:-linuxserver/radarr}
+    container_name: ${NAME:-radarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,25 +10,25 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: radarr
+    hostname: ${NAME:-radarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
-      - 7878/tcp
+      - "7878/tcp"
 
     ports:
-      - ${RADARR_PORT:-7878}:7878/tcp
+      - "${RADARR_PORT:-7878}:7878/tcp"
 
     env_file:
       - .env.radarr

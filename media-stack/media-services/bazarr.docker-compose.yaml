@@ -1,7 +1,7 @@
 services:
   bazarr:
-    image: ${BAZARR_IMAGE:-lscr.io/linuxserver/bazarr}
-    container_name: ${BAZARR_CONTAINER_NAME:-bazarr}
+    image: ${IMAGE:-lscr.io/linuxserver/bazarr}
+    container_name: ${NAME:-bazarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,25 +10,25 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: bazarr
+    hostname: ${NAME:-bazarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
-      - 6767/tcp
+      - "6767/tcp"
 
     ports:
-      - ${BAZARR_PORT:-6767}:6767/tcp
+      - "${BAZARR_PORT:-6767}:6767/tcp"
 
     env_file:
       - .env.bazarr

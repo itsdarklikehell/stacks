@@ -1,7 +1,7 @@
 services:
   jellyseerr:
-    image: ${JELLYSEERR_IMAGE:-fallenbagel/jellyseerr}
-    container_name: ${JELLYSEERR_CONTAINER_NAME:-jellyseerr}
+    image: ${IMAGE:-fallenbagel/jellyseerr}
+    container_name: ${NAME:-jellyseerr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,20 +10,22 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - LOG_LEVEL=debug
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ../DATA/jellyseerr/appdata/config:/app/config
 
-    hostname: jellyseerr
+    hostname: ${NAME:-jellyseerr}
 
     ports:
       - ${JELLYSEERR_PORT:-5055}:5055
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     env_file:
       - .env.jellyseerr

@@ -1,7 +1,7 @@
 services:
   overseerr:
-    image: ${OVERSEERR_IMAGE:-sctx/overseerr}
-    container_name: ${OVERSEERR_CONTAINER_NAME:-overseerr}
+    image: ${IMAGE:-sctx/overseerr}
+    container_name: ${NAME:-overseerr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,14 +14,14 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=5056
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     volumes:
       - ../DATA/overseerr/appdata/config:/app/config
 
-    hostname: overseerr
+    hostname: ${NAME:-overseerr}
 
     ports:
       - ${OVERSEERR_PORT:-5056}:5056

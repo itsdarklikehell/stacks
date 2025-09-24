@@ -1,7 +1,7 @@
 services:
   checkrr:
-    image: aetaric/checkrr
-    container_name: checkrr
+    image: ${IMAGE:-aetaric/checkrr}
+    container_name: ${NAME:-checkrr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,14 +14,14 @@ services:
       - /path/to/checkrr/config/checkrr.db:/checkrr.db
       - /path/to/media/to/scan:/media
 
-    hostname: ai-services-autoheal
+    hostname: ${NAME:-checkrr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
-      - 8585:8585
+      - "8585:8585"
 
     env_file:
       - .env.checkrr

@@ -1,7 +1,7 @@
 services:
   prowlarr:
-    image: ${PROWLARR_IMAGE:-linuxserver/prowlarr}
-    container_name: ${PROWLARR_CONTAINER_NAME:-prowlarr}
+    image: ${IMAGE:-linuxserver/prowlarr}
+    container_name: ${NAME:-prowlarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,24 +10,24 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config
 
-    hostname: prowlarr
+    hostname: ${NAME:-prowlarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
-      - 9696/tcp
+      - "9696/tcp"
 
     ports:
-      - ${PROWLARR_PORT:-9696}:9696/tcp
+      - "${PROWLARR_PORT:-9696}:9696/tcp"
 
     env_file:
       - .env.prowlarr

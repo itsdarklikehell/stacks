@@ -1,7 +1,7 @@
 services:
   flaresolverr:
-    image: ${FLARESOLVERR_IMAGE:-flaresolverr/flaresolverr}
-    container_name: ${FLARESOLVERR_CONTAINER_NAME:-flaresolverr}
+    image: ${IMAGE:-flaresolverr/flaresolverr}
+    container_name: ${NAME:-flaresolverr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -15,11 +15,11 @@ services:
       - CAPTCHA_SOLVER=none
       - TZ=${TZ:-Europe/Amsterdam}
 
-    hostname: flaresolverr
+    hostname: ${NAME:-flaresolverr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8086"]

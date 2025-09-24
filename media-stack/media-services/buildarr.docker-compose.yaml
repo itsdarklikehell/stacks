@@ -1,7 +1,7 @@
 services:
   buildarr:
-    image: "callum027/buildarr"
-    container_name: buildarr
+    image: ${IMAGE:-callum027/buildarr}
+    container_name: ${NAME:-buildarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,11 +16,11 @@ services:
     volumes:
       - ../DATA/buildarr/config:/config
 
-    hostname: buildarr
+    hostname: ${NAME:-buildarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     env_file:
       - .env.buildarr

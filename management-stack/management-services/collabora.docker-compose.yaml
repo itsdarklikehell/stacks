@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - password=password
       - username=nextcloud

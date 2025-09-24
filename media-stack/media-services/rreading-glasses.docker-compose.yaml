@@ -1,7 +1,7 @@
 services:
   rreading-glasses:
-    image: blampe/rreading-glasses:hardcover
-    container_name: rreading-glasses
+    image: ${IMAGE:-blampe/rreading-glasses:hardcover}
+    container_name: ${NAME:-rreading-glasses}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,19 +18,18 @@ services:
     #   - /etc/localtime:/etc/localtime:ro
     #   - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: rreading-glasses
+    hostname: ${NAME:-rreading-glasses}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - "8788:8788"
 
     entrypoint: ["/main", "serve"]
 
-    command:
-      - --verbose
+    command: ["--verbose"]
 
     secrets:
       - hardcover_auth
@@ -75,9 +74,9 @@ services:
 
     hostname: rreading-glasses-db
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - "5433:5433"

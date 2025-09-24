@@ -1,7 +1,7 @@
 services:
   redis:
-    image: ${REDIS_IMAGE:-redis:alpine}
-    container_name: ${redis_container_name:-redis}
+    image: ${IMAGE:-redis:alpine}
+    container_name: ${NAME:-redis}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,14 +12,14 @@ services:
     volumes:
       - ../DATA/redis/redis:/data
 
-    hostname: redis
+    hostname: ${NAME:-redis}
 
     networks:
       host:
       management-services:
 
     ports:
-      - 6379:6379
+      - "6379:6379"
 
     env_file:
       - .env.redis

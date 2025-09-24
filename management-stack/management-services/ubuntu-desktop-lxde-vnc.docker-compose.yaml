@@ -1,7 +1,7 @@
 services:
   ubuntu-desktop-lxde-vnc:
-    image: dorowu/ubuntu-desktop-lxde-vnc
-    container_name: ubuntu-desktop-lxde-vnc
+    image: ${IMAGE:-dorowu/ubuntu-desktop-lxde-vnc}
+    container_name: ${NAME:-ubuntu-desktop-lxde-vnc}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,7 +18,7 @@ services:
     volumes:
       - "/dev/shm:/dev/shm"
 
-    hostname: ubuntu-desktop-lxde-vnc
+    hostname: ${NAME:-ubuntu-desktop-lxde-vnc}
 
     networks:
       host:

@@ -1,7 +1,7 @@
 services:
   romm-db:
-    image: ${ROMM_DB_IMAGE:-mariadb}
-    container_name: ${ROMM_DB_CONTAINER_NAME:-romm-db}
+    image: ${IMAGE:-mariadb}
+    container_name: ${NAME:-romm-db}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,12 +20,14 @@ services:
       - mariadb_root_password
       - mariadb_password
 
-    # networks:
-    #   - media-services
-    #   - host
+    hostname: ${NAME:-romm-db}
+
+    networks:
+      host:
+      media-services:
 
     ports:
-      - ${ROMM_DB_PORT:-3306}:3306
+      - ${PORT:-3306}:3306
 
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]

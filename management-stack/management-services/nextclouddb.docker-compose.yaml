@@ -1,8 +1,8 @@
 services:
   nextclouddb:
-    image: ${NEXTCLOUDDB_IMAGE:-mariadb}
-    container_name: ${nextclouddb_container_name:-nextcloud-db}
-    restart: ${nextclouddb_restart:-unless-stopped}
+    image: ${IMAGE:-mariadb}
+    container_name: ${NAME:-nextcloud-db}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_PASSWORD=dbpassword
@@ -21,7 +21,7 @@ services:
     volumes:
       - ../DATA/nextclouddb/nextclouddb:/var/lib/mysql
 
-    hostname: nextclouddb
+    hostname: ${NAME:-nextcloud-db}
 
     command: ["--transaction-isolation=READ-COMMITTED --binlog-format=ROW"]
 

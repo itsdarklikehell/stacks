@@ -1,7 +1,7 @@
 services:
   mylar3:
-    image: ${MYLAR3_IMAGE:-lscr.io/linuxserver/mylar3}
-    container_name: ${MYLAR3_CONTAINER_NAME:-mylar3}
+    image: ${IMAGE:-lscr.io/linuxserver/mylar3}
+    container_name: ${NAME:-mylar3}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
@@ -19,11 +19,11 @@ services:
       - ../DATA/mylar3/comics:/comics
       - ../DATA/mylar3/downloads:/downloads
 
-    hostname: mylar3
+    hostname: ${NAME:-mylar3}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - ${MYLAR3_PORT:-8091}:8091

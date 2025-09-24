@@ -1,7 +1,7 @@
 services:
   jellyfin:
-    image: ${JELLYFIN_IMAGE:-linuxserver/jellyfin}
-    container_name: ${JELLYFIN_CONTAINER_NAME:-jellyfin}
+    image: ${IMAGE:-linuxserver/jellyfin}
+    container_name: ${NAME:-jellyfin}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,23 +10,25 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-    # volumes:
-    #   - /etc/localtime:/etc/localtime:ro
-    #   - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+    hostname: ${NAME:-jellyfin}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
       - 8096/tcp
 
     ports:
-      - ${JELLYFIN_PORT:-8096}:8096/tcp
+      - ${PORT:-8096}:8096/tcp
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9696"]

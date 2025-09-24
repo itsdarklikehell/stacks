@@ -1,7 +1,7 @@
 services:
   sonarr:
-    image: lscr.io/linuxserver/sonarr
-    container_name: sonarr
+    image: ${IMAGE:-lscr.io/linuxserver/sonarr}
+    container_name: ${NAME:-sonarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,19 +10,19 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: sonarr
+    hostname: ${NAME:-sonarr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
       - 8989/tcp

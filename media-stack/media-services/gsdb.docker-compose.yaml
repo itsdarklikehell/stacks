@@ -1,7 +1,7 @@
 services:
   gsdb:
-    image: ${GSDB_IMAGE:-mariadb}
-    container_name: ${GSDB_CONTAINER_NAME:-gsdb}
+    image: ${IMAGE:-mariadb}
+    container_name: ${NAME:-gsdb}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -15,11 +15,11 @@ services:
     volumes:
       - gsdb:/var/lib/mysql
 
-    hostname: gsdb
+    hostname: ${NAME:-gsdb}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     secrets:
       - gsdb_root_password

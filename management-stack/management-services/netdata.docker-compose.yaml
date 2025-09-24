@@ -1,8 +1,8 @@
 services:
   netdata:
-    image: ${NETDATA_IMAGE:-netdata/netdata}
-    container_name: ${netdata_container_name:-netdata}
-    restart: ${netdata_restart:-unless-stopped}
+    image: ${IMAGE:-netdata/netdata}
+    container_name: ${NAME:-netdata}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -29,7 +29,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /run/dbus:/run/dbus:ro
 
-    hostname: netdata
+    hostname: ${NAME:-netdata}
 
     networks:
       host:

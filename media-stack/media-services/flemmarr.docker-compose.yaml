@@ -1,7 +1,7 @@
 services:
   flemmarr:
-    container_name: flemmarr
-    image: pierremesure/flemmarr
+    container_name: ${NAME:-flemmarr}
+    image: ${IMAGE:-pierremesure/flemmarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,13 +12,13 @@ services:
     volumes:
       - ../DATA/flemmarr/config:/config
 
-    hostname: flemmarr
+    hostname: ${NAME:-flemmarr}
 
     # command: [ "ollama", "pull", "qwen3"]
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     # # ports:
     # #   - "80:80"

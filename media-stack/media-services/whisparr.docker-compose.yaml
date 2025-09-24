@@ -1,7 +1,7 @@
 services:
   whisparr:
-    image: ${WHISPARR_IMAGE:-ghcr.io/hotio/whisparr}
-    container_name: ${WHISPARR_CONTAINER_NAME:-whisparr}
+    image: ghcr.io/hotio/whisparr}
+    container_name: ${IMAGE:-${NAME:-whisparr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,25 +10,25 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/whisparr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: whisparr
+    hostname: ${NAME:-whisparr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     expose:
-      - 6969/tcp
+      - "6969/tcp"
 
     ports:
-      - ${WHISPARR_PORT:-6969}:6969/tcp
+      - "${WHISPARR_PORT:-6969}:6969/tcp"
 
     env_file:
       - .env.whisparr

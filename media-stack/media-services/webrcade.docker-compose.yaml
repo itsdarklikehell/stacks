@@ -1,7 +1,7 @@
 services:
   webrcade:
-    image: "webrcade/webrcade"
-    container_name: webrcade
+    image: ${IMAGE:-webrcade/webrcade}
+    container_name: ${NAME:-webrcade}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,15 +12,15 @@ services:
     volumes:
       - ../DATA/webrcade/content:/var/www/html/content
 
-    hostname: webrcade
+    hostname: ${NAME:-webrcade}
 
     ports:
       - "87:87"
       - "447:447"
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     env_file:
       - .env.webrcade

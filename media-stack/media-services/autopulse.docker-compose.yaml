@@ -1,7 +1,7 @@
 services:
   autopulse:
-    image: ghcr.io/dan-online/autopulse
-    container_name: autopulse
+    image: ${IMAGE:-ghcr.io/dan-online/autopulse}
+    container_name: ${NAME:-autopulse}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -12,9 +12,11 @@ services:
     environment:
       - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"
 
-    # networks:
-    #   - media-services
-    #   - host
+    hostname: ${NAME:-autopulse}
+
+    networks:
+      host:
+      media-services:
 
     env_file:
       - .env.autopulse

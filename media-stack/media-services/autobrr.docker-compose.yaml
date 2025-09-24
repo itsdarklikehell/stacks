@@ -1,7 +1,7 @@
 services:
   autobrr:
-    image: ghcr.io/autobrr/autobrr
-    container_name: autobrr
+    image: ${IMAGE:-ghcr.io/autobrr/autobrr}
+    container_name: ${NAME:-autobrr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -15,14 +15,14 @@ services:
     volumes:
       - ../DATA/autobrr/config:/config
 
-    hostname: autobrr
+    hostname: ${NAME:-autobrr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
-      - 7474:7474
+      - "7474:7474"
 
     env_file:
       - .env.autobrr

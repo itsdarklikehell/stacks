@@ -1,7 +1,7 @@
 services:
   byparr:
-    image: "ghcr.io/thephaseless/byparr"
-    container_name: byparr
+    image: ${IMAGE:-ghcr.io/thephaseless/byparr}
+    container_name: ${NAME:-byparr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -9,11 +9,11 @@ services:
       - keep_healthy
       - "com.centurylinklabs.watchtower.enable=true"
 
-    hostname: byparr
+    hostname: ${NAME:-byparr}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - "8191:8191"

@@ -1,8 +1,8 @@
 services:
   nextcloud:
     image: ${NEXTCLOUD_IMAGE:-nextcloud}
-    container_name: ${nextcloud_container_name:-nextcloud}
-    restart: ${nextcloud_restart:-unless-stopped}
+    container_name: ${NAME:-nextcloud}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - autoheal-app=true
@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_USER=${MYSQL_DATABASE:-nextcloud}
@@ -25,14 +25,14 @@ services:
       - ../DATA/nextcloud/config:/var/www/html/config
       - ../DATA/nextcloud/data:/var/www/html/data
 
-    hostname: nextcloud
+    hostname: ${NAME:-nextcloud}
 
     networks:
       host:
       management-services:
 
     ports:
-      - 8087:80
+      - "8087:80"
 
     depends_on:
       - nextclouddb

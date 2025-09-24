@@ -1,7 +1,7 @@
 services:
   romm:
-    image: ${ROMM_IMAGE:-rommapp/romm}
-    container_name: ${ROMM_CONTAINER_NAME:-romm}
+    image: ${IMAGE:-rommapp/romm}
+    container_name: ${NAME:-romm}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -29,11 +29,11 @@ services:
       - retroachievements_api_key
       - steamgriddb_api_key
 
-    hostname: romm
+    hostname: ${NAME:-romm}
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     ports:
       - ${ROMM_PORT:-8080}:8080

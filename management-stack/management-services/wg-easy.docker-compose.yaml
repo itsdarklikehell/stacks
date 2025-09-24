@@ -1,7 +1,7 @@
 services:
   wg-easy:
-    image: ${WG_EASY_IMAGE:-ghcr.io/wg-easy/wg-easy}
-    container_name: ${wg_easy_container_name:-wg-easy}
+    image: ${IMAGE:-ghcr.io/wg-easy/wg-easy}
+    container_name: ${NAME:-wg-easy}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -19,7 +19,7 @@ services:
       - wireguard:/etc/wireguard
       - /lib/modules:/lib/modules:ro
 
-    hostname: wg-easy
+    hostname: ${NAME:-wg-easy}
 
     networks:
       host:
