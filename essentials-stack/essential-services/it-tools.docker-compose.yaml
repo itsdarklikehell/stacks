@@ -1,0 +1,55 @@
+services:
+  it-tools:
+    image: ${IMAGE:-corentinth/it-tools}
+    container_name: ${NAME:-it-tools}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
+      AUTOHEAL_START_PERIOD: 0
+      AUTOHEAL_INTERVAL: 5
+      AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
+      AUTOHEAL_ONLY_MONITOR_RUNNING: false
+      # PORT: ${PORT:-8080}
+    # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: ${NAME:-it-tools}
+
+    # command: [ "ollama", "pull", "qwen3"]
+
+    # networks:
+    #   - management-services
+    #   - host
+
+    ports:
+      - ${PORT:-8088}:8080
+      # - 8088:8080
+
+    env_file:
+      - .env.it-tools
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
+
+    tty: true
+    stdin_open: true

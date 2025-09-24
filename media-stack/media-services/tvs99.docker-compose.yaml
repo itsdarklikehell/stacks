@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/tvs99/config:/config
+      - ../DATA/tvs99/config/config.tvs.yml:/config.tvs.yml
       - ../DATA/tvs99/data:/data
 
     hostname: ${NAME:-tvs99}
