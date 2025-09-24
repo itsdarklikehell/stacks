@@ -23,7 +23,7 @@ services:
       ai-services:
 
     ports:
-      - ${LETTA_MCP_PORT:-3005}:3005
+      - ${PORT:-3005}:3005
 
     env_file:
       - .env.letta-mcp

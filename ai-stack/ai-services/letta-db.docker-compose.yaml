@@ -30,7 +30,7 @@ services:
           - letta-db
 
     ports:
-      - ${LETTA_PG_PORT:-5432}:5432
+      - ${PORT:-5432}:5432
 
     env_file:
       - .env.letta-db

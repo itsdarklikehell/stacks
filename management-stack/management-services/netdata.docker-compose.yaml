@@ -36,7 +36,7 @@ services:
       management-services:
 
     ports:
-      - "${NETDATA_PORT:-19996}:19996"
+      - "${PORT:-19996}:19996"
 
     cap_add:
       - SYS_PTRACE

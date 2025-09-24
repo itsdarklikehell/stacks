@@ -34,7 +34,7 @@ services:
       ai-services:
 
     ports:
-      - ${whishper_PORT:-8001}:80
+      - ${PORT:-8001}:80
       - 10300:10300
 
     env_file:

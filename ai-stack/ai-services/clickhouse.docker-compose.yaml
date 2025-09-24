@@ -65,8 +65,8 @@ services:
   #     ai-services:
 
   #   ports:
-  #     - ${CLICKHOUSE_PORT:-18123}:8123
-  #     - ${CLICKHOUSE_DBPORT:-19000}:19000
+  #     - ${PORT:-18123}:8123
+  #     - ${DBPORT:-19000}:19000
 
   #   env_file:
   #     - .env.clickhouse-server
