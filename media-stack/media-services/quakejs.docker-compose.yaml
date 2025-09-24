@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - HTTP_PORT=8080
+      - HTTP_PORT=8086
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
@@ -27,7 +27,7 @@ services:
       media-services:
 
     ports:
-      - "${PORT:-8080}:80"
+      - "${PORT:-8086}:80"
       - "27960:27960"
 
     env_file:
