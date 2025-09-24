@@ -27,9 +27,9 @@ services:
 
     hostname: ${NAME:-open-webui}
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-8080}:8080

@@ -1,8 +1,13 @@
 services:
   librechat-rag_api:
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite
-    container_name: librechat-rag_api
+    image: ${IMAGE:-ghcr.io/danny-avila/librechat-rag-api-dev-lite}
+    container_name: ${NAME:-librechat-rag_api}
     restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
       - DB_HOST=librechat-vectordb
@@ -11,9 +16,11 @@ services:
     depends_on:
       - librechat-vectordb
 
-    # networks:
-    #   - ai-services
-    #   - host
+    hostname: ${NAME:-librechat-rag_api}
+
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-3001}:3001

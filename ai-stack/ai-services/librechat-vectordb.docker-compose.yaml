@@ -1,8 +1,13 @@
 services:
   librechat-vectordb:
-    image: pgvector/pgvector:0.8.0-pg15-trixie
-    container_name: librechat-vectordb
+    image: ${IMAGE:-pgvector/pgvector:0.8.0-pg15-trixie}
+    container_name: ${NAME:-librechat-vectordb}
     restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
       POSTGRES_DB: mydatabase
@@ -11,10 +16,12 @@ services:
 
     volumes:
       - pgdata2:/var/lib/postgresql/data
-   
-    # networks:
-    #   - ai-services
-    #   - host
+
+    hostname: ${NAME:-librechat-vectordb}
+
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-3001}:3001

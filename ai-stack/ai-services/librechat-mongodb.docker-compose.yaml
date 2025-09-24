@@ -1,19 +1,26 @@
 services:
   librechat-mongodb:
     image: mongo
-    container_name: librechat-mongodb
+    container_name: ${NAME:-librechat-mongodb}
     restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
 
     user: ${PUID:-1000}:${PGID:-1000}
 
     volumes:
       - ../DATA/librechat-mongodb/data-node:/data/db
 
-    command: mongod --noauth
+    command: ["mongod", "--noauth"]
 
-    # networks:
-    #   - ai-services
-    #   - host
+    hostname: ${NAME:-librechat-mongodb}
+
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-3001}:3001

@@ -1,10 +1,13 @@
 services:
   librechat-meilisearch:
-    image: getmeili/meilisearch:v1.12.3
-    container_name: librechat-meilisearch
+    image: ${IMAGE:-getmeili/meilisearch:v1.12.3}
+    container_name: ${NAME:-librechat-meilisearch}
     restart: ${RESTART:-unless-stopped}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
       - MEILI_HOST=http://meilisearch:7700
@@ -14,12 +17,14 @@ services:
     volumes:
       - ../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-3001}:3001
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     env_file:
       - .env.librechat-meilisearch

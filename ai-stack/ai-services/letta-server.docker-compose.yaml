@@ -43,8 +43,8 @@ services:
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
     networks:
-      ai-services:
       host:
+      ai-services:
       default:
         aliases:
           - pgvector_db

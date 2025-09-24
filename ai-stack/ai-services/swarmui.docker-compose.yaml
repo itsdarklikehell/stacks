@@ -2,8 +2,16 @@ services:
   swarmui:
     image: ${IMAGE:-swarmui}
     container_name: ${NAME:-swarmui}
-    user: ${PUID:-1000}:${PGID:-1000}
     restart: ${RESTART:-unless-stopped}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+    
+    build:
+      context: ../DATA/SwarmUI
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ../DATA/SwarmUI/launchtools/CustomDockerfile.docker
 
     labels:
       - autoheal-app=true
@@ -21,9 +29,9 @@ services:
 
     hostname: ${NAME:-swarmui}
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-7801}:7801

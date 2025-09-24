@@ -29,9 +29,9 @@ services:
 
     hostname: ${NAME:-stable-diffusion-webui}
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-7860}:7860

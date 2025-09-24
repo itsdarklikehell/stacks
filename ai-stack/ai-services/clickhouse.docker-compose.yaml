@@ -13,9 +13,9 @@ services:
       - backups:/backups
       - ../DATA/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
       - ../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
 
 
@@ -45,6 +45,11 @@ services:
 
   #   hostname: clickhouse
 
+  #   cap_add:
+  #     - SYS_ADMIN
+  #     - NET_ADMIN
+  #     - IPC_LOCK 
+  
   #   command:
   #     [
   #       "--cap-add=SYS_NICE",
@@ -56,8 +61,8 @@ services:
   #   user: ${PUID:-1000}:${PGID:-1000}
 
   #   networks:
-  #     - ai-services
-  #     - host
+  #     host:
+  #     ai-services:
 
   #   ports:
   #     - ${CLICKHOUSE_PORT:-18123}:8123

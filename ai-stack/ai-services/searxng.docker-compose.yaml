@@ -21,9 +21,9 @@ services:
 
     hostname: ${NAME:-searxng}
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-8081}:8080

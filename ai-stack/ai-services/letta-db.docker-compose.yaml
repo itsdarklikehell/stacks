@@ -1,7 +1,7 @@
 services:
   letta-db:
-    image: ankane/pgvector
-    container_name: letta-db
+    image: ${IMAGE:-ankane/pgvector}
+    container_name: ${NAME:-letta-db}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -19,11 +19,11 @@ services:
       # - ~/.letta/.persist/pgdata:/var/lib/postgresql/data
       - ../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-    hostname: letta-db
+    hostname: ${NAME:-letta-db}
 
     networks:
-      ai-services:
       host:
+      ai-services:
       default:
         aliases:
           - pgvector_db

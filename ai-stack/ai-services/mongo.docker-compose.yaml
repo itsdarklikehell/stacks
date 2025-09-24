@@ -25,9 +25,9 @@ services:
 
     command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-27017}:27017

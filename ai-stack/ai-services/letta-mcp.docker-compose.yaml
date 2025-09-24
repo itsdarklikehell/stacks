@@ -1,7 +1,7 @@
 services:
   letta-mcp:
-    image: ghcr.io/oculairmedia/letta-mcp-server
-    container_name: letta-mcp
+    image: ${IMAGE:-ghcr.io/oculairmedia/letta-mcp-server}
+    container_name: ${NAME:-letta-mcp}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,13 +14,13 @@ services:
       - LETTA_PASSWORD=${LETTA_PASSWORD:-lettapassword}
       - NODE_ENV=${NODE_ENV:-production}
 
-    hostname: letta-mcp
+    hostname: ${NAME:-letta-mcp}
 
-    # command: ["--logpath", "/var/log/mongodb/mongod.log"]
+    command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${LETTA_MCP_PORT:-3005}:3005

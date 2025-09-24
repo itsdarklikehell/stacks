@@ -27,11 +27,11 @@ services:
       - ../DATA/whishper/logs:/var/log/whishper
       - ../DATA/whishper/models:/app/models
 
-    hostname: whishper
+    hostname: ${NAME:-whishper}
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${whishper_PORT:-8001}:80
