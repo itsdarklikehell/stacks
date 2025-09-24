@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # command: --debug --http-api-update
 
-    hostname: ${NAME:-watchtower]
+    hostname: ${NAME:-watchtower}
 
     # networks:
     #   - management-services
