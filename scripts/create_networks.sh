@@ -5,6 +5,7 @@ function CREATE_NETWORKS(){
 
     docker network create management-services
     docker network create media-services
+    docker network create essential-services
     docker network create ai-services
 
     docker network create -d iot_macvlan \

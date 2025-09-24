@@ -1,7 +1,7 @@
 services:
   grafana:
     image: ${IMAGE:-grafana/grafana}
-    container_name: ${NAME=grafana:-grafana}
+    container_name: ${NAME:-grafana}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,7 +17,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
 
-    hostname: ${NAME=grafana:-grafana}
+    hostname: ${NAME:-grafana}
 
     networks:
       host:
