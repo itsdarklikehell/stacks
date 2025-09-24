@@ -14,5 +14,7 @@ function DOCKER_COMPOSE_STACK(){
 
 
 echo "*** START COMPOSING: media-stack ****"
+echo ""
 DOCKER_COMPOSE_STACK
+echo ""
 echo "*** FINISHED COMPOSING: media-stack ****"

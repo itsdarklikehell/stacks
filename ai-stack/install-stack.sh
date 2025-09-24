@@ -14,5 +14,7 @@ function DOCKER_COMPOSE_STACK(){
 }
 
 echo "*** START COMPOSING: ai-stack ****"
+echo ""
 DOCKER_COMPOSE_STACK
+echo ""
 echo "*** FINISHED COMPOSING: ai-stack ****"
