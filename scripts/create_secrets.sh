@@ -15,6 +15,6 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/steamgriddb_api_key"
     touch "${WD}/secrets/hardcover_auth"
     touch "${WD}/secrets/rreading_glasses_db_password"
-    touch ai-stack/DATA/anythingllm/.env
+    sudo touch ai-stack/DATA/anythingllm/.env
 }
 CREATE_SECRETS

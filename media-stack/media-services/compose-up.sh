@@ -38,7 +38,7 @@ COMPOSE_FILES=(
   romm.docker-compose.yaml
   rreading-glasses.docker-compose.yaml
   sonarr.docker-compose.yaml
-  wolf.docker-compose.yaml
+  # wolf.docker-compose.yaml
   tvs99.docker-compose.yaml
   webrcade.docker-compose.yaml
   whisparr.docker-compose.yaml
