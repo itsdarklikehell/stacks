@@ -51,6 +51,5 @@ done
 
 echo "Running: docker compose $ARGS up -d"
 
-docker login
-# docker compose $ARGS up -d
-docker compose $ARGS up -d --build --force-recreate --remove-orphans
+docker compose $ARGS up -d
+# docker compose $ARGS up -d --build --force-recreate --remove-orphans

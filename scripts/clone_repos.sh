@@ -38,7 +38,7 @@ function CLONE_SWARMUI(){
     docker stop swarmui
     docker rm swarmui
 
-    ./launchtools/custom-launch-docker.sh fixch
+    # ./launchtools/custom-launch-docker.sh fixch
     # ./launchtools/custom-launch-docker.sh
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){

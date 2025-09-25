@@ -1,0 +1,49 @@
+services:
+  logarr:
+    image: ${IMAGE:-monitorr/logarr}
+    container_name: ${NAME:-logarr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - keep_healthy
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-88}
+
+    volumes:
+      - ../DATA/logarr/config:/config:ro
+      - ../DATA/logarr/logs:/var/log/logarrlogs:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: ${NAME:-logarr}
+
+    # command: [ "ollama", "pull", "qwen3"]
+
+    networks:
+      host:
+      essential-services:
+
+    # # ${PORT:-80}:${CONTAINER_PORT:-80}
+    ports:
+      - "${PORT:-88}:${PORT:-88}"
+
+    env_file:
+      - .env.logarr
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
