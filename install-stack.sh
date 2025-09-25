@@ -57,23 +57,25 @@ CLONE_REPOS
 
 ## STACKS:
 
-
 echo "Installing Essentials Stack"
 echo ""
 INSTALL_ESSENTIALS_STACK
+echo ""
 
 echo "Installing AI Stack"
 echo ""
 INSTALL_AI_STACK
+echo ""
 
 echo "Installing Management Stack"
 echo ""
 INSTALL_MANAGEMENT-STACK_STACK
+echo ""
 
 echo "Installing media Stack"
 echo ""
 INSTALL_MEDIA_STACK
-
+echo ""
 
 # dockly # lazydocker
 

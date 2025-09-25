@@ -12,7 +12,7 @@ function DOCKER_COMPOSE_STACK(){
     ./compose-up.sh
 }
 
-
+echo ""
 echo "*** START COMPOSING: media-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK

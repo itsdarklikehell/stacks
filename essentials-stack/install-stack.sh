@@ -13,8 +13,10 @@ function DOCKER_COMPOSE_STACK(){
     ./compose-up.sh
 }
 
+echo ""
 echo "*** START COMPOSING: essentials-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
 echo "*** FINISHED COMPOSING: essentials-stack ****"
+echo ""

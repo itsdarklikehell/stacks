@@ -13,6 +13,7 @@ function DOCKER_COMPOSE_STACK(){
     ./compose-up.sh
 }
 
+echo ""
 echo "*** START COMPOSING: ai-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
