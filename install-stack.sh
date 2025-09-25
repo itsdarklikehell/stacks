@@ -41,38 +41,42 @@ function INSTALL_MEDIA_STACK(){
 function INSTALL_AI_STACK(){
     ai-stack/install-stack.sh
 }
-
+echo ""
 echo "Installing Drivers"
+echo ""
 INSTALL_DRIVERS
+echo ""
 echo "Installing Docker"
+echo ""
 INSTALL_DOCKER
+echo ""
 echo "Creating Docker Secrets"
+echo ""
 CREATE_SECRETS
+echo ""
 echo "Creating Docker Networks"
+echo ""
 CREATE_NETWORKS
-
+echo ""
 echo "Cloning repos"
+echo ""
 CLONE_REPOS
-
+echo ""
 
 ## STACKS:
 
-echo "Installing Essentials Stack"
 echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""
 
-echo "Installing AI Stack"
 echo ""
 INSTALL_AI_STACK
 echo ""
 
-echo "Installing Management Stack"
 echo ""
 INSTALL_MANAGEMENT-STACK_STACK
 echo ""
 
-echo "Installing media Stack"
 echo ""
 INSTALL_MEDIA_STACK
 echo ""
