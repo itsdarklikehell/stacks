@@ -29,6 +29,10 @@ services:
     env_file:
       - .env.organizr
 
+    tty: true
+    
+    stdin_open: true
+
     deploy:
       replicas: 1
       # resources:
@@ -38,3 +42,11 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9983/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

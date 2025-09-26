@@ -39,6 +39,10 @@ services:
     env_file:
       - .env.nginx-proxy-manager
 
+    tty: true
+    
+    stdin_open: true
+
     deploy:
       replicas: 1
       # resources:
@@ -48,3 +52,9 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s

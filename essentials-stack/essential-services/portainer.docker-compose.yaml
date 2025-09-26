@@ -1,7 +1,7 @@
 services:
   portainer:
     container_name: ${NAME:-portainer}
-    image: ${IMAGE:-portainer/portainer-ce}
+    image: ${IMAGE:-portainer/portainer-ce:latest}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -25,6 +25,10 @@ services:
 
     env_file:
       - .env.portainer
+
+    tty: true
+    
+    stdin_open: true
 
     deploy:
       replicas: 1

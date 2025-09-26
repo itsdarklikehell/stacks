@@ -52,4 +52,5 @@ services:
     #   - wyoming-piper
 
     tty: true
+    
     stdin_open: true

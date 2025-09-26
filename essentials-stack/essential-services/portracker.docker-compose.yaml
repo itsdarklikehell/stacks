@@ -11,9 +11,15 @@ services:
 
     environment:
       - DOCKER_HOST=tcp://docker-proxy:2375
-
+      - DATABASE_PATH=/data/portracker.db
+      - PORT=4999
+      - HOST_PROC=/host/proc
+      - INCLUDE_UDP=true
+      - DEBUG=true
+  
     volumes:
       - ../DATA/portracker/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
     hostname: ${NAME:-portracker}
 
@@ -22,15 +28,13 @@ services:
       essential-services:
 
     ports:
-      - "4999:4999"
+      - "${PORT:-4999}:4999"
 
     pid: "host"
 
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN
-
-    command: ["--cap-add", "SYS_ADMIN", "SYS_PTRACE"]
 
     security_opt:
       - apparmor:unconfined
@@ -41,6 +45,10 @@ services:
     env_file:
       - .env.portracker
 
+    tty: true
+    
+    stdin_open: true
+
     deploy:
       replicas: 1
       # resources:
@@ -50,3 +58,11 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4999/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

@@ -42,6 +42,8 @@ services:
     stop_signal: SIGKILL
 
     tty: true
+    
+    stdin_open: true
 
     deploy:
       resources:

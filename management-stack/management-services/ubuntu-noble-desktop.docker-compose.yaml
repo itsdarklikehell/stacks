@@ -26,6 +26,7 @@ services:
 
     shm_size: 512m
     tty: true
+    
     stdin_open: true
 
     env_file:

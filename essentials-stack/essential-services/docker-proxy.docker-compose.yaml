@@ -1,7 +1,7 @@
 services:
   docker-proxy:
     image: ${IMAGE:-tecnativa/docker-socket-proxy}
-    container_name: ${NAME:-portracker-docker-proxy}
+    container_name: ${NAME:-docker-proxy}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -19,17 +19,21 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-    hostname: ${NAME:-portracker-docker-proxy}
+    hostname: ${NAME:-docker-proxy}
 
     networks:
       host:
       essential-services:
 
     ports:
-      - "2375:2375"
+      - "${PORT:-2375}:2375"
 
     env_file:
       - .env.docker-proxy
+    
+    tty: true
+
+    stdin_open: true
 
     deploy:
       replicas: 1
@@ -40,3 +44,4 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+
