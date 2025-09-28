@@ -58,3 +58,15 @@ services:
               # change the count to the number of GPUs you want to use.
               count: 1
               capabilities: [gpu]
+
+    tty: true
+    
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7801/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

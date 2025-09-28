@@ -15,6 +15,12 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/steamgriddb_api_key"
     touch "${WD}/secrets/hardcover_auth"
     touch "${WD}/secrets/rreading_glasses_db_password"
-    sudo touch ai-stack/DATA/anythingllm/.env
+    mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
+    touch "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/anythingllm.db"
+    if [ ! -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
+        cd "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage" || exit 1
+        sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example"
+        sudo cp ".env.example" ".env"
+    fi
 }
 CREATE_SECRETS

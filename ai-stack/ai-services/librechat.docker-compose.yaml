@@ -3,7 +3,7 @@ services:
     image: ${IMAGE:-ghcr.io/danny-avila/librechat-dev}
     container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
-    
+
     labels:
       - autoheal-app=true
       - keep_healthy
@@ -15,41 +15,53 @@ services:
       - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8003}
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8003}
-    
+
     volumes:
       - type: bind
         source: .env.librechat
         target: /app/.env
       - ../DATA/librechat/images:/app/client/public/images
       - ../DATA/librechat/uploads:/app/uploads
-      - ../DATA/librechat/logs:/app/api/logs    
-    
+      - ../DATA/librechat/logs:/app/api/logs
+
     hostname: ${NAME:-librechat}
-    
+
     networks:
       host:
       ai-services:
 
     ports:
       - "${PORT:-3006}:3006"
-    
+
     depends_on:
       - librechat-mongodb
       - librechat-rag_api
-    
+
     user: ${PUID:-1000}:${PGID:-1000}
-    
+
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    
+
     env_file:
       - .env.librechat
 
     deploy:
       replicas: 1
 
+    tty: true
+
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8006/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+
   # librechat-mongodb:
-    
+
   #   image: mongo
   #   container_name: librechat-mongodb
   #   restart: ${RESTART:-unless-stopped}
@@ -86,7 +98,7 @@ services:
 
   #   volumes:
   #     - pgdata2:/var/lib/postgresql/data
-   
+
   #   # networks:
   #   #   - ai-services
   #   #   - host

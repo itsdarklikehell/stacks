@@ -33,9 +33,6 @@ services:
     env_file:
       - .env.grafana
       
-    tty: true
-    
-    stdin_open: true
 
     deploy:
       replicas: 1
@@ -46,6 +43,10 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+
+    tty: true
+    
+    stdin_open: true
 
     # Optional: Health check for monitoring
     healthcheck:

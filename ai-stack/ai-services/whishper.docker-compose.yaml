@@ -51,3 +51,15 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+
+    tty: true
+    
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8001/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

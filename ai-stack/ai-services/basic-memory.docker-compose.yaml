@@ -36,6 +36,10 @@ services:
         "8004",
       ]
 
+    tty: true
+    
+    stdin_open: true
+ 
     healthcheck:
       test: ["CMD", "basic-memory", "--version"]
       interval: 30s
@@ -65,3 +69,4 @@ services:
 
     deploy:
       replicas: 1
+

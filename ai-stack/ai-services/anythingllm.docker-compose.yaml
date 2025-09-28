@@ -25,7 +25,7 @@ services:
       - ../DATA/anythingllm/anythingllm_storage:${STORAGE_DIR:-/app/server/storage}
       - ../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir
       - ../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs
-      # - ".env.anythingllm:/app/server/.env"
+      - ../DATA/anythingllm/anythingllm_storage/.env:/app/server/.env
 
     hostname: ${NAME:-anythingllm}
 
@@ -49,3 +49,15 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+    tty: true
+    
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

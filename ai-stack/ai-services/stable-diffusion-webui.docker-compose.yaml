@@ -41,10 +41,6 @@ services:
 
     stop_signal: SIGKILL
 
-    tty: true
-    
-    stdin_open: true
-
     deploy:
       resources:
         reservations:
@@ -52,3 +48,15 @@ services:
             - driver: nvidia
               device_ids: ["0"]
               capabilities: [compute, utility]
+
+    tty: true
+    
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7860/api/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

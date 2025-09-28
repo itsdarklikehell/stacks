@@ -25,10 +25,10 @@ services:
       media-services:
 
     expose:
-      - "7878/tcp"
+      - "7879/tcp"
 
     ports:
-      - "${PORT:-7878}:7878/tcp"
+      - "${PORT:-7879}:7879/tcp"
 
     env_file:
       - .env.radarr
