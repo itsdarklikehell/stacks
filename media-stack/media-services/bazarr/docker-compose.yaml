@@ -31,7 +31,7 @@ services:
       - "${PORT:-6767}:6767/tcp"
 
     env_file:
-      - .env.bazarr
+      - .env
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:6767"]

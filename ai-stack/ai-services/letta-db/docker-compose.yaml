@@ -15,9 +15,9 @@ services:
       - POSTGRES_DB=${LETTA_PG_DB:-letta}
 
     volumes:
-      - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
+      - ../../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
       # - ~/.letta/.persist/pgdata:/var/lib/postgresql/data
-      - ../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
 
     hostname: ${NAME:-letta-db}
 
@@ -33,7 +33,7 @@ services:
       - ${PORT:-5432}:5432
 
     env_file:
-      - .env.letta-db
+      - .env
 
     deploy:
       replicas: 1

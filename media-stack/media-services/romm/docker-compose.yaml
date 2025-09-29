@@ -18,9 +18,9 @@ services:
     volumes:
       - romm_resources:/romm/resources
       - romm_redis_data:/redis-data
-      - ../DATA/romm/library:/romm/library
-      - ../DATA/romm/assets:/romm/assets
-      - ../DATA/romm/config:/romm/config
+      - ../../DATA/romm/library:/romm/library
+      - ../../DATA/romm/assets:/romm/assets
+      - ../../DATA/romm/config:/romm/config
 
     secrets:
       - romm_db_password
@@ -44,7 +44,7 @@ services:
         restart: true
 
     env_file:
-      - .env.romm
+      - .env
 
     deploy:
       replicas: 1

@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/calibre-web/calibre-library:/calibre-library
+      - ../../DATA/calibre-web/calibre-library:/calibre-library
 
     hostname: ${NAME:-calibre-web}
 
@@ -22,7 +22,7 @@ services:
       - ${PORT:-8084}:8084
 
     env_file:
-      - .env.calibre-web
+      - .env
 
     deploy:
       replicas: 1

@@ -23,7 +23,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/open-webui:/app/backend/data
+      - ../../DATA/open-webui:/app/backend/data
 
     hostname: ${NAME:-open-webui}
 
@@ -35,7 +35,7 @@ services:
       - ${PORT:-8080}:8080
 
     env_file:
-      - .env.open-webui
+      - .env
 
     deploy:
       replicas: 1

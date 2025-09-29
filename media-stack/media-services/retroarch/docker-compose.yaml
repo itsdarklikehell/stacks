@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/retroarch/config:/config
+      - ../../DATA/retroarch/config:/config
 
     hostname: ${NAME:-retroarch}
 
@@ -35,7 +35,7 @@ services:
     #   - seccomp:unconfined
 
     env_file:
-      - .env.retroarch
+      - .env
 
     deploy:
       replicas: 1

@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/dasharr/dasharr_config:/app/config  # or use bind mount: ./config:/app/config
+      - ../../DATA/dasharr/dasharr_config:/app/config  # or use bind mount: ./config:/app/config
 
     hostname: ${NAME:-dasharr}
 
@@ -35,7 +35,7 @@ services:
       start_period: 40s
 
     env_file:
-      - .env.dasharr
+      - .env
 
     deploy:
       replicas: 1

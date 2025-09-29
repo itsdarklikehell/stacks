@@ -19,8 +19,8 @@ services:
     # DISABLE_IPV6: 'true'
 
     volumes:
-      - ../DATA/nginx-proxy-manager/data:/data
-      - ../DATA/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - ../../DATA/nginx-proxy-manager/data:/data
+      - ../../DATA/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
     hostname: ${NAME:-nginx-proxy-manager}
 
@@ -37,7 +37,7 @@ services:
       # - "21:21" # FTP
 
     env_file:
-      - .env.nginx-proxy-manager
+      - .env
 
     tty: true
     

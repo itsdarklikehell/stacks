@@ -32,7 +32,7 @@ services:
       - "9980:9980"
 
     env_file:
-      - .env.collabora
+      - .env
 
     deploy:
       replicas: 1

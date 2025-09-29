@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/flemmarr/config:/config
+      - ../../DATA/flemmarr/config:/config
 
     hostname: ${NAME:-flemmarr}
 
@@ -24,7 +24,7 @@ services:
     # #   - "80:80"
 
     env_file:
-      - .env.flemmarr
+      - .env
 
     deploy:
       replicas: 1

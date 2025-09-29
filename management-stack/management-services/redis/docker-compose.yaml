@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/redis/redis:/data
+      - ../../DATA/redis/redis:/data
 
     hostname: ${NAME:-redis}
 
@@ -22,7 +22,7 @@ services:
       - "6379:6379"
 
     env_file:
-      - .env.redis
+      - .env
 
     deploy:
       replicas: 1

@@ -23,9 +23,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/whishper/uploads:/app/uploads
-      - ../DATA/whishper/logs:/var/log/whishper
-      - ../DATA/whishper/models:/app/models
+      - ../../DATA/whishper/uploads:/app/uploads
+      - ../../DATA/whishper/logs:/var/log/whishper
+      - ../../DATA/whishper/models:/app/models
 
     hostname: ${NAME:-whishper}
 
@@ -38,7 +38,7 @@ services:
       - 10300:10300
 
     env_file:
-      - .env.whishper
+      - .env
 
     depends_on:
       - mongo

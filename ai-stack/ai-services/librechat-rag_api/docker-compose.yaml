@@ -26,7 +26,7 @@ services:
       - ${PORT:-3001}:3001
 
     env_file:
-      - .env.librechat-rag_api
+      - .env
 
     deploy:
       replicas: 1

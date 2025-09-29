@@ -10,9 +10,9 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/plex/config:/config
-      - ../DATA/plex/transcode:/transcode
-      - ../DATA/plex/media:/data
+      - ../../DATA/plex/config:/config
+      - ../../DATA/plex/transcode:/transcode
+      - ../../DATA/plex/media:/data
 
     hostname: ${NAME:-plex}
 
@@ -24,7 +24,7 @@ services:
       - ${PORT:-32400}:32400
 
     env_file:
-      - .env.plex
+      - .env
 
     deploy:
       replicas: 1

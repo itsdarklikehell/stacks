@@ -29,7 +29,7 @@ services:
       - "${PORT:-2375}:2375"
 
     env_file:
-      - .env.docker-proxy
+      - .env
     
     tty: true
 

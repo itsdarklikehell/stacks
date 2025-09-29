@@ -30,7 +30,7 @@ services:
     stdin_open: true
 
     env_file:
-      - .env.ubuntu-noble-desktop
+      - .env
 
     deploy:
       replicas: 1

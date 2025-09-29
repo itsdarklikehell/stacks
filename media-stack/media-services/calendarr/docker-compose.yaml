@@ -55,8 +55,8 @@ services:
       USE_24_HOUR: true
 
     volumes:
-      - ../DATA/calendarr/logs:/app/logs:rw
-      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
+      - ../../DATA/calendarr/logs:/app/logs:rw
+      - ../../DATA/calendarr/custom_footers:/app/custom_footers:rw
 
     hostname: ${NAME:-calendarr}
 
@@ -78,7 +78,7 @@ services:
       start_period: 20s
 
     env_file:
-      - .env.calendarr
+      - .env
 
     deploy:
       replicas: 1

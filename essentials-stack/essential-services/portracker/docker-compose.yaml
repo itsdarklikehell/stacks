@@ -18,7 +18,7 @@ services:
       - DEBUG=true
   
     volumes:
-      - ../DATA/portracker/data:/data
+      - ../../DATA/portracker/data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
     hostname: ${NAME:-portracker}
@@ -43,7 +43,7 @@ services:
       - docker-proxy
 
     env_file:
-      - .env.portracker
+      - .env
 
     tty: true
     

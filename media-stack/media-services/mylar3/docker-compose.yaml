@@ -15,9 +15,9 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/mylar3/mylar3/config:/config
-      - ../DATA/mylar3/comics:/comics
-      - ../DATA/mylar3/downloads:/downloads
+      - ../../DATA/mylar3/mylar3/config:/config
+      - ../../DATA/mylar3/comics:/comics
+      - ../../DATA/mylar3/downloads:/downloads
 
     hostname: ${NAME:-mylar3}
 
@@ -36,7 +36,7 @@ services:
       start_period: 40s
 
     env_file:
-      - .env.mylar3
+      - .env
 
     deploy:
       replicas: 1

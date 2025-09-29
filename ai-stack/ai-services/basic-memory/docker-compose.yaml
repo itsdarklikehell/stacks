@@ -17,9 +17,9 @@ services:
 
     volumes:
       - basic-memory-config:/root/.basic-memory:rw
-      - ../DATA/basic-memory/knowledge:/app/data:rw
-      - ../DATA/basic-memory/work-notes:/app/data/work:rw
-      - ../DATA/basic-memory/personal-notes:/app/data/personal:rw
+      - ../../DATA/basic-memory/knowledge:/app/data:rw
+      - ../../DATA/basic-memory/work-notes:/app/data/work:rw
+      - ../../DATA/basic-memory/personal-notes:/app/data/personal:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
 
     hostname: ${NAME:-basic-memory-server}
@@ -65,7 +65,7 @@ services:
       - "8004:8004"
 
     env_file:
-      - .env.basic-memory
+      - .env
 
     deploy:
       replicas: 1

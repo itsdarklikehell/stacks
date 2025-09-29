@@ -31,7 +31,7 @@ services:
       - 8989:8989/tcp
 
     env_file:
-      - .env.sonarr
+      - .env
 
     deploy:
       replicas: 1

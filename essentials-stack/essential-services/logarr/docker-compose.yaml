@@ -14,8 +14,8 @@ services:
       - PORT=${PORT:-88}
 
     volumes:
-      - ../DATA/logarr/config:/config:rw
-      - ../DATA/logarr/logs:/var/log/logarrlogs:rw
+      - ../../DATA/logarr/config:/config:rw
+      - ../../DATA/logarr/logs:/var/log/logarrlogs:rw
       # - /etc/localtime:/etc/localtime:ro
       # - /var/run/docker.sock:/var/run/docker.sock
 
@@ -36,7 +36,7 @@ services:
     stdin_open: true
 
     env_file:
-      - .env.logarr
+      - .env
 
     deploy:
       replicas: 1

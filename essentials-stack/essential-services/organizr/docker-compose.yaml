@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     # volumes:
-    #   - ../DATA/organizr/config:/config
+    #   - ../../DATA/organizr/config:/config
 
     hostname: organizr
 
@@ -27,7 +27,7 @@ services:
       - ${ORGANIZR_PORT:-9983}:80
 
     env_file:
-      - .env.organizr
+      - .env
 
     tty: true
     

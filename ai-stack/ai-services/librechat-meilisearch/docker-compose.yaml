@@ -15,7 +15,7 @@ services:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
 
     volumes:
-      - ../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
+      - ../../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
 
     networks:
       host:
@@ -27,7 +27,7 @@ services:
     user: ${PUID:-1000}:${PGID:-1000}
 
     env_file:
-      - .env.librechat-meilisearch
+      - .env
 
     deploy:
       replicas: 1

@@ -16,7 +16,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/quakejs/config:/config
+      - ../../DATA/quakejs/config:/config
 
     hostname: ${NAME:-quakejs}
 
@@ -31,7 +31,7 @@ services:
       - "27960:27960"
 
     env_file:
-      - .env.quakejs
+      - .env
 
     deploy:
       replicas: 1

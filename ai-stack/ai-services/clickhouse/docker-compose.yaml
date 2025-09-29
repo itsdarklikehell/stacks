@@ -22,15 +22,15 @@ services:
     volumes:
       - clickhouse_data:/bitnami/clickhouse
       - backups:/backups
-      - ../DATA/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
-      - ../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
+      - ../../DATA/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
+      - ../../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
     
     networks:
       host:
       ai-services:
 
     env_file:
-      - .env.clickhouse
+      - .env
 
     deploy:
       replicas: 1

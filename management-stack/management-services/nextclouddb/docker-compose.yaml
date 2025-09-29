@@ -20,7 +20,7 @@ services:
       - MYSQL_USER=nextcloud
 
     volumes:
-      - ../DATA/nextclouddb/nextclouddb:/var/lib/mysql
+      - ../../DATA/nextclouddb/nextclouddb:/var/lib/mysql
 
     hostname: ${NAME:-nextclouddb}
 
@@ -31,7 +31,7 @@ services:
       management-services:
 
     env_file:
-      - .env.nextclouddb
+      - .env
 
     deploy:
       replicas: 1

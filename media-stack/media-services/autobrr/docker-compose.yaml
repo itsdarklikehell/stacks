@@ -13,7 +13,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/autobrr/config:/config
+      - ../../DATA/autobrr/config:/config
 
     hostname: ${NAME:-autobrr}
 
@@ -25,7 +25,7 @@ services:
       - "7474:7474"
 
     env_file:
-      - .env.autobrr
+      - .env
 
     deploy:
       replicas: 1

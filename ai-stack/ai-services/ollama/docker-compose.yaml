@@ -21,7 +21,7 @@ services:
       - ollama-data:/root/.ollama
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/ollama:/root/.ollama
+      - ../../DATA/ollama:/root/.ollama
 
     hostname: ${NAME:-ollama}
 
@@ -33,7 +33,7 @@ services:
       - ${PORT:-11434}:11434
 
     env_file:
-      - .env.ollama
+      - .env
 
     deploy:
       resources:

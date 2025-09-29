@@ -19,7 +19,7 @@ services:
       media-services:
 
     env_file:
-      - .env.autopulse
+      - .env
 
     deploy:
       replicas: 1

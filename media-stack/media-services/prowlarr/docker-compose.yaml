@@ -30,7 +30,7 @@ services:
       - "${PORT:-9696}:9696/tcp"
 
     env_file:
-      - .env.prowlarr
+      - .env
 
     deploy:
       # resources:

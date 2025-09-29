@@ -42,7 +42,7 @@ services:
       - net.ipv6.conf.default.forwarding=1
 
     env_file:
-      - .env.wg-easy
+      - .env
 
     deploy:
       replicas: 1

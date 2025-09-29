@@ -16,7 +16,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/home-assistant/config:/config
+      - ../../DATA/home-assistant/config:/config
 
     hostname: homeassistant
 
@@ -27,7 +27,7 @@ services:
       host:
 
     env_file:
-      - .env.homeassistant
+      - .env
 
     ports:
       - ${PORT:-8123}:8123

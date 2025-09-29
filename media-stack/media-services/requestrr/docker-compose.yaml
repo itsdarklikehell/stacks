@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/requestrr/config:/root/config
+      - ../../DATA/requestrr/config:/root/config
 
     hostname: ${NAME:-requestrr}
 
@@ -24,7 +24,7 @@ services:
       - ${PORT:-4545}:4545
 
     env_file:
-      - .env.requestrr
+      - .env
 
     deploy:
       replicas: 1

@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../DATA/tvs99/config/config.tvs.yml:/config.tvs.yml
-      - ../DATA/tvs99/data:/data
+      - ../../DATA/tvs99/config/config.tvs.yml:/config.tvs.yml
+      - ../../DATA/tvs99/data:/data
 
     hostname: ${NAME:-tvs99}
 
@@ -23,7 +23,7 @@ services:
       - ${PORT:-8085}:3000
 
     env_file:
-      - .env.tvs99
+      - .env
 
     deploy:
       replicas: 1

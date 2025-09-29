@@ -19,7 +19,7 @@ services:
       media-services:
 
     volumes:
-      - ../DATA/overseerr/appdata/config:/app/config
+      - ../../DATA/overseerr/appdata/config:/app/config
 
     hostname: ${NAME:-overseerr}
 
@@ -27,7 +27,7 @@ services:
       - ${PORT:-5056}:5056
 
     env_file:
-      - .env.overseerr
+      - .env
 
     deploy:
       replicas: 1

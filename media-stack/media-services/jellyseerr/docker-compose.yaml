@@ -16,7 +16,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../DATA/jellyseerr/appdata/config:/app/config
+      - ../../DATA/jellyseerr/appdata/config:/app/config
 
     hostname: ${NAME:-jellyseerr}
 
@@ -28,7 +28,7 @@ services:
       media-services:
 
     env_file:
-      - .env.jellyseerr
+      - .env
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7878"]

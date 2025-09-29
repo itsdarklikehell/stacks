@@ -14,7 +14,7 @@ services:
       - "PGID=$(id"
 
     volumes:
-      - ../DATA/buildarr/config:/config
+      - ../../DATA/buildarr/config:/config
 
     hostname: ${NAME:-buildarr}
 
@@ -23,7 +23,7 @@ services:
       media-services:
 
     env_file:
-      - .env.buildarr
+      - .env
 
     deploy:
       replicas: 1
