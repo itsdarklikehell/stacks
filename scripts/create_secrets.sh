@@ -17,9 +17,16 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/rreading_glasses_db_password"
     mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
     touch "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/anythingllm.db"
+    if [ -d "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
+        rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
+    fi
+    if [ -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
+        sudo rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
+    fi
     if [ ! -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
         cd "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage" || exit 1
-        sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example"
+        # sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example"
+        sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
         sudo cp ".env.example" ".env"
     fi
 }

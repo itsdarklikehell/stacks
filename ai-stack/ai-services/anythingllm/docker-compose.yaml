@@ -25,7 +25,7 @@ services:
       - ../../DATA/anythingllm/anythingllm_storage:${STORAGE_DIR:-/app/server/storage}
       - ../../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir
       - ../../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs
-      - ../../DATA/anythingllm/anythingllm_storage/.env:/app/server/.env
+      # - ../../DATA/anythingllm/anythingllm_storage/.env:/app/server/.env
 
     hostname: ${NAME:-anythingllm}
 
