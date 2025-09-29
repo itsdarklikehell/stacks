@@ -45,7 +45,7 @@ services:
       host:
       media-services:
     env_file:
-      - .env
+      - ./wolf/.env
 
     ports:
       - "47984/tcp"

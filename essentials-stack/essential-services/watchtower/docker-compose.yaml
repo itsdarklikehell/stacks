@@ -23,7 +23,7 @@ services:
       essential-services:
 
     env_file:
-      - .env
+      - ./watchtower/.env
 
     tty: true
     

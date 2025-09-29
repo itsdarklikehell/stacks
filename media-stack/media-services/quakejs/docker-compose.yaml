@@ -31,7 +31,7 @@ services:
       - "27960:27960"
 
     env_file:
-      - .env
+      - ./quakejs/.env
 
     deploy:
       replicas: 1

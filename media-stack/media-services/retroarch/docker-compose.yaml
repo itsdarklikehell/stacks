@@ -35,7 +35,7 @@ services:
     #   - seccomp:unconfined
 
     env_file:
-      - .env
+      - ./retroarch/.env
 
     deploy:
       replicas: 1

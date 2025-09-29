@@ -32,7 +32,7 @@ services:
       ai-services:
 
     env_file:
-      - .env
+      - ./stable-diffusion-models-download/.env
 
     deploy:
       replicas: 1

@@ -33,7 +33,7 @@ services:
       - ${PORT:-11434}:11434
 
     env_file:
-      - .env
+      - ./ollama/.env
 
     deploy:
       resources:

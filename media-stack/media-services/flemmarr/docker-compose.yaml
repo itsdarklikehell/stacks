@@ -24,7 +24,7 @@ services:
     # #   - "80:80"
 
     env_file:
-      - .env
+      - ./flemmarr/.env
 
     deploy:
       replicas: 1

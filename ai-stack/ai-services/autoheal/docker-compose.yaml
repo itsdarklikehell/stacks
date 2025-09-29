@@ -33,7 +33,7 @@ services:
     # #   - "80:80"
 
     env_file:
-      - .env
+      - ./autoheal/.env
 
     deploy:
       replicas: 1

@@ -39,7 +39,7 @@ services:
         max-file: "3"
 
     env_file:
-      - .env
+      - ./uptime-kuma/.env
 
     tty: true
     

@@ -30,7 +30,7 @@ services:
       - "5198:80"
 
     env_file:
-      - .env
+      - ./gaseous-server/.env
 
     depends_on:
       - gsdb

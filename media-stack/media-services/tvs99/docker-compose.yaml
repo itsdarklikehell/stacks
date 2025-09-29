@@ -23,7 +23,7 @@ services:
       - ${PORT:-8085}:3000
 
     env_file:
-      - .env
+      - ./tvs99/.env
 
     deploy:
       replicas: 1

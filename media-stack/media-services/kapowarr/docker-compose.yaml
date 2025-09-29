@@ -24,7 +24,7 @@ services:
       - "5656:5656"
 
     env_file:
-      - .env
+      - ./kapowarr/.env
 
     deploy:
       replicas: 1

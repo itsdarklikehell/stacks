@@ -37,7 +37,7 @@ services:
       - ${PORT:-7860}:7860
 
     env_file:
-      - .env
+      - ./stable-diffusion-webui/.env
 
     stop_signal: SIGKILL
 

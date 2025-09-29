@@ -28,7 +28,7 @@ services:
       media-services:
 
     env_file:
-      - .env
+      - ./jellyseerr/.env
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7878"]

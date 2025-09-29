@@ -33,7 +33,7 @@ services:
       - ${PORT:-27017}:27017
 
     env_file:
-      - .env
+      - ./mongo/.env
 
     deploy:
       replicas: 1

@@ -40,7 +40,7 @@ services:
       - redis
 
     env_file:
-      - .env
+      - ./nextcloud/env
 
     deploy:
       replicas: 1

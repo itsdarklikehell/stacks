@@ -31,7 +31,7 @@ services:
       management-services:
 
     env_file:
-      - .env
+      - ./nextclouddb/.env
 
     deploy:
       replicas: 1

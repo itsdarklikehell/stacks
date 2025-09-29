@@ -27,7 +27,7 @@ services:
     user: ${PUID:-1000}:${PGID:-1000}
 
     env_file:
-      - .env
+      - ./librechat-meilisearch/.env
 
     deploy:
       replicas: 1

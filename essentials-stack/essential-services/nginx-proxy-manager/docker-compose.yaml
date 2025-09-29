@@ -37,7 +37,7 @@ services:
       # - "21:21" # FTP
 
     env_file:
-      - .env
+      - ./nginx-proxy-manager/.env
 
     tty: true
     

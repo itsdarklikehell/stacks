@@ -48,7 +48,7 @@ services:
     pid: host
 
     env_file:
-      - .env
+      - ./netdata/.env
 
     deploy:
       replicas: 1

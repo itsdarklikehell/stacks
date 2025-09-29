@@ -30,7 +30,7 @@ services:
       ai-services:
 
     env_file:
-      - .env
+      - ./clickhouse/.env
 
     deploy:
       replicas: 1

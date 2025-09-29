@@ -22,6 +22,9 @@ services:
     networks:
       host:
       ai-services:
+        
+    env_file:
+      - ./chroma/.env
 
     ports:
       - 8000:8000

@@ -26,7 +26,7 @@ services:
       - gsdb_password
 
     env_file:
-      - .env
+      - ./gsdb/.env
 
 
     healthcheck:

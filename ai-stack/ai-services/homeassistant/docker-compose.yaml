@@ -27,7 +27,7 @@ services:
       host:
 
     env_file:
-      - .env
+      - ./homeassistant/.env
 
     ports:
       - ${PORT:-8123}:8123

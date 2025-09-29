@@ -37,7 +37,7 @@ services:
       - ${PORT:-7801}:7801
 
     env_file:
-      - .env
+      - ./swarmui/.env
 
     cap_drop:
       - ALL

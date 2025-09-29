@@ -26,7 +26,7 @@ services:
       - ${PORT:-8080}:8080
 
     env_file:
-      - .env
+      - ./watchtower/.env
 
     deploy:
       replicas: 1

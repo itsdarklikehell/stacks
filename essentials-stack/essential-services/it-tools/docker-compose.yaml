@@ -35,7 +35,7 @@ services:
       # - 8088:8080
 
     env_file:
-      - .env
+      - ./it-tools/.env
 
     deploy:
       replicas: 1

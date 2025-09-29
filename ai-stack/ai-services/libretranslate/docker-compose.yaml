@@ -34,7 +34,7 @@ services:
     user: root
 
     env_file:
-      - .env
+      - ./libretranslate/.env
 
     deploy:
       resources:

@@ -77,9 +77,9 @@ echo ""
 INSTALL_MANAGEMENT-STACK_STACK
 echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
-echo ""
+# echo ""
+# INSTALL_MEDIA_STACK
+# echo ""
 
 # dockly # lazydocker
 

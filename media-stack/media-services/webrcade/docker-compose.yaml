@@ -23,7 +23,7 @@ services:
       media-services:
 
     env_file:
-      - .env
+      - ./webrcade/.env
 
     deploy:
       replicas: 1

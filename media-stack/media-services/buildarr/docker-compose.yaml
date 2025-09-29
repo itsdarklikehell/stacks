@@ -23,7 +23,7 @@ services:
       media-services:
 
     env_file:
-      - .env
+      - ./buildarr/.env
 
     deploy:
       replicas: 1
