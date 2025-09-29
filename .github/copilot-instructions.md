@@ -7,7 +7,6 @@ This project is organized as a modular Docker-based stack system with four main 
 ### Stack Overview
 
 1. AI Stack (`ai-stack/`)
-
    - Purpose: AI and ML service orchestration
    - Key Services:
      - AnythingLLM: Document processing and LLM integration
@@ -17,7 +16,6 @@ This project is organized as a modular Docker-based stack system with four main 
      - LibreTranslate: Self-hosted translation services
 
 2. Essentials Stack (`essentials-stack/`)
-
    - Purpose: Core infrastructure and shared services
    - Components:
      - Base networking configuration
@@ -26,7 +24,6 @@ This project is organized as a modular Docker-based stack system with four main 
      - Common utilities
 
 3. Management Stack (`management-stack/`)
-
    - Purpose: System monitoring and operations
    - Features:
      - Service health monitoring
@@ -42,16 +39,18 @@ This project is organized as a modular Docker-based stack system with four main 
      - Stream processing
      - Media storage management
 
-### Key Components
+### Development Environment
 
-1. Stack Structure
+1. Prerequisites:
+   ```bash
+   # Required tools are installed via scripts:
+   ./scripts/install_docker.sh     # Docker + lazydocker + dockly
+   ./scripts/install_drivers.sh    # GPU and system drivers
+   ./scripts/install_uv.sh        # Python package installer
+   ```
 
-   - Each stack has its own `install-stack.sh` and service definitions
-   - Services are defined in individual docker-compose files under `{stack}/services/`
-   - Persistent data is stored in `{stack}/DATA/` directories
-
-2. Network Architecture
-   - Segregated Service Networks:
+2. Network Architecture:
+   - Segmented Service Networks:
      - `ai-services`: AI and ML service communication
      - `media-services`: Media processing and streaming
      - `management-services`: Monitoring and admin tools
@@ -61,60 +60,60 @@ This project is organized as a modular Docker-based stack system with four main 
    - Cross-Stack Communication:
      - Services can join multiple networks when needed
      - Use `networks:` directive in compose files
-     - Reference `base.docker-compose.yaml` for default network config
-
-## Development Workflows
-
-### Installation
-
-1. Initial Setup:
-
-   ```bash
-   ./scripts/install_drivers.sh    # Install required drivers
-   ./scripts/install_docker.sh     # Setup Docker environment
-   ./scripts/create_networks.sh    # Create Docker networks
-   ./scripts/create_secrets.sh     # Configure secrets
-   ```
-
-2. Stack Deployment:
-   ```bash
-   ./install-stack.sh             # Install all stacks
-   # Or individual stacks:
-   ./ai-stack/install-stack.sh
-   ```
+     - Reference `base.docker-compose.yaml` for default config
 
 ### Service Management
 
-#### Service Organization
+1. Service Structure:
+   - Each service has its own directory with configuration files:
+     ```
+     service-name/
+     ├── docker-compose.yaml   # Service-specific compose file
+     ├── .env                 # Service-specific environment variables
+     └── .env.example        # Template for environment variables
+     ```
+   - Reference `base.docker-compose.yaml` for shared configs
+   - Service definitions follow pattern:
+     ```yaml
+     name: service-name
+     networks:
+       - stack-specific-network
+     volumes:
+       - DATA/service:/data
+     env_file:
+       - .env
+     ```
 
-- Each service has a dedicated compose file: `{service-name}.docker-compose.yaml`
-- Enable/disable services by commenting entries in `compose-up.sh`
-- Services are organized by function into appropriate stacks
+2. Configuration:
+   - Environment: `.env` in stack root and service-specific
+   - Secrets: Store in `secrets/` as `{service}_{secret_name}`
+   - Data: Persist in `DATA/{service}/` with consistent naming
 
-#### Configuration Management
+### Common Operations
 
-1. Environment Variables
+1. Service Deployment:
+   ```bash
+   # Deploy entire stack
+   ./install-stack.sh
+   
+   # Deploy specific stack
+   ./ai-stack/install-stack.sh
+   ```
 
-   - Stack-level: `.env` in stack root
-   - Service-level: `{service}/.env` for service-specific config
-   - Use `.env.example` files as templates
+2. Service Management:
+   ```bash
+   # View service logs
+   docker-compose -f service.docker-compose.yaml logs
+   
+   # Monitor resources
+   docker stats
+   # or use lazydocker/dockly for TUI monitoring
+   ```
 
-2. Secrets Management
-
-   - Sensitive data stored in `secrets/` directory
-   - Reference secrets in compose files using `secrets:` directive
-   - Follow pattern: `{service}_{secret_name}`
-
-3. Volume Management
-
-   - Persistent data under `DATA/{service}/`
-   - Backup volumes: `DATA/backups/{service}/`
-   - Config volumes: `DATA/config/{service}/`
-
-4. Resource Allocation
-   - CPU/Memory limits in compose files
-   - GPU passthrough for AI services
-   - Network resource management
+3. Troubleshooting:
+   - Check service health: `docker ps -a`
+   - Inspect networks: `docker network inspect ai-services`
+   - Verify volumes: `docker volume ls`
 
 ## Best Practices
 
@@ -124,59 +123,37 @@ This project is organized as a modular Docker-based stack system with four main 
    - Use `base.docker-compose.yaml` for shared configurations
    - Follow the naming pattern: `{service-name}.docker-compose.yaml`
 
-2. Configuration
+### Critical Patterns
 
-   - Store sensitive data in `secrets/` directory
-   - Use environment files for service configuration
-   - Follow the network segregation pattern for service isolation
-
-3. Data Management
-   - Store persistent data under `DATA/` directories
-   - Use consistent volume naming: `{stack}_{service}_data`
-
-## Development Operations
-
-### Service Deployment
-
-1. Adding a New Service
-
-   - Create `{service-name}.docker-compose.yaml` in appropriate stack
-   - Add service entry to stack's `compose-up.sh`
-   - Create necessary data directories in `DATA/`
-   - Configure networks and dependencies
-   - Add any required secrets to `secrets/`
-
-2. Service Dependencies
-
-   - Use `depends_on` in compose files for startup order
+1. Service Dependencies:
+   - Define in compose files using `depends_on`
    - Implement health checks for critical services
-   - Consider shared resources (databases, caches)
    - Document external dependencies
 
-3. Resource Management
-   - Configure resource limits in compose files
-   - Monitor resource usage with management stack
-   - Scale services based on workload
-   - Manage GPU allocation for AI services
+2. Resource Management:
+   - Set container limits in compose files
+   - Configure GPU passthrough for AI services
+   - Monitor via management stack tools
 
-### Troubleshooting Guide
+3. Data Management:
+   - Use consistent volume naming: `{stack}_{service}_data`
+   - Regular backup validation
+   - Monitor disk usage and cleanup
 
-1. Service Issues
+### Development Tips
 
-   - Check logs: `docker-compose logs {service-name}`
-   - Verify container status: `docker ps -a`
-   - Review resource usage: `docker stats`
-   - Check volume mounts: `docker inspect {container}`
+1. When adding services:
+   - Place in appropriate stack directory
+   - Update corresponding `compose-up.sh`
+   - Create required data directories
+   - Document dependencies and configuration
 
-2. Network Troubleshooting
+2. Networking:
+   - Use appropriate network segmentation
+   - Document required cross-service communication
+   - Implement proper health checks
 
-   - Test connectivity: `docker network inspect`
-   - Verify DNS resolution between services
-   - Check network isolation
-   - Monitor network resource usage
-
-3. Data Management
-   - Verify volume permissions
-   - Check backup status
-   - Monitor disk usage
-   - Validate data persistence
+3. Configuration:
+   - Follow established patterns for env vars and secrets
+   - Document all required environment variables
+   - Use templates and examples for new services
