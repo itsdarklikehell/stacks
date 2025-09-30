@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     # volumes:
-    #   - ../../DATA/organizr/config:/config
+    #   - ../DATA/organizr/config:/config
 
     hostname: organizr
 

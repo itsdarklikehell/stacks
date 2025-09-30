@@ -16,7 +16,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../../DATA/jellyseerr/appdata/config:/app/config
+      - ../DATA/jellyseerr/appdata/config:/app/config
 
     hostname: ${NAME:-jellyseerr}
 

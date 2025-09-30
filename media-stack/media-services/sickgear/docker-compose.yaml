@@ -14,9 +14,9 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../../DATA/sickgear/sickgear-data:/data
-      - ../../DATA/sickgear/incoming:/incoming
-      - ../../DATA/sickgear/tv:/tv
+      - ../DATA/sickgear/sickgear-data:/data
+      - ../DATA/sickgear/incoming:/incoming
+      - ../DATA/sickgear/tv:/tv
 
     hostname: sickgear
 

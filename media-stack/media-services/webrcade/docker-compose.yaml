@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/webrcade/content:/var/www/html/content
+      - ../DATA/webrcade/content:/var/www/html/content
 
     hostname: ${NAME:-webrcade}
 

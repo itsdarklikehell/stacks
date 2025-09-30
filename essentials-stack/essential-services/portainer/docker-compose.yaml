@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/portainer/portainer_data:/data
+      - ../DATA/portainer/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-portainer}

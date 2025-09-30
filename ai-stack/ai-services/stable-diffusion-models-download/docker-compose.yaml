@@ -5,11 +5,11 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../DATA/stable-diffusion-webui-docker/services/download/
+      context: ../DATA/stable-diffusion-webui-docker/services/download/
       args:
         UID: ${PUID:-1000}
         GID: ${PUID:-1000}
-      # dockerfile: ../../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
+      # dockerfile: ../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
 
     labels:
       - autoheal-app=true
@@ -23,7 +23,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/data:/data
 
     hostname: ${NAME:-stable-diffusion-models-download}
 

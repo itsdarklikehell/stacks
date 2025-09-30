@@ -55,8 +55,8 @@ services:
       USE_24_HOUR: true
 
     volumes:
-      - ../../DATA/calendarr/logs:/app/logs:rw
-      - ../../DATA/calendarr/custom_footers:/app/custom_footers:rw
+      - ../DATA/calendarr/logs:/app/logs:rw
+      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
 
     hostname: ${NAME:-calendarr}
 

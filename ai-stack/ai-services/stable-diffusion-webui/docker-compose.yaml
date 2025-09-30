@@ -5,11 +5,11 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../DATA/stable-diffusion-webui-docker/services/comfy
+      context: ../DATA/stable-diffusion-webui-docker/services/comfy
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ../../DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile
+      dockerfile: ../DATA/stable-diffusion-webui-docker/services/comfy/Dockerfile
 
     labels:
       - autoheal-app=true
@@ -24,8 +24,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/stable-diffusion-webui-docker/data:/data
-      - ../../DATA/stable-diffusion-webui-docker/output:/output
+      - ../DATA/stable-diffusion-webui-docker/data:/data
+      - ../DATA/stable-diffusion-webui-docker/output:/output
 
     hostname: ${NAME:-stable-diffusion-webui}
 

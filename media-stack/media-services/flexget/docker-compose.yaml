@@ -13,8 +13,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../../DATA/flexget/config:/config
-      - ../../DATA/flexget/downloads:/downloads
+      - ../DATA/flexget/config:/config
+      - ../DATA/flexget/downloads:/downloads
 
     hostname: ${NAME:-flexget}
 

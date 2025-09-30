@@ -10,9 +10,9 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/plex/config:/config
-      - ../../DATA/plex/transcode:/transcode
-      - ../../DATA/plex/media:/data
+      - ../DATA/plex/config:/config
+      - ../DATA/plex/transcode:/transcode
+      - ../DATA/plex/media:/data
 
     hostname: ${NAME:-plex}
 

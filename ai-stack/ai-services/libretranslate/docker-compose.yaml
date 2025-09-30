@@ -19,8 +19,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/whisper/libretranslate/data:/home/libretranslate/.local/share
-      - ../../DATA/whisper/libretranslate/cache:/home/libretranslate/.local/cache
+      - ../DATA/whisper/libretranslate/data:/home/libretranslate/.local/share
+      - ../DATA/whisper/libretranslate/cache:/home/libretranslate/.local/cache
 
     hostname: ${NAME:-libretranslate}
 

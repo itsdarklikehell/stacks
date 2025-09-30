@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../../DATA/retroarch/config:/config
+      - ../DATA/retroarch/config:/config
 
     hostname: ${NAME:-retroarch}
 

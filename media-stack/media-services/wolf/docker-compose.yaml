@@ -21,7 +21,7 @@ services:
       - WOLF_AUDIO_PING_PORT=48200
 
     volumes:
-      - ../../DATA/wolf/:/etc/wolf
+      - ../DATA/wolf/:/etc/wolf
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - /dev/:/dev/:rw
       - /run/udev:/run/udev:rw

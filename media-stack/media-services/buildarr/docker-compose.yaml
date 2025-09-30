@@ -14,7 +14,7 @@ services:
       - "PGID=$(id"
 
     volumes:
-      - ../../DATA/buildarr/config:/config
+      - ../DATA/buildarr/config:/config
 
     hostname: ${NAME:-buildarr}
 

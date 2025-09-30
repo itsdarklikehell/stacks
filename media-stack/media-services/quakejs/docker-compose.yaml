@@ -16,7 +16,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - ../../DATA/quakejs/config:/config
+      - ../DATA/quakejs/config:/config
 
     hostname: ${NAME:-quakejs}
 

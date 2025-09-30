@@ -20,7 +20,7 @@ services:
       - MYSQL_USER=nextcloud
 
     volumes:
-      - ../../DATA/nextclouddb/nextclouddb:/var/lib/mysql
+      - ../DATA/nextclouddb/nextclouddb:/var/lib/mysql
 
     hostname: ${NAME:-nextclouddb}
 

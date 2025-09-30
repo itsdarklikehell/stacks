@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/requestrr/config:/root/config
+      - ../DATA/requestrr/config:/root/config
 
     hostname: ${NAME:-requestrr}
 

@@ -18,8 +18,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/whisper/db_data:/data/db
-      - ../../DATA/whisper/db_data/logs/:/var/log/mongodb/
+      - ../DATA/whisper/db_data:/data/db
+      - ../DATA/whisper/db_data/logs/:/var/log/mongodb/
 
     hostname: ${NAME:-mongo}
 

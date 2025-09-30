@@ -19,7 +19,7 @@ services:
       media-services:
 
     volumes:
-      - ../../DATA/overseerr/appdata/config:/app/config
+      - ../DATA/overseerr/appdata/config:/app/config
 
     hostname: ${NAME:-overseerr}
 

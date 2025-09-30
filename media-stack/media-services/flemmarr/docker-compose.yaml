@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/flemmarr/config:/config
+      - ../DATA/flemmarr/config:/config
 
     hostname: ${NAME:-flemmarr}
 

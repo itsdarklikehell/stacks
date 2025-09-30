@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/calibre-web/calibre-library:/calibre-library
+      - ../DATA/calibre-web/calibre-library:/calibre-library
 
     hostname: ${NAME:-calibre-web}
 

@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
-      - ../../DATA/redis/redis:/data
+      - ../DATA/redis/redis:/data
 
     hostname: ${NAME:-redis}
 

@@ -21,10 +21,10 @@ services:
       # - PORT=8087
 
     volumes:
-      - ../../DATA/nextcloud/html:/var/www/html
-      - ../../DATA/nextcloud/custom_apps:/var/www/html/custom_apps
-      - ../../DATA/nextcloud/config:/var/www/html/config
-      - ../../DATA/nextcloud/data:/var/www/html/data
+      - ../DATA/nextcloud/html:/var/www/html
+      - ../DATA/nextcloud/custom_apps:/var/www/html/custom_apps
+      - ../DATA/nextcloud/config:/var/www/html/config
+      - ../DATA/nextcloud/data:/var/www/html/data
 
     hostname: ${NAME:-nextcloud}
 
