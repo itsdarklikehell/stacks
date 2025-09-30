@@ -6,11 +6,11 @@ services:
 
     labels:
       - autoheal-app=true
-      - keep_healthy
+      - autoheal
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-keep_healthy}
+      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-autoheal}
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10

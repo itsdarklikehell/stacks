@@ -6,7 +6,7 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-      - keep_healthy
+      - autoheal
 
     # environment:
     #   - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}

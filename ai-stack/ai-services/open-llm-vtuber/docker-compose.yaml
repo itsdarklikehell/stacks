@@ -13,7 +13,7 @@ services:
 
     labels:
       - autoheal-app=true
-      - keep_healthy
+      - autoheal
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:

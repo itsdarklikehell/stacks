@@ -6,7 +6,7 @@ services:
 
     labels:
       - autoheal-app=true
-      - keep_healthy
+      - autoheal
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
@@ -59,7 +59,7 @@ services:
 
     labels:
       - autoheal-app=true
-      - keep_healthy
+      - autoheal
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
