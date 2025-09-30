@@ -84,4 +84,4 @@ echo ""
 # dockly # lazydocker
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
-echo "Installation complete. Please reboot your system to ensure all changes take effect."
+echo "Installation complete.."
