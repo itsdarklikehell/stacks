@@ -121,7 +121,6 @@ This project is organized as a modular Docker-based stack system with four main 
 
    - Keep each service in its own docker-compose file
    - Use `base.docker-compose.yaml` for shared configurations
-   - Follow the naming pattern: `{service-name}.docker-compose.yaml`
 
 ### Critical Patterns
 
@@ -143,7 +142,7 @@ This project is organized as a modular Docker-based stack system with four main 
 ### Development Tips
 
 1. When adding services:
-   - Place in appropriate stack directory
+   - Place in appropriate directory
    - Update corresponding `compose-up.sh`
    - Create required data directories
    - Document dependencies and configuration
