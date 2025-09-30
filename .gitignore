@@ -1,5 +1,4 @@
 # Ignore Docker secrets and local overrides
-DATA/*
 secrets/*
 
 #Ignore vscode AI rules
