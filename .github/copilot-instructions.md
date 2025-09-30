@@ -79,9 +79,9 @@ This project is organized as a modular Docker-based stack system with four main 
      networks:
        - stack-specific-network
      volumes:
-       - DATA/service:/data
+       - ../../DATA/service-name:/data
      env_file:
-       - .env
+       - ./service-name/.env
      ```
 
 2. Configuration:
