@@ -17,7 +17,9 @@ function CLONE_OLLMVT(){
 
     # uv sync
     # uv run run_server.py
-
+    if [ ! -f "conf.yaml" ]; then
+        cp config_templates/conf.default.yaml conf.yaml
+    fi
     cp -f "${WD}/CustomDockerfile-openllm-vtuber" CustomDockerfile-openllm-vtuber
 
     # export INSTALL_WHISPER=false

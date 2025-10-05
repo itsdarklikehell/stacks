@@ -24,16 +24,13 @@ RUN conda create -n jaison-core python=3.10 pip=24.0 -y
 
 # Make RUN commands use the new environment:
 SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
-
-# RUN conda activate jaison-core
-RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
-
-RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r requirements.txt 
-RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r requirements.no_deps.txt 
-
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+RUN pip install funasr modelscope huggingface_hub pywhispercpp edge-tts azure-cognitiveservices-speech py3-tts
+RUN pip install -r requirements.txt
+RUN pip install -r requirements.no_deps.txt
 RUN python3 -m spacy download en_core_web_sm
 RUN python3 install.sh
-RUN unidic download
+RUN python3 -m unidic download
 
 # Expose port 12393 (the new default port)
 EXPOSE 7272
