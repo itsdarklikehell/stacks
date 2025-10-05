@@ -67,6 +67,40 @@ function CLONE_JAISON(){
     # docker build -t jaison-core .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 }
+function CLONE_AIRI(){
+
+    cd "${WD}" || exit
+    cd ../ai-stack/DATA || exit 1
+
+    git clone --recursive https://github.com/moeru-ai/airi.git airi
+    cd airi || exit
+    corepack enable
+    npm i -g @antfu/ni
+    ni
+    nr dev
+    # For Rust dependencies
+    # Not required if you are not going to develop on either crates or apps/tamagotchi
+    cargo fetch
+
+    # nr dev:tamagotchi
+    nr dev
+    # nr dev:docs
+
+    cd services/telegram-bot || exit
+    docker compose up -d
+    cp .env .env.local
+    nr -F @proj-airi/telegram-bot db:generate
+    nr -F @proj-airi/telegram-bot db:push
+    nr -F @proj-airi/telegram-bot dev
+    cd ../discord-bot || exit
+    cp .env .env.local
+    nr -F @proj-airi/discord-bot dev
+    cd ../minecraft || exit
+    cp .env .env.local
+    nr -F @proj-airi/minecraft dev
+
+    cp -f "${WD}/CustomDockerfile-airi" CustomDockerfile-airi
+}
 
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
@@ -99,6 +133,7 @@ function CLONE_CHROMA(){
 
 CLONE_OLLMVT
 CLONE_JAISON
+# CLONE_AIRI
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
