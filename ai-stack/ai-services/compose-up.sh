@@ -23,7 +23,6 @@ COMPOSE_FILES=(
   mongo/docker-compose.yaml
   ollama/docker-compose.yaml
   open-llm-vtuber/docker-compose.yaml
-  jaison-core/docker-compose.yaml
   open-webui/docker-compose.yaml
   searxng/docker-compose.yaml
   stable-diffusion-models-download/docker-compose.yaml

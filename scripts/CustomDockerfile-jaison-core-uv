@@ -1,0 +1,46 @@
+# Base image
+FROM nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04 AS base
+
+FROM python:3.12-slim-trixie AS compiler
+ENV PYTHONUNBUFFERED=1
+
+# The installer requires curl (and certificates) to download the release archive
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates ffmpeg
+
+# Download the latest installer
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+
+# Run the installer then remove it
+RUN sh /uv-installer.sh && rm /uv-installer.sh
+
+# Ensure the installed binary is on the `PATH`
+ENV PATH="/root/.local/bin/:$PATH"
+ENV VIRTUAL_ENV jaison-core
+
+# Copy data
+COPY . /jaison-core
+WORKDIR /jaison-core
+
+# Create venv
+RUN uv venv jaison-core
+
+
+
+
+# # Make RUN commands use the new environment:
+# SHELL ["uv", "run", "-n", "jaison-core", "/bin/bash", "-c"]
+
+# Install requirements
+RUN uv pip install --upgrade pip
+RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+RUN uv pip install -r requirements.txt
+RUN uv pip install --no-deps -r requirements.no_deps.txt
+
+RUN uv spacy download en_core_web_sm
+RUN uv install.py
+RUN uv unidic download
+
+# Expose port 7272 (the new default port)
+EXPOSE 7272
+
+CMD ["uv", "run", "./src/main.py --help"]

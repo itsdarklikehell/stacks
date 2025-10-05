@@ -9,7 +9,9 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./CustomDockerfile-jaison-core
+      dockerfile: ./CustomDockerfile-jaison-core-uv
+      # dockerfile: ./CustomDockerfile-jaison-core-conda
+      # dockerfile: ./CustomDockerfile-jaison-core-venv
 
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
@@ -38,7 +40,7 @@ services:
 
     networks:
       host:
-      ai-services:
+      jaison-services:
 
     ports:
       - "${PORT:-7272}:7272"

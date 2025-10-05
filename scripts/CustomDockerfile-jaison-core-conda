@@ -1,0 +1,51 @@
+# Base image
+FROM nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04 AS base
+
+FROM continuumio/miniconda AS miniconda
+
+# The installer requires curl (and certificates) to download the release archive
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates ffmpeg
+
+# Ensure the installed binary is on the `PATH`
+ENV PATH="/root/.local/bin/:$PATH"
+ENV VIRTUAL_ENV jaison-core
+
+# Copy data
+COPY . /jaison-core
+WORKDIR /jaison-core
+
+# Create venv
+RUN conda create jaison-core python=3.10 pip=24.0 -y
+RUN conda activate jaison-core
+
+
+
+
+# Make RUN commands use the new environment:
+SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
+RUN pip install uv
+
+# Install requirements
+# RUN uv pip install --upgrade pip
+# RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+# RUN uv pip install -r requirements.txt
+# RUN uv pip install --no-deps -r requirements.no_deps.txt
+# RUN uv run -m spacy download en_core_web_sm
+# RUN uv run install.py
+# RUN uv run -m unidic download
+
+# Install requirements
+RUN pip install --upgrade pip
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+RUN pip install -r requirements.txt
+RUN pip install --no-deps -r requirements.no_deps.txt
+RUN python3 -m spacy download en_core_web_sm
+RUN python3 install.py
+RUN python3 -m unidic download
+
+# Expose port 7272 (the new default port)
+EXPOSE 7272
+
+# The code to run when container is started:
+ENTRYPOINT ["conda", "run", "-n", "jaison-core", "python3", "src/main.py --config=example"]
+# CMD ["uv", "run", "./src/main.py --config=example"]

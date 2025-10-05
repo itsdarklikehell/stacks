@@ -40,7 +40,7 @@ function CLONE_JAISON(){
     # conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../jaison-stack/DATA || exit 1
 
     git clone --recursive https://github.com/limitcantcode/jaison-core jaison-core
     cd jaison-core || exit
@@ -60,7 +60,9 @@ function CLONE_JAISON(){
 
     # python ./src/main.py --help
 
-    cp -f "${WD}/CustomDockerfile-jaison-core" CustomDockerfile-jaison-core
+    cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
+    cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
+    cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
 
     # export INSTALL_WHISPER=false
     # export INSTALL_BARK=false

@@ -41,6 +41,9 @@ function INSTALL_MEDIA_STACK(){
 function INSTALL_AI_STACK(){
     ai-stack/install-stack.sh
 }
+function INSTALL_JAISON_STACK(){
+    jaison-stack/install-stack.sh
+}
 echo ""
 echo "Installing Drivers"
 echo ""
@@ -81,6 +84,9 @@ echo ""
 INSTALL_MEDIA_STACK
 echo ""
 
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 # dockly # lazydocker
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
