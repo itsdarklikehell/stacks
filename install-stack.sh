@@ -53,10 +53,10 @@ echo ""
 echo "Creating Docker Secrets"
 echo ""
 CREATE_SECRETS
-echo ""
-echo "Creating Docker Networks"
-echo ""
-CREATE_NETWORKS
+# echo ""
+# echo "Creating Docker Networks"
+# echo ""
+# CREATE_NETWORKS
 echo ""
 echo "Cloning repos"
 echo ""
