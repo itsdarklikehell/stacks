@@ -23,7 +23,7 @@ services:
       essential-services:
 
     ports:
-      - "${PORT:-3002}:3002"
+      - "${PORT:-3001}:3001"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002"]
