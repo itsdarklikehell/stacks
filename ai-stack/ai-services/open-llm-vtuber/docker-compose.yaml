@@ -1,7 +1,7 @@
 services:
   open-llm-vtuber:
-    image: ${IMAGE:-open-llm-vtuber}
-    container_name: ${NAME:open-llm-vtuber}
+    # image: ${IMAGE:-open-llm-vtuber}
+    container_name: ${NAME:-open-llm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
     build:
@@ -9,7 +9,7 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./dockerfile
+      dockerfile: ./CustomDockerfile-openllm-vtuber
 
     labels:
       - autoheal-app=true
@@ -29,7 +29,7 @@ services:
       - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
       - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:open-llm-vtuber}
+    hostname: ${NAME:-open-llm-vtuber}
 
     # command: [ "ollama", "pull", "qwen3"]
 
@@ -43,13 +43,20 @@ services:
     env_file:
       - ./open-llm-vtuber/.env
 
+    runtime: nvidia
     deploy:
+      replicas: 1
       resources:
+        # limits:
+        #   memory: 1G
+        #   cpus: "1.00"
         reservations:
+          # memory: 512M
+          # cpus: "0.50"
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [gpu]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu

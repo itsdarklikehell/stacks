@@ -37,6 +37,7 @@ services:
     env_file:
       - ./retroarch/.env
 
+    runtime: nvidia
     deploy:
       replicas: 1
       resources:
@@ -49,4 +50,4 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [compute, video, graphics, utility]
+              capabilities: [gpu, compute, video, graphics, utility]

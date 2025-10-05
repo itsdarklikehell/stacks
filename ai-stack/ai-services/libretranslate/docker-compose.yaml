@@ -36,13 +36,20 @@ services:
     env_file:
       - ./libretranslate/.env
 
+    runtime: nvidia
     deploy:
+      replicas: 1
       resources:
+        # limits:
+        #   memory: 1G
+        #   cpus: "1.00"
         reservations:
+          # memory: 512M
+          # cpus: "0.50"
           devices:
             - driver: nvidia
-              count: all
-              capabilities: [gpu]
+              count: 1
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
     

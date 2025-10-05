@@ -32,6 +32,10 @@ networks:
 
 volumes:
   basic-memory-config:
+  swarmdata:
+  swarmbackend:
+  swarmdlnodes:
+  swarmextensions:
 #   netdataconfig:
 #   netdatalib:
 #   netdatacache:
@@ -39,10 +43,6 @@ volumes:
 #   dockge_data:
 #   wireguard:
 #   grafana_data:
-#   swarmdata:
-#   swarmbackend:
-#   swarmdlnodes:
-#   swarmextensions:
 #   clickhouse_data:
 #   index_data:
 #   backups:

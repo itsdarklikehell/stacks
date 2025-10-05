@@ -41,13 +41,20 @@ services:
 
     stop_signal: SIGKILL
 
+    runtime: nvidia
     deploy:
+      replicas: 1
       resources:
+        # limits:
+        #   memory: 1G
+        #   cpus: "1.00"
         reservations:
+          # memory: 512M
+          # cpus: "0.50"
           devices:
             - driver: nvidia
-              device_ids: ["0"]
-              capabilities: [compute, utility]
+              count: 1
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
     

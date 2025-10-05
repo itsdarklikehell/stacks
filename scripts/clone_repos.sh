@@ -18,7 +18,7 @@ function CLONE_OLLMVT(){
     # uv sync
     # uv run run_server.py
 
-    cp -f "${WD}/CustomDockerfile-openllm-vtuber" dockerfile
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber" CustomDockerfile-openllm-vtuber
 
     # export INSTALL_WHISPER=false
     # export INSTALL_BARK=false

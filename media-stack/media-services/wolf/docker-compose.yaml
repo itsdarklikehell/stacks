@@ -36,10 +36,18 @@ services:
 
     runtime: nvidia
     deploy:
+      replicas: 1
       resources:
+        # limits:
+        #   memory: 1G
+        #   cpus: "1.00"
         reservations:
+          # memory: 512M
+          # cpus: "0.50"
           devices:
-            - capabilities: [gpu, compute, video, graphics, utility]
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, compute, video, graphics, utility]
 
     networks:
       host:
