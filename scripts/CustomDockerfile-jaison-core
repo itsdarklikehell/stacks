@@ -31,7 +31,7 @@ RUN python3 -m spacy download en_core_web_sm
 RUN python3 install.sh
 RUN python3 -m unidic download
 
-# Expose port 12393 (the new default port)
+# Expose port 7272 (the new default port)
 EXPOSE 7272
 
 # CMD ["python3", "./src/main.py --config=example",]
