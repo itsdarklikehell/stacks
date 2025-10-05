@@ -10,7 +10,6 @@ RUN apt-get -o Acquire::AllowInsecureRepositories=true update && \
     apt-get install -y --no-install-recommends wget ffmpeg pipx git curl python3 python3-pip || true && \
     apt --fix-broken install -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
     
 FROM continuumio/miniconda3
     
