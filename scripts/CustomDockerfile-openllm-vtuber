@@ -31,8 +31,8 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS
 # RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r requirements.txt
 # RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -e .
 # RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages -e . 
-RUN python3 -m unidic download 
-RUN python3 melo/init_downloads.py
+# RUN python3 -m unidic download 
+# RUN python3 melo/init_downloads.py
 
 # Whisper variant
 FROM base AS whisper
