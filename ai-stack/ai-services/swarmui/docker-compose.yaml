@@ -11,7 +11,7 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ../DATA/SwarmUI/launchtools/CustomDockerfile.docker
+      dockerfile: ./launchtools/CustomDockerfile.docker
 
     labels:
       - autoheal-app=true

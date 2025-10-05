@@ -6,15 +6,15 @@ cd "$(dirname "$0")"
   # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
   base.docker-compose.yaml
-  collabora/docker-compose.yaml
-  dashy/docker-compose.yaml
-  n8n/docker-compose.yaml
-  netdata/docker-compose.yaml
+  # collabora/docker-compose.yaml
+  # dashy/docker-compose.yaml
+  # n8n/docker-compose.yaml
+  # netdata/docker-compose.yaml
   nextcloud/docker-compose.yaml
   nextclouddb/docker-compose.yaml
   redis/docker-compose.yaml
   # ubuntu-noble-desktop/docker-compose.yaml
-  wg-easy/docker-compose.yaml
+  # wg-easy/docker-compose.yaml
 )
 
 ARGS=""

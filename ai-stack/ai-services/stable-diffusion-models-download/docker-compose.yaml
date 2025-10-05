@@ -1,6 +1,6 @@
 services:
   stable-diffusion-models-download:
-    image: ${IMAGE:-comfy-download}
+    # image: ${IMAGE:-comfy-download}
     container_name: ${NAME:-stable-diffusion-models-download}
     restart: ${RESTART:-unless-stopped}
 
@@ -9,7 +9,7 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PUID:-1000}
-      # dockerfile: ../DATA/stable-diffusion-webui-docker/services/download/Dockerfile
+      dockerfile: ./Dockerfile
 
     labels:
       - autoheal-app=true
