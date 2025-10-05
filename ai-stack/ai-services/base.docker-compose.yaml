@@ -17,7 +17,7 @@ networks:
     external: true
 #   media-services:
 #     external: true
-#   iot_macvlan:
+#   macvlan:
 #     external: true
 #   management-services:
 #     external: true

@@ -56,7 +56,7 @@ This project is organized as a modular Docker-based stack system with four main 
      - `management-services`: Monitoring and admin tools
      - `essential-services`: Core infrastructure
    - Special Networks:
-     - `iot_macvlan`: Direct IoT device communication (uses physical network)
+     - `macvlan`: Direct IoT device communication (uses physical network)
    - Cross-Stack Communication:
      - Services can join multiple networks when needed
      - Use `networks:` directive in compose files
