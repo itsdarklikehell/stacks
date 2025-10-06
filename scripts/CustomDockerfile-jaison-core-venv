@@ -1,11 +1,11 @@
 # Base image
 FROM nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04 AS base
 
-FROM python:3.12-slim-trixie AS compiler
+FROM python:3.12-slim-trixie
 ENV PYTHONUNBUFFERED=1
 
 # The installer requires curl (and certificates) to download the release archive
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates ffmpeg
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates ffmpeg git
 
 # Ensure the installed binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
@@ -22,12 +22,12 @@ ENV PATH=".venv/bin:$PATH"
 
 
 
-# Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
-RUN pip install uv
+# # Make RUN commands use the new environment:
+# SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
 
 # Install requirements
 RUN pip install --upgrade pip
+# RUN pip install uv
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 RUN pip install --no-deps -r requirements.no_deps.txt
 RUN pip install -r requirements.txt
