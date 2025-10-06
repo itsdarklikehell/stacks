@@ -66,15 +66,13 @@ RUN if [ "$INSTALL_BARK" = "true" ]; then \
 # Final image
 FROM bark AS final
 
-# Copy application code to the container
-COPY . /openllm-vtuber
-
 # Set working directory
 WORKDIR /openllm-vtuber
+RUN python3 run_server.py --help
 
 # Expose port 12393 (the new default port)
 EXPOSE 12393
 
 # The code to run when container is started:
-# ENTRYPOINT ["conda", "run", "-n", "openllm-vtuber", "python3", "run_server.py"]
-CMD ["python3", "run_server.py"]
+ENTRYPOINT ["conda", "run", "-n", "openllm-vtuber", "python3", "run_server.py"]
+# CMD ["python3", "run_server.py"]
