@@ -91,9 +91,9 @@ echo ""
 INSTALL_OPENLLM_VTUBER_STACK
 echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
 # dockly # lazydocker
 
