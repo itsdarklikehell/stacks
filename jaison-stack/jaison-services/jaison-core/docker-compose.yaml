@@ -10,8 +10,8 @@ services:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
       dockerfile: ./CustomDockerfile-jaison-core-conda
-      # dockerfile: ./CustomDockerfile-jaison-core-venv
       # dockerfile: ./CustomDockerfile-jaison-core-uv
+      # dockerfile: ./CustomDockerfile-jaison-core-venv
 
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}

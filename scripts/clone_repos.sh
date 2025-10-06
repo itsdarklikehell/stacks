@@ -20,7 +20,9 @@ function CLONE_OLLMVT(){
     if [ ! -f "conf.yaml" ]; then
         cp config_templates/conf.default.yaml conf.yaml
     fi
-    cp -f "${WD}/CustomDockerfile-openllm-vtuber" CustomDockerfile-openllm-vtuber
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber" CustomDockerfile-openllm-vtuber-uv
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 
     # export INSTALL_WHISPER=false
     # export INSTALL_BARK=false

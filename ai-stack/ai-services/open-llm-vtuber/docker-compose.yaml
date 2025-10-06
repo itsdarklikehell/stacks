@@ -9,7 +9,9 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./CustomDockerfile-openllm-vtuber
+      dockerfile: ./CustomDockerfile-openllm-vtuber-conda
+      # dockerfile: ./CustomDockerfile-openllm-vtuber-uv
+      # dockerfile: ./CustomDockerfile-openllm-vtuber-venv
 
     labels:
       - autoheal-app=true
