@@ -10,6 +10,7 @@ mkdir -p ../ai-stack/DATA
 function CLONE_OLLMVT(){
     ./install_uv.sh
     cd "${WD}" || exit
+    mkdir -p ../openllm-vtuber-stack/DATA
     cd ../openllm-vtuber-stack/DATA || exit 1
 
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
@@ -20,7 +21,7 @@ function CLONE_OLLMVT(){
     if [ ! -f "conf.yaml" ]; then
         cp config_templates/conf.default.yaml conf.yaml
     fi
-    cp -f "${WD}/CustomDockerfile-openllm-vtuber" CustomDockerfile-openllm-vtuber-uv
+    cp -f "${WD}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
     cp -f "${WD}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
     cp -f "${WD}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 

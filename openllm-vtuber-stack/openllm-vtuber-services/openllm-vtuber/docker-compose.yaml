@@ -1,7 +1,7 @@
 services:
   open-llm-vtuber:
     # image: ${IMAGE:-open-llm-vtuber}
-    container_name: ${NAME:-open-llm-vtuber}
+    container_name: ${NAME:-openllm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
     build:
@@ -31,7 +31,7 @@ services:
       - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
       - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-open-llm-vtuber}
+    hostname: ${NAME:-openllm-vtuber}
 
     # command: [ "ollama", "pull", "qwen3"]
 
@@ -43,7 +43,7 @@ services:
       - "${PORT:-12393}:12393"
 
     env_file:
-      - ./open-llm-vtuber/.env
+      - ./openllm-vtuber/.env
 
     runtime: nvidia
     deploy:
