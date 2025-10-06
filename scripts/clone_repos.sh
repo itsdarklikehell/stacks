@@ -128,7 +128,9 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd ../ai-stack/DATA || exit 1
 
     git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
-    mkdir -p stable-diffusion-webui-docker/data/models/CLIPEncoder
+    cd stable-diffusion-webui-docker || exit 1
+    mkdir -p data/models/CLIPEncoder
+    cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
 }
 function CLONE_CHROMA(){
     cd "${WD}" || exit
