@@ -1,6 +1,7 @@
 FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
 
-ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PIP_PREFER_BINARY=1
 
 RUN apt-get update && apt-get install -y git && \
     apt --fix-broken install -y && \
@@ -17,7 +18,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install -r requirements.txt
 
 WORKDIR /stable-diffusion/custom_nodes
-RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+RUN git clone https://github.com/Comfy-Org/ComfyUI-Manager.git && \
     cd ComfyUI-Manager && \
     git checkout master && \
     pip install -r requirements.txt
