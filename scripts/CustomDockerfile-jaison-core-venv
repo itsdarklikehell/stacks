@@ -1,41 +1,36 @@
 # Base image
 FROM nvidia/cuda:13.0.1-cudnn-devel-ubuntu24.04 AS base
 
-FROM python:3.12-slim-trixie
-ENV PYTHONUNBUFFERED=1
-
 # The installer requires curl (and certificates) to download the release archive
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates ffmpeg git
+RUN apt-get update && apt-get install -y --no-install-recommends wget curl ca-certificates python3 python3-venv ffmpeg git bzip2 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Ensure the installed binary is on the `PATH`
-ENV PATH="/root/.local/bin/:$PATH"
-ENV VIRTUAL_ENV jaison-core
+# ENV PATH="/root/.local/bin/:$PATH"
+# ENV VIRTUAL_ENV=jaison-core
 
 # Copy data
 COPY . /jaison-core
 WORKDIR /jaison-core
 
+
+
+
 # Create venv
-RUN python -m venv .venv
-ENV PATH=".venv/bin:$PATH"
-
-
-
-
-# # Make RUN commands use the new environment:
-# SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
+ENV PATH="jaison-core/bin:$PATH"
+RUN python3 -m venv jaison-core
 
 # Install requirements
-RUN pip install --upgrade pip
-# RUN pip install uv
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-RUN pip install --no-deps -r requirements.no_deps.txt
-RUN pip install -r requirements.txt
-RUN python3 -m spacy download en_core_web_sm
-RUN python3 install.py
-RUN python3 -m unidic download
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+pip install -r requirements.txt && \
+pip install --no-deps -r requirements.no_deps.txt
+
+RUN python3 -m spacy download en_core_web_sm  && \
+python3 install.py && \
+python3 -m unidic download
+
+RUN python3 src/main.py --help
 
 # Expose port 7272 (the new default port)
 EXPOSE 7272
 
-CMD ["python3", "./src/main.py --help"]
+CMD ["python3", "src/main.py --config=example"]

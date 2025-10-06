@@ -9,8 +9,8 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./CustomDockerfile-jaison-core-venv
-      # dockerfile: ./CustomDockerfile-jaison-core-conda
+      dockerfile: ./CustomDockerfile-jaison-core-conda
+      # dockerfile: ./CustomDockerfile-jaison-core-venv
       # dockerfile: ./CustomDockerfile-jaison-core-uv
 
     environment:
@@ -22,7 +22,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     # volumes:
-    #   - "../DATA/jaison-core/conf.yaml:/app/conf.yaml"
+    #   - "../DATA/jaison-core/.env:/jaison-core/.env"
     #   - "../DATA/jaison-core/avatars:/app/avatars"
     #   - "../DATA/jaison-core/avatars:/app/backgrounds"
     #   - "../DATA/jaison-core/characters:/app/characters"

@@ -59,7 +59,8 @@ function CLONE_JAISON(){
     # python -m unidic download
 
     # python ./src/main.py --help
-
+    # python ./src/main.py --config=example
+    
     cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
     cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
     cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
