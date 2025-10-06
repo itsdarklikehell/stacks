@@ -123,6 +123,7 @@ function CLONE_SWARMUI(){
     # ./launchtools/custom-launch-docker.sh fixch
     # ./launchtools/custom-launch-docker.sh
 }
+
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
@@ -130,7 +131,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
     cd stable-diffusion-webui-docker || exit 1
     mkdir -p data/models/CLIPEncoder
-    cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
+    cp -f "${WD}/CustomDockerfile-comfyui" services/comfy/Dockerfile
 }
 function CLONE_CHROMA(){
     cd "${WD}" || exit
