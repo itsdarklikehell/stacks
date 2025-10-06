@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
     base.docker-compose.yaml
-    jaison-core/docker-compose.yaml
+    openllm-vtuber/docker-compose.yaml
 )
 
 ARGS=""
