@@ -14,13 +14,13 @@ WORKDIR /stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip \
     git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
     cd ${ROOT} && \
-    git checkout master && \
+    # git checkout master && \
     pip install -r requirements.txt
 
 WORKDIR /stable-diffusion/custom_nodes
 RUN git clone https://github.com/Comfy-Org/ComfyUI-Manager.git && \
     cd ComfyUI-Manager && \
-    git checkout master && \
+    # git checkout master && \
     pip install -r requirements.txt
 
 WORKDIR ${ROOT}
