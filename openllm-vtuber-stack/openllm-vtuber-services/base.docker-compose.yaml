@@ -1,0 +1,79 @@
+# Shared networks, volumes, and secrets for all services
+# NETWORK SEGMENTATION:
+# - Use dedicated networks for each stack
+# - Restrict inter-stack communication unless required
+# - Document network policies
+#
+# CI/CD & DOCUMENTATION:
+# - Use GitHub Actions or similar for automated testing/deployment
+# - Document all customizations and manual steps in README.md
+# - Keep this file and .env in sync
+
+name: openllm-vtuber
+
+networks:
+  host:
+  openllm-vtuber-services:
+    external: true
+  ai-services:
+    external: true
+#   media-services:
+#     external: true
+#   macvlan:
+#     external: true
+#   management-services:
+#     external: true
+#   wg:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 10.42.42.0/24
+#         - subnet: fdcc:ad94:bacf:61a3::/64
+
+volumes:
+  basic-memory-config:
+  swarmdata:
+  swarmbackend:
+  swarmdlnodes:
+  swarmextensions:
+#   netdataconfig:
+#   netdatalib:
+#   netdatacache:
+#   n8n_data:
+#   dockge_data:
+#   wireguard:
+#   grafana_data:
+#   clickhouse_data:
+#   index_data:
+#   backups:
+#   pgdata2:
+
+# # secrets:
+#   letta_pg_password:
+#     file: ../../secrets/letta_pg_password
+#   letta_password:
+#     file: ../../secrets/letta_password
+#   mariadb_root_password:
+#     file: ../../secrets/mariadb_root_password
+#   mariadb_password:
+#     file: ../../secrets/mariadb_password
+#   gsdb_root_password:
+#     file: ../../secrets/gsdb_root_password
+#   gsdb_password:
+#     file: ../../secrets/gsdb_password
+#   romm_db_password:
+#     file: ../../secrets/romm_db_password
+#   romm_auth_secret_key:
+#     file: ../../secrets/romm_auth_secret_key
+#   screenscraper_password:
+#     file: ../../secrets/screenscraper_password
+#   retroachievements_api_key:
+#     file: ../../secrets/retroachievements_api_key
+#   steamgriddb_api_key:
+#     file: ../../secrets/steamgriddb_api_key
+#   hardcover_auth:
+#     file: ../../secrets/hardcover_auth
+#   rreading_glasses_db_password:
+#     file: ../../secrets/rreading_glasses_db_password

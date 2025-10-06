@@ -10,7 +10,7 @@ mkdir -p ../ai-stack/DATA
 function CLONE_OLLMVT(){
     ./install_uv.sh
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../openllm-vtuber-stack/DATA || exit 1
 
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit

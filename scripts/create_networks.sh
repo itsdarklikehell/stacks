@@ -9,6 +9,7 @@ function CREATE_NETWORKS(){
     docker network create essential-services
     docker network create ai-services
     docker network create jaison-services
+    docker network create openllm-vtuber-services
 
     docker network create -d macvlan \
     --subnet=192.168.1.0/24 \

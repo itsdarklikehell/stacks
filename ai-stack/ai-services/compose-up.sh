@@ -22,7 +22,6 @@ COMPOSE_FILES=(
   libretranslate/docker-compose.yaml
   mongo/docker-compose.yaml
   ollama/docker-compose.yaml
-  open-llm-vtuber/docker-compose.yaml
   open-webui/docker-compose.yaml
   searxng/docker-compose.yaml
   stable-diffusion-models-download/docker-compose.yaml

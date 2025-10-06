@@ -44,6 +44,9 @@ function INSTALL_AI_STACK(){
 function INSTALL_JAISON_STACK(){
     jaison-stack/install-stack.sh
 }
+function INSTALL_OPENLLM_VTUBER_STACK(){
+    openllm-vtuber-stack/install-stack.sh
+}
 echo ""
 echo "Installing Drivers"
 echo ""
@@ -86,6 +89,10 @@ echo ""
 
 echo ""
 INSTALL_JAISON_STACK
+echo ""
+
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
 echo ""
 # dockly # lazydocker
 
