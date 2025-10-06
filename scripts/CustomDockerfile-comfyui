@@ -16,8 +16,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     git checkout master && \
     pip install -r requirements.txt
 
-WORKDIR /stable-diffusion/stable-diffusion
+WORKDIR /stable-diffusion/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+    cd ComfyUI-Manager && \
     git checkout master && \
     pip install -r requirements.txt
 
