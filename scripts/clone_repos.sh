@@ -130,9 +130,15 @@ function CLONE_RIKOPROJECT(){
     source .venv/bin/activate
     uv pip install --upgrade pip uv nltk
     chmod +x install_reqs.sh
+
+    sed -i "s/python_mecab_ko; sys_platform != 'win32'/python_mecab_ko; sys_platform == 'linux'/" requirements.txt
+
+    pip install --upgrade pip uv nltk && \
+    uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+    uv pip install -r extra-req.txt --no-deps && \
+    uv pip install -r requirements.txt
+
     ./install_reqs.sh
-    # uv pip install -r extra-req.txt
-    # uv pip install -r requirements.txt
 
 }
 function CLONE_SWARMUI(){

@@ -34,8 +34,7 @@ RUN conda create -n riko-project python=3.10 pip=24.0 -y && \
 SHELL ["conda", "run", "-n", ".venv", "/bin/bash", "-c"]
 
 # Install requirements
-RUN pip install --upgrade pip uv && \
-    uv pip install nltk && \
+RUN pip install --upgrade pip uv nltk && \
     uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
     uv pip install -r extra-req.txt --no-deps && \
     uv pip install -r requirements.txt
@@ -48,5 +47,5 @@ RUN python3 main_chat.py
 # EXPOSE 7272
 
 # The code to run when container is started:
-ENTRYPOINT ["python3", "./main_chat.py"]
-# CMD ["python3", "./main_chat.py"]
+ENTRYPOINT ["python3", "./server/main_chat.py"]
+# CMD ["python3", "./server/main_chat.py"]
