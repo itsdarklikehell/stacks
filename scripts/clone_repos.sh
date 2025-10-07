@@ -126,14 +126,13 @@ function CLONE_RIKOPROJECT(){
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv venv riko-project --clear
-    source riko-project/bin/activate
-    uv pip install --upgrade pip uv
-    uv pip install nltk
+    uv venv .venv --clear
+    source .venv/bin/activate
+    uv pip install --upgrade pip uv nltk
     chmod +x install_reqs.sh
     ./install_reqs.sh
-    uv pip install -r extra-req.txt
-    uv pip install -r requirements.txt
+    # uv pip install -r extra-req.txt
+    # uv pip install -r requirements.txt
 
 }
 function CLONE_SWARMUI(){
