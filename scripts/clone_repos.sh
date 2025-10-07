@@ -7,7 +7,7 @@ echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
 mkdir -p ../ai-stack/DATA
-mkdri -p ../jaison-stack/DATA
+mkdir -p ../jaison-stack/DATA
 mkdir -p ../openllm-vtuber-stack/DATA
 mkdir -p ../media-stack/DATA
 mkdir -p ../essential-stack/DATA
