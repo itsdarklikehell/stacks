@@ -131,9 +131,9 @@ function CLONE_RIKOPROJECT(){
     sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
 
     source .venv/bin/activate
-    pip install --upgrade pip uv nltk && \
-    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
-    # uv pip install -r extra-req.txt --no-deps && \
+    pip install --upgrade pip uv nltk
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+    # uv pip install -r extra-req.txt --no-deps
     # uv pip install -r requirements.txt
 
     chmod +x install_reqs.sh
