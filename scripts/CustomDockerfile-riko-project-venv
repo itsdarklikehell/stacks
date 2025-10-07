@@ -25,9 +25,9 @@ RUN pip install --upgrade pip uv nltk && \
     uv pip install -r extra-req.txt --no-deps && \
     uv pip install -r requirements.txt
 
-RUN install_reqs.sh
+# RUN install_reqs.sh
 
-RUN python3 main_chat.py
+# RUN python3 main_chat.py
 
 # # Expose port 7272 (the new default port)
 # EXPOSE 7272

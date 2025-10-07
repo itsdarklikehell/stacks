@@ -127,19 +127,18 @@ function CLONE_RIKOPROJECT(){
 
     curl -LsSf https://astral.sh/uv/install.sh | sh
     uv venv .venv --clear
+
+    sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
+
     source .venv/bin/activate
-    uv pip install --upgrade pip uv nltk
-    chmod +x install_reqs.sh
-
-    sed -i "s/python_mecab_ko; sys_platform != 'win32'/python_mecab_ko; sys_platform == 'linux'/" requirements.txt
-
     pip install --upgrade pip uv nltk && \
-    uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
-    uv pip install -r extra-req.txt --no-deps && \
-    uv pip install -r requirements.txt
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+    # uv pip install -r extra-req.txt --no-deps && \
+    # uv pip install -r requirements.txt
 
+    chmod +x install_reqs.sh
     ./install_reqs.sh
-
+    # python3 ./server/main_chat.py
 }
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
