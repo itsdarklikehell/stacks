@@ -20,9 +20,9 @@ function CREATE_SECRETS(){
     if [ -d "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
         rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
     fi
-    if [ -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
-        sudo rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
-    fi
+    # if [ -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
+    #     sudo rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
+    # fi
     if [ ! -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
         mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
         cd "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage" || exit 1
