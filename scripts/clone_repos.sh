@@ -5,12 +5,17 @@ export UV_LINK_MODE=copy
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
+
 mkdir -p ../ai-stack/DATA
+mkdri -p ../jaison-stack/DATA
+mkdir -p ../openllm-vtuber-stack/DATA
+mkdir -p ../media-stack/DATA
+mkdir -p ../essential-stack/DATA
+mkdir -p ../management-stack/DATA
 
 function CLONE_OLLMVT(){
     ./install_uv.sh
     cd "${WD}" || exit
-    mkdir -p ../openllm-vtuber-stack/DATA
     cd ../openllm-vtuber-stack/DATA || exit 1
 
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
@@ -107,7 +112,6 @@ function CLONE_AIRI(){
 
     cp -f "${WD}/CustomDockerfile-airi" CustomDockerfile-airi
 }
-
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
@@ -123,7 +127,6 @@ function CLONE_SWARMUI(){
     # ./launchtools/custom-launch-docker.sh fixch
     # ./launchtools/custom-launch-docker.sh
 }
-
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
