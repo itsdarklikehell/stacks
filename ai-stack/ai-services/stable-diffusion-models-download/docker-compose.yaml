@@ -24,7 +24,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/stable-diffusion-webui-docker/data:/data
-
+      - ../DATA/stable-diffusion-webui-docker/data/config:/data/config
+      - ../DATA/stable-diffusion-webui-docker/data/models:/data/models
+      - ../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings
+      
     hostname: ${NAME:-stable-diffusion-models-download}
 
     networks:

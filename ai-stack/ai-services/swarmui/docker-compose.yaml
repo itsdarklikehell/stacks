@@ -23,7 +23,7 @@ services:
       - swarmbackend:/SwarmUI/dlbackend
       - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
       - swarmextensions:/SwarmUI/src/Extensions
-      - ../DATA/stable-diffusion-webui-docker/data/Models:/SwarmUI/Models
+      - ../DATA/stable-diffusion-webui-docker/data/models:/SwarmUI/Models
       - ../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output
       - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
