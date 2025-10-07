@@ -25,7 +25,7 @@ services:
       - swarmextensions:/SwarmUI/src/Extensions
       - ../DATA/stable-diffusion-webui-docker/data/Models:/SwarmUI/Models
       - ../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output
-      - ../DATA/Swarmui/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: ${NAME:-swarmui}
 
