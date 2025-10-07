@@ -31,6 +31,7 @@ networks:
 #         - subnet: fdcc:ad94:bacf:61a3::/64
 
 volumes:
+  home-assistant-config:
   basic-memory-config:
   swarmdata:
   swarmbackend:

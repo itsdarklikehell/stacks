@@ -16,7 +16,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/home-assistant/config:/config
+      - home-assistant-config:/config
 
     hostname: homeassistant
 

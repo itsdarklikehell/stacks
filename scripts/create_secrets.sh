@@ -24,10 +24,9 @@ function CREATE_SECRETS(){
         sudo rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
     fi
     if [ ! -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
+        mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
         cd "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage" || exit 1
-        # sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example"
-        sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
-        sudo cp ".env.example" ".env"
+        sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O ".env"
     fi
 }
 CREATE_SECRETS
