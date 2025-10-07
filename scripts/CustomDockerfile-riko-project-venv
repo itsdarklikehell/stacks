@@ -20,10 +20,11 @@ ENV PATH="riko-project/bin:$PATH"
 RUN python3 -m venv .venv
 
 # Install requirements
-RUN pip install uv && \
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
-    pip install -r extra-req.txt --no-deps && \
-    pip install -r requirements.txt
+RUN pip install --upgrade pip uv && \
+    uv pip install nltk && \
+    uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
+    uv pip install -r extra-req.txt --no-deps && \
+    uv pip install -r requirements.txt
 
 RUN install_reqs.sh
 
