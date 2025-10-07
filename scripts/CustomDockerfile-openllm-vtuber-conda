@@ -29,13 +29,13 @@ WORKDIR /openllm-vtuber
 
 
 
-# Create venv
-ENV PATH="openllm-vtuber/bin:$PATH"
+# Create .venv
+ENV PATH=".venv/bin:$PATH"
 RUN conda create -n openllm-vtuber python=3.10 pip=24.0 -y && \
     conda init
 
 # Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "openllm-vtuber", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", ".venv", "/bin/bash", "-c"]
 
 # Install requirements
 RUN pip install -r requirements.txt 
@@ -74,5 +74,5 @@ RUN python3 run_server.py --help
 EXPOSE 12393
 
 # The code to run when container is started:
-ENTRYPOINT ["conda", "run", "-n", "openllm-vtuber", "python3", "run_server.py"]
+ENTRYPOINT ["conda", "run", "-n", ".venv", "python3", "run_server.py"]
 # CMD ["python3", "run_server.py"]

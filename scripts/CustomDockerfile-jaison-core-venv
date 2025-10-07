@@ -15,9 +15,9 @@ WORKDIR /jaison-core
 
 
 
-# Create venv
-ENV PATH="jaison-core/bin:$PATH"
-RUN python3 -m venv jaison-core
+# Create .venv
+ENV PATH=".venv/bin:$PATH"
+RUN python3 -m venv .venv
 
 # Install requirements
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \

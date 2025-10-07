@@ -28,13 +28,13 @@ COPY . /jaison-core
 WORKDIR /jaison-core
 
 
-# Create venv
-ENV PATH="jaison-core/bin:$PATH"
-RUN conda create -n jaison-core python=3.10 pip=24.0 -y && \
+# Create .venv
+ENV PATH=".venv/bin:$PATH"
+RUN conda create -n .venv python=3.10 pip=24.0 -y && \
     conda init
 
 # Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "jaison-core", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", ".venv", "/bin/bash", "-c"]
 
 # Install requirements
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
@@ -52,5 +52,5 @@ RUN python3 main.py --help
 EXPOSE 7272
 
 # The code to run when container is started:
-ENTRYPOINT ["conda", "run", "-n", "jaison-core", "python3", "main.py --config=example"]
+ENTRYPOINT ["conda", "run", "-n", ".venv", "python3", "main.py --config=example"]
 # CMD ["python3", "main.py --config=example"]

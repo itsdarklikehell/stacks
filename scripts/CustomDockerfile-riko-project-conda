@@ -25,13 +25,13 @@ COPY . /riko-project
 WORKDIR /riko-project
 
 
-# Create venv
-ENV PATH="riko-project/bin:$PATH"
+# Create .venv
+ENV PATH=".venv/bin:$PATH"
 RUN conda create -n riko-project python=3.10 pip=24.0 -y && \
     conda init
 
 # Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "riko-project", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", ".venv", "/bin/bash", "-c"]
 
 # Install requirements
 RUN pip install uv && \

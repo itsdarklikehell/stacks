@@ -15,15 +15,15 @@ ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN sh /uv-installer.sh && rm /uv-installer.sh
 # Ensure the installed binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
-ENV VIRTUAL_ENV=jaison-core
+ENV VIRTUAL_ENV=.venv
 
 # Copy data
 COPY . /jaison-core
 WORKDIR /jaison-core
 
-# Create venv
-ENV PATH="jaison-core/bin:$PATH"
-RUN uv venv jaison-core
+# Create .venv
+ENV PATH=".venv/bin:$PATH"
+RUN uv venv .venv
 
 # Install requirements
 RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \

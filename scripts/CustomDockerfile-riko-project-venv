@@ -15,9 +15,9 @@ WORKDIR /riko-project
 
 
 
-# Create venv
+# Create .venv
 ENV PATH="riko-project/bin:$PATH"
-RUN python3 -m venv riko-project
+RUN python3 -m venv .venv
 
 # Install requirements
 RUN pip install uv && \
