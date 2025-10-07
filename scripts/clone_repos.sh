@@ -12,6 +12,7 @@ mkdir -p ../openllm-vtuber-stack/DATA
 mkdir -p ../media-stack/DATA
 mkdir -p ../essentials-stack/DATA
 mkdir -p ../management-stack/DATA
+mkdir -p ../riko-stack/DATA
 
 function CLONE_OLLMVT(){
     ./install_uv.sh
@@ -112,6 +113,27 @@ function CLONE_AIRI(){
 
     cp -f "${WD}/CustomDockerfile-airi" CustomDockerfile-airi
 }
+function CLONE_RIKOPROJECT(){
+
+    cd "${WD}" || exit
+    cd ../riko-stack/DATA || exit 1
+
+    git clone --recursive https://github.com/rayenfeng/riko_project riko-project
+    cd riko-project || exit
+    
+    cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
+    cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
+    cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
+
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    uv venv riko-project --force
+    source riko-project/bin/activate
+    chmod +x install_reqs.sh
+    ./install_reqs.sh
+    uv pip install -r extra-req.txt
+    uv pip install -r requirements.txt
+
+}
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
@@ -145,6 +167,7 @@ function CLONE_CHROMA(){
 CLONE_OLLMVT
 CLONE_JAISON
 # CLONE_AIRI
+CLONE_RIKOPROJECT
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

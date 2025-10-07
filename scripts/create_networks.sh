@@ -12,6 +12,7 @@ function CREATE_NETWORKS(){
     docker network create essential-services
     docker network create ai-services
     docker network create jaison-services
+    docker network create riko-services
     docker network create openllm-vtuber-services
 
     docker network create -d macvlan \

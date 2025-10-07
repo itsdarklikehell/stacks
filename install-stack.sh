@@ -44,6 +44,9 @@ function INSTALL_AI_STACK(){
 function INSTALL_JAISON_STACK(){
     jaison-stack/install-stack.sh
 }
+function INSTALL_PROJECT_RIKO_STACK(){
+    riko-stack/install-stack.sh
+}
 function INSTALL_OPENLLM_VTUBER_STACK(){
     openllm-vtuber-stack/install-stack.sh
 }
@@ -87,14 +90,17 @@ echo ""
 INSTALL_MEDIA_STACK
 echo ""
 
-echo ""
-INSTALL_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# INSTALL_OPENLLM_VTUBER_STACK
+# echo ""
+
+# echo ""
+# INSTALL_JAISON_STACK
+# echo ""
 
 echo ""
-INSTALL_JAISON_STACK
+INSTALL_PROJECT_RIKO_STACK
 echo ""
-
 # dockly # lazydocker
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
