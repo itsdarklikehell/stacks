@@ -50,19 +50,19 @@ function INSTALL_OPENLLM_VTUBER_STACK(){
 echo ""
 echo "Installing Drivers"
 echo ""
-INSTALL_DRIVERS
+INSTALL_DRIVERS >/dev/null 2>&1
 echo ""
 echo "Installing Docker"
 echo ""
-INSTALL_DOCKER
+INSTALL_DOCKER >/dev/null 2>&1
 echo ""
 echo "Creating Docker Secrets"
 echo ""
-CREATE_SECRETS
+CREATE_SECRETS >/dev/null 2>&1
 echo ""
 echo "Creating Docker Networks"
 echo ""
-CREATE_NETWORKS
+CREATE_NETWORKS >/dev/null 2>&1
 echo ""
 echo "Cloning repos"
 echo ""
