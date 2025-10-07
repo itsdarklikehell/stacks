@@ -1,5 +1,6 @@
 #!/bin/bash
-WD="$(dirname "$(realpath "$0")")"
+
+WD="$(dirname "$(realpath "$0")")" || true
 export WD
 export UV_LINK_MODE=copy
 
@@ -24,7 +25,7 @@ function CLONE_OLLMVT(){
 
     # uv sync
     # uv run run_server.py
-    if [ ! -f "conf.yaml" ]; then
+    if [[ ! -f "conf.yaml" ]]; then
         cp config_templates/conf.default.yaml conf.yaml
     fi
     cp -f "${WD}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
@@ -125,11 +126,12 @@ function CLONE_RIKOPROJECT(){
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
 
-    curl -LsSf https://astral.sh/uv/install.sh | sh
+    curl -LsSf https://astral.sh/uv/install.sh | sh || true
     uv venv .venv --clear
 
     sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
-
+    
+    # shellcheck source=.venv/bin/activate
     source .venv/bin/activate
     pip install --upgrade pip uv nltk
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
@@ -172,7 +174,7 @@ function CLONE_CHROMA(){
 
 CLONE_OLLMVT
 CLONE_JAISON
-# CLONE_AIRI
+CLONE_AIRI
 CLONE_RIKOPROJECT
 CLONE_CHROMA
 CLONE_SWARMUI
