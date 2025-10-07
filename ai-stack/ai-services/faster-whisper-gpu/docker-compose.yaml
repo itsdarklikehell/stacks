@@ -20,7 +20,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/faster-whisper/data:/config
+      - faster-whisper-data/data:/config
 
     networks:
       host:

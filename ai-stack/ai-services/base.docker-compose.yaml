@@ -32,11 +32,19 @@ networks:
 
 volumes:
   home-assistant-config:
+  open-webui-data:
   basic-memory-config:
   swarmdata:
   swarmbackend:
   swarmdlnodes:
   swarmextensions:
+  anythingllm_storage:
+  anythingllm_hotdir:
+  anythingllm_outputs:
+  index_data:
+  clickhouse_data:
+  clickhouse_backups:
+  faster-whisper-data:
 #   netdataconfig:
 #   netdatalib:
 #   netdatacache:
@@ -44,8 +52,6 @@ volumes:
 #   dockge_data:
 #   wireguard:
 #   grafana_data:
-#   clickhouse_data:
-#   index_data:
 #   backups:
 #   pgdata2:
 
