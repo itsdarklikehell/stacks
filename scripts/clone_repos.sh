@@ -10,7 +10,7 @@ mkdir -p ../ai-stack/DATA
 mkdir -p ../jaison-stack/DATA
 mkdir -p ../openllm-vtuber-stack/DATA
 mkdir -p ../media-stack/DATA
-mkdir -p ../essential-stack/DATA
+mkdir -p ../essentials-stack/DATA
 mkdir -p ../management-stack/DATA
 
 function CLONE_OLLMVT(){
