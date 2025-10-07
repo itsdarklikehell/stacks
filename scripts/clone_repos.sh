@@ -88,16 +88,14 @@ function CLONE_AIRI(){
     git clone --recursive https://github.com/moeru-ai/airi.git airi
     cd airi || exit
     corepack enable
-    npm i -g @antfu/ni
-    ni
-    nr dev
+
     # For Rust dependencies
     # Not required if you are not going to develop on either crates or apps/tamagotchi
+    sudo apt install -y cargo
     cargo fetch
 
-    # nr dev:tamagotchi
-    nr dev
-    # nr dev:docs
+    npm i -g @antfu/ni
+    ni
 
     cd services/telegram-bot || exit
     docker compose up -d
@@ -111,6 +109,11 @@ function CLONE_AIRI(){
     cd ../minecraft || exit
     cp .env .env.local
     nr -F @proj-airi/minecraft dev
+    cd .. || exit
+
+    # nr dev:tamagotchi
+    # nr dev
+    # nr dev:docs
 
     cp -f "${WD}/CustomDockerfile-airi" CustomDockerfile-airi
 }
@@ -174,7 +177,7 @@ function CLONE_CHROMA(){
 
 CLONE_OLLMVT
 CLONE_JAISON
-CLONE_AIRI
+# CLONE_AIRI
 CLONE_RIKOPROJECT
 CLONE_CHROMA
 CLONE_SWARMUI
