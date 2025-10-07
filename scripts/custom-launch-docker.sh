@@ -26,7 +26,7 @@ docker run -it \
     --mount source=swarmbackend,target=/SwarmUI/dlbackend \
     --mount source=swarmdlnodes,target=/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes \
     --mount source=swarmextensions,target=/SwarmUI/src/Extensions \
-    -v "../../stable-diffusion-webui-docker/data/models:/SwarmUI/Models" \
+    -v "../../stable-diffusion-webui-docker/data/Models:/SwarmUI/Models" \
     -v "../../stable-diffusion-webui-docker/data/output:/SwarmUI/Output" \
     -v "../src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows" \
     --gpus=all -p 7801:7801 swarmui $POSTARG
