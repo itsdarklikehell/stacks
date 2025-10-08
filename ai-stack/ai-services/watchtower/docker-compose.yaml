@@ -1,7 +1,7 @@
 services:
   watchtower:
     image: ${IMAGE:-containrrr/watchtower}
-    container_name: ${NAME:-watchtower-ai}
+    container_name: ${NAME:-watchtower-ai-services}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,13 +14,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-watchtower-ai}
+    hostname: ${NAME:-watchtower-ai-services}
 
     # command: --debug --http-api-update
 
-    # networks:
-    #   - ai-services
-    #   - host
+    networks:
+      host:
+      ai-services:
 
     ports:
       - ${PORT:-8080}:8080

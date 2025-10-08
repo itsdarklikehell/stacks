@@ -20,8 +20,6 @@ COMPOSE_FILES=(
   retroarchz/docker-compose.yaml 
   romm/docker-compose.yaml 
   romm-db/docker-compose.yaml 
-  sickgear/docker-compose.yaml 
-  sonarr/docker-compose.yaml 
   tvs99/docker-compose.yaml 
   watchtower/docker-compose.yaml 
   webrcade/docker-compose.yaml 

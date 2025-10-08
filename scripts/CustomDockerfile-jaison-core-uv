@@ -35,11 +35,13 @@ RUN uv spacy download en_core_web_sm && \
     uv install.py && \
     uv unidic download
 
-RUN uv run ./src/main.py --help
+WORKDIR /jaison-core/src
+
+# RUN uv run main.py --help
 
 # Expose port 7272 (the new default port)
 EXPOSE 7272
 
 # The code to run when container is started:
 # ENTRYPOINT ["uv", "run", "./src/main.py --config=example"]
-CMD ["uv", "run", "./src/main.py --config=example"]
+CMD ["uv", "run", "main.py --config=example"]

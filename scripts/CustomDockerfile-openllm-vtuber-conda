@@ -68,7 +68,8 @@ FROM bark AS final
 
 # Set working directory
 WORKDIR /openllm-vtuber
-RUN python3 run_server.py --help
+
+# RUN python3 run_server.py --help
 
 # Expose port 12393 (the new default port)
 EXPOSE 12393

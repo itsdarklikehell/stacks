@@ -46,7 +46,8 @@ RUN python3 -m spacy download en_core_web_sm  && \
     python3 -m unidic download
 
 WORKDIR /jaison-core/src
-RUN python3 main.py --help
+
+# RUN python3 main.py --help
 
 # Expose port 7272 (the new default port)
 EXPOSE 7272

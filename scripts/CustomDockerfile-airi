@@ -34,5 +34,9 @@ RUN python3 -m unidic download
 # Expose port 7272 (the new default port)
 EXPOSE 7272
 
-# CMD ["python3", "./src/main.py --config=example",]
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "airi", "python3", "./src/main.py --config=example"]
+WORKDIR /airi/src
+
+# RUN uv run main.py --help
+
+# CMD ["python3", "main.py --config=example",]
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "airi", "python3", "main.py --config=example"]

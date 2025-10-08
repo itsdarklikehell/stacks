@@ -12,10 +12,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install common dependencies
-COPY requirements.txt /tmp/
+COPY . /openllm-vtuber
+WORKDIR /openllm-vtuber
 
-# Install pip
-WORKDIR /tmp
+
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN curl -sSL https://astral.sh/uv/install.sh -o install-uv.sh
 # RUN python3 get-pip.py
@@ -53,11 +53,10 @@ RUN if [ "$INSTALL_BARK" = "true" ]; then \
 # Final image
 FROM bark AS final
 
-# Copy application code to the container
-COPY . /app
-
 # Set working directory
-WORKDIR /app
+WORKDIR /openllm-vtuber
+
+# RUN python3 run_server.py --help
 
 # Expose port 12393 (the new default port)
 EXPOSE 12393

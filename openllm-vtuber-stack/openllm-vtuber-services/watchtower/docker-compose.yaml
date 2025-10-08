@@ -18,9 +18,9 @@ services:
 
     hostname: watchtower-openllm-vtuber-services
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     env_file:
       - ./watchtower/.env

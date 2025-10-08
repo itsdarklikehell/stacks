@@ -41,11 +41,14 @@ RUN pip install --upgrade pip uv nltk && \
 
 # RUN install_reqs.sh
 
+# Set working directory
+WORKDIR /openllm-vtuber/server
+
 # RUN python3 main_chat.py
 
 # # Expose port 7272 (the new default port)
 # EXPOSE 7272
 
 # The code to run when container is started:
-ENTRYPOINT ["python3", "./server/main_chat.py"]
-# CMD ["python3", "./server/main_chat.py"]
+ENTRYPOINT ["python3", "main_chat.py"]
+# CMD ["python3", "main_chat.py"]

@@ -28,11 +28,13 @@ RUN python3 -m spacy download en_core_web_sm  && \
     python3 install.py && \
     python3 -m unidic download
 
-RUN python3 ./src/main.py --help
+WORKDIR /jaison-core/src
+
+# RUN uv run main.py --help
 
 # Expose port 7272 (the new default port)
 EXPOSE 7272
 
 # The code to run when container is started:
 # ENTRYPOINT ["python3", "./src/main.py --config=example"]
-CMD ["python3", "./src/main.py --config=example"]
+CMD ["python3", "main.py --config=example"]

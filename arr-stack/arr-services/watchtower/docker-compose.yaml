@@ -50,7 +50,6 @@ services:
       - kapowarr
       - lidarr
       - logarr
-      - mylar3
       - organizr
       - overseerr
       - prowlarr
@@ -60,3 +59,4 @@ services:
       - sickgear
       - sonarr
       - whisparr
+      # - mylar3

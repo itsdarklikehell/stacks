@@ -1,7 +1,7 @@
 services:
   autoheal:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
-    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-media-services}
+    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-arr-services}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -22,13 +22,13 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ai-services-autoheal
+    hostname: autoheal-arr-services
 
     # command: [ "ollama", "pull", "qwen3"]
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      media-services:
 
     # # ports:
     # #   - "80:80"

@@ -37,20 +37,12 @@ services:
 
     depends_on:
       - autoheal
-      - autopulse
-      - calibre-web
-      - emby
-      - flexget
-      - gaseous-server
-      - gsdb
-      - jellyfin
-      - mattermost
-      - mylar3
-      - plex
-      - retroarch
-      - retroarchz
-      - romm
-      - romm-db
-      - sickgear
-      - tvs99
-      - webrcade
+      - collabora
+      - dashy
+      - n8n
+      - netdata
+      - nextcloud
+      - nextclouddb
+      - redis
+      - ubuntu-noble-desktop
+      - wg-easy

@@ -1,7 +1,7 @@
 services:
   watchtower:
     image: ${IMAGE:-containrrr/watchtower}
-    container_name: ${NAME:-watchtower}
+    container_name: ${NAME:-watchtower-essential-services}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # command: --debug --http-api-update
 
-    hostname: ${NAME:-watchtower}
+    hostname: ${NAME:-watchtower-essential-services}
 
     networks:
       host:
