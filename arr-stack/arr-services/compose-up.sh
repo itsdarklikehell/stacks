@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
     base.docker-compose.yaml
+    autoheal/docker-compose.yaml
     autobrr/docker-compose.yaml
     bazarr/docker-compose.yaml
     buildarr/docker-compose.yaml

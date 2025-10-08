@@ -1,5 +1,5 @@
 services:
-  watchtower:
+  watchtower-essential-services:
     image: ${IMAGE:-containrrr/watchtower}
     container_name: ${NAME:-watchtower-essential-services}
     restart: ${RESTART:-unless-stopped}
@@ -40,7 +40,7 @@ services:
       #     cpus: "0.25"
 
     depends_on:
-    - autoheal
+    - autoheal-essential-services
     - dockge
     - nginx-proxy-manager
     - portainer

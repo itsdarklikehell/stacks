@@ -1,5 +1,5 @@
 services:
-  autoheal:
+  autoheal-riko-services:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-riko-services}
     restart: ${RESTART:-unless-stopped}

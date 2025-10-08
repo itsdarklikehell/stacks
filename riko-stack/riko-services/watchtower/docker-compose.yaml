@@ -1,5 +1,5 @@
 services:
-  watchtower:
+  watchtower-riko-services:
     image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
     container_name: watchtower-riko-services
@@ -36,5 +36,5 @@ services:
       #     cpus: "0.25"
 
     depends_on:
-      - autoheal
+      - autoheal-riko-services
       - riko-project

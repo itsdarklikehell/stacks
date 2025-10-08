@@ -1,5 +1,5 @@
 services:
-  watchtower:
+  watchtower-arr-services:
     image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
     container_name: watchtower-arr-services
@@ -37,7 +37,7 @@ services:
 
     depends_on:
       - autobrr
-      - autoheal
+      - autoheal-arr-services
       - bazarr
       - buildarr
       - byparr

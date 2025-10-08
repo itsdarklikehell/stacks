@@ -1,5 +1,5 @@
 services:
-  autoheal:
+  autoheal-arr-services:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-arr-services}
     restart: ${RESTART:-unless-stopped}
@@ -28,7 +28,7 @@ services:
 
     networks:
       host:
-      media-services:
+      arr-services:
 
     # # ports:
     # #   - "80:80"

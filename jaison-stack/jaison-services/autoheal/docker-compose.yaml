@@ -1,5 +1,5 @@
 services:
-  autoheal:
+  autoheal-jaison-services:
     image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
     container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-jaison-services}
     restart: ${RESTART:-unless-stopped}

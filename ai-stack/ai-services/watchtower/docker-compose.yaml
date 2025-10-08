@@ -1,5 +1,5 @@
 services:
-  watchtower:
+  watchtower-ai-services:
     image: ${IMAGE:-containrrr/watchtower}
     container_name: ${NAME:-watchtower-ai-services}
     restart: ${RESTART:-unless-stopped}
@@ -32,27 +32,30 @@ services:
       replicas: 1
 
     depends_on:
-      - anythingllm
+      # - anythingllm
       - autoheal
       - basic-memory
       # - chroma
+      - clickhouse
       - faster-whisper-gpu
       - homeassistant
-      - letta-db
-      - letta-mcp
-      - letta-server
-      - libretranslate
+      # - letta-db
+      # - letta-mcp
+      # - letta-server
+      # - libretranslate
+      # - librechat
+      # - librechat-meilisearch
+      # - librechat-mongodb
+      # - librechat-rag_api
+      # - librechat-vectordb
       - mongo
       - ollama
       - open-webui
       - searxng
-      # - open-llm-vtuber
-      # - stable-diffusion-models-download
-      # - stable-diffusion-webui
-      # - swarmui
-      # - librechat
-      # - watchtower
-      - whisper
+      - stable-diffusion-models-download
+      - stable-diffusion-webui
+      - swarmui
+      - whispher
       - wyoming-piper
 
     tty: true
