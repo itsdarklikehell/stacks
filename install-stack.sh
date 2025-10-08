@@ -98,17 +98,17 @@ echo ""
 INSTALL_MEDIA_STACK
 echo ""
 
-# echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 
 

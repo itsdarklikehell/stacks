@@ -5,7 +5,8 @@
     }
   ],
   "settings": {
-    "llm-complete-me.selectedModel": "llama3.2"
+    "llm-complete-me.selectedModel": "llama3.2",
+    "DockerRun.DisableDockerrc": true
   },
   "launch": {
     "version": "0.2.0",
