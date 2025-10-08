@@ -22,8 +22,8 @@ services:
       host:
       ai-services:
 
-    ports:
-      - "${PORT:-8080}:8080"
+    # ports:
+    #   - "${PORT:-8080}:8080"
 
     env_file:
       - ./watchtower/.env

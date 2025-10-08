@@ -73,7 +73,7 @@ CREATE_NETWORKS >/dev/null 2>&1
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS
+CLONE_REPOS #>/dev/null 2>&1
 echo ""
 
 ## STACKS:
