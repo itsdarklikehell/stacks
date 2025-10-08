@@ -15,20 +15,6 @@ networks:
   host:
   ai-services:
     external: true
-#   media-services:
-#     external: true
-#   macvlan:
-#     external: true
-#   management-services:
-#     external: true
-#   wg:
-#     driver: bridge
-#     enable_ipv6: true
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 10.42.42.0/24
-#         - subnet: fdcc:ad94:bacf:61a3::/64
 
 volumes:
   home-assistant-config:

@@ -15,32 +15,3 @@ networks:
   host:
   openllm-vtuber-services:
     external: true
-
-# volumes:
-#   gsdb:
-#   mysql_data:
-#   gaseous_data:
-#   romm_resources:
-#   romm_redis_data:
-
-# secrets:
-#   rreading_glasses_db_password:
-#     file: ../../secrets/rreading_glasses_db_password
-#   romm_db_password:
-#     file: ../../secrets/romm_db_password
-#   romm_auth_secret_key:
-#     file: ../../secrets/romm_auth_secret_key
-#   gsdb_root_password:
-#     file: ../../secrets/gsdb_root_password
-#   gsdb_password:
-#     file: ../../secrets/gsdb_password
-#   mariadb_root_password:
-#     file: ../../secrets/mariadb_root_password
-#   mariadb_password:
-#     file: ../../secrets/mariadb_password
-#   screenscraper_password:
-#     file: ../../secrets/screenscraper_password
-#   retroachievements_api_key:
-#     file: ../../secrets/retroachievements_api_key
-#   steamgriddb_api_key:
-#     file: ../../secrets/steamgriddb_api_key

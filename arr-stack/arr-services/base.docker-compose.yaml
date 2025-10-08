@@ -17,11 +17,6 @@ networks:
     external: true
 
 volumes:
-  basic-memory-config:
-  swarmdata:
-  swarmbackend:
-  swarmdlnodes:
-  swarmextensions:
   rreading_glasses_data:
   kapowarr-db:
 
