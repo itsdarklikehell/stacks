@@ -78,33 +78,33 @@ echo ""
 
 ## STACKS:
 
-echo ""
-INSTALL_ESSENTIALS_STACK
-echo ""
+# echo ""
+# INSTALL_ESSENTIALS_STACK
+# echo ""
 
-echo ""
-INSTALL_AI_STACK
-echo ""
+# echo ""
+# INSTALL_AI_STACK
+# echo ""
 
-echo ""
-INSTALL_ARR_STACK
-echo ""
+# echo ""
+# INSTALL_ARR_STACK
+# echo ""
 
-echo ""
-INSTALL_MANAGEMENT_STACK
-echo ""
+# echo ""
+# INSTALL_MANAGEMENT_STACK
+# echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
-echo ""
+# echo ""
+# INSTALL_MEDIA_STACK
+# echo ""
 
-echo ""
-INSTALL_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# INSTALL_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-INSTALL_JAISON_STACK
-echo ""
+# echo ""
+# INSTALL_JAISON_STACK
+# echo ""
 
 echo ""
 INSTALL_PROJECT_RIKO_STACK

@@ -13,7 +13,11 @@ RUN apt-get update && \
 COPY . /riko-project
 WORKDIR /riko-project
 
-
+# Install pip
+RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN curl -sSL https://astral.sh/uv/install.sh -o install-uv.sh
+RUN python3 get-pip.py
+RUN bash install-uv.sh
 
 # Create .venv
 # ENV PATH=".venv/bin:$PATH"
@@ -28,7 +32,7 @@ RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-syste
 # RUN install_reqs.sh
 
 # Set working directory
-WORKDIR /openllm-vtuber/server
+WORKDIR /riko-project/server
 
 # RUN python3 main_chat.py
 

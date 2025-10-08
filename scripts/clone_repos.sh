@@ -130,19 +130,19 @@ function CLONE_RIKOPROJECT(){
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
 
     curl -LsSf https://astral.sh/uv/install.sh | sh || true
-    uv venv .venv --clear
+    # uv venv .venv --clear
 
     sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
     
     # shellcheck source=.venv/bin/activate
-    source .venv/bin/activate
-    pip install --upgrade pip uv nltk
+    # source .venv/bin/activate
+    # pip install --upgrade pip uv nltk
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
     # uv pip install -r extra-req.txt --no-deps
     # uv pip install -r requirements.txt
 
-    chmod +x install_reqs.sh
-    ./install_reqs.sh
+    # chmod +x install_reqs.sh
+    # ./install_reqs.sh
     # python3 ./server/main_chat.py
 }
 function CLONE_SWARMUI(){
