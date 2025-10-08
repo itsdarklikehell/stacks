@@ -2,7 +2,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
-    container_name: watchtower-media-services
+    container_name: watchtower-arr-services
 
     labels:
       - autoheal-app=true
@@ -16,11 +16,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # command: --debug --http-api-update
 
-    hostname: watchtower-media-services
+    hostname: watchtower-arr-services
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      arr-services:
 
     env_file:
       - ./watchtower/.env
@@ -36,21 +36,27 @@ services:
       #     cpus: "0.25"
 
     depends_on:
+      - autobrr
       - autoheal
-      - calibre-web
-      - emby
-      - flexget
-      - gaseous-server
-      - gsdb
-      - gzdoom
-      - jellyfin
-      - mattermost
-      - plex
-      - quakejs
-      - retroarch
-      - retroarchz
-      - romm
-      - romm-db
-      - tvs99
-      - webrcade
-      - wolf
+      - bazarr
+      - buildarr
+      - byparr
+      - calendarr
+      - checkrr
+      - dasharr
+      - flaresolverr
+      - flemarr
+      - jellyseerr
+      - kapowarr
+      - lidarr
+      - logarr
+      - mylar3
+      - organizr
+      - overseerr
+      - prowlarr
+      - radarr
+      - requestrr
+      - rreading-glasses
+      - sickgear
+      - sonarr
+      - whisparr

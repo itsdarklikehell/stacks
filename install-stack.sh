@@ -90,26 +90,32 @@ echo ""
 INSTALL_ARR_STACK
 echo ""
 
-# echo ""
-# INSTALL_MANAGEMENT_STACK
-# echo ""
+echo ""
+INSTALL_MANAGEMENT_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
-# echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
-# # dockly # lazydocker
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
+
+
+
+
+
+
+# dockly # lazydocker
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
 echo "Installation complete.."  

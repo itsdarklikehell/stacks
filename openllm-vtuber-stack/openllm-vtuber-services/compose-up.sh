@@ -4,13 +4,15 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-    base.docker-compose.yaml
-    openllm-vtuber/docker-compose.yaml
+  base.docker-compose.yaml
+  openllm-vtuber/docker-compose.yaml
+  autoheal/docker-compose.yaml 
+  watchtower/docker-compose.yaml 
 )
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-    ARGS+="-f $f "
+  ARGS+="-f $f "
 done
 
 echo "Running: docker compose $ARGS up -d"

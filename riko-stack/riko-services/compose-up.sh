@@ -5,7 +5,9 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
     base.docker-compose.yaml
+    autoheal/docker-compose.yaml
     riko-project/docker-compose.yaml
+    watchtower/docker-compose.yaml
 )
 
 ARGS=""

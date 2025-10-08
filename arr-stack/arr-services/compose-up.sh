@@ -18,13 +18,16 @@ COMPOSE_FILES=(
     kapowarr/docker-compose.yaml
     lidarr/docker-compose.yaml
     logarr/docker-compose.yaml
-    mylar3/docker-compose.yaml
+    # mylar3/docker-compose.yaml
     organizr/docker-compose.yaml
     overseerr/docker-compose.yaml
     prowlarr/docker-compose.yaml
     radarr/docker-compose.yaml
     requestrr/docker-compose.yaml
     rreading-glasses/docker-compose.yaml
+    sonarr/docker-compose.yaml
+    sickgear/docker-compose.yaml
+    watchtower/docker-compose.yaml
     whisparr/docker-compose.yaml
 )
 

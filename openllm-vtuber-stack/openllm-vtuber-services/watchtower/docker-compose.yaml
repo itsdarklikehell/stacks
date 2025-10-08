@@ -2,7 +2,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
-    container_name: watchtower-media-services
+    container_name: watchtower-openllm-vtuber-services
 
     labels:
       - autoheal-app=true
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # command: --debug --http-api-update
 
-    hostname: watchtower-media-services
+    hostname: watchtower-openllm-vtuber-services
 
     # networks:
     #   - media-services
@@ -37,20 +37,4 @@ services:
 
     depends_on:
       - autoheal
-      - calibre-web
-      - emby
-      - flexget
-      - gaseous-server
-      - gsdb
-      - gzdoom
-      - jellyfin
-      - mattermost
-      - plex
-      - quakejs
-      - retroarch
-      - retroarchz
-      - romm
-      - romm-db
-      - tvs99
-      - webrcade
-      - wolf
+      - openllm-vtuber

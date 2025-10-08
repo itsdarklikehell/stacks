@@ -44,8 +44,8 @@ services:
       host:
       riko-services:
 
-    ports:
-      - "${PORT:-7272}:7272"
+    # ports:
+    #   - "${PORT:-7272}:7272"
 
     env_file:
       - ./riko-project/.env
