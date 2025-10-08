@@ -28,7 +28,7 @@ services:
 
     networks:
       host:
-      media-services:
+      management-services:
 
     # # ports:
     # #   - "80:80"

@@ -45,7 +45,7 @@ services:
       - checkrr
       - dasharr
       - flaresolverr
-      - flemarr
+      - flemmarr
       - jellyseerr
       - kapowarr
       - lidarr

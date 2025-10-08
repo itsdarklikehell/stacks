@@ -28,7 +28,7 @@ services:
 
     networks:
       host:
-      media-services:
+      riko-services:
 
     # # ports:
     # #   - "80:80"
