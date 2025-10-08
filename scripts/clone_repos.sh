@@ -128,13 +128,13 @@ function CLONE_RIKOPROJECT(){
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
+    cp -f "${WD}/install_reqs-riko.sh" install_reqs.sh
 
     curl -LsSf https://astral.sh/uv/install.sh | sh || true
     # uv venv .venv --clear
 
     sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
-    
-    # shellcheck source=.venv/bin/activate
+
     # source .venv/bin/activate
     # pip install --upgrade pip uv nltk
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
