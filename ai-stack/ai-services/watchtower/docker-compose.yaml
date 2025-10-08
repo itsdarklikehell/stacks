@@ -33,7 +33,7 @@ services:
 
     depends_on:
       # - anythingllm
-      - autoheal
+      - autoheal-ai-services
       - basic-memory
       # - chroma
       - clickhouse
@@ -55,7 +55,7 @@ services:
       - stable-diffusion-models-download
       - stable-diffusion-webui
       - swarmui
-      - whispher
+      - whishper
       - wyoming-piper
 
     tty: true
