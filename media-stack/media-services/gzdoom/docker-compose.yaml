@@ -28,7 +28,6 @@ services:
 
     ports:
       - "3020:3020"
-      - "${PORT:-3003}:3003"
 
     shm_size: "1gb"
 

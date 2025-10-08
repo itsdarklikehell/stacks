@@ -34,7 +34,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-7801}:7801
+      - "${PORT:-7801}:7801"
 
     env_file:
       - ./swarmui/.env

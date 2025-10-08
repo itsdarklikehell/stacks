@@ -26,7 +26,7 @@ services:
       arr-services:
 
     ports:
-      - ${PORT:-8091}:8091
+      - "${PORT:-8091}:8091"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:85"]

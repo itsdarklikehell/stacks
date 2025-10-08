@@ -25,7 +25,7 @@ services:
       arr-services:
 
     ports:
-      - "8788:8788"
+      - "${PORT:-8788}:8788"
 
     entrypoint: ["/main", "serve"]
 

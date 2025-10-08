@@ -25,7 +25,7 @@ services:
       management-services:
 
     ports:
-      - "8383:8383"
+      - "${PORT:-8383}:8383"
 
     env_file:
       - ./dashy/.env

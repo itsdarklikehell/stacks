@@ -19,7 +19,7 @@ services:
       management-services:
 
     ports:
-      - "6379:6379"
+      - "${PORT:-6379}:6379"
 
     env_file:
       - ./redis/.env

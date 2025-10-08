@@ -25,11 +25,12 @@ services:
       media-services:
 
     expose:
-      - 8097/tcp
-      - 8920/tcp
+      - "${PORT:-8097}/tcp"
+      - "8920/tcp"
 
     ports:
-      - ${PORT:-8097}:8097/tcp
+      - "${PORT:-8097}:8097/tcp"
+      - "8920:8920/tcp"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8097"]

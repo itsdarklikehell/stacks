@@ -22,7 +22,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-3001}:3001
+      - "${PORT:-3001}:3001"
 
     user: ${PUID:-1000}:${PGID:-1000}
 

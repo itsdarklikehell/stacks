@@ -97,7 +97,7 @@ services:
   #     POSTGRES_PASSWORD: mypassword
 
   #   volumes:
-  #     - pgdata2:/var/lib/postgresql/data
+  #     - librechat-vectordb:/var/lib/postgresql/data
 
   #   # networks:
   #   #   - ai-services

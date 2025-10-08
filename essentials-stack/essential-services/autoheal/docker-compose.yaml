@@ -29,9 +29,8 @@ services:
       host:
       essential-services:
     
-    # # ${PORT:-80}:${CONTAINER_PORT:-80}
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "80:80"
 
     env_file:
       - ./autoheal/.env

@@ -30,7 +30,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-27017}:27017
+      - "${PORT:-27017}:27017"
 
     env_file:
       - ./mongo/.env

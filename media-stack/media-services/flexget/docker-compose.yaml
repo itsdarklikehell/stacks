@@ -23,7 +23,7 @@ services:
       media-services:
 
     ports:
-      - "5050:5050"
+      - "${PORT:-5050}:5050"
 
     env_file:
       - ./flexget/.env

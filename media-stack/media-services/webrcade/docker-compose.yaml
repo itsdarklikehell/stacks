@@ -15,7 +15,7 @@ services:
     hostname: ${NAME:-webrcade}
 
     ports:
-      - "87:87"
+      - "${PORT:-87}:87"
       - "447:447"
 
     networks:

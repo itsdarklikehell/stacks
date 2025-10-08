@@ -29,7 +29,7 @@ services:
       management-services:
 
     ports:
-      - "9980:9980"
+      - "${PORT:-9980}:9980"
 
     env_file:
       - ./collabora/.env

@@ -26,8 +26,8 @@ services:
       host:
       ai-services:
 
-    # ports:
-    #   - "10300:10300"
+    ports:
+      - "${PORT:-10300}:10300"
 
     hostname: faster-whisper-gpu
 

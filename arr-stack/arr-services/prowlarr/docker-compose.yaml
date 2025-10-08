@@ -24,7 +24,7 @@ services:
       arr-services:
 
     expose:
-      - "9696/tcp"
+      - "${PORT:-9696}/tcp"
 
     ports:
       - "${PORT:-9696}:9696/tcp"

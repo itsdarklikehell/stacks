@@ -16,7 +16,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8065}:8065
+      - "${PORT:-8065}:8065"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8065"]

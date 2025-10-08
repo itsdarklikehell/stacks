@@ -21,7 +21,7 @@ services:
       arr-services:
 
     ports:
-      - ${PORT:-4545}:4545
+      - "${PORT:-4545}:4545"
 
     env_file:
       - ./requestrr/.env

@@ -19,7 +19,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-85}:85
+      - "${PORT:-85}:85"
 
     env_file:
       - ./retroarchz/.env

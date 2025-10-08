@@ -25,7 +25,7 @@ services:
       arr-services:
 
     expose:
-      - "7879/tcp"
+      - "${PORT:-7879}/tcp"
 
     ports:
       - "${PORT:-7879}:7879/tcp"

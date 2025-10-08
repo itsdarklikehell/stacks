@@ -20,12 +20,12 @@ services:
 
     hostname: sickgear
 
-    # networks:
-    #   - media-services
-    #   - host
+    networks:
+      host:
+      arr-services:
 
     ports:
-      - "8081:8081"
+      - "${PORT:-8081}:8081"
 
     env_file:
       - ./sickgear/.env

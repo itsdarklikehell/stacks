@@ -27,7 +27,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-10200}:10200
+      - "${PORT:-10200}:10200"
 
     env_file:
       - ./wyoming-piper/.env

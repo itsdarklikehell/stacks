@@ -24,7 +24,7 @@ services:
       host:
 
     ports:
-      - ${ORGANIZR_PORT:-9983}:80
+      - "${PORT:-9983}:80"
 
     env_file:
       - ./organizr/.env

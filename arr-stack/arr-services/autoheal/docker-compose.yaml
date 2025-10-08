@@ -30,8 +30,8 @@ services:
       host:
       arr-services:
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "${PORT:-80}:80"
 
     env_file:
       - ./autoheal/.env
@@ -46,6 +46,3 @@ services:
       #     memory: 256M
       #     cpus: "0.25"
 
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper

@@ -27,7 +27,7 @@ services:
       media-services:
 
     ports:
-      - "5198:80"
+      - "${PORT:-5198}:80"
 
     env_file:
       - ./gaseous-server/.env

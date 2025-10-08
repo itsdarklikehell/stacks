@@ -28,10 +28,10 @@ services:
 
     networks:
       host:
-      media-services:
+      openllm-vtuber-services:
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "80:80"
 
     env_file:
       - ./autoheal/.env

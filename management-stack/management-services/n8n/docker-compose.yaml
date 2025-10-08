@@ -31,7 +31,7 @@ services:
       management-services:
 
     ports:
-      - "5678:5678"
+      - "${PORT:-5678}:5678"
 
     env_file:
       - ./n8n/.env

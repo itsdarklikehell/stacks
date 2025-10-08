@@ -27,7 +27,7 @@ services:
       - ./chroma/.env
 
     ports:
-      - 8000:8000
+      - "${PORT:-8000}:8000"
 
     depends_on:
       - clickhouse

@@ -20,7 +20,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8085}:3000
+      - "${PORT:-8085}:3000"
 
     env_file:
       - ./tvs99/.env

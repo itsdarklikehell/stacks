@@ -20,8 +20,8 @@ services:
       host:
       arr-services:
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "${PORT:-80}:80"
 
     env_file:
       - ./flemmarr/.env

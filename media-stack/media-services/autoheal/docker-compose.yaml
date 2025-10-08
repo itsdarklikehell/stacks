@@ -30,8 +30,8 @@ services:
       host:
       media-services:
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "80:80"
 
     env_file:
       - ./autoheal/.env

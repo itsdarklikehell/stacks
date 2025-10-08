@@ -52,6 +52,7 @@ services:
     networks:
       host:
       media-services:
+
     env_file:
       - ./wolf/.env
 

@@ -25,10 +25,10 @@ services:
       media-services:
 
     expose:
-      - 8096/tcp
+      - "${PORT:-8096}/tcp"
 
     ports:
-      - ${PORT:-8096}:8096/tcp
+      - "${PORT:-8096}:8096/tcp"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9696"]

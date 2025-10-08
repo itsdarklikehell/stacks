@@ -29,8 +29,8 @@ services:
       host:
       ai-services:
 
-    # # ports:
-    # #   - "80:80"
+    # ports:
+    #   - "${PORT:-80}:80"
 
     env_file:
       - ./autoheal/.env

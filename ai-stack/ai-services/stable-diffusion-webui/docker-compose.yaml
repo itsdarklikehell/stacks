@@ -35,7 +35,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-7860}:7860
+      - "${PORT:-7860}:7860"
 
     env_file:
       - ./stable-diffusion-webui/.env

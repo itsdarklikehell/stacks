@@ -22,7 +22,7 @@ services:
       arr-services:
 
     ports:
-      - "7474:7474"
+      - "${PORT:-7474}:7474"
 
     env_file:
       - ./autobrr/.env

@@ -30,7 +30,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-11434}:11434
+      - "${PORT:-11434}:11434"
 
     env_file:
       - ./ollama/.env

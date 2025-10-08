@@ -45,7 +45,6 @@ services:
     networks:
       host:
       ai-services:
-      default:
         aliases:
           - pgvector_db
           - letta-db

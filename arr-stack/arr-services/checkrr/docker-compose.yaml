@@ -21,7 +21,7 @@ services:
       arr-services:
 
     ports:
-      - "8585:8585"
+      - "${PORT:-8585}:8585"
 
     env_file:
       - ./checkrr/.env

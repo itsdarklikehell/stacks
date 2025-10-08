@@ -25,10 +25,10 @@ services:
       arr-services:
 
     expose:
-      - 8686/tcp
+      - "${PORT:-8686}/tcp"
 
     ports:
-      - ${PORT:-8686}:8686/tcp
+      - "${PORT:-8686}:8686/tcp"
 
     env_file:
       - ./lidarr/.env

@@ -24,7 +24,7 @@ services:
       arr-services:
 
     ports:
-      - ${PORT:-8780}:8780
+      - "${PORT:-8780}:8780"
 
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8780/api/health"]

@@ -27,7 +27,6 @@ services:
       host:
       arr-services:
 
-    # # ${PORT:-80}:${CONTAINER_PORT:-80}
     ports:
       - "${PORT:-7878}:80"
 

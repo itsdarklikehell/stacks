@@ -25,10 +25,10 @@ services:
       arr-services:
 
     expose:
-      - 8989/tcp
+      - "${PORT:-8989}/tcp"
 
     ports:
-      - 8989:8989/tcp
+      - "${PORT:-8989}:8989/tcp"
 
     env_file:
       - ./sonarr/.env

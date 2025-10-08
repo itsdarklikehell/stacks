@@ -62,7 +62,7 @@ services:
       ai-services:
 
     ports:
-      - "8004:8004"
+      - "${PORT:-8004}:8004"
 
     env_file:
       - ./basic-memory/.env

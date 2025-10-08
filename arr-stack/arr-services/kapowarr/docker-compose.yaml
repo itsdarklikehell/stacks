@@ -21,7 +21,7 @@ services:
       arr-services:
 
     ports:
-      - "5656:5656"
+      - "${PORT:-5656}:5656"
 
     env_file:
       - ./kapowarr/.env

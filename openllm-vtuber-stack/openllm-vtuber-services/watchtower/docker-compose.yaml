@@ -20,7 +20,7 @@ services:
 
     networks:
       host:
-      media-services:
+      openllm-vtuber-services:
 
     env_file:
       - ./watchtower/.env

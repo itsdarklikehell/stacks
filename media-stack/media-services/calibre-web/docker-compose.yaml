@@ -19,7 +19,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8084}:8084
+      - "${PORT:-8084}:8084"
 
     env_file:
       - ./calibre-web/.env
