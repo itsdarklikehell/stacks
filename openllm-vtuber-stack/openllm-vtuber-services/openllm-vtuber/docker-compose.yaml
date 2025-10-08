@@ -1,6 +1,6 @@
 services:
-  open-llm-vtuber:
-    # image: ${IMAGE:-open-llm-vtuber}
+  openllm-vtuber:
+    # image: ${IMAGE:-openllm-vtuber}
     container_name: ${NAME:-openllm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
