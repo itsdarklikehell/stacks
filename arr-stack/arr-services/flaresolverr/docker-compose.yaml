@@ -1,0 +1,42 @@
+services:
+  flaresolverr:
+    image: ${IMAGE:-flaresolverr/flaresolverr}
+    container_name: ${NAME:-flaresolverr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=${TZ:-Europe/Amsterdam}
+
+    hostname: ${NAME:-flaresolverr}
+
+    networks:
+      host:
+      arr-services:
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    env_file:
+      - ./flaresolverr/.env
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"

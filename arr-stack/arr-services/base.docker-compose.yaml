@@ -1,0 +1,32 @@
+# Shared networks, volumes, and secrets for all services
+# NETWORK SEGMENTATION:
+# - Use dedicated networks for each stack
+# - Restrict inter-stack communication unless required
+# - Document network policies
+#
+# CI/CD & DOCUMENTATION:
+# - Use GitHub Actions or similar for automated testing/deployment
+# - Document all customizations and manual steps in README.md
+# - Keep this file and .env in sync
+
+name: arr-services
+
+networks:
+  host:
+  arr-services:
+    external: true
+
+volumes:
+  basic-memory-config:
+  swarmdata:
+  swarmbackend:
+  swarmdlnodes:
+  swarmextensions:
+  rreading_glasses_data:
+  kapowarr-db:
+
+secrets:
+  rreading_glasses_db_password:
+    file: ../../secrets/rreading_glasses_db_password
+  hardcover_auth:
+    file: ../../secrets/hardcover_auth

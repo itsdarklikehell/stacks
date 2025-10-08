@@ -32,7 +32,7 @@ function CLONE_REPOS(){
 function INSTALL_ESSENTIALS_STACK(){
     essentials-stack/install-stack.sh
 }
-function INSTALL_MANAGEMENT-STACK_STACK(){
+function INSTALL_MANAGEMENT_STACK(){
     management-stack/install-stack.sh
 }
 function INSTALL_MEDIA_STACK(){
@@ -50,6 +50,10 @@ function INSTALL_PROJECT_RIKO_STACK(){
 function INSTALL_OPENLLM_VTUBER_STACK(){
     openllm-vtuber-stack/install-stack.sh
 }
+function INSTALL_ARR_STACK(){
+    arr-stack/install-stack.sh
+}
+
 echo ""
 echo "Installing Drivers"
 echo ""
@@ -82,8 +86,12 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
+echo ""
+INSTALL_ARR_STACK
+echo ""
+
 # echo ""
-# INSTALL_MANAGEMENT-STACK_STACK
+# INSTALL_MANAGEMENT_STACK
 # echo ""
 
 # echo ""

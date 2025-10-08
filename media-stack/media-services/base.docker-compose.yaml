@@ -17,13 +17,11 @@ networks:
     external: true
 
 volumes:
-  rreading_glasses_data:
   gsdb:
   mysql_data:
   gaseous_data:
   romm_resources:
   romm_redis_data:
-  kapowarr-db:
 
 secrets:
   rreading_glasses_db_password:
@@ -46,5 +44,3 @@ secrets:
     file: ../../secrets/retroachievements_api_key
   steamgriddb_api_key:
     file: ../../secrets/steamgriddb_api_key
-  hardcover_auth:
-    file: ../../secrets/hardcover_auth

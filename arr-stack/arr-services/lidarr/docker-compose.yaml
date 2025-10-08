@@ -1,0 +1,51 @@
+services:
+  lidarr:
+    image: ${IMAGE:-linuxserver/lidarr}
+    container_name: ${NAME:-lidarr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+
+    hostname: ${NAME:-lidarr}
+
+    networks:
+      host:
+      arr-services:
+
+    expose:
+      - 8686/tcp
+
+    ports:
+      - ${PORT:-8686}:8686/tcp
+
+    env_file:
+      - ./lidarr/.env
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4545"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"

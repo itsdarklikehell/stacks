@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
   base.docker-compose.yaml
   # anythingllm/docker-compose.yaml
+  autoheal/docker-compose.yaml
   basic-memory/docker-compose.yaml
   # chroma/docker-compose.yaml
   clickhouse/docker-compose.yaml
@@ -38,5 +39,5 @@ done
 
 echo "Running: docker compose $ARGS up -d"
 
-docker compose $ARGS up -d
-# docker compose $ARGS up -d --build --force-recreate --remove-orphans
+# docker compose $ARGS up -d
+docker compose $ARGS up -d --build --force-recreate --remove-orphans

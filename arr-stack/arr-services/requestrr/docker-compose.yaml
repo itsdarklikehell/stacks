@@ -1,0 +1,37 @@
+services:
+  requestrr:
+    image: ${IMAGE:-thomst08/requestrr}
+    container_name: ${NAME:-requestrr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    volumes:
+      - ../DATA/requestrr/config:/root/config
+
+    hostname: ${NAME:-requestrr}
+
+    # command: [ "ollama", "pull", "qwen3"]
+
+    networks:
+      host:
+      arr-services:
+
+    ports:
+      - ${PORT:-4545}:4545
+
+    env_file:
+      - ./requestrr/.env
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 256M
+      #     cpus: "0.25"
+      #   reservations:
+      #     memory: 128M
+      #     cpus: "0.10"

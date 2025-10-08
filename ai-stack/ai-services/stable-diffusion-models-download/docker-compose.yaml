@@ -25,7 +25,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/stable-diffusion-webui-docker/data:/data
       - ../DATA/stable-diffusion-webui-docker/data/config:/data/config
-      - ../DATA/stable-diffusion-webui-docker/data/models:/data/models
+      - ../DATA/stable-diffusion-webui-docker/data/Models:/data/Models
+      - ../DATA/stable-diffusion-webui-docker/data/Output:/data/Output
       - ../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings
       
     hostname: ${NAME:-stable-diffusion-models-download}

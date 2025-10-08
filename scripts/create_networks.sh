@@ -14,6 +14,7 @@ function CREATE_NETWORKS(){
     docker network create jaison-services
     docker network create riko-services
     docker network create openllm-vtuber-services
+    docker network create arr-services
 
     docker network create -d macvlan \
     --subnet="${IPGATEWAY}.0/24" \

@@ -1,0 +1,40 @@
+services:
+  overseerr:
+    image: ${IMAGE:-sctx/overseerr}
+    container_name: ${NAME:-overseerr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=5056
+
+    networks:
+      host:
+      arr-services:
+
+    volumes:
+      - ../DATA/overseerr/appdata/config:/app/config
+
+    hostname: ${NAME:-overseerr}
+
+    ports:
+      - ${PORT:-5056}:5056
+
+    env_file:
+      - ./overseerr/.env
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"

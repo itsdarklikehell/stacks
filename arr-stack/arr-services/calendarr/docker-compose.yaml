@@ -1,0 +1,91 @@
+services:
+  calendarr:
+    image: ${IMAGE:-ghcr.io/jordanlambrecht/calendarr}
+    container_name: ${NAME:-calendarr}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    environment:
+      TZ: ${TZ:-Europe/Amsterdam}
+      CALENDAR_URLS: >
+        [{
+          "url":"${ICS_URL_SONARR_1}",
+          "type":"tv"
+        },
+        {
+          "url":"${ICS_URL_SONARR_2}",
+          "type":"tv"
+        },
+        {
+          "url":"${ICS_URL_RADARR_1}",
+          "type":"movie"
+        }]
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
+      USE_DISCORD: true
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      USE_SLACK: false
+      ADD_LEADING_ZERO: true
+      CALENDAR_RANGE: "AUTO"
+      CRON_SCHEDULE: ""
+      CUSTOM_HEADER: "TV PGIDe - Shows and Movies airing this week"
+      DEBUG: false
+      DEDUPLICATE_EVENTS: true
+      DISCORD_HIDE_MENTION_INSTRUCTIONS: false
+      DISCORD_MENTION_ROLE_ID: ${DISCORD_MENTION_ROLE_ID}
+      DISPLAY_TIME: true
+      ENABLE_CUSTOM_DISCORD_FOOTER: false
+      ENABLE_CUSTOM_SLACK_FOOTER: false
+      HTTP_TIMEOUT: "30"
+      LOG_BACKUP_COUNT: "15"
+      LOG_DIR: "/app/logs"
+      LOG_FILE: "calendarr.log"
+      LOG_MAX_SIZE_MB: "1"
+      PASSED_EVENT_HANDLING: "STRIKE"
+      RUN_ON_STARTUP: true
+      RUN_TIME: "09:30"
+      SCHEDULE_DAY: "1"
+      SCHEDULE_TYPE: "WEEKLY"
+      SHOW_DATE_RANGE: true
+      SHOW_TIMEZONE_IN_SUBHEADER: true
+      START_WEEK_ON_MONDAY: true
+      USE_24_HOUR: true
+
+    volumes:
+      - ../DATA/calendarr/logs:/app/logs:rw
+      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
+
+    hostname: ${NAME:-calendarr}
+
+    networks:
+      host:
+      arr-services:
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+    env_file:
+      - ./calendarr/.env
+
+    deploy:
+      replicas: 1
+      # resources:
+      #   limits:
+      #     memory: 512M
+      #     cpus: "0.50"
+      #   reservations:
+      #     memory: 256M
+      #     cpus: "0.25"
