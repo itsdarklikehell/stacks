@@ -19,6 +19,8 @@ services:
       - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
       - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
       - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
+      - PORT=${PORT:-8001}
+      - WHISPER_PORT=${WHISPER_PORT:-10301}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -35,7 +37,7 @@ services:
 
     ports:
       - "${PORT:-8001}:80"
-      - "10300:10300"
+      - "${WHISPER_PORT:-10301}:10301"
 
     env_file:
       - ./whishper/.env
