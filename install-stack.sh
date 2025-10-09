@@ -5,8 +5,8 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export PRUNE=none # none, normal, all
-export BUILDING=norebuild # norebuild, rebuild
+export PRUNE="false" # false, true/normal, all
+export BUILDING="false" # recreate, false, true
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -14,19 +14,21 @@ git pull
 
 
 # sudo apt update && sudo apt upgrade -y
+
 function PRUNING(){
-    if [[ "$PRUNE" = all ]]; then
-        echo ""
-        echo "Pruning all unused docker data..."
-        echo ""
+    echo ""
+    echo "Pruning is set to: $PRUNE"
+    echo ""
+    if [[ "$PRUNE" = "all" ]]; then
         docker system prune -af
-    elif [[ "$PRUNE" = normal ]]; then
-        echo ""
-        echo "Pruning normal unused docker data..."
-        echo ""
+    elif [[ "$PRUNE" = "true" ]] || [[ "$PRUNE" = "normal" ]]; then
         docker system prune -f
+    elif [[ "$PRUNE" = "false" ]]; then
+        echo "Skipping docker system prune"
     fi
+    sleep 3
 }
+
 function INSTALL_DRIVERS(){
     scripts/install_drivers.sh
 }
@@ -103,8 +105,8 @@ echo ""
 
 ## STACKS:
 
-export PRUNE=none # none, normal, all
-export BUILDING=rebuild # norebuild, rebuild
+export PRUNE="normal" # false, true/normal, all
+export BUILDING="recreate" # recreate, false, true
 
 PRUNING
 

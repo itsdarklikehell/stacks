@@ -18,10 +18,15 @@ done
 echo "Running: docker compose ${ARGS} up -d"
 
 function BUILDING(){
-    if [[ "$BUILDING" = rebuild ]]; then
+    echo ""
+    echo "Building is set to: $BUILDING"
+    echo ""
+    if [[ "$BUILDING" = "recreate" ]]; then
         docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
-    elif [[ "$BUILDING" = norebuild ]]; then
+    elif [[ "$BUILDING" = "true" ]]; then
         docker compose ${ARGS} up -d
+    elif [[ "$BUILDING" = "false" ]]; then
+        echo "Skipping docker compose up"
     fi
 }
 BUILDING
