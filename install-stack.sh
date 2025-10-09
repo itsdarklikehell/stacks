@@ -101,7 +101,7 @@ echo ""
 
 ## STACKS:
 
-export PRUNE="normal" # false, true/normal, all
+export PRUNE="all" # false, true/normal, all
 export BUILDING="recreate" # recreate, false, true
 
 PRUNING
