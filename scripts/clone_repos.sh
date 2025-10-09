@@ -85,6 +85,7 @@ function CLONE_JAISON(){
 function CLONE_AIRI(){
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
+    
     npm i -g @antfu/ni
     npm i shiki
     function INSTALL_XSAI(){
@@ -221,6 +222,8 @@ function CLONE_AIRI(){
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
     }
+    echo "Installing airi"
+    echo ""
     INSTALL_XSAI >/dev/null 2>&1
     INSTALL_XSAI_TRANSFORMERS >/dev/null 2>&1
     INSTALL_AIRI_CHAT >/dev/null 2>&1
