@@ -27,7 +27,7 @@ WORKDIR /riko-project
 
 # Create .venv
 ENV PATH=".venv/bin:$PATH"
-RUN conda create -n riko-project python=3.10 pip=24.0 -y && \
+RUN conda create -n .venv python=3.10 pip=24.0 -y && \
     conda init
 
 # Make RUN commands use the new environment:

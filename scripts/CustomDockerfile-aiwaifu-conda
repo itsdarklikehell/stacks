@@ -24,8 +24,8 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
 
 
 # Copy data
-COPY . /jaison-core
-WORKDIR /jaison-core
+COPY . /aiwaifu
+WORKDIR /aiwaifu
 
 
 # Create .venv
@@ -45,7 +45,7 @@ RUN python3 -m spacy download en_core_web_sm  && \
     python3 install.py && \
     python3 -m unidic download
 
-WORKDIR /jaison-core/src
+WORKDIR /aiwaifu
 
 # RUN python3 main.py --help
 

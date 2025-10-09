@@ -29,9 +29,8 @@ RUN uv venv .venv
 RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
     uv pip install --upgrade pip && \
     uv pip install -r requirements.txt && \
-    uv pip install --no-deps -r requirements.no_deps.txt
-
-RUN uv spacy download en_core_web_sm && \
+    uv pip install --no-deps -r requirements.no_deps.txt && \
+    uv spacy download en_core_web_sm && \
     uv install.py && \
     uv unidic download
 

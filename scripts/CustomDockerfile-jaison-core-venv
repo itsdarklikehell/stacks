@@ -22,9 +22,8 @@ RUN python3 -m venv .venv
 # Install requirements
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
     pip install -r requirements.txt && \
-    pip install --no-deps -r requirements.no_deps.txt
-
-RUN python3 -m spacy download en_core_web_sm  && \
+    pip install --no-deps -r requirements.no_deps.txt && \
+    python3 -m spacy download en_core_web_sm  && \
     python3 install.py && \
     python3 -m unidic download
 
