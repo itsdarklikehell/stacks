@@ -159,37 +159,28 @@ function CLONE_AIRI(){
         # telegram bot setup
         cd services/telegram-bot || exit
         cp .env .env.local
-        # pnpm i --dangerously-allow-all-builds
-        # ni
-        # pnpm approve-builds
-        nr build
         # docker compose -p airi-telegram-bot-db up -d
-        # pnpm -F @proj-airi/telegram-bot db:generate
-        # pnpm -F @proj-airi/telegram-bot db:push
-        # pnpm -F @proj-airi/telegram-bot start
-        nr -F @proj-airi/telegram-bot db:generate
-        nr -F @proj-airi/telegram-bot db:push
-        nr
+        
+        ni
+        nr build
+        # nr -F @proj-airi/telegram-bot db:generate
+        # nr -F @proj-airi/telegram-bot db:push
         # nr -F @proj-airi/telegram-bot dev
 
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
-        # pnpm i --dangerously-allow-all-builds
-        # ni
-        # pnpm approve-builds
+        
+        ni
         nr build
-        # pnpm -F @proj-airi/discord-bot start
         # nr -F @proj-airi/discord-bot dev
 
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
-        # pnpm i --dangerously-allow-all-builds
-        # ni
-        # pnpm approve-builds
+        
+        ni
         nr build
-        # pnpm -F @proj-airi/minecraft-bot start
         # nr -F @proj-airi/minecraft dev
 
         cd .. || exit
