@@ -5,12 +5,29 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
+export PRUNE_ALL=false
+export PRUNE_NORMAL=false
+
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 git pull
 
-# sudo apt update && sudo apt upgrade -y
 
+# sudo apt update && sudo apt upgrade -y
+function PRUNING(){
+    if [[ "$PRUNE_NORMAL" = true ]]; then
+        echo ""
+        echo "Pruning unused docker data..."
+        echo ""
+        docker system prune -f
+    fi
+    if [[ "$PRUNE_ALL" = true ]]; then
+        echo ""
+        echo "Pruning unused docker data..."
+        echo ""
+        docker system prune -af
+    fi
+}
 function INSTALL_DRIVERS(){
     scripts/install_drivers.sh
 }
@@ -87,7 +104,9 @@ echo ""
 
 ## STACKS:
 
-docker system prune -f
+export PRUNE_ALL=true
+export PRUNE_NORMAL=true
+PRUNING
 
 echo ""
 INSTALL_ESSENTIALS_STACK
@@ -113,21 +132,21 @@ echo ""
 INSTALL_AIWAIFU_STACK
 echo ""
 
-echo ""
-INSTALL_AIRI_STACK
-echo ""
+# echo ""
+# INSTALL_AIRI_STACK
+# echo ""
 
-echo ""
-INSTALL_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# INSTALL_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-INSTALL_JAISON_STACK
-echo ""
+# echo ""
+# INSTALL_JAISON_STACK
+# echo ""
 
-echo ""
-INSTALL_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# INSTALL_PROJECT_RIKO_STACK
+# echo ""
 
 
 # dockly # lazydocker

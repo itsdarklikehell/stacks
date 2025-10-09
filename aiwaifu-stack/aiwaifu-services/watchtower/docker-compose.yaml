@@ -20,7 +20,7 @@ services:
 
     networks:
       host:
-      airi-services:
+      aiwaifu-services:
 
     env_file:
       - ./watchtower/.env

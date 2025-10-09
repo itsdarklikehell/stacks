@@ -9,7 +9,7 @@ echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
 function DOCKER_COMPOSE_STACK(){
-    cd "arr-services" || exit 1
+    cd "aiwaifu-services" || exit 1
     ./compose-up.sh
 }
 

@@ -7,10 +7,12 @@ export IPGATEWAY=$(ip -oneline -4 addr show scope global | tr -s ' ' | tr '/' ' 
 function CREATE_NETWORKS(){
     # docker network rm ai-stack management-stack kuma_network macvlan
 
-    docker network create management-services
-    docker network create media-services
     docker network create essential-services
     docker network create ai-services
+    docker network create aiwaifu-services
+    
+    docker network create management-services
+    docker network create media-services
     docker network create airi-services
     docker network create jaison-services
     docker network create riko-services

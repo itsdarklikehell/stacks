@@ -13,5 +13,5 @@ name: airi-services
 
 networks:
   host:
-  airi-services:
+  aiwaifu-services:
     external: true
