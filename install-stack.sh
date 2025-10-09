@@ -5,7 +5,7 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export CLEANUP="true" # false, true
+export CLEANUP="false" # false, true
 
 export PRUNE="all" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
@@ -145,37 +145,37 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-# echo ""
-# INSTALL_ARR_STACK
-# echo ""
+echo ""
+INSTALL_ARR_STACK
+echo ""
 
-# echo ""
-# INSTALL_MANAGEMENT_STACK
-# echo ""
+echo ""
+INSTALL_MANAGEMENT_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
 echo ""
 INSTALL_AIWAIFU_STACK
 echo ""
 
-# echo ""
-# INSTALL_AIRI_STACK
-# echo ""
+echo ""
+INSTALL_AIRI_STACK
+echo ""
 
-# echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 
 # dockly # lazydocker

@@ -297,17 +297,13 @@ function CLONE_AIWAIFU(){
     cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
     
     # install poetry
-    pipx install poetry --force
-    poetry env use 3.8
-    poetry install
-    poetry shell
+    # pipx install poetry --force
+    # poetry env use 3.8
+    # poetry lock
+    # poetry install
+    # poetry env activate
     # uv venv .venv --clear
-    # uv sync --no-build-isolation
-    # source .venv/bin/activate
-    # uv pip uninstall websocket
-    # uv pip install setuptools
-    # uv pip install imp
-    # uv pip install --no-build-isolation -r requirements.txt 
+    # uv pip install -r requirements.txt 
     
     # cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
     # python setup.py build_ext --inplace && cd ../../../../
@@ -328,4 +324,4 @@ CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
 CLONE_JAISON
 CLONE_RIKOPROJECT
 CLONE_AIWAIFU
-# CLONE_AIRI
+CLONE_AIRI
