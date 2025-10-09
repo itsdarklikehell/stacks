@@ -89,14 +89,8 @@ echo ""
 echo "Installing Docker"
 echo ""
 INSTALL_DOCKER >/dev/null 2>&1
-echo ""
-echo "Creating Docker Secrets"
-echo ""
-CREATE_SECRETS >/dev/null 2>&1
-echo ""
-echo "Creating Docker Networks"
-echo ""
-CREATE_NETWORKS >/dev/null 2>&1
+
+
 echo ""
 echo "Cloning repos"
 echo ""
@@ -112,6 +106,7 @@ export BUILDING="recreate" # recreate, false, true
 
 PRUNING
 CREATE_NETWORKS >/dev/null 2>&1
+CREATE_SECRETS >/dev/null 2>&1
 
 
 echo "Creating Docker Networks"
