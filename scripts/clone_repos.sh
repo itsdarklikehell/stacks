@@ -198,6 +198,9 @@ function CLONE_AIRI(){
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
     }
+    echo "Cloning airi"
+    echo ""
+    INSTALL_AIRI
     echo "Cloning xsai"
     echo ""
     INSTALL_XSAI
@@ -207,9 +210,7 @@ function CLONE_AIRI(){
     echo "Cloning airi_chat"
     echo ""
     INSTALL_AIRI_CHAT
-    echo "Cloning airi"
-    echo ""
-    # INSTALL_AIRI
+
     cd "${WD}" || exit
     sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
 }
