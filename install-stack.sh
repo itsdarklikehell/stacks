@@ -103,12 +103,21 @@ echo ""
 CLONE_REPOS #>/dev/null 2>&1
 echo ""
 
+
+
 ## STACKS:
 
 export PRUNE="normal" # false, true/normal, all
 export BUILDING="recreate" # recreate, false, true
 
 PRUNING
+CREATE_NETWORKS >/dev/null 2>&1
+
+
+echo "Creating Docker Networks"
+echo ""
+CREATE_NETWORKS >/dev/null 2>&1
+echo ""
 
 echo ""
 INSTALL_ESSENTIALS_STACK
