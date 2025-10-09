@@ -87,6 +87,8 @@ echo ""
 
 ## STACKS:
 
+docker system prune -f
+
 echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""

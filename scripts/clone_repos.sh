@@ -309,8 +309,8 @@ function CLONE_AIWAIFU(){
     # uv pip install imp
     # uv pip install --no-build-isolation -r requirements.txt 
     
-    cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
-    python setup.py build_ext --inplace && cd ../../../../
+    # cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
+    # python setup.py build_ext --inplace && cd ../../../../
     
     # this run on localhost 8267 by default
     # python ./api_inference_server.py
