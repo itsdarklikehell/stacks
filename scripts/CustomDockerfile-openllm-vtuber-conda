@@ -38,6 +38,7 @@ RUN conda create -n openllm-vtuber python=3.10 pip=24.0 -y && \
 SHELL ["conda", "run", "-n", ".venv", "/bin/bash", "-c"]
 
 # Install requirements
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 RUN pip install -r requirements.txt 
 RUN pip install funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
 
