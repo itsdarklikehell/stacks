@@ -50,7 +50,6 @@ services:
       # - librechat-vectordb
       - kokoro-tts
       - coqui-tts-cpu
-      # - coqui-tts-gpu
       - mongo
       - ollama
       - open-webui

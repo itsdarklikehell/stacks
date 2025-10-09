@@ -23,7 +23,6 @@ COMPOSE_FILES=(
   libretranslate/docker-compose.yaml
   kokoro-tts/docker-compose.yaml
   coqui-tts-cpu/docker-compose.yaml
-  # coqui-tts-gpu/docker-compose.yaml
   voice-chat-ai/docker-compose.yaml
   mongo/docker-compose.yaml
   ollama/docker-compose.yaml
