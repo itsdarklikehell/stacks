@@ -14,8 +14,8 @@ function DOCKER_COMPOSE_STACK(){
 }
 
 echo ""
-echo "*** START COMPOSING: arr-stack ****"
+echo "*** START COMPOSING: airi-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: arr-stack ****"
+echo "*** FINISHED COMPOSING: airi-stack ****"
