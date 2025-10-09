@@ -16,13 +16,15 @@ mkdir -p ../management-stack/DATA
 mkdir -p ../riko-stack/DATA
 mkdir -p ../aiwaifu-stack/DATA
 mkdir -p ../airi-stack/DATA
-./install_uv.sh
+./install_uv.sh >/dev/null 2>&1
 
 function CLONE_OLLMVT(){
     cd "${WD}" || exit
     cd ../openllm-vtuber-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
+    echo "Cloning Open-LLM-VTuber"
+    echo ""
+    git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber >/dev/null 2>&1
     cd Open-LLM-VTuber || exit
 
     # uv sync
@@ -54,7 +56,9 @@ function CLONE_JAISON(){
     cd "${WD}" || exit
     cd ../jaison-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/limitcantcode/jaison-core jaison-core
+    echo "Cloning jaison-core"
+    echo ""
+    git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core >/dev/null 2>&1
     cd jaison-core || exit
 
     # uv sync
@@ -86,12 +90,15 @@ function CLONE_AIRI(){
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
     
-    npm i -g @antfu/ni
-    npm i shiki
+    npm i -g @antfu/ni >/dev/null 2>&1
+    npm i -g shiki >/dev/null 2>&1
     function INSTALL_XSAI(){
         cd "${WD}" || exit
         cd ../airi-stack/DATA || exit 1
-        git clone --recursive https://github.com/moeru-ai/xsai.git xsai
+
+        echo "Cloning xsai"
+        echo ""
+        git clone --recursive https://github.com/moeru-ai/xsai.git xsai >/dev/null 2>&1
         cd xsai || exit
         # # npm
         # npm install xsai
@@ -112,7 +119,9 @@ function CLONE_AIRI(){
         cd "${WD}" || exit
         cd ../airi-stack/DATA || exit 1 
 
-        git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
+        echo "Cloning xsai-transformers"
+        echo ""
+        git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers >/dev/null 2>&1
         cd xsai-transformers || exit
         # # npm
         # npm install xsai-transformers
@@ -133,7 +142,9 @@ function CLONE_AIRI(){
         cd "${WD}" || exit
         cd ../airi-stack/DATA || exit 1
 
-        git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
+        echo "Cloning airi_chat"
+        echo ""
+        git clone --recursive https://github.com/moeru-ai/chat.git airi-chat >/dev/null 2>&1
         cd airi-chat || exit
         pnpm i --dangerously-allow-all-builds
         ni
@@ -146,7 +157,9 @@ function CLONE_AIRI(){
         cd "${WD}" || exit
         cd ../airi-stack/DATA || exit 1
 
-        git clone --recursive https://github.com/moeru-ai/airi.git airi
+        echo "Cloning airi"
+        echo ""
+        git clone --recursive https://github.com/moeru-ai/airi.git airi >/dev/null 2>&1
         cd airi || exit
         pnpm i --dangerously-allow-all-builds
         ni
@@ -222,11 +235,17 @@ function CLONE_AIRI(){
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
     }
-    echo "Installing airi"
+    echo "Cloning xsai"
     echo ""
     INSTALL_XSAI >/dev/null 2>&1
+    echo "Cloning xsai-transformers"
+    echo ""
     INSTALL_XSAI_TRANSFORMERS >/dev/null 2>&1
+    echo "Cloning airi_chat"
+    echo ""
     INSTALL_AIRI_CHAT >/dev/null 2>&1
+    echo "Cloning airi"
+    echo ""
     # INSTALL_AIRI
     cd "${WD}" || exit
     sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
@@ -236,7 +255,9 @@ function CLONE_RIKOPROJECT(){
     cd "${WD}" || exit
     cd ../riko-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/rayenfeng/riko_project riko-project
+    echo "Cloning riko-project"
+    echo ""
+    git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project >/dev/null 2>&1
     cd riko-project || exit
     
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
@@ -264,7 +285,9 @@ function CLONE_SWARMUI(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
+    echo "Cloning SwarmUI"
+    echo ""
+    git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI >/dev/null 2>&1
     cd SwarmUI || exit 1
     cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
     cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
@@ -277,7 +300,9 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
+    echo "Cloning stable-diffusion-webui-docker"
+    echo ""
+    git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker >/dev/null 2>&1
     cd stable-diffusion-webui-docker || exit 1
     mkdir -p data/Models/CLIPEncoder
     cd services/comfy/ || exit 1
@@ -287,13 +312,17 @@ function CLONE_CHROMA(){
     cd "${WD}" || exit
     cd ../ai-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/ecsricktorzynski/chroma chroma
+    echo "Cloning chroma"
+    echo ""
+    git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma >/dev/null 2>&1
 }
 function CLONE_AIWAIFU(){
     cd "${WD}" || exit
     cd ../aiwaifu-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu
+    echo "Cloning AIwaifu"
+    echo ""
+    git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu >/dev/null 2>&1
     cd aiwaifu || exit 1
     cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
     cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
