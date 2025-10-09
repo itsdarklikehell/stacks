@@ -6,7 +6,7 @@ export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
 export PRUNE="false" # false, true/normal, all
-export BUILDING="false" # recreate, false, true
+export BUILDING="false" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -102,7 +102,7 @@ echo ""
 ## STACKS:
 
 export PRUNE="all" # false, true/normal, all
-export BUILDING="recreate" # recreate, false, true
+export BUILDING="recreate" # false, true, recreate
 
 PRUNING
 CREATE_NETWORKS >/dev/null 2>&1
