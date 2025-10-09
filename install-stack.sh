@@ -56,6 +56,9 @@ function INSTALL_OPENLLM_VTUBER_STACK(){
 function INSTALL_ARR_STACK(){
     arr-stack/install-stack.sh
 }
+function INSTALL_AIRI_STACK(){
+    airi-stack/install-stack.sh
+}
 
 echo ""
 echo "Installing Drivers"
@@ -81,9 +84,9 @@ echo ""
 
 ## STACKS:
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
 echo ""
 INSTALL_AI_STACK
@@ -102,20 +105,20 @@ echo ""
 # echo ""
 
 # echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
+# INSTALL_AIRI_STACK
 # echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-
-
-
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 
 # dockly # lazydocker

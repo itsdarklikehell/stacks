@@ -83,47 +83,136 @@ function CLONE_JAISON(){
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 }
 function CLONE_AIRI(){
-
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
-
-    git clone --recursive https://github.com/moeru-ai/airi.git airi
-    cd airi || exit
-    corepack enable
-
-    # For Rust dependencies
-    # Not required if you are not going to develop on either crates or apps/tamagotchi
-    sudo apt install -y cargo
-    cargo fetch
-
     npm i -g @antfu/ni
-    ni
+    
+    function INSTALL_XSAI(){
+        cd "${WD}" || exit
+        cd ../airi-stack/DATA || exit 1
+        git clone --recursive https://github.com/moeru-ai/xsai.git xsai
+        cd xsai || exit
+        # # npm
+        # npm install xsai
+        # # yarn
+        # yarn add xsai
+        # pnpm
+        # pnpm install xsai --approve-builds
+        # # bun
+        # bun install xsai
+        # # deno
+        # deno install xsai
+        ni
+        # pnpm install xsai --dangerously-allow-all-builds
+        pnpm approve-builds
+        nr build
+    }
+    function INSTALL_XSAI_TRANSFORMERS(){
+        cd "${WD}" || exit
+        cd ../airi-stack/DATA || exit 1 
 
-    # telegram bot setup
-    cd services/telegram-bot || exit
-    docker compose up -d
-    cp .env .env.local
-    nr -F @proj-airi/telegram-bot db:generate
-    nr -F @proj-airi/telegram-bot db:push
-    # nr -F @proj-airi/telegram-bot dev
+        git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
+        cd xsai-transformers || exit
+        # # npm
+        # npm install xsai-transformers
+        # # yarn
+        # yarn add xsai-transformers
+        # pnpm
+        # pnpm install xsai-transformers
+        # # bun
+        # bun install xsai-transformers
+        # # deno
+        # deno install xsai-transformers
+        ni
+        pnpm approve-builds
+        nr build
+    }
+    function INSTALL_AIRI_CHAT(){
+        cd "${WD}" || exit
+        cd ../airi-stack/DATA || exit 1
 
-    # discord bot setup
-    cd ../discord-bot || exit
-    cp .env .env.local
-    # nr -F @proj-airi/discord-bot dev
+        git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
+        cd airi-chat || exit
+        ni
+        pnpm approve-builds
+        nr build
+        # pnpm i
+        # pnpm dev --host        
+    }
+    function INSTALL_AIRI(){
 
-    # minecraft bot setup
-    cd ../minecraft || exit
-    cp .env .env.local
-    # nr -F @proj-airi/minecraft dev
+        cd "${WD}" || exit
+        cd ../airi-stack/DATA || exit 1
 
-    cd .. || exit
+        git clone --recursive https://github.com/moeru-ai/airi.git airi
+        cd airi || exit
+        ni
+        # For Rust dependencies
+        # Not required if you are not going to develop on either crates or apps/tamagotchi
+        sudo apt install -y cargo
+        cargo fetch
 
-    # nr dev:tamagotchi
-    # nr dev
-    # nr dev:docs
 
-    cp -f "${WD}/CustomDockerfile-airi" CustomDockerfile-airi
+        ni
+        # pnpm i
+        
+        export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+        corepack enable
+
+
+        
+        # telegram bot setup
+        cd services/telegram-bot || exit
+        docker compose up -d --name airi-telegram-bot-db mongo
+        cp .env .env.local
+        # nr -F @proj-airi/telegram-bot db:generate
+        # nr -F @proj-airi/telegram-bot db:push
+        # nr -F @proj-airi/telegram-bot dev
+        # pnpm -F @proj-airi/telegram-bot db:generate
+        # pnpm -F @proj-airi/telegram-bot db:push
+        # pnpm -F @proj-airi/telegram-bot start
+
+        # discord bot setup
+        cd ../discord-bot || exit
+        cp .env .env.local
+        # nr -F @proj-airi/discord-bot dev
+        # pnpm -F @proj-airi/discord-bot start
+
+        # minecraft bot setup
+        cd ../minecraft || exit
+        cp .env .env.local
+        # nr -F @proj-airi/minecraft dev
+        # pnpm -F @proj-airi/minecraft-bot start
+
+        cd .. || exit
+
+        # Run as desktop pet:
+        # nr dev:tamagotchi
+        # pnpm dev:tamagotchi
+        
+        pnpm approve-builds
+        nr build 
+        
+        # Run as web app:
+        # nr dev
+        # pnpm dev --host
+
+        # nr dev:docs
+        # pnpm dev:docs
+
+        cd "${WD}" || exit
+        cd ../airi-stack/DATA/airi || exit 1
+        
+        cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+        cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+        cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+    }
+    INSTALL_XSAI
+    INSTALL_XSAI_TRANSFORMERS
+    INSTALL_AIRI_CHAT
+    INSTALL_AIRI
+    cd "${WD}" || exit
+    sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
 }
 function CLONE_RIKOPROJECT(){
 

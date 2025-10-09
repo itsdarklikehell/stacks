@@ -11,6 +11,7 @@ function CREATE_NETWORKS(){
     docker network create media-services
     docker network create essential-services
     docker network create ai-services
+    docker network create airi-services
     docker network create jaison-services
     docker network create riko-services
     docker network create openllm-vtuber-services
