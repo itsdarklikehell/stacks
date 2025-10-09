@@ -290,16 +290,17 @@ function CLONE_AIWAIFU(){
     cd "${WD}" || exit
     cd ../aiwaifu-stack/DATA || exit 1
 
-    git clone --recursive https://github.com/HRNPH/AIwaifu.git
-    cd AIwaifu || exit 1
-    # cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
-    # cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
-    # cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
+    git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu
+    cd aiwaifu || exit 1
+    cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
+    cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
+    cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
     
     # install poetry
-    # pipx install poetry --force
-    # poetry install
-    # poetry shell
+    pipx install poetry --force
+    poetry env use 3.8
+    poetry install
+    poetry shell
     # uv venv .venv --clear
     # uv sync --no-build-isolation
     # source .venv/bin/activate
@@ -308,8 +309,8 @@ function CLONE_AIWAIFU(){
     # uv pip install imp
     # uv pip install --no-build-isolation -r requirements.txt 
     
-    # cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
-    # python setup.py build_ext --inplace && cd ../../../../
+    cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
+    python setup.py build_ext --inplace && cd ../../../../
     
     # this run on localhost 8267 by default
     # python ./api_inference_server.py
@@ -321,10 +322,10 @@ function CLONE_AIWAIFU(){
 }
 
 CLONE_OLLMVT
-CLONE_JAISON
-CLONE_AIRI
-CLONE_RIKOPROJECT
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+CLONE_JAISON
+CLONE_RIKOPROJECT
 CLONE_AIWAIFU
+# CLONE_AIRI

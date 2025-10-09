@@ -56,6 +56,9 @@ function INSTALL_OPENLLM_VTUBER_STACK(){
 function INSTALL_ARR_STACK(){
     arr-stack/install-stack.sh
 }
+function INSTALL_AIWAIFU_STACK(){
+    aiwaifu-stack/install-stack.sh
+}
 function INSTALL_AIRI_STACK(){
     airi-stack/install-stack.sh
 }
@@ -103,6 +106,10 @@ echo ""
 # echo ""
 # INSTALL_MEDIA_STACK
 # echo ""
+
+echo ""
+INSTALL_AIWAIFU_STACK
+echo ""
 
 echo ""
 INSTALL_AIRI_STACK
