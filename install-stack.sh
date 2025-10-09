@@ -103,8 +103,8 @@ echo ""
 
 ## STACKS:
 
-export PRUNE=all # none, normal, all
-export BUILDING=norebuild # norebuild, rebuild
+export PRUNE=none # none, normal, all
+export BUILDING=rebuild # norebuild, rebuild
 
 PRUNING
 
