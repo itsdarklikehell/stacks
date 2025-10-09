@@ -86,7 +86,7 @@ function CLONE_AIRI(){
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
     npm i -g @antfu/ni
-    
+    npm i shiki
     function INSTALL_XSAI(){
         cd "${WD}" || exit
         cd ../airi-stack/DATA || exit 1
@@ -168,13 +168,13 @@ function CLONE_AIRI(){
         # telegram bot setup
         cd services/telegram-bot || exit
         cp .env .env.local
-        pnpm i --dangerously-allow-all-builds
-        ni
-        pnpm approve-builds
+        # pnpm i --dangerously-allow-all-builds
+        # ni
+        # pnpm approve-builds
         nr build
         # docker compose -p airi-telegram-bot-db up -d
-        pnpm -F @proj-airi/telegram-bot db:generate
-        pnpm -F @proj-airi/telegram-bot db:push
+        # pnpm -F @proj-airi/telegram-bot db:generate
+        # pnpm -F @proj-airi/telegram-bot db:push
         # pnpm -F @proj-airi/telegram-bot start
         nr -F @proj-airi/telegram-bot db:generate
         nr -F @proj-airi/telegram-bot db:push
@@ -184,9 +184,9 @@ function CLONE_AIRI(){
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
-        pnpm i --dangerously-allow-all-builds
-        ni
-        pnpm approve-builds
+        # pnpm i --dangerously-allow-all-builds
+        # ni
+        # pnpm approve-builds
         nr build
         # pnpm -F @proj-airi/discord-bot start
         # nr -F @proj-airi/discord-bot dev
@@ -194,9 +194,9 @@ function CLONE_AIRI(){
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
-        pnpm i --dangerously-allow-all-builds
-        ni
-        pnpm approve-builds
+        # pnpm i --dangerously-allow-all-builds
+        # ni
+        # pnpm approve-builds
         nr build
         # pnpm -F @proj-airi/minecraft-bot start
         # nr -F @proj-airi/minecraft dev
@@ -221,10 +221,10 @@ function CLONE_AIRI(){
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
     }
-    INSTALL_XSAI
-    INSTALL_XSAI_TRANSFORMERS
-    INSTALL_AIRI_CHAT
-    INSTALL_AIRI
+    INSTALL_XSAI >/dev/null 2>&1
+    INSTALL_XSAI_TRANSFORMERS >/dev/null 2>&1
+    INSTALL_AIRI_CHAT >/dev/null 2>&1
+    # INSTALL_AIRI
     cd "${WD}" || exit
     sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
 }
