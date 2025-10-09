@@ -5,7 +5,7 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export CLEANUP="false" # false, true
+export CLEANUP="true" # false, true
 
 export PRUNE="all" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
