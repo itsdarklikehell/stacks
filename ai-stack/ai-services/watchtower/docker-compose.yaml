@@ -49,7 +49,8 @@ services:
       # - librechat-rag_api
       # - librechat-vectordb
       - kokoro-tts
-      - coqui-tts
+      - coqui-tts-cpu
+      # - coqui-tts-gpu
       - mongo
       - ollama
       - open-webui
