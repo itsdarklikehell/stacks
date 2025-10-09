@@ -44,3 +44,9 @@ services:
     # depends_on:
     #   - faster-whisper-gpu
     #   - wyoming-piper
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

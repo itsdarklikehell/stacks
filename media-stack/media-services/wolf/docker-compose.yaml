@@ -63,3 +63,10 @@ services:
       - "48010/tcp"
       - "48100/udp"
       - "48200/udp"
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

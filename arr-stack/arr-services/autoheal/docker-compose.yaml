@@ -46,3 +46,10 @@ services:
       #     memory: 256M
       #     cpus: "0.25"
 
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -48,3 +48,10 @@ services:
               count: 1
               capabilities: [compute, video, graphics, utility]
 
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

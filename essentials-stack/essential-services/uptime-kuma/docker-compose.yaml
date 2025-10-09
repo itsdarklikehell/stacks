@@ -25,19 +25,6 @@ services:
     ports:
       - "${PORT:-3001}:3001"
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001"]
-      interval: 30s
-      retries: 3
-      start_period: 10s
-      timeout: 5s
-
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
     env_file:
       - ./uptime-kuma/.env
 
@@ -54,3 +41,16 @@ services:
       #   reservations:
       #     memory: 256M
       #     cpus: "0.25"
+      
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

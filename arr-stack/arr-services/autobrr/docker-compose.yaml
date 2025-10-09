@@ -39,3 +39,10 @@ services:
 
     user: ${PUID:-1000}:${PGID:-1000}
 
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

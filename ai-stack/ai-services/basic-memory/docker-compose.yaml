@@ -40,12 +40,6 @@ services:
     
     stdin_open: true
  
-    healthcheck:
-      test: ["CMD", "basic-memory", "--version"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
 
     # Optional: Resource limits
     # deploy:
@@ -70,3 +64,15 @@ services:
     deploy:
       replicas: 1
 
+    healthcheck:
+      test: ["CMD", "basic-memory", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -38,3 +38,10 @@ services:
     depends_on:
       - autoheal-openllm-vtuber-services
       - openllm-vtuber
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -51,3 +51,10 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu, compute, video, graphics, utility]
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

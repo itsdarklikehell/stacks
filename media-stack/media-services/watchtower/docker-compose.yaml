@@ -54,3 +54,10 @@ services:
       - tvs99
       - webrcade
       - wolf
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
