@@ -147,14 +147,9 @@ function CLONE_AIRI(){
         # Not required if you are not going to develop on either crates or apps/tamagotchi
         sudo apt install -y cargo
         cargo fetch
-
-
-
         
         export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
         corepack enable
-
-
         
         # telegram bot setup
         cd services/telegram-bot || exit
