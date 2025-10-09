@@ -9,13 +9,13 @@ echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
 function DOCKER_COMPOSE_STACK(){
-    cd "airi-services" || exit 1
+    cd "arr-services" || exit 1
     ./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: airi-stack ****"
+echo "*** START COMPOSING: arr-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: airi-stack ****"
+echo "*** FINISHED COMPOSING: arr-stack ****"
