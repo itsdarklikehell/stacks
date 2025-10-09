@@ -44,6 +44,9 @@ function INSTALL_AI_STACK(){
 function INSTALL_JAISON_STACK(){
     jaison-stack/install-stack.sh
 }
+function INSTALL_VOICE_CHAT_AI_STACK(){
+    voice-chat-ai-stack/install-stack.sh
+}
 function INSTALL_PROJECT_RIKO_STACK(){
     riko-stack/install-stack.sh
 }
@@ -82,9 +85,9 @@ echo ""
 # INSTALL_ESSENTIALS_STACK
 # echo ""
 
-# echo ""
-# INSTALL_AI_STACK
-# echo ""
+echo ""
+INSTALL_AI_STACK
+echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -106,9 +109,9 @@ echo ""
 # INSTALL_JAISON_STACK
 # echo ""
 
-echo ""
-INSTALL_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# INSTALL_PROJECT_RIKO_STACK
+# echo ""
 
 
 

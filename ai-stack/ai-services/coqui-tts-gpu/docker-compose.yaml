@@ -1,0 +1,53 @@
+services:
+  coqui-tts-gpu:
+    image: ${IMAGE:-ghcr.io/coqui-ai/tts-gpu:latest}
+    container_name: ${NAME:-coqui-tts-gpu}
+    restart: ${RESTART:-unless-stopped}
+
+    entrypoint: /bin/bash
+
+    # volumes:
+    #   - ../DATA/coqui-tts-gpu:/kokoro
+    #   - index_data:/index_data
+
+    hostname: coqui-tts-gpu
+
+    environment:
+      - PORT=5002
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./coqui-tts-gpu/.env
+
+    ports:
+      - "${PORT:-5002}:5002"
+
+    # depends_on:
+    #   - clickhouse
+
+    tty: true
+
+    stdin_open: true
+
+    # group_add:
+    #   - "video"
+    #   - "render"
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:5000/api/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

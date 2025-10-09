@@ -28,10 +28,10 @@ COMPOSE_FILES=(
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-  ARGS+="-f $f "
+    ARGS+="-f ${f} "
 done
 
-echo "Running: docker compose $ARGS up -d"
+echo "Running: docker compose ${ARGS} up -d"
 
-docker compose $ARGS up -d
-# docker compose $ARGS up -d --build --force-recreate --remove-orphans
+# docker compose ${ARGS} up -d
+docker compose ${ARGS} up -d --build --force-recreate --remove-orphans

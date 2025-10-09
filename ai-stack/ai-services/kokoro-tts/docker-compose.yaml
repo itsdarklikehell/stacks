@@ -1,0 +1,51 @@
+services:
+  kokoro-tts:
+    image: ${IMAGE:-ghcr.io/remsky/kokoro-fastapi-gpu:latest}
+    container_name: ${NAME:-kokoro-tts}
+    restart: ${RESTART:-unless-stopped}
+
+    # volumes:
+    #   - ../DATA/kokoro-tts:/kokoro
+    #   - index_data:/index_data
+
+    hostname: kokoro-tts
+
+    environment:
+      - PORT=8880
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./kokoro-tts/.env
+
+    ports:
+      - "${PORT:-8880}:8880"
+
+    # depends_on:
+    #   - clickhouse
+
+    tty: true
+
+    stdin_open: true
+
+    group_add:
+      - "video"
+      - "render"
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8880/api/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

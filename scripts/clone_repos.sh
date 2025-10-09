@@ -14,9 +14,11 @@ mkdir -p ../media-stack/DATA
 mkdir -p ../essentials-stack/DATA
 mkdir -p ../management-stack/DATA
 mkdir -p ../riko-stack/DATA
+mkdir -p ../aiwaifu-stack/DATA
+mkdir -p ../airi-stack/DATA
+./install_uv.sh
 
 function CLONE_OLLMVT(){
-    ./install_uv.sh
     cd "${WD}" || exit
     cd ../openllm-vtuber-stack/DATA || exit 1
 
@@ -83,7 +85,7 @@ function CLONE_JAISON(){
 function CLONE_AIRI(){
 
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../airi-stack/DATA || exit 1
 
     git clone --recursive https://github.com/moeru-ai/airi.git airi
     cd airi || exit
@@ -97,18 +99,24 @@ function CLONE_AIRI(){
     npm i -g @antfu/ni
     ni
 
+    # telegram bot setup
     cd services/telegram-bot || exit
     docker compose up -d
     cp .env .env.local
     nr -F @proj-airi/telegram-bot db:generate
     nr -F @proj-airi/telegram-bot db:push
-    nr -F @proj-airi/telegram-bot dev
+    # nr -F @proj-airi/telegram-bot dev
+
+    # discord bot setup
     cd ../discord-bot || exit
     cp .env .env.local
-    nr -F @proj-airi/discord-bot dev
+    # nr -F @proj-airi/discord-bot dev
+
+    # minecraft bot setup
     cd ../minecraft || exit
     cp .env .env.local
-    nr -F @proj-airi/minecraft dev
+    # nr -F @proj-airi/minecraft dev
+
     cd .. || exit
 
     # nr dev:tamagotchi
@@ -134,6 +142,7 @@ function CLONE_RIKOPROJECT(){
     # uv venv .venv --clear
 
     sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
+    sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
     # source .venv/bin/activate
     # pip install --upgrade pip uv nltk
@@ -174,11 +183,45 @@ function CLONE_CHROMA(){
 
     git clone --recursive https://github.com/ecsricktorzynski/chroma chroma
 }
+function CLONE_AIWAIFU(){
+    cd "${WD}" || exit
+    cd ../aiwaifu-stack/DATA || exit 1
+
+    git clone --recursive https://github.com/HRNPH/AIwaifu.git
+    cd AIwaifu || exit 1
+    # cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
+    # cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
+    # cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
+    
+    # install poetry
+    # pipx install poetry --force
+    # poetry install
+    # poetry shell
+    # uv venv .venv --clear
+    # uv sync --no-build-isolation
+    # source .venv/bin/activate
+    # uv pip uninstall websocket
+    # uv pip install setuptools
+    # uv pip install imp
+    # uv pip install --no-build-isolation -r requirements.txt 
+    
+    # cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
+    # python setup.py build_ext --inplace && cd ../../../../
+    
+    # this run on localhost 8267 by default
+    # python ./api_inference_server.py
+
+    # this will connect to all the server (Locally)
+    # it is possible to host the api model on the external server, just beware of security issue
+    # I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
+    # python ./main.py
+}
 
 CLONE_OLLMVT
 CLONE_JAISON
-# CLONE_AIRI
+CLONE_AIRI
 CLONE_RIKOPROJECT
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+CLONE_AIWAIFU

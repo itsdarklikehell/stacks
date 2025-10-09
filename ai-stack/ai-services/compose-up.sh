@@ -21,6 +21,10 @@ COMPOSE_FILES=(
   # librechat-rag_api/docker-compose.yaml 
   # librechat-vectordb/docker-compose.yaml
   libretranslate/docker-compose.yaml
+  kokoro-tts/docker-compose.yaml
+  coqui-tts-cpu/docker-compose.yaml
+  # coqui-tts-gpu/docker-compose.yaml
+  voice-chat-ai/docker-compose.yaml
   mongo/docker-compose.yaml
   ollama/docker-compose.yaml
   open-webui/docker-compose.yaml
@@ -35,10 +39,10 @@ COMPOSE_FILES=(
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-  ARGS+="-f $f "
+    ARGS+="-f ${f} "
 done
 
-echo "Running: docker compose $ARGS up -d"
+echo "Running: docker compose ${ARGS} up -d"
 
-docker compose $ARGS up -d
-# docker compose $ARGS up -d --build --force-recreate --remove-orphans
+# docker compose ${ARGS} up -d
+docker compose ${ARGS} up -d --build --force-recreate --remove-orphans

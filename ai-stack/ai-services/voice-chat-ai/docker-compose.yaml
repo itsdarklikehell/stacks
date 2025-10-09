@@ -1,0 +1,73 @@
+services:
+  voice-chat-ai:
+    image: ${IMAGE:-bigsk1/voice-chat-ai:latest}
+    container_name: ${NAME:-voice-chat-ai}
+    restart: ${RESTART:-unless-stopped}
+
+    environment:
+      - PULSE_SERVER=unix:/tmp/pulse/native # Uncomment for native Ubuntu/Debian with PulseAudio
+      # - PULSE_SERVER=/mnt/wslg/PulseServer # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
+
+    labels:
+      - autoheal-app=true
+      - autoheal
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    volumes:
+      # - \\wsl$\Ubuntu\mnt\wslg:/mnt/wslg/  # Default: WSL2 audio mount for Windows CMD with Docker Desktop
+      # - /mnt/wslg/:/mnt/wslg/  # Uncomment for WSL2 Ubuntu (running Docker inside WSL2 distro)
+      - ~/.config/pulse/cookie:/root/.config/pulse/cookie:ro # Uncomment for native Ubuntu/Debian
+      - /run/user/1000/pulse:/tmp/pulse:ro # Uncomment and adjust UID (e.g., 1000) for native Ubuntu/Debian
+
+    hostname: ${NAME:-voice-chat-ai}
+
+    # command: [ "ollama", "pull", "qwen3"]
+
+    networks:
+      host:
+      ai-services:
+
+    ports:
+      - "${PORT:-8000}:8000"
+
+    env_file:
+      - ./voice-chat-ai/.env
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        # limits:
+        #   memory: 1G
+        #   cpus: "1.00"
+        reservations:
+          # memory: 512M
+          # cpus: "0.50"
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
+
+    tty: true
+
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8000/api/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

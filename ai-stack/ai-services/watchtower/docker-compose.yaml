@@ -48,6 +48,8 @@ services:
       # - librechat-mongodb
       # - librechat-rag_api
       # - librechat-vectordb
+      - kokoro-tts
+      - coqui-tts
       - mongo
       - ollama
       - open-webui
