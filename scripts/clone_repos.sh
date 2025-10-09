@@ -100,20 +100,9 @@ function CLONE_AIRI(){
         echo ""
         git clone --recursive https://github.com/moeru-ai/xsai.git xsai >/dev/null 2>&1
         cd xsai || exit
-        # # npm
-        # npm install xsai
-        # # yarn
-        # yarn add xsai
-        # pnpm
-        # pnpm install xsai --dangerously-allow-all-builds
-        # # bun
-        # bun install xsai
-        # # deno
-        # deno install xsai
-        pnpm install xsai --dangerously-allow-all-builds
-        ni
-        # pnpm approve-builds
-        nr build
+
+        nr build >/dev/null 2>&1
+        ni >/dev/null 2>&1
     }
     function INSTALL_XSAI_TRANSFORMERS(){
         cd "${WD}" || exit
@@ -123,20 +112,9 @@ function CLONE_AIRI(){
         echo ""
         git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers >/dev/null 2>&1
         cd xsai-transformers || exit
-        # # npm
-        # npm install xsai-transformers
-        # # yarn
-        # yarn add xsai-transformers
-        # pnpm
-        # pnpm install xsai-transformers --dangerously-allow-all-builds
-        # # bun
-        # bun install xsai-transformers
-        # # deno
-        # deno install xsai-transformers
-        pnpm install xsai-transformers --dangerously-allow-all-builds
-        ni
-        # pnpm approve-builds
-        nr build
+
+        nr build >/dev/null 2>&1
+        ni >/dev/null 2>&1
     }
     function INSTALL_AIRI_CHAT(){
         cd "${WD}" || exit
@@ -146,11 +124,9 @@ function CLONE_AIRI(){
         echo ""
         git clone --recursive https://github.com/moeru-ai/chat.git airi-chat >/dev/null 2>&1
         cd airi-chat || exit
-        pnpm i --dangerously-allow-all-builds
-        ni
-        pnpm approve-builds
-        nr build
-        # pnpm dev --host        
+
+        nr build >/dev/null 2>&1
+        ni >/dev/null 2>&1
     }
     function INSTALL_AIRI(){
 
@@ -161,10 +137,9 @@ function CLONE_AIRI(){
         echo ""
         git clone --recursive https://github.com/moeru-ai/airi.git airi >/dev/null 2>&1
         cd airi || exit
-        pnpm i --dangerously-allow-all-builds
-        ni
-        pnpm approve-builds
-        nr build
+
+        nr build >/dev/null 2>&1
+        ni >/dev/null 2>&1
         
         # For Rust dependencies
         # Not required if you are not going to develop on either crates or apps/tamagotchi
@@ -324,6 +299,7 @@ function CLONE_AIWAIFU(){
     echo ""
     git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu >/dev/null 2>&1
     cd aiwaifu || exit 1
+
     cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
     cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
     cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv

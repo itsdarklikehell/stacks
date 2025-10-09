@@ -181,4 +181,4 @@ echo ""
 # dockly # lazydocker
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
-echo "Installation complete.."  
+echo "Installation complete.."

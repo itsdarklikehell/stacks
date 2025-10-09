@@ -6,10 +6,12 @@ function INSTALL_UV(){
     then
         echo "uv is already installed"
     else
-        eurl -LsSf https://astral.sh/uv/install.sh | sh
+        eurl -LsSf https://astral.sh/uv/install.sh
+        bash install.sh >/dev/null 2>&1
+        rm install.sh >/dev/null 2>&1
 
         echo "uv installation completed."
     fi
 }
 # Call the function to install uv
-INSTALL_UV
+INSTALL_UV >/dev/null 2>&1
