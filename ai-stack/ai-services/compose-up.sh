@@ -43,5 +43,11 @@ done
 
 echo "Running: docker compose ${ARGS} up -d"
 
-docker compose ${ARGS} up -d
-# docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
+function BUILDING(){
+    if [[ "$BUILDING" = rebuild ]]; then
+        docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
+    elif [[ "$BUILDING" = norebuild ]]; then
+        docker compose ${ARGS} up -d
+    fi
+}
+BUILDING
