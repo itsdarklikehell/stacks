@@ -97,14 +97,14 @@ function CLONE_AIRI(){
         # # yarn
         # yarn add xsai
         # pnpm
-        # pnpm install xsai --approve-builds
+        # pnpm install xsai --dangerously-allow-all-builds
         # # bun
         # bun install xsai
         # # deno
         # deno install xsai
+        pnpm install xsai --dangerously-allow-all-builds
         ni
-        # pnpm install xsai --dangerously-allow-all-builds
-        pnpm approve-builds
+        # pnpm approve-builds
         nr build
     }
     function INSTALL_XSAI_TRANSFORMERS(){
@@ -118,13 +118,14 @@ function CLONE_AIRI(){
         # # yarn
         # yarn add xsai-transformers
         # pnpm
-        # pnpm install xsai-transformers
+        # pnpm install xsai-transformers --dangerously-allow-all-builds
         # # bun
         # bun install xsai-transformers
         # # deno
         # deno install xsai-transformers
+        pnpm install xsai-transformers --dangerously-allow-all-builds
         ni
-        pnpm approve-builds
+        # pnpm approve-builds
         nr build
     }
     function INSTALL_AIRI_CHAT(){
@@ -133,10 +134,10 @@ function CLONE_AIRI(){
 
         git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
         cd airi-chat || exit
+        pnpm i --dangerously-allow-all-builds
         ni
         pnpm approve-builds
         nr build
-        # pnpm i
         # pnpm dev --host        
     }
     function INSTALL_AIRI(){
@@ -146,15 +147,18 @@ function CLONE_AIRI(){
 
         git clone --recursive https://github.com/moeru-ai/airi.git airi
         cd airi || exit
+        pnpm i --dangerously-allow-all-builds
         ni
+        pnpm approve-builds
+        nr build
+        
         # For Rust dependencies
         # Not required if you are not going to develop on either crates or apps/tamagotchi
         sudo apt install -y cargo
         cargo fetch
 
 
-        ni
-        # pnpm i
+
         
         export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
         corepack enable
@@ -163,35 +167,45 @@ function CLONE_AIRI(){
         
         # telegram bot setup
         cd services/telegram-bot || exit
-        docker compose up -d --name airi-telegram-bot-db mongo
         cp .env .env.local
-        # nr -F @proj-airi/telegram-bot db:generate
-        # nr -F @proj-airi/telegram-bot db:push
-        # nr -F @proj-airi/telegram-bot dev
-        # pnpm -F @proj-airi/telegram-bot db:generate
-        # pnpm -F @proj-airi/telegram-bot db:push
+        pnpm i --dangerously-allow-all-builds
+        ni
+        pnpm approve-builds
+        nr build
+        # docker compose -p airi-telegram-bot-db up -d
+        pnpm -F @proj-airi/telegram-bot db:generate
+        pnpm -F @proj-airi/telegram-bot db:push
         # pnpm -F @proj-airi/telegram-bot start
+        nr -F @proj-airi/telegram-bot db:generate
+        nr -F @proj-airi/telegram-bot db:push
+        nr
+        # nr -F @proj-airi/telegram-bot dev
 
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
-        # nr -F @proj-airi/discord-bot dev
+        pnpm i --dangerously-allow-all-builds
+        ni
+        pnpm approve-builds
+        nr build
         # pnpm -F @proj-airi/discord-bot start
+        # nr -F @proj-airi/discord-bot dev
 
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
-        # nr -F @proj-airi/minecraft dev
+        pnpm i --dangerously-allow-all-builds
+        ni
+        pnpm approve-builds
+        nr build
         # pnpm -F @proj-airi/minecraft-bot start
+        # nr -F @proj-airi/minecraft dev
 
         cd .. || exit
 
         # Run as desktop pet:
-        # nr dev:tamagotchi
         # pnpm dev:tamagotchi
-        
-        pnpm approve-builds
-        nr build 
+        # nr dev:tamagotchi
         
         # Run as web app:
         # nr dev
