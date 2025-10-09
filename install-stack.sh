@@ -5,8 +5,10 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export PRUNE="false" # false, true/normal, all
-export BUILDING="false" # false, true, recreate
+export CLEANUP="true" # false, true
+
+export PRUNE="all" # false, true/normal, all
+export BUILDING="recreate" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -28,7 +30,31 @@ function PRUNING(){
     fi
     sleep 3
 }
+function CLEANUP_DATA(){
+    FOLDERS=(
+        '/media/rizzo/RAIDSTATION/stacks/airi-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/ai-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/aiwaifu-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/arr-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/essentials-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/jaison-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/management-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/media-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/openllm-vtuber-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/riko-stack/DATA'
+    )
+    for folder in "${FOLDERS[@]}"; do
+        echo ""
+        echo "Removing ${folder}"
+        sudo rm -rf "${folder}"
+    done
+}
+if [[ "${CLEANUP}" = "true" ]]; then
+    
+    export BUILDING="recreate" # false, true, recreate
 
+    CLEANUP_DATA
+fi
 function INSTALL_DRIVERS(){
     scripts/install_drivers.sh
 }
@@ -101,10 +127,7 @@ echo ""
 
 ## STACKS:
 
-export PRUNE="all" # false, true/normal, all
-export BUILDING="recreate" # false, true, recreate
-
-PRUNING
+PRUNING >/dev/null 2>&1
 CREATE_NETWORKS >/dev/null 2>&1
 CREATE_SECRETS >/dev/null 2>&1
 
