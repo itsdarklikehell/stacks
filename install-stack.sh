@@ -5,10 +5,10 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export CLEANUP="true" # false, true
+export CLEANUP="false" # false, true
 
-export PRUNE="all" # false, true/normal, all
-export BUILDING="recreate" # false, true, recreate
+export PRUNE="false" # false, true/normal, all
+export BUILDING="true" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -146,63 +146,61 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-echo ""
-INSTALL_ARR_STACK
-echo ""
+# echo ""
+# INSTALL_ARR_STACK
+# echo ""
 
-echo ""
-INSTALL_MANAGEMENT_STACK
-echo ""
+# echo ""
+# INSTALL_MANAGEMENT_STACK
+# echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
-echo ""
+# echo ""
+# INSTALL_MEDIA_STACK
+# echo ""
 
 echo ""
 INSTALL_AIWAIFU_STACK
 echo ""
 
-echo ""
-INSTALL_AIRI_STACK
-echo ""
+# echo ""
+# INSTALL_AIRI_STACK
+# echo ""
 
-echo ""
-INSTALL_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# INSTALL_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-INSTALL_JAISON_STACK
-echo ""
+# echo ""
+# INSTALL_JAISON_STACK
+# echo ""
 
-echo ""
-INSTALL_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# INSTALL_PROJECT_RIKO_STACK
+# echo ""
 
-
-
-models=(
-    'gpt-oss:latest'
-    'gpt-oss:20b'
-    'gpt-oss:120b'
-    'deepseek-r1'
-    'gemma3:latest'
-    'mgistral:latest'
-    'embeddinggemma:latest'
-    'qwen3:latest'
-    'nomic-embed-text:latest'
-    'mxbai-embed-large'
-    'codellama:latest'
-    'deepseek-coder'
-    'mistral:7b-instruct'
-    'llama3.2:latest'
-    'llama3.2-coder:latest'
-    'qwen2.5-coder:32b'
-    'granite:latest'
-)
-for model in "${models[@]}"; do
-    echo "Pulling model: $model"
-    ollama pull "${model}" # >/dev/null 2>&1
-done
+# models=(
+#     'gpt-oss:latest'
+#     'gpt-oss:20b'
+#     'gpt-oss:120b'
+#     'deepseek-r1'
+#     'gemma3:latest'
+#     'mgistral:latest'
+#     'embeddinggemma:latest'
+#     'qwen3:latest'
+#     'nomic-embed-text:latest'
+#     'mxbai-embed-large'
+#     'codellama:latest'
+#     'deepseek-coder'
+#     'mistral:7b-instruct'
+#     'llama3.2:latest'
+#     'llama3.2-coder:latest'
+#     'qwen2.5-coder:32b'
+#     'granite:latest'
+# )
+# for model in "${models[@]}"; do
+#     echo "Pulling model: ${model}"
+#     docker exec -it ollama sh -c "ollama pull ${model}"
+# done
 
 # dockly # lazydocker
 

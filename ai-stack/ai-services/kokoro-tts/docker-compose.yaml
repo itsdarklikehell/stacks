@@ -30,9 +30,9 @@ services:
 
     stdin_open: true
 
-    group_add:
-      - "video"
-      - "render"
+    # group_add:
+    #   - "video"
+    #   - "render"
 
     # Optional: Health check for monitoring
     healthcheck:
