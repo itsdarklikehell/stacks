@@ -12,8 +12,8 @@ services:
       dockerfile: ./Dockerfile
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:

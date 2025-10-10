@@ -5,11 +5,14 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - 'STORAGE_DIR="/app/server/storage"'
       - SERVER_PORT=3002
 
@@ -27,19 +30,19 @@ services:
       # - ../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs
 
 
-    hostname: ${NAME:-anythingllm}
+    hostname: "${NAME:-anythingllm}"
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    user: "${PUID:-1000}:${PGID:-1000}"
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-3002}:3002
+      - "${PORT:-3002}:3002"
 
     env_file:
-      - ./anythingllm/.env
+      - "./anythingllm/.env"
 
     runtime: nvidia
     deploy:
@@ -63,9 +66,9 @@ services:
     # Optional: Health check for monitoring
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3002/api/health"]
-      interval: 30s
-      timeout: 10s
-      start_period: 30s
+      interval: "30s"
+      timeout: "10s"
+      start_period: "30s"
       retries: 3
 
     logging:

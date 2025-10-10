@@ -5,14 +5,14 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_USER=${MYSQL_DATABASE:-nextcloud}
       - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}

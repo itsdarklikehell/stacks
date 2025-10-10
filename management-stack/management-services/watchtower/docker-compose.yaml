@@ -5,8 +5,8 @@ services:
     container_name: watchtower-management-services
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:

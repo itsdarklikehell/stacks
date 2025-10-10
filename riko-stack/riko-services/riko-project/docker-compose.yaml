@@ -17,8 +17,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
@@ -84,9 +84,9 @@ services:
           "--spider",
           "http://localhost:12393/api/health",
         ]
-      interval: 30s
-      timeout: 10s
-      start_period: 30s
+      interval: "30s"
+      timeout: "10s"
+      start_period: "30s"
       retries: 3
 
 

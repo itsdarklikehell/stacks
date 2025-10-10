@@ -45,9 +45,9 @@ services:
           "--spider",
           "http://localhost:8880/api/health",
         ]
-      interval: 30s
-      timeout: 10s
-      start_period: 30s
+      interval: "30s"
+      timeout: "10s"
+      start_period: "30s"
       retries: 3
 
     logging:

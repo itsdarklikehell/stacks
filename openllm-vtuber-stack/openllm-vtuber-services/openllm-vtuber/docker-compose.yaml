@@ -1,7 +1,7 @@
 services:
   openllm-vtuber:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
+    # image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
     container_name: ${NAME:-openllm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
@@ -12,13 +12,13 @@ services:
         GID: ${PGID:-1000}
         INSTALL_ORIGINAL_WHISPER: false
         INSTALL_BARK: false
-      dockerfile: ./CustomDockerfile-openllm-vtuber-conda
-      # dockerfile: ./CustomDockerfile-openllm-vtuber-uv
+      dockerfile: ./CustomDockerfile-openllm-vtuber-uv
+      # dockerfile: ./CustomDockerfile-openllm-vtuber-conda
       # dockerfile: ./CustomDockerfile-openllm-vtuber-venv
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     volumes:
@@ -82,9 +82,9 @@ services:
           "--spider",
           "http://localhost:12393/api/health",
         ]
-      interval: 30s
-      timeout: 10s
-      start_period: 30s
+      interval: "30s"
+      timeout: "10s"
+      start_period: "30s"
       retries: 3
 
     logging:

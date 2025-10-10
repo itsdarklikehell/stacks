@@ -5,8 +5,8 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
@@ -24,7 +24,7 @@ services:
     ports:
       - "${PORT:-6901}:6901"
 
-    shm_size: 512m
+    shm_size: "4gb"
     tty: true
     
     stdin_open: true

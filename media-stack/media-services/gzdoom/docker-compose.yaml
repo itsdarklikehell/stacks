@@ -5,17 +5,18 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     labels:
-      - autoheal-app=true
-      - autoheal
+      - "autoheal-app=true"
+      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - CUSTOM_PORT=${CUSTOM_PORT:-3020}
 
     volumes:
+      - "/dev/shm:/dev/shm"
       - ../DATA/gzdoom/config:/config
 
     hostname: ${NAME:-gzdoom}
@@ -29,7 +30,7 @@ services:
     ports:
       - "3020:3020"
 
-    shm_size: "1gb"
+    shm_size: "4gb"
 
     env_file:
       - ./gzdoom/.env
