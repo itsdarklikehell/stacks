@@ -169,29 +169,29 @@ echo ""
 INSTALL_PROJECT_RIKO_STACK
 echo ""
 
-# models=(
-#     'gpt-oss:latest'
-#     'gpt-oss:20b'
-#     'gpt-oss:120b'
-#     'deepseek-r1'
-#     'gemma3:latest'
-#     'mgistral:latest'
-#     'embeddinggemma:latest'
-#     'qwen3:latest'
-#     'nomic-embed-text:latest'
-#     'mxbai-embed-large'
-#     'codellama:latest'
-#     'deepseek-coder'
-#     'mistral:7b-instruct'
-#     'llama3.2:latest'
-#     'llama3.2-coder:latest'
-#     'qwen2.5-coder:32b'
-#     'granite:latest'
-# )
-# for model in "${models[@]}"; do
-#     echo "Pulling model: ${model}"
-#     docker exec -it ollama sh -c "ollama pull ${model}"
-# done
+models=(
+    'qwen2.5:latest'
+    'gpt-oss:20b'
+    'gpt-oss:120b'
+    'deepseek-r1'
+    'gemma3:latest'
+    'mgistral:latest'
+    'embeddinggemma:latest'
+    'qwen3:latest'
+    'nomic-embed-text:latest'
+    'mxbai-embed-large'
+    'codellama:latest'
+    'deepseek-coder'
+    'mistral:7b-instruct'
+    'llama3.2:latest'
+    'llama3.2-coder:latest'
+    'qwen2.5-coder:32b'
+    'granite:latest'
+)
+for model in "${models[@]}"; do
+    echo "Pulling model: ${model}"
+    docker exec -it ollama sh -c "ollama pull ${model}"
+done
 
 # dockly # lazydocker
 
