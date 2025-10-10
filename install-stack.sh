@@ -14,10 +14,6 @@ echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 git pull
 
-
-
-# sudo apt update && sudo apt upgrade -y
-
 function PRUNING(){
     echo ""
     echo "Pruning is set to: $PRUNE"
