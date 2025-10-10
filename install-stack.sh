@@ -7,8 +7,8 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="false" # false, true/normal, all
-export BUILDING="true" # false, true, recreate
+export PRUNE="all" # false, true/normal, all
+export BUILDING="recreate" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -128,15 +128,10 @@ echo ""
 
 ## STACKS:
 
-PRUNING >/dev/null 2>&1
-CREATE_NETWORKS >/dev/null 2>&1
-CREATE_SECRETS >/dev/null 2>&1
+PRUNING
+CREATE_NETWORKS
+CREATE_SECRETS
 
-
-echo "Creating Docker Networks"
-echo ""
-CREATE_NETWORKS >/dev/null 2>&1
-echo ""
 
 echo ""
 INSTALL_ESSENTIALS_STACK

@@ -14,22 +14,24 @@ RUN apt --fix-broken install -y
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
-# Copy application code to the container
-COPY . /app
-# Set working directory
-WORKDIR /app
-
 # Install pip
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3 - 
 RUN pip install --root-user-action=ignore --no-cache-dir -r /tmp/requirements.txt
 RUN pip install --root-user-action=ignore --no-cache-dir funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
 RUN pip install --root-user-action=ignore --no-cache-dir uv
 
+# Copy application code to the container
+COPY . /app
+# Set working directory
+WORKDIR /app
+
 # Ensure the installed uv binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
 
 RUN uv sync
 RUN uv venv
+# Enable venv
+ENV PATH=".venv/bin:$PATH"
 
 # MeloTTS installation
 WORKDIR /opt/MeloTTS
