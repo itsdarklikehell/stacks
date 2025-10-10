@@ -41,6 +41,18 @@ function CLONE_OLLMVT(){
     # docker build -t open-llm-vtuber .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 }
+function CLONE_LETTA(){
+    cd "${WD}" || exit
+    cd ../ai-stack/DATA || exit 1
+
+    echo "Cloning Letta"
+    echo ""
+    git clone --recursive https://github.com/letta-ai/letta.git letta
+    cd letta || exit
+    uv sync
+    uv sync --all-extras
+    # uv run letta server
+}
 function CLONE_JAISON(){
     # sudo apt install -y ffmpeg
 
@@ -317,6 +329,7 @@ function CLONE_AIWAIFU(){
 }
 
 CLONE_OLLMVT
+CLONE_LETTA
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

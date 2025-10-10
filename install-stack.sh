@@ -190,7 +190,8 @@ models=(
 )
 for model in "${models[@]}"; do
     echo "Pulling model: ${model}"
-    docker exec -it ollama sh -c "ollama pull ${model}"
+    # docker exec -it ollama sh -c "ollama pull ${model}"
+    ollama pull "${model}"
 done
 
 # dockly # lazydocker
