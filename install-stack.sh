@@ -7,8 +7,8 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="all" # false, true/normal, all
-export BUILDING="recreate" # false, true, recreate
+export PRUNE="false" # false, true/normal, all
+export BUILDING="true" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -171,13 +171,10 @@ echo ""
 
 models=(
     'qwen2.5:latest'
-    'gpt-oss:20b'
-    'gpt-oss:120b'
-    'deepseek-r1'
+    'qwen3:latest'
     'gemma3:latest'
     'mgistral:latest'
     'embeddinggemma:latest'
-    'qwen3:latest'
     'nomic-embed-text:latest'
     'mxbai-embed-large'
     'codellama:latest'
@@ -187,6 +184,9 @@ models=(
     'llama3.2-coder:latest'
     'qwen2.5-coder:32b'
     'granite:latest'
+    'gpt-oss:20b'
+    'gpt-oss:120b'
+    'deepseek-r1'
 )
 for model in "${models[@]}"; do
     echo "Pulling model: ${model}"
