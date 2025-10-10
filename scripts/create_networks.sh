@@ -5,26 +5,13 @@ export IPGATEWAY=$(ip -oneline -4 addr show scope global | tr -s ' ' | tr '/' ' 
 
 # Create Docker networks for the AI stack
 function CREATE_NETWORKS(){
-    # docker network rm ai-stack management-stack kuma_network macvlan
-
-    docker network create essential-services
-    docker network create ai-services
-    docker network create aiwaifu-services
-    
-    docker network create management-services
-    docker network create media-services
-    docker network create airi-services
-    docker network create jaison-services
-    docker network create riko-services
-    docker network create openllm-vtuber-services
-    docker network create arr-services
-    docker network create voice-chat-ai-services
 
     docker network create -d macvlan \
     --subnet="${IPGATEWAY}.0/24" \
     --gateway="$(ip route show 0.0.0.0/0 dev "${DEVICE}" | cut -d\  -f3)" \
     -o parent="${DEVICE}" \
     macvlan
+
 }
 
 CREATE_NETWORKS

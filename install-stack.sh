@@ -158,17 +158,17 @@ echo ""
 # INSTALL_MEDIA_STACK
 # echo ""
 
-echo ""
-INSTALL_AIWAIFU_STACK
-echo ""
+# echo ""
+# INSTALL_AIWAIFU_STACK
+# echo ""
 
 # echo ""
 # INSTALL_AIRI_STACK
 # echo ""
 
-# echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+INSTALL_OPENLLM_VTUBER_STACK
+echo ""
 
 # echo ""
 # INSTALL_JAISON_STACK

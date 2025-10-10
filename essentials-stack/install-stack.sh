@@ -8,6 +8,8 @@ export UV_LINK_MODE=copy
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
+docker network create essential-services
+
 function DOCKER_COMPOSE_STACK(){
     cd "essential-services" || exit 1
     ./compose-up.sh

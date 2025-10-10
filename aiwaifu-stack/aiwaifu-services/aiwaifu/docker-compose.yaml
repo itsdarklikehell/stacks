@@ -9,9 +9,9 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./CustomDockerfile-aiwaifu-conda
+      dockerfile: ./CustomDockerfile-aiwaifu-venv
+      # dockerfile: ./CustomDockerfile-aiwaifu-conda
       # dockerfile: ./CustomDockerfile-aiwaifu-uv
-      # dockerfile: ./CustomDockerfile-aiwaifu-venv
 
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}

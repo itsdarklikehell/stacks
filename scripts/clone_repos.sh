@@ -198,18 +198,18 @@ function CLONE_AIRI(){
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
     }
-    echo "Cloning airi"
-    echo ""
-    INSTALL_AIRI
-    echo "Cloning xsai"
-    echo ""
-    INSTALL_XSAI
-    echo "Cloning xsai-transformers"
-    echo ""
-    INSTALL_XSAI_TRANSFORMERS
-    echo "Cloning airi_chat"
-    echo ""
-    INSTALL_AIRI_CHAT
+    # echo "Cloning airi"
+    # echo ""
+    # INSTALL_AIRI
+    # echo "Cloning xsai"
+    # echo ""
+    # INSTALL_XSAI
+    # echo "Cloning xsai-transformers"
+    # echo ""
+    # INSTALL_XSAI_TRANSFORMERS
+    # echo "Cloning airi_chat"
+    # echo ""
+    # INSTALL_AIRI_CHAT
 
     cd "${WD}" || exit
     sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
@@ -316,11 +316,11 @@ function CLONE_AIWAIFU(){
     # python ./main.py
 }
 
-CLONE_OLLMVT
-CLONE_CHROMA
-CLONE_SWARMUI
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-CLONE_JAISON
-CLONE_RIKOPROJECT
+CLONE_OLLMVT >/dev/null 2>&1
+CLONE_CHROMA >/dev/null 2>&1
+CLONE_SWARMUI >/dev/null 2>&1
+CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
+CLONE_JAISON >/dev/null 2>&1
+CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_AIWAIFU
 CLONE_AIRI

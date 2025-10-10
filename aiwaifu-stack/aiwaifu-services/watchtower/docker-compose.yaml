@@ -1,8 +1,8 @@
 services:
-  watchtower-airi-services:
+  watchtower-aiwaifu-services:
     image: containrrr/watchtower
     restart: ${RESTART:-unless-stopped}
-    container_name: watchtower-airi-services
+    container_name: watchtower-aiwaifu-services
 
     labels:
       - autoheal-app=true
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # command: --debug --http-api-update
 
-    hostname: watchtower-airi-services
+    hostname: watchtower-aiwaifu-services
 
     networks:
       host:
@@ -36,5 +36,5 @@ services:
       #     cpus: "0.25"
 
     depends_on:
-      - autoheal-airi-services
-      - airi
+      - autoheal-aiwaifu-services
+      - aiwaifu
