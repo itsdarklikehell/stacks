@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="false" # false, true/normal, all
+export PRUNE="true" # false, true/normal, all
 export BUILDING="true" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
@@ -142,6 +142,12 @@ echo ""
 
 echo ""
 INSTALL_MCP_STACK
+npm install @mtane0412/twitch-mcp-server >/dev/null 2>&1
+# Create a new application in the Twitch Developer Console
+# Set the following environment variables:
+export TWITCH_CLIENT_ID="your_client_id"
+export TWITCH_CLIENT_SECRET="your_client_secret"
+
 echo ""
 
 # echo ""
@@ -168,13 +174,13 @@ echo ""
 INSTALL_OPENLLM_VTUBER_STACK
 echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 models=(
     'qwen2.5:latest'

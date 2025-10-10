@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@mtane0412/twitch-mcp-server": "^2.0.5"
+  }
+}

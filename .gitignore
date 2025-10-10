@@ -6,3 +6,4 @@ secrets/*
 .codacy
 .continue
 .vscode
+node_modules/*

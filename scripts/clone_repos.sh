@@ -17,6 +17,7 @@ mkdir -p ../riko-stack/DATA
 mkdir -p ../aiwaifu-stack/DATA
 mkdir -p ../airi-stack/DATA
 ./install_uv.sh
+./install_toolhive.sh
 
 function CLONE_OLLMVT(){
     cd "${WD}" || exit
@@ -337,10 +338,30 @@ function CLONE_METAMCP(){
     cd metamcp || exit
     cp example.env .env
 }
+function CLONE_BROWSERBASEMCP(){
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
 
+    echo "Cloning browserbase"
+    echo ""
+    git clone --recursive https://github.com/browserbase/mcp-server-browserbase.git browserbase-mcp
+    cd browserbase-mcp || exit
+    npm install && npm run build
+}
+function CLONE_MCPTHIS(){
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+
+    echo "Cloning mcp-this"
+    echo ""
+    git clone --recursive https://github.com/shane-kercheval/mcp-this.git mcp-this
+    cd mcp-this || exit
+    # make build
+}
 CLONE_OLLMVT
 CLONE_LETTA
 CLONE_METAMCP
+CLONE_BROWSERBASEMCP
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

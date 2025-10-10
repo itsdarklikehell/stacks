@@ -1,5 +1,5 @@
 services:
-  letta_db:
+  letta-db:
     image: ${INAGE:-ankane/pgvector:v0.5.1}
     container_name: ${NAME:-letta-db}
     restart: ${RESTART:-unless-stopped}
@@ -26,7 +26,7 @@ services:
       - ../DATA/letta/init.sql:/docker-entrypoint-initdb.d/init.sql
 
     env_file:
-      - ./letta-server/.env
+      - ../DATA/letta/.env
 
     hostname: ${NAME:-letta-db}
 
@@ -35,10 +35,6 @@ services:
   
     deploy:
       replicas: 1
-
-    # depends_on:
-    #   letta-db:
-    #     condition: service_healthy
 
     tty: true
     
@@ -78,25 +74,25 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - LETTA_PG_URI=${LETTA_PG_URI:-postgresql://${LETTA_PG_USER:-letta}:${LETTA_PG_PASSWORD:-letta}@${LETTA_DB_HOST:-letta-db}:${LETTA_PG_PORT:-5432}/${LETTA_PG_DB:-letta}}
+      # - LETTA_PG_URI=${LETTA_PG_URI:-postgresql://${LETTA_PG_USER:-letta}:${LETTA_PG_PASSWORD:-letta}@${LETTA_DB_HOST:-letta-db}:${LETTA_PG_PORT:-5432}/${LETTA_PG_DB:-letta}}
       - LETTA_DEBUG=${LETTA_DEBUG:-True}
-      - SKIP_INIT_DB=${SKIP_INIT_DB:-True}
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - GROQ_API_KEY=${GROQ_API_KEY:-}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-}
-      - AZURE_API_KEY=${AZURE_API_KEY:-}
-      - AZURE_BASE_URL=${AZURE_BASE_URL:-}
-      - AZURE_API_VERSION=${AZURE_API_VERSION:-}
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
-      - VLLM_API_BASE=${VLLM_API_BASE:-}
-      - OPENLLM_AUTH_TYPE=${OPENLLM_AUTH_TYPE:-}
-      - OPENLLM_API_KEY=${OPENLLM_API_KEY:-}
-      - LETTA_OTEL_EXPORTER_OTLP_ENDPOINT=${LETTA_OTEL_EXPORTER_OTLP_ENDPOINT}
-      - CLICKHOUSE_ENDPOINT=${CLICKHOUSE_ENDPOINT:-}
-      - CLICKHOUSE_DATABASE=${CLICKHOUSE_DATABASE:-}
-      - CLICKHOUSE_USERNAME=${CLICKHOUSE_USERNAME:-}
-      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD:-}
+      # - SKIP_INIT_DB=${SKIP_INIT_DB:-True}
+      # - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      # - GROQ_API_KEY=${GROQ_API_KEY:-}
+      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}
+      # - AZURE_API_KEY=${AZURE_API_KEY:-}
+      # - AZURE_BASE_URL=${AZURE_BASE_URL:-}
+      # - AZURE_API_VERSION=${AZURE_API_VERSION:-}
+      # - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      # - VLLM_API_BASE=${VLLM_API_BASE:-}
+      # - OPENLLM_AUTH_TYPE=${OPENLLM_AUTH_TYPE:-}
+      # - OPENLLM_API_KEY=${OPENLLM_API_KEY:-}
+      # - LETTA_OTEL_EXPORTER_OTLP_ENDPOINT=${LETTA_OTEL_EXPORTER_OTLP_ENDPOINT}
+      # - CLICKHOUSE_ENDPOINT=${CLICKHOUSE_ENDPOINT:-http://clickhouse:8124}
+      # - CLICKHOUSE_DATABASE=${CLICKHOUSE_DATABASE:-clickhouse}
+      # - CLICKHOUSE_USERNAME=${CLICKHOUSE_USERNAME:-clickhouse}
+      # - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD:-clickhouse}
 
     volumes:
       - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
@@ -124,14 +120,14 @@ services:
       - "8083:8083"
 
     env_file:
-      - ./letta-server/.env
+      - ../DATA/letta/.env
 
     deploy:
       replicas: 1
 
-    # depends_on:
-    #   letta-db:
-    #     condition: service_healthy
+    depends_on:
+      letta-db:
+        condition: service_healthy
 
     tty: true
     
