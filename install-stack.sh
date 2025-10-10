@@ -12,7 +12,7 @@ export BUILDING="recreate" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
-git pull
+git fetch --origin MASTER
 
 function PRUNING(){
     echo ""
