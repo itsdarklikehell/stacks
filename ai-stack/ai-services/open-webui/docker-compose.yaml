@@ -40,8 +40,8 @@ services:
     deploy:
       replicas: 1
 
-    depends_on:
-      - ollama
+    # depends_on:
+    #   - ollama
 
     extra_hosts:
       - host.docker.internal:host-gateway

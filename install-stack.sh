@@ -103,7 +103,10 @@ function INSTALL_AIWAIFU_STACK(){
 function INSTALL_AIRI_STACK(){
     airi-stack/install-stack.sh
 }
-
+function INSTALL_MCP_STACK(){
+    mcp-stack/install-stack.sh
+}
+# Install essential dependencies
 echo ""
 echo "Installing Drivers"
 echo ""
@@ -135,6 +138,10 @@ echo ""
 
 echo ""
 INSTALL_AI_STACK
+echo ""
+
+echo ""
+INSTALL_MCP_STACK
 echo ""
 
 # echo ""

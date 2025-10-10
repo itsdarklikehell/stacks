@@ -51,7 +51,7 @@ services:
       - kokoro-tts
       - coqui-tts-cpu
       - mongo
-      - ollama
+      # - ollama
       - open-webui
       - searxng
       - stable-diffusion-models-download

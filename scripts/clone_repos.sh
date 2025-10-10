@@ -327,9 +327,20 @@ function CLONE_AIWAIFU(){
     # I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
     # python ./main.py
 }
+function CLONE_METAMCP(){
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+
+    echo "Cloning metamcp"
+    echo ""
+    git clone --recursive https://github.com/metatool-ai/metamcp.git metamcp
+    cd metamcp || exit
+    cp example.env .env
+}
 
 CLONE_OLLMVT
 CLONE_LETTA
+CLONE_METAMCP
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

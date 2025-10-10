@@ -9,18 +9,15 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: essential-services
+name: mcp-services
 
 networks:
   host:
-  essential-services:
-    external: true  
+  mcp-services:
+    external: true
+  metamcp-network:
+    driver: bridge
 
 volumes:
-  grafana_data:
-
-secrets:
-  INITIAL_ADMIN_EMAIL:
-    file: ../../secrets/nginx-proxy-manager_username
-  INITIAL_ADMIN_PASSWORD:
-    file: ../../secrets/nginx-proxy-manager_password
+  metamcp-pg_data:
+    driver: local
