@@ -20,18 +20,18 @@ RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN curl -sSL https://astral.sh/uv/install.sh -o install-uv.sh
 # RUN python3 get-pip.py
 # RUN bash install-uv.sh
-RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r /tmp/requirements.txt 
+RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r /tmp/requirements.txt
 RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
-# RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r /tmp/requirements.txt 
+# RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r /tmp/requirements.txt
 # RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
 
 # MeloTTS installation
 WORKDIR /opt/MeloTTS
-RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS 
+RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS
 RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -r requirements.txt
 RUN pip install --root-user-action=ignore --no-cache-dir --break-system-packages -e .
-RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages -e . 
-RUN python3 -m unidic download 
+RUN uv pip install --root-user-action=ignore --no-cache-dir --break-system-packages -e .
+RUN python3 -m unidic download
 RUN python3 melo/init_downloads.py
 
 # Whisper variant

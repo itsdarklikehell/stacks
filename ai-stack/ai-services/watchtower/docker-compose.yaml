@@ -57,6 +57,7 @@ services:
       - stable-diffusion-models-download
       - stable-diffusion-webui
       - swarmui
+      - n8n
       - whishper
       - wyoming-piper
 

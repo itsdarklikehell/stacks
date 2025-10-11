@@ -7,20 +7,20 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "$SCRIPT_DIR/.."
 
-docker build --build-arg UID=$UID -f launchtools/CustomDockerfile.docker -t swarmui .
+docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t swarmui .
 
 # Run this script with 'fixch' to run as root in the container and chown to the correct user
-SETUSER="--user $UID:$(id -g) --cap-drop=ALL"
+SETUSER="--user ${UID}:$(id -g) --cap-drop=ALL"
 POSTARG="--forward_restart $@"
 if [[ "$1" == "fixch" ]]
 then
     SETUSER=""
-    POSTARG="fixch $UID"
+    POSTARG="fixch ${UID}"
 fi
 
 # add "--network=host" if you want to access other services on the host network (eg a separated comfy instance)
 docker run -it \
-    $SETUSER \
+    "${SETUSER}" \
     --name swarmui \
     --mount source=swarmdata,target=/SwarmUI/Data \
     --mount source=swarmbackend,target=/SwarmUI/dlbackend \
@@ -29,8 +29,8 @@ docker run -it \
     -v "../../DATA/stable-diffusion-webui-docker/data/Models:/SwarmUI/Models" \
     -v "../../DATA/stable-diffusion-webui-docker/data/Output:/SwarmUI/Output" \
     -v "../src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows" \
-    --gpus=all -p 7801:7801 swarmui $POSTARG
+    --gpus=all -p 7801:7801 swarmui "${POSTARG}"
 
-if [ $? == 42 ]; then
-    exec "$SCRIPT_DIR/custom-launch-docker.sh" "$@"
+if [[ $? == 42 ]]; then
+    exec "${SCRIPT_DIR}/custom-launch-docker.sh" "$@"
 fi

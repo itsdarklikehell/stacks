@@ -79,7 +79,7 @@ function CLONE_JAISON(){
 
     # conda create -n jaison-core python=3.10 pip=24.0 -y
     # conda activate jaison-core
-    
+
     # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
     # pip install -r requirements.txt
     # pip install --no-deps -r requirements.no_deps.txt
@@ -89,7 +89,7 @@ function CLONE_JAISON(){
 
     # python ./src/main.py --help
     # python ./src/main.py --config=example
-    
+
     cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
     cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
     cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
@@ -102,7 +102,7 @@ function CLONE_JAISON(){
 function CLONE_AIRI(){
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
-    
+
     npm i -g @antfu/ni
     npm i -g shiki
     npm i -g pkgroll
@@ -121,7 +121,7 @@ function CLONE_AIRI(){
     }
     function INSTALL_XSAI_TRANSFORMERS(){
         cd "${WD}" || exit
-        cd ../airi-stack/DATA || exit 1 
+        cd ../airi-stack/DATA || exit 1
 
         echo "Cloning xsai-transformers"
         echo ""
@@ -160,15 +160,15 @@ function CLONE_AIRI(){
         # Not required if you are not going to develop on either crates or apps/tamagotchi
         sudo apt install -y cargo
         cargo fetch
-        
+
         export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
         corepack enable
-        
+
         # telegram bot setup
         cd services/telegram-bot || exit
         cp .env .env.local
         # docker compose -p airi-telegram-bot-db up -d
-        
+
         ni
         nr build
         # nr -F @proj-airi/telegram-bot db:generate
@@ -178,7 +178,7 @@ function CLONE_AIRI(){
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
-        
+
         ni
         nr build
         # nr -F @proj-airi/discord-bot dev
@@ -186,7 +186,7 @@ function CLONE_AIRI(){
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
-        
+
         ni
         nr build
         # nr -F @proj-airi/minecraft dev
@@ -196,7 +196,7 @@ function CLONE_AIRI(){
         # Run as desktop pet:
         # pnpm dev:tamagotchi
         # nr dev:tamagotchi
-        
+
         # Run as web app:
         # nr dev
         # pnpm dev --host
@@ -206,7 +206,7 @@ function CLONE_AIRI(){
 
         cd "${WD}" || exit
         cd ../airi-stack/DATA/airi || exit 1
-        
+
         cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
         cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
@@ -236,7 +236,7 @@ function CLONE_RIKOPROJECT(){
     echo ""
     git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project
     cd riko-project || exit
-    
+
     nr build
     ni
 
@@ -307,7 +307,7 @@ function CLONE_AIWAIFU(){
     cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
     cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
     cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
-    
+
     # install poetry
     # pipx install poetry --force
     # poetry env use 3.8
@@ -315,11 +315,11 @@ function CLONE_AIWAIFU(){
     # poetry install
     # poetry env activate
     # uv venv .venv --clear
-    # uv pip install -r requirements.txt 
-    
+    # uv pip install -r requirements.txt
+
     # cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
     # python setup.py build_ext --inplace && cd ../../../../
-    
+
     # this run on localhost 8267 by default
     # python ./api_inference_server.py
 
@@ -375,7 +375,7 @@ function CLONE_MCPSERVERS(){
     uv venv
     uv sync
     uv pip install -r requirements.txt
-    
+
     cd "${WD}" || exit
     cd ../mcp-stack/DATA || exit 1
     git clone https://github.com/The-AI-Workshops/searxng-mcp-server.git

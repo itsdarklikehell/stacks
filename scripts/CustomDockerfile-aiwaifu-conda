@@ -15,9 +15,9 @@ COPY . /aiwaifu
 # Create .venv
 RUN conda create -n .venv -y && \
     conda init
-    
+
 # Copy the Conda environment file and install
-RUN conda install -n .venv -c conda-forge mamba 
+RUN conda install -n .venv -c conda-forge mamba
 RUN mamba env update
 RUN conda clean --all --yes
 
@@ -34,7 +34,7 @@ WORKDIR /aiwaifu
 
 # Install requirements
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
-    pip install -r requirements.txt 
+    pip install -r requirements.txt
 
 # RUN python3 main.py --help
 

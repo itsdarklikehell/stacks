@@ -29,7 +29,7 @@ function INSTALL_DRIVERS(){
 
 # sudo reboot now
 
-    if  [ ! -f "/usr/local/cuda/version.json" ]; then
+    if  [[ ! -f "/usr/local/cuda/version.json" ]]; then
         # check if curl is installed, if not install it
         if ! command -v curl &> /dev/null
         then
@@ -37,12 +37,12 @@ function INSTALL_DRIVERS(){
             sudo apt update && sudo apt install -y curl
         fi
         # check if nvidia-container-toolkit-keyring.gpg file exists in /usr/share/keyrings/, if not create it
-        if [ ! -f /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg ]; then
+        if [[ ! -f /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg ]]; then
             echo "Creating nvidia-container-toolkit-keyring.gpg file..."
             curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
         fi
         # check if nvidia-container-toolkit.list file exists in /etc/apt/sources.list.d/, if not create it
-        if [ ! -f /etc/apt/sources.list.d/nvidia-container-toolkit.sources ]; then
+        if [[ ! -f /etc/apt/sources.list.d/nvidia-container-toolkit.sources ]]; then
             echo "Creating nvidia-container-toolkit.list file..."
             curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
             sudo apt modernize-sources -y
@@ -63,7 +63,7 @@ function INSTALL_DRIVERS(){
         fi
     fi
 
-    if [ "$DOCKER_RUNTIME" != "nvidia-container-runtime" ]; then
+    if [ "$DOCKER_RUNTIME" != "nvidia-container-runtime" ]]; then
         sudo nvidia-ctk runtime configure --runtime=docker
         sudo systemctl restart docker
         docker rm nvidia-smi

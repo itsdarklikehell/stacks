@@ -8,7 +8,7 @@ function CREATE_NETWORKS(){
 
     docker network create -d macvlan \
     --subnet="${IPGATEWAY}.0/24" \
-    --gateway="$(ip route show 0.0.0.0/0 dev "${DEVICE}" | cut -d\  -f3)" \
+    --gateway="$(ip route show 0.0.0.0/0 dev "${DEVICE}" | cut -d\  -f3 || true)" \
     -o parent="${DEVICE}" \
     macvlan
 

@@ -8,14 +8,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get  -o Acquire::AllowInsecureRepositories=true update
 RUN apt-get install -y libxcb-xfixes0 libxcb-shape0 || true
 RUN apt-get install -y --no-install-recommends \
-    ffmpeg python3 python3-venv 
+    ffmpeg python3 python3-venv
 
 RUN apt --fix-broken install -y
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
 # Install pip
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3 - 
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3 -
 RUN pip install --root-user-action=ignore --no-cache-dir -r /tmp/requirements.txt
 RUN pip install --root-user-action=ignore --no-cache-dir funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
 RUN pip install --root-user-action=ignore --no-cache-dir uv

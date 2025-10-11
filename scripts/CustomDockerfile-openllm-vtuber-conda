@@ -27,7 +27,7 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY requirements.txt /tmp/
 
 # Install pip
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3 - 
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3 -
 RUN pip install --root-user-action=ignore --no-cache-dir -r /tmp/requirements.txt
 RUN pip install --root-user-action=ignore --no-cache-dir funasr modelscope huggingface_hub pywhispercpp torch torchaudio edge-tts azure-cognitiveservices-speech py3-tts
 

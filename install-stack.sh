@@ -7,8 +7,8 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="true" # false, true/normal, all
-export BUILDING="true" # false, true, recreate
+export PRUNE="all" # false, true/normal, all
+export BUILDING="recreate" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -47,7 +47,7 @@ function CLEANUP_DATA(){
     done
 }
 if [[ "${CLEANUP}" = "true" ]]; then
-    
+
     export BUILDING="recreate" # false, true, recreate
 
     CLEANUP_DATA
@@ -110,17 +110,17 @@ function INSTALL_MCP_STACK(){
 echo ""
 echo "Installing Drivers"
 echo ""
-INSTALL_DRIVERS >/dev/null 2>&1
+INSTALL_DRIVERS
 echo ""
 echo "Installing Docker"
 echo ""
-INSTALL_DOCKER >/dev/null 2>&1
+INSTALL_DOCKER
 
 
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS #>/dev/null 2>&1
+CLONE_REPOS #
 echo ""
 
 
@@ -142,9 +142,9 @@ echo ""
 
 echo ""
 INSTALL_MCP_STACK
-go install github.com/mark3labs/mcp-filesystem-server@latest >/dev/null 2>&1
+go install github.com/mark3labs/mcp-filesystem-server@latest
 sudo apt install -y lynx
-npm install @mtane0412/twitch-mcp-server >/dev/null 2>&1
+npm install @mtane0412/twitch-mcp-server
 # Create a new application in the Twitch Developer Console
 # Set the following environment variables:
 export TWITCH_CLIENT_ID="your_client_id"
@@ -180,9 +180,9 @@ echo ""
 # INSTALL_JAISON_STACK
 # echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 models=(
     'qwen2.5:latest'

@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
 software-properties-common build-essential wget curl git ffmpeg ca-certificates libsndfile1
 
-RUN add-apt-repository ppa:deadsnakes/ppa 
+RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
     python3.11 \
@@ -36,8 +36,8 @@ RUN python3.11 get-pip.py
 RUN rm get-pip.py
 
 # Install uv (Universal Virtualenv) - https://astral.sh/uv/
-# RUN curl -sSL https://astral.sh/uv/install.sh -o install.sh 
-# RUN bash install.sh 
+# RUN curl -sSL https://astral.sh/uv/install.sh -o install.sh
+# RUN bash install.sh
 # RUN rm install.sh
 
 # Install PyTorch, Torchvision, Torchaudio with CUDA 12.8 support, and Transformers
@@ -63,7 +63,7 @@ WORKDIR /riko-project
 
 # Install requirements
 # RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-system-packages pip
-RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-system-packages uv 
+RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-system-packages uv
 RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-system-packages nltk
 
 # Create .venv
