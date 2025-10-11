@@ -26,10 +26,13 @@ services:
       host:
       ai-services:
         # aliases:
-          # - pgvector_db
-          # - letta-db
+        #   - pgvector_db
+        #   - letta-db
 
     ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "5432:5432"
       - "8283:8283"
 
     env_file:

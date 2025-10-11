@@ -12,12 +12,12 @@ COMPOSE_FILES=(
   clickhouse/docker-compose.yaml
   faster-whisper-gpu/docker-compose.yaml
   homeassistant/docker-compose.yaml
-    letta-server/docker-compose.yaml
   # librechat/docker-compose.yaml
   # librechat-meilisearch/docker-compose.yaml 
   # librechat-mongodb/docker-compose.yaml 
   # librechat-rag_api/docker-compose.yaml 
   # librechat-vectordb/docker-compose.yaml
+  letta/docker-compose.yaml
   libretranslate/docker-compose.yaml
   kokoro-tts/docker-compose.yaml
   coqui-tts-cpu/docker-compose.yaml

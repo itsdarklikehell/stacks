@@ -142,9 +142,16 @@ echo ""
 
 echo ""
 INSTALL_MCP_STACK
+uv tool install git+https://github.com/sparfenyuk/mcp-telegram
+
 go install github.com/mark3labs/mcp-filesystem-server@latest
+
 sudo apt install -y lynx
+
 npm install @mtane0412/twitch-mcp-server
+
+npm install @iqai/mcp-telegram
+
 # Create a new application in the Twitch Developer Console
 # Set the following environment variables:
 export TWITCH_CLIENT_ID="your_client_id"

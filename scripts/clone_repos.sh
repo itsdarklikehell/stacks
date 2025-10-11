@@ -391,6 +391,20 @@ function CLONE_MCPSERVERS(){
     ni
     # nr
 
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+    git clone https://github.com/mrkrsl/web-search-mcp.git
+    cd web-search-mcp || exit 1
+    npm install
+    npx playwright install
+    npm run build
+
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+    git clone https://github.com/barryyip0625/mcp-discord.git
+    cd mcp-discord || exit 1
+    ni
+    nr build
 }
 CLONE_OLLMVT
 CLONE_LETTA
