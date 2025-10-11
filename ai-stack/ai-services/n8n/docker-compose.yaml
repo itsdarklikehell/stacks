@@ -28,7 +28,7 @@ services:
 
     networks:
       host:
-      management-services:
+      ai-services:
 
     ports:
       - "${PORT:-5678}:5678"

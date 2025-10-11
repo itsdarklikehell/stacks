@@ -358,6 +358,40 @@ function CLONE_MCPTHIS(){
     cd mcp-this || exit
     # make build
 }
+function CLONE_MCPSERVERS(){
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+
+    echo "Cloning mcp-servers"
+    echo ""
+    git clone --recursive https://github.com/modelcontextprotocol/servers.git mcp-servers
+    cd mcp-servers || exit
+    # make build
+
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+    git clone --recursive https://github.com/huhabla/mcp-system-monitor.git mcp-system-monitor
+    cd mcp-system-monitor || exit 1
+    uv venv
+    uv sync
+    uv pip install -r requirements.txt
+    
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+    git clone https://github.com/The-AI-Workshops/searxng-mcp-server.git
+    cd searxng-mcp-server/dev/searXNG-mcp || exit 1
+    uv venv
+    uv sync
+    uv pip install -r requirements.txt
+
+    cd "${WD}" || exit
+    cd ../mcp-stack/DATA || exit 1
+    git clone https://github.com/tisDDM/searxng-mcp.git
+    cd searxng-mcp || exit 1
+    ni
+    # nr
+
+}
 CLONE_OLLMVT
 CLONE_LETTA
 CLONE_METAMCP

@@ -12,7 +12,7 @@ COMPOSE_FILES=(
   clickhouse/docker-compose.yaml
   faster-whisper-gpu/docker-compose.yaml
   homeassistant/docker-compose.yaml
-  letta-server/docker-compose.yaml
+    letta-server/docker-compose.yaml
   # librechat/docker-compose.yaml
   # librechat-meilisearch/docker-compose.yaml 
   # librechat-mongodb/docker-compose.yaml 
@@ -52,5 +52,6 @@ function BUILDING(){
     elif [[ "$BUILDING" = "false" ]]; then
         echo "Skipping docker compose up"
     fi
+    # docker run --name letta -d -v ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data -p 8283:8283 -e OPENAI_API_KEY="your_openai_api_key" -e ANTHROPIC_API_KEY="your_anthropic_api_key" -e OLLAMA_BASE_URL="http://host.docker.internal:11434"  letta/letta:latest
 }
 BUILDING

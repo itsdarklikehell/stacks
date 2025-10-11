@@ -142,6 +142,8 @@ echo ""
 
 echo ""
 INSTALL_MCP_STACK
+go install github.com/mark3labs/mcp-filesystem-server@latest >/dev/null 2>&1
+sudo apt install -y lynx
 npm install @mtane0412/twitch-mcp-server >/dev/null 2>&1
 # Create a new application in the Twitch Developer Console
 # Set the following environment variables:
@@ -170,17 +172,17 @@ echo ""
 # INSTALL_AIRI_STACK
 # echo ""
 
-echo ""
-INSTALL_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# INSTALL_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-INSTALL_JAISON_STACK
-echo ""
+# echo ""
+# INSTALL_JAISON_STACK
+# echo ""
 
-echo ""
-INSTALL_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# INSTALL_PROJECT_RIKO_STACK
+# echo ""
 
 models=(
     'qwen2.5:latest'
