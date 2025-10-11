@@ -27,8 +27,33 @@ function CLONE_OLLMVT(){
     echo ""
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
+    # uv venv
+    uv sync
 
-    # uv sync
+    #pyttsx3
+    uv pip install py3-tts
+
+    #melotts
+    uv add git+https://github.com/myshell-ai/MeloTTS.git
+    # Download unidic
+    python3 -m pip install unidic
+    python3 -m unidic download
+
+#     python3 - <<PYCODE
+# import nltk
+# nltk.download('averaged_perceptron_tagger_eng')
+# PYCODE
+
+    # Install Coqui-TTS and its language support
+    # uv add transformers "coqui-tts[languages]"
+    # uv run tts --list_models
+
+    # #bark
+    # uv pip install git+https://github.com/suno-ai/bark.git
+
+    #fishaudio
+    uv pip install fish-audio-sdk
+
     # uv run run_server.py
     if [[ ! -f "conf.yaml" ]]; then
         cp config_templates/conf.default.yaml conf.yaml
@@ -53,6 +78,23 @@ function CLONE_LETTA(){
     uv sync
     uv sync --all-extras
     # uv run letta server
+}
+function CLONE_MELOTTS(){
+    cd "${WD}" || exit
+    cd ../openllm-vtuber-stack/DATA || exit 1
+
+    echo "Cloning MeloTTS"
+    echo ""
+    git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
+    cd MeloTTS || exit
+    uv venv
+    uv sync
+    pip install -e .
+    python -m unidic download
+    docker build -t melotts .
+    # docker run --gpus all -itd -p 8888:8888 melotts
+
+    meol-webui
 }
 function CLONE_JAISON(){
     # sudo apt install -y ffmpeg
