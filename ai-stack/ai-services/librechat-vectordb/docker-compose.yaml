@@ -20,7 +20,7 @@ services:
     hostname: ${NAME:-librechat-vectordb}
 
     networks:
-      # host:
+      host:
       ai-services:
 
     ports:

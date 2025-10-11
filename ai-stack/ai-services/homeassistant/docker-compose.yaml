@@ -22,7 +22,7 @@ services:
     hostname: homeassistant
 
     networks:
-      # host:
+      host:
       ai-services:
 
     env_file:

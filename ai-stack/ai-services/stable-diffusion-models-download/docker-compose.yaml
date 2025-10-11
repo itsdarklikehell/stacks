@@ -32,7 +32,7 @@ services:
     hostname: ${NAME:-stable-diffusion-models-download}
 
     networks:
-      # host:
+      host:
       ai-services:
 
     env_file:

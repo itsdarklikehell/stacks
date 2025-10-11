@@ -16,7 +16,7 @@ services:
       - PORT=5002
 
     networks:
-      # host:
+      host:
       ai-services:
 
     env_file:

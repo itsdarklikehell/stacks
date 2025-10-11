@@ -19,7 +19,7 @@ services:
     hostname: ${NAME:-librechat-rag_api}
 
     networks:
-      # host:
+      host:
       ai-services:
 
     ports:

@@ -22,7 +22,7 @@ services:
     hostname: ${NAME:-searxng}
 
     networks:
-      # host:
+      host:
       ai-services:
 
     ports:

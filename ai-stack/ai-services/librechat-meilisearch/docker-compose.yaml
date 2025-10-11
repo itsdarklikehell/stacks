@@ -18,7 +18,7 @@ services:
       - ../DATA/librechat-meilisearch/meili_data_v1.12:/meili_data
 
     networks:
-      # host:
+      host:
       ai-services:
 
     ports:
