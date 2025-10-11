@@ -19,7 +19,7 @@ services:
     hostname: watchtower-jaison-services
 
     networks:
-      host:
+      # host:
       jaison-services:
 
     env_file:

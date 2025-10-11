@@ -24,6 +24,7 @@ volumes:
   swarmdata:
   swarmbackend:
   swarmdlnodes:
+  localai-models:
   swarmextensions:
   anythingllm_storage:
   anythingllm_hotdir:

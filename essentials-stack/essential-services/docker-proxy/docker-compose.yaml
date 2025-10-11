@@ -22,7 +22,7 @@ services:
     hostname: ${NAME:-docker-proxy}
 
     networks:
-      host:
+      # host:
       essential-services:
 
     ports:

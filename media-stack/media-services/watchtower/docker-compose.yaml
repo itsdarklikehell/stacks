@@ -19,7 +19,7 @@ services:
     hostname: watchtower-media-services
 
     networks:
-      host:
+      # host:
       media-services:
 
     env_file:

@@ -14,7 +14,7 @@ services:
       - PORT=8880
 
     networks:
-      host:
+      # host:
       ai-services:
 
     env_file:

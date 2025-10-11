@@ -61,7 +61,7 @@ services:
     hostname: ${NAME:-calendarr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     healthcheck:

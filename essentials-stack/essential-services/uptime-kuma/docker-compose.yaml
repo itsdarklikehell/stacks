@@ -10,16 +10,17 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - TZ=${TZ:-Europe/Amsterdam}
-      - UMASK=${UMASK:-0022}
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "UMASK=${UMASK:-0022}"
+      - "PORT=3001"
 
     volumes:
-      - ../DATA/uptime-kuma/data:/app/data
+      - "../DATA/uptime-kuma/data:/app/data"
 
-    hostname: ${NAME:-uptime-kuma}
+    hostname: "${NAME:-uptime-kuma}"
 
     networks:
-      host:
+      # host:
       essential-services:
 
     ports:

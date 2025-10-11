@@ -23,7 +23,7 @@ services:
     hostname: ${NAME:-gaseous-server}
 
     networks:
-      host:
+      # host:
       media-services:
 
     ports:

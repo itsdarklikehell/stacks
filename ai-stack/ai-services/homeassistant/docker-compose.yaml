@@ -10,8 +10,9 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -21,10 +22,8 @@ services:
     hostname: homeassistant
 
     networks:
-      # macvlan:
-        # ipv4_address: 192.168.1.11 #optional, I am using mac vlan, if you don't want to, remove macvlan and don't create the network above
+      # host:
       ai-services:
-      host:
 
     env_file:
       - ./homeassistant/.env

@@ -19,7 +19,7 @@ services:
     hostname: watchtower-mcp-services
 
     networks:
-      host:
+      # host:
       mcp-services:
 
     env_file:

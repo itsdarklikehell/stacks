@@ -26,7 +26,7 @@ services:
     hostname: ${NAME:-dockge}
 
     networks:
-      host:
+      # host:
       essential-services:
 
     ports:

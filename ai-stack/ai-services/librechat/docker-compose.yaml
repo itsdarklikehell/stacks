@@ -27,7 +27,7 @@ services:
     hostname: ${NAME:-librechat}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

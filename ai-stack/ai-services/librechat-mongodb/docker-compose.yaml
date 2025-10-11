@@ -19,7 +19,7 @@ services:
     hostname: ${NAME:-librechat-mongodb}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

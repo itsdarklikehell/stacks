@@ -28,7 +28,7 @@ services:
     hostname: ${NAME:-n8n}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

@@ -19,7 +19,7 @@ services:
     # command: --debug --http-api-update
 
     networks:
-      host:
+      # host:
       ai-services:
 
     # ports:

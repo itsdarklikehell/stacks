@@ -26,7 +26,7 @@ services:
       - ../DATA/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
     
     networks:
-      host:
+      # host:
       ai-services:
 
     env_file:

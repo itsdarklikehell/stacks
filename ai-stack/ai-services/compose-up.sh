@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
   base.docker-compose.yaml
-  # anythingllm/docker-compose.yaml
+  anythingllm/docker-compose.yaml
   autoheal/docker-compose.yaml
   basic-memory/docker-compose.yaml
   # chroma/docker-compose.yaml
@@ -18,6 +18,7 @@ COMPOSE_FILES=(
   # librechat-rag_api/docker-compose.yaml 
   # librechat-vectordb/docker-compose.yaml
   letta-server/docker-compose.yaml
+  localai/docker-compose.yaml
   libretranslate/docker-compose.yaml
   kokoro-tts/docker-compose.yaml
   coqui-tts-cpu/docker-compose.yaml

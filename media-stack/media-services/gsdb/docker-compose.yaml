@@ -18,7 +18,7 @@ services:
     hostname: ${NAME:-gsdb}
 
     networks:
-      host:
+      # host:
       media-services:
 
     secrets:

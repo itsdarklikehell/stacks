@@ -7,8 +7,8 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="all" # false, true/normal, all
-export BUILDING="recreate" # false, true, recreate
+export PRUNE="true" # false, true/normal, all
+export BUILDING="true" # false, true, recreate
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -210,11 +210,11 @@ models=(
     'gpt-oss:120b'
     'deepseek-r1'
 )
-for model in "${models[@]}"; do
-    echo "Pulling model: ${model}"
-    # docker exec -it ollama sh -c "ollama pull ${model}"
-    ollama pull "${model}"
-done
+# for model in "${models[@]}"; do
+#     echo "Pulling model: ${model}"
+#     # docker exec -it ollama sh -c "ollama pull ${model}"
+#     ollama pull "${model}"
+# done
 
 # dockly # lazydocker
 

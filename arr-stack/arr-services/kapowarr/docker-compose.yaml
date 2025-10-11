@@ -17,7 +17,7 @@ services:
     hostname: ${NAME:-kapowarr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     ports:

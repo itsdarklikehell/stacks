@@ -32,7 +32,7 @@ services:
     hostname: ${NAME:-netdata}
 
     networks:
-      host:
+      # host:
       management-services:
 
     ports:

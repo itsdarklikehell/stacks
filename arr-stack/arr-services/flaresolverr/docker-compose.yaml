@@ -18,7 +18,7 @@ services:
     hostname: ${NAME:-flaresolverr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     healthcheck:

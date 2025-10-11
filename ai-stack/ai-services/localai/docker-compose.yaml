@@ -1,7 +1,8 @@
 services:
-  anythingllm:
-    image: ${IMAGE:-mintplexlabs/anythingllm}
-    container_name: ${NAME:-anythingllm}
+  localai:
+    image: "${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}"
+    # image: "${IMAGE:-localai/localai:latest-gpu-nvidia-cuda-12}"
+    container_name: ${NAME:-localai}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -14,7 +15,9 @@ services:
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - 'STORAGE_DIR="/app/server/storage"'
-      - "SERVER_PORT=3001"
+      - "SERVER_PORT=8080"
+      - "DEBUG=true"
+
 
     cap_add:
       - "SYS_ADMIN"
@@ -22,15 +25,17 @@ services:
     command: ["--cap-add", "SYS_ADMIN"]
 
     volumes:
-      # - "anythingllm_storage:${STORAGE_DIR:-/app/server/storage}"
-      # - "anythingllm_hotdir:/app/collector/hotdir"
-      # - "anythingllm_outputs:/app/collector/outputs"
-      - "../DATA/anythingllm/anythingllm_storage:${STORAGE_DIR:-/app/server/storage}"
-      # - "../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir"
-      # - "../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs"
+      # - ../DATA/localai/models:/models:cached
+      - localai-models:/models
+      # - "localai_storage:${STORAGE_DIR:-/app/server/storage}"
+      # - "localai_hotdir:/app/collector/hotdir"
+      # - "localai_outputs:/app/collector/outputs"
+      # - "../DATA/localai/localai_storage:${STORAGE_DIR:-/app/server/storage}"
+      # - "../DATA/localai/localai_hotdir:/app/collector/hotdir"
+      # - "../DATA/localai/localai_outputs:/app/collector/outputs"
 
 
-    hostname: "${NAME:-anythingllm}"
+    hostname: "${NAME:-localai}"
 
     user: "${PUID:-1000}:${PGID:-1000}"
 
@@ -39,10 +44,10 @@ services:
       ai-services:
 
     ports:
-      - "${PORT:-3001}:3001"
+      - "${PORT:-8080}:8080"
 
     env_file:
-      - "./anythingllm/.env"
+      - "./localai/.env"
 
     runtime: nvidia
     deploy:
@@ -65,12 +70,12 @@ services:
 
     # Optional: Health check for monitoring
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/api/health"]
-      interval: "30s"
-      timeout: "10s"
+      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+      interval: 1m
+      timeout: 20m
+      retries: 5
       start_period: "30s"
-      retries: 3
-
+    
     logging:
       driver: "json-file"
       options:

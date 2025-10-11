@@ -12,7 +12,7 @@ services:
     hostname: ${NAME:-byparr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     ports:

@@ -19,7 +19,7 @@ services:
     hostname: watchtower-airi-services
 
     networks:
-      host:
+      # host:
       airi-services:
 
     env_file:

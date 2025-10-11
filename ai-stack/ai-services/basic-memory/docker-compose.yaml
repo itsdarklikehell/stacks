@@ -52,7 +52,7 @@ services:
     #       cpus: '0.25'
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

@@ -19,7 +19,7 @@ services:
     hostname: watchtower-openllm-vtuber-services
 
     networks:
-      host:
+      # host:
       openllm-vtuber-services:
 
     env_file:

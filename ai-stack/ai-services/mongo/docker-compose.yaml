@@ -26,7 +26,7 @@ services:
     command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

@@ -22,7 +22,7 @@ services:
     hostname: sickgear
 
     networks:
-      host:
+      # host:
       arr-services:
 
     ports:

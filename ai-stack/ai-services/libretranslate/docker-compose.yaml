@@ -25,7 +25,7 @@ services:
     hostname: ${NAME:-libretranslate}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

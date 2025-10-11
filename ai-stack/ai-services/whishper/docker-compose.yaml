@@ -32,7 +32,7 @@ services:
     hostname: ${NAME:-whishper}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

@@ -19,7 +19,7 @@ services:
     hostname: watchtower-arr-services
 
     networks:
-      host:
+      # host:
       arr-services:
 
     env_file:

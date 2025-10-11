@@ -19,7 +19,7 @@ services:
       - "447:447"
 
     networks:
-      host:
+      # host:
       media-services:
 
     env_file:

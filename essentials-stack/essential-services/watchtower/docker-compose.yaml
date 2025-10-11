@@ -19,7 +19,7 @@ services:
     hostname: ${NAME:-watchtower-essential-services}
 
     networks:
-      host:
+      # host:
       essential-services:
 
     env_file:

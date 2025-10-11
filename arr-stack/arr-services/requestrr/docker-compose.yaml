@@ -17,7 +17,7 @@ services:
     # command: [ "ollama", "pull", "qwen3"]
 
     networks:
-      host:
+      # host:
       arr-services:
 
     ports:

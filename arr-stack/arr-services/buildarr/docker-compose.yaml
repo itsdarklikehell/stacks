@@ -20,7 +20,7 @@ services:
     hostname: ${NAME:-buildarr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     env_file:

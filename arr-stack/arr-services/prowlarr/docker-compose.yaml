@@ -20,7 +20,7 @@ services:
     hostname: ${NAME:-prowlarr}
 
     networks:
-      host:
+      # host:
       arr-services:
 
     expose:

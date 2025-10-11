@@ -24,7 +24,7 @@ services:
       - "${PORT:-5055}:5055"
 
     networks:
-      host:
+      # host:
       arr-services:
 
     env_file:

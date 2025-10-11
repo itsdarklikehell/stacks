@@ -22,7 +22,7 @@ services:
     hostname: ${NAME:-wg-easy}
 
     networks:
-      host:
+      # host:
       management-services:
 
     ports:

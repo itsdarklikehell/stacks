@@ -24,7 +24,7 @@ services:
       - faster-whisper-data:/config
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:

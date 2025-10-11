@@ -30,7 +30,7 @@ services:
     hostname: ${NAME:-swarmui}
 
     networks:
-      host:
+      # host:
       ai-services:
 
     ports:
