@@ -13,7 +13,6 @@ name: ai-services
 
 networks:
   host:
-    external: true
   ai-services:
     external: true
 

@@ -7,22 +7,50 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="true" # false, true/normal, all
-export BUILDING="true" # false, true, recreate
+export PRUNE="all" # false, true/normal, all
+export BUILDING="recreate" # false, true, recreate
+
+export TWITCH_CLIENT_ID="your_client_id"
+export TWITCH_CLIENT_SECRET="your_client_secret"
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 git pull origin main
-
+function PULL_MODELS(){
+    models=(
+        'qwen2.5:latest'
+        'qwen3:latest'
+        'gemma3:latest'
+        'mgistral:latest'
+        'embeddinggemma:latest'
+        'nomic-embed-text:latest'
+        'mxbai-embed-large'
+        'codellama:latest'
+        'deepseek-coder'
+        'mistral:7b-instruct'
+        'llama3.2:latest'
+        'llama3.2-coder:latest'
+        'qwen2.5-coder:32b'
+        'granite:latest'
+        'gpt-oss:20b'
+        'gpt-oss:120b'
+        'deepseek-r1'
+    )
+    for model in "${models[@]}"; do
+        echo "Pulling model: ${model}"
+        # docker exec -it ollama sh -c "ollama pull ${model}" >/dev/null 2>&1
+        ollama pull "${model}" >/dev/null 2>&1
+    done
+}
 function PRUNING(){
     echo ""
-    echo "Pruning is set to: $PRUNE"
+    echo "Pruning is set to: ${PRUNE}"
     echo ""
-    if [[ "$PRUNE" = "all" ]]; then
+    if [[ "${PRUNE}" = "all" ]]; then
         docker system prune -af
-    elif [[ "$PRUNE" = "true" ]] || [[ "$PRUNE" = "normal" ]]; then
+    elif [[ "${PRUNE}" = "true" ]] || [[ "${PRUNE}" = "normal" ]]; then
         docker system prune -f
-    elif [[ "$PRUNE" = "false" ]]; then
+    elif [[ "${PRUNE}" = "false" ]]; then
         echo "Skipping docker system prune"
     fi
     sleep 3
@@ -47,9 +75,7 @@ function CLEANUP_DATA(){
     done
 }
 if [[ "${CLEANUP}" = "true" ]]; then
-
     export BUILDING="recreate" # false, true, recreate
-
     CLEANUP_DATA
 fi
 function INSTALL_DRIVERS(){
@@ -67,9 +93,6 @@ function CREATE_SECRETS(){
 function CLONE_REPOS(){
     scripts/clone_repos.sh
 }
-
-
-
 function INSTALL_ESSENTIALS_STACK(){
     essentials-stack/install-stack.sh
 }
@@ -120,7 +143,7 @@ INSTALL_DOCKER
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS #
+CLONE_REPOS
 echo ""
 
 
@@ -143,21 +166,13 @@ echo ""
 echo ""
 INSTALL_MCP_STACK
 uv tool install git+https://github.com/sparfenyuk/mcp-telegram
-
 go install github.com/mark3labs/mcp-filesystem-server@latest
-
-sudo apt install -y lynx
-
 npm install @mtane0412/twitch-mcp-server
-
 npm install @iqai/mcp-telegram
-
-# Create a new application in the Twitch Developer Console
-# Set the following environment variables:
-export TWITCH_CLIENT_ID="your_client_id"
-export TWITCH_CLIENT_SECRET="your_client_secret"
-
+sudo apt install -y lynx
 echo ""
+
+
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -187,34 +202,11 @@ echo ""
 # INSTALL_JAISON_STACK
 # echo ""
 
-echo ""
-INSTALL_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# INSTALL_PROJECT_RIKO_STACK
+# echo ""
 
-models=(
-    'qwen2.5:latest'
-    'qwen3:latest'
-    'gemma3:latest'
-    'mgistral:latest'
-    'embeddinggemma:latest'
-    'nomic-embed-text:latest'
-    'mxbai-embed-large'
-    'codellama:latest'
-    'deepseek-coder'
-    'mistral:7b-instruct'
-    'llama3.2:latest'
-    'llama3.2-coder:latest'
-    'qwen2.5-coder:32b'
-    'granite:latest'
-    'gpt-oss:20b'
-    'gpt-oss:120b'
-    'deepseek-r1'
-)
-# for model in "${models[@]}"; do
-#     echo "Pulling model: ${model}"
-#     # docker exec -it ollama sh -c "ollama pull ${model}"
-#     ollama pull "${model}"
-# done
+PULL_MODELS 
 
 # dockly # lazydocker
 
