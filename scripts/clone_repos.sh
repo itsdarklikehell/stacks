@@ -267,7 +267,7 @@ function CLONE_AIRI(){
     # INSTALL_AIRI_CHAT
 
     cd "${WD}" || exit
-    sudo chown -R "$(id -u):$(id -g)" ../airi-stack/DATA/airi
+    sudo chown -R "1000:1000" ../airi-stack/DATA/airi
 }
 function CLONE_RIKOPROJECT(){
 

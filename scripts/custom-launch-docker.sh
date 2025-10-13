@@ -5,7 +5,7 @@
 
 # Run script automatically in Swarm's dir regardless of how it was triggered
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd "$SCRIPT_DIR/.."
+cd "$SCRIPT_DIR/.." || exit 1
 
 docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t swarmui .
 
