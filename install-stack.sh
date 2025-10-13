@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WD="$(dirname "$(realpath "$0")")"
+WD="$(dirname "$(realpath "$0")")" || true
 export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
