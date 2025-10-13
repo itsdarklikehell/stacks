@@ -16,7 +16,7 @@ services:
     hostname: ${NAME:-portainer}
 
     networks:
-      # host:
+      host:
       essential-services:
 
     ports:

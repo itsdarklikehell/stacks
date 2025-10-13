@@ -24,7 +24,7 @@ services:
     hostname: ${NAME:-grafana}
 
     networks:
-      # host:
+      host:
       essential-services:
 
     ports:

@@ -20,7 +20,7 @@ services:
     hostname: "${NAME:-uptime-kuma}"
 
     networks:
-      # host:
+      host:
       essential-services:
 
     ports:

@@ -29,7 +29,7 @@ services:
     hostname: ${NAME:-nginx-proxy-manager}
     
     networks:
-      # host:
+      host:
       essential-services:
 
     ports:

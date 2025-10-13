@@ -24,7 +24,7 @@ services:
     hostname: ${NAME:-portracker}
 
     networks:
-      # host:
+      host:
       essential-services:
 
     ports:

@@ -15,7 +15,7 @@ services:
     hostname: ${NAME:-autopulse}
 
     networks:
-      # host:
+      host:
       essential-services:
 
     env_file:
