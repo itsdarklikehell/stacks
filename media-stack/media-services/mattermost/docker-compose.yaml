@@ -12,7 +12,7 @@ services:
     hostname: ${NAME:-mattermost}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

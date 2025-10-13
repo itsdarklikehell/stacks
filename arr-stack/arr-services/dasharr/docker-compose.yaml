@@ -20,7 +20,7 @@ services:
     hostname: ${NAME:-dasharr}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     ports:

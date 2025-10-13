@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-radarr}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     expose:

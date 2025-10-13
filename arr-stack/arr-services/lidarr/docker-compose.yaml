@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-lidarr}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     expose:

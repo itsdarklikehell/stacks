@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-dashy}
 
     networks:
-      # host:
+      host:
       management-services:
 
     ports:

@@ -32,7 +32,7 @@ services:
     hostname: ${NAME:-romm}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

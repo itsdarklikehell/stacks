@@ -23,7 +23,7 @@ services:
     hostname: ${NAME:-romm-db}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

@@ -50,7 +50,7 @@ services:
               capabilities: [gpu, compute, video, graphics, utility]
 
     networks:
-      # host:
+      host:
       media-services:
 
     env_file:

@@ -19,7 +19,7 @@ services:
     hostname: ${NAME:-flexget}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

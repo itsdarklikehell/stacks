@@ -22,7 +22,7 @@ services:
     hostname: ${NAME:-mylar3}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     ports:

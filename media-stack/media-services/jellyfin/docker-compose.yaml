@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-jellyfin}
 
     networks:
-      # host:
+      host:
       media-services:
 
     expose:

@@ -27,7 +27,7 @@ services:
     command: ["--transaction-isolation=READ-COMMITTED --binlog-format=ROW"]
 
     networks:
-      # host:
+      host:
       management-services:
 
     env_file:

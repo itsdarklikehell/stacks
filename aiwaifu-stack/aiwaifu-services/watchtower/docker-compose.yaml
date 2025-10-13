@@ -19,7 +19,7 @@ services:
     hostname: watchtower-aiwaifu-services
 
     networks:
-      # host:
+      host:
       aiwaifu-services:
 
     env_file:

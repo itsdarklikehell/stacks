@@ -15,7 +15,7 @@ services:
       - PORT=5056
 
     networks:
-      # host:
+      host:
       arr-services:
 
     volumes:

@@ -19,7 +19,7 @@ services:
     hostname: watchtower-riko-services
 
     networks:
-      # host:
+      host:
       riko-services:
 
     env_file:

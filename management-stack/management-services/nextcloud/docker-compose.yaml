@@ -29,7 +29,7 @@ services:
     hostname: ${NAME:-nextcloud}
 
     networks:
-      # host:
+      host:
       management-services:
 
     ports:

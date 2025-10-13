@@ -25,7 +25,7 @@ services:
     hostname: ${NAME:-collabora}
 
     networks:
-      # host:
+      host:
       management-services:
 
     ports:

@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-bazarr}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     expose:

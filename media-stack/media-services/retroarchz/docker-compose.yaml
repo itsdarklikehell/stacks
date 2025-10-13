@@ -15,7 +15,7 @@ services:
     hostname: ${NAME:-retroarchz}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

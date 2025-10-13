@@ -19,7 +19,7 @@ services:
     hostname: watchtower-management-services
 
     networks:
-      # host:
+      host:
       management-services:
 
     env_file:

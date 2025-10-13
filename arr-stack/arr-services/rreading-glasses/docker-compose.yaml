@@ -21,7 +21,7 @@ services:
     hostname: ${NAME:-rreading-glasses}
 
     networks:
-      # host:
+      host:
       arr-services:
 
     ports:
@@ -75,7 +75,7 @@ services:
     hostname: rreading-glasses-db
 
     networks:
-      # host:
+      host:
       arr-services:
 
     ports:

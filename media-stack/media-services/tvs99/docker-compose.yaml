@@ -16,7 +16,7 @@ services:
     hostname: ${NAME:-tvs99}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:

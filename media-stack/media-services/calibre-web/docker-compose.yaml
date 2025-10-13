@@ -15,7 +15,7 @@ services:
     hostname: ${NAME:-calibre-web}
 
     networks:
-      # host:
+      host:
       media-services:
 
     ports:
