@@ -60,7 +60,7 @@ services:
     
     # stdin_open: true
 
-    # Optional: Health check for monitoring
+
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
       interval: 1m

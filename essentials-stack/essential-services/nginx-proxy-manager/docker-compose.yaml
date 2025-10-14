@@ -51,7 +51,7 @@ services:
     deploy:
       replicas: 1
 
-    # Optional: Health check for monitoring
+
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: "10s"

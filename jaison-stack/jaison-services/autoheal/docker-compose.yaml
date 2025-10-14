@@ -22,7 +22,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-    hostname: autoheal-jaison-services
+    hostname: "${NAME:-autoheal-jaison-services}"
 
     networks:
       host:

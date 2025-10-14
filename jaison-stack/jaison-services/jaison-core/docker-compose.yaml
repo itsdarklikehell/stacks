@@ -5,21 +5,24 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/jaison-core
+      context: "../DATA/jaison-core"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
-      dockerfile: ./CustomDockerfile-jaison-core-conda
-      # dockerfile: ./CustomDockerfile-jaison-core-uv
-      # dockerfile: ./CustomDockerfile-jaison-core-venv
-
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
+      dockerfile: "./CustomDockerfile-jaison-core-conda"
+      # dockerfile: "./CustomDockerfile-jaison-core-uv"
+      # dockerfile: "./CustomDockerfile-jaison-core-venv"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       # - "autoheal-app=true"
       # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     # volumes:
     #   - "../DATA/jaison-core/.env:/jaison-core/.env"
@@ -44,8 +47,8 @@ services:
       - "${PORT:-7272}:7272"
 
     env_file:
-      - ./jaison-core/.env
-
+      - "./jaison-core/.env"
+    
     runtime: nvidia
     deploy:
       replicas: 1
@@ -61,15 +64,10 @@ services:
               count: 1
               capabilities: [gpu, compute, video, graphics, utility]
 
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
-
     tty: true
 
     stdin_open: true
 
-    # Optional: Health check for monitoring
     healthcheck:
       test:
         [
@@ -84,7 +82,6 @@ services:
       timeout: "10s"
       start_period: "30s"
       retries: "3"
-
 
     logging:
       driver: "json-file"
