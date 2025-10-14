@@ -19,7 +19,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - home-assistant-config:/config
 
-    hostname: homeassistant
+    hostname: "${NAME:-homeassistant}"
 
     networks:
       host:
