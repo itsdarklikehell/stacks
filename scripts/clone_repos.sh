@@ -370,88 +370,8 @@ function CLONE_AIWAIFU(){
     # I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
     # python ./main.py
 }
-function CLONE_METAMCP(){
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-
-    echo "Cloning metamcp"
-    echo ""
-    git clone --recursive https://github.com/metatool-ai/metamcp.git metamcp
-    cd metamcp || exit
-    cp example.env .env
-}
-function CLONE_BROWSERBASEMCP(){
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-
-    echo "Cloning browserbase"
-    echo ""
-    git clone --recursive https://github.com/browserbase/mcp-server-browserbase.git browserbase-mcp
-    cd browserbase-mcp || exit
-    npm install && npm run build
-}
-function CLONE_MCPTHIS(){
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-
-    echo "Cloning mcp-this"
-    echo ""
-    git clone --recursive https://github.com/shane-kercheval/mcp-this.git mcp-this
-    cd mcp-this || exit
-    # make build
-}
-function CLONE_MCPSERVERS(){
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-
-    echo "Cloning mcp-servers"
-    echo ""
-    git clone --recursive https://github.com/modelcontextprotocol/servers.git mcp-servers
-    cd mcp-servers || exit
-    # make build
-
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-    git clone --recursive https://github.com/huhabla/mcp-system-monitor.git mcp-system-monitor
-    cd mcp-system-monitor || exit 1
-    uv venv
-    uv sync
-    uv pip install -r requirements.txt
-
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-    git clone https://github.com/The-AI-Workshops/searxng-mcp-server.git
-    cd searxng-mcp-server/dev/searXNG-mcp || exit 1
-    uv venv
-    uv sync
-    uv pip install -r requirements.txt
-
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-    git clone https://github.com/tisDDM/searxng-mcp.git
-    cd searxng-mcp || exit 1
-    ni
-    # nr
-
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-    git clone https://github.com/mrkrsl/web-search-mcp.git
-    cd web-search-mcp || exit 1
-    npm install
-    npx playwright install
-    npm run build
-
-    cd "${WD}" || exit
-    cd ../mcp-stack/DATA || exit 1
-    git clone https://github.com/barryyip0625/mcp-discord.git
-    cd mcp-discord || exit 1
-    ni
-    nr build
-}
 CLONE_OLLMVT
 CLONE_LETTA
-CLONE_METAMCP
-CLONE_BROWSERBASEMCP
 CLONE_CHROMA
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER

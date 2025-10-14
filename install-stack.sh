@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="false" # false, true/normal, all
+export PRUNE="normal" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
 
 export TWITCH_CLIENT_ID="your_client_id"
@@ -126,9 +126,6 @@ function INSTALL_AIWAIFU_STACK(){
 function INSTALL_AIRI_STACK(){
     airi-stack/install-stack.sh
 }
-function INSTALL_MCP_STACK(){
-    mcp-stack/install-stack.sh
-}
 # Install essential dependencies
 echo ""
 echo "Installing Drivers"
@@ -162,17 +159,6 @@ echo ""
 echo ""
 INSTALL_AI_STACK
 echo ""
-
-echo ""
-INSTALL_MCP_STACK
-uv tool install git+https://github.com/sparfenyuk/mcp-telegram >/dev/null 2>&1
-go install github.com/mark3labs/mcp-filesystem-server@latest >/dev/null 2>&1
-npm install @mtane0412/twitch-mcp-server >/dev/null 2>&1
-npm install @iqai/mcp-telegram >/dev/null 2>&1
-sudo apt install -y lynx >/dev/null 2>&1
-echo ""
-
-
 
 # echo ""
 # INSTALL_ARR_STACK
