@@ -4,50 +4,48 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-    base.docker-compose.yaml
-    autoheal/docker-compose.yaml
-    autobrr/docker-compose.yaml
-    bazarr/docker-compose.yaml
-    buildarr/docker-compose.yaml
-    byparr/docker-compose.yaml
-    calendarr/docker-compose.yaml
-    checkrr/docker-compose.yaml
-    dasharr/docker-compose.yaml
-    flaresolverr/docker-compose.yaml
-    flemmarr/docker-compose.yaml
-    jellyseerr/docker-compose.yaml
-    kapowarr/docker-compose.yaml
-    lidarr/docker-compose.yaml
-    logarr/docker-compose.yaml
-    # mylar3/docker-compose.yaml
-    organizr/docker-compose.yaml
-    overseerr/docker-compose.yaml
-    prowlarr/docker-compose.yaml
-    radarr/docker-compose.yaml
-    requestrr/docker-compose.yaml
-    rreading-glasses/docker-compose.yaml
-    sonarr/docker-compose.yaml
-    sickgear/docker-compose.yaml
-    watchtower/docker-compose.yaml
-    whisparr/docker-compose.yaml
+    autoheal
+    autobrr
+    bazarr
+    buildarr
+    byparr
+    calendarr
+    checkrr
+    dasharr
+    flaresolverr
+    flemmarr
+    jellyseerr
+    kapowarr
+    lidarr
+    logarr
+    # mylar3
+    organizr
+    overseerr
+    prowlarr
+    radarr
+    requestrr
+    rreading-glasses
+    sonarr
+    sickgear
+    watchtower
+    whisparr
 )
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-    ARGS+="-f ${f} "
+    echo "Added: ${f}/docker-compose.yaml"
+    ARGS+="-f ${f}/docker-compose.yaml "
 done
-
-echo "Running: docker compose ${ARGS} up -d"
 
 function BUILDING(){
     echo ""
-    echo "Building is set to: $BUILDING"
+    echo "Building is set to: ${BUILDING}"
     echo ""
-    if [[ "$BUILDING" = "recreate" ]]; then
-        docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
-    elif [[ "$BUILDING" = "true" ]]; then
-        docker compose ${ARGS} up -d
-    elif [[ "$BUILDING" = "false" ]]; then
+    if [[ "${BUILDING}" = "recreate" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+    elif [[ "${BUILDING}" = "true" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d
+    elif [[ "${BUILDING}" = "false" ]]; then
         echo "Skipping docker compose up"
     fi
 }

@@ -1,8 +1,8 @@
 services:
   watchtower-riko-services:
-    image: containrrr/watchtower
+    image: ${IMAGE:-containrrr/watchtower}
     restart: ${RESTART:-unless-stopped}
-    container_name: watchtower-riko-services
+    container_name: ${RESTART:-watchtower-riko-services}
 
     labels:
       - "autoheal-app=true"
@@ -10,13 +10,13 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+      - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    # command: --debug --http-api-update
+      - /etc/localtime:/etc/localtime:ro
 
-    hostname: watchtower-riko-services
+    hostname: ${NAME:-watchtower-riko-services}
 
     networks:
       host:
@@ -27,18 +27,22 @@ services:
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
     depends_on:
       - autoheal-riko-services
       - riko-project
 
+    tty: true
+    
+    stdin_open: true
+
+    # Optional: Health check for monitoring
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8080/api/health"]
+      interval: "30s"
+      timeout: "10s"
+      start_period: "30s"
+      retries: 3
 
     logging:
       driver: "json-file"

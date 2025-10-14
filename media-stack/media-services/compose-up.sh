@@ -4,44 +4,42 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-  base.docker-compose.yaml
-  autoheal/docker-compose.yaml 
-  calibre-web/docker-compose.yaml 
-  emby/docker-compose.yaml 
-  flexget/docker-compose.yaml 
-  gaseous-server/docker-compose.yaml 
-  gsdb/docker-compose.yaml 
-  gzdoom/docker-compose.yaml 
-  jellyfin/docker-compose.yaml 
-  mattermost/docker-compose.yaml 
-  plex/docker-compose.yaml 
-  quakejs/docker-compose.yaml 
-  retroarch/docker-compose.yaml 
-  retroarchz/docker-compose.yaml 
-  romm/docker-compose.yaml 
-  romm-db/docker-compose.yaml 
-  tvs99/docker-compose.yaml 
-  watchtower/docker-compose.yaml 
-  webrcade/docker-compose.yaml 
-  wolf/docker-compose.yaml
+  autoheal 
+  calibre-web 
+  emby 
+  flexget 
+  gaseous-server 
+  gsdb 
+  gzdoom 
+  jellyfin 
+  mattermost 
+  plex 
+  quakejs 
+  retroarch 
+  retroarchz 
+  romm 
+  romm-db 
+  tvs99 
+  watchtower 
+  webrcade 
+  wolf
 )
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-    ARGS+="-f ${f} "
+    echo "Added: ${f}/docker-compose.yaml"
+    ARGS+="-f ${f}/docker-compose.yaml "
 done
-
-echo "Running: docker compose ${ARGS} up -d"
 
 function BUILDING(){
     echo ""
-    echo "Building is set to: $BUILDING"
+    echo "Building is set to: ${BUILDING}"
     echo ""
-    if [[ "$BUILDING" = "recreate" ]]; then
-        docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
-    elif [[ "$BUILDING" = "true" ]]; then
-        docker compose ${ARGS} up -d
-    elif [[ "$BUILDING" = "false" ]]; then
+    if [[ "${BUILDING}" = "recreate" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+    elif [[ "${BUILDING}" = "true" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d
+    elif [[ "${BUILDING}" = "false" ]]; then
         echo "Skipping docker compose up"
     fi
 }

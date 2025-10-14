@@ -143,7 +143,7 @@ INSTALL_DOCKER
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS
+CLONE_REPOS >/dev/null 2>&1
 echo ""
 
 
@@ -163,14 +163,14 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-# echo ""
-# INSTALL_MCP_STACK
-# uv tool install git+https://github.com/sparfenyuk/mcp-telegram
-# go install github.com/mark3labs/mcp-filesystem-server@latest
-# npm install @mtane0412/twitch-mcp-server
-# npm install @iqai/mcp-telegram
-# sudo apt install -y lynx
-# echo ""
+echo ""
+INSTALL_MCP_STACK
+uv tool install git+https://github.com/sparfenyuk/mcp-telegram >/dev/null 2>&1
+go install github.com/mark3labs/mcp-filesystem-server@latest >/dev/null 2>&1
+npm install @mtane0412/twitch-mcp-server >/dev/null 2>&1
+npm install @iqai/mcp-telegram >/dev/null 2>&1
+sudo apt install -y lynx >/dev/null 2>&1
+echo ""
 
 
 

@@ -5,36 +5,34 @@ cd "$(dirname "$0")"
 
   # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
-  base.docker-compose.yaml
-  autoheal/docker-compose.yaml
-  collabora/docker-compose.yaml
-  dashy/docker-compose.yaml
-  n8n/docker-compose.yaml
-  netdata/docker-compose.yaml
-  nextcloud/docker-compose.yaml
-  nextclouddb/docker-compose.yaml
-  redis/docker-compose.yaml
-  ubuntu-noble-desktop/docker-compose.yaml
-  watchtower/docker-compose.yaml
-  wg-easy/docker-compose.yaml
+  autoheal
+  collabora
+  dashy
+  n8n
+  netdata
+  nextcloud
+  nextclouddb
+  redis
+  ubuntu-noble-desktop
+  watchtower
+  wg-easy
 )
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-    ARGS+="-f ${f} "
+    echo "Added: ${f}/docker-compose.yaml"
+    ARGS+="-f ${f}/docker-compose.yaml "
 done
-
-echo "Running: docker compose ${ARGS} up -d"
 
 function BUILDING(){
     echo ""
-    echo "Building is set to: $BUILDING"
+    echo "Building is set to: ${BUILDING}"
     echo ""
-    if [[ "$BUILDING" = "recreate" ]]; then
-        docker compose ${ARGS} up -d --build --force-recreate --remove-orphans
-    elif [[ "$BUILDING" = "true" ]]; then
-        docker compose ${ARGS} up -d
-    elif [[ "$BUILDING" = "false" ]]; then
+    if [[ "${BUILDING}" = "recreate" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+    elif [[ "${BUILDING}" = "true" ]]; then
+        docker compose -f base.docker-compose.yaml ${ARGS} up -d
+    elif [[ "${BUILDING}" = "false" ]]; then
         echo "Skipping docker compose up"
     fi
 }

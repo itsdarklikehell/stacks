@@ -43,7 +43,7 @@ services:
           "CMD",
           "wget",
           "--no-verbose",
-          "--tries=1",
+          "--tries=3",
           "--spider",
           "http://localhost:5002/api/health",
         ]
