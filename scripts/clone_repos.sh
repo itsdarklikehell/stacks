@@ -28,16 +28,16 @@ function CLONE_OLLMVT(){
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
     # uv venv
-    uv sync
+    uv sync >/dev/null 2>&1
 
     #pyttsx3
-    uv pip install py3-tts
+    uv pip install py3-tts >/dev/null 2>&1
 
     #melotts
     uv add git+https://github.com/myshell-ai/MeloTTS.git
     # Download unidic
-    python3 -m pip install unidic
-    python3 -m unidic download
+    python3 -m pip install unidic >/dev/null 2>&1
+    python3 -m unidic download >/dev/null 2>&1
 
 #     python3 - <<PYCODE
 # import nltk
@@ -46,13 +46,13 @@ function CLONE_OLLMVT(){
 
     # Install Coqui-TTS and its language support
     # uv add transformers "coqui-tts[languages]"
-    # uv run tts --list_models
+    # uv run tts --list_models 
 
     # #bark
-    # uv pip install git+https://github.com/suno-ai/bark.git
+    # uv pip install git+https://github.com/suno-ai/bark.git >/dev/null 2>&1
 
     #fishaudio
-    uv pip install fish-audio-sdk
+    uv pip install fish-audio-sdk >/dev/null 2>&1
 
     # uv run run_server.py
     if [[ ! -f "conf.yaml" ]]; then
@@ -75,8 +75,8 @@ function CLONE_LETTA(){
     echo ""
     git clone --recursive https://github.com/letta-ai/letta.git letta
     cd letta || exit
-    uv sync
-    uv sync --all-extras
+    uv sync >/dev/null 2>&1
+    uv sync --all-extras >/dev/null 2>&1
     # uv run letta server
 }
 function CLONE_MELOTTS(){
@@ -87,14 +87,14 @@ function CLONE_MELOTTS(){
     echo ""
     git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
     cd MeloTTS || exit
-    uv venv
-    uv sync
-    pip install -e .
-    python -m unidic download
-    docker build -t melotts .
+    uv venv >/dev/null 2>&1
+    uv sync >/dev/null 2>&1
+    uv pip install -e . >/dev/null 2>&1
+    python -m unidic download >/dev/null 2>&1
+    # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
 
-    meol-webui
+    # melo-webui
 }
 function CLONE_JAISON(){
     # sudo apt install -y ffmpeg
@@ -116,18 +116,19 @@ function CLONE_JAISON(){
     git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
     cd jaison-core || exit
 
-    # uv sync
-    # uv run run_server.py
+    # uv venv >/dev/null 2>&1
+    uv sync >/dev/null 2>&1
+    # uv run run_server.py 
 
     # conda create -n jaison-core python=3.10 pip=24.0 -y
     # conda activate jaison-core
 
-    # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    # pip install -r requirements.txt
-    # pip install --no-deps -r requirements.no_deps.txt
-    # python -m spacy download en_core_web_sm
-    # python install.py
-    # python -m unidic download
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 >/dev/null 2>&1
+    # uv pip install -r requirements.txt >/dev/null 2>&1
+    # uv pip install --no-deps -r requirements.no_deps.txt >/dev/null 2>&1
+    # python -m spacy download en_core_web_sm >/dev/null 2>&1
+    # python install.py >/dev/null 2>&1
+    # python -m unidic download >/dev/null 2>&1
 
     # python ./src/main.py --help
     # python ./src/main.py --config=example
@@ -145,9 +146,9 @@ function CLONE_AIRI(){
     cd "${WD}" || exit
     cd ../airi-stack/DATA || exit 1
 
-    npm i -g @antfu/ni
-    npm i -g shiki
-    npm i -g pkgroll
+    npm i -g @antfu/ni >/dev/null 2>&1
+    npm i -g shiki >/dev/null 2>&1
+    npm i -g pkgroll >/dev/null 2>&1
 
     function INSTALL_XSAI(){
         cd "${WD}" || exit
@@ -158,8 +159,8 @@ function CLONE_AIRI(){
         git clone --recursive https://github.com/moeru-ai/xsai.git xsai
         cd xsai || exit
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
     }
     function INSTALL_XSAI_TRANSFORMERS(){
         cd "${WD}" || exit
@@ -170,8 +171,8 @@ function CLONE_AIRI(){
         git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
         cd xsai-transformers || exit
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
     }
     function INSTALL_AIRI_CHAT(){
         cd "${WD}" || exit
@@ -182,8 +183,8 @@ function CLONE_AIRI(){
         git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
         cd airi-chat || exit
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
     }
     function INSTALL_AIRI(){
 
@@ -195,8 +196,8 @@ function CLONE_AIRI(){
         git clone --recursive https://github.com/moeru-ai/airi.git airi
         cd airi || exit
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
 
         # For Rust dependencies
         # Not required if you are not going to develop on either crates or apps/tamagotchi
@@ -211,26 +212,26 @@ function CLONE_AIRI(){
         cp .env .env.local
         # docker compose -p airi-telegram-bot-db up -d
 
-        ni
-        nr build
-        # nr -F @proj-airi/telegram-bot db:generate
-        # nr -F @proj-airi/telegram-bot db:push
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
+        # nr -F @proj-airi/telegram-bot db:generate >/dev/null 2>&1
+        # nr -F @proj-airi/telegram-bot db:push >/dev/null 2>&1
         # nr -F @proj-airi/telegram-bot dev
 
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
         # nr -F @proj-airi/discord-bot dev
 
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
 
-        ni
-        nr build
+        ni >/dev/null 2>&1
+        nr build >/dev/null 2>&1
         # nr -F @proj-airi/minecraft dev
 
         cd .. || exit
@@ -279,8 +280,8 @@ function CLONE_RIKOPROJECT(){
     git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project
     cd riko-project || exit
 
-    nr build
-    ni
+    nr build >/dev/null 2>&1
+    ni >/dev/null 2>&1
 
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
@@ -293,13 +294,13 @@ function CLONE_RIKOPROJECT(){
     sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
     # source .venv/bin/activate
-    # pip install --upgrade pip uv nltk
-    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    # uv pip install -r extra-req.txt --no-deps
-    # uv pip install -r requirements.txt
+    # pip install --upgrade pip uv nltk >/dev/null 2>&1
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 >/dev/null 2>&1
+    # uv pip install -r extra-req.txt --no-deps >/dev/null 2>&1
+    # uv pip install -r requirements.txt >/dev/null 2>&1
 
     # chmod +x install_reqs.sh
-    # ./install_reqs.sh
+    # ./install_reqs.sh >/dev/null 2>&1
     # python3 ./server/main_chat.py
 }
 function CLONE_SWARMUI(){
