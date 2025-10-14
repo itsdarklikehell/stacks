@@ -14,7 +14,6 @@ COMPOSE_FILES=(
   homeassistant/docker-compose.yaml
   letta-server/docker-compose.yaml
   localai/docker-compose.yaml
-  libretranslate/docker-compose.yaml
   kokoro-tts/docker-compose.yaml
   coqui-tts-cpu/docker-compose.yaml
   voice-chat-ai/docker-compose.yaml
@@ -26,6 +25,7 @@ COMPOSE_FILES=(
   swarmui/docker-compose.yaml
   n8n/docker-compose.yaml
   mongo-whispher/docker-compose.yaml
+  libretranslate-whispher/docker-compose.yaml
   whishper/docker-compose.yaml
   wyoming-piper/docker-compose.yaml
   watchtower/docker-compose.yaml

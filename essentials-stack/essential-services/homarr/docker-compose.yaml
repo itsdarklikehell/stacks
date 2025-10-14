@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - SECRET_ENCRYPTION_KEY=
+      - SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

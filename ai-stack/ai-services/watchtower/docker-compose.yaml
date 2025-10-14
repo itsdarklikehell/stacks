@@ -29,24 +29,27 @@ services:
       replicas: 1
 
     depends_on:
-      # - anythingllm
+      - anythingllm
       - autoheal-ai-services
       - basic-memory
       # - chroma
       - clickhouse
+      - coqui-tts-cpu
       - faster-whisper-gpu
       - homeassistant
-      # - libretranslate
       - kokoro-tts
-      - coqui-tts-cpu
-      - mongo
+      - letta-server
+      - libretranslate-whispher
+      - localai
+      - mongo-whispher
+      - n8n
       # - ollama
       - open-webui
       - searxng
       - stable-diffusion-models-download
       - stable-diffusion-webui
       - swarmui
-      - n8n
+      - voice-chat-ai
       - whishper
       - wyoming-piper
 
