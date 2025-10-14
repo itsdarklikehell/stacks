@@ -1,8 +1,8 @@
 services:
   flexget:
-    image: ${IMAGE:-flexget/flexget}
-    container_name: ${NAME:-flexget}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-flexget/flexget}"
+    container_name: "${NAME:-flexget}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,13 +10,13 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - TZ=${TZ:-Europe/Amsterdam}
+      - TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - ../DATA/flexget/config:/config
       - ../DATA/flexget/downloads:/downloads
 
-    hostname: ${NAME:-flexget}
+    hostname: "${NAME:-flexget}"
 
     networks:
       host:

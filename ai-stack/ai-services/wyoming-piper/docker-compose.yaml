@@ -1,8 +1,8 @@
 services:
   wyoming-piper:
-    image: ${IMAGE:-rhasspy/wyoming-piper} # no gpu
-    container_name: ${NAME:-wyoming-piper}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-rhasspy/wyoming-piper}" # no gpu
+    container_name: "${NAME:-wyoming-piper}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,15 +10,15 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/wyoming-piper/data:/data
 
-    hostname: ${NAME:-wyoming-piper}
+    hostname: "${NAME:-wyoming-piper}"
 
     command: ["--voice en_US-lessac-medium"]
 

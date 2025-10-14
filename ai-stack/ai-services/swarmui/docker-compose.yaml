@@ -1,16 +1,16 @@
 services:
   swarmui:
-    # image: ${IMAGE:-swarmui}
-    container_name: ${NAME:-swarmui}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-swarmui}"
+    container_name: "${NAME:-swarmui}"
+    restart: "${RESTART:-unless-stopped}"
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    user: "${PUID:-1000}:${PGID:-1000}"
     
     build:
       context: ../DATA/SwarmUI
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
       dockerfile: ./launchtools/CustomDockerfile.docker
 
     labels:
@@ -27,7 +27,7 @@ services:
       - ../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output
       - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
-    hostname: ${NAME:-swarmui}
+    hostname: "${NAME:-swarmui}"
 
     networks:
       host:
@@ -45,7 +45,7 @@ services:
     # build:
     #   context: ../SwarmUI
     #   args:
-    #     UID: ${PUID:-1000}
+    #     UID: "${PUID:-1000}"
     #   dockerfile: launchtools/CustomDockerfile.docker
     # uncomment `network_mode: host` if you want to access other services on the host network (eg a separated comfy instance)
     # network_mode: host

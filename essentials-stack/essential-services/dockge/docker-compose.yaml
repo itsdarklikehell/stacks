@@ -1,8 +1,8 @@
 services:
   dockge:
-    container_name: ${NAME:-dockge}
-    image: ${IMAGE:-louislam/dockge}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-dockge}"
+    image: "${IMAGE:-louislam/dockge}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -23,7 +23,7 @@ services:
       - /media/rizzo/RAIDSTATION/stacks:/opt/stacks
       # - DOCKGE_STACKS_DIR=/opt/stacks
 
-    hostname: ${NAME:-dockge}
+    hostname: "${NAME:-dockge}"
 
     networks:
       host:

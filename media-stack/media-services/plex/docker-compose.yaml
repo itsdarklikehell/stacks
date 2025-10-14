@@ -1,8 +1,8 @@
 services:
   plex:
-    image: ${IMAGE:-plexinc/pms-docker}
-    container_name: ${NAME:-plex}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-plexinc/pms-docker}"
+    container_name: "${NAME:-plex}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -14,7 +14,7 @@ services:
       - ../DATA/plex/transcode:/transcode
       - ../DATA/plex/media:/data
 
-    hostname: ${NAME:-plex}
+    hostname: "${NAME:-plex}"
 
     networks:
       host:

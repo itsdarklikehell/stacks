@@ -1,8 +1,8 @@
 services:
   lidarr:
-    image: ${IMAGE:-linuxserver/lidarr}
-    container_name: ${NAME:-lidarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-linuxserver/lidarr}"
+    container_name: "${NAME:-lidarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: ${NAME:-lidarr}
+    hostname: "${NAME:-lidarr}"
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   watchtower-openllm-vtuber-services:
-    image: ${IMAGE:-containrrr/watchtower}
-    restart: ${RESTART:-unless-stopped}
-    container_name: ${NAME:-watchtower-openllm-vtuber-services}
+    image: "${IMAGE:-containrrr/watchtower}"
+    restart: "${RESTART:-unless-stopped}"
+    container_name: "${NAME:-watchtower-openllm-vtuber-services}"
 
     labels:
       - "autoheal-app=true"
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
 
-    hostname: ${NAME:-watchtower-openllm-vtuber-services}
+    hostname: "${NAME:-watchtower-openllm-vtuber-services}"
 
     networks:
       host:

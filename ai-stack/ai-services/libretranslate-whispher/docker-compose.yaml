@@ -1,8 +1,8 @@
 services:
   libretranslate-whispher:
-    image: ${IMAGE:-libretranslate/libretranslate:latest-cuda}
-    container_name: ${NAME:-libretranslate-whispher}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-libretranslate/libretranslate:latest-cuda}"
+    container_name: "${NAME:-libretranslate-whispher}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,11 +10,11 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}
-      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}
-      - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
+      - LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}"
+      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}"
+      - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -22,7 +22,7 @@ services:
       - ../DATA/libretranslate-whispher/data:/home/libretranslate/.local/share
       - ../DATA/libretranslate-whispher/cache:/home/libretranslate/.local/cache
 
-    hostname: ${NAME:-libretranslate-whispher}
+    hostname: "${NAME:-libretranslate-whispher}"
 
     networks:
       host:

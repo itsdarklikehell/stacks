@@ -1,20 +1,20 @@
 services:
   jaison-core:
-    # image: ${IMAGE:-jaison-core}
-    container_name: ${NAME:-jaison-core}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-jaison-core}"
+    container_name: "${NAME:-jaison-core}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/jaison-core
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
       dockerfile: ./CustomDockerfile-jaison-core-conda
       # dockerfile: ./CustomDockerfile-jaison-core-uv
       # dockerfile: ./CustomDockerfile-jaison-core-venv
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     labels:
       - "autoheal-app=true"
@@ -34,7 +34,7 @@ services:
     #   - "../DATA/jaison-core/mcp_servers.json:/app/mcp_servers.json"
     #   - "../DATA/jaison-core/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-jaison-core}
+    hostname: "${NAME:-jaison-core}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

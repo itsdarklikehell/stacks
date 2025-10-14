@@ -1,8 +1,8 @@
 services:
   anythingllm:
-    image: ${IMAGE:-mintplexlabs/anythingllm}
-    container_name: ${NAME:-anythingllm}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-mintplexlabs/anythingllm}"
+    container_name: "${NAME:-anythingllm}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"

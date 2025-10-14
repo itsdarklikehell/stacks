@@ -1,8 +1,8 @@
 services:
   calendarr:
-    image: ${IMAGE:-ghcr.io/jordanlambrecht/calendarr}
-    container_name: ${NAME:-calendarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/jordanlambrecht/calendarr}"
+    container_name: "${NAME:-calendarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      TZ: ${TZ:-Europe/Amsterdam}
+      TZ: "${TZ:-Europe/Amsterdam}"
       CALENDAR_URLS: >
         [{
           "url":"${ICS_URL_SONARR_1}",
@@ -24,9 +24,9 @@ services:
           "url":"${ICS_URL_RADARR_1}",
           "type":"movie"
         }]
-      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
+      DISCORD_WEBHOOK_URL: "${DISCORD_WEBHOOK_URL}"
       USE_DISCORD: true
-      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      SLACK_WEBHOOK_URL: "${SLACK_WEBHOOK_URL}"
       USE_SLACK: false
       ADD_LEADING_ZERO: true
       CALENDAR_RANGE: "AUTO"
@@ -35,7 +35,7 @@ services:
       DEBUG: false
       DEDUPLICATE_EVENTS: true
       DISCORD_HIDE_MENTION_INSTRUCTIONS: false
-      DISCORD_MENTION_ROLE_ID: ${DISCORD_MENTION_ROLE_ID}
+      DISCORD_MENTION_ROLE_ID: "${DISCORD_MENTION_ROLE_ID}"
       DISPLAY_TIME: true
       ENABLE_CUSTOM_DISCORD_FOOTER: false
       ENABLE_CUSTOM_SLACK_FOOTER: false
@@ -58,7 +58,7 @@ services:
       - ../DATA/calendarr/logs:/app/logs:rw
       - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
 
-    hostname: ${NAME:-calendarr}
+    hostname: "${NAME:-calendarr}"
 
     networks:
       host:

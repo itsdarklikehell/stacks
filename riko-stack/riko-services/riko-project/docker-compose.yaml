@@ -1,20 +1,20 @@
 services:
   riko-project:
-    # image: ${IMAGE:-riko-project}
-    container_name: ${NAME:-riko-project}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-riko-project}"
+    container_name: "${NAME:-riko-project}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/riko-project
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
       dockerfile: ./CustomDockerfile-riko-project-uv
       # dockerfile: ./CustomDockerfile-riko-project-conda
       # dockerfile: ./CustomDockerfile-riko-project-venv
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     labels:
       - "autoheal-app=true"
@@ -36,7 +36,7 @@ services:
     #   - "../DATA/riko-project/mcp_servers.json:/app/mcp_servers.json"
     #   - "../DATA/riko-project/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-riko-project}
+    hostname: "${NAME:-riko-project}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

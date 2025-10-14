@@ -1,15 +1,15 @@
 services:
   mattermost:
-    image: ${IMAGE:-mattermost/mattermost-team-edition}
-    container_name: ${NAME:-mattermost}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-mattermost/mattermost-team-edition}"
+    container_name: "${NAME:-mattermost}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
       - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
-    hostname: ${NAME:-mattermost}
+    hostname: "${NAME:-mattermost}"
 
     networks:
       host:

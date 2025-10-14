@@ -1,8 +1,8 @@
 services:
   redis:
-    image: ${IMAGE:-redis:alpine}
-    container_name: ${NAME:-redis}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-redis:alpine}"
+    container_name: "${NAME:-redis}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -12,7 +12,7 @@ services:
     volumes:
       - ../DATA/redis/redis:/data
 
-    hostname: ${NAME:-redis}
+    hostname: "${NAME:-redis}"
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   watchtower-ai-services:
-    image: ${IMAGE:-containrrr/watchtower}
-    container_name: ${NAME:-watchtower-ai-services}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-containrrr/watchtower}"
+    container_name: "${NAME:-watchtower-ai-services}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
 
-    hostname: ${NAME:-watchtower-ai-services}
+    hostname: "${NAME:-watchtower-ai-services}"
 
     networks:
       host:

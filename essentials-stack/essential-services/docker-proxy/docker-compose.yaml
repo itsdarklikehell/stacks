@@ -1,8 +1,8 @@
 services:
   docker-proxy:
-    image: ${IMAGE:-tecnativa/docker-socket-proxy}
-    container_name: ${NAME:-docker-proxy}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-tecnativa/docker-socket-proxy}"
+    container_name: "${NAME:-docker-proxy}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -19,7 +19,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-    hostname: ${NAME:-docker-proxy}
+    hostname: "${NAME:-docker-proxy}"
 
     networks:
       host:

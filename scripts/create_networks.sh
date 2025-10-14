@@ -11,7 +11,6 @@ function CREATE_NETWORKS(){
     --gateway="$(ip route show 0.0.0.0/0 dev "${DEVICE}" | cut -d\  -f3 || true)" \
     -o parent="${DEVICE}" \
     macvlan
-
 }
 
 CREATE_NETWORKS

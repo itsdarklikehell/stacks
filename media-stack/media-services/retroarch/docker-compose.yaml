@@ -1,8 +1,8 @@
 services:
   retroarch:
-    image: ${IMAGE:-lscr.io/linuxserver/retroarch}
-    container_name: ${NAME:-retroarch}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lscr.io/linuxserver/retroarch}"
+    container_name: "${NAME:-retroarch}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - "/dev/shm:/dev/shm"
       - "../DATA/retroarch/config:/config"
 
-    hostname: ${NAME:-retroarch}
+    hostname: "${NAME:-retroarch}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

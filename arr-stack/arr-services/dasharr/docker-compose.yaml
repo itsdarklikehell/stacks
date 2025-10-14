@@ -1,8 +1,8 @@
 services:
   dasharr:
-    image: ${IMAGE:-schenanigans/dasharr}
-    container_name: ${NAME:-dasharr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-schenanigans/dasharr}"
+    container_name: "${NAME:-dasharr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -17,7 +17,7 @@ services:
     volumes:
       - ../DATA/dasharr/dasharr_config:/app/config  # or use bind mount: ./config:/app/config
 
-    hostname: ${NAME:-dasharr}
+    hostname: "${NAME:-dasharr}"
 
     networks:
       host:

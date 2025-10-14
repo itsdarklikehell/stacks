@@ -1,8 +1,8 @@
 services:
   nginx-proxy-manager:
-    image: ${IMAGE:-jc21/nginx-proxy-manager}
-    container_name: ${NAME:-nginx-proxy-manager}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-jc21/nginx-proxy-manager}"
+    container_name: "${NAME:-nginx-proxy-manager}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -14,8 +14,8 @@ services:
       - INITIAL_ADMIN_PASSWORD
 
     # environment:
-    # INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL:-admin@example.com}
-    # INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:-changeme}
+    # INITIAL_ADMIN_EMAIL: "${INITIAL_ADMIN_EMAIL:-admin@example.com}"
+    # INITIAL_ADMIN_PASSWORD: "${INITIAL_ADMIN_PASSWORD:-changeme}"
     # Uncomment this if you want to change the location of
     # the SQLite DB file within the container
     # DB_SQLITE_FILE: "/data/database.sqlite"
@@ -26,7 +26,7 @@ services:
       - ../DATA/nginx-proxy-manager/data:/data
       - ../DATA/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-    hostname: ${NAME:-nginx-proxy-manager}
+    hostname: "${NAME:-nginx-proxy-manager}"
     
     networks:
       host:

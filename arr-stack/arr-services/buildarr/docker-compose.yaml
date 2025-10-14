@@ -1,8 +1,8 @@
 services:
   buildarr:
-    image: ${IMAGE:-callum027/buildarr}
-    container_name: ${NAME:-buildarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-callum027/buildarr}"
+    container_name: "${NAME:-buildarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -17,7 +17,7 @@ services:
     volumes:
       - ../DATA/buildarr/config:/config
 
-    hostname: ${NAME:-buildarr}
+    hostname: "${NAME:-buildarr}"
 
     networks:
       host:

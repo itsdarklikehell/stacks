@@ -1,8 +1,8 @@
 services:
   mylar3:
-    image: ${IMAGE:-lscr.io/linuxserver/mylar3}
-    container_name: ${NAME:-mylar3}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lscr.io/linuxserver/mylar3}"
+    container_name: "${NAME:-mylar3}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -19,7 +19,7 @@ services:
       - ../DATA/mylar3/comics:/comics
       - ../DATA/mylar3/downloads:/downloads
 
-    hostname: ${NAME:-mylar3}
+    hostname: "${NAME:-mylar3}"
 
     networks:
       host:

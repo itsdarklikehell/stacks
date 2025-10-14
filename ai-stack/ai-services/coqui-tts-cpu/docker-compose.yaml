@@ -1,8 +1,8 @@
 services:
   coqui-tts-cpu:
-    image: ${IMAGE:-ghcr.io/coqui-ai/tts-cpu:latest}
-    container_name: ${NAME:-coqui-tts-cpu}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/coqui-ai/tts-cpu:latest}"
+    container_name: "${NAME:-coqui-tts-cpu}"
+    restart: "${RESTART:-unless-stopped}"
 
     entrypoint: /bin/bash
 

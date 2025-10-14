@@ -1,8 +1,8 @@
 services:
   overseerr:
-    image: ${IMAGE:-sctx/overseerr}
-    container_name: ${NAME:-overseerr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-sctx/overseerr}"
+    container_name: "${NAME:-overseerr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -11,7 +11,7 @@ services:
 
     environment:
       - LOG_LEVEL=debug
-      - TZ=${TZ:-Europe/Amsterdam}
+      - TZ=${TZ:-Europe/Amsterdam}"
       - PORT=5056
 
     networks:
@@ -21,7 +21,7 @@ services:
     volumes:
       - ../DATA/overseerr/appdata/config:/app/config
 
-    hostname: ${NAME:-overseerr}
+    hostname: "${NAME:-overseerr}"
 
     ports:
       - "${PORT:-5056}:5056"

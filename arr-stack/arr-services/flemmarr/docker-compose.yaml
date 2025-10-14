@@ -1,8 +1,8 @@
 services:
   flemmarr:
-    container_name: ${NAME:-flemmarr}
-    image: ${IMAGE:-pierremesure/flemmarr}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-flemmarr}"
+    image: "${IMAGE:-pierremesure/flemmarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -12,7 +12,7 @@ services:
     volumes:
       - ../DATA/flemmarr/config:/config
 
-    hostname: ${NAME:-flemmarr}
+    hostname: "${NAME:-flemmarr}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

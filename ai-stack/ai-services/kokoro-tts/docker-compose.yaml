@@ -1,8 +1,8 @@
 services:
   kokoro-tts:
-    image: ${IMAGE:-ghcr.io/remsky/kokoro-fastapi-gpu:latest}
-    container_name: ${NAME:-kokoro-tts}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/remsky/kokoro-fastapi-gpu:latest}"
+    container_name: "${NAME:-kokoro-tts}"
+    restart: "${RESTART:-unless-stopped}"
 
     # volumes:
     #   - ../DATA/kokoro-tts:/kokoro

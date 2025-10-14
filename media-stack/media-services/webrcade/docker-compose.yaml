@@ -1,8 +1,8 @@
 services:
   webrcade:
-    image: ${IMAGE:-webrcade/webrcade}
-    container_name: ${NAME:-webrcade}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-webrcade/webrcade}"
+    container_name: "${NAME:-webrcade}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -12,7 +12,7 @@ services:
     volumes:
       - ../DATA/webrcade/content:/var/www/html/content
 
-    hostname: ${NAME:-webrcade}
+    hostname: "${NAME:-webrcade}"
 
     ports:
       - "${PORT:-87}:87"

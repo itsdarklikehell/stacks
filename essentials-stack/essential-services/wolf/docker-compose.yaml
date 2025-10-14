@@ -1,8 +1,8 @@
 services:
   wolf:
-    image: ${IMAGE:-ghcr.io/games-on-whales/wolf:stable}
-    container_name: ${NAME:-wolf}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/games-on-whales/wolf:stable}"
+    container_name: "${NAME:-wolf}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -19,7 +19,7 @@ services:
       - /dev/:/dev/:rw
       - /run/udev:/run/udev:rw
 
-    hostname: ${NAME:-wolf}
+    hostname: "${NAME:-wolf}"
 
     device_cgroup_rules:
       - 'c 13:* rmw'

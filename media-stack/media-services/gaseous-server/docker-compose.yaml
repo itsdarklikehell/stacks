@@ -1,8 +1,8 @@
 services:
   gaseous-server:
-    container_name: ${NAME:-gaseous-server}
-    image: ${IMAGE:-gaseousgames/gaseousserver}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-gaseous-server}"
+    image: "${IMAGE:-gaseousgames/gaseousserver}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,7 +10,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - TZ=${TZ:-Europe/Amsterdam}
+      - TZ=${TZ:-Europe/Amsterdam}"
       - dbhost=gsdb
       - dbuser=root
       - dbpass=gaseous
@@ -20,7 +20,7 @@ services:
     volumes:
       - gaseous_data:/root/.gaseous-server
 
-    hostname: ${NAME:-gaseous-server}
+    hostname: "${NAME:-gaseous-server}"
 
     networks:
       host:

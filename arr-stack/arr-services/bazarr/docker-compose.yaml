@@ -1,8 +1,8 @@
 services:
   bazarr:
-    image: ${IMAGE:-lscr.io/linuxserver/bazarr}
-    container_name: ${NAME:-bazarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lscr.io/linuxserver/bazarr}"
+    container_name: "${NAME:-bazarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: ${NAME:-bazarr}
+    hostname: "${NAME:-bazarr}"
 
     networks:
       host:

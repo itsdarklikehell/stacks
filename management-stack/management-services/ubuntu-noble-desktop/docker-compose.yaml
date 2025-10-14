@@ -1,8 +1,8 @@
 services:
   ubuntu-noble-desktop:
-    image: ${IMAGE:-kasmweb/ubuntu-noble-desktop:1.17.0}
-    container_name: ${NAME:-ubuntu-noble-desktop}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-kasmweb/ubuntu-noble-desktop:1.17.0}"
+    container_name: "${NAME:-ubuntu-noble-desktop}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -15,7 +15,7 @@ services:
     volumes:
       - "/dev/shm:/dev/shm"
 
-    hostname: ${NAME:-ubuntu-noble-desktop}
+    hostname: "${NAME:-ubuntu-noble-desktop}"
 
     networks:
       host:

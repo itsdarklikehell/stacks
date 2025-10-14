@@ -1,8 +1,8 @@
 services:
   it-tools:
-    image: ${IMAGE:-corentinth/it-tools}
-    container_name: ${NAME:-it-tools}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-corentinth/it-tools}"
+    container_name: "${NAME:-it-tools}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,19 +10,19 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-autoheal}
+      AUTOHEAL_CONTAINER_LABEL: "${AUTOHEAL_CONTAINER_LABEL:-autoheal}"
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
       AUTOHEAL_ONLY_MONITOR_RUNNING: false
-      # PORT: ${PORT:-8080}
-    # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
+      # PORT: "${PORT:-8080}"
+    # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-it-tools}
+    hostname: "${NAME:-it-tools}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

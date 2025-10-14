@@ -1,8 +1,8 @@
 services:
   romm-db:
-    image: ${IMAGE:-mariadb}
-    container_name: ${NAME:-romm-db}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-mariadb}"
+    container_name: "${NAME:-romm-db}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - MARIADB_DATABASE=${MARIADB_DATABASE:-romm}
-      - MARIADB_USER=${MARIADB_USER:-romm-user}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-romm}"
+      - MARIADB_USER=${MARIADB_USER:-romm-user}"
 
     volumes:
       - mysql_data:/var/lib/mysql
@@ -20,7 +20,7 @@ services:
       - mariadb_root_password
       - mariadb_password
 
-    hostname: ${NAME:-romm-db}
+    hostname: "${NAME:-romm-db}"
 
     networks:
       host:

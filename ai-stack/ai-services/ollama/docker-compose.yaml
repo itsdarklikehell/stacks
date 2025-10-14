@@ -1,8 +1,8 @@
 services:
   ollama:
-    image: ${IMAGE:-ollama/ollama}
-    container_name: ${NAME:-ollama}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ollama/ollama}"
+    container_name: "${NAME:-ollama}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,8 +10,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
       - OLLAMA_KEEP_ALIVE=24h
       - ENABLE_IMAGE_GENERATION=True
       - COMFYUI_BASE_URL=http://comfyui:7860
@@ -23,7 +23,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/ollama:/root/.ollama
 
-    hostname: ${NAME:-ollama}
+    hostname: "${NAME:-ollama}"
 
     networks:
       host:

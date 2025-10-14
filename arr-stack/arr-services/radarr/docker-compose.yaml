@@ -1,8 +1,8 @@
 services:
   radarr:
-    image: ${IMAGE:-linuxserver/radarr}
-    container_name: ${NAME:-radarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-linuxserver/radarr}"
+    container_name: "${NAME:-radarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: ${NAME:-radarr}
+    hostname: "${NAME:-radarr}"
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   checkrr:
-    image: ${IMAGE:-aetaric/checkrr}
-    container_name: ${NAME:-checkrr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-aetaric/checkrr}"
+    container_name: "${NAME:-checkrr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -14,7 +14,7 @@ services:
       - /path/to/checkrr/config/checkrr.db:/checkrr.db
       - /path/to/media/to/scan:/media
 
-    hostname: ${NAME:-checkrr}
+    hostname: "${NAME:-checkrr}"
 
     networks:
       host:

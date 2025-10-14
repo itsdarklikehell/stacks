@@ -1,15 +1,15 @@
 services:
   openllm-vtuber:
-    # image: ${IMAGE:-t41372/open-llm-vtuber}
-    # image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
-    container_name: ${NAME:-openllm-vtuber}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-t41372/open-llm-vtuber}"
+    # image: "${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}"
+    container_name: "${NAME:-openllm-vtuber}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/Open-LLM-VTuber
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
         INSTALL_ORIGINAL_WHISPER: false
         INSTALL_BARK: false
       dockerfile: ./CustomDockerfile-openllm-vtuber-uv
@@ -34,7 +34,7 @@ services:
       - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
       - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-openllm-vtuber}
+    hostname: "${NAME:-openllm-vtuber}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

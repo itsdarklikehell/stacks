@@ -1,8 +1,8 @@
 services:
   basic-memory:
-    image: ${IMAGE:-ghcr.io/basicmachines-co/basic-memory}
-    container_name: ${NAME:-basic-memory-server}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/basicmachines-co/basic-memory}"
+    container_name: "${NAME:-basic-memory-server}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -22,7 +22,7 @@ services:
       - ../DATA/basic-memory/personal-notes:/app/data/personal:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
 
-    hostname: ${NAME:-basic-memory-server}
+    hostname: "${NAME:-basic-memory-server}"
 
     command:
       [

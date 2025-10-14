@@ -1,8 +1,8 @@
 services:
   searxng:
-    image: ${IMAGE:-searxng/searxng}
-    container_name: ${NAME:-searxng}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-searxng/searxng}"
+    container_name: "${NAME:-searxng}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,16 +10,16 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - PORT=${PORT:-8080}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
+      - PORT=${PORT:-8080}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../DATA/searxng:/etc/searxng
 
-    hostname: ${NAME:-searxng}
+    hostname: "${NAME:-searxng}"
 
     networks:
       host:

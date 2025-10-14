@@ -1,8 +1,8 @@
 services:
   letta-server:
-    image: ${IMAGE:-letta/letta:latest}
-    container_name: ${NAME:-letta-server}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-letta/letta:latest}"
+    container_name: "${NAME:-letta-server}"
+    restart: "${RESTART:-unless-stopped}"
      
     labels:
       - "autoheal-app=true"
@@ -10,15 +10,15 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}"
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
 
     volumes:
       - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
       # - ../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir # mounted volume for tool execution
   
-    hostname: ${NAME:-letta-server}
+    hostname: "${NAME:-letta-server}"
 
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
 

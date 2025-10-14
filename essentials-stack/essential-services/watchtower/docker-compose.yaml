@@ -1,8 +1,8 @@
 services:
   watchtower-essential-services:
-    image: ${IMAGE:-containrrr/watchtower}
-    container_name: ${NAME:-watchtower-essential-services}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-containrrr/watchtower}"
+    container_name: "${NAME:-watchtower-essential-services}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -16,7 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
 
-    hostname: ${NAME:-watchtower-essential-services}
+    hostname: "${NAME:-watchtower-essential-services}"
 
     networks:
       host:

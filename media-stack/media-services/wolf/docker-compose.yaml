@@ -1,14 +1,14 @@
 services:
   wolf:
-    image: ${IMAGE:-ghcr.io/games-on-whales/wolf:stable}
-    container_name: ${NAME:-wolf}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/games-on-whales/wolf:stable}"
+    container_name: "${NAME:-wolf}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
       - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
-    hostname: ${NAME:-wolf}
+    hostname: "${NAME:-wolf}"
 
     environment:
       - NVIDIA_DRIVER_CAPABILITIES=all

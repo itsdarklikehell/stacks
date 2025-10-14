@@ -1,8 +1,8 @@
 services:
   romm:
-    image: ${IMAGE:-rommapp/romm}
-    container_name: ${NAME:-romm}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-rommapp/romm}"
+    container_name: "${NAME:-romm}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -29,7 +29,7 @@ services:
       - retroachievements_api_key
       - steamgriddb_api_key
 
-    hostname: ${NAME:-romm}
+    hostname: "${NAME:-romm}"
 
     networks:
       host:

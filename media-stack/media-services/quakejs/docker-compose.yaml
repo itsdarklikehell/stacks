@@ -1,8 +1,8 @@
 services:
   quakejs:
-    image: ${IMAGE:-treyyoder/quakejs:latest}
-    container_name: ${NAME:-quakejs}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-treyyoder/quakejs:latest}"
+    container_name: "${NAME:-quakejs}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -11,14 +11,14 @@ services:
 
     environment:
       - HTTP_PORT=8086
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
+      - TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - ../DATA/quakejs/config:/config
 
-    hostname: ${NAME:-quakejs}
+    hostname: "${NAME:-quakejs}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

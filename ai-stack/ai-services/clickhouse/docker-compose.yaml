@@ -1,8 +1,8 @@
 services:
   clickhouse:
-    image: ${IMAGE:-clickhouse/clickhouse-server:22.9-alpine}
-    container_name: ${NAME:-clickhouse}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-clickhouse/clickhouse-server:22.9-alpine}"
+    container_name: "${NAME:-clickhouse}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"

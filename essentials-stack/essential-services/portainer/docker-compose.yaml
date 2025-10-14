@@ -1,8 +1,8 @@
 services:
   portainer:
-    container_name: ${NAME:-portainer}
-    image: ${IMAGE:-portainer/portainer-ce:latest}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-portainer}"
+    image: "${IMAGE:-portainer/portainer-ce:latest}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -13,7 +13,7 @@ services:
       - ../DATA/portainer/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-portainer}
+    hostname: "${NAME:-portainer}"
 
     networks:
       host:

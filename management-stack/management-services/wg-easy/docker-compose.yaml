@@ -1,8 +1,8 @@
 services:
   wg-easy:
-    image: ${IMAGE:-ghcr.io/wg-easy/wg-easy}
-    container_name: ${NAME:-wg-easy}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/wg-easy/wg-easy}"
+    container_name: "${NAME:-wg-easy}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -19,7 +19,7 @@ services:
       - wireguard:/etc/wireguard
       - /lib/modules:/lib/modules:ro
 
-    hostname: ${NAME:-wg-easy}
+    hostname: "${NAME:-wg-easy}"
 
     networks:
       host:

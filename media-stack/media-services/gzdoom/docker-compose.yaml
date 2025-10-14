@@ -1,8 +1,8 @@
 services:
   gzdoom:
-    image: ${IMAGE:-lscr.io/linuxserver/gzdoom:latest}
-    container_name: ${NAME:-gzdoom}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lscr.io/linuxserver/gzdoom:latest}"
+    container_name: "${NAME:-gzdoom}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -13,13 +13,13 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - CUSTOM_PORT=${CUSTOM_PORT:-3020}
+      - CUSTOM_PORT=${CUSTOM_PORT:-3020}"
 
     volumes:
       - "/dev/shm:/dev/shm"
       - ../DATA/gzdoom/config:/config
 
-    hostname: ${NAME:-gzdoom}
+    hostname: "${NAME:-gzdoom}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

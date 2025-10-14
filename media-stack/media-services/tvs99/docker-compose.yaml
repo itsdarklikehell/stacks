@@ -1,8 +1,8 @@
 services:
   tvs99:
-    image: ${IMAGE:-zshall/television-simulator}
-    container_name: ${NAME:-tvs99}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-zshall/television-simulator}"
+    container_name: "${NAME:-tvs99}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -13,7 +13,7 @@ services:
       - ../DATA/tvs99/config/config.tvs.yml:/config.tvs.yml
       - ../DATA/tvs99/data:/data
 
-    hostname: ${NAME:-tvs99}
+    hostname: "${NAME:-tvs99}"
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   gsdb:
-    image: ${IMAGE:-mariadb}
-    container_name: ${NAME:-gsdb}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-mariadb}"
+    container_name: "${NAME:-gsdb}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -15,7 +15,7 @@ services:
     volumes:
       - gsdb:/var/lib/mysql
 
-    hostname: ${NAME:-gsdb}
+    hostname: "${NAME:-gsdb}"
 
     networks:
       host:

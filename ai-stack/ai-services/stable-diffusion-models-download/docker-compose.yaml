@@ -1,14 +1,14 @@
 services:
   stable-diffusion-models-download:
-    # image: ${IMAGE:-comfy-download}
-    container_name: ${NAME:-stable-diffusion-models-download}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-comfy-download}"
+    container_name: "${NAME:-stable-diffusion-models-download}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/stable-diffusion-webui-docker/services/download/
       args:
-        UID: ${PUID:-1000}
-        GID: ${PUID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PUID:-1000}"
       dockerfile: ./Dockerfile
 
     labels:
@@ -17,8 +17,8 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -29,7 +29,7 @@ services:
       - ../DATA/stable-diffusion-webui-docker/data/Output:/data/Output
       - ../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings
       
-    hostname: ${NAME:-stable-diffusion-models-download}
+    hostname: "${NAME:-stable-diffusion-models-download}"
 
     networks:
       host:

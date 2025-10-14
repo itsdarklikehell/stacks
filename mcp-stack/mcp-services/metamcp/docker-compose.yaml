@@ -1,38 +1,38 @@
 services:
   metamcp:
-    image: ${IMAGE:-ghcr.io/metatool-ai/metamcp:latest}
-    container_name: ${NAME:-metamcp}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/metatool-ai/metamcp:latest}"
+    container_name: "${NAME:-metamcp}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/metamcp
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
       # dockerfile: ./CustomDockerfile-metamcp-conda
       # dockerfile: ./CustomDockerfile-metamcp-uv
       # dockerfile: ./CustomDockerfile-metamcp-venv
 
     environment:
       # Postgres connection details
-      POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
-      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
-      POSTGRES_USER: ${POSTGRES_USER:-metamcp_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-m3t4mcp}
-      POSTGRES_DB: ${POSTGRES_DB:-metamcp_db}
+      POSTGRES_HOST: "${POSTGRES_HOST:-postgres}"
+      POSTGRES_PORT: "${POSTGRES_PORT:-5432}"
+      POSTGRES_USER: "${POSTGRES_USER:-metamcp_user}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-m3t4mcp}"
+      POSTGRES_DB: "${POSTGRES_DB:-metamcp_db}"
 
       # Database configuration (composed from above vars)
-      DATABASE_URL: postgresql://${POSTGRES_USER:-metamcp_user}:${POSTGRES_PASSWORD:-m3t4mcp}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-metamcp_db}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-metamcp_user}:${POSTGRES_PASSWORD:-m3t4mcp}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-metamcp_db}"
 
       # Application URL configuration
-      APP_URL: ${APP_URL:-http://localhost:12008}
-      NEXT_PUBLIC_APP_URL: ${APP_URL:-http://localhost:12008}
+      APP_URL: "${APP_URL:-http://localhost:12008}"
+      NEXT_PUBLIC_APP_URL: "${APP_URL:-http://localhost:12008}"
 
       # Auth configuration
-      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-your-super-secret-key-change-this-in-production}
+      BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET:-your-super-secret-key-change-this-in-production}"
 
       # Docker networking fix
-      TRANSFORM_LOCALHOST_TO_DOCKER_INTERNAL: ${TRANSFORM_LOCALHOST_TO_DOCKER_INTERNAL:-true}
+      TRANSFORM_LOCALHOST_TO_DOCKER_INTERNAL: "${TRANSFORM_LOCALHOST_TO_DOCKER_INTERNAL:-true}"
 
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -55,7 +55,7 @@ services:
     #   - "../DATA/metamcp/mcp_servers.json:/app/mcp_servers.json"
     #   - "../DATA/metamcp/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-metamcp}
+    hostname: "${NAME:-metamcp}"
 
     # command: [ "ollama", "pull", "qwen3"]
 
@@ -125,9 +125,9 @@ services:
       - ../DATA/metamcp/.env
 
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-metamcp_db}
-      POSTGRES_USER: ${POSTGRES_USER:-metamcp_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-m3t4mcp}
+      POSTGRES_DB: "${POSTGRES_DB:-metamcp_db}"
+      POSTGRES_USER: "${POSTGRES_USER:-metamcp_user}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-m3t4mcp}"
 
     ports:
       - "${POSTGRES_EXTERNAL_PORT:-9433}:5432"

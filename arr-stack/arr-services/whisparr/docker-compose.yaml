@@ -1,8 +1,8 @@
 services:
   whisparr:
-    image: ${IMAGE:-ghcr.io/hotio/whisparr}
-    container_name: ${NAME:-whisparr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/hotio/whisparr}"
+    container_name: "${NAME:-whisparr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/whisparr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: ${NAME:-whisparr}
+    hostname: "${NAME:-whisparr}"
 
     networks:
       host:

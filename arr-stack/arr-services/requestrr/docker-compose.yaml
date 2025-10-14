@@ -1,8 +1,8 @@
 services:
   requestrr:
-    image: ${IMAGE:-thomst08/requestrr}
-    container_name: ${NAME:-requestrr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-thomst08/requestrr}"
+    container_name: "${NAME:-requestrr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -12,7 +12,7 @@ services:
     volumes:
       - ../DATA/requestrr/config:/root/config
 
-    hostname: ${NAME:-requestrr}
+    hostname: "${NAME:-requestrr}"
 
     # command: [ "ollama", "pull", "qwen3"]
 

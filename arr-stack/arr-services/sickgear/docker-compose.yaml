@@ -11,8 +11,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8082}
+      - TZ=${TZ:-Europe/Amsterdam}"
+      - PORT=${PORT:-8082}"
 
     volumes:
       - ../DATA/sickgear/sickgear-data:/data

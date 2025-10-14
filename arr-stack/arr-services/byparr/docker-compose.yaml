@@ -1,15 +1,15 @@
 services:
   byparr:
-    image: ${IMAGE:-ghcr.io/thephaseless/byparr}
-    container_name: ${NAME:-byparr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/thephaseless/byparr}"
+    container_name: "${NAME:-byparr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
       - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
 
-    hostname: ${NAME:-byparr}
+    hostname: "${NAME:-byparr}"
 
     networks:
       host:

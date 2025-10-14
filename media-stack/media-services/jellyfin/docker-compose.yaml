@@ -1,8 +1,8 @@
 services:
   jellyfin:
-    image: ${IMAGE:-linuxserver/jellyfin}
-    container_name: ${NAME:-jellyfin}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-linuxserver/jellyfin}"
+    container_name: "${NAME:-jellyfin}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
     
-    hostname: ${NAME:-jellyfin}
+    hostname: "${NAME:-jellyfin}"
 
     networks:
       host:

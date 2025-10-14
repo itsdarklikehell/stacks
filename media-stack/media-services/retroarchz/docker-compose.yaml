@@ -1,8 +1,8 @@
 services:
   retroarchz:
-    image: ${IMAGE:-blaize/retroarch}
-    container_name: ${NAME:-retroarchz}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-blaize/retroarch}"
+    container_name: "${NAME:-retroarchz}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -12,7 +12,7 @@ services:
     volumes:
       - "/home/rizzo/RetroPie/roms:/roms"
 
-    hostname: ${NAME:-retroarchz}
+    hostname: "${NAME:-retroarchz}"
 
     networks:
       host:

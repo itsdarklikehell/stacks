@@ -1,8 +1,8 @@
 services:
   sonarr:
-    image: ${IMAGE:-lscr.io/linuxserver/sonarr}
-    container_name: ${NAME:-sonarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lscr.io/linuxserver/sonarr}"
+    container_name: "${NAME:-sonarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
 
-    hostname: ${NAME:-sonarr}
+    hostname: "${NAME:-sonarr}"
 
     networks:
       host:

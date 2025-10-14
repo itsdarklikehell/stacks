@@ -1,8 +1,8 @@
 services:
   prowlarr:
-    image: ${IMAGE:-linuxserver/prowlarr}
-    container_name: ${NAME:-prowlarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-linuxserver/prowlarr}"
+    container_name: "${NAME:-prowlarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -17,7 +17,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config
 
-    hostname: ${NAME:-prowlarr}
+    hostname: "${NAME:-prowlarr}"
 
     networks:
       host:

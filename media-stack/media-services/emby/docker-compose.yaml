@@ -1,8 +1,8 @@
 services:
   emby:
-    image: ${IMAGE:-linuxserver/emby}
-    container_name: ${NAME:-emby}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-linuxserver/emby}"
+    container_name: "${NAME:-emby}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
 
-    hostname: ${NAME:-emby}
+    hostname: "${NAME:-emby}"
 
     networks:
       host:

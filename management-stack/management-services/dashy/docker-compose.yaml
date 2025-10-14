@@ -1,8 +1,8 @@
 services:
   dashy:
-    image: ${IMAGE:-lissy93/dashy}
-    container_name: ${NAME:-dashy}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-lissy93/dashy}"
+    container_name: "${NAME:-dashy}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
     # volumes:
     #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
 
-    hostname: ${NAME:-dashy}
+    hostname: "${NAME:-dashy}"
 
     networks:
       host:

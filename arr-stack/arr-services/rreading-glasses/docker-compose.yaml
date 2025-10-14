@@ -1,8 +1,8 @@
 services:
   rreading-glasses:
-    image: ${IMAGE:-blampe/rreading-glasses:hardcover}
-    container_name: ${NAME:-rreading-glasses}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-blampe/rreading-glasses:hardcover}"
+    container_name: "${NAME:-rreading-glasses}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -18,7 +18,7 @@ services:
     #   - /etc/localtime:/etc/localtime:ro
     #   - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-rreading-glasses}
+    hostname: "${NAME:-rreading-glasses}"
 
     networks:
       host:
@@ -55,7 +55,7 @@ services:
   rreading-glasses-db:
     image: postgres
     container_name: rreading-glasses-db
-    restart: ${RESTART:-unless-stopped}
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"

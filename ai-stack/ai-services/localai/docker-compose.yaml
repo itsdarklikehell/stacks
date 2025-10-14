@@ -2,8 +2,8 @@ services:
   localai:
     image: "${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}"
     # image: "${IMAGE:-localai/localai:latest-gpu-nvidia-cuda-12}"
-    container_name: ${NAME:-localai}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-localai}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"

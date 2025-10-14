@@ -2,5 +2,5 @@
   "dependencies": {
     "@iqai/mcp-telegram": "^0.1.4",
     "@mtane0412/twitch-mcp-server": "^2.0.5"
-  }
-}
+  }"
+}"

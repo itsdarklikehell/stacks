@@ -1,9 +1,9 @@
 services:
   whishper:
-    image: ${IMAGE:-pluja/whishper:latest-gpu}
+    image: "${IMAGE:-pluja/whishper:latest-gpu}"
     pull_policy: always
-    container_name: ${NAME:-whishper}
-    restart: ${RESTART:-unless-stopped}
+    container_name: "${NAME:-whishper}"
+    restart: "${RESTART:-unless-stopped}"
     # pull_policy: always
 
     labels:
@@ -12,16 +12,16 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}
-      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}
-      - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}
-      - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
-      - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
-      - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
+      - PUID=${PUID:-1000}"
+      - PGID=${PGID:-1000}"
+      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}"
+      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}"
+      - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}"
+      - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}"
+      - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}"
+      - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}"
       - CPU_THREADS=4
-      - PORT=${PORT:-8082}
+      - PORT=${PORT:-8082}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -30,7 +30,7 @@ services:
       - ../DATA/whishper/logs:/var/log/whishper
       - ../DATA/whishper/models:/app/models
 
-    hostname: ${NAME:-whishper}
+    hostname: "${NAME:-whishper}"
 
     networks:
       host:

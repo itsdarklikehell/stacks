@@ -1,8 +1,8 @@
 services:
   homarr:
-    image: ${IMAGE:-ghcr.io/homarr-labs/homarr:latest}
-    container_name: ${NAME:-homarr}
-    restart: ${RESTART:-unless-stopped}
+    image: "${IMAGE:-ghcr.io/homarr-labs/homarr:latest}"
+    container_name: "${NAME:-homarr}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "homarr-app=true"
@@ -17,7 +17,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../DATA/homarr/appdata:/appdata
 
-    hostname: ${NAME:-}
+    hostname: "${NAME:-}"
     
     # command: [ "ollama", "pull", "qwen3"]
 

@@ -1,8 +1,8 @@
 services:
   autoheal-mcp-services:
-    image: ${AUTOHEAL_IMAGE:-willfarrell/autoheal}
-    container_name: ${AUTOHEAL_CONTAINER_NAME:-autoheal-mcp-services}
-    restart: ${RESTART:-unless-stopped}
+    image: "${AUTOHEAL_IMAGE:-willfarrell/autoheal}"
+    container_name: "${AUTOHEAL_CONTAINER_NAME:-autoheal-mcp-services}"
+    restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "autoheal-app=true"
@@ -10,13 +10,13 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      AUTOHEAL_CONTAINER_LABEL: ${AUTOHEAL_CONTAINER_LABEL:-autoheal}
+      AUTOHEAL_CONTAINER_LABEL: "${AUTOHEAL_CONTAINER_LABEL:-autoheal}"
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
       AUTOHEAL_ONLY_MONITOR_RUNNING: false
-    # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
-    # network_mode: ${AUTOHEAL_NETWORK_MODE:-none}
+    # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
+    # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

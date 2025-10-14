@@ -1,20 +1,20 @@
 services:
   airi:
-    # image: ${IMAGE:-airi}
-    container_name: ${NAME:-airi}
-    restart: ${RESTART:-unless-stopped}
+    # image: "${IMAGE:-airi}"
+    container_name: "${NAME:-airi}"
+    restart: "${RESTART:-unless-stopped}"
 
     build:
       context: ../DATA/airi
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: "${PUID:-1000}"
+        GID: "${PGID:-1000}"
       dockerfile: ./CustomDockerfile-airi-conda
       # dockerfile: ./CustomDockerfile-airi-uv
       # dockerfile: ./CustomDockerfile-airi-venv
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     labels:
       - "autoheal-app=true"
@@ -34,7 +34,7 @@ services:
     #   - "../DATA/airi/mcp_servers.json:/app/mcp_servers.json"
     #   - "../DATA/airi/model_dict.json:/app/model_dict.json"
 
-    hostname: ${NAME:-airi}
+    hostname: "${NAME:-airi}"
 
     # command: [ "ollama", "pull", "qwen3"]
 
