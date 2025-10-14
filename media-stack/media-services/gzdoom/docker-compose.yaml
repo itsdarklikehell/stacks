@@ -21,8 +21,6 @@ services:
 
     hostname: "${NAME:-gzdoom}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       media-services:

@@ -36,8 +36,6 @@ services:
 
     hostname: "${NAME:-jaison-core}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       jaison-services:

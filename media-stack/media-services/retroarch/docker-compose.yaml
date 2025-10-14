@@ -20,8 +20,6 @@ services:
 
     hostname: "${NAME:-retroarch}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       media-services:

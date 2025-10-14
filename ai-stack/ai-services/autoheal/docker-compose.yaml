@@ -10,7 +10,7 @@ services:
       # - "autoheal"
 
     environment:
-      AUTOHEAL_CONTAINER_LABEL: "${AUTOHEAL_CONTAINER_LABEL:-all}"
+      AUTOHEAL_CONTAINER_LABEL: "${AUTOHEAL_CONTAINER_LABEL:-autoheal}"
       AUTOHEAL_START_PERIOD: 0
       AUTOHEAL_INTERVAL: 5
       AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
@@ -18,12 +18,11 @@ services:
     # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-autoheal-ai-services}"
-
-    # command: [ "ollama", "pull", "qwen3"]
 
     networks:
       host:
@@ -33,14 +32,10 @@ services:
     #   - "${PORT:-80}:80"
 
     env_file:
-      - ./autoheal/.env
+      - "./autoheal/.env"
 
     deploy:
       replicas: 1
-
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
 
     tty: true
     

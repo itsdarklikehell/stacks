@@ -19,9 +19,9 @@ services:
       # - "WHISPER_LANG=en" #optional
     
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - faster-whisper-data:/config
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "faster-whisper-data:/config"
 
     networks:
       host:
@@ -33,7 +33,7 @@ services:
     hostname: "${NAME:-faster-whisper-gpu}"
 
     env_file:
-      - ./faster-whisper-gpu/.env
+      - "./faster-whisper-gpu/.env"
 
     runtime: nvidia
     deploy:

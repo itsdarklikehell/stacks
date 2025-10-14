@@ -13,8 +13,9 @@ services:
       - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/localtime:/etc/localtime:ro
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-watchtower-airi-services}"
 
@@ -23,7 +24,7 @@ services:
       airi-services:
 
     env_file:
-      - ./watchtower/.env
+      - "./watchtower/.env"
 
     deploy:
       replicas: 1

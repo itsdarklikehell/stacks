@@ -10,17 +10,16 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
+      - "SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ../DATA/homarr/appdata:/appdata
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "../DATA/homarr/appdata:/appdata"
 
     hostname: "${NAME:-}"
     
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       essential-services:
@@ -29,23 +28,22 @@ services:
       - "7575:7575"
 
     env_file:
-      - ./homarr/.env
+      - './homarr/.env'
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
+    tty: true
+    
+    stdin_open: true
 
-
+    # # Optional: Health check for monitoring
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:80/api/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
       driver: "json-file"

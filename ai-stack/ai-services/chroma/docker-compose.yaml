@@ -5,26 +5,27 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/chroma
-      dockerfile: ./Dockerfile
+      context: "../DATA/chroma"
+      dockerfile: "./Dockerfile"
 
     volumes:
-      - ../DATA/chroma:/chroma
-      - index_data:/index_data
+      - "../DATA/chroma:/chroma"
+      - "index_data:/index_data"
 
-    command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-config log_config.yml
-
+    # command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-config log_config.yml
+    command: ["uvicorn", "chromadb.app:app", "--reload", "--workers 1", "--host 0.0.0.0", "--port 8000", "--log-config log_config.yml"]
+    
     environment:
-      - CHROMA_DB_IMPL=clickhouse
-      - CLICKHOUSE_HOST=clickhouse
-      - CLICKHOUSE_PORT=8124
+      - "CHROMA_DB_IMPL=clickhouse"
+      - "CLICKHOUSE_HOST=clickhouse"
+      - "CLICKHOUSE_PORT=8124"
 
     networks:
       host:
       ai-services:
         
     env_file:
-      - ./chroma/.env
+      - "./chroma/.env"
 
     ports:
       - "${PORT:-8000}:8000"

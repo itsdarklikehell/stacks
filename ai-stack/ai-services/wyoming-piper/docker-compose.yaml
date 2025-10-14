@@ -10,13 +10,13 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ../DATA/wyoming-piper/data:/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/wyoming-piper/data:/data"
 
     hostname: "${NAME:-wyoming-piper}"
 
@@ -30,7 +30,7 @@ services:
       - "${PORT:-10200}:10200"
 
     env_file:
-      - ./wyoming-piper/.env
+      - "./wyoming-piper/.env"
 
     runtime: nvidia
     deploy:

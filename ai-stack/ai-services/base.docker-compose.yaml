@@ -28,6 +28,7 @@ volumes:
   anythingllm_storage:
   anythingllm_hotdir:
   anythingllm_outputs:
+  kokoro_index_data:
   index_data:
   clickhouse_data:
   clickhouse_backups:

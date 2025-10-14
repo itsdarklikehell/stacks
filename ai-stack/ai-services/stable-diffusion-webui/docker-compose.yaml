@@ -5,11 +5,11 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/stable-diffusion-webui-docker/services/comfy
+      context: "../DATA/stable-diffusion-webui-docker/services/comfy"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
-      dockerfile: ./Dockerfile
+      dockerfile: "./Dockerfile"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -17,15 +17,15 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
-      - CLI_ARGS=${CLI_ARGS:-}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "CLI_ARGS=${CLI_ARGS:-}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ../DATA/stable-diffusion-webui-docker/data:/data
-      - ../DATA/stable-diffusion-webui-docker/output:/output
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/stable-diffusion-webui-docker/data:/data"
+      - "../DATA/stable-diffusion-webui-docker/output:/output"
       # - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: "${NAME:-stable-diffusion-webui}"
@@ -38,7 +38,7 @@ services:
       - "${PORT:-7860}:7860"
 
     env_file:
-      - ./stable-diffusion-webui/.env
+      - "./stable-diffusion-webui/.env"
 
     stop_signal: SIGKILL
 

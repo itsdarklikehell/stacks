@@ -5,11 +5,11 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/stable-diffusion-webui-docker/services/download/
+      context: "../DATA/stable-diffusion-webui-docker/services/download/"
       args:
         UID: "${PUID:-1000}"
         GID: "${PUID:-1000}"
-      dockerfile: ./Dockerfile
+      dockerfile: "./Dockerfile"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -17,17 +17,17 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ../DATA/stable-diffusion-webui-docker/data:/data
-      - ../DATA/stable-diffusion-webui-docker/data/config:/data/config
-      - ../DATA/stable-diffusion-webui-docker/data/Models:/data/Models
-      - ../DATA/stable-diffusion-webui-docker/data/Output:/data/Output
-      - ../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/stable-diffusion-webui-docker/data:/data"
+      - "../DATA/stable-diffusion-webui-docker/data/config:/data/config"
+      - "../DATA/stable-diffusion-webui-docker/data/Models:/data/Models"
+      - "../DATA/stable-diffusion-webui-docker/data/Output:/data/Output"
+      - "../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
       
     hostname: "${NAME:-stable-diffusion-models-download}"
 
@@ -36,7 +36,7 @@ services:
       ai-services:
 
     env_file:
-      - ./stable-diffusion-models-download/.env
+      - "./stable-diffusion-models-download/.env"
 
     deploy:
       replicas: 1

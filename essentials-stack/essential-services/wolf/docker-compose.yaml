@@ -10,34 +10,33 @@ services:
       # - "autoheal"
 
     environment:
-      - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_VISIBLE_DEVICES=all
+      - "NVIDIA_DRIVER_CAPABILITIES=all"
+      - "NVIDIA_VISIBLE_DEVICES=all"
 
     volumes:
-      - ../DATA/wolf/etc/wolf/:/etc/wolf
-      - /var/run/docker.sock:/var/run/docker.sock:rw
-      - /dev/:/dev/:rw
-      - /run/udev:/run/udev:rw
-
-    hostname: "${NAME:-wolf}"
+      - "../DATA/wolf/etc/wolf/:/etc/wolf"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/dev/:/dev/:rw"
+      - "/run/udev:/run/udev:rw"
 
     device_cgroup_rules:
       - 'c 13:* rmw'
 
     devices:
-      - /dev/dri
-      - /dev/uinput
-      - /dev/uhid
+      - "/dev/dri"
+      - "/dev/uinput"
+      - "/dev/uhid"
 
     networks:
       host:
       essential-services:
-
-    # ports:
-    #   - "${PORT:-3000}:3000"
+    
+    hostname: "${NAME:-wolf}"
 
     env_file:
-      - ./wolf/.env
+      - "./wolf/.env"
       
     runtime: nvidia
     deploy:

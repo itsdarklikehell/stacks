@@ -5,9 +5,9 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     environment:
-      - PULSE_SERVER=unix:/tmp/pulse/native # Uncomment for native Ubuntu/Debian with PulseAudio
-      - PORT=${PORT:-8002}"
-      # - PULSE_SERVER=/mnt/wslg/PulseServer # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
+      - "PULSE_SERVER=unix:/tmp/pulse/native" # Uncomment for native Ubuntu/Debian with PulseAudio
+      - "PORT=${PORT:-8002}"
+      # - "PULSE_SERVER=/mnt/wslg/PulseServer" # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -17,12 +17,10 @@ services:
     volumes:
       # - \\wsl$\Ubuntu\mnt\wslg:/mnt/wslg/  # Default: WSL2 audio mount for Windows CMD with Docker Desktop
       # - /mnt/wslg/:/mnt/wslg/  # Uncomment for WSL2 Ubuntu (running Docker inside WSL2 distro)
-      - ~/.config/pulse/cookie:/root/.config/pulse/cookie:ro # Uncomment for native Ubuntu/Debian
-      - /run/user/1000/pulse:/tmp/pulse:ro # Uncomment and adjust UID (e.g., 1000) for native Ubuntu/Debian
+      - "${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie:ro" # Uncomment for native Ubuntu/Debian
+      - "/run/user/1000/pulse:/tmp/pulse:ro" # Uncomment and adjust UID (e.g., 1000) for native Ubuntu/Debian
 
     hostname: "${NAME:-voice-chat-ai}"
-
-    # command: [ "ollama", "pull", "qwen3"]
 
     networks:
       host:
@@ -32,7 +30,7 @@ services:
       - "${PORT:-8002}:8002"
 
     env_file:
-      - ./voice-chat-ai/.env
+      - "./voice-chat-ai/.env"
 
     runtime: nvidia
     deploy:

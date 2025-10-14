@@ -11,16 +11,16 @@ services:
 
     environment:
       # Tell Dockge where to find the stacks
-      - DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks
+      - "DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks"
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ../DATA/dockge/data:/app/data
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "../DATA/dockge/data:/app/data"
       # Stacks Directory
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
       # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
-      - /media/rizzo/RAIDSTATION/stacks:/opt/stacks
+      - "/media/rizzo/RAIDSTATION/stacks:/opt/stacks"
       # - DOCKGE_STACKS_DIR=/opt/stacks
 
     hostname: "${NAME:-dockge}"
@@ -33,17 +33,10 @@ services:
       - "${PORT:-5001}:5001"
 
     env_file:
-      - ./dockge/.env
+      - "./dockge/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
     # # Optional: Health check for monitoring
     # healthcheck:

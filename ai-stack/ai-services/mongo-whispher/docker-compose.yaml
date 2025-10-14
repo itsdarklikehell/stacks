@@ -10,16 +10,16 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
-      - MONGO_INITDB_ROOT_USERNAME=${DB_USER:-whishper}"
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS:-whishper}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "MONGO_INITDB_ROOT_USERNAME=${DB_USER:-whishper}"
+      - "MONGO_INITDB_ROOT_PASSWORD=${DB_PASS:-whishper}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ../DATA/mongo-whispher/db_data:/data/db
-      - ../DATA/mongo-whispher/db_data/logs/:/var/log/mongodb/
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/mongo-whispher/db_data:/data/db"
+      - "../DATA/mongo-whispher/db_data/logs/:/var/log/mongodb/"
 
     hostname: "${NAME:-mongo-whispher}"
 

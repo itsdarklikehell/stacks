@@ -10,20 +10,20 @@ services:
       # - "autoheal"
 
     environment:
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-      - N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}"
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - N8N_RUNNERS_ENABLED=true
-      - OLLAMA_HOST=http://host.docker.internal:11434ernal:11434
-      - NODE_ENV=production
-      - WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/
-      - TZ=${TZ:-Europe/Amsterdam}"
-      - GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}"
+      - "N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true"
+      - "N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}"
+      - "N8N_PORT=5678"
+      - "N8N_PROTOCOL=https"
+      - "N8N_RUNNERS_ENABLED=true"
+      - "OLLAMA_HOST=http://host.docker.internal:11434ernal:11434"
+      - "NODE_ENV=production"
+      - "WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - n8n_data:/home/node/.n8n
-      - ../DATA/n8n/local-files:/files
+      - "n8n_data:/home/node/.n8n"
+      - "../DATA/n8n/local-files:/files"
 
     hostname: "${NAME:-n8n}"
 

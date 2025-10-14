@@ -18,38 +18,36 @@ services:
     # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-autoheal-essential-services}"
     
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       essential-services:
     
     # ports:
-    #   - "80:80"
+    #   - "${PORT:-80}:80"
 
     env_file:
-      - ./autoheal/.env
+      - "./autoheal/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
+    tty: true
+    
+    stdin_open: true
 
-
+    # # Optional: Health check for monitoring
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:80/api/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
       driver: "json-file"

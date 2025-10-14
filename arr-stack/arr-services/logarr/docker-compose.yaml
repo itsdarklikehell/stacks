@@ -10,7 +10,7 @@ services:
       # - "autoheal"
 
     environment:
-      - TZ=${TZ:-Europe/Amsterdam}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - PORT=${PORT:-88}"
 
     volumes:
@@ -20,8 +20,6 @@ services:
       # - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: "${NAME:-logarr}"
-
-    # command: [ "ollama", "pull", "qwen3"]
 
     networks:
       host:

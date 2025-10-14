@@ -4,35 +4,28 @@ services:
     container_name: "${NAME:-kokoro-tts}"
     restart: "${RESTART:-unless-stopped}"
 
-    # volumes:
-    #   - ../DATA/kokoro-tts:/kokoro
-    #   - index_data:/index_data
+    volumes:
+      - "../DATA/kokoro-tts:/kokoro"
+      - "kokoro_index_data:/index_data"
 
-    hostname: kokoro-tts
+    hostname: "${NAME:-kokoro-tts}"
 
     environment:
-      - PORT=8880
+      - "PORT=8880"
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - ./kokoro-tts/.env
+      - "./kokoro-tts/.env"
 
     ports:
       - "${PORT:-8880}:8880"
 
-    # depends_on:
-    #   - clickhouse
-
     tty: true
 
     stdin_open: true
-
-    # group_add:
-    #   - "video"
-    #   - "render"
 
     # Optional: Health check for monitoring
     healthcheck:

@@ -7,11 +7,11 @@ services:
     user: "${PUID:-1000}:${PGID:-1000}"
     
     build:
-      context: ../DATA/SwarmUI
+      context: "../DATA/SwarmUI"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
-      dockerfile: ./launchtools/CustomDockerfile.docker
+      dockerfile: "./launchtools/CustomDockerfile.docker"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -19,13 +19,13 @@ services:
       # - "autoheal"
 
     volumes:
-      - swarmdata:/SwarmUI/Data
-      - swarmbackend:/SwarmUI/dlbackend
-      - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
-      - swarmextensions:/SwarmUI/src/Extensions
-      - ../DATA/stable-diffusion-webui-docker/data/models:/SwarmUI/Models
-      - ../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output
-      - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - "swarmdata:/SwarmUI/Data"
+      - "swarmbackend:/SwarmUI/dlbackend"
+      - "swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes"
+      - "swarmextensions:/SwarmUI/src/Extensions"
+      - "../DATA/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
+      - "../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output"
+      - "../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
 
     hostname: "${NAME:-swarmui}"
 
@@ -37,18 +37,10 @@ services:
       - "${PORT:-7801}:7801"
 
     env_file:
-      - ./swarmui/.env
+      - "./swarmui/.env"
 
     cap_drop:
       - ALL
-
-    # build:
-    #   context: ../SwarmUI
-    #   args:
-    #     UID: "${PUID:-1000}"
-    #   dockerfile: launchtools/CustomDockerfile.docker
-    # uncomment `network_mode: host` if you want to access other services on the host network (eg a separated comfy instance)
-    # network_mode: host
 
     runtime: nvidia
     deploy:

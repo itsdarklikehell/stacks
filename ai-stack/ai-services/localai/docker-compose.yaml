@@ -24,8 +24,8 @@ services:
     # command: ["--cap-add", "SYS_ADMIN"]
 
     volumes:
-      - localai_models:/models
-      # - ../DATA/localai/models:/models:cached
+      - "localai_models:/models:cached"
+      # - "../DATA/localai/models:/models:cached"
 
     hostname: "${NAME:-localai}"
 

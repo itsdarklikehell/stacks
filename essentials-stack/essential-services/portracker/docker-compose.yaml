@@ -10,16 +10,18 @@ services:
       # - "autoheal"
 
     environment:
-      - DOCKER_HOST=tcp://docker-proxy:2375
-      - DATABASE_PATH=/data/portracker.db
-      - PORT=4999
-      - HOST_PROC=/host/proc
-      - INCLUDE_UDP=true
-      - DEBUG=true
+      - "DOCKER_HOST=tcp://docker-proxy:2375"
+      - "DATABASE_PATH=/data/portracker.db"
+      - "PORT=4999"
+      - "HOST_PROC=/host/proc"
+      - "INCLUDE_UDP=true"
+      - "DEBUG=true"
   
     volumes:
-      - ../DATA/portracker/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "../DATA/portracker/data:/data"
 
     hostname: "${NAME:-portracker}"
 
@@ -33,17 +35,17 @@ services:
     pid: "host"
 
     cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
+      - "SYS_PTRACE"
+      - "SYS_ADMIN"
 
     security_opt:
-      - apparmor:unconfined
+      - "apparmor:unconfined"
 
     depends_on:
       - docker-proxy
 
     env_file:
-      - ./portracker/.env
+      - "./portracker/.env"
 
     tty: true
     
@@ -51,13 +53,6 @@ services:
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
     # Optional: Health check for monitoring
     healthcheck:

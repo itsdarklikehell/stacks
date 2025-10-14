@@ -10,17 +10,17 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
-      - LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}"
-      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}"
-      - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}"
+      - "LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}"
+      - "LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      # - /etc/timezone:/etc/timezone:ro
-      - ../DATA/libretranslate-whispher/data:/home/libretranslate/.local/share
-      - ../DATA/libretranslate-whispher/cache:/home/libretranslate/.local/cache
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/libretranslate-whispher/data:/home/libretranslate/.local/share"
+      - "../DATA/libretranslate-whispher/cache:/home/libretranslate/.local/cache"
 
     hostname: "${NAME:-libretranslate-whispher}"
 
@@ -31,10 +31,10 @@ services:
     ports:
       - "${PORT:-5000}:5000"
 
-    user: root
+    # user: root
 
     env_file:
-      - ./libretranslate-whispher/.env
+      - "./libretranslate-whispher/.env"
 
     runtime: nvidia
     deploy:

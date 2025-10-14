@@ -7,34 +7,27 @@ services:
     entrypoint: /bin/bash
 
     # volumes:
-    #   - ../DATA/coqui-tts-cpu:/kokoro
-    #   - index_data:/index_data
+    #   - "../DATA/coqui-tts-cpu:/kokoro"
+    #   - "kokoro_index_data:/index_data"
 
-    hostname: coqui-tts-cpu
+    hostname: "${NAME:-coqui-tts-cpu}"
 
     environment:
-      - PORT=5002
+      - "PORT=5002"
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - ./coqui-tts-cpu/.env
+      - "./coqui-tts-cpu/.env"
 
     ports:
       - "${PORT:-5002}:5002"
 
-    # depends_on:
-    #   - clickhouse
-
     tty: true
 
     stdin_open: true
-
-    # group_add:
-    #   - "video"
-    #   - "render"
 
     # Optional: Health check for monitoring
     healthcheck:

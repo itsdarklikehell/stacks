@@ -10,20 +10,19 @@ services:
       # - "autoheal"
 
     environment:
-      - PORT=${PORT:-8080}"
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
-      - ENABLE_RAG_WEB_SEARCH=True
-      - RAG_WEB_SEARCH_ENGINE=searxng
-      - RAG_WEB_SEARCH_RESULT_COUNT=3
-      - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
-      - SEARXNG_QUERY_URL=http://searxng:8081/search?q=<query>
+      - "PORT=${PORT:-8080}"
+      - "PUID=${PUID:-1000}"
+      - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
+      - "ENABLE_RAG_WEB_SEARCH=True"
+      - "RAG_WEB_SEARCH_ENGINE=searxng"
+      - "RAG_WEB_SEARCH_RESULT_COUNT=3"
+      - "RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10"
+      - "SEARXNG_QUERY_URL=http://searxng:8081/search?q=<query>"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - open-webui-data:/app/backend/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "open-webui-data:/app/backend/data"
 
     hostname: "${NAME:-open-webui}"
 
@@ -35,13 +34,10 @@ services:
       - "${PORT:-8080}:8080"
 
     env_file:
-      - ./open-webui/.env
+      - "./open-webui/.env"
 
     deploy:
       replicas: 1
-
-    # depends_on:
-    #   - ollama
 
     extra_hosts:
       - host.docker.internal:host-gateway

@@ -36,8 +36,6 @@ services:
 
     hostname: "${NAME:-openllm-vtuber}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       openllm-vtuber-services:

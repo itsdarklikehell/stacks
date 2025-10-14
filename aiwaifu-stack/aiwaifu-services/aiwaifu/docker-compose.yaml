@@ -5,16 +5,16 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/aiwaifu
+      context: "../DATA/aiwaifu"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
-      dockerfile: ./CustomDockerfile-aiwaifu-venv
-      # dockerfile: ./CustomDockerfile-aiwaifu-conda
-      # dockerfile: ./CustomDockerfile-aiwaifu-uv
+      dockerfile: "./CustomDockerfile-aiwaifu-venv"
+      # dockerfile: "./CustomDockerfile-aiwaifu-conda"
+      # dockerfile: "./CustomDockerfile-aiwaifu-uv"
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
+      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -36,8 +36,6 @@ services:
 
     hostname: "${NAME:-aiwaifu}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       aiwaifu-services:
@@ -46,7 +44,7 @@ services:
       - "${PORT:-5137}:5137"
 
     env_file:
-      - ./aiwaifu/.env
+      - "./aiwaifu/.env"
 
     runtime: nvidia
     deploy:

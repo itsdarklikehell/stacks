@@ -57,7 +57,7 @@ services:
 
     hostname: "${NAME:-metamcp}"
 
-    # command: [ "ollama", "pull", "qwen3"]
+
 
     depends_on:
       metamcp-pg:

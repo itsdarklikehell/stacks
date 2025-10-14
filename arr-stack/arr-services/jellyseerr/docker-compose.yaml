@@ -10,10 +10,10 @@ services:
       # - "autoheal"
 
     environment:
-      - PUID=${PUID:-1000}"
-      - PGID=${PGID:-1000}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
       - LOG_LEVEL=debug
-      - TZ=${TZ:-Europe/Amsterdam}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - ../DATA/jellyseerr/appdata/config:/app/config

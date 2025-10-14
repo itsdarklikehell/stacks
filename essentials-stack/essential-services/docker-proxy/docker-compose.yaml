@@ -10,14 +10,16 @@ services:
       # - "autoheal"
 
     environment:
-      - CONTAINERS=1
-      - IMAGES=1
-      - INFO=1
-      - NETWORKS=1
-      - POST=0
+      - "CONTAINERS=1"
+      - "IMAGES=1"
+      - "INFO=1"
+      - "NETWORKS=1"
+      - "POST=0"
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-docker-proxy}"
 
@@ -29,22 +31,14 @@ services:
       - "${PORT:-2375}:2375"
 
     env_file:
-      - ./docker-proxy/.env
+      - "./docker-proxy/.env"
     
+    deploy:
+      replicas: 1
+
     tty: true
 
     stdin_open: true
-
-    deploy:
-      replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
-
 
     # # Optional: Health check for monitoring
     # healthcheck:

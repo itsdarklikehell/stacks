@@ -15,9 +15,9 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - home-assistant-config:/config
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "home-assistant-config:/config"
 
     hostname: "${NAME:-homeassistant}"
 
@@ -26,17 +26,17 @@ services:
       ai-services:
 
     env_file:
-      - ./homeassistant/.env
+      - "./homeassistant/.env"
 
     ports:
-      - ${PORT:-8123}:8123
+      - "${PORT:-8123}:8123"
 
     depends_on:
       - faster-whisper-gpu
       - wyoming-piper
 
     tty: true
-    
+
     stdin_open: true
 
     # Optional: Health check for monitoring

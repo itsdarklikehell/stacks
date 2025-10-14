@@ -10,7 +10,7 @@ services:
       # - "autoheal"
 
     environment:
-      - TZ=${TZ:-Europe/Amsterdam}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - ../DATA/flexget/config:/config

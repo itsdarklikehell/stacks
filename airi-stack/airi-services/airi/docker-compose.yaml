@@ -5,16 +5,16 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: ../DATA/airi
+      context: "../DATA/airi"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
-      dockerfile: ./CustomDockerfile-airi-conda
-      # dockerfile: ./CustomDockerfile-airi-uv
-      # dockerfile: ./CustomDockerfile-airi-venv
+      dockerfile: "./CustomDockerfile-airi-conda"
+      # dockerfile: "./CustomDockerfile-airi-uv"
+      # dockerfile: "./CustomDockerfile-airi-venv"
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
+      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -36,8 +36,6 @@ services:
 
     hostname: "${NAME:-airi}"
 
-    # command: [ "ollama", "pull", "qwen3"]
-
     networks:
       host:
       airi-services:
@@ -46,7 +44,7 @@ services:
       - "${PORT:-5137}:5137"
 
     env_file:
-      - ./airi/.env
+      - "./airi/.env"
 
     runtime: nvidia
     deploy:
@@ -86,7 +84,6 @@ services:
       timeout: "10s"
       start_period: "30s"
       retries: 3
-
 
     logging:
       driver: "json-file"

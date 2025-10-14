@@ -13,14 +13,12 @@ services:
       - HTTP_PORT=8086
       - PUID=${PUID:-1000}"
       - PGID=${PGID:-1000}"
-      - TZ=${TZ:-Europe/Amsterdam}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - ../DATA/quakejs/config:/config
 
     hostname: "${NAME:-quakejs}"
-
-    # command: [ "ollama", "pull", "qwen3"]
 
     networks:
       host:

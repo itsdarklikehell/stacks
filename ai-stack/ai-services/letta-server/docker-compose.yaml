@@ -10,13 +10,13 @@ services:
       # - "autoheal"
 
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}"
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
+      - "OPENAI_API_KEY=${OPENAI_API_KEY:-}"
+      - "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
+      - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
 
     volumes:
-      - ../DATA/letta/.persist/pgdata:/var/lib/postgresql/data
-      # - ../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir # mounted volume for tool execution
+      - "../DATA/letta/.persist/pgdata:/var/lib/postgresql/data"
+      - "../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir" # mounted volume for tool execution
   
     hostname: "${NAME:-letta-server}"
 
@@ -30,10 +30,10 @@ services:
         #   - letta-db
 
     ports:
-      - "4316:4316"
-      - "4318:4318"
-      - "5432:5432"
       - "8283:8283"
+      # - "5432:5432"
+      # - "4316:4316"
+      # - "4318:4318"
 
     env_file:
       - ./letta-server/.env

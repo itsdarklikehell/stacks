@@ -13,7 +13,7 @@ services:
       - LOG_LEVEL=info
       - LOG_HTML=false
       - CAPTCHA_SOLVER=none
-      - TZ=${TZ:-Europe/Amsterdam}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     hostname: "${NAME:-flaresolverr}"
 
