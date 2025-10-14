@@ -26,13 +26,13 @@ services:
     ports:
       - "${PORT:-8780}:8780"
 
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://127.0.0.1:8780/api/health"]
+    # healthcheck:
+      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://127.0.0.1:8780/api/health"]
       # test: ["CMD", "curl", "-f", "http://localhost:8780"]
-      interval: "30s"
-      timeout: "10s"
-      retries: "3"
-      start_period: 40s
+      # interval: "30s"
+      # timeout: "10s"
+      # start_period: "30s"
+      # retries: "3"
 
     env_file:
       - ./dasharr/.env

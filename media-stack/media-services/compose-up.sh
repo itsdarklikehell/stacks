@@ -22,7 +22,6 @@ COMPOSE_FILES=(
   tvs99 
   watchtower 
   webrcade 
-  wolf
 )
 
 ARGS=""

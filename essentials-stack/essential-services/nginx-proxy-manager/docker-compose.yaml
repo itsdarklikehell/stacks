@@ -52,8 +52,8 @@ services:
       replicas: 1
 
 
-    healthcheck:
-      test: ["CMD", "/usr/bin/check-health"]
+    # healthcheck:
+      # test: ["CMD", "/usr/bin/check-health"]
       interval: "10s"
       timeout: 3s
 

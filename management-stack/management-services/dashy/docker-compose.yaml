@@ -40,12 +40,12 @@ services:
       #     memory: 256M
       #     cpus: "0.25"
 
-    healthcheck:
-      test: ["CMD", "node", "/app/services/healthcheck"]
-      interval: "30s"
-      timeout: "10s"
-      retries: "3"
-      start_period: 40s
+    # healthcheck:
+      # test: ["CMD", "node", "/app/services/healthcheck"]
+      # interval: "30s"
+      # timeout: "10s"
+      # start_period: "30s"
+      # retries: "3"
 
 
     logging:

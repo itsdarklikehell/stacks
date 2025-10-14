@@ -61,8 +61,8 @@ services:
     # stdin_open: true
 
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+    # healthcheck:
+      # test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
       interval: 1m
       timeout: 20m
       retries: 5

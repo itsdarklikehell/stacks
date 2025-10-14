@@ -38,8 +38,8 @@ services:
     deploy:
       replicas: 1
       
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+    # healthcheck:
+      # test: ["CMD", "curl", "-f", "http://localhost:3001"]
       interval: "30s"
       retries: "3"
       start_period: "10s"

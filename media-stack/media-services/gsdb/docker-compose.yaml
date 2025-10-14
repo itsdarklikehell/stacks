@@ -29,12 +29,12 @@ services:
       - ./gsdb/.env
 
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:32400"]
-      interval: "30s"
-      timeout: "10s"
-      retries: "3"
-      start_period: 40s
+    # healthcheck:
+      # test: ["CMD", "curl", "-f", "http://localhost:32400"]
+      # interval: "30s"
+      # timeout: "10s"
+      # start_period: "30s"
+      # retries: "3"
 
     deploy:
       replicas: 1

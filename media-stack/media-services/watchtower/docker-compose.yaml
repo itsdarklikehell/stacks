@@ -47,19 +47,18 @@ services:
       - romm-db
       - tvs99
       - webrcade
-      - wolf
 
     tty: true
     
     stdin_open: true
 
 
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8080/api/health"]
-      interval: "30s"
-      timeout: "10s"
-      start_period: "30s"
-      retries: "3"
+    # healthcheck:
+      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8080/api/health"]
+      # interval: "30s"
+      # timeout: "10s"
+      # start_period: "30s"
+      # retries: "3"
 
     logging:
       driver: "json-file"
