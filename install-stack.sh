@@ -160,21 +160,21 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-# echo ""
-# INSTALL_ARR_STACK
-# echo ""
+echo ""
+INSTALL_ARR_STACK
+echo ""
 
-# echo ""
-# INSTALL_MANAGEMENT_STACK
-# echo ""
+echo ""
+INSTALL_MANAGEMENT_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
-# echo ""
-# INSTALL_AIWAIFU_STACK
-# echo ""
+echo ""
+INSTALL_AIWAIFU_STACK
+echo ""
 
 # echo ""
 # INSTALL_AIRI_STACK
@@ -184,13 +184,13 @@ echo ""
 # INSTALL_OPENLLM_VTUBER_STACK
 # echo ""
 
-# echo ""
-# INSTALL_JAISON_STACK
-# echo ""
+echo ""
+INSTALL_JAISON_STACK
+echo ""
 
-# echo ""
-# INSTALL_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+INSTALL_PROJECT_RIKO_STACK
+echo ""
 
 # PULL_MODELS
 
