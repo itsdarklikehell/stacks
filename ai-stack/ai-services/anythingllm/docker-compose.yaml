@@ -15,6 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "STORAGE_DIR=/app/server/storage"
       - "SERVER_PORT=3002"
+      - "VECTOR_DB="
       # - "DATABASE_URL=postgresql://dbuser:dbpassword@172.17.0.1:5432/dbname"
 
 
@@ -24,11 +25,11 @@ services:
     command: ["--cap-add", "SYS_ADMIN"]
 
     volumes:
-      # - "anythingllm_storage:${STORAGE_DIR:-/app/server/storage}"
-      # - "anythingllm_hotdir:/app/collector/hotdir"
-      # - "anythingllm_outputs:/app/collector/outputs"
-      - "../DATA/anythingllm/anythingllm_storage:/app/server/storage"
-      - "../DATA/anythingllm/.env:/app/server/.env"
+      - "anythingllm_storage:/app/server/storage"
+      - "anythingllm_hotdir:/app/collector/hotdir"
+      - "anythingllm_outputs:/app/collector/outputs"
+      - "./.env:/app/server/.env"
+      # - "../DATA/anythingllm/anythingllm_storage:/app/server/storage"
       # - "../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir"
       # - "../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs"
 

@@ -1,7 +1,7 @@
 services:
   faster-whisper-gpu:
-    image: lscr.io/linuxserver/faster-whisper:gpu
-    container_name: faster-whisper-gpu
+    image:  "${IMAGE:-lscr.io/linuxserver/faster-whisper:gpu}"
+    container_name: "${NAME:-faster-whisper-gpu}"
     restart: "${RESTART:-unless-stopped}"
 
     labels:
@@ -13,10 +13,10 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - WHISPER_MODEL=${WHISPER_MODE:-tiny-int8}"
-      - LOCAL_ONLY=false #optional
-      - WHISPER_BEAM=1 #optional
-      - WHISPER_LANG=en #optional
+      - "WHISPER_MODEL=${WHISPER_MODEL:-large-v3-turbo}"
+      # - "LOCAL_ONLY=false" #optional
+      # - "WHISPER_BEAM=1" #optional
+      # - "WHISPER_LANG=en" #optional
     
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -30,7 +30,7 @@ services:
     ports:
       - "${PORT:-10300}:10300"
 
-    hostname: faster-whisper-gpu
+    hostname: "${NAME:-faster-whisper-gpu}"
 
     env_file:
       - ./faster-whisper-gpu/.env

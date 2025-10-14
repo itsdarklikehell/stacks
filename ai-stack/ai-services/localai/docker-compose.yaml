@@ -12,10 +12,10 @@ services:
 
     environment:
       - "DEBUG=true"
+      - 'STORAGE_DIR="/app/server/storage"'
       # - "PUID=${PUID:-1000}"
       # - "PGID=${PGID:-1000}"
       # - "TZ=${TZ:-Europe/Amsterdam}"
-      # - 'STORAGE_DIR="/app/server/storage"'
       # - "SERVER_PORT=8080"
 
     # cap_add:
@@ -24,8 +24,8 @@ services:
     # command: ["--cap-add", "SYS_ADMIN"]
 
     volumes:
-      - ../DATA/localai/models:/models:cached
-      # - localai-models:/models:cached
+      - localai_models:/models
+      # - ../DATA/localai/models:/models:cached
 
     hostname: "${NAME:-localai}"
 
