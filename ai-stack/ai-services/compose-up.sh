@@ -12,18 +12,12 @@ COMPOSE_FILES=(
   clickhouse/docker-compose.yaml
   faster-whisper-gpu/docker-compose.yaml
   homeassistant/docker-compose.yaml
-  # librechat/docker-compose.yaml
-  # librechat-meilisearch/docker-compose.yaml 
-  # librechat-mongodb/docker-compose.yaml 
-  # librechat-rag_api/docker-compose.yaml 
-  # librechat-vectordb/docker-compose.yaml
   letta-server/docker-compose.yaml
   localai/docker-compose.yaml
   libretranslate/docker-compose.yaml
   kokoro-tts/docker-compose.yaml
   coqui-tts-cpu/docker-compose.yaml
   voice-chat-ai/docker-compose.yaml
-  mongo/docker-compose.yaml
     #  ollama/docker-compose.yaml # runs locally now
   open-webui/docker-compose.yaml
   searxng/docker-compose.yaml
@@ -31,6 +25,7 @@ COMPOSE_FILES=(
   stable-diffusion-webui/docker-compose.yaml
   swarmui/docker-compose.yaml
   n8n/docker-compose.yaml
+  mongo-whispher/docker-compose.yaml
   whishper/docker-compose.yaml
   wyoming-piper/docker-compose.yaml
   watchtower/docker-compose.yaml

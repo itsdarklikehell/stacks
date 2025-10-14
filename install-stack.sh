@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="all" # false, true/normal, all
+export PRUNE="normal" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
 
 export TWITCH_CLIENT_ID="your_client_id"
@@ -163,14 +163,14 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-echo ""
-INSTALL_MCP_STACK
-uv tool install git+https://github.com/sparfenyuk/mcp-telegram
-go install github.com/mark3labs/mcp-filesystem-server@latest
-npm install @mtane0412/twitch-mcp-server
-npm install @iqai/mcp-telegram
-sudo apt install -y lynx
-echo ""
+# echo ""
+# INSTALL_MCP_STACK
+# uv tool install git+https://github.com/sparfenyuk/mcp-telegram
+# go install github.com/mark3labs/mcp-filesystem-server@latest
+# npm install @mtane0412/twitch-mcp-server
+# npm install @iqai/mcp-telegram
+# sudo apt install -y lynx
+# echo ""
 
 
 
@@ -206,7 +206,7 @@ echo ""
 # INSTALL_PROJECT_RIKO_STACK
 # echo ""
 
-PULL_MODELS 
+# PULL_MODELS
 
 # dockly # lazydocker
 

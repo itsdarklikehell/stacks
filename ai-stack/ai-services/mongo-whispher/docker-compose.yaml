@@ -1,7 +1,7 @@
 services:
-  mongo:
+  mongo-whispher:
     image: ${IMAGE:-mongo}
-    container_name: ${NAME:-mongo}
+    container_name: ${NAME:-mongo-whispher}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,10 +18,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../DATA/whisper/db_data:/data/db
-      - ../DATA/whisper/db_data/logs/:/var/log/mongodb/
+      - ../DATA/mongo-whispher/db_data:/data/db
+      - ../DATA/mongo-whispher/db_data/logs/:/var/log/mongodb/
 
-    hostname: ${NAME:-mongo}
+    hostname: ${NAME:-mongo-whispher}
 
     command: ["--logpath", "/var/log/mongodb/mongod.log"]
 
@@ -33,14 +33,14 @@ services:
       - "${PORT:-27017}:27017"
 
     env_file:
-      - ./mongo/.env
+      - ./mongo-whispher/.env
 
     deploy:
       replicas: 1
 
-    tty: true
+    # tty: true
     
-    stdin_open: true
+    # stdin_open: true
 
     # Optional: Health check for monitoring
     healthcheck:

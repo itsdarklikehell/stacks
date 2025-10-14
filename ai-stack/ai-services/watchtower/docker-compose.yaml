@@ -22,9 +22,6 @@ services:
       host:
       ai-services:
 
-    # ports:
-    #   - "${PORT:-8080}:8080"
-
     env_file:
       - ./watchtower/.env
 
@@ -39,15 +36,7 @@ services:
       - clickhouse
       - faster-whisper-gpu
       - homeassistant
-      # - letta-db
-      # - letta-mcp
-      # - letta-server
       # - libretranslate
-      # - librechat
-      # - librechat-meilisearch
-      # - librechat-mongodb
-      # - librechat-rag_api
-      # - librechat-vectordb
       - kokoro-tts
       - coqui-tts-cpu
       - mongo

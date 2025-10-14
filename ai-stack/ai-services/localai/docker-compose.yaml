@@ -11,29 +11,21 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - 'STORAGE_DIR="/app/server/storage"'
-      - "SERVER_PORT=8080"
       - "DEBUG=true"
+      # - "PUID=${PUID:-1000}"
+      # - "PGID=${PGID:-1000}"
+      # - "TZ=${TZ:-Europe/Amsterdam}"
+      # - 'STORAGE_DIR="/app/server/storage"'
+      # - "SERVER_PORT=8080"
 
+    # cap_add:
+    #   - "SYS_ADMIN"
 
-    cap_add:
-      - "SYS_ADMIN"
-
-    command: ["--cap-add", "SYS_ADMIN"]
+    # command: ["--cap-add", "SYS_ADMIN"]
 
     volumes:
-      # - ../DATA/localai/models:/models:cached
-      - localai-models:/models
-      # - "localai_storage:${STORAGE_DIR:-/app/server/storage}"
-      # - "localai_hotdir:/app/collector/hotdir"
-      # - "localai_outputs:/app/collector/outputs"
-      # - "../DATA/localai/localai_storage:${STORAGE_DIR:-/app/server/storage}"
-      # - "../DATA/localai/localai_hotdir:/app/collector/hotdir"
-      # - "../DATA/localai/localai_outputs:/app/collector/outputs"
-
+      - ../DATA/localai/models:/models:cached
+      # - localai-models:/models:cached
 
     hostname: "${NAME:-localai}"
 
@@ -44,7 +36,7 @@ services:
       ai-services:
 
     ports:
-      - "${PORT:-8080}:8080"
+      - "${PORT:-8083}:8080"
 
     env_file:
       - "./localai/.env"
@@ -64,9 +56,9 @@ services:
               count: 1
               capabilities: [gpu, compute, video, graphics, utility]
 
-    tty: true
+    # tty: true
     
-    stdin_open: true
+    # stdin_open: true
 
     # Optional: Health check for monitoring
     healthcheck:

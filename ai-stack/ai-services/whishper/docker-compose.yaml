@@ -1,6 +1,7 @@
 services:
   whishper:
     image: ${IMAGE:-pluja/whishper:latest-gpu}
+    pull_policy: always
     container_name: ${NAME:-whishper}
     restart: ${RESTART:-unless-stopped}
     # pull_policy: always
@@ -13,14 +14,14 @@ services:
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-whishper}
+      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}
       - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}
       - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}
       - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
       - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
       - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
-      - PORT=${PORT:-8001}
-      - WHISPER_PORT=${WHISPER_PORT:-10301}
+      - CPU_THREADS=4
+      - PORT=${PORT:-8082}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -36,15 +37,14 @@ services:
       ai-services:
 
     ports:
-      - "${PORT:-8001}:80"
-      - "${WHISPER_PORT:-10301}:10301"
+      - "${PORT:-8082}:80"
 
     env_file:
       - ./whishper/.env
 
     depends_on:
-      - mongo
-      - libretranslate
+      - mongo-whispher
+      - libretranslate-whispher
 
     runtime: nvidia
     deploy:

@@ -9,6 +9,7 @@ COMPOSE_FILES=(
   # autopulse/docker-compose.yaml
   docker-proxy/docker-compose.yaml
   dockge/docker-compose.yaml
+  homarr/docker-compose.yaml
   grafana/docker-compose.yaml
   it-tools/docker-compose.yaml
   nginx-proxy-manager/docker-compose.yaml
