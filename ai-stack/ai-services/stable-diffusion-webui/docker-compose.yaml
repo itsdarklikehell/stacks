@@ -67,7 +67,7 @@ services:
       interval: "30s"
       timeout: "10s"
       start_period: "30s"
-      retries: 3
+      retries: "3"
 
     logging:
       driver: "json-file"

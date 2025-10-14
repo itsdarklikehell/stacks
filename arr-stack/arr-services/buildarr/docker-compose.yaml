@@ -15,7 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/buildarr/config:/config
+      - "../DATA/buildarr/config:/config"
 
     hostname: "${NAME:-buildarr}"
 
@@ -23,19 +23,25 @@ services:
       host:
       arr-services:
 
+    ports:
+      - "${PORT:-7878}:7878"
+
     env_file:
-      - ./buildarr/.env
+      - "./buildarr/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6767"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

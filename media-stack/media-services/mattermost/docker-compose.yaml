@@ -20,9 +20,9 @@ services:
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8065"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
       start_period: 40s
 
     env_file:

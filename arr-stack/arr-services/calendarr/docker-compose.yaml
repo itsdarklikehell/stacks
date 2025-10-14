@@ -11,6 +11,8 @@ services:
 
     environment:
       TZ: "${TZ:-Europe/Amsterdam}"
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1000}"
       CALENDAR_URLS: >
         [{
           "url":"${ICS_URL_SONARR_1}",
@@ -55,14 +57,24 @@ services:
       USE_24_HOUR: true
 
     volumes:
-      - ../DATA/calendarr/logs:/app/logs:rw
-      - ../DATA/calendarr/custom_footers:/app/custom_footers:rw
+      - "../DATA/calendarr/logs:/app/logs:rw"
+      - "../DATA/calendarr/custom_footers:/app/custom_footers:rw"
 
     hostname: "${NAME:-calendarr}"
 
     networks:
       host:
       arr-services:
+
+    env_file:
+      - "./calendarr/.env"
+
+    deploy:
+      replicas: 1
+
+    tty: true
+    
+    stdin_open: true
 
     healthcheck:
       test:
@@ -72,24 +84,10 @@ services:
           "-c",
           "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')",
         ]
-      interval: 30s
-      timeout: 10s
+      interval: "30s"
+      timeout: "10s"
       retries: 3
-      start_period: 20s
-
-    env_file:
-      - ./calendarr/.env
-
-    deploy:
-      replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
-
+      start_period: "20s"
 
     logging:
       driver: "json-file"

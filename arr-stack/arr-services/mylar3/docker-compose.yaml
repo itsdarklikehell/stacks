@@ -15,9 +15,9 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/mylar3/mylar3/config:/config
-      - ../DATA/mylar3/comics:/comics
-      - ../DATA/mylar3/downloads:/downloads
+      - "../DATA/mylar3/mylar3/config:/config"
+      - "../DATA/mylar3/comics:/comics"
+      - "../DATA/mylar3/downloads:/downloads"
 
     hostname: "${NAME:-mylar3}"
 
@@ -28,26 +28,22 @@ services:
     ports:
       - "${PORT:-8091}:8091"
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:85"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
     env_file:
-      - ./mylar3/.env
+      - "./mylar3/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8091"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

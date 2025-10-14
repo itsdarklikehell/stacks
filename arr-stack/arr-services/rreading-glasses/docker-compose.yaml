@@ -10,13 +10,16 @@ services:
       # - "autoheal"
 
     environment:
-      POSTGRES_HOST: rreading-glasses-db
-      POSTGRES_DATABASE: rreading-glasses
-      POSTGRES_USER: rreading-glasses
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "POSTGRES_HOST=rreading-glasses-db"
+      - "POSTGRES_DATABASE=rreading-glasses"
+      - "POSTGRES_USER=rreading-glasses"
 
-    # volumes:
-    #   - /etc/localtime:/etc/localtime:ro
-    #   - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-rreading-glasses}"
 
@@ -27,34 +30,46 @@ services:
     ports:
       - "${PORT:-8788}:8788"
 
+    env_file:
+      - "./rreading-glasses/.env"
+
     entrypoint: ["/main", "serve"]
 
     command: ["--verbose"]
 
     secrets:
-      - hardcover_auth
-      - rreading_glasses_db_password
+      - "hardcover_auth"
+      - "rreading_glasses_db_password"
 
     depends_on:
       rreading-glasses-db:
         condition: service_started
 
-    env_file:
-      - ./rreading-glasses/.env
-
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
+
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8788"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
 
   rreading-glasses-db:
     image: postgres
-    container_name: rreading-glasses-db
+    container_name: "${NAME:-rreading-glasses-db}"
     restart: "${RESTART:-unless-stopped}"
 
     labels:
@@ -63,36 +78,43 @@ services:
       # - "autoheal"
 
     environment:
-      POSTGRES_USER: rreading-glasses
-      POSTGRES_DB: rreading-glasses
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "POSTGRES_USER=rreading-glasses"
+      - "POSTGRES_DB=rreading-glasses"
 
     volumes:
-      - rreading_glasses_data:/var/lib/postgresql/data
+      - "rreading_glasses_data:/var/lib/postgresql/data"
 
     secrets:
-      - rreading_glasses_db_password
+      - "rreading_glasses_db_password"
 
-    hostname: rreading-glasses-db
+    hostname: "${NAME:-rreading-glasses-db}"
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "5433:5433"
+      - "${PORT:-5433}:5433"
 
     env_file:
-      - ./rreading-glasses/.env
+      - "./rreading-glasses/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
+
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8585"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

@@ -15,7 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config
+      - "../DATA/prowlarr:/config"
 
     hostname: "${NAME:-prowlarr}"
 
@@ -30,16 +30,21 @@ services:
       - "${PORT:-9696}:9696/tcp"
 
     env_file:
-      - ./prowlarr/.env
+      - "./prowlarr/.env"
 
     deploy:
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
+      replicas: 1
+
+    tty: true
+    
+    stdin_open: true
+
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:9696"]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   retries: "3"
+    #   start_period: "40s"
 
     logging:
       driver: "json-file"

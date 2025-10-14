@@ -9,8 +9,13 @@ services:
       # - "autoheal-app=true"
       # - "autoheal"
 
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+
     volumes:
-      - ../DATA/requestrr/config:/root/config
+      - "../DATA/requestrr/config:/root/config"
 
     hostname: "${NAME:-requestrr}"
 
@@ -22,17 +27,21 @@ services:
       - "${PORT:-4545}:4545"
 
     env_file:
-      - ./requestrr/.env
+      - "./requestrr/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
+
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4545"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

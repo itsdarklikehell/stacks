@@ -15,8 +15,8 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/whisparr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media
+      - "../DATA/whisparr/config:/config"
+      - "../DATA/whisparr/media:/media"
 
     hostname: "${NAME:-whisparr}"
 
@@ -31,18 +31,21 @@ services:
       - "${PORT:-6969}:6969/tcp"
 
     env_file:
-      - ./whisparr/.env
+      - "./whisparr/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
 
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6969"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

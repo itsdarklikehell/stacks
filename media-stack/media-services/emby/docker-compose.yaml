@@ -15,8 +15,8 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data
+      - "../DATA/emby/config:/config"
+      - "../DATA/emby/media:/data"
 
     hostname: "${NAME:-emby}"
 
@@ -32,26 +32,22 @@ services:
       - "${PORT:-8097}:8097/tcp"
       - "8920:8920/tcp"
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8097"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
     env_file:
-      - ./emby/.env
+      - "./emby/.env"
+
+    tty: true
+    
+    stdin_open: true
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 1G
-      #     cpus: "1.00"
-      #   reservations:
-      #     memory: 512M
-      #     cpus: "0.50"
-
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8097"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

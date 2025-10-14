@@ -12,41 +12,37 @@ services:
     environment:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
-      - LOG_LEVEL=debug
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "LOG_LEVEL=debug"
 
     volumes:
-      - ../DATA/jellyseerr/appdata/config:/app/config
+      - "../DATA/jellyseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-jellyseerr}"
-
-    ports:
-      - "${PORT:-5055}:5055"
 
     networks:
       host:
       arr-services:
 
-    env_file:
-      - ./jellyseerr/.env
+    ports:
+      - "${PORT:-5055}:5055"
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7878"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    env_file:
+      - "./jellyseerr/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
+    tty: true
+    
+    stdin_open: true
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5055"]
+      interval: "30s"
+      timeout: "10s"
+      retries: "3"
+      start_period: "40s"
 
     logging:
       driver: "json-file"

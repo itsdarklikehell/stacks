@@ -10,6 +10,9 @@ services:
       # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
 
     volumes:
@@ -24,10 +27,7 @@ services:
       arr-services:
 
     env_file:
-      - ./watchtower/.env
-
-    deploy:
-      replicas: 1
+      - "./watchtower/.env"
 
     depends_on:
       - autobrr
@@ -54,18 +54,21 @@ services:
       - sonarr
       - whisparr
       # - mylar3
+    
+    deploy:
+      replicas: 1
 
     tty: true
     
     stdin_open: true
 
-    # Optional: Health check for monitoring
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8080/api/health"]
-      interval: "30s"
-      timeout: "10s"
-      start_period: "30s"
-      retries: 3
+    # # Optional: Health check for monitoring
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8080/api/health"]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

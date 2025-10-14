@@ -10,6 +10,8 @@ services:
       # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "UMASK=${UMASK:-0022}"
       - "PORT=3001"
@@ -38,9 +40,9 @@ services:
       
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001"]
-      interval: 30s
-      retries: 3
-      start_period: 10s
+      interval: "30s"
+      retries: "3"
+      start_period: "10s"
       timeout: 5s
 
     logging:
