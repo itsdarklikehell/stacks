@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="normal" # false, true/normal, all
+export PRUNE="all" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
 
 export TWITCH_CLIENT_ID="your_client_id"
