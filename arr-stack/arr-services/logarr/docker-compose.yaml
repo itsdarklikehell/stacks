@@ -28,7 +28,7 @@ services:
       arr-services:
 
     ports:
-      - "${PORT:-7878}:80"
+      - "${PORT:-7879}:80"
 
     env_file:
       - "./logarr/.env"
@@ -42,7 +42,7 @@ services:
 
     # # Optional: Health check for monitoring
     # healthcheck:
-    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:7878/api/health"]
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:7879/api/health"]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"
