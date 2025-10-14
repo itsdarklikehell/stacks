@@ -5,9 +5,9 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     hostname: "${NAME:-byparr}"
 

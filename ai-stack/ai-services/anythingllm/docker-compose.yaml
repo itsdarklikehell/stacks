@@ -5,16 +5,18 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - 'STORAGE_DIR="/app/server/storage"'
+      - "STORAGE_DIR=/app/server/storage"
       - "SERVER_PORT=3002"
+      # - "DATABASE_URL=postgresql://dbuser:dbpassword@172.17.0.1:5432/dbname"
+
 
     cap_add:
       - "SYS_ADMIN"
@@ -26,6 +28,7 @@ services:
       # - "anythingllm_hotdir:/app/collector/hotdir"
       # - "anythingllm_outputs:/app/collector/outputs"
       - "../DATA/anythingllm/anythingllm_storage:${STORAGE_DIR:-/app/server/storage}"
+      - "./.env:${STORAGE_DIR:-/app/server/.env}"
       # - "../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir"
       # - "../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs"
 

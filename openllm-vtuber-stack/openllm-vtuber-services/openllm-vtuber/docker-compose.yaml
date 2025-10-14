@@ -17,9 +17,9 @@ services:
       # dockerfile: ./CustomDockerfile-openllm-vtuber-venv
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     volumes:
       - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"

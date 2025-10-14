@@ -1,13 +1,13 @@
 services:
   homeassistant:
     image: "${IMAGE:-ghcr.io/home-assistant/home-assistant:stable}"
-    container_name: "${NAME=-homeassistant}"
+    container_name: "${NAME:-homeassistant}"
     restart: "${RESTART:-unless-stopped}"
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"

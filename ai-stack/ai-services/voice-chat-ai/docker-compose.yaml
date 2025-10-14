@@ -10,9 +10,9 @@ services:
       # - PULSE_SERVER=/mnt/wslg/PulseServer # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     volumes:
       # - \\wsl$\Ubuntu\mnt\wslg:/mnt/wslg/  # Default: WSL2 audio mount for Windows CMD with Docker Desktop

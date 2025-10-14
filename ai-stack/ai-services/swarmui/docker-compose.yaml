@@ -14,9 +14,9 @@ services:
       dockerfile: ./launchtools/CustomDockerfile.docker
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     volumes:
       - swarmdata:/SwarmUI/Data

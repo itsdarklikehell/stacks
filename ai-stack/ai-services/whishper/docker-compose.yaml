@@ -7,9 +7,9 @@ services:
     # pull_policy: always
 
     labels:
-      - "autoheal-app=true"
-      - "autoheal"
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app=true"
+      # - "autoheal"
 
     environment:
       - PUID=${PUID:-1000}"
