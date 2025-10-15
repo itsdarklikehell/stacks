@@ -10,14 +10,16 @@ services:
       # - "autoheal"
 
     environment:
-      #  Optional:
-      - PORT=51821
-      - HOST=0.0.0.0
-      - INSECURE=false
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=51821" #  Optional:
+      - "HOST=0.0.0.0" #  Optional:
+      - "INSECURE=false" #  Optional:
 
     volumes:
-      - wireguard:/etc/wireguard
-      - /lib/modules:/lib/modules:ro
+      - "wireguard:/etc/wireguard"
+      - "/lib/modules:/lib/modules:ro"
 
     hostname: "${NAME:-wg-easy}"
 
@@ -30,30 +32,34 @@ services:
       - "51821:51821/tcp"
 
     cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
+      - "NET_ADMIN"
+      - "SYS_MODULE"
       # - NET_RAW # ⚠️ Uncomment if using Podman
 
     sysctls:
-      - net.ipv4.ip_forward=1
-      - net.ipv4.conf.all.src_valid_mark=1
-      - net.ipv6.conf.all.disable_ipv6=0
-      - net.ipv6.conf.all.forwarding=1
-      - net.ipv6.conf.default.forwarding=1
+      - "net.ipv4.ip_forward=1"
+      - "net.ipv4.conf.all.src_valid_mark=1"
+      - "net.ipv6.conf.all.disable_ipv6=0"
+      - "net.ipv6.conf.all.forwarding=1"
+      - "net.ipv6.conf.default.forwarding=1"
 
     env_file:
-      - ./wg-easy/.env
+      - "./wg-easy/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
+    tty: true
+    
+    stdin_open: true
+
+    # # Optional: Health check for monitoring
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:80/api/health"]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

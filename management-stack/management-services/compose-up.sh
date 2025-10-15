@@ -8,7 +8,6 @@ COMPOSE_FILES=(
   autoheal
   collabora
   dashy
-  n8n
   netdata
   nextcloud
   nextclouddb

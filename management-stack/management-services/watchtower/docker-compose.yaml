@@ -33,7 +33,6 @@ services:
       - autoheal-management-services
       - collabora
       - dashy
-      - n8n
       - netdata
       - nextcloud
       - nextclouddb
