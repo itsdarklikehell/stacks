@@ -3,7 +3,7 @@
 - [ ] Connect everything to each of their depending parts.
 - [ ] Write the documentation.
 - [ ] Add tools/mcp and such to give ai more/other capabilities.
-- [ ] Create a docker image.
+- [ ] Create a docker AIO image.
 - [ ] Create a way to manage multiple persona/agents (letta?).
 
 ## backends
