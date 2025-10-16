@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -19,6 +19,7 @@ services:
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-rreading-glasses}"
@@ -43,21 +44,29 @@ services:
 
     depends_on:
       rreading-glasses-db:
-        condition: service_started
+        condition: "service_started"
 
     deploy:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
     # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:8788"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"
@@ -65,17 +74,15 @@ services:
         max-size: "10m"
         max-file: "3"
 
-
-
   rreading-glasses-db:
-    image: postgres
+    image: "postgres"
     container_name: "${NAME:-rreading-glasses-db}"
     restart: "${RESTART:-unless-stopped}"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -85,6 +92,8 @@ services:
       - "POSTGRES_DB=rreading-glasses"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "rreading_glasses_data:/var/lib/postgresql/data"
 
     secrets:
@@ -106,15 +115,23 @@ services:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
     # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:8585"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

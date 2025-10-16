@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -17,6 +17,8 @@ services:
       - "PORT=3001"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "../DATA/uptime-kuma/data:/app/data"
 
     hostname: "${NAME:-uptime-kuma}"
@@ -32,19 +34,26 @@ services:
       - "./uptime-kuma/.env"
 
     tty: true
-    
+
     stdin_open: true
 
     deploy:
       replicas: 1
-      
+
     # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:3001"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"
     #   retries: "3"
-
 
     logging:
       driver: "json-file"

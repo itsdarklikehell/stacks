@@ -6,13 +6,20 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/plex/config:/config
-      - ../DATA/plex/transcode:/transcode
-      - ../DATA/plex/media:/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/plex/config:/config"
+      - "../DATA/plex/transcode:/transcode"
+      - "../DATA/plex/media:/data"
 
     hostname: "${NAME:-plex}"
 
@@ -24,17 +31,25 @@ services:
       - "${PORT:-32400}:32400"
 
     env_file:
-      - ./plex/.env
+      - "./plex/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 2G
-      #     cpus: "2.00"
-      #   reservations:
-      #     memory: 1G
-      #     cpus: "1.00"
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

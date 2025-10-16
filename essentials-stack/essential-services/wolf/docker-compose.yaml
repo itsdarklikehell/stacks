@@ -6,23 +6,26 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "NVIDIA_DRIVER_CAPABILITIES=all"
       - "NVIDIA_VISIBLE_DEVICES=all"
 
     volumes:
-      - "../DATA/wolf/etc/wolf/:/etc/wolf"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/wolf/etc/wolf/:/etc/wolf"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/dev/:/dev/:rw"
       - "/run/udev:/run/udev:rw"
 
     device_cgroup_rules:
-      - 'c 13:* rmw'
+      - "c 13:* rmw"
 
     devices:
       - "/dev/dri"
@@ -32,31 +35,40 @@ services:
     networks:
       host:
       essential-services:
-    
+
     hostname: "${NAME:-wolf}"
 
     env_file:
       - "./wolf/.env"
-      
+
     runtime: nvidia
     deploy:
       replicas: 1
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - driver: nvidia
+              count: 1
+              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:3000/api/health"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3000/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

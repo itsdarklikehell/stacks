@@ -9,7 +9,7 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: arr-services
+name: "arr-services"
 
 networks:
   host:
@@ -22,6 +22,6 @@ volumes:
 
 secrets:
   rreading_glasses_db_password:
-    file: ../../secrets/rreading_glasses_db_password
+    file: "../../secrets/rreading_glasses_db_password"
   hardcover_auth:
-    file: ../../secrets/hardcover_auth
+    file: "../../secrets/hardcover_auth"

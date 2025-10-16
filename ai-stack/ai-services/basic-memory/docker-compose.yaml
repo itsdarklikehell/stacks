@@ -6,16 +6,21 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "BASIC_MEMORY_DEFAULT_PROJECT=main"
       - "BASIC_MEMORY_SYNC_CHANGES=true"
       - "BASIC_MEMORY_LOG_LEVEL=INFO"
       - "BASIC_MEMORY_SYNC_DELAY=1000"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "basic-memory-config:/root/.basic-memory:rw"
       - "../DATA/basic-memory/knowledge:/app/data:rw"
       - "../DATA/basic-memory/work-notes:/app/data/work:rw"
@@ -50,7 +55,7 @@ services:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
     # healthcheck:
@@ -59,7 +64,7 @@ services:
     #   timeout: "10s"
     #   start_period: "30s"
     #   retries: "3"
-    
+
     logging:
       driver: "json-file"
       options:

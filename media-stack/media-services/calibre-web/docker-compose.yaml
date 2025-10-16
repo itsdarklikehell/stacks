@@ -6,11 +6,18 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/calibre-web/calibre-library:/calibre-library
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/calibre-web/calibre-library:/calibre-library"
 
     hostname: "${NAME:-calibre-web}"
 
@@ -22,24 +29,25 @@ services:
       - "${PORT:-8084}:8084"
 
     env_file:
-      - ./calibre-web/.env
+      - "./calibre-web/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
     # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:8084"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     # depends_on:
     #   - faster-whisper-gpu

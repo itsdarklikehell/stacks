@@ -3,21 +3,26 @@ services:
     image: "${IMAGE:-letta/letta:latest}"
     container_name: "${NAME:-letta-server}"
     restart: "${RESTART:-unless-stopped}"
-     
+
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "OPENAI_API_KEY=${OPENAI_API_KEY:-}"
       - "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
       - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "../DATA/letta/.persist/pgdata:/var/lib/postgresql/data"
       - "../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir" # mounted volume for tool execution
-  
+
     hostname: "${NAME:-letta-server}"
 
     # command: ["--logpath", "/var/log/mongodb/mongod.log"]
@@ -36,7 +41,7 @@ services:
       - "4318:4318"
 
     env_file:
-      - ./letta-server/.env
+      - "./letta-server/.env"
 
     deploy:
       replicas: 1
@@ -46,16 +51,23 @@ services:
     #     condition: service_healthy
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8283/api/health"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    # test:
+    #   [
+    #     "CMD",
+    #     "wget",
+    #     "--no-verbose",
+    #     "--tries=3",
+    #     "--spider",
+    #     "http://localhost:8283/api/health",
+    #   ]
+    # interval: "30s"
+    # timeout: "10s"
+    # start_period: "30s"
+    # retries: "3"
 
     logging:
       driver: "json-file"

@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     user: "${PUID:-1000}:${PGID:-1000}"
-    
+
     build:
       context: "../DATA/SwarmUI"
       args:
@@ -15,10 +15,17 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "swarmdata:/SwarmUI/Data"
       - "swarmbackend:/SwarmUI/dlbackend"
       - "swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes"
@@ -40,34 +47,36 @@ services:
       - "./swarmui/.env"
 
     cap_drop:
-      - ALL
+      - "ALL"
 
     runtime: nvidia
     deploy:
       replicas: 1
       resources:
-        # limits:
-        #   memory: 1G
-        #   cpus: "1.00"
         reservations:
-          # memory: 512M
-          # cpus: "0.50"
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:7801/api/health"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    # test:
+    #   [
+    #     "CMD",
+    #     "wget",
+    #     "--no-verbose",
+    #     "--tries=3",
+    #     "--spider",
+    #     "http://localhost:7801/api/health",
+    #   ]
+    # interval: "30s"
+    # timeout: "10s"
+    # start_period: "30s"
+    # retries: "3"
 
     logging:
       driver: "json-file"

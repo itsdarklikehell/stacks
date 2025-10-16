@@ -6,8 +6,13 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     hostname: "${NAME:-mattermost}"
 
@@ -19,24 +24,36 @@ services:
       - "${PORT:-8065}:8065"
 
     # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:8065"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test: ["CMD", "curl", "-f", "http://localhost:8065"]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     env_file:
-      - ./mattermost/.env
+      - "./mattermost/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 1G
-      #     cpus: "1.00"
-      #   reservations:
-      #     memory: 512M
-      #     cpus: "0.50"
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

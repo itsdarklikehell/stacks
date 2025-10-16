@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -40,28 +40,30 @@ services:
     deploy:
       replicas: 1
       resources:
-        # limits:
-        #   memory: 1G
-        #   cpus: "1.00"
         reservations:
-          # memory: 512M
-          # cpus: "0.50"
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:5000/api/health"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    # test:
+    #   [
+    #     "CMD",
+    #     "wget",
+    #     "--no-verbose",
+    #     "--tries=3",
+    #     "--spider",
+    #     "http://localhost:5000/api/health",
+    #   ]
+    # interval: "30s"
+    # timeout: "10s"
+    # start_period: "30s"
+    # retries: "3"
 
     logging:
       driver: "json-file"

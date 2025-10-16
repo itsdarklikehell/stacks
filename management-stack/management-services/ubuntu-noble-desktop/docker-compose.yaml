@@ -6,13 +6,18 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "/dev/shm:/dev/shm"
 
     hostname: "${NAME:-ubuntu-noble-desktop}"
@@ -25,23 +30,31 @@ services:
       - "${PORT:-6901}:6901"
 
     shm_size: "4gb"
-    tty: true
-    
-    stdin_open: true
 
     env_file:
-      - ./ubuntu-noble-desktop/.env
+      - "./ubuntu-noble-desktop/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

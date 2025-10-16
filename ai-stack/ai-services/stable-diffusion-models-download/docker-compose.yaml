@@ -13,12 +13,13 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -28,7 +29,7 @@ services:
       - "../DATA/stable-diffusion-webui-docker/data/Models:/data/Models"
       - "../DATA/stable-diffusion-webui-docker/data/Output:/data/Output"
       - "../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
-      
+
     hostname: "${NAME:-stable-diffusion-models-download}"
 
     networks:
@@ -46,12 +47,19 @@ services:
       - wyoming-piper
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:8123/api/health"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:8123/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

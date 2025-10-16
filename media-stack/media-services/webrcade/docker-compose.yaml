@@ -6,11 +6,18 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/webrcade/content:/var/www/html/content
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/webrcade/content:/var/www/html/content"
 
     hostname: "${NAME:-webrcade}"
 
@@ -23,17 +30,29 @@ services:
       media-services:
 
     env_file:
-      - ./webrcade/.env
+      - "./webrcade/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

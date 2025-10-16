@@ -6,23 +6,26 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
-      AUTOHEAL_CONTAINER_LABEL: "${AUTOHEAL_CONTAINER_LABEL:-all}"
-      AUTOHEAL_START_PERIOD: 0
-      AUTOHEAL_INTERVAL: 5
-      AUTOHEAL_DEFAULT_STOP_TIMEOUT: 10
-      AUTOHEAL_ONLY_MONITOR_RUNNING: true
-    # network_mode: "${AUTOHEAL_NETWORK_MODE:-none}"
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "AUTOHEAL_CONTAINER_LABEL=${AUTOHEAL_CONTAINER_LABEL:-autoheal-app}"
+      - "AUTOHEAL_START_PERIOD=0"
+      - "AUTOHEAL_INTERVAL=5"
+      - "AUTOHEAL_DEFAULT_STOP_TIMEOUT=10"
+      - "AUTOHEAL_ONLY_MONITOR_RUNNING=true"
+    # "network_mode=${AUTOHEAL_NETWORK_MODE:-none}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-    hostname: autoheal-riko-services
+    hostname: "${NAME:-autoheal-riko-services}"
 
     networks:
       host:
@@ -38,12 +41,19 @@ services:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
-    # # Optional: Health check for monitoring
     # healthcheck:
-    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:80/api/health"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:80/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

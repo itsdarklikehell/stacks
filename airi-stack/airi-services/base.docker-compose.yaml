@@ -9,7 +9,7 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: airi-services
+name: "airi-services"
 
 networks:
   host:

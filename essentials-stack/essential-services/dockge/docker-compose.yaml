@@ -6,14 +6,19 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       # Tell Dockge where to find the stacks
       - "DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "../DATA/dockge/data:/app/data"
       # Stacks Directory
@@ -38,9 +43,16 @@ services:
     deploy:
       replicas: 1
 
-    # # Optional: Health check for monitoring
     # healthcheck:
-    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:5001/api/health"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:5001/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

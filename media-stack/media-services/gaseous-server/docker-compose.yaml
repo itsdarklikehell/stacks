@@ -6,21 +6,23 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - dbhost=gsdb
-      - dbuser=root
-      - dbpass=gaseous
-      - igdbclientid=
-      - igdbclientsecret=
+      - "dbhost=gsdb"
+      - "dbuser=root"
+      - "dbpass=gaseous"
+      - "igdbclientid="
+      - "igdbclientsecret="
 
     volumes:
-      - gaseous_data:/root/.gaseous-server
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "gaseous_data:/root/.gaseous-server"
 
     hostname: "${NAME:-gaseous-server}"
 
@@ -32,20 +34,32 @@ services:
       - "${PORT:-5198}:80"
 
     env_file:
-      - ./gaseous-server/.env
+      - "./gaseous-server/.env"
 
     depends_on:
-      - gsdb
+      - "gsdb"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

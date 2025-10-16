@@ -6,28 +6,33 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
-      - DB_HOST=romm-db
-      - DB_NAME=romm
-      - DB_USER=romm-user
-      - HASHEOUS_API_ENABLED=true
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "DB_HOST=romm-db"
+      - "DB_NAME=romm"
+      - "DB_USER=romm-user"
+      - "HASHEOUS_API_ENABLED=true"
 
     volumes:
-      - romm_resources:/romm/resources
-      - romm_redis_data:/redis-data
-      - ../DATA/romm/library:/romm/library
-      - ../DATA/romm/assets:/romm/assets
-      - ../DATA/romm/config:/romm/config
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "romm_resources:/romm/resources"
+      - "romm_redis_data:/redis-data"
+      - "../DATA/romm/library:/romm/library"
+      - "../DATA/romm/assets:/romm/assets"
+      - "../DATA/romm/config:/romm/config"
 
     secrets:
-      - romm_db_password
-      - romm_auth_secret_key
-      - screenscraper_password
-      - retroachievements_api_key
-      - steamgriddb_api_key
+      - "romm_db_password"
+      - "romm_auth_secret_key"
+      - "screenscraper_password"
+      - "retroachievements_api_key"
+      - "steamgriddb_api_key"
 
     hostname: "${NAME:-romm}"
 
@@ -40,21 +45,33 @@ services:
 
     depends_on:
       romm-db:
-        condition: service_healthy
+        condition: "service_healthy"
         restart: true
 
     env_file:
-      - ./romm/.env
+      - "./romm/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 1G
-      #     cpus: "1.00"
-      #   reservations:
-      #     memory: 512M
-      #     cpus: "0.50"
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

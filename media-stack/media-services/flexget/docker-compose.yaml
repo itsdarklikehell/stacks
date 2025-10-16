@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -15,8 +15,10 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
-      - ../DATA/flexget/config:/config
-      - ../DATA/flexget/downloads:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "../DATA/flexget/config:/config"
+      - "../DATA/flexget/downloads:/downloads"
 
     hostname: "${NAME:-flexget}"
 
@@ -28,25 +30,27 @@ services:
       - "${PORT:-5050}:5050"
 
     env_file:
-      - ./flexget/.env
+      - "./flexget/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 512M
-      #     cpus: "0.50"
-      #   reservations:
-      #     memory: 256M
-      #     cpus: "0.25"
 
-    command:
-      - daemon
-      - start
-      - --autoreload-config
+    command: ["daemon", "start", "--autoreload-config"]
 
-
-
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

@@ -6,10 +6,13 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "GF_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS:-}"
       - "GF_FEATURE_TOGGLES_ENABLE=${GF_FEATURE_TOGGLES_ENABLE:-newNavigation}"
       - "GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=${GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS:-true}"
@@ -19,9 +22,10 @@ services:
       - "GF_SECURITY_ADMIN_USER"
       - "GF_SECURITY_ADMIN_PASSWORD"
       - "GF_AUTH_GOOGLE_CLIENT_SECRET"
-      
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "grafana_data:/var/lib/grafana"
 
     hostname: "${NAME:-grafana}"
@@ -40,16 +44,23 @@ services:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
-
     # healthcheck:
-      # test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:3000/api/health"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3000/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

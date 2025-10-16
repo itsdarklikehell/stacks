@@ -5,11 +5,16 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
+      # - "autoheal-app=true"
       - "homarr-app=true"
       - "homarr"
-      - "com.centurylinklabs.watchtower.enable=true"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917"
 
     volumes:
@@ -18,28 +23,35 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "../DATA/homarr/appdata:/appdata"
 
-    hostname: "${NAME:-}"
-    
+    hostname: "${NAME:-homarr}"
+
     networks:
       host:
       essential-services:
-    
+
     ports:
       - "7575:7575"
 
     env_file:
-      - './homarr/.env'
+      - "./homarr/.env"
 
     deploy:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
-    # # Optional: Health check for monitoring
     # healthcheck:
-    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:80/api/health"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:80/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

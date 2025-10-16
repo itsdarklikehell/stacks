@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -18,7 +18,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    
+
     hostname: "${NAME:-jellyfin}"
 
     networks:
@@ -31,25 +31,30 @@ services:
     ports:
       - "${PORT:-8096}:8096/tcp"
 
-    # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost:9696"]
-      # interval: "30s"
-      # timeout: "10s"
-      # start_period: "30s"
-      # retries: "3"
-
     env_file:
-      - ./jellyfin/.env
+      - "./jellyfin/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 1G
-      #     cpus: "1.00"
-      #   reservations:
-      #     memory: 512M
-      #     cpus: "0.50"
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:8096/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

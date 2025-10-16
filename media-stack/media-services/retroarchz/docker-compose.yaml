@@ -6,10 +6,17 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
+
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "/home/rizzo/RetroPie/roms:/roms"
 
     hostname: "${NAME:-retroarchz}"
@@ -22,18 +29,29 @@ services:
       - "${PORT:-85}:85"
 
     env_file:
-      - ./retroarchz/.env
+      - "./retroarchz/.env"
 
     deploy:
       replicas: 1
-      # resources:
-      #   limits:
-      #     memory: 256M
-      #     cpus: "0.25"
-      #   reservations:
-      #     memory: 128M
-      #     cpus: "0.10"
 
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

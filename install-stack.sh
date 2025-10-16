@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="normal" # false, true/normal, all
+export PRUNE="false" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
 
 export TWITCH_CLIENT_ID="your_client_id"
@@ -168,9 +168,9 @@ echo ""
 # INSTALL_MANAGEMENT_STACK
 # echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
-echo ""
+# echo ""
+# INSTALL_MEDIA_STACK
+# echo ""
 
 # echo ""
 # INSTALL_AIWAIFU_STACK

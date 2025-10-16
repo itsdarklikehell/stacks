@@ -6,8 +6,8 @@ services:
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      # - "autoheal-app"
       # - "autoheal-app=true"
-      # - "autoheal"
 
     environment:
       - "PUID=${PUID:-1000}"
@@ -17,10 +17,12 @@ services:
       - "PORT=5056"
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "../DATA/overseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-overseerr}"
-    
+
     networks:
       host:
       arr-services:
@@ -35,15 +37,23 @@ services:
       replicas: 1
 
     tty: true
-    
+
     stdin_open: true
 
     # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:5056"]
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--no-verbose",
+    #       "--tries=3",
+    #       "--spider",
+    #       "http://localhost:3002/api/health",
+    #     ]
     #   interval: "30s"
     #   timeout: "10s"
+    #   start_period: "30s"
     #   retries: "3"
-    #   start_period: "40s"
 
     logging:
       driver: "json-file"
