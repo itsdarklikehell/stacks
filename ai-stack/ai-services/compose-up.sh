@@ -7,7 +7,7 @@ COMPOSE_FILES=(
   anythingllm
   autoheal
   basic-memory
-  # chroma
+  chroma
   clickhouse
   faster-whisper-gpu
   homeassistant

@@ -2,9 +2,9 @@
 # Install NVIDIA drivers on Ubuntu
 function INSTALL_DRIVERS(){
 
-    DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path')"
-    CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version')"
-    DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version')"
+    DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"
+    CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
+    DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
 
     # sudo add-apt-repository ppa:graphics-drivers/ppa
 

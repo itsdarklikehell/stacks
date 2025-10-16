@@ -8,7 +8,7 @@ function INSTALL_toolhive(){
     else
         curl -s https://api.github.com/repos/stacklok/toolhive-studio/releases/latest | grep "browser_download_url.*deb" | cut -d : -f 2,3 | tr -d \" | wget -qi - || true
         sudo dpkg -i ./*.deb
-        rm *.deb
+        rm ./*.deb
         echo "toolhive installation completed."
     fi
 }
