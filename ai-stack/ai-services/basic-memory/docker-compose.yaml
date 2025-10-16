@@ -36,7 +36,7 @@ services:
         "--host",
         "0.0.0.0",
         "--port",
-        "8004",
+        "8003",
       ]
 
     hostname: "${NAME:-basic-memory-server}"
@@ -46,7 +46,7 @@ services:
       ai-services:
 
     ports:
-      - "${PORT:-8004}:8004"
+      - "${PORT:-8003}:8003"
 
     env_file:
       - "./basic-memory/.env"
