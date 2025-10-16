@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Connect everyting to each part.
+- [ ] Connect everything to each of their depending parts.
 - [ ] Write the documentation.
 - [ ] Add tools/mcp and such to give ai more/other capabilities.
 - [ ] Create a docker image.
@@ -28,3 +28,7 @@ airi
 aiwaifu
 jaison
 riko
+
+## Other tools and services
+
+
