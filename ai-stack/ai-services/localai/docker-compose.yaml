@@ -16,7 +16,8 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "DEBUG=true"
       - 'STORAGE_DIR="/app/server/storage"'
-      # - "SERVER_PORT=8080"
+      - "SERVER_PORT=${SERVER_PORT:-8083}"
+      - "PORT=${PORT:-8083}"
 
     # cap_add:
     #   - "SYS_ADMIN"
@@ -57,7 +58,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8083/readyz"]
+    #   test: ["CMD", "curl", "-f", "http://localhost:${PORT:-8083}/readyz"]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

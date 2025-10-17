@@ -13,6 +13,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-5000}"
       - "LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}"
       - "LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}"
       - "LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}"
@@ -61,7 +62,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:5000/api/health",
+    #     "http://localhost:${PORT:-5000}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

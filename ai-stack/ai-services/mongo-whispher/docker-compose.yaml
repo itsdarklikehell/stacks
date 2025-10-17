@@ -13,6 +13,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-27017}"
       - "MONGO_INITDB_ROOT_USERNAME=${DB_USER:-whishper}"
       - "MONGO_INITDB_ROOT_PASSWORD=${DB_PASS:-whishper}"
 
@@ -53,7 +54,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:27017/api/health",
+    #     "http://localhost:${PORT:-27017}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

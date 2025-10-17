@@ -22,6 +22,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-7801}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -73,7 +74,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:7801/api/health",
+    #     "http://localhost:${PORT:-7801}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

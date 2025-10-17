@@ -59,7 +59,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:8124/api/health",
+    #     "http://localhost:${PORT:-8124}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

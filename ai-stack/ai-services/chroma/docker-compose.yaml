@@ -13,9 +13,9 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "CHROMA_DB_IMPL=clickhouse"
-      - "CLICKHOUSE_HOST=clickhouse"
-      - "CLICKHOUSE_PORT=8124"
+      - "CHROMA_DB_IMPL=${CHROMA_DB_IMPL:-clickhouse}"
+      - "CLICKHOUSE_HOST=${CLICKHOUSE_HOST:-clickhouse}"
+      - "CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}"
 
     build:
       context: "../../DATA/ai-stack/chroma"
@@ -35,7 +35,7 @@ services:
         "--reload",
         "--workers 1",
         "--host 0.0.0.0",
-        "--port 8004",
+        "--port ${PORT:-8004}",
         "--log-config log_config.yml",
       ]
 
@@ -64,7 +64,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:8004/api/health",
+    #       "http://localhost:${PORT:-8004}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

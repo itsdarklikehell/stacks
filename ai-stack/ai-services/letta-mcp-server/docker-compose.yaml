@@ -16,7 +16,7 @@ services:
       - "LETTA_BASE_URL=${LETTA_BASE_URL:-http://letta-server:8283/v1}"
       - "LETTA_PASSWORD=${LETTA_PASSWORD:-}"
       - "PORT=${PORT:-3005}"
-      - "NODE_ENV=production"
+      - "NODE_ENV=${NODE_ENV:-production}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -55,7 +55,7 @@ services:
     #   [
     #     "CMD",
     #     "curl",
-    #     "http://localhost:3005/health",
+    #     "http://localhost:${PORT:-3005}/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

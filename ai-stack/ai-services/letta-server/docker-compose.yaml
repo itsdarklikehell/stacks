@@ -16,6 +16,7 @@ services:
       - "OPENAI_API_KEY=${OPENAI_API_KEY:-}"
       - "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
       - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}"
+      - "PORT=${PORT:-8283}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -35,7 +36,7 @@ services:
         #   - letta-db
 
     ports:
-      - "8283:8283"
+      - "${PORT:-8283}:8283"
       - "5432:5432"
       - "4316:4316"
       - "4318:4318"
@@ -62,7 +63,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:8283/api/health",
+    #     "http://localhost:${PORT:-8283}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

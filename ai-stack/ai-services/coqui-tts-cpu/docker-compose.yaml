@@ -19,7 +19,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=5002"
+      - "PORT=${PORT:-5002}"
 
     networks:
       host:
@@ -43,7 +43,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:5002/api/health",
+    #     "http://localhost:${PORT:-5002}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"
