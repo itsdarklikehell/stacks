@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export PERM_DATA="/media/rizzo/RAIDSTATION/stacks/DATA"
 
-export CLEANUP="true" # false, true
+export CLEANUP="false" # false, true
 
 export PRUNE="false" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
