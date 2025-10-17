@@ -15,7 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "LETTA_BASE_URL=${LETTA_BASE_URL:-http://letta-server:8283/v1}"
       - "LETTA_PASSWORD=${LETTA_PASSWORD:-}"
-      - "PORT=${PORT:-3001}"
+      - "PORT=${PORT:-3005}"
       - "NODE_ENV=production"
 
     volumes:
@@ -34,7 +34,7 @@ services:
         #   - letta-db
 
     ports:
-      - "${PORT:-3001}:3001"
+      - "${PORT:-3005}:3005"
 
     env_file:
       - "./letta-mcp-server/.env"
@@ -58,7 +58,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:3001/api/health",
+    #     "http://localhost:3005/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"
