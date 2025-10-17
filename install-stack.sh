@@ -163,16 +163,16 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-# echo ""
-# INSTALL_ARR_STACK
-# echo ""
+echo ""
+INSTALL_ARR_STACK
+echo ""
 
-# echo ""
-# INSTALL_MANAGEMENT_STACK
-# echo ""
+echo ""
+INSTALL_MANAGEMENT_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
+echo ""
+INSTALL_MEDIA_STACK
 echo ""
 
 # echo ""
