@@ -21,6 +21,9 @@ volumes:
   anythingllm_hotdir:
   anythingllm_outputs:
   basic-memory-config:
+  basic-memory-knowledge: "../DATA/basic-memory/knowledge"
+  basic-memory-work-notes: "../DATA/basic-memory/work-notes"
+  basic-memory-personal-notes: "../DATA/basic-memory/personal-notes"
   chroma_data:
   index_data:
   clickhouse_data:
@@ -29,32 +32,33 @@ volumes:
   kokoro_index_data:
   faster-whisper-data:
   home-assistant-config:
-  letta_pgdata:
-  letta_toolexec:
+  letta_pgdata: "../DATA/letta/.persist/pgdata"
+  letta_toolexec: "../DATA/letta/tool_execution_dir"
   libretranslate-whispher_data:
   libretranslate-whispher_cache:
-  localai_models:
+  localai_models: "../DATA/localai/models"
   mongo-whispher_data:
   mongo-whispher_logs:
   n8n_data:
   n8n_local-files:
-  ollama-data:
+  ollama-data: "../DATA/ollama"
   open-webui-data:
-  searxng_data:
-  stable-diffusion-webui-docker_data:
-  stable-diffusion-webui-docker_config:
-  stable-diffusion-webui-docker_models:
-  stable-diffusion-webui-docker_output:
-  stable-diffusion-webui-docker_embeddings:
-  stable-diffusion-webui-docker_workflows:
+  searxng_data: "../DATA/searxng"
+  stable-diffusion-webui-docker_data: "../DATA/stable-diffusion-webui-docker/data"
+  stable-diffusion-webui-docker_config: "../DATA/stable-diffusion-webui-docker/data/config"
+  stable-diffusion-webui-docker_models: "../DATA/stable-diffusion-webui-docker/data/Models"
+  stable-diffusion-webui-docker_output: "../DATA/stable-diffusion-webui-docker/data/Output"
+  stable-diffusion-webui-docker_embeddings: "../DATA/stable-diffusion-webui-docker/data/embeddings"
+  stable-diffusion-webui-docker_workflows: "../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
   swarmdata:
   swarmbackend:
   swarmdlnodes:
   swarmextensions:
-  whishper_uploads:
-  whishper_logs:
-  whishper_models:
+  whishper_uploads: "../DATA/whishper/uploads"
+  whishper_logs: "../DATA/whishper/logs"
+  whishper_models: "../DATA/whishper/models"
   wyoming-piper_data:
+
 # # secrets:
 #   letta_pg_password:
 #     file: "../../secrets/letta_pg_password"

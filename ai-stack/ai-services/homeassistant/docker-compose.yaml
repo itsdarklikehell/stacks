@@ -32,8 +32,8 @@ services:
       - "${PORT:-8123}:8123"
 
     depends_on:
-      - faster-whisper-gpu
-      - wyoming-piper
+      - "faster-whisper-gpu"
+      - "wyoming-piper"
 
     tty: true
 

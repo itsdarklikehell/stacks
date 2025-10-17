@@ -19,7 +19,6 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "searxng_data:/etc/searxng"
-      # - "../DATA/searxng:/etc/searxng"
 
     hostname: "${NAME:-searxng}"
 

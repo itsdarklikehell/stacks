@@ -21,8 +21,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/ollama:/root/.ollama"
-      # - "ollama-data:/root/.ollama"
+      - "ollama-data:/root/.ollama"
+      # - "../DATA/ollama:/root/.ollama"
 
     hostname: "${NAME:-ollama}"
 

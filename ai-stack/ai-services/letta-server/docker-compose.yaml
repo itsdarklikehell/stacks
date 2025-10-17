@@ -22,8 +22,6 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "letta_pgdata:/var/lib/postgresql/data"
       - "letta_toolexec:/root/.letta/tool_execution_dir"
-      # - "../DATA/letta/.persist/pgdata:/var/lib/postgresql/data"
-      # - "../DATA/letta/tool_execution_dir:/root/.letta/tool_execution_dir" # mounted volume for tool execution
 
     hostname: "${NAME:-letta-server}"
 
