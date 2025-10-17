@@ -164,9 +164,9 @@ CREATE_SECRETS
 # INSTALL_ARR_STACK
 # echo ""
 
-echo ""
-INSTALL_MANAGEMENT_STACK
-echo ""
+# echo ""
+# INSTALL_MANAGEMENT_STACK
+# echo ""
 
 echo ""
 INSTALL_MEDIA_STACK
