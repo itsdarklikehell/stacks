@@ -164,13 +164,13 @@ echo ""
 INSTALL_ARR_STACK
 echo ""
 
-# echo ""
-# INSTALL_MANAGEMENT_STACK
-# echo ""
+echo ""
+INSTALL_MANAGEMENT_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
 # echo ""
 # INSTALL_AIWAIFU_STACK
