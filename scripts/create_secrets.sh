@@ -18,17 +18,17 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/grafana_password"
     touch "${WD}/secrets/grafana_google_client_secret"
     touch "${WD}/secrets/rreading_glasses_db_password"
-    # mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
-    # touch "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/anythingllm.db"
-    if [[ -d "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]]; then
-        rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
+    # mkdir -p "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage"
+    # touch "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/anythingllm.db"
+    if [[ -d "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/.env" ]]; then
+        rm -rf "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/.env"
     fi
-    # if [ -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]; then
-    #     sudo rm -rf "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env"
+    # if [ -f "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/.env" ]; then
+    #     sudo rm -rf "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/.env"
     # fi
-    if [[ ! -f "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage/.env" ]]; then
-        mkdir -p "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage"
-        cd "${WD}/ai-stack/DATA/anythingllm/anythingllm_storage" || exit 1
+    if [[ ! -f "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage/.env" ]]; then
+        mkdir -p "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage"
+        cd "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage" || exit 1
         if [[ ! -f ".env" ]]; then
             sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O ".env"
         fi

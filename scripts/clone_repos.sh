@@ -7,21 +7,21 @@ export UV_LINK_MODE=copy
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
-mkdir -p ../ai-stack/DATA
-mkdir -p ../jaison-stack/DATA
-mkdir -p ../openllm-vtuber-stack/DATA
-mkdir -p ../media-stack/DATA
-mkdir -p ../essentials-stack/DATA
-mkdir -p ../management-stack/DATA
-mkdir -p ../riko-stack/DATA
-mkdir -p ../aiwaifu-stack/DATA
-mkdir -p ../airi-stack/DATA
+mkdir -p ../DATA/ai-stack
+mkdir -p ../DATA/jaison-stack
+mkdir -p ../DATA/openllm-vtuber-stack
+mkdir -p ../DATA/media-stack
+mkdir -p ../DATA/essentials-stack
+mkdir -p ../DATA/management-stack
+mkdir -p ../DATA/riko-stack
+mkdir -p ../DATA/aiwaifu-stack
+mkdir -p ../DATA/airi-stack
 ./install_uv.sh
 ./install_toolhive.sh
 
 function CLONE_OLLMVT(){
     cd "${WD}" || exit
-    cd ../openllm-vtuber-stack/DATA || exit 1
+    cd ../DATA/openllm-vtuber-stack || exit 1
 
     echo "Cloning Open-LLM-VTuber"
     echo ""
@@ -69,7 +69,7 @@ function CLONE_OLLMVT(){
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../DATA/ai-stack || exit 1
 
     echo "Cloning Letta"
     echo ""
@@ -81,7 +81,7 @@ function CLONE_LETTA(){
 }
 function CLONE_MELOTTS(){
     cd "${WD}" || exit
-    cd ../openllm-vtuber-stack/DATA || exit 1
+    cd ../DATA/openllm-vtuber-stack || exit 1
 
     echo "Cloning MeloTTS"
     echo ""
@@ -109,7 +109,7 @@ function CLONE_JAISON(){
     # conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
     cd "${WD}" || exit
-    cd ../jaison-stack/DATA || exit 1
+    cd ../DATA/jaison-stack || exit 1
 
     echo "Cloning jaison-core"
     echo ""
@@ -144,7 +144,7 @@ function CLONE_JAISON(){
 }
 function CLONE_AIRI(){
     cd "${WD}" || exit
-    cd ../airi-stack/DATA || exit 1
+    cd ../DATA/airi-stack || exit 1
 
     npm i -g @antfu/ni >/dev/null 2>&1
     npm i -g shiki >/dev/null 2>&1
@@ -152,7 +152,7 @@ function CLONE_AIRI(){
 
     function INSTALL_XSAI(){
         cd "${WD}" || exit
-        cd ../airi-stack/DATA || exit 1
+        cd ../DATA/airi-stack || exit 1
 
         echo "Cloning xsai"
         echo ""
@@ -164,7 +164,7 @@ function CLONE_AIRI(){
     }
     function INSTALL_XSAI_TRANSFORMERS(){
         cd "${WD}" || exit
-        cd ../airi-stack/DATA || exit 1
+        cd ../DATA/airi-stack || exit 1
 
         echo "Cloning xsai-transformers"
         echo ""
@@ -176,7 +176,7 @@ function CLONE_AIRI(){
     }
     function INSTALL_AIRI_CHAT(){
         cd "${WD}" || exit
-        cd ../airi-stack/DATA || exit 1
+        cd ../DATA/airi-stack || exit 1
 
         echo "Cloning airi_chat"
         echo ""
@@ -189,7 +189,7 @@ function CLONE_AIRI(){
     function INSTALL_AIRI(){
 
         cd "${WD}" || exit
-        cd ../airi-stack/DATA || exit 1
+        cd ../DATA/airi-stack || exit 1
 
         echo "Cloning airi"
         echo ""
@@ -248,7 +248,7 @@ function CLONE_AIRI(){
         # pnpm dev:docs
 
         cd "${WD}" || exit
-        cd ../airi-stack/DATA/airi || exit 1
+        cd ../DATA/airi-stack/airi || exit 1
 
         cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
@@ -268,12 +268,12 @@ function CLONE_AIRI(){
     # INSTALL_AIRI_CHAT
 
     cd "${WD}" || exit
-    sudo chown -R "1000:1000" ../airi-stack/DATA/airi
+    sudo chown -R "1000:1000" ../DATA/airi-stack
 }
 function CLONE_RIKOPROJECT(){
 
     cd "${WD}" || exit
-    cd ../riko-stack/DATA || exit 1
+    cd ../DATA/riko-stack || exit 1
 
     echo "Cloning riko-project"
     echo ""
@@ -305,7 +305,7 @@ function CLONE_RIKOPROJECT(){
 }
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../DATA/ai-stack || exit 1
 
     echo "Cloning SwarmUI"
     echo ""
@@ -320,7 +320,7 @@ function CLONE_SWARMUI(){
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../DATA/ai-stack || exit 1
 
     echo "Cloning stable-diffusion-webui-docker"
     echo ""
@@ -332,7 +332,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
 }
 function CLONE_CHROMA(){
     cd "${WD}" || exit
-    cd ../ai-stack/DATA || exit 1
+    cd ../DATA/ai-stack || exit 1
 
     echo "Cloning chroma"
     echo ""
@@ -340,7 +340,7 @@ function CLONE_CHROMA(){
 }
 function CLONE_AIWAIFU(){
     cd "${WD}" || exit
-    cd ../aiwaifu-stack/DATA || exit 1
+    cd ../DATA/aiwaifu-stack || exit 1
 
     echo "Cloning AIwaifu"
     echo ""

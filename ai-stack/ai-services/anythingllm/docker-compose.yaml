@@ -30,9 +30,6 @@ services:
       - "anythingllm_hotdir:/app/collector/hotdir"
       - "anythingllm_outputs:/app/collector/outputs"
       - "./anythingllm/.env:/app/server/.env"
-      # - "../DATA/anythingllm/anythingllm_storage:/app/server/storage"
-      # - "../DATA/anythingllm/anythingllm_hotdir:/app/collector/hotdir"
-      # - "../DATA/anythingllm/anythingllm_outputs:/app/collector/outputs"
 
     hostname: "${NAME:-anythingllm}"
 

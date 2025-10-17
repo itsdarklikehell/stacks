@@ -57,16 +57,16 @@ function PRUNING(){
 }
 function CLEANUP_DATA(){
     FOLDERS=(
-        '/media/rizzo/RAIDSTATION/stacks/airi-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/ai-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/aiwaifu-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/arr-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/essentials-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/jaison-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/management-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/media-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/openllm-vtuber-stack/DATA'
-        '/media/rizzo/RAIDSTATION/stacks/riko-stack/DATA'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/airi-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/aiwaifu-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/arr-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/essentials-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/jaison-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/management-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/media-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/openllm-vtuber-stack'
+        '/media/rizzo/RAIDSTATION/stacks/DATA/riko-stack'
     )
     for folder in "${FOLDERS[@]}"; do
         echo ""
