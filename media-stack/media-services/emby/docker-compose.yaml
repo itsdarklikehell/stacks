@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/emby/config:/config"
-      - "../DATA/emby/media:/data"
+      - "emby_config:/config"
+      - "emby_media:/data"
 
     hostname: "${NAME:-emby}"
 

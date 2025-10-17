@@ -27,7 +27,8 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "n8n_data:/home/node/.n8n"
-      - "../DATA/n8n/local-files:/files"
+      - "n8n_local-files:/files"
+      # - "../DATA/n8n/local-files:/files"
 
     hostname: "${NAME:-n8n}"
 

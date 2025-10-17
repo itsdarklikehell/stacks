@@ -18,6 +18,8 @@ services:
       - "INSECURE=false" #  Optional:
 
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       - "wireguard:/etc/wireguard"
       - "/lib/modules:/lib/modules:ro"
 

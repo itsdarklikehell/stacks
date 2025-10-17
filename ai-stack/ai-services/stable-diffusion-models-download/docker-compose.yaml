@@ -24,11 +24,16 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/stable-diffusion-webui-docker/data:/data"
-      - "../DATA/stable-diffusion-webui-docker/data/config:/data/config"
-      - "../DATA/stable-diffusion-webui-docker/data/Models:/data/Models"
-      - "../DATA/stable-diffusion-webui-docker/data/Output:/data/Output"
-      - "../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
+      - "stable-diffusion-webui-docker_data:/data"
+      - "stable-diffusion-webui-docker_config:/data/config"
+      - "stable-diffusion-webui-docker_models:/data/Models"
+      - "stable-diffusion-webui-docker_output:/data/Output"
+      - "stable-diffusion-webui-docker_embeddings:/data/embeddings"
+      # - "../DATA/stable-diffusion-webui-docker/data:/data"
+      # - "../DATA/stable-diffusion-webui-docker/data/config:/data/config"
+      # - "../DATA/stable-diffusion-webui-docker/data/Models:/data/Models"
+      # - "../DATA/stable-diffusion-webui-docker/data/Output:/data/Output"
+      # - "../DATA/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
 
     hostname: "${NAME:-stable-diffusion-models-download}"
 

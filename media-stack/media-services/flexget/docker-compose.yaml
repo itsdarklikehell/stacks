@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/flexget/config:/config"
-      - "../DATA/flexget/downloads:/downloads"
+      - "flexget_config:/config"
+      - "flexget_downloads:/downloads"
 
     hostname: "${NAME:-flexget}"
 

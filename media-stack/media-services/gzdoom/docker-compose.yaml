@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/dev/shm:/dev/shm"
-      - "../DATA/gzdoom/config:/config"
+      - "gzdoom_config:/config"
 
     hostname: "${NAME:-gzdoom}"
 

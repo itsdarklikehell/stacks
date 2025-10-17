@@ -18,8 +18,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/kokoro-tts:/kokoro"
+      - "kokoro_data:/kokoro"
       - "kokoro_index_data:/index_data"
+      # - "../DATA/kokoro-tts:/kokoro"
 
     hostname: "${NAME:-kokoro-tts}"
 

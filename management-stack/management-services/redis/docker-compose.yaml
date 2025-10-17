@@ -9,8 +9,16 @@ services:
       # - "autoheal-app"
       # - "autoheal-app=true"
 
+    environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+
     volumes:
-      - ../DATA/redis/redis:/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "redis_data:/data"
+      # - "../DATA/redis/redis:/data"
 
     hostname: "${NAME:-redis}"
 
@@ -22,7 +30,7 @@ services:
       - "${PORT:-6379}:6379"
 
     env_file:
-      - ./redis/.env
+      - "./redis/.env"
 
     deploy:
       replicas: 1

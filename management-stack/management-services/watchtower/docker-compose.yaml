@@ -10,6 +10,9 @@ services:
       # - "autoheal-app=true"
 
     environment:
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
       - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
 
     volumes:
@@ -24,7 +27,7 @@ services:
       management-services:
 
     env_file:
-      - ./watchtower/.env
+      - "./watchtower/.env"
 
     deploy:
       replicas: 1
@@ -41,11 +44,11 @@ services:
       - wg-easy
 
     tty: true
-    
+
     stdin_open: true
 
     # healthcheck:
-    #   test: 
+    #   test:
     #     [
     #       "CMD",
     #       "wget",

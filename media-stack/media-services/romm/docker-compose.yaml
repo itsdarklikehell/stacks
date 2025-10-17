@@ -23,9 +23,9 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "romm_resources:/romm/resources"
       - "romm_redis_data:/redis-data"
-      - "../DATA/romm/library:/romm/library"
-      - "../DATA/romm/assets:/romm/assets"
-      - "../DATA/romm/config:/romm/config"
+      - "romm_library:/romm/library"
+      - "romm_assets:/romm/assets"
+      - "romm_config:/romm/config"
 
     secrets:
       - "romm_db_password"

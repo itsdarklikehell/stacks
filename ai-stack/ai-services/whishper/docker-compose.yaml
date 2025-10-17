@@ -26,9 +26,12 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/whishper/uploads:/app/uploads"
-      - "../DATA/whishper/logs:/var/log/whishper"
-      - "../DATA/whishper/models:/app/models"
+      - "whishper_uploads:/app/uploads"
+      - "whishper_logs:/var/log/whishper"
+      - "whishper_models:/app/models"
+      # - "../DATA/whishper/uploads:/app/uploads"
+      # - "../DATA/whishper/logs:/var/log/whishper"
+      # - "../DATA/whishper/models:/app/models"
 
     hostname: "${NAME:-whishper}"
 

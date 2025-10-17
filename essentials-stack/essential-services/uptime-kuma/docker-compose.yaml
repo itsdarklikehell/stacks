@@ -19,7 +19,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/uptime-kuma/data:/app/data"
+      - "uptime-kuma_data:/app/data"
+      # - "../DATA/uptime-kuma/data:/app/data"
 
     hostname: "${NAME:-uptime-kuma}"
 

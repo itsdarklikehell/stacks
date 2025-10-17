@@ -9,6 +9,10 @@ services:
       # - "autoheal-app"
       # - "autoheal-app=true"
 
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
     environment:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"

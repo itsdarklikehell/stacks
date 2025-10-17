@@ -30,10 +30,12 @@ services:
       - "swarmbackend:/SwarmUI/dlbackend"
       - "swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes"
       - "swarmextensions:/SwarmUI/src/Extensions"
-      - "../DATA/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
-      - "../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output"
-      - "../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
-
+      - "stable-diffusion-webui-docker_models:/SwarmUI/Models"
+      - "stable-diffusion-webui-docker_output:/SwarmUI/Output"
+      - "stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
+      # - "../DATA/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
+      # - "../DATA/stable-diffusion-webui-docker/output:/SwarmUI/Output"
+      # - "../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
     hostname: "${NAME:-swarmui}"
 
     networks:

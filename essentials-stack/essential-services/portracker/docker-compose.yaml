@@ -24,7 +24,8 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "../DATA/portracker/data:/data"
+      - "portracker_data:/data"
+      # - "../DATA/portracker/data:/data"
 
     hostname: "${NAME:-portracker}"
 

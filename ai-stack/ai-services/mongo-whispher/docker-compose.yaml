@@ -19,8 +19,10 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/mongo-whispher/db_data:/data/db"
-      - "../DATA/mongo-whispher/db_data/logs/:/var/log/mongodb/"
+      - "mongo-whispher_data:/data/db"
+      - "mongo-whispher_logs:/var/log/mongodb/"
+      # - "../DATA/mongo-whispher/db_data:/data/db"
+      # - "../DATA/mongo-whispher/db_data/logs/:/var/log/mongodb/"
 
     hostname: "${NAME:-mongo-whispher}"
 

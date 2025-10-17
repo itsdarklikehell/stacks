@@ -18,7 +18,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/dev/shm:/dev/shm"
-      - "../DATA/retroarch/config:/config"
+      - "retroarch_config:/config"
 
     hostname: "${NAME:-retroarch}"
 

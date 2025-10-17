@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "/home/rizzo/RetroPie/roms:/roms"
+      - "retroarchz_roms:/roms"
 
     hostname: "${NAME:-retroarchz}"
 

@@ -26,8 +26,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      # - "localai_models:/models:rw"
-      - "../DATA/localai/models:/models:rw"
+      - "localai_models:/models:rw"
+      # - "../DATA/localai/models:/models:rw"
 
     hostname: "${NAME:-localai}"
 

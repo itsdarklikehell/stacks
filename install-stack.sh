@@ -7,7 +7,7 @@ export UV_LINK_MODE=copy
 
 export CLEANUP="false" # false, true
 
-export PRUNE="true" # false, true/normal, all
+export PRUNE="false" # false, true/normal, all
 export BUILDING="recreate" # false, true, recreate
 
 export TWITCH_CLIENT_ID="your_client_id"
@@ -152,9 +152,9 @@ CREATE_NETWORKS
 CREATE_SECRETS
 
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
 echo ""
 INSTALL_AI_STACK

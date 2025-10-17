@@ -22,3 +22,11 @@ volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
+  redis_data:
+  nextclouddb_mysql:
+  nextcloud_html:
+  nextcloud_custom_apps:
+  nextcloud_config:
+  nextcloud_data:
+  dashy_config:
+    file: "../DATA/dashy/config.yml"

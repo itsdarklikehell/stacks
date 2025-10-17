@@ -19,8 +19,10 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/libretranslate-whispher/data:/home/libretranslate/.local/share"
-      - "../DATA/libretranslate-whispher/cache:/home/libretranslate/.local/cache"
+      - "libretranslate-whispher_data:/home/libretranslate/.local/share"
+      - "libretranslate-whispher_cache:/home/libretranslate/.local/cache"
+      # - "../DATA/libretranslate-whispher/data:/home/libretranslate/.local/share"
+      # - "../DATA/libretranslate-whispher/cache:/home/libretranslate/.local/cache"
 
     hostname: "${NAME:-libretranslate-whispher}"
 

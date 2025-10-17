@@ -15,4 +15,3 @@ networks:
   host:
   riko-services:
     external: true
-

@@ -17,11 +17,12 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/wyoming-piper/data:/data"
+      - "wyoming-piper_data:/data"
+      # - "../DATA/wyoming-piper/data:/data"
 
     hostname: "${NAME:-wyoming-piper}"
 
-    command: ["--voice en_US-lessac-medium"]
+    command: ["--voice", "en_US-lessac-medium"]
 
     networks:
       host:

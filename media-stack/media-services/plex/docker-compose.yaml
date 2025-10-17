@@ -17,9 +17,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/plex/config:/config"
-      - "../DATA/plex/transcode:/transcode"
-      - "../DATA/plex/media:/data"
+      - "plex_config:/config"
+      - "plex_transcode:/transcode"
+      - "plex_media:/data"
 
     hostname: "${NAME:-plex}"
 

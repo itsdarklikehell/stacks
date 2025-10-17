@@ -13,18 +13,24 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}"
-      - MYSQL_USER=${MYSQL_DATABASE:-nextcloud}"
-      - MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}"
-      - MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}"
-      - REDIS_HOST=${MYSQL_DATABASE:-redis}"
-      - PORT=8087
+      - "MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}"
+      - "MYSQL_USER=${MYSQL_DATABASE:-nextcloud}"
+      - "MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}"
+      - "MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}"
+      - "REDIS_HOST=${MYSQL_DATABASE:-redis}"
+      - "PORT=8087"
 
     volumes:
-      - ../DATA/nextcloud/html:/var/www/html
-      - ../DATA/nextcloud/custom_apps:/var/www/html/custom_apps
-      - ../DATA/nextcloud/config:/var/www/html/config
-      - ../DATA/nextcloud/data:/var/www/html/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "nextcloud_html:/var/www/html"
+      - "nextcloud_custom_apps:/var/www/html/custom_apps"
+      - "nextcloud_config:/var/www/html/config"
+      - "nextcloud_data:/var/www/html/data"
+      # - "../DATA/nextcloud/html:/var/www/html"
+      # - "../DATA/nextcloud/custom_apps:/var/www/html/custom_apps"
+      # - "../DATA/nextcloud/config:/var/www/html/config"
+      # - "../DATA/nextcloud/data:/var/www/html/data"
 
     hostname: "${NAME:-nextcloud}"
 
@@ -36,11 +42,11 @@ services:
       - "${PORT:-8087}:80"
 
     depends_on:
-      - nextclouddb
-      - redis
+      - "nextclouddb"
+      - "redis"
 
     env_file:
-      - ./nextcloud/.env
+      - "./nextcloud/.env"
 
     deploy:
       replicas: 1

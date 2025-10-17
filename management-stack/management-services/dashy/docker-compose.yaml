@@ -10,13 +10,19 @@ services:
       # - "autoheal-app=true"
 
     environment:
-      - NODE_ENV=production
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "NODE_ENV=production"
     # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
     #   - UID=1000
     #   - GID=1000
 
-    # volumes:
-    #   - ../DATA/dashy/config.yml:/app/user-data/conf.yml
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "dashy_config:/app/user-data/conf.yml"
+    #   - "../DATA/dashy/config.yml:/app/user-data/conf.yml"
 
     hostname: "${NAME:-dashy}"
 
@@ -28,17 +34,17 @@ services:
       - "${PORT:-8383}:8383"
 
     env_file:
-      - ./dashy/.env
+      - "./dashy/.env"
 
     deploy:
       replicas: 1
 
     # healthcheck:
-    # test: ["CMD", "node", "/app/services/healthcheck"]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   test: ["CMD", "node", "/app/services/healthcheck"]
+    #   interval: "30s"
+    #   timeout: "10s"
+    #   start_period: "30s"
+    #   retries: "3"
 
     logging:
       driver: "json-file"

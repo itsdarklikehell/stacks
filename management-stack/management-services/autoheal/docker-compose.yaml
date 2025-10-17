@@ -25,7 +25,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-    hostname: autoheal-management-services
+    hostname: "${NAME:-autoheal-management-services}"
 
     networks:
       host:

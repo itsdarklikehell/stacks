@@ -25,8 +25,11 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/stable-diffusion-webui-docker/data:/data"
-      - "../DATA/stable-diffusion-webui-docker/output:/output"
+      - "stable-diffusion-webui-docker_data:/data"
+      - "stable-diffusion-webui-docker_output:/output"
+      - "stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
+      # - "../DATA/stable-diffusion-webui-docker/data:/data"
+      # - "../DATA/stable-diffusion-webui-docker/output:/output"
       # - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: "${NAME:-stable-diffusion-webui}"

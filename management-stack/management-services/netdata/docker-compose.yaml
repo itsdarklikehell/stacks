@@ -10,24 +10,28 @@ services:
       # - "autoheal-app=true"
 
     environment:
-      - NETDATA_CLAIM_TOKEN=3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
-      - NETDATA_CLAIM_ROOMS=1a9352b6-d34d-4688-bab5-06a719586033
+      - "PUID=${PUID:-1000}"
+      - "PGID=${PGID:-1000}"
+      - "TZ=${TZ:-Europe/Amsterdam}"
+      - "NETDATA_CLAIM_TOKEN=3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o"
+      - "NETDATA_CLAIM_URL=https://app.netdata.cloud"
+      - "NETDATA_CLAIM_ROOMS=1a9352b6-d34d-4688-bab5-06a719586033"
 
     volumes:
-      - netdataconfig:/etc/netdata
-      - netdatalib:/var/lib/netdata
-      - netdatacache:/var/cache/netdata
-      - /:/host/root:ro,rslave
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/log:/host/var/log:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /run/dbus:/run/dbus:ro
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "netdataconfig:/etc/netdata"
+      - "netdatalib:/var/lib/netdata"
+      - "netdatacache:/var/cache/netdata"
+      - "/:/host/root:ro,rslave"
+      - "/etc/passwd:/host/etc/passwd:ro"
+      - "/etc/group:/host/etc/group:ro"
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/etc/os-release:/host/etc/os-release:ro"
+      - "/var/log:/host/var/log:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/run/dbus:/run/dbus:ro"
 
     hostname: "${NAME:-netdata}"
 
@@ -39,16 +43,16 @@ services:
       - "${PORT:-19996}:19996"
 
     cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
+      - "SYS_PTRACE"
+      - "SYS_ADMIN"
 
     security_opt:
-      - apparmor:unconfined
+      - "apparmor:unconfined"
 
     pid: host
 
     env_file:
-      - ./netdata/.env
+      - "./netdata/.env"
 
     deploy:
       replicas: 1

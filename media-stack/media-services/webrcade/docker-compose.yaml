@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/webrcade/content:/var/www/html/content"
+      - "webrcade_content:/var/www/html/content"
 
     hostname: "${NAME:-webrcade}"
 

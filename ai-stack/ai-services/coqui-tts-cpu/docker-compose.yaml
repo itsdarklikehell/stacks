@@ -9,8 +9,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/coqui-tts-cpu:/kokoro"
-    #   - "kokoro_index_data:/index_data"
+      - "kokoro_data:/kokoro"
+      - "kokoro_index_data:/index_data"
+    # - "../DATA/coqui-tts-cpu:/kokoro"
 
     hostname: "${NAME:-coqui-tts-cpu}"
 

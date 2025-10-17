@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/calibre-web/calibre-library:/calibre-library"
+      - "calibre_library:/calibre-library"
 
     hostname: "${NAME:-calibre-web}"
 

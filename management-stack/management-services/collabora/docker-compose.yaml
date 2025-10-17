@@ -13,14 +13,15 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - password=password
-      - username=nextcloud
-      - domain=example.com
-      - extra_params=--o:ssl.enable=true
+      - "password=password"
+      - "username=nextcloud"
+      - "domain=example.com"
+      - "extra_params=--o:ssl.enable=true"
 
-    # volumes:
-    #   - /etc/localtime:/etc/localtime:ro
-    #   - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-collabora}"
 
@@ -32,7 +33,7 @@ services:
       - "${PORT:-9980}:9980"
 
     env_file:
-      - ./collabora/.env
+      - "./collabora/.env"
 
     deploy:
       replicas: 1

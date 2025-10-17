@@ -21,7 +21,8 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "../DATA/homarr/appdata:/appdata"
+      - "homarr_appdata:/appdata"
+      # - "../DATA/homarr/appdata:/appdata"
 
     hostname: "${NAME:-homarr}"
 

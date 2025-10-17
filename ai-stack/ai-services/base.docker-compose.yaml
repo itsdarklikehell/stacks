@@ -17,32 +17,44 @@ networks:
     external: true
 
 volumes:
-  home-assistant-config:
-  open-webui-data:
-  basic-memory-config:
-  swarmdata:
-  swarmbackend:
-  swarmdlnodes:
-  localai_models:
-  swarmextensions:
   anythingllm_storage:
   anythingllm_hotdir:
   anythingllm_outputs:
-  kokoro_index_data:
+  basic-memory-config:
+  chroma_data:
   index_data:
   clickhouse_data:
   clickhouse_backups:
+  kokoro_data:
+  kokoro_index_data:
   faster-whisper-data:
+  home-assistant-config:
+  letta_pgdata:
+  letta_toolexec:
+  libretranslate-whispher_data:
+  libretranslate-whispher_cache:
+  localai_models:
+  mongo-whispher_data:
+  mongo-whispher_logs:
   n8n_data:
-#   netdataconfig:
-#   netdatalib:
-#   netdatacache:
-#   n8n_data:
-#   dockge_data:
-#   wireguard:
-#   grafana_data:
-#   backups:
-
+  n8n_local-files:
+  ollama-data:
+  open-webui-data:
+  searxng_data:
+  stable-diffusion-webui-docker_data:
+  stable-diffusion-webui-docker_config:
+  stable-diffusion-webui-docker_models:
+  stable-diffusion-webui-docker_output:
+  stable-diffusion-webui-docker_embeddings:
+  stable-diffusion-webui-docker_workflows:
+  swarmdata:
+  swarmbackend:
+  swarmdlnodes:
+  swarmextensions:
+  whishper_uploads:
+  whishper_logs:
+  whishper_models:
+  wyoming-piper_data:
 # # secrets:
 #   letta_pg_password:
 #     file: "../../secrets/letta_pg_password"
