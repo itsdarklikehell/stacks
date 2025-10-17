@@ -9,7 +9,7 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: management-services
+name: "management-services"
 
 networks:
   host:
@@ -29,4 +29,4 @@ volumes:
   nextcloud_config:
   nextcloud_data:
   dashy_config:
-    file: "../DATA/dashy/config.yml"
+    # file: "../DATA/dashy/config.yml"

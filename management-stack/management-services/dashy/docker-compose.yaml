@@ -21,8 +21,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "dashy_config:/app/user-data/conf.yml"
-    #   - "../DATA/dashy/config.yml:/app/user-data/conf.yml"
+      - "../DATA/dashy/config.yml:/app/user-data/conf.yml"
+      # - "dashy_config:/app/user-data/conf.yml"
 
     hostname: "${NAME:-dashy}"
 

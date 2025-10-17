@@ -26,8 +26,7 @@ volumes:
   romm_assets: "../DATA/romm/assets"
   romm_config: "../DATA/romm/assets"
   webrcade_content: "../DATA/webrcade/content"
-  tvs99_config:
-    file: "../DATA/tvs99/config/config.tvs.yml"
+  tvs99_config: "../DATA/tvs99/config/config.tvs.yml"
   tvs99_data: "../DATA/tvs99/data"
   retroarchz_roms: "/home/rizzo/RetroPie/roms"
   retroarch_config: "../DATA/retroarch/config"
