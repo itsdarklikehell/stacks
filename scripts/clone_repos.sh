@@ -7,37 +7,37 @@ export UV_LINK_MODE=copy
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
-mkdir -p ../DATA/ai-stack
-mkdir -p ../DATA/jaison-stack
-mkdir -p ../DATA/openllm-vtuber-stack
-mkdir -p ../DATA/media-stack
-mkdir -p ../DATA/essentials-stack
-mkdir -p ../DATA/management-stack
-mkdir -p ../DATA/riko-stack
-mkdir -p ../DATA/aiwaifu-stack
-mkdir -p ../DATA/airi-stack
+mkdir -p "${PERM_DATA}/ai-stack"
+mkdir -p "${PERM_DATA}/jaison-stack"
+mkdir -p "${PERM_DATA}/openllm-vtuber-stack"
+mkdir -p "${PERM_DATA}/media-stack"
+mkdir -p "${PERM_DATA}/essentials-stack"
+mkdir -p "${PERM_DATA}/management-stack"
+mkdir -p "${PERM_DATA}/riko-stack"
+mkdir -p "${PERM_DATA}/aiwaifu-stack"
+mkdir -p "${PERM_DATA}/airi-stack"
 ./install_uv.sh
 ./install_toolhive.sh
 
 function CLONE_OLLMVT(){
     cd "${WD}" || exit
-    cd ../DATA/openllm-vtuber-stack || exit 1
+    cd "${PERM_DATA}/openllm-vtuber-stack" || exit 1
 
     echo "Cloning Open-LLM-VTuber"
     echo ""
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
     # uv venv
-    uv sync >/dev/null 2>&1
+    uv sync
 
     #pyttsx3
-    uv pip install py3-tts >/dev/null 2>&1
+    uv pip install py3-tts
 
     #melotts
     uv add git+https://github.com/myshell-ai/MeloTTS.git
     # Download unidic
-    python3 -m pip install unidic >/dev/null 2>&1
-    python3 -m unidic download >/dev/null 2>&1
+    python3 -m pip install unidic
+    python3 -m unidic download
 
 #     python3 - <<PYCODE
 # import nltk
@@ -49,10 +49,10 @@ function CLONE_OLLMVT(){
     # uv run tts --list_models 
 
     # #bark
-    # uv pip install git+https://github.com/suno-ai/bark.git >/dev/null 2>&1
+    # uv pip install git+https://github.com/suno-ai/bark.git
 
     #fishaudio
-    uv pip install fish-audio-sdk >/dev/null 2>&1
+    uv pip install fish-audio-sdk
 
     # uv run run_server.py
     if [[ ! -f "conf.yaml" ]]; then
@@ -69,28 +69,28 @@ function CLONE_OLLMVT(){
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
-    cd ../DATA/ai-stack || exit 1
+    cd "${PERM_DATA}/ai-stack" || exit 1
 
     echo "Cloning Letta"
     echo ""
     git clone --recursive https://github.com/letta-ai/letta.git letta
     cd letta || exit
-    uv sync >/dev/null 2>&1
-    uv sync --all-extras >/dev/null 2>&1
+    uv sync
+    uv sync --all-extras
     # uv run letta server
 }
 function CLONE_MELOTTS(){
     cd "${WD}" || exit
-    cd ../DATA/openllm-vtuber-stack || exit 1
+    cd "${PERM_DATA}/openllm-vtuber-stack" || exit 1
 
     echo "Cloning MeloTTS"
     echo ""
     git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
     cd MeloTTS || exit
-    uv venv >/dev/null 2>&1
-    uv sync >/dev/null 2>&1
-    uv pip install -e . >/dev/null 2>&1
-    python -m unidic download >/dev/null 2>&1
+    uv venv
+    uv sync
+    uv pip install -e .
+    python -m unidic download
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
 
@@ -109,26 +109,26 @@ function CLONE_JAISON(){
     # conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
     cd "${WD}" || exit
-    cd ../DATA/jaison-stack || exit 1
+    cd "${PERM_DATA}/jaison-stack" || exit 1
 
     echo "Cloning jaison-core"
     echo ""
     git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
     cd jaison-core || exit
 
-    # uv venv >/dev/null 2>&1
-    uv sync >/dev/null 2>&1
+    # uv venv
+    uv sync
     # uv run run_server.py 
 
     # conda create -n jaison-core python=3.10 pip=24.0 -y
     # conda activate jaison-core
 
-    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 >/dev/null 2>&1
-    # uv pip install -r requirements.txt >/dev/null 2>&1
-    # uv pip install --no-deps -r requirements.no_deps.txt >/dev/null 2>&1
-    # python -m spacy download en_core_web_sm >/dev/null 2>&1
-    # python install.py >/dev/null 2>&1
-    # python -m unidic download >/dev/null 2>&1
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+    # uv pip install -r requirements.txt
+    # uv pip install --no-deps -r requirements.no_deps.txt
+    # python -m spacy download en_core_web_sm
+    # python install.py
+    # python -m unidic download
 
     # python ./src/main.py --help
     # python ./src/main.py --config=example
@@ -144,60 +144,60 @@ function CLONE_JAISON(){
 }
 function CLONE_AIRI(){
     cd "${WD}" || exit
-    cd ../DATA/airi-stack || exit 1
+    cd "${PERM_DATA}/airi-stack" || exit 1
 
-    npm i -g @antfu/ni >/dev/null 2>&1
-    npm i -g shiki >/dev/null 2>&1
-    npm i -g pkgroll >/dev/null 2>&1
+    npm i -g @antfu/ni
+    npm i -g shiki
+    npm i -g pkgroll
 
     function INSTALL_XSAI(){
         cd "${WD}" || exit
-        cd ../DATA/airi-stack || exit 1
+        cd "${PERM_DATA}/airi-stack" || exit 1
 
         echo "Cloning xsai"
         echo ""
         git clone --recursive https://github.com/moeru-ai/xsai.git xsai
         cd xsai || exit
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
     }
     function INSTALL_XSAI_TRANSFORMERS(){
         cd "${WD}" || exit
-        cd ../DATA/airi-stack || exit 1
+        cd "${PERM_DATA}/airi-stack" || exit 1
 
         echo "Cloning xsai-transformers"
         echo ""
         git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
         cd xsai-transformers || exit
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
     }
     function INSTALL_AIRI_CHAT(){
         cd "${WD}" || exit
-        cd ../DATA/airi-stack || exit 1
+        cd "${PERM_DATA}/airi-stack" || exit 1
 
         echo "Cloning airi_chat"
         echo ""
         git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
         cd airi-chat || exit
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
     }
     function INSTALL_AIRI(){
 
         cd "${WD}" || exit
-        cd ../DATA/airi-stack || exit 1
+        cd "${PERM_DATA}/airi-stack" || exit 1
 
         echo "Cloning airi"
         echo ""
         git clone --recursive https://github.com/moeru-ai/airi.git airi
         cd airi || exit
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
 
         # For Rust dependencies
         # Not required if you are not going to develop on either crates or apps/tamagotchi
@@ -212,26 +212,26 @@ function CLONE_AIRI(){
         cp .env .env.local
         # docker compose -p airi-telegram-bot-db up -d
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
-        # nr -F @proj-airi/telegram-bot db:generate >/dev/null 2>&1
-        # nr -F @proj-airi/telegram-bot db:push >/dev/null 2>&1
+        ni
+        nr build
+        # nr -F @proj-airi/telegram-bot db:generate
+        # nr -F @proj-airi/telegram-bot db:push
         # nr -F @proj-airi/telegram-bot dev
 
         # discord bot setup
         cd ../discord-bot || exit
         cp .env .env.local
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
         # nr -F @proj-airi/discord-bot dev
 
         # minecraft bot setup
         cd ../minecraft || exit
         cp .env .env.local
 
-        ni >/dev/null 2>&1
-        nr build >/dev/null 2>&1
+        ni
+        nr build
         # nr -F @proj-airi/minecraft dev
 
         cd .. || exit
@@ -248,7 +248,7 @@ function CLONE_AIRI(){
         # pnpm dev:docs
 
         cd "${WD}" || exit
-        cd ../DATA/airi-stack/airi || exit 1
+        cd "${PERM_DATA}/airi-stack/airi" || exit 1
 
         cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
         cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
@@ -268,20 +268,20 @@ function CLONE_AIRI(){
     # INSTALL_AIRI_CHAT
 
     cd "${WD}" || exit
-    sudo chown -R "1000:1000" ../DATA/airi-stack
+    sudo chown -R "1000:1000" "${PERM_DATA}/airi-stack"
 }
 function CLONE_RIKOPROJECT(){
 
     cd "${WD}" || exit
-    cd ../DATA/riko-stack || exit 1
+    cd "${PERM_DATA}/riko-stack" || exit 1
 
     echo "Cloning riko-project"
     echo ""
     git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project
     cd riko-project || exit
 
-    nr build >/dev/null 2>&1
-    ni >/dev/null 2>&1
+    nr build
+    ni
 
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
@@ -294,18 +294,18 @@ function CLONE_RIKOPROJECT(){
     sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
     # source .venv/bin/activate
-    # pip install --upgrade pip uv nltk >/dev/null 2>&1
-    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 >/dev/null 2>&1
-    # uv pip install -r extra-req.txt --no-deps >/dev/null 2>&1
-    # uv pip install -r requirements.txt >/dev/null 2>&1
+    # pip install --upgrade pip uv nltk
+    # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+    # uv pip install -r extra-req.txt --no-deps
+    # uv pip install -r requirements.txt
 
     # chmod +x install_reqs.sh
-    # ./install_reqs.sh >/dev/null 2>&1
+    # ./install_reqs.sh
     # python3 ./server/main_chat.py
 }
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
-    cd ../DATA/ai-stack || exit 1
+    cd "${PERM_DATA}/ai-stack" || exit 1
 
     echo "Cloning SwarmUI"
     echo ""
@@ -320,7 +320,7 @@ function CLONE_SWARMUI(){
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
     cd "${WD}" || exit
-    cd ../DATA/ai-stack || exit 1
+    cd "${PERM_DATA}/ai-stack" || exit 1
 
     echo "Cloning stable-diffusion-webui-docker"
     echo ""
@@ -332,7 +332,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER(){
 }
 function CLONE_CHROMA(){
     cd "${WD}" || exit
-    cd ../DATA/ai-stack || exit 1
+    cd "${PERM_DATA}/ai-stack" || exit 1
 
     echo "Cloning chroma"
     echo ""
@@ -340,7 +340,7 @@ function CLONE_CHROMA(){
 }
 function CLONE_AIWAIFU(){
     cd "${WD}" || exit
-    cd ../DATA/aiwaifu-stack || exit 1
+    cd "${PERM_DATA}/aiwaifu-stack" || exit 1
 
     echo "Cloning AIwaifu"
     echo ""

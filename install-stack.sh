@@ -5,6 +5,8 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
+export PERM_DATA="/media/rizzo/RAIDSTATION/stacks/DATA"
+
 export CLEANUP="true" # false, true
 
 export PRUNE="all" # false, true/normal, all
@@ -57,16 +59,17 @@ function PRUNING(){
 }
 function CLEANUP_DATA(){
     FOLDERS=(
-        '/media/rizzo/RAIDSTATION/stacks/DATA/airi-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/aiwaifu-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/arr-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/essentials-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/jaison-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/management-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/media-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/openllm-vtuber-stack'
-        '/media/rizzo/RAIDSTATION/stacks/DATA/riko-stack'
+        "${PERM_DATA}/airi-stack"
+        "${PERM_DATA}/ai-stack"
+        "${PERM_DATA}/aiwaifu-stack"
+        "${PERM_DATA}/arr-stack"
+        "${PERM_DATA}/essentials-stack"
+        "${PERM_DATA}/jaison-stack"
+        "${PERM_DATA}/management-stack"
+        "${PERM_DATA}/media-stack"
+        "${PERM_DATA}/openllm-vtuber-stack"
+        "${PERM_DATA}/riko-stack"
+        "${PERM_DATA}"
     )
     for folder in "${FOLDERS[@]}"; do
         echo ""
