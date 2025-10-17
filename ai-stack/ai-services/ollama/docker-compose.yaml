@@ -22,7 +22,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "ollama-data:/root/.ollama"
-      # - "../DATA/ollama:/root/.ollama"
+      # - "../../DATA/ai-stack/ollama:/root/.ollama"
 
     hostname: "${NAME:-ollama}"
 

@@ -18,8 +18,8 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "kapowarr-db:/app/db"
-      - "../DATA/kapowarr/download_folder:/app/temp_downloads"
-      - "../DATA/kapowarr/root_folder:/comics-1"
+      - "../../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads"
+      - "../../DATA/arr-stack/kapowarr/root_folder:/comics-1"
 
     hostname: "${NAME:-kapowarr}"
 

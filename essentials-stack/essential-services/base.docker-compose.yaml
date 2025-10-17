@@ -17,15 +17,15 @@ networks:
     external: true
 
 volumes:
-  grafana_data:
-  wolf_etc:
-  uptime-kuma_data:
-  portracker_data:
-  portainer_data:
-  nginx-proxy-manager_data:
-  nginx-proxy-manager_letsencrypt:
-  homarr_appdata:
-  dockge_data:
+  grafana_data: # "../../DATA/essential-stack/grafana/data"
+  wolf_etc: # "../../DATA/essential-stack/wolf/etc"
+  uptime-kuma_data: # "../../DATA/essential-stack/uptime-kuma/data"
+  portracker_data: # "../../DATA/essential-stack/portracker/data"
+  portainer_data: # "../../DATA/essential-stack/portainer/data"
+  nginx-proxy-manager_data: # "../../DATA/essential-stack/nginx-proxy-manager/data"
+  nginx-proxy-manager_letsencrypt: # "../../DATA/essential-stack/nginx-proxy-manager/letsencrypt"
+  homarr_appdata: # "../../DATA/essential-stack/homarr/appdata"
+  dockge_data: # "../../DATA/essential-stack/dockge/data"
 
 secrets:
   INITIAL_ADMIN_EMAIL:

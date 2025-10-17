@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../DATA/stable-diffusion-webui-docker/services/comfy"
+      context: "../../DATA/ai-stack/stable-diffusion-webui-docker/services/comfy"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
@@ -28,8 +28,8 @@ services:
       - "stable-diffusion-webui-docker_data:/data"
       - "stable-diffusion-webui-docker_output:/output"
       - "stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
-      # - "../DATA/stable-diffusion-webui-docker/data:/data"
-      # - "../DATA/stable-diffusion-webui-docker/output:/output"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data:/data"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/output:/output"
       # - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: "${NAME:-stable-diffusion-webui}"

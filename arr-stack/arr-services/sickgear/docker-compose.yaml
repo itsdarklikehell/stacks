@@ -18,9 +18,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/sickgear/sickgear-data:/data"
-      - "../DATA/sickgear/incoming:/incoming"
-      - "../DATA/sickgear/tv:/tv"
+      - "../../DATA/arr-stack/sickgear/sickgear-data:/data"
+      - "../../DATA/arr-stack/sickgear/incoming:/incoming"
+      - "../../DATA/arr-stack/sickgear/tv:/tv"
 
     hostname: "${NAME:-sickgear}"
 

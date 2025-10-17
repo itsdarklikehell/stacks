@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/radarr/config:/config"
-      - "../DATA/radarr/media:/media"
+      - "../../DATA/arr-stack/radarr/config:/config"
+      - "../../DATA/arr-stack/radarr/media:/media"
 
     hostname: "${NAME:-radarr}"
 

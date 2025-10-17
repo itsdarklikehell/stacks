@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/prowlarr:/config"
+      - "../../DATA/arr-stack/prowlarr:/config"
 
     hostname: "${NAME:-prowlarr}"
 

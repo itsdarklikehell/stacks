@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/sonarr/config:/config"
-      - "../DATA/sonarr/media:/media"
+      - "../../DATA/arr-stack/sonarr/config:/config"
+      - "../../DATA/arr-stack/sonarr/media:/media"
 
     hostname: "${NAME:-sonarr}"
 

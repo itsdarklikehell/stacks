@@ -59,8 +59,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/calendarr/logs:/app/logs:rw"
-      - "../DATA/calendarr/custom_footers:/app/custom_footers:rw"
+      - "../../DATA/arr-stack/calendarr/logs:/app/logs:rw"
+      - "../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw"
 
     hostname: "${NAME:-calendarr}"
 

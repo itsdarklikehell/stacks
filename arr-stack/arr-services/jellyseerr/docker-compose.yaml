@@ -18,7 +18,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/jellyseerr/appdata/config:/app/config"
+      - "../../DATA/arr-stack/jellyseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-jellyseerr}"
 

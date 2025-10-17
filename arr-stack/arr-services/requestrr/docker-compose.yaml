@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/requestrr/config:/root/config"
+      - "../../DATA/arr-stack/requestrr/config:/root/config"
 
     hostname: "${NAME:-requestrr}"
 

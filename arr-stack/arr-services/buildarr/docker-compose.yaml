@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/buildarr/config:/config"
+      - "../../DATA/arr-stack/buildarr/config:/config"
 
     hostname: "${NAME:-buildarr}"
 

@@ -36,8 +36,8 @@ function CLONE_OLLMVT(){
     #melotts
     uv add git+https://github.com/myshell-ai/MeloTTS.git
     # Download unidic
-    python3 -m pip install unidic
-    python3 -m unidic download
+    uv pip install unidic
+    uv run unidic download
 
 #     python3 - <<PYCODE
 # import nltk
@@ -90,7 +90,7 @@ function CLONE_MELOTTS(){
     uv venv
     uv sync
     uv pip install -e .
-    python -m unidic download
+    uv run unidic download
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
 

@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/bazarr/config:/config"
-      - "../DATA/bazarr/media:/media"
+      - "../../DATA/arr-stack/bazarr/config:/config"
+      - "../../DATA/arr-stack/bazarr/media:/media"
 
     hostname: "${NAME:-bazarr}"
 

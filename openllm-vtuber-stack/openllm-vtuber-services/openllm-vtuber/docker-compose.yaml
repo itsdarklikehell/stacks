@@ -6,7 +6,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../DATA/Open-LLM-VTuber"
+      context: "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
@@ -29,17 +29,17 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
-      - "../DATA/Open-LLM-VTuber/avatars:/app/avatars"
-      - "../DATA/Open-LLM-VTuber/avatars:/app/backgrounds"
-      - "../DATA/Open-LLM-VTuber/characters:/app/characters"
-      - "../DATA/Open-LLM-VTuber/chat_history:/app/chat_history"
-      - "../DATA/Open-LLM-VTuber/live2d-models:/app/live2d-models"
-      - "../DATA/Open-LLM-VTuber/logs:/app/logs"
-      - "../DATA/Open-LLM-VTuber/prompts/utils:/app/prompts/utils"
-      - "../DATA/Open-LLM-VTuber/scripts:/app/scripts"
-      - "../DATA/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
-      - "../DATA/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/avatars"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/backgrounds"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/characters:/app/characters"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/chat_history:/app/chat_history"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models:/app/live2d-models"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/logs:/app/logs"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/prompts/utils:/app/prompts/utils"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/scripts:/app/scripts"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
+      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
 
     hostname: "${NAME:-openllm-vtuber}"
 

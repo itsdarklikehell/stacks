@@ -19,7 +19,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/overseerr/appdata/config:/app/config"
+      - "../../DATA/arr-stack/overseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-overseerr}"
 

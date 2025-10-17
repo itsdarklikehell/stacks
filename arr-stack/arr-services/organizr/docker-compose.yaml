@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/organizr/config:/config"
+      - "../../DATA/arr-stack/organizr/config:/config"
 
     hostname: "${NAME:-organizr}"
 

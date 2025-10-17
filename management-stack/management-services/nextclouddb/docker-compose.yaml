@@ -23,7 +23,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "nextclouddb_mysql:/var/lib/mysql"
-      # - "../DATA/nextclouddb/nextclouddb:/var/lib/mysql"
+      # - "../../DATA/management-stack/nextclouddb/mysql:/var/lib/mysql"
 
     hostname: "${NAME:-nextclouddb}"
 

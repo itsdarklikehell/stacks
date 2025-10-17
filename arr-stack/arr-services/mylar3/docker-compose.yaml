@@ -17,9 +17,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/mylar3/mylar3/config:/config"
-      - "../DATA/mylar3/comics:/comics"
-      - "../DATA/mylar3/downloads:/downloads"
+      - "../../DATA/arr-stack/mylar3/mylar3/config:/config"
+      - "../../DATA/arr-stack/mylar3/comics:/comics"
+      - "../../DATA/arr-stack/mylar3/downloads:/downloads"
 
     hostname: "${NAME:-mylar3}"
 

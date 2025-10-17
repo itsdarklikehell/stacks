@@ -20,9 +20,9 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "netdataconfig:/etc/netdata"
-      - "netdatalib:/var/lib/netdata"
-      - "netdatacache:/var/cache/netdata"
+      - "netdata_etc:/etc/netdata"
+      - "netdata_lib:/var/lib/netdata"
+      - "netdata_cache:/var/cache/netdata"
       - "/:/host/root:ro,rslave"
       - "/etc/passwd:/host/etc/passwd:ro"
       - "/etc/group:/host/etc/group:ro"

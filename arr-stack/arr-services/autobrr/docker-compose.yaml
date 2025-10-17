@@ -17,7 +17,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/autobrr/config:/config"
+      - "../../DATA/arr-stack/autobrr/config:/config"
 
     hostname: "${NAME:-autobrr}"
 

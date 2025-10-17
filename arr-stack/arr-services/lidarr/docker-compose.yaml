@@ -17,8 +17,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../DATA/lidarr/config:/config"
-      - "../DATA/lidarr/media:/media"
+      - "../../DATA/arr-stack/lidarr/config:/config"
+      - "../../DATA/arr-stack/lidarr/media:/media"
 
     hostname: "${NAME:-lidarr}"
 
