@@ -12,6 +12,7 @@ COMPOSE_FILES=(
   faster-whisper-gpu
   homeassistant
   letta-server
+  letta-mcp-server
   localai
   kokoro-tts
   coqui-tts-cpu
