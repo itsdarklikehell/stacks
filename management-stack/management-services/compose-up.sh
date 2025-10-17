@@ -27,7 +27,7 @@ function BUILDING(){
     echo ""
     echo "Building is set to: ${BUILDING}"
     echo ""
-    if [[ "${BUILDING}" = "recreate" ]]; then
+    if [[ "${BUILDING}" = "force_rebuild" ]]; then
         docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
     elif [[ "${BUILDING}" = "true" ]]; then
         docker compose -f base.docker-compose.yaml ${ARGS} up -d

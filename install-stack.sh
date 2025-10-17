@@ -10,7 +10,7 @@ export PERM_DATA="/media/rizzo/RAIDSTATION/stacks/DATA"
 export CLEANUP="false" # false, true
 
 export PRUNE="false" # false, true/normal, all
-export BUILDING="recreate" # false, true, recreate
+export BUILDING="true" # false, true, force_rebuild
 
 export TWITCH_CLIENT_ID="your_client_id"
 export TWITCH_CLIENT_SECRET="your_client_secret"
@@ -163,16 +163,16 @@ echo ""
 INSTALL_AI_STACK
 echo ""
 
-echo ""
-INSTALL_ARR_STACK
-echo ""
+# echo ""
+# INSTALL_ARR_STACK
+# echo ""
 
-echo ""
-INSTALL_MANAGEMENT_STACK
-echo ""
+# echo ""
+# INSTALL_MANAGEMENT_STACK
+# echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
+# echo ""
+# INSTALL_MEDIA_STACK
 echo ""
 
 # echo ""
