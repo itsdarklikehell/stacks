@@ -152,17 +152,17 @@ CREATE_NETWORKS
 CREATE_SECRETS
 
 
-echo ""
-INSTALL_ESSENTIALS_STACK
-echo ""
+# echo ""
+# INSTALL_ESSENTIALS_STACK
+# echo ""
 
-echo ""
-INSTALL_AI_STACK
-echo ""
+# echo ""
+# INSTALL_AI_STACK
+# echo ""
 
-echo ""
-INSTALL_ARR_STACK
-echo ""
+# echo ""
+# INSTALL_ARR_STACK
+# echo ""
 
 echo ""
 INSTALL_MANAGEMENT_STACK

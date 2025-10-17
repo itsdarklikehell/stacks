@@ -43,8 +43,8 @@ services:
       - "./whishper/.env"
 
     depends_on:
-      - mongo-whispher
-      - libretranslate-whispher
+      - "mongo-whispher"
+      - "libretranslate-whispher"
 
     runtime: nvidia
     deploy:
