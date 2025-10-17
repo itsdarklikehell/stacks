@@ -1,6 +1,6 @@
 services:
   chroma:
-    # image: "${IMAGE:-chroma}"
+    image: "${IMAGE:-chromadb/chroma}"
     container_name: "${NAME:-chroma}"
     restart: "${RESTART:-unless-stopped}"
 

@@ -13,10 +13,10 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "OLLAMA_KEEP_ALIVE=24h"
-      - "ENABLE_IMAGE_GENERATION=True"
-      - "COMFYUI_BASE_URL=http://stable-diffusion-webui:7860"
-      - "OLLAMA_MODELS=/root/.ollama/models"
+      - "OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h}"
+      - "ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}"
+      - "COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://stable-diffusion-webui:7860}"
+      - "OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
