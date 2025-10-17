@@ -9,8 +9,8 @@ export PERM_DATA="/media/rizzo/RAIDSTATION/stacks/DATA"
 
 export CLEANUP="false" # false, true
 
-export PRUNE="false" # false, true/normal, all
-export BUILDING="true" # false, true, force_rebuild
+export PRUNE="normal" # false, true/normal, all
+export BUILDING="force_rebuild" # false, true, force_rebuild
 
 export TWITCH_CLIENT_ID="your_client_id"
 export TWITCH_CLIENT_SECRET="your_client_secret"
