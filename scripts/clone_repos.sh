@@ -68,7 +68,7 @@ function CLONE_OLLMVT(){
     # docker build -t open-llm-vtuber .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 
-    cd "${PERM_DATA}/openllm-vtuber-stack/live2d-models" || exit 1
+    cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
     echo "Cloning Live2D Models"
     echo ""
     # git clone --recursive https://github.com/Eikanya/Live2d-model
@@ -78,7 +78,7 @@ function CLONE_OLLMVT(){
     git clone --recursive https://github.com/ezshine/AwesomeLive2D
     git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
 
-    cd "${PERM_DATA}/openllm-vtuber-stack/live2d-models" || exit 1
+    cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
     echo "Cloning VITS Models"
     echo ""
     wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
