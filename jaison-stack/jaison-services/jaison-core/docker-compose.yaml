@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../../DATA/jaison-stack/jaison-core"
+      context: "../../DATA/jaison-stack/jaison-core"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"

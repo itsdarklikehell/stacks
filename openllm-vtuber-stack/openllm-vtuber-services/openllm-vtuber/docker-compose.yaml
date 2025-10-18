@@ -6,7 +6,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber"
+      context: "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"

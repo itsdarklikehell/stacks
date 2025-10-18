@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../../DATA/aiwaifu-stack/aiwaifu"
+      context: "../../DATA/aiwaifu-stack/aiwaifu"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"

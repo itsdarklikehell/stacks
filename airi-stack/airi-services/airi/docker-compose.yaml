@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../../DATA/airi-stack/airi"
+      context: "../../DATA/airi-stack/airi"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"

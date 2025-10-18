@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../../DATA/riko-stack/riko-project"
+      context: "../../DATA/riko-stack/riko-project"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
