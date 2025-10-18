@@ -81,33 +81,44 @@ function CLONE_OLLMVT(){
     cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
     echo "Cloning VITS Models"
     echo ""
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
-    tar xvf vits-melo-tts-zh_en.tar.bz2
-    rm vits-melo-tts-zh_en.tar.bz2
-    
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
-    tar xvf vits-piper-en_US-glados.tar.bz2
-    rm vits-piper-en_US-glados.tar.bz2
-    
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
-    tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
-    rm vits-piper-en_US-libritts_r-medium.tar.bz2
-
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
-    tar xvf vits-ljs.tar.bz2
-    rm vits-ljs.tar.bz2
-
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
-    tar xvf vits-vctk.tar.bz2
-    rm vits-vctk.tar.bz2
-
-    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
-    tar xvf vits-piper-en_US-lessac-medium.tar.bz2
-    rm vits-piper-en_US-lessac-medium.tar.bz2
-
-    git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
-
-
+    if [[ ! -f "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
+        tar xvf vits-melo-tts-zh_en.tar.bz2
+        rm vits-melo-tts-zh_en.tar.bz2
+    fi
+    if [[ ! -f "vits-melo-tts-zh_en" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
+        tar xvf vits-melo-tts-zh_en.tar.bz2
+        rm vits-melo-tts-zh_en.tar.bz2
+    fi
+    if [[ ! -f "vits-piper-en_US-glados" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
+        tar xvf vits-piper-en_US-glados.tar.bz2
+        rm vits-piper-en_US-glados.tar.bz2
+    fi
+    if [[ ! -f "vits-piper-en_US-libritts_r-medium" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
+        tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
+        rm vits-piper-en_US-libritts_r-medium.tar.bz22
+    fi    
+    if [[ ! -f "vits-ljs" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
+        tar xvf vits-ljs.tar.bz2
+        rm vits-ljs.tar.bz2
+    fi
+    if [[ ! -f "vits-vctk" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
+        tar xvf vits-vctk.tar.bz2
+        rm vits-vctk.tar.bz2
+    fi
+    if [[ ! -f "vits-piper-en_US-lessac-medium" ]]; then
+        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
+        tar xvf vits-piper-en_US-lessac-medium.tar.bz2
+        rm vits-piper-en_US-lessac-medium.tar.bz2
+    fi
+    if [[ ! -f "vits-piper-en_GB-cori-high " ]]; then
+            git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
+    fi
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
