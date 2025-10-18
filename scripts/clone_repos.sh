@@ -104,6 +104,10 @@ function CLONE_OLLMVT(){
     wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
     tar xvf vits-piper-en_US-lessac-medium.tar.bz2
     rm vits-piper-en_US-lessac-medium.tar.bz2
+
+    git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
+
+
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
