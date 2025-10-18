@@ -58,7 +58,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:11434/api/health",
+    #     "http://host.docker.internal:11434/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"
