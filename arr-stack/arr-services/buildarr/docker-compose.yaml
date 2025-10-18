@@ -13,11 +13,13 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-7878}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/buildarr/config:/config"
+      - "buildarr-config:/config"
+      # - "../../DATA/arr-stack/buildarr/config:/config"
 
     hostname: "${NAME:-buildarr}"
 
@@ -46,7 +48,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-7878}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

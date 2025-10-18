@@ -17,7 +17,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8080}"
+      - "PORT=${PORT:80}"
     # INITIAL_ADMIN_EMAIL: "${INITIAL_ADMIN_EMAIL:-admin@example.com}"
     # INITIAL_ADMIN_PASSWORD: "${INITIAL_ADMIN_PASSWORD:-changeme}"
     # Uncomment this if you want to change the location of
@@ -42,7 +42,7 @@ services:
 
     ports:
       # These ports are in format <host-port>:<container-port>
-      - "80:80" # Public HTTP Port
+      - "${PORT:80}:80" # Public HTTP Port
       - "443:443" # Public HTTPS Port
       - "81:81" # Admin Web Port
       # Add any other Stream port you want to expose

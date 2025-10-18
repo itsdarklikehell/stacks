@@ -13,13 +13,17 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-5656}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "kapowarr-db:/app/db"
-      - "../../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads"
-      - "../../DATA/arr-stack/kapowarr/root_folder:/comics-1"
+      - "kapowarr-download_folder:/app/temp_downloads"
+      - "kapowarr-root_folder:/comics-1"
+      # - "../../DATA/arr-stack/kapowarr/db:/app/db"
+      # - "../../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads"
+      # - "../../DATA/arr-stack/kapowarr/root_folder:/comics-1"
 
     hostname: "${NAME:-kapowarr}"
 
@@ -48,7 +52,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-5656}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

@@ -13,11 +13,13 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-8686}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/flemmarr/config:/config"
+      - "flemmarr-config:/config"
+      # - "../../DATA/arr-stack/flemmarr/config:/config"
 
     hostname: "${NAME:-flemmarr}"
 
@@ -46,7 +48,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8686}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

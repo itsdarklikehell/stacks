@@ -13,10 +13,11 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "password=password"
-      - "username=nextcloud"
-      - "domain=example.com"
+      - "password=${password:-password}"
+      - "username=${nextcloud:-nextcloud}"
+      - "domain=${domain:-example.com}"
       - "extra_params=--o:ssl.enable=true"
+      - "PORT=${PORT:-9980}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -50,7 +51,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-9980}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

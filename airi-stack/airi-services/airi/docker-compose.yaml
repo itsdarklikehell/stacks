@@ -18,6 +18,7 @@ services:
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
+      - "PORT=${PORT:-5137}"
 
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -77,7 +78,7 @@ services:
     #     "--no-verbose",
     #     "--tries=3",
     #     "--spider",
-    #     "http://localhost:12393/api/health",
+    #     "http://localhost:${PORT:-5137}/api/health",
     #   ]
     # interval: "30s"
     # timeout: "10s"

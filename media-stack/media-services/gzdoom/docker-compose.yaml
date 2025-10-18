@@ -14,6 +14,7 @@ services:
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "CUSTOM_PORT=${CUSTOM_PORT:-3020}"
+      - "PORT=${PORT:-3020}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -28,7 +29,7 @@ services:
       media-services:
 
     ports:
-      - "3020:3020"
+      - "${PORT:-3020}:3020"
 
     shm_size: "4gb"
 
@@ -53,7 +54,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-3020}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

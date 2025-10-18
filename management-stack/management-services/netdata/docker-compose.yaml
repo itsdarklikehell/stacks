@@ -13,9 +13,10 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "NETDATA_CLAIM_TOKEN=3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o"
-      - "NETDATA_CLAIM_URL=https://app.netdata.cloud"
-      - "NETDATA_CLAIM_ROOMS=1a9352b6-d34d-4688-bab5-06a719586033"
+      - "NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN:-3a_tcqnbrp_Dj5VoIvy5pMa3qqdZlxwhV6_x-Armwgw7HVY3DNIDXm9Lm6ZeNbnpmki-IagEPKi-R1_JybqgOQj95QaqNZzh-xc3pc3B0FjfLCmTPZRofZLUnrcUmrEgVhUe26o}"
+      - "NETDATA_CLAIM_URL=${NETDATA_CLAIM_URL:-https://app.netdata.cloud}"
+      - "NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS:-1a9352b6-d34d-4688-bab5-06a719586033}"
+      - "PORT=${PORT:-19996}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -69,7 +70,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-19996}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

@@ -15,6 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "NVIDIA_DRIVER_CAPABILITIES=all"
       - "NVIDIA_VISIBLE_DEVICES=all"
+      # - "PORT=${PORT:-80}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -36,6 +37,9 @@ services:
     networks:
       host:
       essential-services:
+
+    # ports:
+    #   - "${PORT:-80}:80"
 
     hostname: "${NAME:-wolf}"
 
@@ -64,7 +68,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3000/api/health",
+    #       "http://localhost:${PORT:-80}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

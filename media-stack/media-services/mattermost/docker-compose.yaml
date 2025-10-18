@@ -17,6 +17,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-8065}"
 
     hostname: "${NAME:-mattermost}"
 
@@ -26,13 +27,6 @@ services:
 
     ports:
       - "${PORT:-8065}:8065"
-
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8065"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
 
     env_file:
       - "./mattermost/.env"
@@ -45,15 +39,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test:
-    #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:3002/api/health",
-    #     ]
+    #   test: ["CMD", "curl", "-f", "http://localhost:${PORT:-8065}"]
     #   interval: "30s"
     #   timeout: "10s"
     #   start_period: "30s"

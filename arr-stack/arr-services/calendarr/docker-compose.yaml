@@ -55,18 +55,24 @@ services:
       SHOW_TIMEZONE_IN_SUBHEADER: true
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
+      PORT: "${PORT:-5000}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/calendarr/logs:/app/logs:rw"
-      - "../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw"
+      - "calendarr-logs:/app/logs:rw"
+      - "calendarr-custom_footers:/app/custom_footers:rw"
+      # - "../../DATA/arr-stack/calendarr/logs:/app/logs:rw"
+      # - "../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw"
 
     hostname: "${NAME:-calendarr}"
 
     networks:
       host:
       arr-services:
+
+    ports:
+      - "${PORT:-5000}:5000"
 
     env_file:
       - "./calendarr/.env"
@@ -84,7 +90,7 @@ services:
     #       "CMD",
     #       "python",
     #       "-c",
-    #       "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')",
+    #       "import urllib.request; urllib.request.urlopen('http://localhost:${PORT:-5000}/health')",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

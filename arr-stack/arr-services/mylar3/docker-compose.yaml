@@ -13,13 +13,17 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-8091}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/mylar3/mylar3/config:/config"
-      - "../../DATA/arr-stack/mylar3/comics:/comics"
-      - "../../DATA/arr-stack/mylar3/downloads:/downloads"
+      - "mylar3-config:/config"
+      - "mylar3-comics:/comics"
+      - "mylar3-downloads:/downloads"
+      # - "../../DATA/arr-stack/mylar3/mylar3/config:/config"
+      # - "../../DATA/arr-stack/mylar3/comics:/comics"
+      # - "../../DATA/arr-stack/mylar3/downloads:/downloads"
 
     hostname: "${NAME:-mylar3}"
 
@@ -48,7 +52,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8091}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

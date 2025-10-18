@@ -14,6 +14,7 @@ services:
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"
+      - "PORT=${PORT:-6901}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -49,7 +50,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-6901}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

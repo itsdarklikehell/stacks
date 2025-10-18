@@ -14,6 +14,7 @@ services:
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
       - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
+      # - "PORT=${PORT:-80}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -25,6 +26,9 @@ services:
     networks:
       host:
       openllm-vtuber-services:
+
+    # ports:
+    #   - "${PORT:-80}:80"
 
     env_file:
       - "./watchtower/.env"
@@ -48,7 +52,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:8080/api/health",
+    #       "http://localhost:${PORT:-80}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

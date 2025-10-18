@@ -17,6 +17,7 @@ services:
       - "GF_FEATURE_TOGGLES_ENABLE=${GF_FEATURE_TOGGLES_ENABLE:-newNavigation}"
       - "GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=${GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS:-true}"
       - "GF_SERVER_HTTP_PORT=${GF_SERVER_HTTP_PORT:-3000}"
+      - "PORT=${PORT:-3000}"
 
     secrets:
       - "GF_SECURITY_ADMIN_USER"
@@ -56,7 +57,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3000/api/health",
+    #       "http://localhost:${PORT:-3000}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

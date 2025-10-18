@@ -18,7 +18,7 @@ services:
       - "MYSQL_PASSWORD=${MYSQL_DATABASE:-nextcloud}"
       - "MYSQL_HOST=${MYSQL_DATABASE:-nextclouddb}"
       - "REDIS_HOST=${MYSQL_DATABASE:-redis}"
-      - "PORT=8087"
+      - "PORT=${PORT:-8087}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -63,7 +63,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8087}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

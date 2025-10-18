@@ -18,6 +18,7 @@ services:
       - "MYSQL_PASSWORD=${MYSQL_PASSWORD:-nextcloud}"
       - "MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}"
       - "MYSQL_USER=${MYSQL_USER:-nextcloud}"
+      # - "PORT=${PORT:-80}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -51,7 +52,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:80/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

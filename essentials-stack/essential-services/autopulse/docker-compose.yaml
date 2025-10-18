@@ -13,7 +13,8 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse"
+      - "AUTOPULSE__APP__DATABASE_URL=${AUTOPULSE__APP__DATABASE_URL:-postgres://postgres:autopulse@postgresql/autopulse}"
+      # - "PORT=${PORT:-80}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -24,6 +25,9 @@ services:
     networks:
       host:
       essential-services:
+
+    # ports:
+    #   - "${PORT:-80}:80"
 
     env_file:
       - "./autopulse/.env"
@@ -43,7 +47,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:80/api/health",
+    #       "http://localhost:${PORT:-80}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

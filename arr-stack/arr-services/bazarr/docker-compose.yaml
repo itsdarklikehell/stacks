@@ -13,12 +13,15 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-6767}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/bazarr/config:/config"
-      - "../../DATA/arr-stack/bazarr/media:/media"
+      - "bazarr-config:/config"
+      - "bazarr-media:/media"
+      # - "../../DATA/arr-stack/bazarr/config:/config"
+      # - "../../DATA/arr-stack/bazarr/media:/media"
 
     hostname: "${NAME:-bazarr}"
 
@@ -50,7 +53,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-6767}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

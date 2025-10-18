@@ -15,6 +15,7 @@ services:
       - "TZ=${TZ:-Europe/Amsterdam}"
       # Tell Dockge where to find the stacks
       - "DOCKGE_STACKS_DIR=/media/rizzo/RAIDSTATION/stacks"
+      - "PORT=${PORT:-5001}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -52,7 +53,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:5001/api/health",
+    #       "http://localhost:${PORT:-5001}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

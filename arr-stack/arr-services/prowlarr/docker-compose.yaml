@@ -13,11 +13,13 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-9696}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/prowlarr:/config"
+      - "prowlarr-config:/config"
+      # - "../../DATA/arr-stack/prowlarr/config:/config"
 
     hostname: "${NAME:-prowlarr}"
 
@@ -49,7 +51,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-9696}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

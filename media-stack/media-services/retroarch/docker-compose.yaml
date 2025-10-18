@@ -13,6 +13,7 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-3003}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -27,7 +28,7 @@ services:
       media-services:
 
     ports:
-      - "3003:3003"
+      - "${PORT:-3003}:3003"
       - "3004:3004"
 
     shm_size: "4gb"
@@ -60,7 +61,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-3003}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

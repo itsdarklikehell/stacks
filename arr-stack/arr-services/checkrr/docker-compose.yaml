@@ -13,13 +13,14 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
+      - "PORT=${PORT:-8585}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "../../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml"
       - "../../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db"
-      - "../../DATA/arr-stack/media/to/scan:/media"
+      - "../../DATA/arr-stack/media:/media"
 
     hostname: "${NAME:-checkrr}"
 
@@ -48,7 +49,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8585}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

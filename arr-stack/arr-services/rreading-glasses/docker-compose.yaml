@@ -13,9 +13,10 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "POSTGRES_HOST=rreading-glasses-db"
-      - "POSTGRES_DATABASE=rreading-glasses"
-      - "POSTGRES_USER=rreading-glasses"
+      - "POSTGRES_HOST=${POSTGRES_HOST:-rreading-glasses-db}"
+      - "POSTGRES_DATABASE=${POSTGRES_DATABASE:-rreading-glasses}"
+      - "POSTGRES_USER=${POSTGRES_USER:-rreading-glasses}"
+      - "PORT=${PORT:-8788}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -61,7 +62,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8788}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"
@@ -75,7 +76,7 @@ services:
         max-file: "3"
 
   rreading-glasses-db:
-    image: "postgres"
+    image: "${IMAGE:-postgres}"
     container_name: "${NAME:-rreading-glasses-db}"
     restart: "${RESTART:-unless-stopped}"
 
@@ -88,8 +89,9 @@ services:
       - "PUID=${PUID:-1000}"
       - "PGID=${PGID:-1000}"
       - "TZ=${TZ:-Europe/Amsterdam}"
-      - "POSTGRES_USER=rreading-glasses"
-      - "POSTGRES_DB=rreading-glasses"
+      - "POSTGRES_USER=${POSTGRES_USER:-rreading-glasses}"
+      - "POSTGRES_DB=${POSTGRES_DB:-rreading-glasses}"
+      - "PORT=${PORT:-5433}"
 
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -126,7 +128,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-5433}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"

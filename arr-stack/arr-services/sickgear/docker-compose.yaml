@@ -18,9 +18,12 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/sickgear/sickgear-data:/data"
-      - "../../DATA/arr-stack/sickgear/incoming:/incoming"
-      - "../../DATA/arr-stack/sickgear/tv:/tv"
+      - "sickgear-data:/data"
+      - "sickgear-incoming:/incoming"
+      - "sickgear-tv:/tv"
+      # - "../../DATA/arr-stack/sickgear/data:/data"
+      # - "../../DATA/arr-stack/sickgear/incoming:/incoming"
+      # - "../../DATA/arr-stack/sickgear/tv:/tv"
 
     hostname: "${NAME:-sickgear}"
 
@@ -49,7 +52,7 @@ services:
     #       "--no-verbose",
     #       "--tries=3",
     #       "--spider",
-    #       "http://localhost:3002/api/health",
+    #       "http://localhost:${PORT:-8092}/api/health",
     #     ]
     #   interval: "30s"
     #   timeout: "10s"
