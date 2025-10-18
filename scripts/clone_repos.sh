@@ -71,13 +71,39 @@ function CLONE_OLLMVT(){
     cd "${PERM_DATA}/openllm-vtuber-stack/live2d-models" || exit 1
     echo "Cloning Live2D Models"
     echo ""
-    git clone --recursive https://github.com/Eikanya/Live2d-model
+    # git clone --recursive https://github.com/Eikanya/Live2d-model
     git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
     git clone --recursive https://github.com/andatoshiki/toshiki-live2d
     git clone --recursive https://github.com/xiaoski/live2d_models_collection
     git clone --recursive https://github.com/ezshine/AwesomeLive2D
     git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+
+    cd "${PERM_DATA}/openllm-vtuber-stack/live2d-models" || exit 1
+    echo "Cloning VITS Models"
+    echo ""
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
+    tar xvf vits-melo-tts-zh_en.tar.bz2
+    rm vits-melo-tts-zh_en.tar.bz2
     
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
+    tar xvf vits-piper-en_US-glados.tar.bz2
+    rm vits-piper-en_US-glados.tar.bz2
+    
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
+    tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
+    rm vits-piper-en_US-libritts_r-medium.tar.bz2
+
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
+    tar xvf vits-ljs.tar.bz2
+    rm vits-ljs.tar.bz2
+
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
+    tar xvf vits-vctk.tar.bz2
+    rm vits-vctk.tar.bz2
+
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
+    tar xvf vits-piper-en_US-lessac-medium.tar.bz2
+    rm vits-piper-en_US-lessac-medium.tar.bz2
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
