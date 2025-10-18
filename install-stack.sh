@@ -44,6 +44,7 @@ function PULL_MODELS(){
         ollama pull "${model}" >/dev/null 2>&1
     done
 }
+# PULL_MODELS
 function PRUNING(){
     echo ""
     echo "Pruning is set to: ${PRUNE}"

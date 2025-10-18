@@ -66,6 +66,17 @@ function CLONE_OLLMVT(){
     # export INSTALL_BARK=false
     # docker build -t open-llm-vtuber .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
+
+    cd "${PERM_DATA}/openllm-vtuber-stack/live2d-models" || exit 1
+    echo "Cloning Live2D Models"
+    echo ""
+    git clone --recursive https://github.com/Eikanya/Live2d-model
+    git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
+    git clone --recursive https://github.com/andatoshiki/toshiki-live2d
+    git clone --recursive https://github.com/xiaoski/live2d_models_collection
+    git clone --recursive https://github.com/ezshine/AwesomeLive2D
+    git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+    
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
