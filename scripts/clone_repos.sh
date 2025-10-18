@@ -35,10 +35,10 @@ function CLONE_OLLMVT(){
     uv pip install py3-tts
 
     #melotts
-    uv add git+https://github.com/myshell-ai/MeloTTS.git
+    uv pip install git+https://github.com/myshell-ai/MeloTTS.git
     # Download unidic
     uv pip install unidic
-    uv run unidic download
+    uv run python3 unidic download
 
 #     python3 - <<PYCODE
 # import nltk
@@ -50,7 +50,7 @@ function CLONE_OLLMVT(){
     # uv run tts --list_models 
 
     # #bark
-    # uv pip install git+https://github.com/suno-ai/bark.git
+    uv pip install git+https://github.com/suno-ai/bark.git
 
     #fishaudio
     uv pip install fish-audio-sdk
