@@ -11,7 +11,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "kokoro_data:/kokoro"
       - "kokoro_index_data:/index_data"
-    # - "../../DATA/ai-stack/coqui-tts-cpu:/kokoro"
+    # - "../../../DATA/ai-stack/coqui-tts-cpu:/kokoro"
 
     hostname: "${NAME:-coqui-tts-cpu}"
 

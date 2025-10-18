@@ -21,7 +21,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "jellyseerr-config:/app/config"
       # - "jellyseerr-appdata:/app"
-      # - "../../DATA/arr-stack/jellyseerr/appdata/config:/app/config"
+      # - "../../../DATA/arr-stack/jellyseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-jellyseerr}"
 

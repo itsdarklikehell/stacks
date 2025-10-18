@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "prowlarr-config:/config"
-      # - "../../DATA/arr-stack/prowlarr/config:/config"
+      # - "../../../DATA/arr-stack/prowlarr/config:/config"
 
     hostname: "${NAME:-prowlarr}"
 

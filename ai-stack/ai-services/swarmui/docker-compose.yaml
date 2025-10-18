@@ -7,7 +7,7 @@ services:
     user: "${PUID:-1000}:${PGID:-1000}"
 
     build:
-      context: "../../DATA/ai-stack/SwarmUI"
+      context: "../../../DATA/ai-stack/SwarmUI"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
@@ -34,9 +34,9 @@ services:
       - "stable-diffusion-webui-docker_models:/SwarmUI/Models"
       - "stable-diffusion-webui-docker_output:/SwarmUI/Output"
       - "stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
-      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
-      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output"
-      # - "../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
+      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
+      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output"
+      # - "../../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
     hostname: "${NAME:-swarmui}"
 
     networks:

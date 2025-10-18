@@ -20,7 +20,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "kokoro_data:/kokoro"
       - "kokoro_index_data:/index_data"
-      # - "../../DATA/ai-stack/kokoro-tts:/kokoro"
+      # - "../../../DATA/ai-stack/kokoro-tts:/kokoro"
 
     hostname: "${NAME:-kokoro-tts}"
 

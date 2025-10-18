@@ -28,7 +28,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "grafana_data:/var/lib/grafana"
-      # - "../../DATA/essential-stack/grafana/data:/var/lib/grafana"
+      # - "../../../DATA/essential-stack/grafana/data:/var/lib/grafana"
 
     hostname: "${NAME:-grafana}"
 

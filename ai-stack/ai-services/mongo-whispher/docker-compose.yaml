@@ -22,8 +22,8 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "mongo-whispher_data:/data/db"
       - "mongo-whispher_logs:/var/log/mongodb/"
-      # - "../../DATA/ai-stack/mongo-whispher/db_data:/data/db"
-      # - "../../DATA/ai-stack/mongo-whispher/db_data/logs/:/var/log/mongodb/"
+      # - "../../../DATA/ai-stack/mongo-whispher/db_data:/data/db"
+      # - "../../../DATA/ai-stack/mongo-whispher/db_data/logs/:/var/log/mongodb/"
 
     hostname: "${NAME:-mongo-whispher}"
 

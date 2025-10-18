@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "requestrr-config:/root/config"
-      # - "../../DATA/arr-stack/requestrr/config:/root/config"
+      # - "../../../DATA/arr-stack/requestrr/config:/root/config"
 
     hostname: "${NAME:-requestrr}"
 

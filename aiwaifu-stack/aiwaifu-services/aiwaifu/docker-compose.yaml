@@ -5,7 +5,7 @@ services:
     restart: "${RESTART:-unless-stopped}"
 
     build:
-      context: "../../DATA/aiwaifu-stack/aiwaifu"
+      context: "../../../DATA/aiwaifu-stack/aiwaifu"
       args:
         UID: "${PUID:-1000}"
         GID: "${PGID:-1000}"
@@ -28,17 +28,17 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-    #   - "../../DATA/ai-stack/aiwaifu/.env:/aiwaifu/.env"
-    #   - "../../DATA/ai-stack/aiwaifu/avatars:/app/avatars"
-    #   - "../../DATA/ai-stack/aiwaifu/avatars:/app/backgrounds"
-    #   - "../../DATA/ai-stack/aiwaifu/characters:/app/characters"
-    #   - "../../DATA/ai-stack/aiwaifu/chat_history:/app/chat_history"
-    #   - "../../DATA/ai-stack/aiwaifu/live2d-models:/app/live2d-models"
-    #   - "../../DATA/ai-stack/aiwaifu/logs:/app/logs"
-    #   - "../../DATA/ai-stack/aiwaifu/prompts/utils:/app/prompts/utils"
-    #   - "../../DATA/ai-stack/aiwaifu/scripts:/app/scripts"
-    #   - "../../DATA/ai-stack/aiwaifu/mcp_servers.json:/app/mcp_servers.json"
-    #   - "../../DATA/ai-stack/aiwaifu/model_dict.json:/app/model_dict.json"
+    #   - "../../../DATA/ai-stack/aiwaifu/.env:/aiwaifu/.env"
+    #   - "../../../DATA/ai-stack/aiwaifu/avatars:/app/avatars"
+    #   - "../../../DATA/ai-stack/aiwaifu/avatars:/app/backgrounds"
+    #   - "../../../DATA/ai-stack/aiwaifu/characters:/app/characters"
+    #   - "../../../DATA/ai-stack/aiwaifu/chat_history:/app/chat_history"
+    #   - "../../../DATA/ai-stack/aiwaifu/live2d-models:/app/live2d-models"
+    #   - "../../../DATA/ai-stack/aiwaifu/logs:/app/logs"
+    #   - "../../../DATA/ai-stack/aiwaifu/prompts/utils:/app/prompts/utils"
+    #   - "../../../DATA/ai-stack/aiwaifu/scripts:/app/scripts"
+    #   - "../../../DATA/ai-stack/aiwaifu/mcp_servers.json:/app/mcp_servers.json"
+    #   - "../../../DATA/ai-stack/aiwaifu/model_dict.json:/app/model_dict.json"
 
     hostname: "${NAME:-aiwaifu}"
 

@@ -18,7 +18,7 @@ services:
       - "CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}"
 
     build:
-      context: "../../DATA/ai-stack/chroma"
+      context: "../../../DATA/ai-stack/chroma"
       dockerfile: "./Dockerfile"
 
     volumes:
@@ -26,7 +26,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "chroma_data:/chroma"
       - "index_data:/index_data"
-      # - "../../DATA/ai-stack/chroma:/chroma"
+      # - "../../../DATA/ai-stack/chroma:/chroma"
 
     command:
       [

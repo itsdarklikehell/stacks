@@ -27,10 +27,10 @@ services:
       - "nextcloud_custom_apps:/var/www/html/custom_apps"
       - "nextcloud_config:/var/www/html/config"
       - "nextcloud_data:/var/www/html/data"
-      # - "../../DATA/management-stack/nextcloud/html:/var/www/html"
-      # - "../../DATA/management-stack/nextcloud/custom_apps:/var/www/html/custom_apps"
-      # - "../../DATA/management-stack/nextcloud/config:/var/www/html/config"
-      # - "../../DATA/management-stack/nextcloud/data:/var/www/html/data"
+      # - "../../../DATA/management-stack/nextcloud/html:/var/www/html"
+      # - "../../../DATA/management-stack/nextcloud/custom_apps:/var/www/html/custom_apps"
+      # - "../../../DATA/management-stack/nextcloud/config:/var/www/html/config"
+      # - "../../../DATA/management-stack/nextcloud/data:/var/www/html/data"
 
     hostname: "${NAME:-nextcloud}"
 

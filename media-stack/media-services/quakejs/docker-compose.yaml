@@ -19,7 +19,7 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/media-stack/quakejs/config:/config"
+      - "../../../DATA/media-stack/quakejs/config:/config"
       # - "quakejs_config:/config"
 
     hostname: "${NAME:-quakejs}"

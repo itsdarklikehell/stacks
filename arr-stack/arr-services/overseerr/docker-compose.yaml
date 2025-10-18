@@ -21,8 +21,8 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "overseerr-appdata:/app"
       - "overseerr-config:/app/config"
-      # - "../../DATA/arr-stack/overseerr/appdata/config:/app/config"
-      # - "../../DATA/arr-stack/overseerr/appdata/config:/app/config"
+      # - "../../../DATA/arr-stack/overseerr/appdata/config:/app/config"
+      # - "../../../DATA/arr-stack/overseerr/appdata/config:/app/config"
 
     hostname: "${NAME:-overseerr}"
 

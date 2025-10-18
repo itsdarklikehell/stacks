@@ -20,8 +20,8 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "sonarr-config:/config"
       - "sonarr-media:/media"
-      # - "../../DATA/arr-stack/sonarr/config:/config"
-      # - "../../DATA/arr-stack/sonarr/media:/media"
+      # - "../../../DATA/arr-stack/sonarr/config:/config"
+      # - "../../../DATA/arr-stack/sonarr/media:/media"
 
     hostname: "${NAME:-sonarr}"
 

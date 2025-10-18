@@ -31,8 +31,8 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "nginx-proxy-manager_data:/data"
       - "nginx-proxy-manager_letsencrypt:/etc/letsencrypt"
-      # - "../../DATA/essential-stack/nginx-proxy-manager/data:/data"
-      # - "../../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt"
+      # - "../../../DATA/essential-stack/nginx-proxy-manager/data:/data"
+      # - "../../../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt"
 
     hostname: "${NAME:-nginx-proxy-manager}"
 
