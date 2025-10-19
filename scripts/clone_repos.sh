@@ -29,12 +29,12 @@ function CLONE_OLLMVT(){
     git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
     # uv venv
-    uv sync
-
-    #pyttsx3
+    uv sync --all-extras
+    uv pip install -r requirements.txt
+    uv pip install -r requirements-bilibili.txt
+    uv pip install -e .
     uv pip install py3-tts
-
-    #melotts
+    uv add git+https://github.com/myshell-ai/MeloTTS.git
     uv pip install git+https://github.com/myshell-ai/MeloTTS.git
     # Download unidic
     uv pip install unidic
@@ -90,11 +90,12 @@ function CLONE_OLLMVT(){
         rm vits-melo-tts-zh_en.tar.bz2
     fi
     if [[ ! -d "vits-piper-en_US-glados" ]]; then
-        wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
-        tar xvf vits-piper-en_US-glados.tar.bz2
-        rm vits-piper-en_US-glados.tar.bz2
+        # wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
+        # tar xvf vits-piper-en_US-glados.tar.bz2
+        # rm vits-piper-en_US-glados.tar.bz2
+        git clone --recursive https://huggingface.co/csukuangfj/vits-piper-en_US-glados
     fi
-    if [[ ! -d "vits-piper-en_US-libritts_r-medium" ]]; then
+        if [[ ! -d "vits-piper-en_US-libritts_r-medium" ]]; then
         wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
         tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
         rm vits-piper-en_US-libritts_r-medium.tar.bz22
@@ -117,6 +118,30 @@ function CLONE_OLLMVT(){
     if [[ ! -d "vits-piper-en_GB-cori-high " ]]; then
             git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
     fi
+    cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
+    git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
+    # If you failed to clone the submodule due to network failures, please run the following command until success
+    cd CosyVoice || exit 1
+    git submodule update --init --recursive
+    # conda create -n cosyvoice -y python=3.10
+    # conda activate cosyvoice
+    uv venv
+    uv sync
+    uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
+    mkdir -p pretrained_models
+    git clone https://www.modelscope.cn/iic/CosyVoice2-0.5B.git pretrained_models/CosyVoice2-0.5B
+    git clone https://www.modelscope.cn/iic/CosyVoice-300M.git pretrained_models/CosyVoice-300M
+    git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git pretrained_models/CosyVoice-300M-SFT
+    git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git pretrained_models/CosyVoice-300M-Instruct
+    git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git pretrained_models/CosyVoice-ttsfrd
+    cd pretrained_models/CosyVoice-ttsfrd/ || exit 1
+    unzip resource.zip -d .
+    uv pip install ttsfrd_dependency-0.1-py3-none-any.whl
+    uv pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
+
+    # If you encounter sox compatibility issues
+    # ubuntu
+    sudo apt install sox libsox-dev
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit
