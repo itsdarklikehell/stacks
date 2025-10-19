@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "redis_data:/data"
-      # - "../../../DATA/essential-stack/redis/data:/data"
+      # - "../../DATA/essential-stack/redis/data:/data"
 
     hostname: "${NAME:-redis}"
 

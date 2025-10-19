@@ -30,11 +30,11 @@ services:
       - "stable-diffusion-webui-docker_models:/data/Models"
       - "stable-diffusion-webui-docker_output:/data/Output"
       - "stable-diffusion-webui-docker_embeddings:/data/embeddings"
-      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data:/data"
-      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data/config:/data/config"
-      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data/Models:/data/Models"
-      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data/Output:/data/Output"
-      # - "../../../DATA/ai-stack/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data:/data"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/config:/data/config"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/Models:/data/Models"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/Output:/data/Output"
+      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/embeddings:/data/embeddings"
 
     hostname: "${NAME:-stable-diffusion-models-download}"
 

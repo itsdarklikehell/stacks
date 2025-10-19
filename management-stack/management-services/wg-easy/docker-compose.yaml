@@ -21,7 +21,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "wg-easy_etc:/etc/wireguard"
-      # - "../../../DATA/essential-stack/wolf/etc:/etc/wireguard"
+      # - "../../DATA/essential-stack/wolf/etc:/etc/wireguard"
       - "/lib/modules:/lib/modules:ro"
 
     hostname: "${NAME:-wg-easy}"

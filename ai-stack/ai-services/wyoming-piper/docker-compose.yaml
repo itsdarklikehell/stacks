@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "wyoming-piper_data:/data"
-      # - "../../../DATA/ai-stack/wyoming-piper/data:/data"
+      # - "../../DATA/ai-stack/wyoming-piper/data:/data"
 
     hostname: "${NAME:-wyoming-piper}"
 

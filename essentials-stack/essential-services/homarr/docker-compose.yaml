@@ -23,7 +23,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "homarr_appdata:/appdata"
-      # - "../../../DATA/essential-stack/homarr/appdata:/appdata"
+      # - "../../DATA/essential-stack/homarr/appdata:/appdata"
 
     hostname: "${NAME:-homarr}"
 

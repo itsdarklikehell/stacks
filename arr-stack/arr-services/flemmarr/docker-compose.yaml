@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "flemmarr-config:/config"
-      # - "../../../DATA/arr-stack/flemmarr/config:/config"
+      # - "../../DATA/arr-stack/flemmarr/config:/config"
 
     hostname: "${NAME:-flemmarr}"
 

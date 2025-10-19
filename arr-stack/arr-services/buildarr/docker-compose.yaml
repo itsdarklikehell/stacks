@@ -19,7 +19,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "buildarr-config:/config"
-      # - "../../../DATA/arr-stack/buildarr/config:/config"
+      # - "../../DATA/arr-stack/buildarr/config:/config"
 
     hostname: "${NAME:-buildarr}"
 

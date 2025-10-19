@@ -29,7 +29,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "n8n_data:/home/node/.n8n"
       - "n8n_local-files:/files"
-      # - "../../../DATA/ai-stack/n8n/local-files:/files"
+      # - "../../DATA/ai-stack/n8n/local-files:/files"
 
     hostname: "${NAME:-n8n}"
 

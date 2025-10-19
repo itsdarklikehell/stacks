@@ -28,32 +28,29 @@ function CLONE_OLLMVT(){
     # git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
+    
     # uv venv
     uv sync --all-extras
+    source .venv/bin/activate
+
+    uv pip install -e .
     uv pip install -r requirements.txt
     uv pip install -r requirements-bilibili.txt
-    uv pip install -e .
-    uv pip install py3-tts
+    
+    uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite unidic mecab-python3
+
     uv add git+https://github.com/myshell-ai/MeloTTS.git
     uv pip install git+https://github.com/myshell-ai/MeloTTS.git
-    # Download unidic
-    uv pip install unidic
+
+    uv add git+https://github.com/suno-ai/bark.git
+    uv pip install git+https://github.com/suno-ai/bark.git    # 
+    
     uv run python3 unidic download
 
 #     python3 - <<PYCODE
 # import nltk
 # nltk.download('averaged_perceptron_tagger_eng')
 # PYCODE
-
-    # Install Coqui-TTS and its language support
-    # uv add transformers "coqui-tts[languages]"
-    # uv run tts --list_models 
-
-    # #bark
-    uv pip install git+https://github.com/suno-ai/bark.git
-
-    #fishaudio
-    uv pip install fish-audio-sdk
 
     # uv run run_server.py
     if [[ ! -f "conf.yaml" ]]; then
@@ -119,29 +116,29 @@ function CLONE_OLLMVT(){
             git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
     fi
     cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
-    git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
-    # If you failed to clone the submodule due to network failures, please run the following command until success
-    cd CosyVoice || exit 1
-    git submodule update --init --recursive
-    # conda create -n cosyvoice -y python=3.10
-    # conda activate cosyvoice
-    uv venv
-    uv sync
-    uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
-    mkdir -p pretrained_models
-    git clone https://www.modelscope.cn/iic/CosyVoice2-0.5B.git pretrained_models/CosyVoice2-0.5B
-    git clone https://www.modelscope.cn/iic/CosyVoice-300M.git pretrained_models/CosyVoice-300M
-    git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git pretrained_models/CosyVoice-300M-SFT
-    git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git pretrained_models/CosyVoice-300M-Instruct
-    git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git pretrained_models/CosyVoice-ttsfrd
-    cd pretrained_models/CosyVoice-ttsfrd/ || exit 1
-    unzip resource.zip -d .
-    uv pip install ttsfrd_dependency-0.1-py3-none-any.whl
-    uv pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
+    # git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
+    # # If you failed to clone the submodule due to network failures, please run the following command until success
+    # cd CosyVoice || exit 1
+    # git submodule update --init --recursive
+    # # conda create -n cosyvoice -y python=3.10
+    # # conda activate cosyvoice
+    # uv venv
+    # uv sync
+    # uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
+    # mkdir -p pretrained_models
+    # git clone https://www.modelscope.cn/iic/CosyVoice2-0.5B.git pretrained_models/CosyVoice2-0.5B
+    # git clone https://www.modelscope.cn/iic/CosyVoice-300M.git pretrained_models/CosyVoice-300M
+    # git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git pretrained_models/CosyVoice-300M-SFT
+    # git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git pretrained_models/CosyVoice-300M-Instruct
+    # git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git pretrained_models/CosyVoice-ttsfrd
+    # cd pretrained_models/CosyVoice-ttsfrd/ || exit 1
+    # unzip resource.zip -d .
+    # uv pip install ttsfrd_dependency-0.1-py3-none-any.whl
+    # uv pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
 
-    # If you encounter sox compatibility issues
-    # ubuntu
-    sudo apt install sox libsox-dev
+    # # If you encounter sox compatibility issues
+    # # ubuntu
+    # sudo apt install sox libsox-dev
 }
 function CLONE_LETTA(){
     cd "${WD}" || exit

@@ -18,8 +18,8 @@ services:
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "../../../DATA/arr-stack/logarr/config:/config:rw"
-      - "../../../DATA/arr-stack/logarr/logs:/var/log/logarrlogs:rw"
+      - "../../DATA/arr-stack/logarr/config:/config:rw"
+      - "../../DATA/arr-stack/logarr/logs:/var/log/logarrlogs:rw"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
     hostname: "${NAME:-logarr}"

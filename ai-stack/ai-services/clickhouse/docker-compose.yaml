@@ -27,8 +27,8 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "clickhouse_data:/bitnami/clickhouse"
       - "clickhouse_backups:/backups"
-      - "../../../DATA/ai-stack/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml"
-      - "../../../DATA/ai-stack/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml"
+      - "../../DATA/ai-stack/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml"
+      - "../../DATA/ai-stack/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml"
 
     networks:
       host:

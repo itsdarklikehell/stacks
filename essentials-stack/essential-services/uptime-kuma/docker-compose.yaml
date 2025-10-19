@@ -20,7 +20,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "uptime-kuma_data:/app/data"
-      # - "../../../DATA/essential-stack/uptime-kuma/data:/app/data"
+      # - "../../DATA/essential-stack/uptime-kuma/data:/app/data"
 
     hostname: "${NAME:-uptime-kuma}"
 
