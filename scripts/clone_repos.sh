@@ -352,10 +352,7 @@ function CLONE_RIKOPROJECT(){
     echo ""
     git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project
     cd riko-project || exit
-
-    nr build
-    ni
-
+    
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
@@ -363,18 +360,22 @@ function CLONE_RIKOPROJECT(){
 
     # uv venv .venv --clear
 
-    sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
-    sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
+    # sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
+    # sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
-    # source .venv/bin/activate
+    source .venv/bin/activate
+    uv pip install -r requirements.txt
+    uv pip install -r extra-req.txt --no-deps
+    uv pip install distro jiter
+    
     # pip install --upgrade pip uv nltk
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    # uv pip install -r extra-req.txt --no-deps
-    # uv pip install -r requirements.txt
 
     # chmod +x install_reqs.sh
     # ./install_reqs.sh
-    # python3 ./server/main_chat.py
+
+    # uv run python3 ./server/main_chat.py
+    # uv run ./server/main_chat.py
 }
 function CLONE_SWARMUI(){
     cd "${WD}" || exit
