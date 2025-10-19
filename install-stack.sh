@@ -20,28 +20,46 @@ cd "${WD}" || exit
 git pull origin main
 function PULL_MODELS(){
     models=(
-        'qwen2.5:latest'
-        'qwen3:latest'
-        'gemma3:latest'
-        'mgistral:latest'
-        'embeddinggemma:latest'
-        'nomic-embed-text:latest'
-        'mxbai-embed-large'
+        'adi0adi/ollama_stheno-8b_v3.1_q6k:latest'
+        'aiden_lu/peach-9b-8k-roleplay:latest'
+        'ALIENTELLIGENCE/roleplaymaster:latest'
+        'antonos9/roleplay:latest'
+        'BlackDream/blue-orchid-2x7b:latest'
         'codellama:latest'
         'deepseek-coder'
-        'mistral:7b-instruct'
-        'llama3.2:latest'
-        'llama3.2-coder:latest'
-        'qwen2.5-coder:32b'
-        'granite:latest'
-        'gpt-oss:20b'
-        'gpt-oss:120b'
         'deepseek-r1'
+        'Desmon2D/Wayfarer-12B:latest'
+        'embeddinggemma:latest'
+        'gemma3:latest'
+        'gpt-oss:120b'
+        'gpt-oss:20b'
+        'granite:latest'
+        'gurubot/pivot-roleplay-v0.2:latest'
+        'jimscard/adult-film-screenwriter-nsfw:latest'
+        'kingzeus/llama-3.1-8b-darkidol:latest'
+        'kubernetes_bad/chargen-v2:latest'
+        'leeplenty/ellaria:latest'
+        'llama3.2-coder:latest'
+        'llama3.2:latest'
+        'magistral:latest'
+        'mgistral:latest'
+        'mistral:7b-instruct'
+        'mistral:latest'
+        'mxbai-embed-large'
+        'nchapman/mn-12b-inferor-v0.0:latest'
+        'nchapman/mn-12b-mag-mell-r1:latest'
+        'nemotron-mini:latest'
+        'nomic-embed-text:latest'
+        'Plexi09/SentientAI:latest'
+        'qwen2.5-coder:32b'
+        'qwen2.5:latest'
+        'qwen3:latest'
+        'smallthinker:latest'
     )
     for model in "${models[@]}"; do
         echo "Pulling model: ${model}"
         # docker exec -it ollama sh -c "ollama pull ${model}" >/dev/null 2>&1
-        ollama pull "${model}" >/dev/null 2>&1
+        ollama pull "${model}" # >/dev/null 2>&1
     done
 }
 # PULL_MODELS
@@ -156,13 +174,13 @@ CREATE_NETWORKS
 CREATE_SECRETS
 
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# INSTALL_AI_STACK
-# echo ""
+echo ""
+INSTALL_AI_STACK
+echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -172,9 +190,11 @@ CREATE_SECRETS
 # INSTALL_MANAGEMENT_STACK
 # echo ""
 
-echo ""
-INSTALL_MEDIA_STACK
-echo ""
+# echo ""
+# INSTALL_MEDIA_STACK
+# echo ""
+
+# a72a392e-870f-40b8-b4f9-ac8a64d282a3
 
 # echo ""
 # INSTALL_AIWAIFU_STACK
@@ -196,7 +216,7 @@ echo ""
 # INSTALL_PROJECT_RIKO_STACK
 # echo ""
 
-# PULL_MODELS
+PULL_MODELS
 
 # dockly # lazydocker
 
