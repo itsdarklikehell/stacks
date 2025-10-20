@@ -69,11 +69,11 @@ function CLONE_OLLMVT(){
     echo "Cloning Live2D Models"
     echo ""
     # git clone --recursive https://github.com/Eikanya/Live2d-model
-    git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
-    git clone --recursive https://github.com/andatoshiki/toshiki-live2d
-    git clone --recursive https://github.com/xiaoski/live2d_models_collection
-    git clone --recursive https://github.com/ezshine/AwesomeLive2D
-    git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+    # git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
+    # git clone --recursive https://github.com/andatoshiki/toshiki-live2d
+    # git clone --recursive https://github.com/xiaoski/live2d_models_collection
+    # git clone --recursive https://github.com/ezshine/AwesomeLive2D
+    # git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
 
     cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
     echo "Cloning VITS Models"
@@ -114,6 +114,9 @@ function CLONE_OLLMVT(){
     fi
     if [[ ! -d "vits-piper-en_GB-cori-high " ]]; then
             git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
+    fi
+    if [[ ! -d "vits-piper-nl_NL-miro-high " ]]; then
+            git clone https://huggingface.co/csukuangfj/vits-piper-nl_NL-miro-high
     fi
     cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
     # git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git

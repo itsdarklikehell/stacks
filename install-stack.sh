@@ -5,11 +5,11 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
-export PERM_DATA="/media/rizzo/RAIDSTATION/stacks/DATA"
+export PERM_DATA="${WD}/DATA"
 
 export CLEANUP="false" # false, true
 
-export PRUNE="normal" # false, true/normal, all
+export PRUNE="false" # false, true/normal, all
 export BUILDING="force_rebuild" # false, true, force_rebuild
 
 export TWITCH_CLIENT_ID="your_client_id"
