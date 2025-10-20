@@ -14,8 +14,8 @@ COMPOSE_FILES=(
   letta-server
   letta-mcp-server
   localai
-  kokoro-tts
-  coqui-tts-cpu
+#   kokoro-tts
+#   coqui-tts-cpu
   voice-chat-ai
   ollama
   open-webui
@@ -25,8 +25,8 @@ COMPOSE_FILES=(
   swarmui
   n8n
   mongo-whispher
-  libretranslate-whispher
-  whishper
+#   libretranslate-whispher
+#   whishper
   wyoming-piper
   watchtower
 )
