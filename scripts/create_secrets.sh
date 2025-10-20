@@ -8,6 +8,8 @@ function CREATE_SECRETS(){
     touch "${WD}/secrets/mariadb_password"
     touch "${WD}/secrets/gsdb_root_password"
     touch "${WD}/secrets/gsdb_password"
+    touch "${WD}/secrets/nginx-proxy-manager_username"
+    touch "${WD}/secrets/nginx-proxy-manager_password"
     touch "${WD}/secrets/romm_db_password"
     touch "${WD}/secrets/romm_auth_secret_key"
     touch "${WD}/secrets/screenscraper_password"
