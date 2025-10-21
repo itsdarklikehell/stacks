@@ -8,3 +8,4 @@ secrets/*
 .vscode
 node_modules
 DATA
+DATA/openllm-vtuber-stack/Open-LLM-VTuber
