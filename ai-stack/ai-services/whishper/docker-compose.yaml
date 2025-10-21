@@ -1,7 +1,7 @@
 services:
   whishper:
     image: "${IMAGE:-pluja/whishper:latest-gpu}"
-    pull_policy: "always"
+    # pull_policy: "always"
     container_name: "${NAME:-whishper}"
     restart: "${RESTART:-unless-stopped}"
 

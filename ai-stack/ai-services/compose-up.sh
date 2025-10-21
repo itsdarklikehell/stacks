@@ -17,7 +17,7 @@ COMPOSE_FILES=(
   kokoro-tts
   coqui-tts-cpu
   voice-chat-ai
-  ollama
+    #   ollama
   open-webui
   searxng
   stable-diffusion-models-download
