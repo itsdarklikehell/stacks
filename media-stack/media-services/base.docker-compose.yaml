@@ -28,7 +28,7 @@ volumes:
   webrcade_content: # "../../DATA/media-stack/webrcade/content"
   tvs99_config: # "../../DATA/media-stack/tvs99/config/config.tvs.yml"
   tvs99_data: # "../../DATA/media-stack/tvs99/data"
-  retroarchz_roms: # "/media/hans/opslag/stacks/roms"
+  retroarchz_roms: # "/media/rizzo/RAIDSTATION/stacks/roms"
   retroarch_config: # "../../DATA/media-stack/retroarch/config"
   quakejs_config: # "../../DATA/media-stack/quakejs/config"
   plex_config: # "../../DATA/media-stack/plex/config"
