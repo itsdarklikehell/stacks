@@ -29,9 +29,12 @@ function CLONE_OLLMVT(){
     # git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
     
+    export INSTALL_WHISPER=true
+    export INSTALL_BARK=true
+    
     # uv venv
-    uv sync --all-extras
     source .venv/bin/activate
+    uv sync --all-extras
 
     uv pip install -e .
     uv pip install -r requirements.txt
@@ -43,7 +46,7 @@ function CLONE_OLLMVT(){
     uv pip install git+https://github.com/myshell-ai/MeloTTS.git
 
     uv add git+https://github.com/suno-ai/bark.git
-    uv pip install git+https://github.com/suno-ai/bark.git    # 
+    uv pip install git+https://github.com/suno-ai/bark.git
     
     uv run python3 unidic download
 
@@ -60,8 +63,6 @@ function CLONE_OLLMVT(){
     cp -f "${WD}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
     cp -f "${WD}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 
-    # export INSTALL_WHISPER=false
-    # export INSTALL_BARK=false
     # docker build -t open-llm-vtuber .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 
@@ -78,9 +79,9 @@ function CLONE_OLLMVT(){
     cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
     echo "Cloning VITS Models"
     echo ""
-    if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
-        git clone https://huggingface.co/csukuangfj/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17
-    fi
+    # if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
+    #     git clone https://huggingface.co/csukuangfj/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17
+    # fi
     if [[ ! -d "vits-melo-tts-zh_en" ]]; then
         wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
         tar xvf vits-melo-tts-zh_en.tar.bz2

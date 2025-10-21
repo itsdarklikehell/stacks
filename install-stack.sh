@@ -215,7 +215,7 @@ echo ""
 # INSTALL_PROJECT_RIKO_STACK
 # echo ""
 
-PULL_MODELS
+# PULL_MODELS
 
 # dockly # lazydocker
 
