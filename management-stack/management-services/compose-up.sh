@@ -5,16 +5,16 @@ cd "$(dirname "$0")"
 
   # docker-compose.clickhouse-server.yaml
 COMPOSE_FILES=(
-  autoheal
-  collabora
-  dashy
-  netdata
-  nextcloud
-  nextclouddb
-  redis
-  ubuntu-noble-desktop
-  watchtower
-  wg-easy
+    autoheal
+    collabora
+    dashy
+    netdata
+    nextcloud
+    nextclouddb
+    redis
+    ubuntu-noble-desktop
+    watchtower
+    wg-easy
 )
 
 ARGS=""

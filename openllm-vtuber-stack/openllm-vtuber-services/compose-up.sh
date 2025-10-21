@@ -4,9 +4,9 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-  openllm-vtuber
-  autoheal 
-  watchtower 
+    openllm-vtuber
+    autoheal 
+    watchtower 
 )
 
 ARGS=""

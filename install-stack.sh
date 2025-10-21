@@ -10,7 +10,7 @@ export PERM_DATA="${WD}/DATA"
 export CLEANUP="false" # false, true
 
 export PRUNE="false" # false, true/normal, all
-export BUILDING="true" # false, true, force_rebuild
+export BUILDING="force_rebuild" # false, true, force_rebuild
 
 export TWITCH_CLIENT_ID="your_client_id"
 export TWITCH_CLIENT_SECRET="your_client_secret"
@@ -192,8 +192,6 @@ echo ""
 # echo ""
 # INSTALL_MEDIA_STACK
 # echo ""
-
-# a72a392e-870f-40b8-b4f9-ac8a64d282a3
 
 # echo ""
 # INSTALL_AIWAIFU_STACK
