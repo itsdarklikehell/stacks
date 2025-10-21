@@ -219,3 +219,6 @@ echo ""
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
 echo "Installation complete.."
+if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
+    gnome-terminal -- "${HOME}/bin/start_ai.sh"
+fi

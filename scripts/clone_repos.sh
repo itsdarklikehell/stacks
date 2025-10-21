@@ -32,10 +32,9 @@ function CLONE_OLLMVT(){
     export INSTALL_WHISPER=true
     export INSTALL_BARK=true
     
-    # uv venv
+    uv venv --clear
     source .venv/bin/activate
     uv sync --all-extras
-
     uv pip install -e .
     uv pip install -r requirements.txt
     uv pip install -r requirements-bilibili.txt
@@ -152,8 +151,11 @@ function CLONE_LETTA(){
     echo ""
     git clone --recursive https://github.com/letta-ai/letta.git letta
     cd letta || exit
-    uv sync
+    uv venv --clear
+    source .venv/bin/activate
     uv sync --all-extras
+    uv pip install -e .
+    uv pip install -r requirements.txt
     # uv run letta server
 }
 function CLONE_MELOTTS(){
@@ -164,9 +166,11 @@ function CLONE_MELOTTS(){
     echo ""
     git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
     cd MeloTTS || exit
-    uv venv
-    uv sync
+    uv venv --clear
+    source .venv/bin/activate
+    uv sync --all-extras
     uv pip install -e .
+    uv pip install -r requirements.txt
     uv run unidic download
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
@@ -193,8 +197,11 @@ function CLONE_JAISON(){
     git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
     cd jaison-core || exit
 
-    # uv venv
-    uv sync
+    uv venv --clear
+    source .venv/bin/activate
+    uv sync --all-extras
+    uv pip install -e .
+    uv pip install -r requirements.txt
     # uv run run_server.py 
 
     # conda create -n jaison-core python=3.10 pip=24.0 -y
@@ -362,11 +369,10 @@ function CLONE_RIKOPROJECT(){
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
     cp -f "${WD}/install_reqs-riko.sh" install_reqs.sh
 
-    # uv venv .venv --clear
-
     # sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
     # sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
+    uv venv --clear
     source .venv/bin/activate
     uv pip install -r requirements.txt
     uv pip install -r extra-req.txt --no-deps
@@ -415,6 +421,12 @@ function CLONE_CHROMA(){
     echo "Cloning chroma"
     echo ""
     git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma
+    cd chroma || exit 1
+    uv venv --clear
+    source .venv/bin/activate
+    uv sync --all-extras
+    uv pip install -e .
+    uv pip install -r requirements.txt
 }
 function CLONE_AIWAIFU(){
     cd "${WD}" || exit
