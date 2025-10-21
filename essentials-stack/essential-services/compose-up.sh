@@ -5,11 +5,11 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
   autoheal
-  # autopulse
+  autopulse
   docker-proxy
   dockge
-  homarr
   grafana
+  homarr
   it-tools
   nginx-proxy-manager
   portainer

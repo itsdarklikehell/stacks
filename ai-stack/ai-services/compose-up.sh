@@ -15,7 +15,6 @@ COMPOSE_FILES=(
     # ollama
     # voice-chat-ai
     # whishper
-    # wyoming-piper
     # localai
     autoheal
     faster-whisper-gpu
@@ -28,6 +27,7 @@ COMPOSE_FILES=(
     stable-diffusion-models-download
     stable-diffusion-webui
     swarmui
+    wyoming-piper
     watchtower
 )
 

@@ -48,6 +48,7 @@ services:
       - stable-diffusion-models-download
       - stable-diffusion-webui
       - swarmui
+      - wyoming-piper
       # - libretranslate-whispher
       # - localai
       # - anythingllm
@@ -61,7 +62,6 @@ services:
       # - ollama
       # - voice-chat-ai
       # - whishper
-      # - wyoming-piper
 
     tty: true
 
