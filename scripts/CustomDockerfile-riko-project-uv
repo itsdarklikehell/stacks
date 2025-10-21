@@ -68,7 +68,7 @@ RUN pip install --upgrade --root-user-action=ignore --no-cache-dir --break-syste
 
 # Create .venv
 # RUN python3 -m venv .venv
-RUN uv venv .venv
+RUN uv venv .venv --seed
 
 # ENV PATH=".venv/bin:$PATH"
 # RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128

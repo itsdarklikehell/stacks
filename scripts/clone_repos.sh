@@ -28,17 +28,19 @@ function CLONE_OLLMVT(){
     git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
     # git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
-    
+
     export INSTALL_WHISPER=true
     export INSTALL_BARK=true
-    
-    uv venv --clear
+
+    uv venv --clear --seed
     source .venv/bin/activate
+    uv pip install pip
     uv sync --all-extras
+
     # uv pip install -e .
     uv pip install -r requirements.txt
     uv pip install -r requirements-bilibili.txt
-    
+
     uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite mecab-python3
 
     uv add git+https://github.com/myshell-ai/MeloTTS.git
@@ -46,7 +48,7 @@ function CLONE_OLLMVT(){
 
     uv add git+https://github.com/suno-ai/bark.git
     uv pip install git+https://github.com/suno-ai/bark.git
-    
+
     uv pip install unidic
     python -m unidic download
 
@@ -97,7 +99,7 @@ function CLONE_OLLMVT(){
         wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
         tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
         rm vits-piper-en_US-libritts_r-medium.tar.bz22
-    fi    
+    fi
     if [[ ! -d "vits-ljs" ]]; then
         wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
         tar xvf vits-ljs.tar.bz2
@@ -126,7 +128,7 @@ function CLONE_OLLMVT(){
     # git submodule update --init --recursive
     # # conda create -n cosyvoice -y python=3.10
     # # conda activate cosyvoice
-    # uv venv
+    # uv venv --clear --seed
     # uv sync
     # uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
     # mkdir -p pretrained_models
@@ -152,9 +154,11 @@ function CLONE_LETTA(){
     echo ""
     git clone --recursive https://github.com/letta-ai/letta.git letta
     cd letta || exit
-    uv venv --clear
+    uv venv --clear --seed
     source .venv/bin/activate
+    uv pip install pip
     uv sync --all-extras
+
     uv pip install -e .
     # uv pip install -r requirements.txt
     # uv run letta server
@@ -167,9 +171,11 @@ function CLONE_MELOTTS(){
     echo ""
     git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
     cd MeloTTS || exit
-    uv venv --clear
+    uv venv --clear --seed
     source .venv/bin/activate
+    uv pip install pip
     uv sync --all-extras
+
     uv pip install -e .
     # uv pip install -r requirements.txt
 
@@ -184,7 +190,7 @@ function CLONE_MELOTTS(){
 function CLONE_JAISON(){
     export INSTALL_WHISPER=false
     export INSTALL_BARK=false
-    
+
     # sudo apt install -y ffmpeg
 
     cd "${WD}" || exit
@@ -195,19 +201,21 @@ function CLONE_JAISON(){
     git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
     cd jaison-core || exit
 
-    uv venv --clear
+    uv venv --clear --seed
     source .venv/bin/activate
+    uv pip install pip
     uv sync --all-extras
+
     # uv pip install -e .
     uv pip install -r requirements.txt
     uv pip install --no-deps -r requirements.no_deps.txt
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    
+
     uv pip install nltk
 
     uv pip install spacy
     python -m spacy download en_core_web_sm
-    
+
     uv pip install unidic
     python -m unidic download
 
@@ -360,7 +368,7 @@ function CLONE_RIKOPROJECT(){
     echo ""
     git clone --recursive https://github.com/rayenfeng/riko_project.git riko-project
     cd riko-project || exit
-    
+
     cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
     cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
     cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
@@ -369,12 +377,12 @@ function CLONE_RIKOPROJECT(){
     # sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
     # sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
 
-    uv venv --clear
+    uv venv --clear --seed
     source .venv/bin/activate
     uv pip install -r requirements.txt
     uv pip install -r extra-req.txt --no-deps
     uv pip install distro jiter
-    
+
     # pip install --upgrade pip uv nltk
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 
@@ -419,9 +427,11 @@ function CLONE_CHROMA(){
     echo ""
     git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma
     cd chroma || exit 1
-    uv venv --clear
+    uv venv --clear --seed
     source .venv/bin/activate
+    uv pip install pip
     uv sync --all-extras
+
     # uv pip install -e .
     # uv pip install -r requirements.txt
 }
@@ -460,10 +470,11 @@ function CLONE_AIWAIFU(){
 }
 CLONE_OLLMVT
 CLONE_LETTA
-CLONE_CHROMA
+CLONE_MELOTTS
+CLONE_JAISON
+CLONE_AIRI
+CLONE_RIKOPROJECT
 CLONE_SWARMUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-CLONE_JAISON
-CLONE_RIKOPROJECT
+CLONE_CHROMA
 CLONE_AIWAIFU
-CLONE_AIRI
