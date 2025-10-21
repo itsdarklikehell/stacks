@@ -4,31 +4,31 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-  anythingllm
-  autoheal
-  basic-memory
-  chroma
-  clickhouse
-  faster-whisper-gpu
-  homeassistant
-  letta-server
-  letta-mcp-server
-  localai
-  kokoro-tts
-  coqui-tts-cpu
-  voice-chat-ai
-    #   ollama
-  open-webui
-  searxng
-  stable-diffusion-models-download
-  stable-diffusion-webui
-  swarmui
-  n8n
-  mongo-whispher
-  libretranslate-whispher
-  whishper
-  wyoming-piper
-  watchtower
+    # anythingllm
+    # basic-memory
+    # chroma
+    # clickhouse
+    # coqui-tts-cpu
+    # kokoro-tts
+    # libretranslate-whispher
+    # mongo-whispher
+    # ollama
+    # voice-chat-ai
+    # whishper
+    # wyoming-piper
+    # localai
+    autoheal
+    faster-whisper-gpu
+    homeassistant
+    letta-mcp-server
+    letta-server
+    n8n
+    open-webui
+    searxng
+    stable-diffusion-models-download
+    stable-diffusion-webui
+    swarmui
+    watchtower
 )
 
 ARGS=""
