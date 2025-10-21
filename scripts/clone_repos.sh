@@ -25,8 +25,8 @@ function CLONE_OLLMVT(){
 
     echo "Cloning Open-LLM-VTuber"
     echo ""
-    # git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
-    git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
+    git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
+    # git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
     cd Open-LLM-VTuber || exit
     
     # uv venv
