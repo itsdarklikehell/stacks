@@ -5,18 +5,18 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
     autoheal
-    # autopulse
-    docker-proxy
-    dockge
-    grafana
-    homarr
-    it-tools
     nginx-proxy-manager
     portainer
-    portracker
-    uptime-kuma
-    wolf
     watchtower
+    # autopulse
+    # docker-proxy
+    # dockge
+    # grafana
+    # homarr
+    # it-tools
+    # portracker
+    # uptime-kuma
+    # wolf
 )
 
 ARGS=""

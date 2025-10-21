@@ -35,17 +35,17 @@ services:
 
     depends_on:
       - autoheal-essential-services
-      - autopulse
-      - docker-proxy
-      - dockge
-      - grafana
-      - homarr
-      - it-tools
-      - nginx-proxy-manager
       - portainer
-      - portracker
-      - uptime-kuma
-      - wolf
+      - nginx-proxy-manager
+      # - autopulse
+      # - docker-proxy
+      # - dockge
+      # - grafana
+      # - homarr
+      # - it-tools
+      # - portracker
+      # - uptime-kuma
+      # - wolf
 
     tty: true
 
