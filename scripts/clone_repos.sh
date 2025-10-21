@@ -35,7 +35,7 @@ function CLONE_OLLMVT(){
     uv venv --clear
     source .venv/bin/activate
     uv sync --all-extras
-    uv pip install -e .
+    # uv pip install -e .
     uv pip install -r requirements.txt
     uv pip install -r requirements-bilibili.txt
     
@@ -155,7 +155,7 @@ function CLONE_LETTA(){
     source .venv/bin/activate
     uv sync --all-extras
     uv pip install -e .
-    uv pip install -r requirements.txt
+    # uv pip install -r requirements.txt
     # uv run letta server
 }
 function CLONE_MELOTTS(){
@@ -170,7 +170,7 @@ function CLONE_MELOTTS(){
     source .venv/bin/activate
     uv sync --all-extras
     uv pip install -e .
-    uv pip install -r requirements.txt
+    # uv pip install -r requirements.txt
     uv run unidic download
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
@@ -200,19 +200,14 @@ function CLONE_JAISON(){
     uv venv --clear
     source .venv/bin/activate
     uv sync --all-extras
-    uv pip install -e .
+    # uv pip install -e .
     uv pip install -r requirements.txt
-    # uv run run_server.py 
-
-    # conda create -n jaison-core python=3.10 pip=24.0 -y
-    # conda activate jaison-core
-
+    uv pip install --no-deps -r requirements.no_deps.txt
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    # uv pip install -r requirements.txt
-    # uv pip install --no-deps -r requirements.no_deps.txt
-    # python -m spacy download en_core_web_sm
-    # python install.py
-    # python -m unidic download
+    uv pip install spacy unidic
+    python -m spacy download en_core_web_sm
+    python install.py
+    python -m unidic download
 
     # python ./src/main.py --help
     # python ./src/main.py --config=example

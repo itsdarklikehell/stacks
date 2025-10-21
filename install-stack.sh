@@ -223,5 +223,4 @@ if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
     gnome-terminal -- "${HOME}/bin/start_ai.sh"
     xdg-open "http://localhost:8080" # open-webui
     xdg-open "http://localhost:12393" # openllm-vtuber
-    xdg-open "http://0.0.0.0:12393" # openllm-vtuber
 fi
