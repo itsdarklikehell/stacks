@@ -425,8 +425,8 @@ function CLONE_CHROMA(){
     uv venv --clear
     source .venv/bin/activate
     uv sync --all-extras
-    uv pip install -e .
-    uv pip install -r requirements.txt
+    # uv pip install -e .
+    # uv pip install -r requirements.txt
 }
 function CLONE_AIWAIFU(){
     cd "${WD}" || exit
