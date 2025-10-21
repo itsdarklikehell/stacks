@@ -39,7 +39,7 @@ function CLONE_OLLMVT(){
     uv pip install -r requirements.txt
     uv pip install -r requirements-bilibili.txt
     
-    uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite unidic mecab-python3
+    uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite mecab-python3
 
     uv add git+https://github.com/myshell-ai/MeloTTS.git
     uv pip install git+https://github.com/myshell-ai/MeloTTS.git
@@ -47,7 +47,8 @@ function CLONE_OLLMVT(){
     uv add git+https://github.com/suno-ai/bark.git
     uv pip install git+https://github.com/suno-ai/bark.git
     
-    uv run python3 unidic download
+    uv pip install unidic
+    python -m unidic download
 
 #     python3 - <<PYCODE
 # import nltk
@@ -171,23 +172,20 @@ function CLONE_MELOTTS(){
     uv sync --all-extras
     uv pip install -e .
     # uv pip install -r requirements.txt
-    uv run unidic download
+
+    uv pip install unidic
+    python -m unidic download
+
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
 
     # melo-webui
 }
 function CLONE_JAISON(){
+    export INSTALL_WHISPER=false
+    export INSTALL_BARK=false
+    
     # sudo apt install -y ffmpeg
-
-    # mkdir -p ~/miniconda3
-    # wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-    # bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-    # rm ~/miniconda3/miniconda.sh
-    # source ~/miniconda3/bin/activate
-    # conda init --all
-    # conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-    # conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
     cd "${WD}" || exit
     cd "${PERM_DATA}/jaison-stack" || exit 1
@@ -204,11 +202,16 @@ function CLONE_JAISON(){
     uv pip install -r requirements.txt
     uv pip install --no-deps -r requirements.no_deps.txt
     # uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-    uv pip install spacy unidic
+    
+    uv pip install nltk
+
+    uv pip install spacy
     python -m spacy download en_core_web_sm
-    python install.py
+    
+    uv pip install unidic
     python -m unidic download
 
+    python install.py
     # python ./src/main.py --help
     # python ./src/main.py --config=example
 
@@ -216,8 +219,7 @@ function CLONE_JAISON(){
     cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
     cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
 
-    # export INSTALL_WHISPER=false
-    # export INSTALL_BARK=false
+
     # docker build -t jaison-core .
     # --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 }
