@@ -38,14 +38,14 @@ services:
 
     depends_on:
       - autoheal-ai-services
-      - faster-whisper-gpu
+      # - faster-whisper-gpu
       - homeassistant
       - letta-mcp-server
       - letta-server
       - n8n
       - open-webui
       - searxng
-      - wyoming-piper
+      # - wyoming-piper
       # - stable-diffusion-models-download
       # - stable-diffusion-webui
       # - swarmui

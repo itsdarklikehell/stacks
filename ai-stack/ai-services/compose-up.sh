@@ -5,14 +5,14 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
     autoheal
-    faster-whisper-gpu
+    # faster-whisper-gpu
     homeassistant
     letta-mcp-server
     letta-server
     n8n
     open-webui
     searxng
-    wyoming-piper
+    # wyoming-piper
     watchtower
     # anythingllm
     # basic-memory
