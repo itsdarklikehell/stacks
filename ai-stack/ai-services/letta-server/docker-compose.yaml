@@ -10,17 +10,12 @@ services:
       # - "autoheal-app=true"
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
       - "OPENAI_API_KEY=${OPENAI_API_KEY:-}"
       - "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
       - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://192.168.1.2:11434}"
       - "PORT=${PORT:-8283}"
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
       - "letta_pgdata:/var/lib/postgresql/data"
       - "letta_toolexec:/root/.letta/tool_execution_dir"
 
@@ -37,9 +32,9 @@ services:
 
     ports:
       - "${PORT:-8283}:8283"
-      - "5432:5432"
-      - "4316:4316"
-      - "4318:4318"
+      # - "5432:5432"
+      # - "4316:4316"
+      # - "4318:4318"
 
     env_file:
       - "./letta-server/.env"

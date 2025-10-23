@@ -53,6 +53,8 @@ function PULL_MODELS(){
         'Plexi09/SentientAI:latest'
         'qwen2.5-coder:32b'
         'qwen2.5:latest'
+        'qwen3:4b'
+        'qwen3:8b'
         'qwen3:latest'
         'smallthinker:latest'
     )
@@ -213,7 +215,7 @@ echo ""
 # INSTALL_PROJECT_RIKO_STACK
 # echo ""
 
-# PULL_MODELS
+PULL_MODELS
 
 # dockly # lazydocker
 
