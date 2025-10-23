@@ -1,40 +1,40 @@
 services:
   collabora:
-    image: "${IMAGE:-collabora/code}"
-    container_name: "${NAME:-collabora}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-collabora/code}
+    container_name: ${NAME:-collabora}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "password=${password:-password}"
-      - "username=${nextcloud:-nextcloud}"
-      - "domain=${domain:-example.com}"
-      - "extra_params=--o:ssl.enable=true"
-      - "PORT=${PORT:-9980}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - password=${password:-password}
+      - username=${nextcloud:-nextcloud}
+      - domain=${domain:-example.com}
+      - extra_params=--o:ssl.enable=true
+      - PORT=${PORT:-9980}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: "${NAME:-collabora}"
+    hostname: ${NAME:-collabora}
 
     networks:
       host:
       management-services:
 
     ports:
-      - "${PORT:-9980}:9980"
+      - ${PORT:-9980}:9980
 
     env_file:
-      - "./collabora/.env"
+      - ./collabora/.env
 
     deploy:
       replicas: 1
@@ -46,20 +46,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-9980}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-9980}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

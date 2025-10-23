@@ -1,40 +1,40 @@
 services:
   nginx-proxy-manager:
-    image: "${IMAGE:-jc21/nginx-proxy-manager}"
-    container_name: "${NAME:-nginx-proxy-manager}"
-    restart: "${RESTART:-unless-stopped}"
+    image: { IMAGE:-jc21/nginx-proxy-manager }
+    container_name: { NAME:-nginx-proxy-manager }
+    restart: { RESTART:-unless-stopped }
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     secrets:
-      - "INITIAL_ADMIN_EMAIL"
-      - "INITIAL_ADMIN_PASSWORD"
+      - NITIAL_ADMIN_EMAIL
+      - NITIAL_ADMIN_PASSWORD
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-80}"
-    # INITIAL_ADMIN_EMAIL: "${INITIAL_ADMIN_EMAIL:-admin@example.com}"
-    # INITIAL_ADMIN_PASSWORD: "${INITIAL_ADMIN_PASSWORD:-changeme}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ORT=${PORT:-80}
+    # INITIAL_ADMIN_EMAIL: {INITIAL_ADMIN_EMAIL:-admin@example.com}
+    # INITIAL_ADMIN_PASSWORD: {INITIAL_ADMIN_PASSWORD:-changeme}
     # Uncomment this if you want to change the location of
     # the SQLite DB file within the container
-    # DB_SQLITE_FILE: "/data/database.sqlite"
+    # DB_SQLITE_FILE: data/database.sqlite
     # Uncomment this if IPv6 is not enabled on your host
     # DISABLE_IPV6: 'true'
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "nginx-proxy-manager_data:/data"
-      - "nginx-proxy-manager_letsencrypt:/etc/letsencrypt"
-      # - "../../DATA/essential-stack/nginx-proxy-manager/data:/data"
-      # - "../../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - ginx-proxy-manager_data:/data
+      - ginx-proxy-manager_letsencrypt:/etc/letsencrypt
+      # - ./../DATA/essential-stack/nginx-proxy-manager/data:/data
+      # - ./../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-    hostname: "${NAME:-nginx-proxy-manager}"
+    hostname: { NAME:-nginx-proxy-manager }
 
     networks:
       host:
@@ -42,14 +42,14 @@ services:
 
     ports:
       # These ports are in format <host-port>:<container-port>
-      - "${PORT:-80}:80" # Public HTTP Port
-      - "443:443" # Public HTTPS Port
-      - "81:81" # Admin Web Port
+      - ${PORT:-80}:80  Public HTTP Port
+      - 43:443  Public HTTPS Port
+      - 1:81  Admin Web Port
       # Add any other Stream port you want to expose
-      # - "21:21" # FTP
+      # - 1:21  FTP
 
     env_file:
-      - "./nginx-proxy-manager/.env"
+      - /nginx-proxy-manager/.env
 
     tty: true
 
@@ -59,14 +59,14 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: ["CMD", "/usr/bin/check-health"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   test: [MD,/ur/bin/check-health]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

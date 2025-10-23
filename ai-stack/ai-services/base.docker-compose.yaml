@@ -9,7 +9,7 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: "ai-services"
+name: ai-services
 
 networks:
   host:
@@ -21,9 +21,9 @@ volumes:
   anythingllm_hotdir:
   anythingllm_outputs:
   basic-memory-config:
-  basic-memory-knowledge: # "../../DATA/ai-stack/basic-memory/knowledge"
-  basic-memory-work-notes: # "../../DATA/ai-stack/basic-memory/work-notes"
-  basic-memory-personal-notes: # "../../DATA/ai-stack/basic-memory/personal-notes"
+  basic-memory-knowledge: # ../../DATA/ai-stack/basic-memory/knowledge
+  basic-memory-work-notes: # ../../DATA/ai-stack/basic-memory/work-notes
+  basic-memory-personal-notes: # ../../DATA/ai-stack/basic-memory/personal-notes
   chroma_data:
   index_data:
   clickhouse_data:
@@ -32,56 +32,56 @@ volumes:
   kokoro_index_data:
   faster-whisper-data:
   home-assistant-config:
-  letta_pgdata: # "../../DATA/ai-stack/letta/.persist/pgdata"
-  letta_toolexec: # "../../DATA/ai-stack/letta/tool_execution_dir"
+  letta_pgdata: # ../../DATA/ai-stack/letta/.persist/pgdata
+  letta_toolexec: # ../../DATA/ai-stack/letta/tool_execution_dir
   libretranslate-whispher_data:
   libretranslate-whispher_cache:
-  localai_models: # "../../DATA/ai-stack/localai/models"
+  localai_models: # ../../DATA/ai-stack/localai/models
   mongo-whispher_data:
   mongo-whispher_logs:
   n8n_data:
   n8n_local-files:
-  ollama-data: # "../../DATA/ai-stack/ollama"
+  ollama-data: # ../../DATA/ai-stack/ollama
   open-webui-data:
-  searxng_data: # "../../DATA/ai-stack/searxng"
-  stable-diffusion-webui-docker_data: # "../../DATA/ai-stack/stable-diffusion-webui-docker/data"
-  stable-diffusion-webui-docker_config: # "../../DATA/ai-stack/stable-diffusion-webui-docker/data/config"
-  stable-diffusion-webui-docker_models: # "../../DATA/ai-stack/stable-diffusion-webui-docker/data/Models"
-  stable-diffusion-webui-docker_output: # "../../DATA/ai-stack/stable-diffusion-webui-docker/data/Output"
-  stable-diffusion-webui-docker_embeddings: # "../../DATA/ai-stack/stable-diffusion-webui-docker/data/embeddings"
-  stable-diffusion-webui-docker_workflows: # "../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
+  searxng_data: # ../../DATA/ai-stack/searxng
+  stable-diffusion-webui-docker_data: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data
+  stable-diffusion-webui-docker_config: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/config
+  stable-diffusion-webui-docker_models: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/Models
+  stable-diffusion-webui-docker_output: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/Output
+  stable-diffusion-webui-docker_embeddings: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/embeddings
+  stable-diffusion-webui-docker_workflows: # ../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
   swarmdata:
   swarmbackend:
   swarmdlnodes:
   swarmextensions:
-  whishper_uploads: # "../../DATA/ai-stack/whishper/uploads"
-  whishper_logs: # "../../DATA/ai-stack/whishper/logs"
-  whishper_models: # "../../DATA/ai-stack/whishper/models"
+  whishper_uploads: # ../../DATA/ai-stack/whishper/uploads
+  whishper_logs: # ../../DATA/ai-stack/whishper/logs
+  whishper_models: # ../../DATA/ai-stack/whishper/models
   wyoming-piper_data:
 # # secrets:
 #   letta_pg_password:
-#     file: "../../secrets/letta_pg_password"
+#     file: ../../secrets/letta_pg_password
 #   letta_password:
-#     file: "../../secrets/letta_password"
+#     file: ../../secrets/letta_password
 #   mariadb_root_password:
-#     file: "../../secrets/mariadb_root_password"
+#     file: ../../secrets/mariadb_root_password
 #   mariadb_password:
-#     file: "../../secrets/mariadb_password"
+#     file: ../../secrets/mariadb_password
 #   gsdb_root_password:
-#     file: "../../secrets/gsdb_root_password"
+#     file: ../../secrets/gsdb_root_password
 #   gsdb_password:
-#     file: "../../secrets/gsdb_password"
+#     file: ../../secrets/gsdb_password
 #   romm_db_password:
-#     file: "../../secrets/romm_db_password"
+#     file: ../../secrets/romm_db_password
 #   romm_auth_secret_key:
-#     file: "../../secrets/romm_auth_secret_key"
+#     file: ../../secrets/romm_auth_secret_key
 #   screenscraper_password:
-#     file: "../../secrets/screenscraper_password"
+#     file: ../../secrets/screenscraper_password
 #   retroachievements_api_key:
-#     file: "../../secrets/retroachievements_api_key"
+#     file: ../../secrets/retroachievements_api_key
 #   steamgriddb_api_key:
-#     file: "../../secrets/steamgriddb_api_key"
+#     file: ../../secrets/steamgriddb_api_key
 #   hardcover_auth:
-#     file: "../../secrets/hardcover_auth"
+#     file: ../../secrets/hardcover_auth
 #   rreading_glasses_db_password:
-#     file: "../../secrets/rreading_glasses_db_password"
+#     file: ../../secrets/rreading_glasses_db_password

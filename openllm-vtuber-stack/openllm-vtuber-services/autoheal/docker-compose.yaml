@@ -1,30 +1,30 @@
 services:
   autoheal-openllm-vtuber-services:
-    image: "${IMAGE:-willfarrell/autoheal}"
-    container_name: "${NAME:-autoheal-openllm-vtuber-services}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-willfarrell/autoheal}
+    container_name: ${NAME:-autoheal-openllm-vtuber-services}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "AUTOHEAL_CONTAINER_LABEL=${AUTOHEAL_CONTAINER_LABEL:-autoheal}"
-      - "AUTOHEAL_START_PERIOD=${AUTOHEAL_START_PERIOD:-0}"
-      - "AUTOHEAL_INTERVAL=${AUTOHEAL_INTERVAL:-5}"
-      - "AUTOHEAL_DEFAULT_STOP_TIMEOUT=${AUTOHEAL_DEFAULT_STOP_TIMEOUT:-10}"
-      - "AUTOHEAL_ONLY_MONITOR_RUNNING=${AUTOHEAL_ONLY_MONITOR_RUNNING:-true}"
-      # - "PORT=${PORT:-80}"
-      # - "network_mode=${AUTOHEAL_NETWORK_MODE:-none}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - AUTOHEAL_CONTAINER_LABEL=${AUTOHEAL_CONTAINER_LABEL:-autoheal}
+      - AUTOHEAL_START_PERIOD=${AUTOHEAL_START_PERIOD:-0}
+      - AUTOHEAL_INTERVAL=${AUTOHEAL_INTERVAL:-5}
+      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=${AUTOHEAL_DEFAULT_STOP_TIMEOUT:-10}
+      - AUTOHEAL_ONLY_MONITOR_RUNNING=${AUTOHEAL_ONLY_MONITOR_RUNNING:-true}
+      # - PORT=${PORT:-80}
+      # - network_mode=${AUTOHEAL_NETWORK_MODE:-none}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: autoheal-openllm-vtuber-services
 
@@ -33,10 +33,10 @@ services:
       openllm-vtuber-services:
 
     # ports:
-    #   - "${PORT:-80}:80"
+    #   - ${PORT:-80}:80
 
     env_file:
-      - "./autoheal/.env"
+      - ./autoheal/.env
 
     deploy:
       replicas: 1
@@ -48,20 +48,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-80}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

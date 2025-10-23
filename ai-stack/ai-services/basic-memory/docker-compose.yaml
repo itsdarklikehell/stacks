@@ -1,55 +1,45 @@
 services:
   basic-memory:
-    image: "${IMAGE:-ghcr.io/basicmachines-co/basic-memory}"
-    container_name: "${NAME:-basic-memory-server}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-ghcr.io/basicmachines-co/basic-memory}
+    container_name: ${NAME:-basic-memory-server}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "BASIC_MEMORY_DEFAULT_PROJECT=main"
-      - "BASIC_MEMORY_SYNC_CHANGES=true"
-      - "BASIC_MEMORY_LOG_LEVEL=INFO"
-      - "BASIC_MEMORY_SYNC_DELAY=1000"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - BASIC_MEMORY_DEFAULT_PROJECT=main
+      - BASIC_MEMORY_SYNC_CHANGES=true
+      - BASIC_MEMORY_LOG_LEVEL=INFO
+      - BASIC_MEMORY_SYNC_DELAY=1000
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "basic-memory-config:/root/.basic-memory:rw"
-      - "basic-memory-knowledge:/app/data:rw"
-      - "basic-memory-work-notes:/app/data/work:rw"
-      - "basic-memory-personal-notes:/app/data/personal:rw"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - basic-memory-config:/root/.basic-memory:rw
+      - basic-memory-knowledge:/app/data:rw
+      - basic-memory-work-notes:/app/data/work:rw
+      - basic-memory-personal-notes:/app/data/personal:rw
       # OPTIONAL: Mount additional knowledge directories for multiple projects
 
-    command:
-      [
-        "basic-memory",
-        "mcp",
-        "--transport",
-        "sse",
-        "--host",
-        "0.0.0.0",
-        "--port",
-        "${PORT:-8003}",
-      ]
+    command: [basic-memory, mcp, --transport sse, --host 0.0.0.0, --port 8003]
 
-    hostname: "${NAME:-basic-memory-server}"
+    hostname: ${NAME:-basic-memory-server}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-8003}:8003"
+      - ${PORT:-8003}:8003
 
     env_file:
-      - "./basic-memory/.env"
+      - ./basic-memory/.env
 
     deploy:
       replicas: 1
@@ -59,14 +49,14 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: ["CMD", "basic-memory", "--version"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   test: [CMD, basic-memory, --version]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

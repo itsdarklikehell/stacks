@@ -1,39 +1,39 @@
 services:
   jellyseerr:
-    image: "${IMAGE:-fallenbagel/jellyseerr}"
-    container_name: "${NAME:-jellyseerr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-fallenbagel/jellyseerr}
+    container_name: {NAME:-jellyseerr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "LOG_LEVEL=${PORT:-debug}"
-      - "PORT=${PORT:-5055}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - OG_LEVEL=${PORT:-debug}
+      - ORT=${PORT:-5055}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "jellyseerr-config:/app/config"
-      # - "jellyseerr-appdata:/app"
-      # - "../../DATA/arr-stack/jellyseerr/appdata/config:/app/config"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - ellyseerr-config:/app/config
+      # - ellyseerr-appdata:/app
+      # - ./../DATA/arr-stack/jellyseerr/appdata/config:/app/config
 
-    hostname: "${NAME:-jellyseerr}"
+    hostname: {NAME:-jellyseerr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-5055}:5055"
+      - ${PORT:-5055}:5055
 
     env_file:
-      - "./jellyseerr/.env"
+      - /jellyseerr/.env
 
     deploy:
       replicas: 1
@@ -45,20 +45,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-5055}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-5055}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

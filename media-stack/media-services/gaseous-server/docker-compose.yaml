@@ -1,44 +1,44 @@
 services:
   gaseous-server:
-    container_name: "${NAME:-gaseous-server}"
-    image: "${IMAGE:-gaseousgames/gaseousserver}"
-    restart: "${RESTART:-unless-stopped}"
+    container_name: ${NAME:-gaseous-server}
+    image: ${IMAGE:-gaseousgames/gaseousserver}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "dbhost=gsdb"
-      - "dbuser=root"
-      - "dbpass=gaseous"
-      - "igdbclientid="
-      - "igdbclientsecret="
-      - "PORT=${PORT:-5198}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - dbhost=gsdb
+      - dbuser=root
+      - dbpass=gaseous
+      - igdbclientid=
+      - igdbclientsecret=
+      - PORT=${PORT:-5198}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "gaseous_data:/root/.gaseous-server"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - gaseous_data:/root/.gaseous-server
 
-    hostname: "${NAME:-gaseous-server}"
+    hostname: ${NAME:-gaseous-server}
 
     networks:
       host:
       media-services:
 
     ports:
-      - "${PORT:-5198}:80"
+      - ${PORT:-5198}:80
 
     env_file:
-      - "./gaseous-server/.env"
+      - ./gaseous-server/.env
 
     depends_on:
-      - "gsdb"
+      - gsdb
 
     deploy:
       replicas: 1
@@ -50,20 +50,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-5198}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-5198}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

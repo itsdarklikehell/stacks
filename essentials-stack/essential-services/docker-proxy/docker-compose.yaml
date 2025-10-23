@@ -1,41 +1,41 @@
 services:
   docker-proxy:
-    image: "${IMAGE:-tecnativa/docker-socket-proxy}"
-    container_name: "${NAME:-docker-proxy}"
-    restart: "${RESTART:-unless-stopped}"
+    image: { IMAGE:-tecnativa/docker-socket-proxy }
+    container_name: { NAME:-docker-proxy }
+    restart: { RESTART:-unless-stopped }
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "CONTAINERS=${CONTAINERS:-1}"
-      - "IMAGES=${IMAGES:-1}"
-      - "INFO=${INFO:-1}"
-      - "NETWORKS=${NETWORKS:-1}"
-      - "POST=${POST:-0}"
-      - "PORT=${PORT:-2375}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ONTAINERS=${CONTAINERS:-1}
+      - MAGES=${IMAGES:-1}
+      - NFO=${INFO:-1}
+      - ETWORKS=${NETWORKS:-1}
+      - OST=${POST:-0}
+      - ORT=${PORT:-2375}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - var/run/docker.sock:/var/run/docker.sock
 
-    hostname: "${NAME:-docker-proxy}"
+    hostname: { NAME:-docker-proxy }
 
     networks:
       host:
       essential-services:
 
     ports:
-      - "${PORT:-2375}:2375"
+      - ${PORT:-2375}:2375
 
     env_file:
-      - "./docker-proxy/.env"
+      - /docker-proxy/.env
 
     deploy:
       replicas: 1
@@ -47,20 +47,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-2375}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-2375}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

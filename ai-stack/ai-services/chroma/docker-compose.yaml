@@ -1,42 +1,42 @@
 services:
   chroma:
-    image: "${IMAGE:-chromadb/chroma}"
-    container_name: "${NAME:-chroma}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-chromadb/chroma}
+    container_name: ${NAME:-chroma}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "CHROMA_DB_IMPL=${CHROMA_DB_IMPL:-clickhouse}"
-      - "CLICKHOUSE_HOST=${CLICKHOUSE_HOST:-clickhouse}"
-      - "CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - CHROMA_DB_IMPL=${CHROMA_DB_IMPL:-clickhouse}
+      - CLICKHOUSE_HOST=${CLICKHOUSE_HOST:-clickhouse}
+      - CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}
 
     build:
-      context: "../../DATA/ai-stack/chroma"
-      dockerfile: "./Dockerfile"
+      context: ../../DATA/ai-stack/chroma
+      dockerfile: ./Dockerfile
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "chroma_data:/chroma"
-      - "index_data:/index_data"
-      # - "../../DATA/ai-stack/chroma:/chroma"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - chroma_data:/chroma
+      - index_data:/index_data
+      # - ../../DATA/ai-stack/chroma:/chroma
 
     command:
       [
-        "uvicorn",
-        "chromadb.app:app",
-        "--reload",
-        "--workers 1",
-        "--host 0.0.0.0",
-        "--port ${PORT:-8004}",
-        "--log-config log_config.yml",
+        uvicorn,
+        chromadb.app:app,
+        --reload,
+        --workers 1,
+        --host 0.0.0.0,
+        --port 8004,
+        --log-config log_config.yml,
       ]
 
     networks:
@@ -44,13 +44,13 @@ services:
       ai-services:
 
     env_file:
-      - "./chroma/.env"
+      - ./chroma/.env
 
     ports:
-      - "${PORT:-8004}:8004"
+      - ${PORT:-8004}:8004
 
     depends_on:
-      - "clickhouse"
+      - clickhouse
 
     tty: true
 
@@ -59,20 +59,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-8004}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-8004}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

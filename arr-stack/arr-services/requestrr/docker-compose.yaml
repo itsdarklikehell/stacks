@@ -1,37 +1,37 @@
 services:
   requestrr:
-    image: "${IMAGE:-thomst08/requestrr}"
-    container_name: "${NAME:-requestrr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-thomst08/requestrr}
+    container_name: ${NAME:-requestrr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-4545}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-4545}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "requestrr-config:/root/config"
-      # - "../../DATA/arr-stack/requestrr/config:/root/config"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - requestrr-config:/root/config
+      # - ../../DATA/arr-stack/requestrr/config:/root/config
 
-    hostname: "${NAME:-requestrr}"
+    hostname: ${NAME:-requestrr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-4545}:4545"
+      - ${PORT:-4545}:4545
 
     env_file:
-      - "./requestrr/.env"
+      - ./requestrr/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-4545}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-4545}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,50 +1,50 @@
 services:
   whishper:
-    image: "${IMAGE:-pluja/whishper:latest-gpu}"
-    # pull_policy: "always"
-    container_name: "${NAME:-whishper}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-pluja/whishper:latest-gpu}
+    # pull_policy: always
+    container_name: ${NAME:-whishper}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}"
-      - "PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}"
-      - "PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}"
-      - "PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}"
-      - "WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}"
-      - "UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}"
-      - "CPU_THREADS=4"
-      - "PORT=${PORT:-8082}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}
+      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}
+      - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}
+      - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
+      - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
+      - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
+      - CPU_THREADS=4
+      - PORT=${PORT:-8082}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "whishper_uploads:/app/uploads"
-      - "whishper_logs:/var/log/whishper"
-      - "whishper_models:/app/models"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - whishper_uploads:/app/uploads
+      - whishper_logs:/var/log/whishper
+      - whishper_models:/app/models
 
-    hostname: "${NAME:-whishper}"
+    hostname: ${NAME:-whishper}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-8082}:80"
+      - ${PORT:-8082}:80
 
     env_file:
-      - "./whishper/.env"
+      - ./whishper/.env
 
     depends_on:
-      - "mongo-whispher"
-      - "libretranslate-whispher"
+      - mongo-whispher
+      - libretranslate-whispher
 
     runtime: nvidia
     deploy:
@@ -54,7 +54,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -63,20 +63,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-8082}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8082}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

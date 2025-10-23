@@ -1,58 +1,58 @@
 services:
   riko-project:
-    # image: "${IMAGE:-riko-project}"
-    container_name: "${NAME:-riko-project}"
-    restart: "${RESTART:-unless-stopped}"
+    # image: ${IMAGE:-riko-project}
+    container_name: ${NAME:-riko-project}
+    restart: ${RESTART:-unless-stopped}
 
     build:
-      context: "../../DATA/riko-stack/riko-project"
+      context: ../../DATA/riko-stack/riko-project
       args:
-        UID: "${PUID:-1000}"
-        GID: "${PGID:-1000}"
-      dockerfile: "./CustomDockerfile-riko-project-uv"
-      # dockerfile: "./CustomDockerfile-riko-project-conda"
-      # dockerfile: "./CustomDockerfile-riko-project-venv"
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./CustomDockerfile-riko-project-uv
+      # dockerfile: ./CustomDockerfile-riko-project-conda
+      # dockerfile: ./CustomDockerfile-riko-project-venv
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
-      # - "PORT=${PORT:-7272}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      # - PORT=${PORT:-7272}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/riko-stack/riko-project/character_files:/riko-project/character_files"
-      - "../../DATA/riko-stack/riko-project/client:/riko-project/client"
-      - "../../DATA/riko-stack/riko-project/server:/riko-project/server"
-      - "../../DATA/riko-stack/riko-project/character_config.yaml:/riko-project/character_config.yaml"
-    #   - "../../DATA/riko-stack/riko-project/avatars:/app/backgrounds"
-    #   - "../../DATA/riko-stack/riko-project/characters:/app/characters"
-    #   - "../../DATA/riko-stack/riko-project/chat_history:/app/chat_history"
-    #   - "../../DATA/riko-stack/riko-project/live2d-models:/app/live2d-models"
-    #   - "../../DATA/riko-stack/riko-project/logs:/app/logs"
-    #   - "../../DATA/riko-stack/riko-project/prompts/utils:/app/prompts/utils"
-    #   - "../../DATA/riko-stack/riko-project/scripts:/app/scripts"
-    #   - "../../DATA/riko-stack/riko-project/mcp_servers.json:/app/mcp_servers.json"
-    #   - "../../DATA/riko-stack/riko-project/model_dict.json:/app/model_dict.json"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/riko-stack/riko-project/character_files:/riko-project/character_files
+      - ../../DATA/riko-stack/riko-project/client:/riko-project/client
+      - ../../DATA/riko-stack/riko-project/server:/riko-project/server
+      - ../../DATA/riko-stack/riko-project/character_config.yaml:/riko-project/character_config.yaml
+    #   - ../../DATA/riko-stack/riko-project/avatars:/app/backgrounds
+    #   - ../../DATA/riko-stack/riko-project/characters:/app/characters
+    #   - ../../DATA/riko-stack/riko-project/chat_history:/app/chat_history
+    #   - ../../DATA/riko-stack/riko-project/live2d-models:/app/live2d-models
+    #   - ../../DATA/riko-stack/riko-project/logs:/app/logs
+    #   - ../../DATA/riko-stack/riko-project/prompts/utils:/app/prompts/utils
+    #   - ../../DATA/riko-stack/riko-project/scripts:/app/scripts
+    #   - ../../DATA/riko-stack/riko-project/mcp_servers.json:/app/mcp_servers.json
+    #   - ../../DATA/riko-stack/riko-project/model_dict.json:/app/model_dict.json
 
-    hostname: "${NAME:-riko-project}"
+    hostname: ${NAME:-riko-project}
 
     networks:
       host:
       riko-services:
 
     # ports:
-    #   - "${PORT:-7272}:7272"
+    #   - ${PORT:-7272}:7272
 
     env_file:
-      - "./riko-project/.env"
+      - ./riko-project/.env
 
     runtime: nvidia
     deploy:
@@ -62,7 +62,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -75,20 +75,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-7272}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-7272}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

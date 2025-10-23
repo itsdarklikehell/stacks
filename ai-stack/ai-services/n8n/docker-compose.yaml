@@ -1,47 +1,47 @@
 services:
   n8n:
-    image: "${IMAGE:-docker.n8n.io/n8nio/n8n}"
-    restart: "${RESTART:-always}"
-    container_name: "${NAME:-n8n}"
+    image: ${IMAGE:-docker.n8n.io/n8nio/n8n}
+    restart: ${RESTART:-always}
+    container_name: ${NAME:-n8n}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true"
-      - "N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}"
-      - "N8N_PORT=${PORT:-5678}"
-      - "PORT=${PORT:-5678}"
-      - "N8N_PROTOCOL=${N8N_PROTOCOL:-https}"
-      - "N8N_RUNNERS_ENABLED=${N8N_RUNNERS_ENABLED:-true}"
-      - "OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}"
-      - "NODE_ENV=production"
-      - "WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/"
-      - "GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}
+      - N8N_PORT=${PORT:-5678}
+      - PORT=${PORT:-5678}
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-https}
+      - N8N_RUNNERS_ENABLED=${N8N_RUNNERS_ENABLED:-true}
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+      - NODE_ENV=production
+      - WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/
+      - GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "n8n_data:/home/node/.n8n"
-      - "n8n_local-files:/files"
-      # - "../../DATA/ai-stack/n8n/local-files:/files"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - n8n_data:/home/node/.n8n
+      - n8n_local-files:/files
+      # - ../../DATA/ai-stack/n8n/local-files:/files
 
-    hostname: "${NAME:-n8n}"
+    hostname: ${NAME:-n8n}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-5678}:5678"
+      - ${PORT:-5678}:5678
 
     env_file:
-      - "./n8n/.env"
+      - ./n8n/.env
 
     deploy:
       replicas: 1
@@ -53,20 +53,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-5678}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-5678}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,37 +1,37 @@
 services:
   tvs99:
-    image: "${IMAGE:-zshall/television-simulator}"
-    container_name: "${NAME:-tvs99}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-zshall/television-simulator}
+    container_name: ${NAME:-tvs99}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8085}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8085}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "tvs99_config:/config.tvs.yml"
-      - "tvs99_data:/data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - tvs99_config:/config.tvs.yml
+      - tvs99_data:/data
 
-    hostname: "${NAME:-tvs99}"
+    hostname: ${NAME:-tvs99}
 
     networks:
       host:
       media-services:
 
     ports:
-      - "${PORT:-8085}:3000"
+      - ${PORT:-8085}:3000
 
     env_file:
-      - "./tvs99/.env"
+      - ./tvs99/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-8085}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-8085}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

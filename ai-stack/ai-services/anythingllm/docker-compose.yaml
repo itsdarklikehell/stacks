@@ -1,49 +1,49 @@
 services:
   anythingllm:
-    image: "${IMAGE:-mintplexlabs/anythingllm}"
-    container_name: "${NAME:-anythingllm}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-mintplexlabs/anythingllm}
+    container_name: ${NAME:-anythingllm}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "STORAGE_DIR=/app/server/storage"
-      - "SERVER_PORT=3002"
-      - "VECTOR_DB="
-      # - "DATABASE_URL=postgresql://dbuser:dbpassword@172.17.0.1:5432/dbname"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - STORAGE_DIR=/app/server/storage
+      - SERVER_PORT=3002
+      - VECTOR_DB=
+      # - DATABASE_URL=postgresql://dbuser:dbpassword@172.17.0.1:5432/dbname
 
     cap_add:
-      - "SYS_ADMIN"
+      - SYS_ADMIN
 
-    command: ["--cap-add", "SYS_ADMIN"]
+    command: [--cap-add, SYS_ADMIN]
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "anythingllm_storage:/app/server/storage"
-      - "anythingllm_hotdir:/app/collector/hotdir"
-      - "anythingllm_outputs:/app/collector/outputs"
-      - "./anythingllm/.env:/app/server/.env"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - anythingllm_storage:/app/server/storage
+      - anythingllm_hotdir:/app/collector/hotdir
+      - anythingllm_outputs:/app/collector/outputs
+      - ./anythingllm/.env:/app/server/.env
 
-    hostname: "${NAME:-anythingllm}"
+    hostname: ${NAME:-anythingllm}
 
-    user: "${PUID:-1000}:${PGID:-1000}"
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-3002}:3002"
+      - ${PORT:-3002}:3002
 
     env_file:
-      - "./anythingllm/.env"
+      - ./anythingllm/.env
 
     runtime: nvidia
     deploy:
@@ -53,7 +53,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -62,20 +62,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-3002}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-3002}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

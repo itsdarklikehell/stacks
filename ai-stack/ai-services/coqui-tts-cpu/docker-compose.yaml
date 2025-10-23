@@ -1,35 +1,35 @@
 services:
   coqui-tts-cpu:
-    image: "${IMAGE:-ghcr.io/coqui-ai/tts-cpu:latest}"
-    container_name: "${NAME:-coqui-tts-cpu}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-ghcr.io/coqui-ai/tts-cpu:latest}
+    container_name: ${NAME:-coqui-tts-cpu}
+    restart: ${RESTART:-unless-stopped}
 
-    entrypoint: "/bin/bash"
+    entrypoint: /bin/bash
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "kokoro_data:/kokoro"
-      - "kokoro_index_data:/index_data"
-    # - "../../DATA/ai-stack/coqui-tts-cpu:/kokoro"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - kokoro_data:/kokoro
+      - kokoro_index_data:/index_data
+    # - ../../DATA/ai-stack/coqui-tts-cpu:/kokoro
 
-    hostname: "${NAME:-coqui-tts-cpu}"
+    hostname: ${NAME:-coqui-tts-cpu}
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-5002}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-5002}
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - "./coqui-tts-cpu/.env"
+      - ./coqui-tts-cpu/.env
 
     ports:
-      - "${PORT:-5002}:5002"
+      - ${PORT:-5002}:5002
 
     tty: true
 
@@ -38,20 +38,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-5002}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-5002}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

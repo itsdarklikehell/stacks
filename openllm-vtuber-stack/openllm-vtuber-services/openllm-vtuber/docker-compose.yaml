@@ -1,58 +1,58 @@
 services:
   openllm-vtuber:
-    # image: "${IMAGE:-t41372/open-llm-vtuber}"
-    # image: "${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}"
-    container_name: "${NAME:-openllm-vtuber}"
-    restart: "${RESTART:-unless-stopped}"
+    # image: ${IMAGE:-t41372/open-llm-vtuber}
+    # image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
+    container_name: ${NAME:-openllm-vtuber}
+    restart: ${RESTART:-unless-stopped}
 
     build:
-      context: "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber"
+      context: ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber
       args:
-        UID: "${PUID:-1000}"
-        GID: "${PGID:-1000}"
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
         INSTALL_ORIGINAL_WHISPER: false
         INSTALL_BARK: false
-      dockerfile: "./CustomDockerfile-openllm-vtuber-uv"
+      dockerfile: ./CustomDockerfile-openllm-vtuber-uv
       # dockerfile: ./CustomDockerfile-openllm-vtuber-conda
       # dockerfile: ./CustomDockerfile-openllm-vtuber-venv
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      # - "PORT=${PORT:-12393}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - PORT=${PORT:-12393}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/conf.yaml:/app/conf.yaml"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/avatars"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/backgrounds"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/characters:/app/characters"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/chat_history:/app/chat_history"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models:/app/live2d-models"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/logs:/app/logs"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/prompts/utils:/app/prompts/utils"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/scripts:/app/scripts"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json"
-      - "../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/model_dict.json:/app/model_dict.json"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/conf.yaml:/app/conf.yaml
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/avatars
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/backgrounds
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/characters:/app/characters
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/chat_history:/app/chat_history
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models:/app/live2d-models
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/logs:/app/logs
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/prompts/utils:/app/prompts/utils
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/scripts:/app/scripts
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/model_dict.json:/app/model_dict.json
 
-    hostname: "${NAME:-openllm-vtuber}"
+    hostname: ${NAME:-openllm-vtuber}
 
     networks:
       host:
       openllm-vtuber-services:
 
     ports:
-      - "${PORT:-12393}:12393"
+      - ${PORT:-12393}:12393
 
     env_file:
-      - "./openllm-vtuber/.env"
+      - ./openllm-vtuber/.env
 
     runtime: nvidia
     deploy:
@@ -62,7 +62,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -75,20 +75,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-12393}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

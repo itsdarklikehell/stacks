@@ -1,41 +1,41 @@
 services:
   voice-chat-ai:
-    image: "${IMAGE:-bigsk1/voice-chat-ai:latest}"
-    container_name: "${NAME:-voice-chat-ai}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-bigsk1/voice-chat-ai:latest}
+    container_name: ${NAME:-voice-chat-ai}
+    restart: ${RESTART:-unless-stopped}
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PULSE_SERVER=unix:/tmp/pulse/native" # Uncomment for native Ubuntu/Debian with PulseAudio
-      - "PORT=${PORT:-8002}"
-      # - "PULSE_SERVER=/mnt/wslg/PulseServer" # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PULSE_SERVER=unix:/tmp/pulse/native # Uncomment for native Ubuntu/Debian with PulseAudio
+      - PORT=${PORT:-8002}
+      # - PULSE_SERVER=/mnt/wslg/PulseServer # Default: WSL2 PulseAudio server (Windows CMD or WSL2 Ubuntu)
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       # - \\wsl$\Ubuntu\mnt\wslg:/mnt/wslg/  # Default: WSL2 audio mount for Windows CMD with Docker Desktop
       # - /mnt/wslg/:/mnt/wslg/  # Uncomment for WSL2 Ubuntu (running Docker inside WSL2 distro)
-      - "${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie:ro" # Uncomment for native Ubuntu/Debian
-      - "/run/user/1000/pulse:/tmp/pulse:ro" # Uncomment and adjust UID (e.g., 1000) for native Ubuntu/Debian
+      - ${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie:ro # Uncomment for native Ubuntu/Debian
+      - /run/user/1000/pulse:/tmp/pulse:ro # Uncomment and adjust UID (e.g., 1000) for native Ubuntu/Debian
 
-    hostname: "${NAME:-voice-chat-ai}"
+    hostname: ${NAME:-voice-chat-ai}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-8002}:8002"
+      - ${PORT:-8002}:8002
 
     env_file:
-      - "./voice-chat-ai/.env"
+      - ./voice-chat-ai/.env
 
     runtime: nvidia
     deploy:
@@ -45,7 +45,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -58,20 +58,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-8002}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8002}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,56 +1,56 @@
 services:
   swarmui:
-    # image: "${IMAGE:-swarmui}"
-    container_name: "${NAME:-swarmui}"
-    restart: "${RESTART:-unless-stopped}"
+    # image: ${IMAGE:-swarmui}
+    container_name: ${NAME:-swarmui}
+    restart: ${RESTART:-unless-stopped}
 
-    user: "${PUID:-1000}:${PGID:-1000}"
+    user: ${PUID:-1000}:${PGID:-1000}
 
     build:
-      context: "../../DATA/ai-stack/SwarmUI"
+      context: ../../DATA/ai-stack/SwarmUI
       args:
-        UID: "${PUID:-1000}"
-        GID: "${PGID:-1000}"
-      dockerfile: "./launchtools/CustomDockerfile.docker"
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./launchtools/CustomDockerfile.docker
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-7801}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-7801}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "swarmdata:/SwarmUI/Data"
-      - "swarmbackend:/SwarmUI/dlbackend"
-      - "swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes"
-      - "swarmextensions:/SwarmUI/src/Extensions"
-      - "stable-diffusion-webui-docker_models:/SwarmUI/Models"
-      - "stable-diffusion-webui-docker_output:/SwarmUI/Output"
-      - "stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
-      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models"
-      # - "../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output"
-      # - "../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"
-    hostname: "${NAME:-swarmui}"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - swarmdata:/SwarmUI/Data
+      - swarmbackend:/SwarmUI/dlbackend
+      - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
+      - swarmextensions:/SwarmUI/src/Extensions
+      - stable-diffusion-webui-docker_models:/SwarmUI/Models
+      - stable-diffusion-webui-docker_output:/SwarmUI/Output
+      - stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models
+      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output
+      # - ../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+    hostname: ${NAME:-swarmui}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-7801}:7801"
+      - ${PORT:-7801}:7801
 
     env_file:
-      - "./swarmui/.env"
+      - ./swarmui/.env
 
     cap_drop:
-      - "ALL"
+      - ALL
 
     runtime: nvidia
     deploy:
@@ -60,7 +60,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -69,20 +69,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-7801}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-7801}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,35 +1,35 @@
 services:
   ollama:
-    image: "${IMAGE:-ollama/ollama}"
-    container_name: "${NAME:-ollama}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-ollama/ollama}
+    container_name: ${NAME:-ollama}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h}"
-      - "ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}"
-      - "COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://stable-diffusion-webui:7860}"
-      - "OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}"
+      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h}
+      - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
+      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://stable-diffusion-webui:7860}
+      - OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}
 
     volumes:
-      - "../../DATA/ai-stack/ollama:/root/.ollama"
-      # - "ollama-data:/root/.ollama"
+      - ../../DATA/ai-stack/ollama:/root/.ollama
+      # - ollama-data:/root/.ollama
 
-    hostname: "${NAME:-ollama}"
+    hostname: ${NAME:-ollama}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-11434}:11434"
+      - ${PORT:-11434}:11434
 
     env_file:
-      - "./ollama/.env"
+      - ./ollama/.env
 
     runtime: nvidia
     deploy:
@@ -39,7 +39,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -48,20 +48,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://host.docker.internal:11434/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://host.docker.internal:11434/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

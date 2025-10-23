@@ -1,41 +1,41 @@
 services:
   clickhouse:
-    image: "${IMAGE:-clickhouse/clickhouse-server:22.9-alpine}"
-    container_name: "${NAME:-clickhouse}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-clickhouse/clickhouse-server:22.9-alpine}
+    container_name: ${NAME:-clickhouse}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "ALLOW_EMPTY_PASSWORD=yes"
-      - "CLICKHOUSE_TCP_PORT=9000"
-      - "CLICKHOUSE_HTTP_PORT=${PORT:-8124}"
-      - 'STORAGE_DIR="/app/server/storage"'
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ALLOW_EMPTY_PASSWORD=yes
+      - CLICKHOUSE_TCP_PORT=9000
+      - CLICKHOUSE_HTTP_PORT=${PORT:-8124}
+      - STORAGE_DIR=/app/server/storage
 
     ports:
-      - "${PORT:-8124}:8124"
-      - "9000:9000"
+      - ${PORT:-8124}:8124
+      - 9000:9000
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "clickhouse_data:/bitnami/clickhouse"
-      - "clickhouse_backups:/backups"
-      - "../../DATA/ai-stack/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml"
-      - "../../DATA/ai-stack/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - clickhouse_data:/bitnami/clickhouse
+      - clickhouse_backups:/backups
+      - ../../DATA/ai-stack/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
+      - ../../DATA/ai-stack/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - "./clickhouse/.env"
+      - ./clickhouse/.env
 
     runtime: nvidia
     deploy:
@@ -45,7 +45,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -54,20 +54,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-8124}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8124}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

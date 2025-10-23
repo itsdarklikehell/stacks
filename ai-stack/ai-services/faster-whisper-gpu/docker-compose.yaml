@@ -1,39 +1,39 @@
 services:
   faster-whisper-gpu:
-    image: "${IMAGE:-lscr.io/linuxserver/faster-whisper:gpu}"
-    container_name: "${NAME:-faster-whisper-gpu}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-lscr.io/linuxserver/faster-whisper:gpu}
+    container_name: ${NAME:-faster-whisper-gpu}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "WHISPER_MODEL=${WHISPER_MODEL:-large-v3-turbo}"
-      # - "LOCAL_ONLY=false" #optional
-      # - "WHISPER_BEAM=1" #optional
-      # - "WHISPER_LANG=en" #optional
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - WHISPER_MODEL=${WHISPER_MODEL:-large-v3-turbo}
+      # - LOCAL_ONLY=false #optional
+      # - WHISPER_BEAM=1 #optional
+      # - WHISPER_LANG=en #optional
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "faster-whisper-data:/config"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - faster-whisper-data:/config
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-10300}:10300"
+      - ${PORT:-10300}:10300
 
-    hostname: "${NAME:-faster-whisper-gpu}"
+    hostname: ${NAME:-faster-whisper-gpu}
 
     env_file:
-      - "./faster-whisper-gpu/.env"
+      - ./faster-whisper-gpu/.env
 
     runtime: nvidia
     deploy:
@@ -43,7 +43,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -52,20 +52,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-10300}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-10300}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

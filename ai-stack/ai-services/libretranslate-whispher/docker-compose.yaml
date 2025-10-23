@@ -1,44 +1,44 @@
 services:
   libretranslate-whispher:
-    image: "${IMAGE:-libretranslate/libretranslate:latest-cuda}"
-    container_name: "${NAME:-libretranslate-whispher}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-libretranslate/libretranslate:latest-cuda}
+    container_name: ${NAME:-libretranslate-whispher}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-5000}"
-      - "LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}"
-      - "LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}"
-      - "LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-5000}
+      - LT_DISABLE_WEB_UI=${LT_DISABLE_WEB_UI:-True}
+      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}
+      - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "libretranslate-whispher_data:/home/libretranslate/.local/share"
-      - "libretranslate-whispher_cache:/home/libretranslate/.local/cache"
-      # - "../../DATA/ai-stack/libretranslate-whispher/data:/home/libretranslate/.local/share"
-      # - "../../DATA/ai-stack/libretranslate-whispher/cache:/home/libretranslate/.local/cache"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - libretranslate-whispher_data:/home/libretranslate/.local/share
+      - libretranslate-whispher_cache:/home/libretranslate/.local/cache
+      # - ../../DATA/ai-stack/libretranslate-whispher/data:/home/libretranslate/.local/share
+      # - ../../DATA/ai-stack/libretranslate-whispher/cache:/home/libretranslate/.local/cache
 
-    hostname: "${NAME:-libretranslate-whispher}"
+    hostname: ${NAME:-libretranslate-whispher}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-5000}:5000"
+      - ${PORT:-5000}:5000
 
     # user: root
 
     env_file:
-      - "./libretranslate-whispher/.env"
+      - ./libretranslate-whispher/.env
 
     runtime: nvidia
     deploy:
@@ -48,7 +48,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -57,20 +57,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-5000}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-5000}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

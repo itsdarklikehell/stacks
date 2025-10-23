@@ -1,37 +1,37 @@
 services:
   redis:
-    image: "${IMAGE:-redis:alpine}"
-    container_name: "${NAME:-redis}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-redis:alpine}
+    container_name: ${NAME:-redis}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      # - "PORT=${PORT:-6379}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - PORT=${PORT:-6379}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "redis_data:/data"
-      # - "../../DATA/essential-stack/redis/data:/data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - redis_data:/data
+      # - ../../DATA/essential-stack/redis/data:/data
 
-    hostname: "${NAME:-redis}"
+    hostname: ${NAME:-redis}
 
     networks:
       host:
       management-services:
 
     ports:
-      - "${PORT:-6379}:6379"
+      - ${PORT:-6379}:6379
 
     env_file:
-      - "./redis/.env"
+      - ./redis/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-6379}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-6379}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

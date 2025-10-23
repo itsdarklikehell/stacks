@@ -1,50 +1,50 @@
 services:
   wolf:
-    image: "${IMAGE:-ghcr.io/games-on-whales/wolf:stable}"
-    container_name: "${NAME:-wolf}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-ghcr.io/games-on-whales/wolf:stable}
+    container_name: ${NAME:-wolf}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "NVIDIA_DRIVER_CAPABILITIES=all"
-      - "NVIDIA_VISIBLE_DEVICES=all"
-      # - "PORT=${PORT:-80}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+      # - PORT=${PORT:-80}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/dev/:/dev/:rw"
-      - "/run/udev:/run/udev:rw"
-      - "wolf_etc:/etc/wolf"
-      # - "../../DATA/essential-stack/wolf/etc:/etc/wolf"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/:/dev/:rw
+      - /run/udev:/run/udev:rw
+      - wolf_etc:/etc/wolf
+      # - ../../DATA/essential-stack/wolf/etc:/etc/wolf
 
     device_cgroup_rules:
-      - "c 13:* rmw"
+      - c 13:* rmw
 
     devices:
-      - "/dev/dri"
-      - "/dev/uinput"
-      - "/dev/uhid"
+      - /dev/dri
+      - /dev/uinput
+      - /dev/uhid
 
     networks:
       host:
       essential-services:
 
     # ports:
-    #   - "${PORT:-80}:80"
+    #   - ${PORT:-80}:80
 
-    hostname: "${NAME:-wolf}"
+    hostname: ${NAME:-wolf}
 
     env_file:
-      - "./wolf/.env"
+      - ./wolf/.env
 
     runtime: nvidia
     deploy:
@@ -54,7 +54,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -63,20 +63,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-80}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

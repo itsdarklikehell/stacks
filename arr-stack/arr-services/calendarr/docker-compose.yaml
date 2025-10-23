@@ -1,81 +1,81 @@
 services:
   calendarr:
-    image: "${IMAGE:-ghcr.io/jordanlambrecht/calendarr}"
-    container_name: "${NAME:-calendarr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: { IMAGE:-ghcr.io/jordanlambrecht/calendarr }
+    container_name: { NAME:-calendarr }
+    restart: { RESTART:-unless-stopped }
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      TZ: "${TZ:-Europe/Amsterdam}"
-      PUID: "${PUID:-1000}"
-      PGID: "${PGID:-1000}"
+      TZ: { TZ:-Europe/Amsterdam }
+      PUID: { PUID:-1000 }
+      PGID: { PGID:-1000 }
       CALENDAR_URLS: >
         [{
-          "url":"${ICS_URL_SONARR_1}",
-          "type":"tv"
+          rl:{CS_URL_SONARR_1},
+          ype:v
         },
         {
-          "url":"${ICS_URL_SONARR_2}",
-          "type":"tv"
+          rl:{CS_URL_SONARR_2},
+          ype:v
         },
         {
-          "url":"${ICS_URL_RADARR_1}",
-          "type":"movie"
+          rl:{CS_URL_RADARR_1},
+          ype:oie
         }]
-      DISCORD_WEBHOOK_URL: "${DISCORD_WEBHOOK_URL}"
+      DISCORD_WEBHOOK_URL: { DISCORD_WEBHOOK_URL }
       USE_DISCORD: true
-      SLACK_WEBHOOK_URL: "${SLACK_WEBHOOK_URL}"
+      SLACK_WEBHOOK_URL: { SLACK_WEBHOOK_URL }
       USE_SLACK: false
       ADD_LEADING_ZERO: true
-      CALENDAR_RANGE: "AUTO"
-      CRON_SCHEDULE: ""
-      CUSTOM_HEADER: "TV PGIDe - Shows and Movies airing this week"
+      CALENDAR_RANGE: UTO
+      CRON_SCHEDULE:
+      CUSTOM_HEADER: V PGIDe - Shows and Movies airing this week
       DEBUG: false
       DEDUPLICATE_EVENTS: true
       DISCORD_HIDE_MENTION_INSTRUCTIONS: false
-      DISCORD_MENTION_ROLE_ID: "${DISCORD_MENTION_ROLE_ID}"
+      DISCORD_MENTION_ROLE_ID: { DISCORD_MENTION_ROLE_ID }
       DISPLAY_TIME: true
       ENABLE_CUSTOM_DISCORD_FOOTER: false
       ENABLE_CUSTOM_SLACK_FOOTER: false
-      HTTP_TIMEOUT: "30"
-      LOG_BACKUP_COUNT: "15"
-      LOG_DIR: "/app/logs"
-      LOG_FILE: "calendarr.log"
-      LOG_MAX_SIZE_MB: "1"
-      PASSED_EVENT_HANDLING: "STRIKE"
+      HTTP_TIMEOUT: 0
+      LOG_BACKUP_COUNT: 5
+      LOG_DIR: app/logs
+      LOG_FILE: alendarr.log
+      LOG_MAX_SIZE_MB:
+      PASSED_EVENT_HANDLING: TRIKE
       RUN_ON_STARTUP: true
-      RUN_TIME: "09:30"
-      SCHEDULE_DAY: "1"
-      SCHEDULE_TYPE: "WEEKLY"
+      RUN_TIME: 9:30
+      SCHEDULE_DAY:
+      SCHEDULE_TYPE: EEKLY
       SHOW_DATE_RANGE: true
       SHOW_TIMEZONE_IN_SUBHEADER: true
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
-      PORT: "${PORT:-5003}"
+      PORT: { PORT:-5003 }
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "calendarr-logs:/app/logs:rw"
-      - "calendarr-custom_footers:/app/custom_footers:rw"
-      # - "../../DATA/arr-stack/calendarr/logs:/app/logs:rw"
-      # - "../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - alendarr-logs:/app/logs:rw
+      - alendarr-custom_footers:/app/custom_footers:rw
+      # - ./../DATA/arr-stack/calendarr/logs:/app/logs:rw
+      # - ./../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
 
-    hostname: "${NAME:-calendarr}"
+    hostname: { NAME:-calendarr }
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-5003}:5003"
+      - ${PORT:-5003}:5003
 
     env_file:
-      - "./calendarr/.env"
+      - /calendarr/.env
 
     deploy:
       replicas: 1
@@ -87,18 +87,18 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "python",
-    #       "-c",
-    #       "import urllib.request; urllib.request.urlopen('http://localhost:${PORT:-5000}/health')",
+    #       MD,
+    #       ython,
+    #       c,
+    #       mport urllib.request; urllib.request.urlopen('http://localhost:${PORT:-5000}/health'),
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

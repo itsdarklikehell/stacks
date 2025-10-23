@@ -1,39 +1,39 @@
 services:
   homeassistant:
-    image: "${IMAGE:-ghcr.io/home-assistant/home-assistant:stable}"
-    container_name: "${NAME:-homeassistant}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-ghcr.io/home-assistant/home-assistant:stable}
+    container_name: ${NAME:-homeassistant}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "home-assistant-config:/config"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - home-assistant-config:/config
 
-    hostname: "${NAME:-homeassistant}"
+    hostname: ${NAME:-homeassistant}
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - "./homeassistant/.env"
+      - ./homeassistant/.env
 
     ports:
-      - "${PORT:-8123}:8123"
+      - ${PORT:-8123}:8123
 
     # depends_on:
-    #   - "faster-whisper-gpu"
-    #   - "wyoming-piper"
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
 
     tty: true
 
@@ -42,20 +42,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-8123}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

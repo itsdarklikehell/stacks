@@ -1,37 +1,37 @@
 services:
   dasharr:
-    image: "${IMAGE:-schenanigans/dasharr}"
-    container_name: "${NAME:-dasharr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-schenanigans/dasharr}
+    container_name: {NAME:-dasharr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8780}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ORT=${PORT:-8780}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "dasharr-dasharr_config:/app/config"
-      # - "../../DATA/arr-stack/dasharr/dasharr_config:/app/config"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - asharr-dasharr_config:/app/config
+      # - ./../DATA/arr-stack/dasharr/dasharr_config:/app/config
 
-    hostname: "${NAME:-dasharr}"
+    hostname: {NAME:-dasharr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-8780}:8780"
+      - ${PORT:-8780}:8780
 
     env_file:
-      - "./dasharr/.env"
+      - /dasharr/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://127.0.0.1:${PORT:-8780}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://127.0.0.1:${PORT:-8780}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

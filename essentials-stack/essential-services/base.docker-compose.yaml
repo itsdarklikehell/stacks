@@ -9,7 +9,7 @@
 # - Document all customizations and manual steps in README.md
 # - Keep this file and .env in sync
 
-name: "essential-services"
+name: essential-services
 
 networks:
   host:
@@ -17,24 +17,24 @@ networks:
     external: true
 
 volumes:
-  grafana_data: # "../../DATA/essential-stack/grafana/data"
-  wolf_etc: # "../../DATA/essential-stack/wolf/etc"
-  uptime-kuma_data: # "../../DATA/essential-stack/uptime-kuma/data"
-  portracker_data: # "../../DATA/essential-stack/portracker/data"
-  portainer_data: # "../../DATA/essential-stack/portainer/data"
-  nginx-proxy-manager_data: # "../../DATA/essential-stack/nginx-proxy-manager/data"
-  nginx-proxy-manager_letsencrypt: # "../../DATA/essential-stack/nginx-proxy-manager/letsencrypt"
-  homarr_appdata: # "../../DATA/essential-stack/homarr/appdata"
-  dockge_data: # "../../DATA/essential-stack/dockge/data"
+  grafana_data: # ../../DATA/essential-stack/grafana/data
+  wolf_etc: # ../../DATA/essential-stack/wolf/etc
+  uptime-kuma_data: # ../../DATA/essential-stack/uptime-kuma/data
+  portracker_data: # ../../DATA/essential-stack/portracker/data
+  portainer_data: # ../../DATA/essential-stack/portainer/data
+  nginx-proxy-manager_data: # ../../DATA/essential-stack/nginx-proxy-manager/data
+  nginx-proxy-manager_letsencrypt: # ../../DATA/essential-stack/nginx-proxy-manager/letsencrypt
+  homarr_appdata: # ../../DATA/essential-stack/homarr/appdata
+  dockge_data: # ../../DATA/essential-stack/dockge/data
 
 secrets:
   INITIAL_ADMIN_EMAIL:
-    file: "../../secrets/nginx-proxy-manager_username"
+    file: ../../secrets/nginx-proxy-manager_username
   INITIAL_ADMIN_PASSWORD:
-    file: "../../secrets/nginx-proxy-manager_password"
+    file: ../../secrets/nginx-proxy-manager_password
   GF_SECURITY_ADMIN_USER:
-    file: "../../secrets/grafana_username"
+    file: ../../secrets/grafana_username
   GF_SECURITY_ADMIN_PASSWORD:
-    file: "../../secrets/grafana_password"
+    file: ../../secrets/grafana_password
   GF_AUTH_GOOGLE_CLIENT_SECRET:
-    file: "../../secrets/grafana_google_client_secret"
+    file: ../../secrets/grafana_google_client_secret

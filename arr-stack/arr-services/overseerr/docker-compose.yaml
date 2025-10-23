@@ -1,40 +1,40 @@
 services:
   overseerr:
-    image: "${IMAGE:-sctx/overseerr}"
-    container_name: "${NAME:-overseerr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-sctx/overseerr}
+    container_name: {NAME:-overseerr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "LOG_LEVEL=${PORT:-debug}"
-      - "PORT=${PORT:-5056}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - OG_LEVEL=${PORT:-debug}
+      - ORT=${PORT:-5056}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "overseerr-appdata:/app"
-      - "overseerr-config:/app/config"
-      # - "../../DATA/arr-stack/overseerr/appdata/config:/app/config"
-      # - "../../DATA/arr-stack/overseerr/appdata/config:/app/config"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - verseerr-appdata:/app
+      - verseerr-config:/app/config
+      # - ./../DATA/arr-stack/overseerr/appdata/config:/app/config
+      # - ./../DATA/arr-stack/overseerr/appdata/config:/app/config
 
-    hostname: "${NAME:-overseerr}"
+    hostname: {NAME:-overseerr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-5056}:5056"
+      - ${PORT:-5056}:5056
 
     env_file:
-      - "./overseerr/.env"
+      - /overseerr/.env
 
     deploy:
       replicas: 1
@@ -46,20 +46,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-5056}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-5056}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

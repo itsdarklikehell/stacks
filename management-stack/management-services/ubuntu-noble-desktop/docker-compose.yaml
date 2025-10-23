@@ -1,39 +1,39 @@
 services:
   ubuntu-noble-desktop:
-    image: "${IMAGE:-kasmweb/ubuntu-noble-desktop:1.17.0}"
-    container_name: "${NAME:-ubuntu-noble-desktop}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-kasmweb/ubuntu-noble-desktop:1.17.0}
+    container_name: ${NAME:-ubuntu-noble-desktop}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}"
-      - "PORT=${PORT:-6901}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - VNC_PASSWORD=${UBUNTU_VNC_PASSWORD:-ubuntu}
+      - PORT=${PORT:-6901}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/dev/shm:/dev/shm"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /dev/shm:/dev/shm
 
-    hostname: "${NAME:-ubuntu-noble-desktop}"
+    hostname: ${NAME:-ubuntu-noble-desktop}
 
     networks:
       host:
       management-services:
 
     ports:
-      - "${PORT:-6901}:6901"
+      - ${PORT:-6901}:6901
 
-    shm_size: "4gb"
+    shm_size: 4gb
 
     env_file:
-      - "./ubuntu-noble-desktop/.env"
+      - ./ubuntu-noble-desktop/.env
 
     deploy:
       replicas: 1
@@ -45,20 +45,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-6901}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-6901}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

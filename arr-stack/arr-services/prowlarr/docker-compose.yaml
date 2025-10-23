@@ -1,40 +1,40 @@
 services:
   prowlarr:
-    image: "${IMAGE:-linuxserver/prowlarr}"
-    container_name: "${NAME:-prowlarr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-linuxserver/prowlarr}
+    container_name: ${NAME:-prowlarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-9696}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-9696}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "prowlarr-config:/config"
-      # - "../../DATA/arr-stack/prowlarr/config:/config"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - prowlarr-config:/config
+      # - ../../DATA/arr-stack/prowlarr/config:/config
 
-    hostname: "${NAME:-prowlarr}"
+    hostname: ${NAME:-prowlarr}
 
     networks:
       host:
       arr-services:
 
     expose:
-      - "${PORT:-9696}/tcp"
+      - ${PORT:-9696}/tcp
 
     ports:
-      - "${PORT:-9696}:9696/tcp"
+      - ${PORT:-9696}:9696/tcp
 
     env_file:
-      - "./prowlarr/.env"
+      - ./prowlarr/.env
 
     deploy:
       replicas: 1
@@ -46,20 +46,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-9696}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-9696}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

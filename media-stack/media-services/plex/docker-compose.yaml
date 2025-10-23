@@ -1,38 +1,38 @@
 services:
   plex:
-    image: "${IMAGE:-plexinc/pms-docker}"
-    container_name: "${NAME:-plex}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-plexinc/pms-docker}
+    container_name: ${NAME:-plex}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-32400}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-32400}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "plex_config:/config"
-      - "plex_transcode:/transcode"
-      - "plex_media:/data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - plex_config:/config
+      - plex_transcode:/transcode
+      - plex_media:/data
 
-    hostname: "${NAME:-plex}"
+    hostname: ${NAME:-plex}
 
     networks:
       host:
       media-services:
 
     ports:
-      - "${PORT:-32400}:32400"
+      - ${PORT:-32400}:32400
 
     env_file:
-      - "./plex/.env"
+      - ./plex/.env
 
     deploy:
       replicas: 1
@@ -40,20 +40,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-32400}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-32400}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,47 +1,47 @@
 services:
   localai:
-    image: "${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}"
-    # image: "${IMAGE:-localai/localai:latest-gpu-nvidia-cuda-12}"
-    container_name: "${NAME:-localai}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}
+    # image: ${IMAGE:-localai/localai:latest-gpu-nvidia-cuda-12}
+    container_name: ${NAME:-localai}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "DEBUG=true"
-      - 'STORAGE_DIR="/app/server/storage"'
-      - "SERVER_PORT=${SERVER_PORT:-8083}"
-      - "PORT=${PORT:-8083}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - DEBUG=true
+      - STORAGE_DIR=/app/server/storage
+      - SERVER_PORT=${SERVER_PORT:-8083}
+      - PORT=${PORT:-8083}
 
     # cap_add:
-    #   - "SYS_ADMIN"
+    #   - SYS_ADMIN
 
-    # command: ["--cap-add", "SYS_ADMIN"]
+    # command: [--cap-add, SYS_ADMIN]
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "localai_models:/models:rw"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - localai_models:/models:rw
 
-    hostname: "${NAME:-localai}"
+    hostname: ${NAME:-localai}
 
-    user: "${PUID:-1000}:${PGID:-1000}"
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-8083}:8080"
+      - ${PORT:-8083}:8080
 
     env_file:
-      - "./localai/.env"
+      - ./localai/.env
 
     runtime: nvidia
     deploy:
@@ -51,21 +51,21 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
     stdin_open: true
 
     # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:${PORT:-8083}/readyz"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   test: [CMD, curl, -f, http://localhost:${PORT:-8083}/readyz]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

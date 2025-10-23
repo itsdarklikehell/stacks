@@ -1,38 +1,38 @@
 services:
   checkrr:
-    image: "${IMAGE:-aetaric/checkrr}"
-    container_name: "${NAME:-checkrr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-aetaric/checkrr}
+    container_name: {NAME:-checkrr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8585}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ORT=${PORT:-8585}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml"
-      - "../../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db"
-      - "../../DATA/arr-stack/media:/media"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - ./../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
+      - ./../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db
+      - ./../DATA/arr-stack/media:/media
 
-    hostname: "${NAME:-checkrr}"
+    hostname: {NAME:-checkrr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-8585}:8585"
+      - ${PORT:-8585}:8585
 
     env_file:
-      - "./checkrr/.env"
+      - /checkrr/.env
 
     deploy:
       replicas: 1
@@ -44,20 +44,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-8585}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-8585}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

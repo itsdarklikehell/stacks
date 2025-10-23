@@ -1,37 +1,37 @@
 services:
   watchtower-arr-services:
-    image: "${IMAGE:-containrrr/watchtower}"
-    restart: "${RESTART:-unless-stopped}"
-    container_name: "${NAME:-watchtower-arr-services}"
+    image: {IMAGE:-containrrr/watchtower}
+    restart: {RESTART:-unless-stopped}
+    container_name: {NAME:-watchtower-arr-services}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token"
-      # - "PORT=${PORT:-80}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token
+      # - ORT=${PORT:-80}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - var/run/docker.sock:/var/run/docker.sock
 
-    hostname: "${NAME:-watchtower-arr-services}"
+    hostname: {NAME:-watchtower-arr-services}
 
     networks:
       host:
       arr-services:
 
     # ports:
-    #   - "${PORT:-80}:80"
+    #   - ${PORT:-80}:80
 
     env_file:
-      - "./watchtower/.env"
+      - /watchtower/.env
 
     depends_on:
       - autobrr
@@ -69,20 +69,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-80}/api/health"
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-80}/api/health
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

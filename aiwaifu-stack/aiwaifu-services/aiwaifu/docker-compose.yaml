@@ -1,56 +1,56 @@
 services:
   aiwaifu:
-    # image: "${IMAGE:-aiwaifu}"
-    container_name: "${NAME:-aiwaifu}"
-    restart: "${RESTART:-unless-stopped}"
+    # image: ${IMAGE:-aiwaifu}
+    container_name: ${NAME:-aiwaifu}
+    restart: ${RESTART:-unless-stopped}
 
     build:
-      context: "../../DATA/aiwaifu-stack/aiwaifu"
+      context: ../../DATA/aiwaifu-stack/aiwaifu
       args:
-        UID: "${PUID:-1000}"
-        GID: "${PGID:-1000}"
-      dockerfile: "./CustomDockerfile-aiwaifu-venv"
-      # dockerfile: "./CustomDockerfile-aiwaifu-conda"
-      # dockerfile: "./CustomDockerfile-aiwaifu-uv"
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./CustomDockerfile-aiwaifu-venv
+      # dockerfile: ./CustomDockerfile-aiwaifu-conda
+      # dockerfile: ./CustomDockerfile-aiwaifu-uv
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
-      - "PORT=${PORT:-5137}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      - PORT=${PORT:-5137}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-    #   - "../../DATA/ai-stack/aiwaifu/.env:/aiwaifu/.env"
-    #   - "../../DATA/ai-stack/aiwaifu/avatars:/app/avatars"
-    #   - "../../DATA/ai-stack/aiwaifu/avatars:/app/backgrounds"
-    #   - "../../DATA/ai-stack/aiwaifu/characters:/app/characters"
-    #   - "../../DATA/ai-stack/aiwaifu/chat_history:/app/chat_history"
-    #   - "../../DATA/ai-stack/aiwaifu/live2d-models:/app/live2d-models"
-    #   - "../../DATA/ai-stack/aiwaifu/logs:/app/logs"
-    #   - "../../DATA/ai-stack/aiwaifu/prompts/utils:/app/prompts/utils"
-    #   - "../../DATA/ai-stack/aiwaifu/scripts:/app/scripts"
-    #   - "../../DATA/ai-stack/aiwaifu/mcp_servers.json:/app/mcp_servers.json"
-    #   - "../../DATA/ai-stack/aiwaifu/model_dict.json:/app/model_dict.json"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    #   - ../../DATA/ai-stack/aiwaifu/.env:/aiwaifu/.env
+    #   - ../../DATA/ai-stack/aiwaifu/avatars:/app/avatars
+    #   - ../../DATA/ai-stack/aiwaifu/avatars:/app/backgrounds
+    #   - ../../DATA/ai-stack/aiwaifu/characters:/app/characters
+    #   - ../../DATA/ai-stack/aiwaifu/chat_history:/app/chat_history
+    #   - ../../DATA/ai-stack/aiwaifu/live2d-models:/app/live2d-models
+    #   - ../../DATA/ai-stack/aiwaifu/logs:/app/logs
+    #   - ../../DATA/ai-stack/aiwaifu/prompts/utils:/app/prompts/utils
+    #   - ../../DATA/ai-stack/aiwaifu/scripts:/app/scripts
+    #   - ../../DATA/ai-stack/aiwaifu/mcp_servers.json:/app/mcp_servers.json
+    #   - ../../DATA/ai-stack/aiwaifu/model_dict.json:/app/model_dict.json
 
-    hostname: "${NAME:-aiwaifu}"
+    hostname: ${NAME:-aiwaifu}
 
     networks:
       host:
       aiwaifu-services:
 
     ports:
-      - "${PORT:-5137}:5137"
+      - ${PORT:-5137}:5137
 
     env_file:
-      - "./aiwaifu/.env"
+      - ./aiwaifu/.env
 
     runtime: nvidia
     deploy:
@@ -60,7 +60,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -73,20 +73,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-5137}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-5137}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,37 +1,37 @@
 services:
   buildarr:
-    image: "${IMAGE:-callum027/buildarr}"
-    container_name: "${NAME:-buildarr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-callum027/buildarr}
+    container_name: {NAME:-buildarr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-7878}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ORT=${PORT:-7878}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "buildarr-config:/config"
-      # - "../../DATA/arr-stack/buildarr/config:/config"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - uildarr-config:/config
+      # - ./../DATA/arr-stack/buildarr/config:/config
 
-    hostname: "${NAME:-buildarr}"
+    hostname: {NAME:-buildarr}
 
     networks:
       host:
       arr-services:
 
     ports:
-      - "${PORT:-7878}:7878"
+      - ${PORT:-7878}:7878
 
     env_file:
-      - "./buildarr/.env"
+      - /buildarr/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-7878}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-7878}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

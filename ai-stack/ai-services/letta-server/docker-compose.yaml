@@ -1,27 +1,27 @@
 services:
   letta-server:
-    image: "${IMAGE:-letta/letta:latest}"
-    container_name: "${NAME:-letta-server}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-letta/letta:latest}
+    container_name: ${NAME:-letta-server}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "OPENAI_API_KEY=${OPENAI_API_KEY:-}"
-      - "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}"
-      - "OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
-      - "PORT=${PORT:-8283}"
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - PORT=${PORT:-8283}
 
     volumes:
-      - "letta_pgdata:/var/lib/postgresql/data"
-      - "letta_toolexec:/root/.letta/tool_execution_dir"
+      - letta_pgdata:/var/lib/postgresql/data
+      - letta_toolexec:/root/.letta/tool_execution_dir
 
-    hostname: "${NAME:-letta-server}"
+    hostname: ${NAME:-letta-server}
 
-    # command: ["--logpath", "/var/log/mongodb/mongod.log"]
+    # command: [--logpath, /var/log/mongodb/mongod.log]
 
     networks:
       host:
@@ -31,13 +31,13 @@ services:
         #   - letta-db
 
     ports:
-      - "${PORT:-8283}:8283"
-      # - "5432:5432"
-      # - "4316:4316"
-      # - "4318:4318"
+      - ${PORT:-8283}:8283
+      # - 5432:5432
+      # - 4316:4316
+      # - 4318:4318
 
     env_file:
-      - "./letta-server/.env"
+      - ./letta-server/.env
 
     deploy:
       replicas: 1
@@ -53,20 +53,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-8283}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8283}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

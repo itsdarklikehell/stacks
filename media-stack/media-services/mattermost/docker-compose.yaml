@@ -1,35 +1,35 @@
 services:
   mattermost:
-    image: "${IMAGE:-mattermost/mattermost-team-edition}"
-    container_name: "${NAME:-mattermost}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-mattermost/mattermost-team-edition}
+    container_name: ${NAME:-mattermost}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8065}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8065}
 
-    hostname: "${NAME:-mattermost}"
+    hostname: ${NAME:-mattermost}
 
     networks:
       host:
       media-services:
 
     ports:
-      - "${PORT:-8065}:8065"
+      - ${PORT:-8065}:8065
 
     env_file:
-      - "./mattermost/.env"
+      - ./mattermost/.env
 
     deploy:
       replicas: 1
@@ -39,14 +39,14 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:${PORT:-8065}"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   test: [CMD, curl, -f, http://localhost:${PORT:-8065}]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,36 +1,36 @@
 services:
   autopulse:
-    image: "${IMAGE:-ghcr.io/dan-online/autopulse}"
-    container_name: "${NAME:-autopulse}"
-    restart: "${RESTART:-unless-stopped}"
+    image: { IMAGE:-ghcr.io/dan-online/autopulse }
+    container_name: { NAME:-autopulse }
+    restart: { RESTART:-unless-stopped }
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "AUTOPULSE__APP__DATABASE_URL=${AUTOPULSE__APP__DATABASE_URL:-postgres://postgres:autopulse@postgresql/autopulse}"
-      # - "PORT=${PORT:-80}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - UTOPULSE__APP__DATABASE_URL=${AUTOPULSE__APP__DATABASE_URL:-postgres://postgres:autopulse@postgresql/autopulse}
+      # - ORT=${PORT:-80}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
 
-    hostname: "${NAME:-autopulse}"
+    hostname: { NAME:-autopulse }
 
     networks:
       host:
       essential-services:
 
     # ports:
-    #   - "${PORT:-80}:80"
+    #   - ${PORT:-80}:80
 
     env_file:
-      - "./autopulse/.env"
+      - /autopulse/.env
 
     deploy:
       replicas: 1
@@ -42,20 +42,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-80}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-80}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

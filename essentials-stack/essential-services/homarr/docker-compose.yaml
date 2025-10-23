@@ -1,41 +1,41 @@
 services:
   homarr:
-    image: "${IMAGE:-ghcr.io/homarr-labs/homarr:latest}"
-    container_name: "${NAME:-homarr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: { IMAGE:-ghcr.io/homarr-labs/homarr:latest }
+    container_name: { NAME:-homarr }
+    restart: { RESTART:-unless-stopped }
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
-      - "homarr-app=true"
-      - "homarr"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+      - omarr-app=true
+      - omarr
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917"
-      - "PORT=${PORT:-7575}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
+      - ORT=${PORT:-7575}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "homarr_appdata:/appdata"
-      # - "../../DATA/essential-stack/homarr/appdata:/appdata"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - var/run/docker.sock:/var/run/docker.sock
+      - omarr_appdata:/appdata
+      # - ./../DATA/essential-stack/homarr/appdata:/appdata
 
-    hostname: "${NAME:-homarr}"
+    hostname: { NAME:-homarr }
 
     networks:
       host:
       essential-services:
 
     ports:
-      - "${PORT:-7575}:7575"
+      - ${PORT:-7575}:7575
 
     env_file:
-      - "./homarr/.env"
+      - /homarr/.env
 
     deploy:
       replicas: 1
@@ -47,20 +47,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-7575}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-7575}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

@@ -1,37 +1,37 @@
 services:
   webrcade:
-    image: "${IMAGE:-webrcade/webrcade}"
-    container_name: "${NAME:-webrcade}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-webrcade/webrcade}
+    container_name: ${NAME:-webrcade}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      # - "PORT=${PORT:-87}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - PORT=${PORT:-87}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "webrcade_content:/var/www/html/content"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - webrcade_content:/var/www/html/content
 
-    hostname: "${NAME:-webrcade}"
+    hostname: ${NAME:-webrcade}
 
     ports:
-      - "${PORT:-87}:87"
-      - "447:447"
+      - ${PORT:-87}:87
+      - 447:447
 
     networks:
       host:
       media-services:
 
     env_file:
-      - "./webrcade/.env"
+      - ./webrcade/.env
 
     deploy:
       replicas: 1
@@ -43,20 +43,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-87}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-87}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

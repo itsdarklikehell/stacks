@@ -1,42 +1,42 @@
 services:
   sonarr:
-    image: "${IMAGE:-lscr.io/linuxserver/sonarr}"
-    container_name: "${NAME:-sonarr}"
-    restart: "${RESTART:-unless-stopped}"
+    image: {IMAGE:-lscr.io/linuxserver/sonarr}
+    container_name: {NAME:-sonarr}
+    restart: {RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-8989}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - ORT=${PORT:-8989}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "sonarr-config:/config"
-      - "sonarr-media:/media"
-      # - "../../DATA/arr-stack/sonarr/config:/config"
-      # - "../../DATA/arr-stack/sonarr/media:/media"
+      - etc/localtime:/etc/localtime:ro
+      - etc/timezone:/etc/timezone:ro
+      - onarr-config:/config
+      - onarr-media:/media
+      # - ./../DATA/arr-stack/sonarr/config:/config
+      # - ./../DATA/arr-stack/sonarr/media:/media
 
-    hostname: "${NAME:-sonarr}"
+    hostname: {NAME:-sonarr}
 
     networks:
       host:
       arr-services:
 
     expose:
-      - "${PORT:-8989}/tcp"
+      - ${PORT:-8989}/tcp
 
     ports:
-      - "${PORT:-8989}:8989/tcp"
+      - ${PORT:-8989}:8989/tcp
 
     env_file:
-      - "./sonarr/.env"
+      - /sonarr/.env
 
     deploy:
       replicas: 1
@@ -48,20 +48,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-8989}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       ttp://localhost:${PORT:-8989}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

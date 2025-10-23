@@ -1,56 +1,56 @@
 services:
   airi:
-    # image: "${IMAGE:-airi}"
-    container_name: "${NAME:-airi}"
-    restart: "${RESTART:-unless-stopped}"
+    # image: ${IMAGE:-airi}
+    container_name: ${NAME:-airi}
+    restart: ${RESTART:-unless-stopped}
 
     build:
-      context: "../../DATA/airi-stack/airi"
+      context: ../../DATA/airi-stack/airi
       args:
-        UID: "${PUID:-1000}"
-        GID: "${PGID:-1000}"
-      dockerfile: "./CustomDockerfile-airi-conda"
-      # dockerfile: "./CustomDockerfile-airi-uv"
-      # dockerfile: "./CustomDockerfile-airi-venv"
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./CustomDockerfile-airi-conda
+      # dockerfile: ./CustomDockerfile-airi-uv
+      # dockerfile: ./CustomDockerfile-airi-venv
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}"
-      - "PORT=${PORT:-5137}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk...}
+      - PORT=${PORT:-5137}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-    #   - "../../DATA/ai-stack/airi/.env:/airi/.env"
-    #   - "../../DATA/ai-stack/airi/avatars:/app/avatars"
-    #   - "../../DATA/ai-stack/airi/avatars:/app/backgrounds"
-    #   - "../../DATA/ai-stack/airi/characters:/app/characters"
-    #   - "../../DATA/ai-stack/airi/chat_history:/app/chat_history"
-    #   - "../../DATA/ai-stack/airi/live2d-models:/app/live2d-models"
-    #   - "../../DATA/ai-stack/airi/logs:/app/logs"
-    #   - "../../DATA/ai-stack/airi/prompts/utils:/app/prompts/utils"
-    #   - "../../DATA/ai-stack/airi/scripts:/app/scripts"
-    #   - "../../DATA/ai-stack/airi/mcp_servers.json:/app/mcp_servers.json"
-    #   - "../../DATA/ai-stack/airi/model_dict.json:/app/model_dict.json"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    #   - ../../DATA/ai-stack/airi/.env:/airi/.env
+    #   - ../../DATA/ai-stack/airi/avatars:/app/avatars
+    #   - ../../DATA/ai-stack/airi/avatars:/app/backgrounds
+    #   - ../../DATA/ai-stack/airi/characters:/app/characters
+    #   - ../../DATA/ai-stack/airi/chat_history:/app/chat_history
+    #   - ../../DATA/ai-stack/airi/live2d-models:/app/live2d-models
+    #   - ../../DATA/ai-stack/airi/logs:/app/logs
+    #   - ../../DATA/ai-stack/airi/prompts/utils:/app/prompts/utils
+    #   - ../../DATA/ai-stack/airi/scripts:/app/scripts
+    #   - ../../DATA/ai-stack/airi/mcp_servers.json:/app/mcp_servers.json
+    #   - ../../DATA/ai-stack/airi/model_dict.json:/app/model_dict.json
 
-    hostname: "${NAME:-airi}"
+    hostname: ${NAME:-airi}
 
     networks:
       host:
       airi-services:
 
     ports:
-      - "${PORT:-5137}:5137"
+      - ${PORT:-5137}:5137
 
     env_file:
-      - "./airi/.env"
+      - ./airi/.env
 
     runtime: nvidia
     deploy:
@@ -60,7 +60,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -73,20 +73,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-5137}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-5137}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

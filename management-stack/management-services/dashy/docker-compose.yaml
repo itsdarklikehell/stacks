@@ -1,55 +1,55 @@
 services:
   dashy:
-    image: "${IMAGE:-lissy93/dashy}"
-    container_name: "${NAME:-dashy}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-lissy93/dashy}
+    container_name: ${NAME:-dashy}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "NODE_ENV=production"
-      - "PORT=${PORT:-8383}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - NODE_ENV=production
+      - PORT=${PORT:-8383}
     # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
     #   - UID=1000
     #   - GID=1000
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/management-stack/dashy/data/conf.yml:/app/user-data/conf.yml"
-      # - "dashy_config:/app/user-data/conf.yml"
-      # - "dashy_data:/app/user-data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/management-stack/dashy/data/conf.yml:/app/user-data/conf.yml
+      # - dashy_config:/app/user-data/conf.yml
+      # - dashy_data:/app/user-data
 
-    hostname: "${NAME:-dashy}"
+    hostname: ${NAME:-dashy}
 
     networks:
       host:
       management-services:
 
     ports:
-      - "${PORT:-8383}:8383"
+      - ${PORT:-8383}:8383
 
     env_file:
-      - "./dashy/.env"
+      - ./dashy/.env
 
     deploy:
       replicas: 1
 
     # healthcheck:
-    #   test: ["CMD", "node", "/app/services/healthcheck"]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   test: [CMD, node, /app/services/healthcheck]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

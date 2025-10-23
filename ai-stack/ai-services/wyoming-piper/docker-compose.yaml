@@ -1,39 +1,39 @@
 services:
   wyoming-piper:
-    image: "${IMAGE:-rhasspy/wyoming-piper}" # no gpu
-    container_name: "${NAME:-wyoming-piper}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-rhasspy/wyoming-piper} # no gpu
+    container_name: ${NAME:-wyoming-piper}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "PORT=${PORT:-10200}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-10200}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "wyoming-piper_data:/data"
-      # - "../../DATA/ai-stack/wyoming-piper/data:/data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - wyoming-piper_data:/data
+      # - ../../DATA/ai-stack/wyoming-piper/data:/data
 
-    hostname: "${NAME:-wyoming-piper}"
+    hostname: ${NAME:-wyoming-piper}
 
-    command: ["--voice", "en_US-lessac-medium"]
+    command: [--voice, en_US-lessac-medium]
 
     networks:
       host:
       ai-services:
 
     ports:
-      - "${PORT:-10200}:10200"
+      - ${PORT:-10200}:10200
 
     env_file:
-      - "./wyoming-piper/.env"
+      - ./wyoming-piper/.env
 
     runtime: nvidia
     deploy:
@@ -43,7 +43,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -52,20 +52,20 @@ services:
     # healthcheck:
     # test:
     #   [
-    #     "CMD",
-    #     "wget",
-    #     "--no-verbose",
-    #     "--tries=3",
-    #     "--spider",
-    #     "http://localhost:${PORT:-10200}/api/health",
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-10200}/api/health,
     #   ]
-    # interval: "30s"
-    # timeout: "10s"
-    # start_period: "30s"
-    # retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3

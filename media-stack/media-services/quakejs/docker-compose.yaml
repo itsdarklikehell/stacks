@@ -1,39 +1,39 @@
 services:
   quakejs:
-    image: "${IMAGE:-treyyoder/quakejs:latest}"
-    container_name: "${NAME:-quakejs}"
-    restart: "${RESTART:-unless-stopped}"
+    image: ${IMAGE:-treyyoder/quakejs:latest}
+    container_name: ${NAME:-quakejs}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      # - "autoheal-app"
-      # - "autoheal-app=true"
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
 
     environment:
-      - "PUID=${PUID:-1000}"
-      - "PGID=${PGID:-1000}"
-      - "TZ=${TZ:-Europe/Amsterdam}"
-      - "HTTP_PORT=8086"
-      - "PORT=${PORT:-8086}"
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - HTTP_PORT=8086
+      - PORT=${PORT:-8086}
 
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "../../DATA/media-stack/quakejs/config:/config"
-      # - "quakejs_config:/config"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/media-stack/quakejs/config:/config
+      # - quakejs_config:/config
 
-    hostname: "${NAME:-quakejs}"
+    hostname: ${NAME:-quakejs}
 
     networks:
       host:
       media-services:
 
     ports:
-      - "${PORT:-8086}:80"
-      - "27960:27960"
+      - ${PORT:-8086}:80
+      - 27960:27960
 
     env_file:
-      - "./quakejs/.env"
+      - ./quakejs/.env
 
     runtime: nvidia
     deploy:
@@ -43,7 +43,7 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: ["gpu", "compute", "video", "graphics", "utility"]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -52,20 +52,20 @@ services:
     # healthcheck:
     #   test:
     #     [
-    #       "CMD",
-    #       "wget",
-    #       "--no-verbose",
-    #       "--tries=3",
-    #       "--spider",
-    #       "http://localhost:${PORT:-8086}/api/health",
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-8086}/api/health,
     #     ]
-    #   interval: "30s"
-    #   timeout: "10s"
-    #   start_period: "30s"
-    #   retries: "3"
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: 10m
+        max-file: 3
