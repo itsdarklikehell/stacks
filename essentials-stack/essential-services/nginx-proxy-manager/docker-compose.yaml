@@ -1,8 +1,8 @@
 services:
   nginx-proxy-manager:
-    image: { IMAGE:-jc21/nginx-proxy-manager }
-    container_name: { NAME:-nginx-proxy-manager }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-jc21/nginx-proxy-manager}
+    container_name: ${NAME:-nginx-proxy-manager}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -34,7 +34,7 @@ services:
       # - ./../DATA/essential-stack/nginx-proxy-manager/data:/data
       # - ./../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-    hostname: { NAME:-nginx-proxy-manager }
+    hostname: ${NAME:-nginx-proxy-manager}
 
     networks:
       host:

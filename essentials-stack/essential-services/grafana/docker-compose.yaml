@@ -1,8 +1,8 @@
 services:
   grafana:
-    image: { IMAGE:-grafana/grafana }
-    container_name: { NAME:-grafana }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-grafana/grafana}
+    container_name: ${NAME:-grafana}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -30,7 +30,7 @@ services:
       - rafana_data:/var/lib/grafana
       # - ./../DATA/essential-stack/grafana/data:/var/lib/grafana
 
-    hostname: { NAME:-grafana }
+    hostname: ${NAME:-grafana}
 
     networks:
       host:

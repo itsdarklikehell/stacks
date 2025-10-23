@@ -1,8 +1,8 @@
 services:
   homarr:
-    image: { IMAGE:-ghcr.io/homarr-labs/homarr:latest }
-    container_name: { NAME:-homarr }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-ghcr.io/homarr-labs/homarr:latest}
+    container_name: ${NAME:-homarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -25,7 +25,7 @@ services:
       - omarr_appdata:/appdata
       # - ./../DATA/essential-stack/homarr/appdata:/appdata
 
-    hostname: { NAME:-homarr }
+    hostname: ${NAME:-homarr}
 
     networks:
       host:

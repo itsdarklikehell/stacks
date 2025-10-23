@@ -3,26 +3,25 @@
 WD="$(dirname "$(realpath "$0")")" || true
 export WD
 export UV_LINK_MODE=copy
-export PERM_DATA="${WD}/DATA"
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
-mkdir -p "${PERM_DATA}/ai-stack"
-mkdir -p "${PERM_DATA}/jaison-stack"
-mkdir -p "${PERM_DATA}/openllm-vtuber-stack"
-mkdir -p "${PERM_DATA}/media-stack"
-mkdir -p "${PERM_DATA}/essentials-stack"
-mkdir -p "${PERM_DATA}/management-stack"
-mkdir -p "${PERM_DATA}/riko-stack"
-mkdir -p "${PERM_DATA}/aiwaifu-stack"
-mkdir -p "${PERM_DATA}/airi-stack"
+mkdir -p "../DATA/ai-stack"
+mkdir -p "../DATA/jaison-stack"
+mkdir -p "../DATA/openllm-vtuber-stack"
+mkdir -p "../DATA/media-stack"
+mkdir -p "../DATA/essentials-stack"
+mkdir -p "../DATA/management-stack"
+mkdir -p "../DATA/riko-stack"
+mkdir -p "../DATA/aiwaifu-stack"
+mkdir -p "../DATA/airi-stack"
 ./install_uv.sh
 ./install_toolhive.sh
 
 function CLONE_OLLMVT() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/openllm-vtuber-stack" || exit 1
+	cd "../DATA/openllm-vtuber-stack" || exit 1
 
 	echo "Cloning Open-LLM-VTuber"
 	echo ""
@@ -51,7 +50,7 @@ function CLONE_OLLMVT() {
 	uv pip install git+https://github.com/suno-ai/bark.git
 
 	uv pip install unidic
-	# python -m unidic download
+	python -m unidic download >/dev/null 2>&1 &
 
 	#     python3 - <<PYCODE
 	# import nltk
@@ -69,7 +68,8 @@ function CLONE_OLLMVT() {
 	# docker build -t open-llm-vtuber .
 	# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 
-	cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
+	cd "${WD}" || exit
+	cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
 	echo "Cloning Live2D Models"
 	echo ""
 	# git clone --recursive https://github.com/Eikanya/Live2d-model
@@ -79,7 +79,8 @@ function CLONE_OLLMVT() {
 	# git clone --recursive https://github.com/ezshine/AwesomeLive2D
 	# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
 
-	cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
+	cd "${WD}" || exit
+	cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
 	echo "Cloning VITS Models"
 	echo ""
 	# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
@@ -122,7 +123,9 @@ function CLONE_OLLMVT() {
 	if [[ ! -d "vits-piper-nl_NL-miro-high " ]]; then
 		git clone https://huggingface.co/csukuangfj/vits-piper-nl_NL-miro-high
 	fi
-	cd "${PERM_DATA}/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
+
+	cd "${WD}" || exit
+	cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
 	# git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 	# # If you failed to clone the submodule due to network failures, please run the following command until success
 	# cd CosyVoice || exit 1
@@ -149,7 +152,7 @@ function CLONE_OLLMVT() {
 }
 function CLONE_LETTA() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/ai-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning Letta"
 	echo ""
@@ -166,7 +169,7 @@ function CLONE_LETTA() {
 }
 function CLONE_MELOTTS() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/openllm-vtuber-stack" || exit 1
+	cd "../DATA/openllm-vtuber-stack" || exit 1
 
 	echo "Cloning MeloTTS"
 	echo ""
@@ -181,7 +184,7 @@ function CLONE_MELOTTS() {
 	# uv pip install -r requirements.txt
 
 	uv pip install unidic
-	# python -m unidic download
+	python -m unidic download >/dev/null 2>&1 &
 
 	# docker build -t melotts .
 	# docker run --gpus all -itd -p 8888:8888 melotts
@@ -195,7 +198,7 @@ function CLONE_JAISON() {
 	# sudo apt install -y ffmpeg
 
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/jaison-stack" || exit 1
+	cd "../DATA/jaison-stack" || exit 1
 
 	echo "Cloning jaison-core"
 	echo ""
@@ -218,7 +221,7 @@ function CLONE_JAISON() {
 	python -m spacy download en_core_web_sm
 
 	uv pip install unidic
-	# python -m unidic download
+	python -m unidic download >/dev/null 2>&1 &
 
 	python install.py
 	# python ./src/main.py --help
@@ -233,7 +236,7 @@ function CLONE_JAISON() {
 }
 function CLONE_AIRI() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/airi-stack" || exit 1
+	cd "../DATA/airi-stack" || exit 1
 
 	npm i -g @antfu/ni
 	npm i -g shiki
@@ -241,7 +244,7 @@ function CLONE_AIRI() {
 
 	function INSTALL_XSAI() {
 		cd "${WD}" || exit
-		cd "${PERM_DATA}/airi-stack" || exit 1
+		cd "../DATA/airi-stack" || exit 1
 
 		echo "Cloning xsai"
 		echo ""
@@ -253,7 +256,7 @@ function CLONE_AIRI() {
 	}
 	function INSTALL_XSAI_TRANSFORMERS() {
 		cd "${WD}" || exit
-		cd "${PERM_DATA}/airi-stack" || exit 1
+		cd "../DATA/airi-stack" || exit 1
 
 		echo "Cloning xsai-transformers"
 		echo ""
@@ -265,7 +268,7 @@ function CLONE_AIRI() {
 	}
 	function INSTALL_AIRI_CHAT() {
 		cd "${WD}" || exit
-		cd "${PERM_DATA}/airi-stack" || exit 1
+		cd "../DATA/airi-stack" || exit 1
 
 		echo "Cloning airi_chat"
 		echo ""
@@ -278,7 +281,7 @@ function CLONE_AIRI() {
 	function INSTALL_AIRI() {
 
 		cd "${WD}" || exit
-		cd "${PERM_DATA}/airi-stack" || exit 1
+		cd "../DATA/airi-stack" || exit 1
 
 		echo "Cloning airi"
 		echo ""
@@ -337,7 +340,7 @@ function CLONE_AIRI() {
 		# pnpm dev:docs
 
 		cd "${WD}" || exit
-		cd "${PERM_DATA}/airi-stack/airi" || exit 1
+		cd "../DATA/airi-stack/airi" || exit 1
 
 		cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
 		cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
@@ -357,12 +360,12 @@ function CLONE_AIRI() {
 	# INSTALL_AIRI_CHAT
 
 	cd "${WD}" || exit
-	sudo chown -R "1000:1000" "${PERM_DATA}/airi-stack"
+	sudo chown -R "1000:1000" "../DATA/airi-stack"
 }
 function CLONE_RIKOPROJECT() {
 
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/riko-stack" || exit 1
+	cd "../DATA/riko-stack" || exit 1
 
 	echo "Cloning riko-project"
 	echo ""
@@ -394,7 +397,7 @@ function CLONE_RIKOPROJECT() {
 }
 function CLONE_SWARMUI() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/ai-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning SwarmUI"
 	echo ""
@@ -409,7 +412,7 @@ function CLONE_SWARMUI() {
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/ai-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning stable-diffusion-webui-docker"
 	echo ""
@@ -421,7 +424,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 }
 function CLONE_CHROMA() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/ai-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning chroma"
 	echo ""
@@ -437,7 +440,7 @@ function CLONE_CHROMA() {
 }
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit
-	cd "${PERM_DATA}/aiwaifu-stack" || exit 1
+	cd "../DATA/aiwaifu-stack" || exit 1
 
 	echo "Cloning AIwaifu"
 	echo ""

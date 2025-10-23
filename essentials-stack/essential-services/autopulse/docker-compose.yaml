@@ -1,8 +1,8 @@
 services:
   autopulse:
-    image: { IMAGE:-ghcr.io/dan-online/autopulse }
-    container_name: { NAME:-autopulse }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-ghcr.io/dan-online/autopulse}
+    container_name: ${NAME:-autopulse}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -20,7 +20,7 @@ services:
       - etc/localtime:/etc/localtime:ro
       - etc/timezone:/etc/timezone:ro
 
-    hostname: { NAME:-autopulse }
+    hostname: ${NAME:-autopulse}
 
     networks:
       host:

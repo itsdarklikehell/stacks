@@ -1,8 +1,8 @@
 services:
   autobrr:
-    image: { IMAGE:-ghcr.io/autobrr/autobrr }
-    container_name: { NAME:-autobrr }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-ghcr.io/autobrr/autobrr}
+    container_name: ${NAME:-autobrr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -19,7 +19,7 @@ services:
       - etc/timezone:/etc/timezone:ro
       - ./../DATA/arr-stack/autobrr/config:/config
 
-    hostname: { NAME:-autobrr }
+    hostname: ${NAME:-autobrr}
 
     networks:
       host:

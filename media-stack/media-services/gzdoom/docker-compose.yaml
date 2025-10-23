@@ -1,8 +1,8 @@
 services:
   gzdoom:
-    image: { IMAGE:-lscr.io/linuxserver/gzdoom:latest }
-    container_name: { NAME:-gzdoom }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-lscr.io/linuxserver/gzdoom:latest}
+    container_name: ${NAME:-gzdoom}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -22,7 +22,7 @@ services:
       - dev/shm:/dev/shm
       - zdoom_config:/config
 
-    hostname: { NAME:-gzdoom }
+    hostname: ${NAME:-gzdoom}
 
     networks:
       host:

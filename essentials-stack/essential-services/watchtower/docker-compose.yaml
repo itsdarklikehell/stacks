@@ -1,8 +1,8 @@
 services:
   watchtower-essential-services:
-    image: { IMAGE:-containrrr/watchtower }
-    container_name: { NAME:-watchtower-essential-services }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-containrrr/watchtower}
+    container_name: ${NAME:-watchtower-essential-services}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -21,7 +21,7 @@ services:
       - etc/timezone:/etc/timezone:ro
       - var/run/docker.sock:/var/run/docker.sock
 
-    hostname: { NAME:-watchtower-essential-services }
+    hostname: ${NAME:-watchtower-essential-services}
 
     networks:
       host:

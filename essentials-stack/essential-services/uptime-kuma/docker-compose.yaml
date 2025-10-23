@@ -1,8 +1,8 @@
 services:
   uptime-kuma:
-    image: { IMAGE:-louislam/uptime-kuma }
-    container_name: { NAME:-uptime-kuma }
-    restart: { RESTART:-always }
+    image: ${IMAGE:-louislam/uptime-kuma}
+    container_name: ${NAME:-uptime-kuma}
+    restart: ${RESTART:-always}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -22,7 +22,7 @@ services:
       - ptime-kuma_data:/app/data
       # - ./../DATA/essential-stack/uptime-kuma/data:/app/data
 
-    hostname: { NAME:-uptime-kuma }
+    hostname: ${NAME:-uptime-kuma}
 
     networks:
       host:

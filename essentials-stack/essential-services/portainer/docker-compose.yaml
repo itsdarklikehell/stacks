@@ -1,8 +1,8 @@
 services:
   portainer:
-    container_name: { NAME:-portainer }
-    image: { IMAGE:-portainer/portainer-ce:latest }
-    restart: { RESTART:-unless-stopped }
+    container_name: ${NAME:-portainer}
+    image: ${IMAGE:-portainer/portainer-ce:latest}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -22,7 +22,7 @@ services:
       - ortainer_data:/data
       # - ./../DATA/essential-stack/portainer/data:/data
 
-    hostname: { NAME:-portainer }
+    hostname: ${NAME:-portainer}
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   it-tools:
-    image: { IMAGE:-corentinth/it-tools }
-    container_name: { NAME:-it-tools }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-corentinth/it-tools}
+    container_name: ${NAME:-it-tools}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -20,7 +20,7 @@ services:
       - etc/timezone:/etc/timezone:ro
       - var/run/docker.sock:/var/run/docker.sock
 
-    hostname: { NAME:-it-tools }
+    hostname: ${NAME:-it-tools}
 
     networks:
       host:

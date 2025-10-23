@@ -1,8 +1,8 @@
 services:
   calendarr:
-    image: { IMAGE:-ghcr.io/jordanlambrecht/calendarr }
-    container_name: { NAME:-calendarr }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-ghcr.io/jordanlambrecht/calendarr}
+    container_name: ${NAME:-calendarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -10,25 +10,12 @@ services:
       # - autoheal-app=true
 
     environment:
-      TZ: { TZ:-Europe/Amsterdam }
-      PUID: { PUID:-1000 }
-      PGID: { PGID:-1000 }
-      CALENDAR_URLS: >
-        [{
-          rl:{CS_URL_SONARR_1},
-          ype:v
-        },
-        {
-          rl:{CS_URL_SONARR_2},
-          ype:v
-        },
-        {
-          rl:{CS_URL_RADARR_1},
-          ype:oie
-        }]
-      DISCORD_WEBHOOK_URL: { DISCORD_WEBHOOK_URL }
+      TZ: ${TZ:-Europe/Amsterdam}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
       USE_DISCORD: true
-      SLACK_WEBHOOK_URL: { SLACK_WEBHOOK_URL }
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
       USE_SLACK: false
       ADD_LEADING_ZERO: true
       CALENDAR_RANGE: UTO
@@ -37,7 +24,7 @@ services:
       DEBUG: false
       DEDUPLICATE_EVENTS: true
       DISCORD_HIDE_MENTION_INSTRUCTIONS: false
-      DISCORD_MENTION_ROLE_ID: { DISCORD_MENTION_ROLE_ID }
+      DISCORD_MENTION_ROLE_ID: ${DISCORD_MENTION_ROLE_ID}
       DISPLAY_TIME: true
       ENABLE_CUSTOM_DISCORD_FOOTER: false
       ENABLE_CUSTOM_SLACK_FOOTER: false
@@ -55,7 +42,7 @@ services:
       SHOW_TIMEZONE_IN_SUBHEADER: true
       START_WEEK_ON_MONDAY: true
       USE_24_HOUR: true
-      PORT: { PORT:-5003 }
+      PORT: ${PORT:-5003}
 
     volumes:
       - etc/localtime:/etc/localtime:ro
@@ -65,7 +52,7 @@ services:
       # - ./../DATA/arr-stack/calendarr/logs:/app/logs:rw
       # - ./../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
 
-    hostname: { NAME:-calendarr }
+    hostname: ${NAME:-calendarr}
 
     networks:
       host:

@@ -1,8 +1,8 @@
 services:
   flemmarr:
-    container_name: { NAME:-flemmarr }
-    image: { IMAGE:-pierremesure/flemmarr }
-    restart: { RESTART:-unless-stopped }
+    container_name: ${NAME:-flemmarr}
+    image: ${IMAGE:-pierremesure/flemmarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -21,7 +21,7 @@ services:
       - lemmarr-config:/config
       # - ./../DATA/arr-stack/flemmarr/config:/config
 
-    hostname: { NAME:-flemmarr }
+    hostname: ${NAME:-flemmarr}
 
     networks:
       host:

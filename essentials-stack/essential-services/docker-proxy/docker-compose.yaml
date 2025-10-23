@@ -1,8 +1,8 @@
 services:
   docker-proxy:
-    image: { IMAGE:-tecnativa/docker-socket-proxy }
-    container_name: { NAME:-docker-proxy }
-    restart: { RESTART:-unless-stopped }
+    image: ${IMAGE:-tecnativa/docker-socket-proxy}
+    container_name: ${NAME:-docker-proxy}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -25,7 +25,7 @@ services:
       - etc/timezone:/etc/timezone:ro
       - var/run/docker.sock:/var/run/docker.sock
 
-    hostname: { NAME:-docker-proxy }
+    hostname: ${NAME:-docker-proxy}
 
     networks:
       host:
