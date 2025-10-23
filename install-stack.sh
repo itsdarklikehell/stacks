@@ -5,6 +5,8 @@ export WD
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
 export UV_LINK_MODE=copy
 
+export OLLAMA="docker" # local, docker
+
 export PERM_DATA="${WD}/DATA"
 
 export CLEANUP="false" # false, true
@@ -28,7 +30,6 @@ function PULL_MODELS(){
         'codellama:latest'
         'deepseek-coder'
         'deepseek-r1'
-        'Desmon2D/Wayfarer-12B:latest'
         'embeddinggemma:latest'
         'gemma3:latest'
         'gpt-oss:120b'
@@ -60,11 +61,27 @@ function PULL_MODELS(){
     )
     for model in "${models[@]}"; do
         echo "Pulling model: ${model}"
-        # docker exec -it ollama sh -c "ollama pull ${model}" >/dev/null 2>&1
-        ollama pull "${model}" # >/dev/null 2>&1
+        if command -v ollama >/dev/null 2>&1; then
+            ollama pull "${model}" # >/dev/null 2>&1
+        fi
+        if docker inspect "ollama" > /dev/null 2>&1; then
+            if docker inspect -f '{{.State.Status}}' "ollama" | grep -q "running" || true; then
+                docker exec -it ollama sh -c "ollama pull ${model}"
+            else
+                echo "The container ollama is not running."
+                docker start "ollama"
+            fi
+        else
+            echo "The container ollama does not exist."
+            # source ai-stack/ai-services/ollama/.env
+            # Create and start the container if it does not exist
+           
+            # docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
+            # docker compose -f ai-stack/ai-services/base.docker-compose.yaml -f ai-stack/ai-services/ollama/docker-compose.yaml
+        fi
     done
 }
-# PULL_MODELS
 function PRUNING(){
     echo ""
     echo "Pruning is set to: ${PRUNE}"

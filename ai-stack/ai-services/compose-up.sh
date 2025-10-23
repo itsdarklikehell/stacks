@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
     autoheal
     # faster-whisper-gpu
-    homeassistant
+    # homeassistant
     letta-mcp-server
     letta-server
     n8n
@@ -22,7 +22,7 @@ COMPOSE_FILES=(
     # kokoro-tts
     # libretranslate-whispher
     # mongo-whispher
-    # ollama
+    ollama
     # voice-chat-ai
     # whishper
     # localai

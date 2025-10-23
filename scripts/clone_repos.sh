@@ -50,7 +50,7 @@ function CLONE_OLLMVT(){
     uv pip install git+https://github.com/suno-ai/bark.git
 
     uv pip install unidic
-    python -m unidic download
+    # python -m unidic download
 
 #     python3 - <<PYCODE
 # import nltk
@@ -180,7 +180,7 @@ function CLONE_MELOTTS(){
     # uv pip install -r requirements.txt
 
     uv pip install unidic
-    python -m unidic download
+    # python -m unidic download
 
     # docker build -t melotts .
     # docker run --gpus all -itd -p 8888:8888 melotts
@@ -217,7 +217,7 @@ function CLONE_JAISON(){
     python -m spacy download en_core_web_sm
 
     uv pip install unidic
-    python -m unidic download
+    # python -m unidic download
 
     python install.py
     # python ./src/main.py --help

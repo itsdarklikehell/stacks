@@ -39,7 +39,7 @@ services:
     depends_on:
       - autoheal-ai-services
       # - faster-whisper-gpu
-      - homeassistant
+      # - homeassistant
       - letta-mcp-server
       - letta-server
       - n8n
