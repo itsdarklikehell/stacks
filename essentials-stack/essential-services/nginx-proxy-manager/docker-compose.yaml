@@ -10,8 +10,8 @@ services:
       # - autoheal-app=true
 
     secrets:
-      - NITIAL_ADMIN_EMAIL
-      - NITIAL_ADMIN_PASSWORD
+      - INITIAL_ADMIN_EMAIL
+      - INITIAL_ADMIN_PASSWORD
 
     environment:
       - PUID=${PUID:-1000}
@@ -29,8 +29,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ginx-proxy-manager_data:/data
-      - ginx-proxy-manager_letsencrypt:/etc/letsencrypt
+      - nginx-proxy-manager_data:/data
+      - nginx-proxy-manager_letsencrypt:/etc/letsencrypt
       # - ../../DATA/essential-stack/nginx-proxy-manager/data:/data
       # - ../../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
@@ -42,9 +42,9 @@ services:
 
     ports:
       # These ports are in format <host-port>:<container-port>
-      - ${PORT:-80}:80  Public HTTP Port
-      - 43:443  Public HTTPS Port
-      - 1:81  Admin Web Port
+      - ${PORT:-80}:80 # Public HTTP Port
+      - 443:443 #  Public HTTPS Port
+      - 81:81 # Admin Web Port
       # Add any other Stream port you want to expose
       # - 1:21  FTP
 
@@ -59,7 +59,7 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: [MD,/ur/bin/check-health]
+    #   test: [CMD,/usr/bin/check-health]
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s
