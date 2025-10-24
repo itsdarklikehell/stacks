@@ -1,5 +1,0 @@
-# Ignore Docker secrets and local overrides
-DATA/*
-
-#Ignore vscode AI rules
-.github/instructions/codacy.instructions.md

@@ -1,2 +1,0 @@
-# Ignore Docker secrets and local overrides
-DATA/*
