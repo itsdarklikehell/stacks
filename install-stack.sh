@@ -235,8 +235,10 @@ echo ""
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
 echo "Installation complete.."
-if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
-	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
-	xdg-open "http://localhost:8080"  # open-webui
-	xdg-open "http://localhost:12393" # openllm-vtuber
-fi
+
+
+# if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
+# 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
+# 	xdg-open "http://localhost:8080"  # open-webui
+# 	xdg-open "http://localhost:12393" # openllm-vtuber
+# fi
