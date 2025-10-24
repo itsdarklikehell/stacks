@@ -569,7 +569,9 @@ function CLONE_CLICKHOUSE() {
 	cd clickhouse || exit 1
 
 	function LOCAL_SETUP() {
-		cp .env.example .env
+		if [[ ! f ".env" ]]; then
+			cp .env.sample .env
+		fi
 		chmod +x script.sh
 		./script.sh
 		uv venv --clear --seed
@@ -580,7 +582,9 @@ function CLONE_CLICKHOUSE() {
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp .env.example .env
+		if [[ ! f ".env" ]]; then
+			cp .env.sample .env
+		fi
 		chmod +x script.sh
 		./script.sh
 		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
@@ -669,6 +673,7 @@ CLONE_JAISON >/dev/null 2>&1
 CLONE_AIRI >/dev/null 2>&1
 CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_SWARMUI >/dev/null 2>&1
+CLONE_CLICKHOUSE >/dev/null 2>&1
 CLONE_WHISPERX >/dev/null 2>&1
 CLONE_PRIVATEGPT >/dev/null 2>&1
 CLONE_SIGNOZ >/dev/null 2>&1

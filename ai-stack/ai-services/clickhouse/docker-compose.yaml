@@ -11,13 +11,6 @@ services:
 
     user: ${PUID:-1000}:${PGID:-1000}
 
-    build:
-      context: ../../DATA/ai-stack/clickhouse
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-      dockerfile: ./Dockerfile
-
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
