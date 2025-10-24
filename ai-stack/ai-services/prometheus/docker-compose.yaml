@@ -1,0 +1,23 @@
+services:
+  prometheus:
+    container_name: ${NAME:-prometheus}
+    image: ${IMAGE:-prom/prometheus:latest}
+    restart: ${RESTART:-unless-stopped}
+
+    ports:
+      - ${PORT:-9090}:9090
+
+    volumes:
+      - ../../DATA/ai-stack/clickhouse/config_files/prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/consoles
+
+    depends_on:
+      - minio-prometheus-monitoring-cluster
+      - minio-prometheus-monitoring-node
+      - minio-prometheus-monitoring-bucket
