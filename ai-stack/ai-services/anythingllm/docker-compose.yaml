@@ -17,6 +17,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - STORAGE_LOCATION=/app/server/storage
+      - STORAGE_DIR=/app/server/storage
       - SERVER_PORT=3002
       # - VECTOR_DB=
       # - DATABASE_URL=postgresql://dbuser:dbpassword@172.17.0.1:5432/dbname

@@ -33,7 +33,7 @@ services:
         uvicorn,
         chromadb.app:app,
         --reload,
-        --workers 1,
+        --workers,
         --host 0.0.0.0,
         --port 8004,
         --log-config log_config.yml,

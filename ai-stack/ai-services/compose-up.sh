@@ -4,7 +4,9 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
+	# signoz
 	anythingllm
+	autoheal
 	basic-memory
 	chroma
 	clickhouse
@@ -12,28 +14,26 @@ COMPOSE_FILES=(
 	faster-whisper-gpu
 	homeassistant
 	kokoro-tts
+	letta-mcp-server
+	letta-server
+	librechat
 	libretranslate-whispher
 	localai
 	mongo-whispher
-	stable-diffusion-models-download
-	stable-diffusion-webui
-	swarmui
-	# signoz
-	voice-chat-ai
-	whishper
-	wyoming-piper
-	autoheal
-	letta-mcp-server
-	letta-server
 	n8n
 	ollama
 	open-webui
-	searxng
-	watchtower
-	whisper-webui
-	whisperx
 	private-gpt
-	librechat
+	searxng
+	stable-diffusion-models-download
+	stable-diffusion-webui
+	swarmui
+	voice-chat-ai
+	watchtower
+	whishper
+	whisper-webui
+	# whisperx
+	wyoming-piper
 )
 
 ARGS=""
