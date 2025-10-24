@@ -559,6 +559,38 @@ function CLONE_CHROMA() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
+function CLONE_CLICKHOUSE() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning clickhouse"
+	echo ""
+	git clone --recursive https://github.com/mostafaghadimi/clickhouse.git clickhouse
+	cd clickhouse || exit 1
+
+	function LOCAL_SETUP() {
+		cp .env.example .env
+		chmod +x script.sh
+		./script.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp .env.example .env
+		chmod +x script.sh
+		./script.sh
+		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# docker build -t chroma .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
 function CLONE_SIGNOZ() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1

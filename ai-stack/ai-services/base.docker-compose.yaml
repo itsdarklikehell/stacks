@@ -28,6 +28,7 @@ volumes:
   clickhouse_backups:
   clickhouse_configs:
   clickhouse_data:
+  minio_data:
   clickhouse_initdb:
   clickhouse_logs:
   clickhouse_users:
@@ -59,6 +60,7 @@ volumes:
   swarmdata:
   swarmdlnodes:
   swarmextensions:
+  grafana_data:
   whishper_logs: # ../../DATA/ai-stack/whishper/logs
   whishper_models: # ../../DATA/ai-stack/whishper/models
   whishper_uploads: # ../../DATA/ai-stack/whishper/uploads
