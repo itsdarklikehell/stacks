@@ -59,7 +59,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: 1 # alternatively, use `count: all` for all GPUs
               capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:

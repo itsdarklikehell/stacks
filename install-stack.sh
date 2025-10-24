@@ -193,9 +193,9 @@ echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""
 
-echo ""
-INSTALL_AI_STACK
-echo ""
+# echo ""
+# INSTALL_AI_STACK
+# echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -229,7 +229,7 @@ echo ""
 # INSTALL_PROJECT_RIKO_STACK
 # echo ""
 
-PULL_MODELS
+# PULL_MODELS
 
 # dockly # lazydocker
 

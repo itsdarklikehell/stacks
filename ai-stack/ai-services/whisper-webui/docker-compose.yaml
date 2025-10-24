@@ -1,9 +1,21 @@
 services:
-  whishper:
-    image: ${IMAGE:-pluja/whishper:latest-gpu}
+  whishperX:
+    image: ${IMAGE:-gjhj0517/whisper-webui:latest}
     # pull_policy: always
-    container_name: ${NAME:-whishper}
+    container_name: ${NAME:-whisper-webui}
     restart: ${RESTART:-unless-stopped}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    build:
+      context: ../../DATA/ai-stack/Whisper-WebUI
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./Dockerfile
+      # dockerfile: ./CustomDockerfile.docker
+
+    entrypoint: python app.py --server_port 7860 --server_name 0.0.0.0
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -14,37 +26,31 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST:-http://127.0.0.1:80}
-      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST:-whishper}
-      - PUBLIC_API_HOST=${WHISHPER_HOST:-whishper}
-      - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
-      - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
-      - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
-      - CPU_THREADS=4
-      - PORT=${PORT:-8082}
+      - PORT=${PORT:-7860}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - whishper_uploads:/app/uploads
-      - whishper_logs:/var/log/whishper
-      - whishper_models:/app/models
+      - whisper_cache:/.cache
+      - ../../DATA/ai-stack/Whisper-WebUI/models:/Whisper-WebUI/models
+      - ../../DATA/ai-stack/Whisper-WebUI/outputs:/Whisper-WebUI/outputs
+      - ../../DATA/ai-stack/Whisper-WebUI/configs:/Whisper-WebUI/configs
 
-    hostname: ${NAME:-whishper}
+    hostname: ${NAME:-whisper-webui}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-8082}:80
+      - ${PORT:-7860}:7860
 
     env_file:
-      - ./whishper/.env
+      - ./whisper-webui/.env
 
-    depends_on:
-      - mongo-whispher
-      - libretranslate-whispher
+    # depends_on:
+    #   - mongo-whispher
+    #   - libretranslate-whispher
 
     runtime: nvidia
     deploy:

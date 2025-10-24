@@ -57,6 +57,7 @@ volumes:
   whishper_uploads: # ../../DATA/ai-stack/whishper/uploads
   whishper_logs: # ../../DATA/ai-stack/whishper/logs
   whishper_models: # ../../DATA/ai-stack/whishper/models
+  whisper_cache: # ../../DATA/ai-stack/whishperX/cache
   wyoming-piper_data:
 # # secrets:
 #   letta_pg_password:

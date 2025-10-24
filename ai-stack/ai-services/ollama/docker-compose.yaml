@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ${IMAGE:-ollama/ollama}
+    image: ${IMAGE:-ollama/ollama:latest}
     container_name: ${NAME:-ollama}
     restart: ${RESTART:-unless-stopped}
 
@@ -38,7 +38,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: 1 # alternatively, use `count: all` for all GPUs
               capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true

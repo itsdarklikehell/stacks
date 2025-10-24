@@ -16,8 +16,8 @@ mkdir -p "../DATA/management-stack"
 mkdir -p "../DATA/riko-stack"
 mkdir -p "../DATA/aiwaifu-stack"
 mkdir -p "../DATA/airi-stack"
-./install_uv.sh
-./install_toolhive.sh
+./install_uv.sh >/dev/null 2>&1
+./install_toolhive.sh >/dev/null 2>&1
 
 function CLONE_OLLMVT() {
 	cd "${WD}" || exit
@@ -422,6 +422,24 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	cd services/comfy/ || exit 1
 	cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
 }
+function CLONE_WHISPERX() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+	echo "Cloning whisperX"
+	echo ""
+	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperX
+	cd whisperX || exit 1
+	# cp -f "${WD}/CustomDockerfile-whisperX" Dockerfile
+}
+function CLONE_WHISPER_WEBUI() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+	echo "Cloning Whisper-WebUI"
+	echo ""
+	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git Whisper-WebUI
+	cd Whisper-WebUI || exit 1
+	cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
+}
 function CLONE_CHROMA() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -471,13 +489,15 @@ function CLONE_AIWAIFU() {
 	# I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
 	# python ./main.py
 }
-CLONE_OLLMVT
-CLONE_LETTA
-CLONE_MELOTTS
-CLONE_JAISON
-CLONE_AIRI
-CLONE_RIKOPROJECT
-CLONE_SWARMUI
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-CLONE_CHROMA
-CLONE_AIWAIFU
+CLONE_OLLMVT >/dev/null 2>&1
+CLONE_LETTA >/dev/null 2>&1
+CLONE_MELOTTS >/dev/null 2>&1
+CLONE_JAISON >/dev/null 2>&1
+CLONE_AIRI >/dev/null 2>&1
+CLONE_RIKOPROJECT >/dev/null 2>&1
+CLONE_SWARMUI >/dev/null 2>&1
+CLONE_WHISPERX >/dev/null 2>&1
+CLONE_WHISPER_WEBUI >/dev/null 2>&1
+CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
+CLONE_CHROMA >/dev/null 2>&1
+CLONE_AIWAIFU >/dev/null 2>&1
