@@ -4,8 +4,8 @@ secrets/*
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 .codacy
+.trunk
 .continue
 .vscode
 node_modules
-DATA
-DATA/openllm-vtuber-stack/Open-LLM-VTuber
+DATA/*
