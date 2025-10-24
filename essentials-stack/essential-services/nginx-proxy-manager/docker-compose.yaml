@@ -17,7 +17,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-80}
+      - PORT=${PORT:-80}
     # INITIAL_ADMIN_EMAIL: {INITIAL_ADMIN_EMAIL:-admin@example.com}
     # INITIAL_ADMIN_PASSWORD: {INITIAL_ADMIN_PASSWORD:-changeme}
     # Uncomment this if you want to change the location of
@@ -27,12 +27,12 @@ services:
     # DISABLE_IPV6: 'true'
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ginx-proxy-manager_data:/data
       - ginx-proxy-manager_letsencrypt:/etc/letsencrypt
-      # - ./../DATA/essential-stack/nginx-proxy-manager/data:/data
-      # - ./../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      # - ../../DATA/essential-stack/nginx-proxy-manager/data:/data
+      # - ../../DATA/essential-stack/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
     hostname: ${NAME:-nginx-proxy-manager}
 

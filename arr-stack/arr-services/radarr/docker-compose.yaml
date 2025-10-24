@@ -1,8 +1,8 @@
 services:
   radarr:
-    image: {IMAGE:-linuxserver/radarr}
-    container_name: {NAME:-radarr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-linuxserver/radarr}
+    container_name: ${NAME:-radarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,17 +13,17 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-7879}
+      - PORT=${PORT:-7879}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - adarr-config:/config
-      - adarr-media:/media
-      # - ./../DATA/arr-stack/radarr/config:/config
-      # - ./../DATA/arr-stack/radarr/media:/media
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - radarr-config:/config
+      - radarr-media:/media
+      # - ../../DATA/arr-stack/radarr/config:/config
+      # - ../../DATA/arr-stack/radarr/media:/media
 
-    hostname: {NAME:-radarr}
+    hostname: ${NAME:-radarr}
 
     networks:
       host:
@@ -53,7 +53,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-7879}/api/health,
+    #       http://localhost:${PORT:-7879}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

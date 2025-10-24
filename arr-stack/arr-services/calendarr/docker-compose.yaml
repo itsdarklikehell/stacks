@@ -45,12 +45,12 @@ services:
       PORT: ${PORT:-5003}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - alendarr-logs:/app/logs:rw
       - alendarr-custom_footers:/app/custom_footers:rw
-      # - ./../DATA/arr-stack/calendarr/logs:/app/logs:rw
-      # - ./../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
+      # - ../../DATA/arr-stack/calendarr/logs:/app/logs:rw
+      # - ../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
 
     hostname: ${NAME:-calendarr}
 

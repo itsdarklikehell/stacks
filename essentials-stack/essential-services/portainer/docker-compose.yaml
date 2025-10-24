@@ -13,14 +13,14 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-8000}
+      - PORT=${PORT:-8000}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - var/run/docker.sock:/var/run/docker.sock
-      - ortainer_data:/data
-      # - ./../DATA/essential-stack/portainer/data:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      # - ../../DATA/essential-stack/portainer/data:/data
 
     hostname: ${NAME:-portainer}
 
@@ -50,7 +50,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-8000}/api/health,
+    #       http://localhost:${PORT:-8000}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

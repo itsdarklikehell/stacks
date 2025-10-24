@@ -1,8 +1,8 @@
 services:
   checkrr:
-    image: {IMAGE:-aetaric/checkrr}
-    container_name: {NAME:-checkrr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-aetaric/checkrr}
+    container_name: ${NAME:-checkrr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,16 +13,16 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-8585}
+      - PORT=${PORT:-8585}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - ./../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
-      - ./../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db
-      - ./../DATA/arr-stack/media:/media
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
+      - ../../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db
+      - ../../DATA/arr-stack/media:/media
 
-    hostname: {NAME:-checkrr}
+    hostname: ${NAME:-checkrr}
 
     networks:
       host:
@@ -49,7 +49,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-8585}/api/health,
+    #       http://localhost:${PORT:-8585}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

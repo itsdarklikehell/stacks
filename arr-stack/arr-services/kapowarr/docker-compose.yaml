@@ -1,8 +1,8 @@
 services:
   kapowarr:
-    container_name: {NAME:-kapowarr}
-    image: {IMAGE:-mrcas/kapowarr}
-    restart: {RESTART:-unless-stopped}
+    container_name: ${NAME:-kapowarr}
+    image: ${IMAGE:-mrcas/kapowarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,19 +13,19 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-5656}
+      - PORT=${PORT:-5656}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - apowarr-db:/app/db
-      - apowarr-download_folder:/app/temp_downloads
-      - apowarr-root_folder:/comics-1
-      # - ./../DATA/arr-stack/kapowarr/db:/app/db
-      # - ./../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads
-      # - ./../DATA/arr-stack/kapowarr/root_folder:/comics-1
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - kapowarr-db:/app/db
+      - kapowarr-download_folder:/app/temp_downloads
+      - kapowarr-root_folder:/comics-1
+      # - ../../DATA/arr-stack/kapowarr/db:/app/db
+      # - ../../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads
+      # - ../../DATA/arr-stack/kapowarr/root_folder:/comics-1
 
-    hostname: {NAME:-kapowarr}
+    hostname: ${NAME:-kapowarr}
 
     networks:
       host:
@@ -52,7 +52,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-5656}/api/health,
+    #       http://localhost:${PORT:-5656}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

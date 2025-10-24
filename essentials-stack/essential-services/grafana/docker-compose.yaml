@@ -13,22 +13,22 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - F_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS:-}
-      - F_FEATURE_TOGGLES_ENABLE=${GF_FEATURE_TOGGLES_ENABLE:-newNavigation}
-      - F_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=${GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS:-true}
-      - F_SERVER_HTTP_PORT=${GF_SERVER_HTTP_PORT:-3000}
-      - ORT=${PORT:-3000}
+      - GF_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS:-}
+      - GF_FEATURE_TOGGLES_ENABLE=${GF_FEATURE_TOGGLES_ENABLE:-newNavigation}
+      - GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=${GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS:-true}
+      - GF_SERVER_HTTP_PORT=${GF_SERVER_HTTP_PORT:-3000}
+      - PORT=${PORT:-3000}
 
     secrets:
-      - F_SECURITY_ADMIN_USER
-      - F_SECURITY_ADMIN_PASSWORD
-      - F_AUTH_GOOGLE_CLIENT_SECRET
+      - GF_SECURITY_ADMIN_USER
+      - GF_SECURITY_ADMIN_PASSWORD
+      - GF_AUTH_GOOGLE_CLIENT_SECRET
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - rafana_data:/var/lib/grafana
-      # - ./../DATA/essential-stack/grafana/data:/var/lib/grafana
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - grafana_data:/var/lib/grafana
+      # - ../../DATA/essential-stack/grafana/data:/var/lib/grafana
 
     hostname: ${NAME:-grafana}
 
@@ -57,7 +57,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-3000}/api/health,
+    #       http://localhost:${PORT:-3000}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

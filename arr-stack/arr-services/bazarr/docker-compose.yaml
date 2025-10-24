@@ -1,8 +1,8 @@
 services:
   bazarr:
-    image: {IMAGE:-lscr.io/linuxserver/bazarr}
-    container_name: {NAME:-bazarr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-lscr.io/linuxserver/bazarr}
+    container_name: ${NAME:-bazarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,17 +13,17 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-6767}
+      - PORT=${PORT:-6767}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - azarr-config:/config
-      - azarr-media:/media
-      # - ./../DATA/arr-stack/bazarr/config:/config
-      # - ./../DATA/arr-stack/bazarr/media:/media
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - bazarr-config:/config
+      - bazarr-media:/media
+      # - ../../DATA/arr-stack/bazarr/config:/config
+      # - ../../DATA/arr-stack/bazarr/media:/media
 
-    hostname: {NAME:-bazarr}
+    hostname: ${NAME:-bazarr}
 
     networks:
       host:
@@ -53,7 +53,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-6767}/api/health,
+    #       http://localhost:${PORT:-6767}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

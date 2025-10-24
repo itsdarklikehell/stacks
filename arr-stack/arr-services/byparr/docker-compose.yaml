@@ -1,8 +1,8 @@
 services:
   byparr:
-    image: {IMAGE:-ghcr.io/thephaseless/byparr}
-    container_name: {NAME:-byparr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-ghcr.io/thephaseless/byparr}
+    container_name: ${NAME:-byparr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,13 +13,13 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-8191}
+      - PORT=${PORT:-8191}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
-    hostname: {NAME:-byparr}
+    hostname: ${NAME:-byparr}
 
     networks:
       host:
@@ -46,7 +46,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-8191}/api/health,
+    #       http://localhost:${PORT:-8191}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

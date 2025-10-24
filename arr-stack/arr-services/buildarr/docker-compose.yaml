@@ -1,8 +1,8 @@
 services:
   buildarr:
-    image: {IMAGE:-callum027/buildarr}
-    container_name: {NAME:-buildarr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-callum027/buildarr}
+    container_name: ${NAME:-buildarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,15 +13,15 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-7878}
+      - PORT=${PORT:-7878}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - uildarr-config:/config
-      # - ./../DATA/arr-stack/buildarr/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - buildarr-config:/config
+      # - ../../DATA/arr-stack/buildarr/config:/config
 
-    hostname: {NAME:-buildarr}
+    hostname: ${NAME:-buildarr}
 
     networks:
       host:
@@ -48,7 +48,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-7878}/api/health,
+    #       http://localhost:${PORT:-7878}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

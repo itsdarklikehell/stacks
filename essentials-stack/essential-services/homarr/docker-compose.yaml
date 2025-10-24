@@ -8,22 +8,22 @@ services:
       - com.centurylinklabs.watchtower.enable=true
       # - autoheal-app
       # - autoheal-app=true
-      - omarr-app=true
-      - omarr
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
-      - ORT=${PORT:-7575}
+      - SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
+      - PORT=${PORT:-7575}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - var/run/docker.sock:/var/run/docker.sock
-      - omarr_appdata:/appdata
-      # - ./../DATA/essential-stack/homarr/appdata:/appdata
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - homarr_appdata:/appdata
+      # - ../../DATA/essential-stack/homarr/appdata:/appdata
 
     hostname: ${NAME:-homarr}
 
@@ -52,7 +52,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-7575}/api/health,
+    #       http://localhost:${PORT:-7575}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

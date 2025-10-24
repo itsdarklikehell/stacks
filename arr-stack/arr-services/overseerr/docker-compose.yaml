@@ -1,8 +1,8 @@
 services:
   overseerr:
-    image: {IMAGE:-sctx/overseerr}
-    container_name: {NAME:-overseerr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-sctx/overseerr}
+    container_name: ${NAME:-overseerr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,18 +13,18 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - OG_LEVEL=${PORT:-debug}
-      - ORT=${PORT:-5056}
+      - LOG_LEVEL=${PORT:-debug}
+      - PORT=${PORT:-5056}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - verseerr-appdata:/app
-      - verseerr-config:/app/config
-      # - ./../DATA/arr-stack/overseerr/appdata/config:/app/config
-      # - ./../DATA/arr-stack/overseerr/appdata/config:/app/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - overseerr-appdata:/app
+      - overseerr-config:/app/config
+      # - ../../DATA/arr-stack/overseerr/appdata/config:/app/config
+      # - ../../DATA/arr-stack/overseerr/appdata/config:/app/config
 
-    hostname: {NAME:-overseerr}
+    hostname: ${NAME:-overseerr}
 
     networks:
       host:
@@ -51,7 +51,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-5056}/api/health,
+    #       http://localhost:${PORT:-5056}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

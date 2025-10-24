@@ -37,7 +37,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-8082}:80
+      - ${PORT:-8082}:8082
 
     env_file:
       - ./whishper/.env

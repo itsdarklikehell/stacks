@@ -13,14 +13,14 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - USTOM_PORT=${CUSTOM_PORT:-3020}
-      - ORT=${PORT:-3020}
+      - CUSTOM_PORT=${CUSTOM_PORT:-3020}
+      - PORT=${PORT:-3020}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - dev/shm:/dev/shm
-      - zdoom_config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /dev/shm:/dev/shm
+      - gzdoom_config:/config
 
     hostname: ${NAME:-gzdoom}
 
@@ -31,7 +31,7 @@ services:
     ports:
       - ${PORT:-3020}:3020
 
-    shm_size: gb
+    shm_size: 4gb
 
     env_file:
       - /gzdoom/.env
@@ -54,7 +54,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-3020}/api/health,
+    #       http://localhost:${PORT:-3020}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

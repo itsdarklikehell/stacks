@@ -15,9 +15,9 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - ./../DATA/arr-stack/autobrr/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/arr-stack/autobrr/config:/config
 
     hostname: ${NAME:-autobrr}
 
@@ -48,7 +48,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-80}/api/health,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

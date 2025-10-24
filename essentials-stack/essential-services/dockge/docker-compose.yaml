@@ -14,20 +14,20 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       # Tell Dockge where to find the stacks
-      - OCKGE_STACKS_DIR=../../../stacks
-      - ORT=${PORT:-5001}
+      - DOCKGE_STACKS_DIR=../../../stacks
+      - PORT=${PORT:-5001}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - var/run/docker.sock:/var/run/docker.sock
-      - ockge_data:/app/data
-      # - ./../DATA/essential-stack/dockge/data:app/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dockge_data:/app/data
+      # - ../../DATA/essential-stack/dockge/data:app/data
       # Stacks Directory
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
       # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
-      - ./../../stacks:/opt/stacks
+      - ../../../stacks:/opt/stacks
       # - DOCKGE_STACKS_DIR=/opt/stacks
 
     hostname: ${NAME:-dockge}
@@ -53,7 +53,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-5001}/api/health,
+    #       http://localhost:${PORT:-5001}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

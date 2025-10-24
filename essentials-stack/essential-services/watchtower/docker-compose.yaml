@@ -13,13 +13,13 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token
-      # - ORT=${PORT:-80}
+      - WATCHTOWER_HTTP_API_TOKEN=/run/secrets/access_token
+      # - PORT=${PORT:-80}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-watchtower-essential-services}
 
@@ -59,7 +59,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-80}/api/health,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

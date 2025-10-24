@@ -1,8 +1,8 @@
 services:
   sickgear:
-    image: {IMAGE:-lscr.io/linuxserver/sickgear:latest}
-    container_name: {NAME:-sickgear}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-lscr.io/linuxserver/sickgear:latest}
+    container_name: ${NAME:-sickgear}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,19 +13,19 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-8092}
+      - PORT=${PORT:-8092}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - ickgear-data:/data
-      - ickgear-incoming:/incoming
-      - ickgear-tv:/tv
-      # - ./../DATA/arr-stack/sickgear/data:/data
-      # - ./../DATA/arr-stack/sickgear/incoming:/incoming
-      # - ./../DATA/arr-stack/sickgear/tv:/tv
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - sickgear-data:/data
+      - sickgear-incoming:/incoming
+      - sickgear-tv:/tv
+      # - ../../DATA/arr-stack/sickgear/data:/data
+      # - ../../DATA/arr-stack/sickgear/incoming:/incoming
+      # - ../../DATA/arr-stack/sickgear/tv:/tv
 
-    hostname: {NAME:-sickgear}
+    hostname: ${NAME:-sickgear}
 
     networks:
       host:
@@ -52,7 +52,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-8092}/api/health,
+    #       http://localhost:${PORT:-8092}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

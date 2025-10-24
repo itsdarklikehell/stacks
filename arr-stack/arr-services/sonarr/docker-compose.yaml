@@ -1,8 +1,8 @@
 services:
   sonarr:
-    image: {IMAGE:-lscr.io/linuxserver/sonarr}
-    container_name: {NAME:-sonarr}
-    restart: {RESTART:-unless-stopped}
+    image: ${IMAGE:-lscr.io/linuxserver/sonarr}
+    container_name: ${NAME:-sonarr}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,17 +13,17 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - ORT=${PORT:-8989}
+      - PORT=${PORT:-8989}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - onarr-config:/config
-      - onarr-media:/media
-      # - ./../DATA/arr-stack/sonarr/config:/config
-      # - ./../DATA/arr-stack/sonarr/media:/media
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - sonarr-config:/config
+      - sonarr-media:/media
+      # - ../../DATA/arr-stack/sonarr/config:/config
+      # - ../../DATA/arr-stack/sonarr/media:/media
 
-    hostname: {NAME:-sonarr}
+    hostname: ${NAME:-sonarr}
 
     networks:
       host:
@@ -53,7 +53,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-8989}/api/health,
+    #       http://localhost:${PORT:-8989}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

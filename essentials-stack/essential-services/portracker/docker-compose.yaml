@@ -21,11 +21,11 @@ services:
       - DEBUG=${DEBUG:-true}
 
     volumes:
-      - etc/localtime:/etc/localtime:ro
-      - etc/timezone:/etc/timezone:ro
-      - var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - portracker_data:/data
-      # - ./../DATA/essential-stack/portracker/data:/data
+      # - ../../DATA/essential-stack/portracker/data:/data
 
     hostname: ${NAME:-portracker}
 
@@ -78,7 +78,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       ttp://localhost:${PORT:-4999}/api/health,
+    #       http://localhost:${PORT:-4999}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
