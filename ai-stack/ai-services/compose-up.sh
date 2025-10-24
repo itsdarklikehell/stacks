@@ -18,7 +18,7 @@ COMPOSE_FILES=(
 	stable-diffusion-models-download
 	stable-diffusion-webui
 	swarmui
-	signoz
+	# signoz
 	voice-chat-ai
 	whishper
 	wyoming-piper
