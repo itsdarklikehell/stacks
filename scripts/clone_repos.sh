@@ -569,7 +569,7 @@ function CLONE_CLICKHOUSE() {
 	cd clickhouse || exit 1
 
 	function LOCAL_SETUP() {
-		if [[ ! f ".env" ]]; then
+		if [[ ! -f ".env" ]]; then
 			cp .env.sample .env
 		fi
 		chmod +x script.sh
@@ -582,7 +582,7 @@ function CLONE_CLICKHOUSE() {
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		if [[ ! f ".env" ]]; then
+		if [[ ! -f ".env" ]]; then
 			cp .env.sample .env
 		fi
 		chmod +x script.sh
