@@ -31,8 +31,6 @@ services:
       - NET_ADMIN
       - IPC_LOCK
 
-    command: [--cap-add=SYS_NICE, --cap-add=NET_ADMIN, --cap-add=IPC_LOCK]
-
     ports:
       - ${PORT:-8124}:8124
       - 9000:9000

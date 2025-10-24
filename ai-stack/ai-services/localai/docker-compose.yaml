@@ -24,7 +24,7 @@ services:
       - NET_ADMIN
       - IPC_LOCK
 
-    command: [--cap-add=SYS_NICE, --cap-add=NET_ADMIN, --cap-add=IPC_LOCK]
+    # command: [--cap-add=SYS_NICE, --cap-add=NET_ADMIN, --cap-add=IPC_LOCK]
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
