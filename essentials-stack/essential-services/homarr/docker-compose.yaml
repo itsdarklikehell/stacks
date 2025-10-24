@@ -35,7 +35,7 @@ services:
       - ${PORT:-7575}:7575
 
     env_file:
-      - /homarr/.env
+      - ./homarr/.env
 
     deploy:
       replicas: 1

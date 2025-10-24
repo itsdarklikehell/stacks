@@ -31,7 +31,7 @@ services:
       - ${PORT:-7878}:7878
 
     env_file:
-      - /buildarr/.env
+      - ./buildarr/.env
 
     deploy:
       replicas: 1

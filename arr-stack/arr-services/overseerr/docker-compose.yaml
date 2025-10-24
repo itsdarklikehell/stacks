@@ -34,7 +34,7 @@ services:
       - ${PORT:-5056}:5056
 
     env_file:
-      - /overseerr/.env
+      - ./overseerr/.env
 
     deploy:
       replicas: 1

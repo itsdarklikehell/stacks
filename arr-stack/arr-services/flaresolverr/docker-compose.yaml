@@ -32,7 +32,7 @@ services:
       - ${PORT:-8193}:8193
 
     env_file:
-      - /flaresolverr/.env
+      - ./flaresolverr/.env
 
     deploy:
       replicas: 1

@@ -62,7 +62,7 @@ services:
       - ${PORT:-5003}:5003
 
     env_file:
-      - /calendarr/.env
+      - ./calendarr/.env
 
     deploy:
       replicas: 1

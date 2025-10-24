@@ -33,7 +33,7 @@ services:
       - ${PORT:-5055}:5055
 
     env_file:
-      - /jellyseerr/.env
+      - ./jellyseerr/.env
 
     deploy:
       replicas: 1

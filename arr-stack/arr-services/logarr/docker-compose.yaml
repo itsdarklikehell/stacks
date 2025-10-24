@@ -32,7 +32,7 @@ services:
       - ${PORT:-7890}:80
 
     env_file:
-      - /logarr/.env
+      - ./logarr/.env
 
     deploy:
       replicas: 1

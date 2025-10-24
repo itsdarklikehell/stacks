@@ -34,7 +34,7 @@ services:
     shm_size: 4gb
 
     env_file:
-      - /gzdoom/.env
+      - ./gzdoom/.env
 
     runtime: nvidia
     deploy:

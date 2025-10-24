@@ -32,7 +32,7 @@ services:
       - ${PORT:-8585}:8585
 
     env_file:
-      - /checkrr/.env
+      - ./checkrr/.env
 
     deploy:
       replicas: 1

@@ -30,7 +30,7 @@ services:
     #   - ${PORT:-80}:80
 
     env_file:
-      - /autopulse/.env
+      - ./autopulse/.env
 
     deploy:
       replicas: 1

@@ -61,7 +61,7 @@ services:
       - docker-proxy
 
     env_file:
-      - /portracker/.env
+      - ./portracker/.env
 
     tty: true
 

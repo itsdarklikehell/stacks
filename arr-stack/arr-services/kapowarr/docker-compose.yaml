@@ -35,7 +35,7 @@ services:
       - ${PORT:-5656}:5656
 
     env_file:
-      - /kapowarr/.env
+      - ./kapowarr/.env
 
     deploy:
       replicas: 1

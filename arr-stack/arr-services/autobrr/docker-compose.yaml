@@ -29,7 +29,7 @@ services:
       - ${PORT:-7474}:7474
 
     env_file:
-      - /autobrr/.env
+      - ./autobrr/.env
 
     deploy:
       replicas: 1

@@ -40,7 +40,7 @@ services:
       - ${PORT:-3000}:3000
 
     env_file:
-      - /grafana/.env
+      - ./grafana/.env
 
     deploy:
       replicas: 1

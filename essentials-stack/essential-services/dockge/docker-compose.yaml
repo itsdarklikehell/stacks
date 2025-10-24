@@ -40,7 +40,7 @@ services:
       - ${PORT:-5001}:5001
 
     env_file:
-      - /dockge/.env
+      - ./dockge/.env
 
     deploy:
       replicas: 1

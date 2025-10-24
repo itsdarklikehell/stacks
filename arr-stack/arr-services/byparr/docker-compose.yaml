@@ -29,7 +29,7 @@ services:
       - ${PORT:-8191}:8191
 
     env_file:
-      - /byparr/.env
+      - ./byparr/.env
 
     deploy:
       replicas: 1

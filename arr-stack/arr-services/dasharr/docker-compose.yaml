@@ -31,7 +31,7 @@ services:
       - ${PORT:-8780}:8780
 
     env_file:
-      - /dasharr/.env
+      - ./dasharr/.env
 
     deploy:
       replicas: 1

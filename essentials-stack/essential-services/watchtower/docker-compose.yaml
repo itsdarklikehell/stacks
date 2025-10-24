@@ -28,7 +28,7 @@ services:
       essential-services:
 
     env_file:
-      - /watchtower/.env
+      - ./watchtower/.env
 
     deploy:
       replicas: 1

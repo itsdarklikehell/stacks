@@ -30,7 +30,7 @@ services:
       - ${PORT:-8088}:8080
 
     env_file:
-      - /it-tools/.env
+      - ./it-tools/.env
 
     deploy:
       replicas: 1

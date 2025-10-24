@@ -35,7 +35,7 @@ services:
       - ${PORT:-2375}:2375
 
     env_file:
-      - /docker-proxy/.env
+      - ./docker-proxy/.env
 
     deploy:
       replicas: 1

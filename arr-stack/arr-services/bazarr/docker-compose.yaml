@@ -36,7 +36,7 @@ services:
       - ${PORT:-6767}:6767/tcp
 
     env_file:
-      - /bazarr/.env
+      - ./bazarr/.env
 
     deploy:
       replicas: 1
