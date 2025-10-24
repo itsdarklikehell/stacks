@@ -29,6 +29,7 @@ volumes:
   clickhouse_configs:
   clickhouse_data:
   minio_data:
+  prometheus_data:
   clickhouse_initdb:
   clickhouse_logs:
   clickhouse_users:
