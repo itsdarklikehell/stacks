@@ -4,8 +4,8 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	# signoz
-	# whisperx
+	signoz
+	whisperx
 	anythingllm
 	autoheal
 	basic-memory
