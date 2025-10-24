@@ -29,6 +29,8 @@ volumes:
   clickhouse_data:
   clickhouse_logs:
   clickhouse_backups:
+  clickhouse_configs:
+  clickhouse_users:
   kokoro_data:
   kokoro_index_data:
   faster-whisper-data:
@@ -44,6 +46,7 @@ volumes:
   n8n_local-files:
   ollama-data: # ../../DATA/ai-stack/ollama
   open-webui-data:
+  signoz_data:
   searxng_data: # ../../DATA/ai-stack/searxng
   stable-diffusion-webui-docker_data: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data
   stable-diffusion-webui-docker_config: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/config

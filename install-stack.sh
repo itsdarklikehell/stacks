@@ -193,9 +193,9 @@ echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""
 
-# echo ""
-# INSTALL_AI_STACK
-# echo ""
+echo ""
+INSTALL_AI_STACK
+echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -235,7 +235,6 @@ echo ""
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
 echo "Installation complete.."
-
 
 # if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
 # 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"

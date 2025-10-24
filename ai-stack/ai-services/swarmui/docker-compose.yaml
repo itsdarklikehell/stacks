@@ -37,6 +37,7 @@ services:
       # - ../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models
       # - ../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output
       # - ../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+
     hostname: ${NAME:-swarmui}
 
     networks:

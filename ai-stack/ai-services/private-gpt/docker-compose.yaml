@@ -13,9 +13,9 @@ services:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
       dockerfile: ./Dockerfile
-    
+
     profiles: [ollama-api]
-    
+
     labels:
       - com.centurylinklabs.watchtower.enable=true
       # - autoheal-app

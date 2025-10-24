@@ -476,6 +476,16 @@ function CLONE_CHROMA() {
 	# uv pip install -e .
 	# uv pip install -r requirements.txt
 }
+function CLONE_SIGNOZ() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning chroma"
+	echo ""
+	git clone --recursive https://github.com/SigNoz/signoz.git signoz
+	cd signoz || exit 1
+	# ./install.sh
+}
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit
 	cd "../DATA/aiwaifu-stack" || exit 1
@@ -518,6 +528,7 @@ CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_SWARMUI >/dev/null 2>&1
 CLONE_WHISPERX >/dev/null 2>&1
 CLONE_PRIVATEGPT >/dev/null 2>&1
+CLONE_SIGNOZ
 CLONE_WHISPER_WEBUI >/dev/null 2>&1
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
 CLONE_CHROMA >/dev/null 2>&1

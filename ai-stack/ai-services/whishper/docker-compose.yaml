@@ -20,7 +20,7 @@ services:
       - PUBLIC_WHISHPER_PROFILE=${PUBLIC_WHISHPER_PROFILE:-gpu}
       - WHISPER_MODELS_DIR=${WHISPER_MODELS_DIR:-/app/models}
       - UPLOAD_DIR=${UPLOAD_DIR:-/app/uploads}
-      - CPU_THREADS=4
+      - CPU_THREADS=${CPU_THREADS:-4}
       - PORT=${PORT:-8082}
 
     volumes:
