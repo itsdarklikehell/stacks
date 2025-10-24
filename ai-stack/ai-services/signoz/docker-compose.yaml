@@ -18,7 +18,7 @@ services:
 
     build:
       context: ../../DATA/ai-stack/signoz
-      dockerfile: ./Dockerfile
+      # dockerfile: ./Dockerfile
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
