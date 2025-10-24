@@ -1,25 +1,19 @@
 services:
-  whisperX:
-    image: ${IMAGE:-ghcr.io/jim60105/whisperx:latest}
+  librechat:
+    # image: ${IMAGE:-ghcr.io/jim60105/librechat:latest}
     # pull_policy: always
-    container_name: ${NAME:-whishperX}
+    container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
 
     user: ${PUID:-1000}:${PGID:-1000}
 
     build:
-      context: ../../DATA/ai-stack/whisperX
+      context: ../../DATA/ai-stack/librechat
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-        LANG: en # en, nl, de
-        WHISPER_MODEL: base # tiny, base, distil-large-v3, large-v3 no_model
-      # target: whisperx:base-en # whisperx:base-en, whisperx:large-v3-ja, whisperx:ubi-no_model
       dockerfile: ./Dockerfile
-
-    command:
-      [--, --model, large-v3, --language, en, --output_format, srt, audio.mp3]
-
+    
     labels:
       - com.centurylinklabs.watchtower.enable=true
       # - autoheal-app
@@ -29,25 +23,23 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - PORT=${PORT:-8082}
+      - PORT=${PORT:-3080}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - whisper_cache:/.cache
-      - ../../DATA/ai-stack/whisperX:/app
 
-    hostname: ${NAME:-whisperX}
+    hostname: ${NAME:-librechat}
 
     networks:
       host:
       ai-services:
 
-    # ports:
-    #   - ${PORT:-8082}:80
+    ports:
+      - ${PORT:-3080}:3080
 
     env_file:
-      - ./whisperx/.env
+      - ./librechat/.env
 
     # depends_on:
     #   - mongo-whispher

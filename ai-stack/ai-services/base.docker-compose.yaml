@@ -27,6 +27,7 @@ volumes:
   chroma_data:
   index_data:
   clickhouse_data:
+  clickhouse_logs:
   clickhouse_backups:
   kokoro_data:
   kokoro_index_data:

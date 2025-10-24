@@ -431,6 +431,15 @@ function CLONE_WHISPERX() {
 	cd whisperX || exit 1
 	# cp -f "${WD}/CustomDockerfile-whisperX" Dockerfile
 }
+function CLONE_PRIVATEGPT() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+	echo "Cloning privateGPT"
+	echo ""
+	git clone --recursive https://github.com/zylon-ai/private-gpt.git private-gpt
+	cd private-gpt || exit 1
+	# cp -f "${WD}/CustomDockerfile-private-gpt" Dockerfile
+}
 function CLONE_WHISPER_WEBUI() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -439,6 +448,17 @@ function CLONE_WHISPER_WEBUI() {
 	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git Whisper-WebUI
 	cd Whisper-WebUI || exit 1
 	cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
+}
+function CLONE_LIBRECHAT() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+	echo "Cloning LibreChat"
+	echo ""
+	git clone --recursive https://github.com/danny-avila/LibreChat.git LibreChat
+	cd LibreChat || exit 1
+	cp .env.example .env
+	# cp docker-compose.override.yml.example docker-compose.override.yml
+	# cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
 }
 function CLONE_CHROMA() {
 	cd "${WD}" || exit
@@ -497,6 +517,7 @@ CLONE_AIRI >/dev/null 2>&1
 CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_SWARMUI >/dev/null 2>&1
 CLONE_WHISPERX >/dev/null 2>&1
+CLONE_PRIVATEGPT
 CLONE_WHISPER_WEBUI >/dev/null 2>&1
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
 CLONE_CHROMA >/dev/null 2>&1
