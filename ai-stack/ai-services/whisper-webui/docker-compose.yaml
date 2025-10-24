@@ -1,7 +1,6 @@
 services:
   whishperX:
     image: ${IMAGE:-gjhj0517/whisper-webui:latest}
-    # pull_policy: always
     container_name: ${NAME:-whisper-webui}
     restart: ${RESTART:-unless-stopped}
 

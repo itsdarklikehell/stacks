@@ -16,9 +16,9 @@ services:
       - CLICKHOUSE_HOST=${CLICKHOUSE_HOST:-clickhouse}
       - CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}
 
-    build:
-      context: ../../DATA/ai-stack/signoz
-      # dockerfile: ./Dockerfile
+    # build:
+    #   context: ../../DATA/ai-stack/signoz
+    # dockerfile: ./Dockerfile
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

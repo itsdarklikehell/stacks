@@ -1,11 +1,26 @@
 services:
   grafana:
-    image: ${IMAGE:-grafana/grafana:10.0.3-ubuntu}
+    image: ${IMAGE:-grafana/grafana:latest}
     container_name: ${NAME:-grafana}
     restart: ${RESTART:-unless-stopped}
 
     ports:
       - ${PORT:-3000}:3000
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - GF_LOG_LEVEL=${GF_LOG_LEVEL:-debug}
+      - GF_LOG_MODE=${GF_LOG_MODE:-"console file"}
+      # - GF_PLUGINS_PREINSTALL=${GF_PLUGINS_PREINSTALL:-"grafana-clock-panel, grafana-simple-json-datasource"}
+      # - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL:-http://my.grafana.server/}
+      # - GF_INSTALL_IMAGE_RENDERER_PLUGIN=${GF_INSTALL_IMAGE_RENDERER_PLUGIN:-true}
 
     volumes:
       - grafana_data:/var/lib/grafana
@@ -15,5 +30,22 @@ services:
       # uncomment the following line, if you don't have access to grafana.com plugins and download a plugin manually (read README.md file)
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/var/lib/grafana/plugins/:/var/lib/grafana/plugins/
 
+    secrets:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER:-grafana}
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=${GF_SECURITY_ADMIN_PASSWORD__FILE:-/run/secrets/grafana_password}
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./grafana/.env
+
     depends_on:
       - prometheus
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
