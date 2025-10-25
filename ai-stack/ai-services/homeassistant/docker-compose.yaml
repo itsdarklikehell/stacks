@@ -18,6 +18,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - home-assistant-config:/config
+      - home-assistant-media:/media
 
     hostname: ${NAME:-homeassistant}
 

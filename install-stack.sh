@@ -1,21 +1,16 @@
 #!/bin/bash
 
 WD="$(dirname "$(realpath "$0")")" || true
-export WD
-export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"
-export UV_LINK_MODE=copy
-
-export OLLAMA="docker" # local, docker
-
-export PERM_DATA="${WD}/DATA"
-
-export CLEANUP="false" # false, true
-
-export PRUNE="false"            # false, true/normal, all
-export BUILDING="force_rebuild" # false, true, force_rebuild
-
-export TWITCH_CLIENT_ID="your_client_id"
-export TWITCH_CLIENT_SECRET="your_client_secret"
+export WD                                        #
+export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    #
+export UV_LINK_MODE=copy                         #
+export OLLAMA="docker"                           # local, docker
+export PERM_DATA="${WD}/DATA"                    #
+export CLEANUP="false"                           # false, true
+export PRUNE="normal"                            # false, true/normal, all
+export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export TWITCH_CLIENT_ID="your_client_id"         #
+export TWITCH_CLIENT_SECRET="your_client_secret" #
 
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
@@ -193,9 +188,9 @@ echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""
 
-echo ""
-INSTALL_AI_STACK
-echo ""
+# echo ""
+# INSTALL_AI_STACK
+# echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
@@ -238,6 +233,5 @@ echo "Installation complete.."
 
 if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
-	xdg-open "http://localhost:8080"  # open-webui
-	xdg-open "http://localhost:12393" # openllm-vtuber
+	xdg-open "http://localhost:8383/"
 fi

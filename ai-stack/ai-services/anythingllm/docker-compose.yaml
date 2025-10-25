@@ -53,11 +53,23 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - anythingllm_storage:/app/server/storage:rw
+      - anythingllm_storage:/app/server/storage
       - anythingllm_skills:/app/server/storage/plugins/agent-skills:rw
-      - anythingllm_hotdir:/app/collector/hotdir:rw
-      - anythingllm_outputs:/app/collector/outputs:rw
+      - anythingllm_hotdir:/app/collector/hotdir
+      - anythingllm_outputs:/app/collector/outputs
       - ./anythingllm/.env:/app/server/.env
+      # - type: bind
+      #   source: ../../DATA/ai-stack/anythingllm/storage
+      #   target: /app/server/storage
+      # - type: bind
+      #   source: ../../DATA/ai-stack/anythingllm/agent-skills
+      #   target: /app/server/storage/plugins/agent-skills
+      # - type: bind
+      #   source: ../../DATA/ai-stack/anythingllm/hotdir
+      #   target: /app/collector/hotdir
+      # - type: bind
+      #   source: ../../DATA/ai-stack/anythingllm/outputs
+      #   target: /app/collector/outputs
 
     hostname: ${NAME:-anythingllm}
 

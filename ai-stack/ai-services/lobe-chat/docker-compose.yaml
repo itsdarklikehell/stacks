@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3210}
       - ACCESS_CODE=lobe-chat
-      # - OPENAI_API_KEY=sk-xxxx
+      - OPENAI_API_KEY=sk-xxxx
       # - OPENAI_PROXY_URL=https://api-proxy.com/v1
 
     volumes:

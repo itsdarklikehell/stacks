@@ -64,7 +64,7 @@ services:
 
     entrypoint: >
       /bin/bash -c "
-      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} ${MINIO_ROOT_USER:-minio} ${MINIO_ROOT_PASSWORD:-minio};
       /usr/bin/mc mb myminio/${MINIO_CLICKHOUSE_BACKUP_BUCKET:-clickhouse};
       /usr/bin/mc anonymous set public myminio/${MINIO_CLICKHOUSE_BACKUP_BUCKET:-clickhouse};
       exit 0;
@@ -112,7 +112,7 @@ services:
     entrypoint: >
       /bin/bash -c "
       cp /home/prometheus-template.yaml /home/prometheus.yaml;
-      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD > /dev/null;
+      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} ${MINIO_ROOT_USER:-minio} ${MINIO_ROOT_PASSWORD:-minio} > /dev/null;
       /usr/bin/mc admin prometheus generate myminio cluster | sed '1d' | awk '{print \"  \" $0}' >> /home/prometheus.yaml;
       "
 
@@ -155,7 +155,7 @@ services:
 
     entrypoint: >
       /bin/bash -c "
-      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD > /dev/null;
+      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} ${MINIO_ROOT_USER:-minio} ${MINIO_ROOT_PASSWORD:-minio} > /dev/null;
       /usr/bin/mc admin prometheus generate myminio node | sed '1d' | awk '{print \"  \" $0}' >> /home/prometheus.yaml;
       "
 
@@ -199,7 +199,7 @@ services:
 
     entrypoint: >
       /bin/bash -c "
-      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD > /dev/null;
+      /usr/bin/mc alias set myminio http://minio:${HTTP_PORT:-9002} ${MINIO_ROOT_USER:-minio} ${MINIO_ROOT_PASSWORD:-minio} > /dev/null;
       /usr/bin/mc admin prometheus generate myminio bucket | sed '1d' | awk '{print \"  \" $0}' >> /home/prometheus.yaml;
       "
 

@@ -27,6 +27,7 @@ COMPOSE_FILES=(
 	ollama
 	open-webui
 	private-gpt
+	piper
 	prometheus
 	searxng
 	signoz

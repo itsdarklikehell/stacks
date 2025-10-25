@@ -26,6 +26,8 @@ volumes:
   nginx-proxy-manager_letsencrypt: # ../../DATA/essential-stack/nginx-proxy-manager/letsencrypt
   homarr_appdata: # ../../DATA/essential-stack/homarr/appdata
   dockge_data: # ../../DATA/essential-stack/dockge/data
+  dashy_data:
+  dashy_config:
 
 secrets:
   INITIAL_ADMIN_EMAIL:

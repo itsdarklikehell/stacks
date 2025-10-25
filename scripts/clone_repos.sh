@@ -19,6 +19,417 @@ mkdir -p "../DATA/airi-stack"
 ./install_uv.sh >/dev/null 2>&1
 ./install_toolhive.sh >/dev/null 2>&1
 
+function CLONE_AIRI() {
+	cd "${WD}" || exit
+	cd "../DATA/airi-stack" || exit 1
+
+	function LOCAL_SETUP() {
+		npm i -g @antfu/ni
+		npm i -g shiki
+		npm i -g pkgroll
+		function INSTALL_XSAI() {
+			cd "${WD}" || exit
+			cd "../DATA/airi-stack" || exit 1
+
+			echo "Cloning xsai"
+			echo ""
+			git clone --recursive https://github.com/moeru-ai/xsai.git xsai
+			cd xsai || exit
+
+			ni
+			nr build
+		}
+		function INSTALL_XSAI_TRANSFORMERS() {
+			cd "${WD}" || exit
+			cd "../DATA/airi-stack" || exit 1
+
+			echo "Cloning xsai-transformers"
+			echo ""
+			git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
+			cd xsai-transformers || exit
+
+			ni
+			nr build
+		}
+		function INSTALL_AIRI_CHAT() {
+			cd "${WD}" || exit
+			cd "../DATA/airi-stack" || exit 1
+
+			echo "Cloning airi_chat"
+			echo ""
+			git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
+			cd airi-chat || exit
+
+			ni
+			nr build
+		}
+		function INSTALL_AIRI() {
+
+			cd "${WD}" || exit
+			cd "../DATA/airi-stack" || exit 1
+
+			echo "Cloning airi"
+			echo ""
+			git clone --recursive https://github.com/moeru-ai/airi.git airi
+			cd airi || exit
+
+			ni
+			nr build
+
+			# For Rust dependencies
+			# Not required if you are not going to develop on either crates or apps/tamagotchi
+			sudo apt install -y cargo
+			cargo fetch
+
+			export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+			corepack enable
+
+			# telegram bot setup
+			cd services/telegram-bot || exit
+			cp .env .env.local
+			# docker compose -p airi-telegram-bot-db up -d
+
+			ni
+			nr build
+			# nr -F @proj-airi/telegram-bot db:generate
+			# nr -F @proj-airi/telegram-bot db:push
+			# nr -F @proj-airi/telegram-bot dev
+
+			# discord bot setup
+			cd ../discord-bot || exit
+			cp .env .env.local
+
+			ni
+			nr build
+			# nr -F @proj-airi/discord-bot dev
+
+			# minecraft bot setup
+			cd ../minecraft || exit
+			cp .env .env.local
+
+			ni
+			nr build
+			# nr -F @proj-airi/minecraft dev
+
+			cd .. || exit
+
+			# Run as desktop pet:
+			# pnpm dev:tamagotchi
+			# nr dev:tamagotchi
+
+			# Run as web app:
+			# nr dev
+			# pnpm dev --host
+
+			# nr dev:docs
+			# pnpm dev:docs
+
+			cd "${WD}" || exit
+			cd "../DATA/airi-stack/airi" || exit 1
+
+			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+		}
+		# echo "Cloning airi"
+		# echo ""
+		# INSTALL_AIRI
+		# echo "Cloning xsai"
+		# echo ""
+		# INSTALL_XSAI
+		# echo "Cloning xsai-transformers"
+		# echo ""
+		# INSTALL_XSAI_TRANSFORMERS
+		# echo "Cloning airi_chat"
+		# echo ""
+		# INSTALL_AIRI_CHAT
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+		cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+		cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+		# docker build -t airi .
+	}
+	LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_AIWAIFU() {
+	cd "${WD}" || exit
+	cd "../DATA/aiwaifu-stack" || exit 1
+
+	echo "Cloning AIwaifu"
+	echo ""
+	git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu
+	cd aiwaifu || exit 1
+
+	function LOCAL_SETUP() {
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		uv pip install -e .
+		# uv pip install -r requirements.txt
+
+		# pipx install poetry --force
+		# poetry env use 3.8
+		# poetry lock
+		# poetry install
+		# poetry env activate
+		# uv venv .venv --clear
+		# uv pip install -r requirements.txt
+		# cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
+		# python setup.py build_ext --inplace && cd ../../../../
+
+		# this run on localhost 8267 by default
+		# python ./api_inference_server.py
+
+		# this will connect to all the server (Locally)
+		# it is possible to host the api model on the external server, just beware of security issue
+		# I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
+		# python ./main.py
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
+		cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
+		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
+		# docker build -t aiwaifu .
+	}
+	LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_CHROMA() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning chroma"
+	echo ""
+	git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma
+	cd chroma || exit 1
+
+	function LOCAL_SETUP() {
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# docker build -t chroma .
+	}
+	LOCAL_SETUP
+	# DOCKER_SETUP
+}
+function CLONE_CLICKHOUSE() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning clickhouse"
+	echo ""
+	git clone --recursive https://github.com/mostafaghadimi/clickhouse.git clickhouse
+	cd clickhouse || exit 1
+
+	function LOCAL_SETUP() {
+		if [[ ! -f ".env" ]]; then
+			cp .env.sample .env
+		fi
+		chmod +x script.sh
+		./script.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		if [[ ! -f ".env" ]]; then
+			cp .env.sample .env
+		fi
+		chmod +x script.sh
+		./script.sh
+		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
+		# docker build -t chroma .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_JAISON() {
+	cd "${WD}" || exit
+	cd "../DATA/jaison-stack" || exit 1
+
+	echo "Cloning jaison-core"
+	echo ""
+	git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
+	cd jaison-core || exit
+
+	function LOCAL_SETUP() {
+		export INSTALL_WHISPER=false
+		export INSTALL_BARK=false
+
+		# sudo apt install -y ffmpeg
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		# uv pip install -e .
+		uv pip install -r requirements.txt
+		uv pip install --no-deps -r requirements.no_deps.txt
+		# uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+		uv pip install nltk
+		uv pip install spacy
+		python -m spacy download en_core_web_sm
+		uv pip install unidic
+		python -m unidic download >/dev/null 2>&1 &
+		python install.py
+		# python ./src/main.py --help
+		# python ./src/main.py --config=example
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
+		cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
+		cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
+		# docker build -t jaison-core . --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
+	}
+	LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_LETTA() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning Letta"
+	echo ""
+	git clone --recursive https://github.com/letta-ai/letta.git letta
+	cd letta || exit
+
+	function LOCAL_SETUP() {
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+
+		uv pip install -e .
+		# uv pip install -r requirements.txt
+		# uv run letta server
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
+		cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
+		cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
+
+		# docker build -t letta .
+	}
+	LOCAL_SETUP
+	# DOCKER_SETUP
+}
+function CLONE_LIBRECHAT() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning LibreChat"
+	echo ""
+	git clone --recursive https://github.com/danny-avila/LibreChat.git LibreChat
+	cd LibreChat || exit 1
+
+	function DOCKER_SETUP() {
+		cp .env.example .env
+		# cp docker-compose.override.yml.example docker-compose.override.yml
+		# docker build -t whisper-webui .
+	}
+	# DOCKER_SETUP
+}
+function CLONE_LOCALAGI() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning LocalAGI"
+	echo ""
+	git clone --recursive https://github.com/mudler/LocalAGI.git localagi
+	cd localagi || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
+		cp -f "${WD}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
+		cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
+		# docker build -t localagi .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_LOCALRECALL() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning LocalRecall"
+	echo ""
+	git clone --recursive https://github.com/mudler/LocalRecall.git localrecall
+	cd localrecall || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
+		cp -f "${WD}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
+		cp -f "${WD}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
+		# docker build -t localrecall .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_MELOTTS() {
+	cd "${WD}" || exit
+	cd "../DATA/openllm-vtuber-stack" || exit 1
+
+	echo "Cloning MeloTTS"
+	echo ""
+	git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
+	cd MeloTTS || exit
+
+	function LOCAL_SETUP() {
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		uv pip install -e .
+		# uv pip install -r requirements.txt
+		uv pip install unidic
+		python -m unidic download >/dev/null 2>&1 &
+		# docker build -t melotts .
+		# docker run --gpus all -itd -p 8888:8888 melotts
+		# melo-webui
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
+		cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
+		cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
+		# docker build -t melotts .
+	}
+	LOCAL_SETUP
+	# DOCKER_SETUP
+}
 function CLONE_OLLMVT() {
 	cd "${WD}" || exit
 	cd "../DATA/openllm-vtuber-stack" || exit 1
@@ -155,238 +566,77 @@ function CLONE_OLLMVT() {
 	LOCAL_SETUP
 	DOCKER_SETUP
 }
-function CLONE_LETTA() {
+function CLONE_OOGABOOGA() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning Letta"
+	echo "Cloning text-generation-webui-docker"
 	echo ""
-	git clone --recursive https://github.com/letta-ai/letta.git letta
-	cd letta || exit
+	git clone --recursive https://github.com/Atinoda/text-generation-webui-docker.git text-generation-webui-docker
+	cd text-generation-webui-docker || exit 1
 
 	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
-
-		uv pip install -e .
-		# uv pip install -r requirements.txt
-		# uv run letta server
-	}
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
-		cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
-		cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
-
-		# docker build -t letta .
-	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
-}
-function CLONE_MELOTTS() {
-	cd "${WD}" || exit
-	cd "../DATA/openllm-vtuber-stack" || exit 1
-
-	echo "Cloning MeloTTS"
-	echo ""
-	git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
-	cd MeloTTS || exit
-
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
-		uv pip install -e .
-		# uv pip install -r requirements.txt
-		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
-		# docker build -t melotts .
-		# docker run --gpus all -itd -p 8888:8888 melotts
-		# melo-webui
-	}
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
-		cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
-		cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
-		# docker build -t melotts .
-	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
-}
-function CLONE_JAISON() {
-	cd "${WD}" || exit
-	cd "../DATA/jaison-stack" || exit 1
-
-	echo "Cloning jaison-core"
-	echo ""
-	git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
-	cd jaison-core || exit
-
-	function LOCAL_SETUP() {
-		export INSTALL_WHISPER=false
-		export INSTALL_BARK=false
-
-		# sudo apt install -y ffmpeg
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
 		# uv pip install -e .
-		uv pip install -r requirements.txt
-		uv pip install --no-deps -r requirements.no_deps.txt
-		# uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-		uv pip install nltk
-		uv pip install spacy
-		python -m spacy download en_core_web_sm
-		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
-		python install.py
-		# python ./src/main.py --help
-		# python ./src/main.py --config=example
+		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
-		cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
-		cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
-		# docker build -t jaison-core . --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
+		# docker build -t text-generation-webui-docker .
 	}
-	LOCAL_SETUP
+	# LOCAL_SETUP
 	DOCKER_SETUP
 }
-function CLONE_AIRI() {
+function CLONE_PRIVATEGPT() {
 	cd "${WD}" || exit
-	cd "../DATA/airi-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning privateGPT"
+	echo ""
+	git clone --recursive https://github.com/zylon-ai/private-gpt.git private-gpt
+	cd private-gpt || exit 1
+
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
+		cp -f "${WD}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
+		cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
+		# docker build -t private-gpt .
+	}
+	# DOCKER_SETUP
+}
+function CLONE_PROMETHEUS() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning prometheus"
+	echo ""
+	git clone --recursive https://github.com/prometheus/prometheus.git prometheus
+	cd signoz || exit 1
 
 	function LOCAL_SETUP() {
-		npm i -g @antfu/ni
-		npm i -g shiki
-		npm i -g pkgroll
-		function INSTALL_XSAI() {
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack" || exit 1
+		./install.sh
+		# make && sudo make install
 
-			echo "Cloning xsai"
-			echo ""
-			git clone --recursive https://github.com/moeru-ai/xsai.git xsai
-			cd xsai || exit
-
-			ni
-			nr build
-		}
-		function INSTALL_XSAI_TRANSFORMERS() {
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack" || exit 1
-
-			echo "Cloning xsai-transformers"
-			echo ""
-			git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
-			cd xsai-transformers || exit
-
-			ni
-			nr build
-		}
-		function INSTALL_AIRI_CHAT() {
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack" || exit 1
-
-			echo "Cloning airi_chat"
-			echo ""
-			git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
-			cd airi-chat || exit
-
-			ni
-			nr build
-		}
-		function INSTALL_AIRI() {
-
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack" || exit 1
-
-			echo "Cloning airi"
-			echo ""
-			git clone --recursive https://github.com/moeru-ai/airi.git airi
-			cd airi || exit
-
-			ni
-			nr build
-
-			# For Rust dependencies
-			# Not required if you are not going to develop on either crates or apps/tamagotchi
-			sudo apt install -y cargo
-			cargo fetch
-
-			export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-			corepack enable
-
-			# telegram bot setup
-			cd services/telegram-bot || exit
-			cp .env .env.local
-			# docker compose -p airi-telegram-bot-db up -d
-
-			ni
-			nr build
-			# nr -F @proj-airi/telegram-bot db:generate
-			# nr -F @proj-airi/telegram-bot db:push
-			# nr -F @proj-airi/telegram-bot dev
-
-			# discord bot setup
-			cd ../discord-bot || exit
-			cp .env .env.local
-
-			ni
-			nr build
-			# nr -F @proj-airi/discord-bot dev
-
-			# minecraft bot setup
-			cd ../minecraft || exit
-			cp .env .env.local
-
-			ni
-			nr build
-			# nr -F @proj-airi/minecraft dev
-
-			cd .. || exit
-
-			# Run as desktop pet:
-			# pnpm dev:tamagotchi
-			# nr dev:tamagotchi
-
-			# Run as web app:
-			# nr dev
-			# pnpm dev --host
-
-			# nr dev:docs
-			# pnpm dev:docs
-
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack/airi" || exit 1
-
-			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
-			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
-			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
-		}
-		# echo "Cloning airi"
-		# echo ""
-		# INSTALL_AIRI
-		# echo "Cloning xsai"
-		# echo ""
-		# INSTALL_XSAI
-		# echo "Cloning xsai-transformers"
-		# echo ""
-		# INSTALL_XSAI_TRANSFORMERS
-		# echo "Cloning airi_chat"
-		# echo ""
-		# INSTALL_AIRI_CHAT
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
-		cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
-		cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
-		# docker build -t airi .
+		cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
+		cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
+		cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
+		# docker build -t prometheus .
 	}
-	LOCAL_SETUP
+	# LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_RIKOPROJECT() {
@@ -432,170 +682,6 @@ function CLONE_RIKOPROJECT() {
 	LOCAL_SETUP
 	DOCKER_SETUP
 }
-function CLONE_SWARMUI() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning SwarmUI"
-	echo ""
-	git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
-	cd SwarmUI || exit 1
-
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
-		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
-		# docker build -t riko-project .
-		# docker stop swarmui
-		# docker rm swarmui
-		# ./launchtools/custom-launch-docker.sh
-	}
-	# DOCKER_SETUP
-}
-function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning stable-diffusion-webui-docker"
-	echo ""
-	git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
-	cd stable-diffusion-webui-docker || exit 1
-
-	function DOCKER_SETUP() {
-		mkdir -p data/Models/CLIPEncoder
-		cd services/comfy/ || exit 1
-		cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
-	}
-	DOCKER_SETUP
-}
-function CLONE_WHISPERX() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning whisperX"
-	echo ""
-	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperX
-	cd whisperX || exit 1
-
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
-	}
-	# DOCKER_SETUP
-}
-function CLONE_PRIVATEGPT() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning privateGPT"
-	echo ""
-	git clone --recursive https://github.com/zylon-ai/private-gpt.git private-gpt
-	cd private-gpt || exit 1
-
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
-		cp -f "${WD}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
-		cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
-		# docker build -t private-gpt .
-	}
-	# DOCKER_SETUP
-}
-function CLONE_WHISPER_WEBUI() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning Whisper-WebUI"
-	echo ""
-	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git Whisper-WebUI
-	cd Whisper-WebUI || exit 1
-
-	function DOCKER_SETUP() {
-		cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
-
-		# docker build -t whisper-webui .
-	}
-	# DOCKER_SETUP
-}
-function CLONE_LIBRECHAT() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning LibreChat"
-	echo ""
-	git clone --recursive https://github.com/danny-avila/LibreChat.git LibreChat
-	cd LibreChat || exit 1
-
-	function DOCKER_SETUP() {
-		cp .env.example .env
-		# cp docker-compose.override.yml.example docker-compose.override.yml
-		# docker build -t whisper-webui .
-	}
-	# DOCKER_SETUP
-}
-function CLONE_CHROMA() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning chroma"
-	echo ""
-	git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma
-	cd chroma || exit 1
-
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
-		# docker build -t chroma .
-	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
-}
-function CLONE_CLICKHOUSE() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning clickhouse"
-	echo ""
-	git clone --recursive https://github.com/mostafaghadimi/clickhouse.git clickhouse
-	cd clickhouse || exit 1
-
-	function LOCAL_SETUP() {
-		if [[ ! -f ".env" ]]; then
-			cp .env.sample .env
-		fi
-		chmod +x script.sh
-		./script.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		if [[ ! -f ".env" ]]; then
-			cp .env.sample .env
-		fi
-		chmod +x script.sh
-		./script.sh
-		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
-		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
-		# docker build -t chroma .
-	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
-}
 function CLONE_SIGNOZ() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -623,122 +709,92 @@ function CLONE_SIGNOZ() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
-function CLONE_OOGABOOGA() {
+function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning text-generation-webui-docker"
+	echo "Cloning stable-diffusion-webui-docker"
 	echo ""
-	git clone --recursive https://github.com/Atinoda/text-generation-webui-docker.git text-generation-webui-docker
-	cd text-generation-webui-docker || exit 1
+	git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
+	cd stable-diffusion-webui-docker || exit 1
 
-	function LOCAL_SETUP() {
-		./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		# uv pip install pip
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
-		# docker build -t text-generation-webui-docker .
+		mkdir -p data/Models/CLIPEncoder
+		cd services/comfy/ || exit 1
+		cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
 	}
-	# LOCAL_SETUP
 	DOCKER_SETUP
 }
-function CLONE_PROMETHEUS() {
+function CLONE_SWARMUI() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning prometheus"
+	echo "Cloning SwarmUI"
 	echo ""
-	git clone --recursive https://github.com/prometheus/prometheus.git prometheus
-	cd signoz || exit 1
+	git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
+	cd SwarmUI || exit 1
 
-	function LOCAL_SETUP() {
-		./install.sh
-		# make && sudo make install
-
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		# uv pip install pip
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
-		cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
-		cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
-		# docker build -t prometheus .
+		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
+		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
+		# docker build -t riko-project .
+		# docker stop swarmui
+		# docker rm swarmui
+		# ./launchtools/custom-launch-docker.sh
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+	# DOCKER_SETUP
 }
-
-function CLONE_AIWAIFU() {
+function CLONE_WHISPER_WEBUI() {
 	cd "${WD}" || exit
-	cd "../DATA/aiwaifu-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning AIwaifu"
+	echo "Cloning Whisper-WebUI"
 	echo ""
-	git clone --recursive https://github.com/HRNPH/AIwaifu.git aiwaifu
-	cd aiwaifu || exit 1
+	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git Whisper-WebUI
+	cd Whisper-WebUI || exit 1
 
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
-		uv pip install -e .
-		# uv pip install -r requirements.txt
-
-		# pipx install poetry --force
-		# poetry env use 3.8
-		# poetry lock
-		# poetry install
-		# poetry env activate
-		# uv venv .venv --clear
-		# uv pip install -r requirements.txt
-		# cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
-		# python setup.py build_ext --inplace && cd ../../../../
-
-		# this run on localhost 8267 by default
-		# python ./api_inference_server.py
-
-		# this will connect to all the server (Locally)
-		# it is possible to host the api model on the external server, just beware of security issue
-		# I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
-		# python ./main.py
-	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
-		cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
-		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
-		# docker build -t aiwaifu .
+		cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
+
+		# docker build -t whisper-webui .
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+	# DOCKER_SETUP
 }
-CLONE_OLLMVT >/dev/null 2>&1
-CLONE_LETTA >/dev/null 2>&1
-CLONE_MELOTTS >/dev/null 2>&1
-CLONE_JAISON >/dev/null 2>&1
+function CLONE_WHISPERX() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning whisperX"
+	echo ""
+	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperX
+	cd whisperX || exit 1
+
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+	}
+	# DOCKER_SETUP
+}
+
 CLONE_AIRI >/dev/null 2>&1
-CLONE_RIKOPROJECT >/dev/null 2>&1
-CLONE_SWARMUI >/dev/null 2>&1
-CLONE_PROMETHEUS >/dev/null 2>&1
+CLONE_AIWAIFU >/dev/null 2>&1
+CLONE_CHROMA >/dev/null 2>&1
 CLONE_CLICKHOUSE >/dev/null 2>&1
-CLONE_WHISPERX >/dev/null 2>&1
+CLONE_JAISON >/dev/null 2>&1
+CLONE_LETTA >/dev/null 2>&1
+CLONE_LIBRECHAT >/dev/null 2>&1
+CLONE_LOCALAGI >/dev/null 2>&1
+CLONE_LOCALRECALL >/dev/null 2>&1
+CLONE_MELOTTS >/dev/null 2>&1
+CLONE_OLLMVT >/dev/null 2>&1
 CLONE_OOGABOOGA >/dev/null 2>&1
 CLONE_PRIVATEGPT >/dev/null 2>&1
+CLONE_PROMETHEUS >/dev/null 2>&1
+CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_SIGNOZ >/dev/null 2>&1
-CLONE_LIBRECHAT >/dev/null 2>&1
-CLONE_WHISPER_WEBUI >/dev/null 2>&1
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
-CLONE_CHROMA >/dev/null 2>&1
-CLONE_AIWAIFU >/dev/null 2>&1
+CLONE_SWARMUI >/dev/null 2>&1
+CLONE_WHISPER_WEBUI >/dev/null 2>&1
+CLONE_WHISPERX >/dev/null 2>&1

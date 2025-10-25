@@ -29,9 +29,9 @@ services:
       - PORT=${PORT:-3080}
       - HOST=0.0.0.0
       - MONGO_URI=mongodb://mongodb:27017/LibreChat
-      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_HOST=http://librechat-meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
-      - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
+      - RAG_API_URL=http://librechat-rag_api:${RAG_PORT:-8000}
 
     volumes:
       - type: bind
@@ -94,8 +94,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  mongodb:
-    container_name: chat-mongodb
+  librechat-mongodb:
+    container_name: librechat-mongodb
     image: mongo
     restart: always
 
@@ -104,7 +104,7 @@ services:
       # - autoheal-app
       # - autoheal-app=true
 
-    user: ${PGID}:${PUID}
+    user: ${PGID:-1000}:${PUID:-1000}
 
     networks:
       host:
@@ -124,12 +124,12 @@ services:
         max-size: 10m
         max-file: 3
 
-  meilisearch:
-    container_name: chat-meilisearch
+  librechat_meilisearch:
+    container_name: librechat-meilisearch
     image: getmeili/meilisearch:v1.12.3
     restart: always
 
-    user: ${PGID}:${PUID}
+    user: ${PGID:-1000}:${PUID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -137,9 +137,9 @@ services:
       # - autoheal-app=true
 
     environment:
-      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_HOST=http://librechat-meilisearch:7700
       - MEILI_NO_ANALYTICS=true
-      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
     volumes:
       - ../../DATA/ai-stack/librechat/meili_data_v1.12:/meili_data
@@ -157,8 +157,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  vectordb:
-    container_name: vectordb
+  librechat-vectordb:
+    container_name: librechat-vectordb
     image: pgvector/pgvector:0.8.0-pg15-trixie
     restart: always
 
@@ -188,8 +188,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  rag_api:
-    container_name: rag_api
+  librechat-rag_api:
+    container_name: librechat-rag_api
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
     restart: always
 

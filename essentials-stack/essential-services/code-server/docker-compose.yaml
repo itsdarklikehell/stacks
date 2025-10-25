@@ -1,7 +1,7 @@
 services:
-  dashy:
-    image: ${IMAGE:-lissy93/dashy}
-    container_name: ${NAME:-dashy}
+  code-server:
+    image: ${IMAGE:-lscr.io/linuxserver/code-server:latest}
+    container_name: ${NAME:-code-server}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -13,30 +13,31 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - NODE_ENV=production
-      - PORT=${PORT:-8383}
-    # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
-    #   - UID=1000
-    #   - GID=1000
+      - PORT=${PORT:-8443}
+      # - PASSWORD=password #optional
+      # - HASHED_PASSWORD= #optional
+      # - SUDO_PASSWORD=password #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      # - PROXY_DOMAIN=code-server.my.domain #optional
+      # - DEFAULT_WORKSPACE=/config/workspace #optional
+      # - PWA_APPNAME=code-server #optional
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      # - ../../DATA/essential-stack/dashy/data/conf.yml:/app/user-data/conf.yml
-      # - dashy_config:/app/user-data/conf.yml
-      - dashy_data:/app/user-data
+      - ../../DATA/essential-stack/code-server/config:/config
 
-    hostname: ${NAME:-dashy}
+    hostname: ${NAME:-code-server}
 
     networks:
       host:
       essential-services:
 
     ports:
-      - ${PORT:-8383}:8383
+      - ${PORT:-8443}:8443
 
     env_file:
-      - ./dashy/.env
+      - ./code-server/.env
 
     deploy:
       replicas: 1

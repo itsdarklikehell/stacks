@@ -34,10 +34,12 @@ volumes:
   clickhouse_initdb:
   koboldccp-data:
   clickhouse_logs:
+  home-assistant-media:
   clickhouse_users:
   faster-whisper-data:
   home-assistant-config:
   index_data:
+  piper_data:
   kokoro_data:
   kokoro_index_data:
   letta_pgdata: # ../../DATA/ai-stack/letta/.persist/pgdata

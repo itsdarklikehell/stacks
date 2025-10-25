@@ -12,12 +12,13 @@ COMPOSE_FILES=(
 	# docker-proxy
 	# dockge
 	# grafana
-	homarr
+	# homarr
 	dashy
+	code-server
 	# it-tools
-	# portracker
-	# uptime-kuma
-	# wolf
+	portracker
+	uptime-kuma
+	wolf
 )
 
 ARGS=""
