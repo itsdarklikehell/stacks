@@ -80,7 +80,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     logging:
       driver: json-file

@@ -18,7 +18,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /dev/shm:/dev/shm
       - retroarch_config:/config
 
     hostname: ${NAME:-retroarch}
@@ -31,7 +30,7 @@ services:
       - ${PORT:-3003}:3003
       - 3004:3004
 
-    shm_size: 4gb
+    shm_size: 1gb
 
     # security_opt:
     #   - seccomp:unconfined
@@ -47,7 +46,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 

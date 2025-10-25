@@ -28,7 +28,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3080}
       - HOST=0.0.0.0
-      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MONGO_URI=mongodb://librechat-mongodb:27017/LibreChat
       - MEILI_HOST=http://librechat-meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
       - RAG_API_URL=http://librechat-rag_api:${RAG_PORT:-8000}
@@ -55,10 +55,6 @@ services:
     env_file:
       - ./librechat/.env
 
-    # depends_on:
-    #   - mongo-whispher
-    #   - libretranslate-whispher
-
     runtime: nvidia
     deploy:
       replicas: 1
@@ -67,7 +63,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -199,11 +195,11 @@ services:
       # - autoheal-app=true
 
     environment:
-      - DB_HOST=vectordb
+      - DB_HOST=librechat-vectordb
       - RAG_PORT=${RAG_PORT:-8000}
 
     depends_on:
-      - vectordb
+      - librechat-vectordb
 
     env_file:
       - ./librechat/.env

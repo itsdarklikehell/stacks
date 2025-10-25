@@ -19,7 +19,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /dev/shm:/dev/shm
 
     hostname: ${NAME:-ubuntu-noble-desktop}
 
@@ -30,7 +29,7 @@ services:
     ports:
       - ${PORT:-6901}:6901
 
-    shm_size: 4gb
+    shm_size: 1gb
 
     env_file:
       - ./ubuntu-noble-desktop/.env

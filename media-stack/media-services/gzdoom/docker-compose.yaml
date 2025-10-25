@@ -19,7 +19,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /dev/shm:/dev/shm
       - gzdoom_config:/config
 
     hostname: ${NAME:-gzdoom}
@@ -30,8 +29,9 @@ services:
 
     ports:
       - ${PORT:-3020}:3020
+      - 3001:3001
 
-    shm_size: 4gb
+    shm_size: 1gb
 
     env_file:
       - ./gzdoom/.env
@@ -44,7 +44,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # healthcheck:
     #   test:

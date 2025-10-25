@@ -14,13 +14,13 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8443}
-      # - PASSWORD=password #optional
-      # - HASHED_PASSWORD= #optional
-      # - SUDO_PASSWORD=password #optional
-      # - SUDO_PASSWORD_HASH= #optional
+      - PASSWORD=admin
+      - SUDO_PASSWORD=admin
+      - DEFAULT_WORKSPACE=/config/workspace
+      - PWA_APPNAME=code-server
+      # - HASHED_PASSWORD=
+      # - SUDO_PASSWORD_HASH=
       # - PROXY_DOMAIN=code-server.my.domain #optional
-      # - DEFAULT_WORKSPACE=/config/workspace #optional
-      # - PWA_APPNAME=code-server #optional
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

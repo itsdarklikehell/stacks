@@ -1,0 +1,94 @@
+services:
+  steamos:
+    image: ${IMAGE:-lscr.io/linuxserver/steamos}
+    container_name: ${NAME:-steamos}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    cap_add:
+      - NET_ADMIN
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-3000}
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - DRINODE=/dev/dri/renderD128
+      # - HOST_IP=192.168.100.10 #optional
+      # - STARTUP=KDE #optional
+      # - RESOLUTION=1920x1080 #optional
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - steamos_config:/config
+      # - /dev/input:/dev/input #optional
+      # - /run/udev/data:/run/udev/data #optional
+
+    hostname: ${NAME:-steamos}
+
+    networks:
+      host:
+      media-services:
+
+    ports:
+      - ${PORT:-3000}:3000
+      - 3001:3001
+      # - 27031-27036:27031-27036/udp #optional
+      # - 27031-27036:27031-27036 #optional
+      # - 47984-47990:47984-47990 #optional
+      # - 48010-48010:48010-48010 #optional
+      # - 47998-48000:47998-48000/udp #optional
+
+    shm_size: 1gb
+
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+
+    env_file:
+      - ./steamos/.env
+
+    devices:
+      - /dev/dri:/dev/dri
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-3000}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

@@ -1,0 +1,68 @@
+services:
+  vscodium:
+    image: ${IMAGE:-lscr.io/linuxserver/vscodium:latest}
+    container_name: ${NAME:-vscodium}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    cap_add:
+      - IPC_LOCK
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-3000}
+      - PASSWORD=admin
+      - SUDO_PASSWORD=admin
+      - DEFAULT_WORKSPACE=/config/workspace
+      - PWA_APPNAME=vscodium
+      # - HASHED_PASSWORD=
+      # - SUDO_PASSWORD_HASH=
+      # - PROXY_DOMAIN=vscodium.my.domain #optional
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/essential-stack/vscodium/config:/config
+
+    hostname: ${NAME:-vscodium}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-3000}:3000
+      - 3001:3001
+
+    env_file:
+      - ./vscodium/.env
+
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [compute, video, graphics, utility]
+
+    # healthcheck:
+    #   test: [CMD, node, /app/services/healthcheck]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    shm_size: 1gb
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
