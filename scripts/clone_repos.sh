@@ -590,6 +590,7 @@ function CLONE_CLICKHOUSE() {
 		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
 		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
 		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
 		# docker build -t chroma .
 	}
 	# LOCAL_SETUP
@@ -622,6 +623,37 @@ function CLONE_SIGNOZ() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
+
+function CLONE_PROMETHEUS() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning prometheus"
+	echo ""
+	git clone --recursive https://github.com/prometheus/prometheus.git prometheus
+	cd signoz || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# make && sudo make install
+
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
+		cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
+		cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
+		# docker build -t prometheus .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit
 	cd "../DATA/aiwaifu-stack" || exit 1
@@ -673,6 +705,7 @@ CLONE_JAISON >/dev/null 2>&1
 CLONE_AIRI >/dev/null 2>&1
 CLONE_RIKOPROJECT >/dev/null 2>&1
 CLONE_SWARMUI >/dev/null 2>&1
+CLONE_PROMETHEUS >/dev/null 2>&1
 CLONE_CLICKHOUSE >/dev/null 2>&1
 CLONE_WHISPERX >/dev/null 2>&1
 CLONE_PRIVATEGPT >/dev/null 2>&1
