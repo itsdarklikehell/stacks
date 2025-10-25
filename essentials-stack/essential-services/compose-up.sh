@@ -9,9 +9,8 @@ COMPOSE_FILES=(
 	portainer
 	watchtower
 	# autopulse
-	# docker-proxy
+	docker-proxy
 	# dockge
-	# grafana
 	# homarr
 	dashy
 	code-server

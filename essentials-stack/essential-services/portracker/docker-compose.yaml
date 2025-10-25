@@ -36,23 +36,12 @@ services:
     ports:
       - ${PORT:-4999}:4999
 
-    pid: post
-
     cap_add:
       - SYS_NICE
       - NET_ADMIN
       - IPC_LOCK
       - SYS_PTRACE
       - SYS_ADMIN
-
-    command:
-      [
-        --cap-add=SYS_NICE,
-        --cap-add=NET_ADMIN,
-        --cap-add=IPC_LOCK,
-        --cap-add=SYS_PTRACE,
-        --cap-add=SYS_ADMIN,
-      ]
 
     security_opt:
       - apparmor:unconfined
