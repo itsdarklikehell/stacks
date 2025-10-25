@@ -10,15 +10,15 @@ cd "${WD}" || exit
 
 docker network create essential-services
 
-function DOCKER_COMPOSE_STACK(){
-    cd "essential-services" || exit 1
-    ./compose-up.sh
+function DOCKER_COMPOSE_STACK() {
+	cd "essential-services" || exit 1
+	./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: essentials-stack ****"
+echo "*** START COMPOSING: essential-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: essentials-stack ****"
+echo "*** FINISHED COMPOSING: essential-stack ****"
 echo ""

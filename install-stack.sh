@@ -96,7 +96,7 @@ function CLEANUP_DATA() {
 		"${PERM_DATA}/ai-stack"
 		"${PERM_DATA}/aiwaifu-stack"
 		"${PERM_DATA}/arr-stack"
-		"${PERM_DATA}/essentials-stack"
+		"${PERM_DATA}/essential-stack"
 		"${PERM_DATA}/jaison-stack"
 		"${PERM_DATA}/media-stack"
 		"${PERM_DATA}/openllm-vtuber-stack"
@@ -129,7 +129,7 @@ function CLONE_REPOS() {
 	scripts/clone_repos.sh
 }
 function INSTALL_ESSENTIALS_STACK() {
-	essentials-stack/install-stack.sh
+	essential-stack/install-stack.sh
 }
 function INSTALL_MEDIA_STACK() {
 	media-stack/install-stack.sh
