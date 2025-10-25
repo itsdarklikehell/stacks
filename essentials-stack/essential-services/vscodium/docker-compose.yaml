@@ -38,7 +38,7 @@ services:
 
     ports:
       - ${PORT:-3000}:3000
-      - 3001:3001
+      - 3006:3006
 
     env_file:
       - ./vscodium/.env

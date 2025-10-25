@@ -168,11 +168,11 @@ echo "Installing Docker"
 echo ""
 INSTALL_DOCKER
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS
+echo ""
 
 ## STACKS:
 
