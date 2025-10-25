@@ -1,7 +1,7 @@
 services:
-  ollama:
-    image: ${IMAGE:-ollama/ollama:latest}
-    container_name: ${NAME:-ollama}
+  piper:
+    image: ${IMAGE:-lscr.io/linuxserver/piper:latest} # no gpu
+    container_name: ${NAME:-piper}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,26 +10,38 @@ services:
       # - autoheal-app=true
 
     environment:
-      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h}
-      - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
-      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://stable-diffusion-webui:7860}
-      - OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-10201}
+      - PIPER_VOICE=en_US-lessac-medium
+      - LOCAL_ONLY= #optional
+      - PIPER_LENGTH=1.0 #optional
+      - PIPER_NOISE=0.667 #optional
+      - PIPER_NOISEW=0.333 #optional
+      - PIPER_SPEAKER=0 #optional
+      - PIPER_PROCS=1 #optional
+      - STREAMING= #optional
 
     volumes:
-      - ../../DATA/ai-stack/ollama:/root/.ollama
-      # - ollama-data:/root/.ollama
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - piper_data:/config
+      # - ../../DATA/ai-stack/piper/data:/data
 
-    hostname: ${NAME:-ollama}
+    hostname: ${NAME:-piper}
+
+    # command: [--voice, en_US-lessac-medium]
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-11434}:11434
+      - ${PORT:-10201}:10201
 
     env_file:
-      - ./ollama/.env
+      - ./piper/.env
 
     runtime: nvidia
     deploy:
@@ -53,7 +65,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://192.168.1.2:11434/api/health,
+    #     http://localhost:${PORT:-10201}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

@@ -1,7 +1,7 @@
 services:
-  faster-whisper-gpu:
-    image: ${IMAGE:-lscr.io/linuxserver/faster-whisper:gpu}
-    container_name: ${NAME:-faster-whisper-gpu}
+  lobe-chat:
+    image: ${IMAGE:-lobehub/lobe-chat:latest}
+    container_name: ${NAME:-lobe-chat}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -13,37 +13,26 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - WHISPER_MODEL=${WHISPER_MODEL:-large-v3-turbo}
-      # - LOCAL_ONLY=false #optional
-      # - WHISPER_BEAM=1 #optional
-      # - WHISPER_LANG=en #optional
+      - PORT=${PORT:-3210}
+      - ACCESS_CODE=lobe-chat
+      # - OPENAI_API_KEY=sk-xxxx
+      # - OPENAI_PROXY_URL=https://api-proxy.com/v1
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - faster-whisper-data:/config
+
+    hostname: ${NAME:-lobe-chat}
 
     networks:
       host:
       ai-services:
 
-    ports:
-      - ${PORT:-10300}:10300
-
-    hostname: ${NAME:-faster-whisper-gpu}
-
     env_file:
-      - ./faster-whisper-gpu/.env
+      - ./lobe-chat/.env
 
-    runtime: nvidia
-    deploy:
-      replicas: 1
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    ports:
+      - ${PORT:-3210}:3210
 
     tty: true
 
@@ -57,7 +46,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://localhost:${PORT:-10300}/api/health,
+    #     http://localhost:${PORT:-3210}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

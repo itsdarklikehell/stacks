@@ -1,18 +1,21 @@
 services:
   librechat:
-    # image: ${IMAGE:-ghcr.io/jim60105/librechat:latest}
+    image: ${IMAGE:-ghcr.io/danny-avila/librechat-dev:latest}
     # pull_policy: always
     container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
 
     user: ${PUID:-1000}:${PGID:-1000}
 
-    build:
-      context: ../../DATA/ai-stack/LibreChat
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-      dockerfile: ./Dockerfile
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+    # build:
+    #   context: ../../DATA/ai-stack/LibreChat
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
+    #   dockerfile: ./Dockerfile
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -24,8 +27,19 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3080}
+      - HOST=0.0.0.0
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MEILI_HOST=http://meilisearch:7700
+      - RAG_PORT=${RAG_PORT:-8000}
+      - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
 
     volumes:
+      - type: bind
+        source: ./librechat/.env
+        target: /app/.env
+      - ../../DATA/ai-stack/librechat/images:/app/client/public/images
+      - ../../DATA/ai-stack/librechat/uploads:/app/uploads
+      - ../../DATA/ai-stack/librechat/logs:/app/logs
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
 
@@ -52,8 +66,8 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1 # alternatively, use `count: all` for all GPUs
-              capabilities: [gpu, compute, video, graphics, utility]
+              count: all
+              capabilities: [gpu]
 
     tty: true
 
@@ -73,6 +87,130 @@ services:
     #   timeout: 10s
     #   start_period: 30s
     #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  mongodb:
+    container_name: chat-mongodb
+    image: mongo
+    restart: always
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    user: ${PGID}:${PUID}
+
+    networks:
+      host:
+      ai-services:
+
+    volumes:
+      - ../../DATA/ai-stack/librechat/data-node:/data/db
+
+    command: mongod --noauth
+
+    env_file:
+      - ./librechat/.env
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  meilisearch:
+    container_name: chat-meilisearch
+    image: getmeili/meilisearch:v1.12.3
+    restart: always
+
+    user: ${PGID}:${PUID}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+
+    volumes:
+      - ../../DATA/ai-stack/librechat/meili_data_v1.12:/meili_data
+
+    env_file:
+      - ./librechat/.env
+
+    networks:
+      host:
+      ai-services:
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  vectordb:
+    container_name: vectordb
+    image: pgvector/pgvector:0.8.0-pg15-trixie
+    restart: always
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      POSTGRES_DB: librechat-vectordb
+      POSTGRES_USER: librechat
+      POSTGRES_PASSWORD: librechat
+
+    volumes:
+      - librechat_pgdata:/var/lib/postgresql/data
+
+    env_file:
+      - ./librechat/.env
+
+    networks:
+      host:
+      ai-services:
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  rag_api:
+    container_name: rag_api
+    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    restart: always
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - DB_HOST=vectordb
+      - RAG_PORT=${RAG_PORT:-8000}
+
+    depends_on:
+      - vectordb
+
+    env_file:
+      - ./librechat/.env
+
+    networks:
+      host:
+      ai-services:
 
     logging:
       driver: json-file

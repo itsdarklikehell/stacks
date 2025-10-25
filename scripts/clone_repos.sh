@@ -623,7 +623,33 @@ function CLONE_SIGNOZ() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
+function CLONE_OOGABOOGA() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
 
+	echo "Cloning text-generation-webui-docker"
+	echo ""
+	git clone --recursive https://github.com/Atinoda/text-generation-webui-docker.git text-generation-webui-docker
+	cd text-generation-webui-docker || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
+		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
+		# docker build -t text-generation-webui-docker .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
 function CLONE_PROMETHEUS() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -708,6 +734,7 @@ CLONE_SWARMUI >/dev/null 2>&1
 CLONE_PROMETHEUS >/dev/null 2>&1
 CLONE_CLICKHOUSE >/dev/null 2>&1
 CLONE_WHISPERX >/dev/null 2>&1
+CLONE_OOGABOOGA >/dev/null 2>&1
 CLONE_PRIVATEGPT >/dev/null 2>&1
 CLONE_SIGNOZ >/dev/null 2>&1
 CLONE_LIBRECHAT >/dev/null 2>&1

@@ -1,7 +1,7 @@
 services:
-  ollama:
-    image: ${IMAGE:-ollama/ollama:latest}
-    container_name: ${NAME:-ollama}
+  koboldccp:
+    image: ${IMAGE:-koboldai/koboldcpp:latest} # no gpu
+    container_name: ${NAME:-koboldccp}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -10,26 +10,33 @@ services:
       # - autoheal-app=true
 
     environment:
-      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h}
-      - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
-      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://stable-diffusion-webui:7860}
-      - OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-5001}
+      - KCPP_DONT_UPDATE=false
+      - KCPP_DONT_TUNNEL=true
+      - KCPP_ARGS=--model https://huggingface.co/unsloth/gemma-3-4b-it-GGUF/resolve/main/gemma-3-4b-it-Q4_K_S.gguf?download=true --usecuda --gpulayers 99 --multiuser 20 --admin --admindir . --adminpassword ChangeMe
+      # - KCPP_IMGMODEL=
+      # - KCPP_MMPROJ=
+      # - KCPP_MODEL=
 
     volumes:
-      - ../../DATA/ai-stack/ollama:/root/.ollama
-      # - ollama-data:/root/.ollama
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - koboldccp-data:/workspace/:rw
 
-    hostname: ${NAME:-ollama}
+    hostname: ${NAME:-koboldccp}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-11434}:11434
+      - ${PORT:-5001}:5001
 
     env_file:
-      - ./ollama/.env
+      - ./koboldccp/.env
 
     runtime: nvidia
     deploy:
@@ -53,7 +60,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://192.168.1.2:11434/api/health,
+    #     http://localhost:${PORT:-5001}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

@@ -65,8 +65,8 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1 # alternatively, use `count: all` for all GPUs
-              capabilities: [gpu, compute, video, graphics, utility]
+              count: all
+              capabilities: [gpu]
 
     tty: true
 

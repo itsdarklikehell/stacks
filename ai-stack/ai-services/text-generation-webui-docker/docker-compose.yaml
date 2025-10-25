@@ -1,0 +1,89 @@
+services:
+  text-generation-webui-docker:
+    image: ${IMAGE:-atinoda/text-generation-webui:default-nvidia}
+    container_name: ${NAME:-text-generation-webui-docker}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-7862}
+      - HOST_PORT=${PORT:-7862}
+      # - EXTRA_LAUNCH_ARGS="--listen --listen-port 7862"
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/cache:/root/.cache # WARNING: Libraries may save large files here!
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/characters:/app/user_data/characters
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/grammars:/app/user_data/grammars
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/instruction-templates:/app/user_data/instruction-templates
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/loras:/app/user_data/loras
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/logs:/app/user_data/logs # Persist and access the chat logs
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/models:/app/user_data/models # WARNING - very large files!
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/presets:/app/user_data/presets
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/prompts:/app/user_data/prompts
+      - ../../DATA/ai-stack/text-generation-webui-docker/config/training:/app/user_data/training
+    #      - ../../DATA/ai-stack/text-generation-webui-docker/config/extensions:/app/extensions  # Persist all extensions
+    #      - ../../DATA/ai-stack/text-generation-webui-docker/config/extensions/coqui_tts:/app/extensions/coqui_tts  # Persist a single extension
+
+    hostname: ${NAME:-text-generation-webui-docker}
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./text-generation-webui-docker/.env
+
+    ports:
+      - ${PORT:-7862}:7862
+      # - 5000:5000 # Default API port
+      # - 5005:5005 # Default streaming port
+
+    cap_add:
+      - SYS_PTRACE
+
+    # security_opt:
+    #   - seccomp=unconfined
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-3210}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

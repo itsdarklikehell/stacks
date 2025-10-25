@@ -31,8 +31,8 @@ services:
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/var/lib/grafana/plugins/:/var/lib/grafana/plugins/
 
     secrets:
-      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER:-grafana}
-      - GF_SECURITY_ADMIN_PASSWORD__FILE=${GF_SECURITY_ADMIN_PASSWORD__FILE:-/run/secrets/grafana_password}
+      - GF_SECURITY_ADMIN_USER
+      - GF_SECURITY_ADMIN_PASSWORD_FILE
 
     networks:
       host:

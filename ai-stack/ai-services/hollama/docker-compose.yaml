@@ -1,7 +1,7 @@
 services:
-  faster-whisper-gpu:
-    image: ${IMAGE:-lscr.io/linuxserver/faster-whisper:gpu}
-    container_name: ${NAME:-faster-whisper-gpu}
+  hollama:
+    image: ${IMAGE:-ghcr.io/fmaclen/hollama:latest}
+    container_name: ${NAME:-hollama}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -13,37 +13,24 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - WHISPER_MODEL=${WHISPER_MODEL:-large-v3-turbo}
-      # - LOCAL_ONLY=false #optional
-      # - WHISPER_BEAM=1 #optional
-      # - WHISPER_LANG=en #optional
+      - PORT=${PORT:-4173}
+      - VITE_ALLOWED_HOSTS=your-domain.com,another-domain.com
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - faster-whisper-data:/config
+
+    hostname: ${NAME:-hollama}
 
     networks:
       host:
       ai-services:
 
-    ports:
-      - ${PORT:-10300}:10300
-
-    hostname: ${NAME:-faster-whisper-gpu}
-
     env_file:
-      - ./faster-whisper-gpu/.env
+      - ./hollama/.env
 
-    runtime: nvidia
-    deploy:
-      replicas: 1
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    ports:
+      - ${PORT:-4173}:4173
 
     tty: true
 
@@ -57,7 +44,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://localhost:${PORT:-10300}/api/health,
+    #     http://localhost:${PORT:-3210}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

@@ -20,6 +20,7 @@ volumes:
   anythingllm_hotdir:
   anythingllm_outputs:
   anythingllm_storage:
+  anythingllm_skills:
   basic-memory-config:
   basic-memory-knowledge: # ../../DATA/ai-stack/basic-memory/knowledge
   basic-memory-personal-notes: # ../../DATA/ai-stack/basic-memory/personal-notes
@@ -31,6 +32,7 @@ volumes:
   minio_data:
   prometheus_data:
   clickhouse_initdb:
+  koboldccp-data:
   clickhouse_logs:
   clickhouse_users:
   faster-whisper-data:
@@ -40,9 +42,10 @@ volumes:
   kokoro_index_data:
   letta_pgdata: # ../../DATA/ai-stack/letta/.persist/pgdata
   letta_toolexec: # ../../DATA/ai-stack/letta/tool_execution_dir
+  librechat_pgdata:
   libretranslate-whispher_cache:
   libretranslate-whispher_data:
-  localai_models: # ../../DATA/ai-stack/localai/models
+  localai_models: # ../../DATA/ai-stack/localai/models:/models
   mongo-whispher_data:
   mongo-whispher_logs:
   n8n_data:
@@ -67,11 +70,12 @@ volumes:
   whishper_uploads: # ../../DATA/ai-stack/whishper/uploads
   whisper_cache: # ../../DATA/ai-stack/whishperX/cache
   wyoming-piper_data:
-# # secrets:
-#   letta_pg_password:
-#     file: ../../secrets/letta_pg_password
-#   letta_password:
-#     file: ../../secrets/letta_password
+
+secrets:
+  GF_SECURITY_ADMIN_USER:
+    file: ../../secrets/grafana_password
+  GF_SECURITY_ADMIN_PASSWORD_FILE:
+    file: ../../secrets/grafana_username
 #   mariadb_root_password:
 #     file: ../../secrets/mariadb_root_password
 #   mariadb_password:
