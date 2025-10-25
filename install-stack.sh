@@ -98,7 +98,6 @@ function CLEANUP_DATA() {
 		"${PERM_DATA}/arr-stack"
 		"${PERM_DATA}/essentials-stack"
 		"${PERM_DATA}/jaison-stack"
-		"${PERM_DATA}/management-stack"
 		"${PERM_DATA}/media-stack"
 		"${PERM_DATA}/openllm-vtuber-stack"
 		"${PERM_DATA}/riko-stack"
@@ -131,9 +130,6 @@ function CLONE_REPOS() {
 }
 function INSTALL_ESSENTIALS_STACK() {
 	essentials-stack/install-stack.sh
-}
-function INSTALL_MANAGEMENT_STACK() {
-	management-stack/install-stack.sh
 }
 function INSTALL_MEDIA_STACK() {
 	media-stack/install-stack.sh
@@ -194,10 +190,6 @@ echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
-# echo ""
-
-# echo ""
-# INSTALL_MANAGEMENT_STACK
 # echo ""
 
 # echo ""

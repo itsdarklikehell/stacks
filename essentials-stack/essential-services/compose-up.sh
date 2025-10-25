@@ -4,19 +4,20 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
-	nginx-proxy-manager
-	portainer
-	watchtower
 	# autopulse
-	docker-proxy
 	# dockge
 	# homarr
-	dashy
-	code-server
 	# it-tools
+	autoheal
+	code-server
+	dashy
+	docker-proxy
+	nginx-proxy-manager
+	portainer
 	portracker
 	uptime-kuma
+	vscodium
+	watchtower
 	wolf
 )
 
