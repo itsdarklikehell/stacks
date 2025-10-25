@@ -61,7 +61,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-8083}:8080
+      - ${PORT:-8083}:8083
 
     env_file:
       - ./localai/.env
