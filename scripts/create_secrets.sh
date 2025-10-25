@@ -20,12 +20,12 @@ function CREATE_SECRETS() {
 	touch "${WD}/secrets/grafana_password"
 	touch "${WD}/secrets/grafana_google_client_secret"
 	touch "${WD}/secrets/rreading_glasses_db_password"
-	if [[ -d "${WD}/DATA/media-stack/dashy/data/conf.yml" ]]; then
-		sudo rm -rf "${WD}/DATA/media-stack/dashy/data/conf.yml"
+	if [[ -d "${WD}/DATA/essential-stack/dashy/data/conf.yml" ]]; then
+		sudo rm -rf "${WD}/DATA/essential-stack/dashy/data/conf.yml"
 	fi
-	if [[ ! -f "${WD}/DATA/media-stack/dashy/data/conf.yml" ]]; then
-		sudo wget "https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25201%2520-%2520Getting%2520Started%2520-%2520conf.yml" -O "${WD}/DATA/media-stack/dashy/data/conf.yml"
-		sudo touch "${WD}/DATA/media-stack/dashy/data/conf.yml"
+	if [[ ! -f "${WD}/DATA/essential-stack/dashy/data/conf.yml" ]]; then
+		sudo wget "https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25201%2520-%2520Getting%2520Started%2520-%2520conf.yml" -O "${WD}/DATA/essential-stack/dashy/data/conf.yml"
+		sudo touch "${WD}/DATA/essential-stack/dashy/data/conf.yml"
 	fi
 
 	# mkdir -p "${WD}/DATA/ai-stack/anythingllm/anythingllm_storage"
