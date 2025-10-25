@@ -1,7 +1,7 @@
 services:
-  redis:
-    image: ${IMAGE:-redis:alpine}
-    container_name: ${NAME:-redis}
+  nextcloud:
+    image: ${NEXTCLOUD_IMAGE:-lscr.io/linuxserver/nextcloud:latest}
+    container_name: ${NAME:-nextcloud}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -13,25 +13,29 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - PORT=${PORT:-6379}
+      - PORT=${PORT:-443}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - redis_data:/data
-      # - ../../DATA/essential-stack/redis/data:/data
+      - nextcloud_config:/config
+      - nextcloud_data:/data
+      # - ../../DATA/management-stack/nextcloud/html:/var/www/html
+      # - ../../DATA/management-stack/nextcloud/custom_apps:/var/www/html/custom_apps
+      # - ../../DATA/management-stack/nextcloud/config:/var/www/html/config
+      # - ../../DATA/management-stack/nextcloud/data:/var/www/html/data
 
-    hostname: ${NAME:-redis}
+    hostname: ${NAME:-nextcloud}
 
     networks:
       host:
-      management-services:
+      media-services:
 
     ports:
-      - ${PORT:-6379}:6379
+      - ${PORT:-443}:443
 
     env_file:
-      - ./redis/.env
+      - ./nextcloud/.env
 
     deploy:
       replicas: 1
@@ -48,7 +52,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-6379}/api/health,
+    #       http://localhost:${PORT:-443}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
