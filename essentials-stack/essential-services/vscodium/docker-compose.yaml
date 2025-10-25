@@ -16,7 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3000}
+      - PORT=${PORT:-3007}
       - PASSWORD=admin
       - SUDO_PASSWORD=admin
       - DEFAULT_WORKSPACE=/config/workspace
@@ -37,7 +37,7 @@ services:
       essential-services:
 
     ports:
-      - ${PORT:-3000}:3000
+      - ${PORT:-3007}:3007
       - 3006:3006
 
     env_file:

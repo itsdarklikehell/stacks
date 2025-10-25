@@ -1,8 +1,11 @@
 services:
-  localai:
+  localai-localai:
     # image: ${IMAGE:-localai/localai:latest-gpu-nvidia-cuda-12}
     image: ${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}
-    container_name: ${NAME:-localai}
+    # image: localai/localai:latest-aio-gpu-nvidia-cuda-11
+    # image: localai/localai:latest-aio-gpu-nvidia-cuda-12
+    # image: localai/localai:latest
+    container_name: ${NAME:-localai-localai}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -88,48 +91,122 @@ services:
       options:
         max-size: 10m
         max-file: 3
-# localrecall:
-#   image: quay.io/mudler/localrecall
-#   container_name: localrecall
-#   restart: unless-stopped
 
-#   build:
-#     context: ../../DATA/a-stack/localrecall
-#     dockerfile: Dockerfile
+  localai-localrecall:
+    image: quay.io/mudler/localrecall
+    container_name: localai-localrecall
+    restart: unless-stopped
 
-#   ports:
-#     - 8080:8080
+    build:
+      context: ../../DATA/ai-stack/localrecall
+      dockerfile: Dockerfile
 
-#   env_file:
-#     - ./localai/.env"
+    ports:
+      - 8080:8080
 
-#   environment:
-#     - COLLECTION_DB_PATH=/db
-#     - EMBEDDING_MODEL=granite-embedding-107m-multilingual
-#     - FILE_ASSETS=/assets
-#     - OPENAI_API_KEY=sk-1234567890
-#     - OPENAI_BASE_URL=http://localai:8080
+    env_file:
+      - ./localai/.env
 
-#   volumes:
-#     - ../../DATA/ai-stack/localrecall/volumes/db:/db
-#     - ../../DATA/ai-stack/localrecall/volumes/assets/:/assets
+    environment:
+      - COLLECTION_DB_PATH=/db
+      - EMBEDDING_MODEL=granite-embedding-107m-multilingual
+      - FILE_ASSETS=/assets
+      - OPENAI_API_KEY=sk-1234567890
+      - OPENAI_BASE_URL=http://localai-localai:8080
+      - LISTENING_ADDRESS=8080
+      - FILE_ASSETS=/assets
 
-#   # dind:
-#   #   extends:
-#   #     file: ../../DATA/ai-stack/localrecall/docker-compose.yaml
-#   #     service: dind
+    volumes:
+      - ../../DATA/ai-stack/localrecall/volumes/db:/db
+      - ../../DATA/ai-stack/localrecall/volumes/assets/:/assets
 
-#   # localrecall:
-#   #   extends:
-#   #     file: ../../DATA/ai-stack/localrecall/docker-compose.yaml
-#   #     service: localrecall
+  localrecall-healthcheck:
+    image: busybox
+    restart: unless-stopped
+    container_name: localrecall-healthcheck
 
-#   # localrecall-healthcheck:
-#   #   extends:
-#   #     file: ../../DATA/ai-stack/localrecall/docker-compose.yaml
-#   #     service: localrecall-healthcheck
+    depends_on:
+      localai-localrecall:
+        condition: service_started
 
-#   # localagi:
-#   #   extends:
-#   #     file: ../../DATA/ai-stack/localrecall/docker-compose.yaml
-#   #     service: localagi
+    command:
+      [
+        sh,
+        -c,
+        until wget -q -O - http://localai-localrecall:8080 > /dev/null 2>&1; do echo 'Waiting for localrecall...'; sleep 1; done; echo 'localrecall is up!',
+      ]
+
+  localai-dind:
+    image: docker:dind
+    container_name: localai-dind
+    restart: unless-stopped
+
+    privileged: true
+
+    environment:
+      - DOCKER_TLS_CERTDIR=
+
+    healthcheck:
+      test: [CMD, docker, info]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  localai-localagi:
+    container_name: localai-localagi
+    restart: unless-stopped
+    image: quay.io/mudler/localagi:master
+
+    depends_on:
+      localai-localai:
+        condition: service_healthy
+      localrecall-healthcheck:
+        condition: service_completed_successfully
+      localai-dind:
+        condition: service_healthy
+
+    build:
+      context: ../../DATA/ai-stack/localagi
+      dockerfile: Dockerfile.webui
+
+    ports:
+      - 8080:3000
+
+    environment:
+      - LOCALAGI_MODEL=${MODEL_NAME:-gemma-3-4b-it-qat}
+      - LOCALAGI_MULTIMODAL_MODEL=${MULTIMODAL_MODEL:-moondream2-20250414}
+      - LOCALAGI_IMAGE_MODEL=${IMAGE_MODEL:-sd-1.5-ggml}
+      - LOCALAGI_LLM_API_URL=http://localai-localagi:8080
+      #- LOCALAGI_LLM_API_KEY=sk-1234567890
+      - LOCALAGI_LOCALRAG_URL=http://localai-localrecall:8080
+      - LOCALAGI_STATE_DIR=/pool
+      - LOCALAGI_TIMEOUT=5m
+      - LOCALAGI_ENABLE_CONVERSATIONS_LOGGING=false
+      - LOCALAGI_SSHBOX_URL=root:root@sshbox:22
+      - DOCKER_HOST=tcp://localai-dind:2375
+
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+    volumes:
+      - ../../DATA/ai-stack/localagi/volumes:/pool
+
+  localai-sshbox:
+    container_name: localai-sshbox
+    restart: unless-stopped
+
+    build:
+      context: ../../DATA/ai-stack/localagi
+      dockerfile: Dockerfile.sshbox
+
+    ports:
+      - 22
+
+    environment:
+      - SSH_USER=root
+      - SSH_PASSWORD=root
+      - DOCKER_HOST=tcp://localai-dind:2375
+
+    depends_on:
+      localai-dind:
+        condition: service_healthy
