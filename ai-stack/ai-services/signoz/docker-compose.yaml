@@ -24,7 +24,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - signoz_data:/data
-      - index_data:/index_data
+      - signoz_index:/index_data
       # - ../../DATA/ai-stack/signoz:/signoz
 
     # command:

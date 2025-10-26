@@ -18,36 +18,105 @@ networks:
 
 volumes:
   anything-llm_storage:
+    name: anything-llm_storage
     driver: local
     driver_opts:
       type: none
       o: bind
       device: ../../DATA/ai-stack/anything-llm/anything-llm_storage
-  anything-llm_skills:
+
+  basic-memory-config:
+    name: basic-memory-config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/anything-llm/anythingllm_skills
-  basic-memory-config:
-  basic-memory-knowledge: # ../../DATA/ai-stack/basic-memory/knowledge
-  basic-memory-personal-notes: # ../../DATA/ai-stack/basic-memory/personal-notes
-  basic-memory-work-notes: # ../../DATA/ai-stack/basic-memory/work-notes
+      device: ../../DATA/ai-stack/basic-memory/config
+  basic-memory-knowledge:
+    name: basic-memory-knowledge
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/basic-memory/knowledge
+  basic-memory-personal-notes:
+    name: basic-memory-personal-notes
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/basic-memory/personal-notes
+  basic-memory-work-notes:
+    name: basic-memory-work-notes
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/basic-memory/work-notes
+
   chroma_data:
+    name: chroma_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/chroma/data
+  chroma_index:
+    name: chroma_index
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/chroma/index
+
   clickhouse_backups:
+    name: clickhouse_backups
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/backups
   clickhouse_configs:
+    name: clickhouse_configs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/configs
   clickhouse_data:
-  minio_data:
-  prometheus_data:
+    name: clickhouse_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/data
   clickhouse_initdb:
-  koboldccp-data:
+    name: clickhouse_initdb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/initdb
   clickhouse_logs:
-  home-assistant-media:
+    name: clickhouse_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/logs
   clickhouse_users:
+    name: clickhouse_users
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/clickhouse/users
+
   faster-whisper-data:
+  grafana_data:
   home-assistant-config:
-  index_data:
-  piper_data:
+  home-assistant-media:
+  koboldccp-data:
   kokoro_data:
   kokoro_index_data:
   letta_pgdata: # ../../DATA/ai-stack/letta/.persist/pgdata
@@ -55,14 +124,20 @@ volumes:
   librechat_pgdata:
   libretranslate-whispher_cache:
   libretranslate-whispher_data:
+  minio_data:
   mongo-whispher_data:
   mongo-whispher_logs:
   n8n_data:
   n8n_local-files:
   ollama-data: # ../../DATA/ai-stack/ollama
   open-webui-data:
+  piper_data:
+  postgresdata:
+  prometheus_data:
+  redisdata:
   searxng_data: # ../../DATA/ai-stack/searxng
   signoz_data:
+  signoz_index:
   stable-diffusion-webui-docker_config: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/config
   stable-diffusion-webui-docker_data: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data
   stable-diffusion-webui-docker_embeddings: # ../../DATA/ai-stack/stable-diffusion-webui-docker/data/embeddings
@@ -73,17 +148,13 @@ volumes:
   swarmdata:
   swarmdlnodes:
   swarmextensions:
-  grafana_data:
+  userdata:
+  weaviatedata:
   whishper_logs: # ../../DATA/ai-stack/whishper/logs
   whishper_models: # ../../DATA/ai-stack/whishper/models
   whishper_uploads: # ../../DATA/ai-stack/whishper/uploads
   whisper_cache: # ../../DATA/ai-stack/whishperX/cache
   wyoming-piper_data:
-
-  redisdata:
-  postgresdata:
-  weaviatedata:
-  userdata:
 secrets:
   GF_SECURITY_ADMIN_USER:
     file: ../../secrets/grafana_password

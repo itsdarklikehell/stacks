@@ -48,6 +48,7 @@ services:
     command:
       - granite-embedding-107m-multilingual
       - moondream2-20250414
+      - huggingfacetb_smollm3-3b
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

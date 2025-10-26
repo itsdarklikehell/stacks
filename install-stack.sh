@@ -8,7 +8,7 @@ export OLLAMA="docker"                           # local, docker
 export PERM_DATA="${WD}/DATA"                    #
 export CLEANUP="false"                           # false, true
 export PRUNE="normal"                            # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export BUILDING="true"                           # false, true, force_rebuild
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
 
@@ -171,7 +171,7 @@ INSTALL_DOCKER
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS
+CLONE_REPOS >/dev/null 2>&1
 echo ""
 
 ## STACKS:

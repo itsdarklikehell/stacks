@@ -13,14 +13,14 @@ services:
       # - autoheal-app=true
 
     environment:
-      - EMBEDDING_BASE_PATH=http://127.0.0.1:11434
+      - EMBEDDING_BASE_PATH=http://192.168.1.2:11434
       - EMBEDDING_ENGINE=ollama
       - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
       - EMBEDDING_MODEL_PREF=nomic-embed-text:latest
       - JWT_SECRET="make this a large list of random numbers and letters 20+"
       - LLM_PROVIDER=ollama
-      - OLLAMA_BASE_PATH=http://127.0.0.1:11434
-      - OLLAMA_MODEL_PREF=llama2
+      - OLLAMA_BASE_PATH=http://192.168.1.2:11434
+      - OLLAMA_MODEL_PREF=llama3.2:latest
       - OLLAMA_MODEL_TOKEN_LIMIT=4096
       - PASSWORDMINCHAR=8
       - COLLECTOR_ALLOW_ANY_IP=true
@@ -40,8 +40,13 @@ services:
       - TTS_PROVIDER=native
       - TZ=${TZ:-Europe/Amsterdam}
       - VECTOR_DB=lancedb
+      - WHISPER_MODEL_PREF=Xenova/whisper-large
       - WHISPER_PROVIDER=local
-      - AGENT_SEARXNG_API_URL=http://localhost:8081/search?q=<query>
+      - AGENT_SEARXNG_API_URL=http://192.168.1.2:8081/search?q=<query>
+      - LOCAL_AI_API_KEY=sk-123abc
+      - LOCAL_AI_BASE_PATH=http://192.168.1.2:8083/v1
+      - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
+      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
 
     cap_add:
       - SYS_NICE
@@ -51,11 +56,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - anything-llm_storage:/app/server/storage
-      # - anything-llm_skills:/app/server/storage/plugins/agent-skills
-      # - anything-llm_hotdir:/app/collector/hotdir
-      # - anything-llm_outputs:/app/collector/outputs
-      # - ./anything-llm/.env:/app/server/.env
 
     hostname: ${NAME:-anything-llm}
 
@@ -71,6 +73,9 @@ services:
     env_file:
       - ./anything-llm/.env
 
+    depends_on:
+      - ollama
+
     runtime: nvidia
     deploy:
       replicas: 1
@@ -85,20 +90,20 @@ services:
 
     stdin_open: true
 
-    # healthcheck:
-    #   test:
-    #     [
-    #       CMD,
-    #       wget,
-    #       --no-verbose,
-    #       --tries=3,
-    #       --spider,
-    #       http://localhost:${PORT:-3002}/api/health,
-    #     ]
-    #   interval: 30s
-    #   timeout: 10s
-    #   start_period: 30s
-    #   retries: 3
+    healthcheck:
+      test:
+        [
+          CMD,
+          wget,
+          --no-verbose,
+          --tries=3,
+          --spider,
+          http://localhost:3002/api/health,
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
 
     logging:
       driver: json-file
