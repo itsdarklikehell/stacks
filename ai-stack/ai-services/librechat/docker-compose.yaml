@@ -10,12 +10,12 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-    # build:
-    #   context: ../../DATA/ai-stack/LibreChat
-    #   args:
-    #     UID: ${PUID:-1000}
-    #     GID: ${PGID:-1000}
-    #   dockerfile: ./Dockerfile
+    build:
+      context: ../../DATA/ai-stack/LibreChat
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./Dockerfile
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -28,10 +28,10 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3080}
       - HOST=0.0.0.0
-      - MONGO_URI=mongodb://librechat-mongodb:27017/LibreChat
-      - MEILI_HOST=http://librechat-meilisearch:7700
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
-      - RAG_API_URL=http://librechat-rag_api:${RAG_PORT:-8000}
+      - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
 
     volumes:
       - type: bind
@@ -90,8 +90,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  librechat-mongodb:
-    container_name: librechat-mongodb
+  mongodb:
+    container_name: chat-mongodb
     image: mongo
     restart: always
 
@@ -120,8 +120,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  librechat_meilisearch:
-    container_name: librechat-meilisearch
+  meilisearch:
+    container_name: chat-meilisearch
     image: getmeili/meilisearch:v1.12.3
     restart: always
 
@@ -133,7 +133,7 @@ services:
       # - autoheal-app=true
 
     environment:
-      - MEILI_HOST=http://librechat-meilisearch:7700
+      - MEILI_HOST=http://meilisearch:7700
       - MEILI_NO_ANALYTICS=true
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
@@ -153,8 +153,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  librechat-vectordb:
-    container_name: librechat-vectordb
+  vectordb:
+    container_name: vectordb
     image: pgvector/pgvector:0.8.0-pg15-trixie
     restart: always
 
@@ -164,9 +164,9 @@ services:
       # - autoheal-app=true
 
     environment:
-      POSTGRES_DB: librechat-vectordb
-      POSTGRES_USER: librechat
-      POSTGRES_PASSWORD: librechat
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
 
     volumes:
       - librechat_pgdata:/var/lib/postgresql/data
@@ -184,8 +184,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  librechat-rag_api:
-    container_name: librechat-rag_api
+  rag_api:
+    container_name: rag_api
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
     restart: always
 
@@ -195,11 +195,11 @@ services:
       # - autoheal-app=true
 
     environment:
-      - DB_HOST=librechat-vectordb
+      - DB_HOST=vectordb
       - RAG_PORT=${RAG_PORT:-8000}
 
     depends_on:
-      - librechat-vectordb
+      - vectordb
 
     env_file:
       - ./librechat/.env

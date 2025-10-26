@@ -47,12 +47,6 @@ volumes:
   librechat_pgdata:
   libretranslate-whispher_cache:
   libretranslate-whispher_data:
-  localai_models: # ../../DATA/ai-stack/localai/models:/models
-  localai_backends:
-  localai_images:
-  localai_content:
-  localai_config:
-  localai_cache:
   mongo-whispher_data:
   mongo-whispher_logs:
   n8n_data:

@@ -13,11 +13,13 @@ services:
       context: ../../DATA/ai-stack/localai
       dockerfile: Dockerfile
       args:
-        # - IMAGE_TYPE=core
         - IMAGE_TYPE=aio
         - BASE_IMAGE=ubuntu:22.04
-        - LOCALAI_ADDRESS=0.0.0.0:8081
-        - LISTENING_ADDRESS=8081
+        - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
+        - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+        # - BUILD_TYPE=cublas
+        - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
+        - LOCALAI_SINGLE_ACTIVE_BACKEND=true
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -28,12 +30,12 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - DEBUG=true
+      - DEBUG=true
       - STORAGE_DIR=/app/server/storage
-      - SERVER_PORT=${SERVER_PORT:-8081}
-      - LOCALAI_ADDRESS=0.0.0.0:8081
-      - LISTENING_ADDRESS=8081
-      - PORT=${PORT:-8081}
+      - SERVER_PORT=${SERVER_PORT:-8083}
+      - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
+      - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+      - PORT=${PORT:-8083}
       - MODELS_PATH=/models
       - THREADS=1
       # - PROFILE=gpu-8g
@@ -44,22 +46,18 @@ services:
       - IPC_LOCK
 
     command:
-      - phi-2
       - granite-embedding-107m-multilingual
+      - phi-2
+      - moondream2-20250414
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - localai_models:/models:cached
-      # - ../../DATA/ai-stack/localai/models:/models:cached
-      - localai_images:/tmp/generated/content/images/:cached
-      # - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images/:cached
-      - localai_content:/tmp/generated/content:cached
-      # - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
-      - localai_config:/configuration:cached
-      # - ../../DATA/ai-stack/localai/configuration:/configuration:cached
-      - localai_backends:/usr/share/localai/backends:cached
-      # - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
+      - ../../DATA/ai-stack/localai/models:/models:cached
+      - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images/:cached
+      - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
+      - ../../DATA/ai-stack/localai/configuration:/configuration:cached
+      - ../../DATA/ai-stack/localai/backends:/backends:cached
 
     user: ${PUID:-1000}:${PGID:-1000}
 
@@ -68,7 +66,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-8081}:8081
+      - ${PORT:-8083}:8083
 
     env_file:
       - ./localai/.env
@@ -88,7 +86,7 @@ services:
     stdin_open: true
 
     healthcheck:
-      test: [CMD, curl, -f, http://localhost:8081/readyz]
+      test: [CMD, curl, -f, http://localhost:8083/readyz]
       interval: 1m
       timeout: 20m
       retries: 5
@@ -99,94 +97,53 @@ services:
         max-size: 10m
         max-file: 3
 
-  # localai-localrecall:
-  #   image: quay.io/mudler/localrecall
-  #   container_name: localai-localrecall
-  #   restart: unless-stopped
+  localrecall:
+    image: quay.io/mudler/localrecall
+    container_name: localrecall
+    restart: unless-stopped
 
-  #   build:
-  #     context: ../../DATA/ai-stack/localrecall
-  #     dockerfile: Dockerfile
+    build:
+      context: ../../DATA/ai-stack/localrecall
+      dockerfile: Dockerfile
 
-  #   ports:
-  #     - 8087:8087
+    ports:
+      - 8084:8084
 
-  #   env_file:
-  #     - ./localai/.env
+    env_file:
+      - ./localai/.env
 
-  #   environment:
-  #     - COLLECTION_DB_PATH=/db
-  #     - EMBEDDING_MODEL=granite-embedding-107m-multilingual
-  #     - FILE_ASSETS=/assets
-  #     - OPENAI_API_KEY=sk-1234567890
-  #     - OPENAI_BASE_URL=http://localai-localai:8087
-  #     - LISTENING_ADDRESS=8087
-  #     - FILE_ASSETS=/assets
+    environment:
+      - COLLECTION_DB_PATH=/db
+      - EMBEDDING_MODEL=granite-embedding-107m-multilingual
+      - FILE_ASSETS=/assets
+      # - OPENAI_API_KEY=sk-1234567890
+      - OPENAI_BASE_URL=http://localai:${PORT:-8083}
+      - LISTENING_ADDRESS=0.0.0.0:8084
+      - FILE_ASSETS=/assets
 
-  #   volumes:
-  #     - ../../DATA/ai-stack/localrecall/volumes/db:/db
-  #     - ../../DATA/ai-stack/localrecall/volumes/assets/:/assets
+    volumes:
+      - ../../DATA/ai-stack/localrecall/volumes/db:/db
+      - ../../DATA/ai-stack/localrecall/volumes/assets/:/assets
 
-  # localai-localagi:
-  #   container_name: localai-localagi
-  #   restart: unless-stopped
-  #   image: quay.io/mudler/localagi:master
+  localrecall-healthcheck:
+    image: busybox
+    restart: unless-stopped
+    container_name: localrecall-healthcheck
 
-  #   depends_on:
-  #     localai-localai:
-  #       condition: service_healthy
+    depends_on:
+      localrecall:
+        condition: service_started
 
-  #     # localrecall-healthcheck:
-  #     #   condition: service_completed_successfully
+    command:
+      [
+        sh,
+        -c,
+        until wget -q -O - http://localrecall:8084 > /dev/null 2>&1; do echo 'Waiting for localrecall...'; sleep 1; done; echo 'localrecall is up!',
+      ]
 
-  #     # localai-dind:
-  #     #   condition: service_healthy
-
-  #   build:
-  #     context: ../../DATA/ai-stack/localagi
-  #     dockerfile: Dockerfile.webui
-
-  #   ports:
-  #     - 8088:8088
-
-  #   environment:
-  #     - LOCALAGI_MODEL=${MODEL_NAME:-gemma-3-4b-it-qat}
-  #     - LOCALAGI_MULTIMODAL_MODEL=${MULTIMODAL_MODEL:-moondream2-20250414}
-  #     - LOCALAGI_IMAGE_MODEL=${IMAGE_MODEL:-sd-1.5-ggml}
-  #     - LOCALAGI_LLM_API_URL=http://localai-localagi:8088
-  #     #- LOCALAGI_LLM_API_KEY=sk-1234567890
-  #     - LOCALAGI_LOCALRAG_URL=http://localai-localrecall:8088
-  #     - LOCALAGI_STATE_DIR=/pool
-  #     - LOCALAGI_TIMEOUT=5m
-  #     - LOCALAGI_ENABLE_CONVERSATIONS_LOGGING=false
-  #     - LOCALAGI_SSHBOX_URL=root:root@sshbox:2222
-  #     - DOCKER_HOST=tcp://localai-dind:2358
-
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-
-  #   volumes:
-  #     - ../../DATA/ai-stack/localagi/volumes:/pool
-
-  # localrecall-healthcheck:
-  #   image: busybox
-  #   restart: unless-stopped
-  #   container_name: localrecall-healthcheck
-
-  #   depends_on:
-  #     localai-localrecall:
-  #       condition: service_started
-
-  #   command:
-  #     [
-  #       sh,
-  #       -c,
-  #       until wget -q -O - http://localai-localrecall:8087 > /dev/null 2>&1; do echo 'Waiting for localrecall...'; sleep 1; done; echo 'localrecall is up!',
-  #     ]
-
-  # localai-dind:
+  # dind:
   #   image: docker:dind
-  #   container_name: localai-dind
+  #   container_name: dind
   #   restart: unless-stopped
 
   #   privileged: true
@@ -203,8 +160,49 @@ services:
   #     timeout: 5s
   #     retries: 3
 
-  # localai-sshbox:
-  #   container_name: localai-sshbox
+  localagi:
+    container_name: localagi
+    restart: unless-stopped
+    image: quay.io/mudler/localagi:master
+
+    depends_on:
+      localai:
+        condition: service_healthy
+
+      # localrecall-healthcheck:
+      #   condition: service_completed_successfully
+
+      # dind:
+      #   condition: service_healthy
+
+    build:
+      context: ../../DATA/ai-stack/localagi
+      dockerfile: Dockerfile.webui
+
+    ports:
+      - 8085:8085
+
+    environment:
+      - LOCALAGI_MODEL=${MODEL_NAME:-gemma-3-4b-it-qat}
+      - LOCALAGI_MULTIMODAL_MODEL=${MULTIMODAL_MODEL:-moondream2-20250414}
+      - LOCALAGI_IMAGE_MODEL=${IMAGE_MODEL:-sd-1.5-ggml}
+      - LOCALAGI_LLM_API_URL=http://localagi:8085
+      #- LOCALAGI_LLM_API_KEY=sk-1234567890
+      - LOCALAGI_LOCALRAG_URL=http://localrecall:8085
+      - LOCALAGI_STATE_DIR=/pool
+      - LOCALAGI_TIMEOUT=5m
+      - LOCALAGI_ENABLE_CONVERSATIONS_LOGGING=true
+      # - LOCALAGI_SSHBOX_URL=root:root@sshbox:2222
+      - DOCKER_HOST=tcp://dind:2358
+
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+    volumes:
+      - ../../DATA/ai-stack/localagi/volumes:/pool
+
+  # sshbox:
+  #   container_name: sshbox
   #   restart: unless-stopped
 
   #   build:
@@ -217,8 +215,8 @@ services:
   #   environment:
   #     - SSH_USER=root
   #     - SSH_PASSWORD=root
-  #     - DOCKER_HOST=tcp://localai-dind:2358
+  #     - DOCKER_HOST=tcp://dind:2358
 
   #   depends_on:
-  #     localai-dind:
+  #     dind:
   #       condition: service_healthy
