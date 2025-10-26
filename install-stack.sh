@@ -168,11 +168,11 @@ echo "Installing Docker"
 echo ""
 INSTALL_DOCKER
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS
+echo ""
 
 ## STACKS:
 
@@ -180,9 +180,9 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-INSTALL_ESSENTIALS_STACK
-echo ""
+# echo ""
+# INSTALL_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 INSTALL_AI_STACK

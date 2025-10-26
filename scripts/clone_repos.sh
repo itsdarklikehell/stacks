@@ -344,6 +344,33 @@ function CLONE_LIBRECHAT() {
 	}
 	# DOCKER_SETUP
 }
+function CLONE_LOCALAI() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning LocalAI"
+	echo ""
+	git clone --recursive https://github.com/mudler/LocalAI.git localai
+	cd localai || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
+		cp -f "${WD}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
+		cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
+		# docker build -t localai .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
 function CLONE_LOCALAGI() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -777,23 +804,24 @@ function CLONE_WHISPERX() {
 	# DOCKER_SETUP
 }
 
-CLONE_AIRI >/dev/null 2>&1
-CLONE_AIWAIFU >/dev/null 2>&1
-CLONE_CHROMA >/dev/null 2>&1
-CLONE_CLICKHOUSE >/dev/null 2>&1
-CLONE_JAISON >/dev/null 2>&1
-CLONE_LETTA >/dev/null 2>&1
-CLONE_LIBRECHAT >/dev/null 2>&1
-CLONE_LOCALAGI >/dev/null 2>&1
-CLONE_LOCALRECALL >/dev/null 2>&1
-CLONE_MELOTTS >/dev/null 2>&1
-CLONE_OLLMVT >/dev/null 2>&1
-CLONE_OOGABOOGA >/dev/null 2>&1
-CLONE_PRIVATEGPT >/dev/null 2>&1
-CLONE_PROMETHEUS >/dev/null 2>&1
-CLONE_RIKOPROJECT >/dev/null 2>&1
-CLONE_SIGNOZ >/dev/null 2>&1
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
-CLONE_SWARMUI >/dev/null 2>&1
-CLONE_WHISPER_WEBUI >/dev/null 2>&1
-CLONE_WHISPERX >/dev/null 2>&1
+# CLONE_AIRI >/dev/null 2>&1
+# CLONE_AIWAIFU >/dev/null 2>&1
+# CLONE_CHROMA >/dev/null 2>&1
+# CLONE_CLICKHOUSE >/dev/null 2>&1
+# CLONE_JAISON >/dev/null 2>&1
+# CLONE_LETTA >/dev/null 2>&1
+# CLONE_LIBRECHAT >/dev/null 2>&1
+# CLONE_LOCALAGI >/dev/null 2>&1
+CLONE_LOCALAI >/dev/null 2>&1
+# CLONE_LOCALRECALL >/dev/null 2>&1
+# CLONE_MELOTTS >/dev/null 2>&1
+# CLONE_OLLMVT >/dev/null 2>&1
+# CLONE_OOGABOOGA >/dev/null 2>&1
+# CLONE_PRIVATEGPT >/dev/null 2>&1
+# CLONE_PROMETHEUS >/dev/null 2>&1
+# CLONE_RIKOPROJECT >/dev/null 2>&1
+# CLONE_SIGNOZ >/dev/null 2>&1
+# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
+# CLONE_SWARMUI >/dev/null 2>&1
+# CLONE_WHISPER_WEBUI >/dev/null 2>&1
+# CLONE_WHISPERX >/dev/null 2>&1
