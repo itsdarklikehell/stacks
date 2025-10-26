@@ -23,9 +23,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - basic-memory-config:/root/.basic-memory:rw
-      - basic-memory-knowledge:/app/data:rw
-      - basic-memory-work-notes:/app/data/work:rw
-      - basic-memory-personal-notes:/app/data/personal:rw
+      - basic-memory-knowledge:/app/data
+      - basic-memory-work-notes:/app/data/work
+      - basic-memory-personal-notes:/app/data/personal
       # OPTIONAL: Mount additional knowledge directories for multiple projects
 
     command: [basic-memory, mcp, --transport sse, --host 0.0.0.0, --port 8003]
