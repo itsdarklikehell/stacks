@@ -353,6 +353,12 @@ function CLONE_LOCALAI() {
 	git clone --recursive https://github.com/mudler/LocalAI.git localai
 	git clone --recursive https://github.com/mudler/LocalAI-examples.git localai-examples
 	cd localai || exit 1
+	mkdir -p .cache
+	mkdir -p backends
+	mkdir -p configuration
+	mkdir -p content
+	mkdir -p images
+	mkdir -p models
 
 	function LOCAL_SETUP() {
 		./install.sh
