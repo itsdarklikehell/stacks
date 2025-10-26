@@ -51,7 +51,7 @@ services:
       # - swarmui
       # - libretranslate-whispher
       # - localai
-      # - anythingllm
+      # - anything-llm
       # - basic-memory
       # - chroma
       # - clickhouse

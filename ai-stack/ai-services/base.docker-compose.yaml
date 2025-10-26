@@ -17,10 +17,18 @@ networks:
     external: true
 
 volumes:
-  anythingllm_hotdir:
-  anythingllm_outputs:
-  anythingllm_storage:
-  anythingllm_skills:
+  anything-llm_storage:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/anything-llm/anything-llm_storage
+  anything-llm_skills:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/anything-llm/anythingllm_skills
   basic-memory-config:
   basic-memory-knowledge: # ../../DATA/ai-stack/basic-memory/knowledge
   basic-memory-personal-notes: # ../../DATA/ai-stack/basic-memory/personal-notes

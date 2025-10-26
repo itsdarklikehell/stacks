@@ -15,8 +15,8 @@ mkdir -p "../DATA/essential-stack"
 mkdir -p "../DATA/riko-stack"
 mkdir -p "../DATA/aiwaifu-stack"
 mkdir -p "../DATA/airi-stack"
-./install_uv.sh >/dev/null 2>&1
-./install_toolhive.sh >/dev/null 2>&1
+./install_uv.sh
+./install_toolhive.sh
 
 function CLONE_AIRI() {
 	cd "${WD}" || exit
@@ -152,6 +152,34 @@ function CLONE_AIRI() {
 	LOCAL_SETUP
 	DOCKER_SETUP
 }
+function CLONE_ANYTHINGLLM() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning anything-llm"
+	echo ""
+	git clone --recursive https://github.com/Mintplex-Labs/anything-llm.git anything-llm
+	cd anything-llm || exit 1
+	mkdir -p anything-llm_storage anything-llm_skills
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
+		cp -f "${WD}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
+		cp -f "${WD}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
+		# docker build -t anything-llm .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit
 	cd "../DATA/aiwaifu-stack" || exit 1
@@ -232,7 +260,7 @@ function CLONE_CLICKHOUSE() {
 	cd clickhouse || exit 1
 
 	function LOCAL_SETUP() {
-		if [[ ! -f ".env" ]]; then
+		if [[ ! -f .env ]]; then
 			cp .env.sample .env
 		fi
 		chmod +x script.sh
@@ -245,7 +273,7 @@ function CLONE_CLICKHOUSE() {
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		if [[ ! -f ".env" ]]; then
+		if [[ ! -f .env ]]; then
 			cp .env.sample .env
 		fi
 		chmod +x script.sh
@@ -285,7 +313,7 @@ function CLONE_JAISON() {
 		uv pip install spacy
 		python -m spacy download en_core_web_sm
 		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		python -m unidic download &
 		python install.py
 		# python ./src/main.py --help
 		# python ./src/main.py --config=example
@@ -336,9 +364,12 @@ function CLONE_LIBRECHAT() {
 	echo ""
 	git clone --recursive https://github.com/danny-avila/LibreChat.git LibreChat
 	cd LibreChat || exit 1
+	mkdir -p images uploads logs data-node meili_data
 
 	function DOCKER_SETUP() {
-		cp .env.example .env
+		if [[ ! -f .env ]]; then
+			cp .env.example .env
+		fi
 		# cp docker-compose.override.yml.example docker-compose.override.yml
 		# docker build -t whisper-webui .
 	}
@@ -401,15 +432,42 @@ function CLONE_LLMSTACK() {
 		cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
 		# cd llmstack/client || exit 1
-		npm install
-		npm run build
+		# npm install
+		# npm run build
 		# cd ../../
-		make api
-		make api-image
-		make app
+		# make api
+		# make api-image
+		# make app
 		# docker build -t llmstack .
 	}
-	LOCAL_SETUP
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_SDWEBUI() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning stable-diffusion-webui-docker"
+	echo ""
+	git clone --recursive hhttps://github.com/AbdBarho/stable-diffusion-webui-docker.git llmstack
+	cd stable-diffusion-webui-docker || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-uv" CustomDockerfile-stable-diffusion-webui-docker-uv
+		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-conda" CustomDockerfile-stable-diffusion-webui-docker-conda
+		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
+		# docker build -t stable-diffusion-webui-docker .
+	}
+	# LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_LOCALAGI() {
@@ -499,7 +557,7 @@ function CLONE_MIDORIAISUBSYSTEM() {
 
 	echo "Cloning subsystem-manager"
 	echo ""
-	git clone --recursive https://github.com/lunamidori5/subsystem-manager.git big-agi
+	git clone --recursive https://github.com/lunamidori5/subsystem-manager.git subsystem-manager
 	cd subsystem-manager || exit 1
 
 	function LOCAL_SETUP() {
@@ -564,7 +622,7 @@ function CLONE_MELOTTS() {
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		python -m unidic download &
 		# docker build -t melotts .
 		# docker run --gpus all -itd -p 8888:8888 melotts
 		# melo-webui
@@ -609,7 +667,7 @@ function CLONE_OLLMVT() {
 		uv pip install git+https://github.com/suno-ai/bark.git
 
 		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		python -m unidic download &
 
 		#     python3 - <<PYCODE
 		# import nltk
@@ -926,27 +984,29 @@ function CLONE_WHISPERX() {
 	# DOCKER_SETUP
 }
 
-# CLONE_AIRI >/dev/null 2>&1
-# CLONE_AIWAIFU >/dev/null 2>&1
-# CLONE_CHROMA >/dev/null 2>&1
-# CLONE_CLICKHOUSE >/dev/null 2>&1
-# CLONE_JAISON >/dev/null 2>&1
-# CLONE_LETTA >/dev/null 2>&1
-# CLONE_LIBRECHAT >/dev/null 2>&1
-# CLONE_LOCALAGI >/dev/null 2>&1
-CLONE_LOCALAI >/dev/null 2>&1
-CLONE_BIGAGI >/dev/null 2>&1
-CLONE_MIDORIAISUBSYSTEM >/dev/null 2>&1
-CLONE_LLMSTACK >/dev/null 2>&1
-# CLONE_LOCALRECALL >/dev/null 2>&1
-# CLONE_MELOTTS >/dev/null 2>&1
-# CLONE_OLLMVT >/dev/null 2>&1
-# CLONE_OOGABOOGA >/dev/null 2>&1
-# CLONE_PRIVATEGPT >/dev/null 2>&1
-# CLONE_PROMETHEUS >/dev/null 2>&1
-# CLONE_RIKOPROJECT >/dev/null 2>&1
-# CLONE_SIGNOZ >/dev/null 2>&1
-# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER >/dev/null 2>&1
-# CLONE_SWARMUI >/dev/null 2>&1
-# CLONE_WHISPER_WEBUI >/dev/null 2>&1
-# CLONE_WHISPERX >/dev/null 2>&1
+# CLONE_AIRI
+# CLONE_AIWAIFU
+# CLONE_CHROMA
+# CLONE_CLICKHOUSE
+# CLONE_JAISON
+# CLONE_LETTA
+# CLONE_LIBRECHAT
+# CLONE_LOCALAGI
+CLONE_LOCALAI
+CLONE_BIGAGI
+CLONE_MIDORIAISUBSYSTEM
+CLONE_LLMSTACK
+CLONE_ANYTHINGLLM
+CLONE_SDWEBUI
+# CLONE_LOCALRECALL
+# CLONE_MELOTTS
+# CLONE_OLLMVT
+# CLONE_OOGABOOGA
+# CLONE_PRIVATEGPT
+# CLONE_PROMETHEUS
+# CLONE_RIKOPROJECT
+# CLONE_SIGNOZ
+# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+# CLONE_SWARMUI
+# CLONE_WHISPER_WEBUI
+# CLONE_WHISPERX

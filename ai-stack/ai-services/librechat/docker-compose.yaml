@@ -37,9 +37,9 @@ services:
       - type: bind
         source: ./librechat/.env
         target: /app/.env
-      - ../../DATA/ai-stack/librechat/images:/app/client/public/images
-      - ../../DATA/ai-stack/librechat/uploads:/app/uploads
-      - ../../DATA/ai-stack/librechat/logs:/app/logs
+      - ../../DATA/ai-stack/LibreChat/images:/app/client/public/images
+      - ../../DATA/ai-stack/LibreChat/uploads:/app/uploads
+      - ../../DATA/ai-stack/LibreChat/logs:/app/logs
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
 
@@ -107,7 +107,7 @@ services:
       ai-services:
 
     volumes:
-      - ../../DATA/ai-stack/librechat/data-node:/data/db
+      - ../../DATA/ai-stack/LibreChat/data-node:/data/db
 
     command: mongod --noauth
 
@@ -138,7 +138,7 @@ services:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
     volumes:
-      - ../../DATA/ai-stack/librechat/meili_data_v1.12:/meili_data
+      - ../../DATA/ai-stack/LibreChat/meili_data_v1.12:/meili_data
 
     env_file:
       - ./librechat/.env

@@ -53,7 +53,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ../../DATA/ai-stack/localai/.cache:/.cache:cached
+
       - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
+      - ../../DATA/ai-stack/localai/backends:/backends:cached
+
       - ../../DATA/ai-stack/localai/configuration:/configuration:cached
       - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
       - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached

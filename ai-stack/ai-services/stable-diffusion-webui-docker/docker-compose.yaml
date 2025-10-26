@@ -1,0 +1,82 @@
+services:
+  stable-diffusion-webui:
+    # image: ${IMAGE:-comfy-ui}
+    container_name: ${NAME:-stable-diffusion-webui}
+    restart: ${RESTART:-unless-stopped}
+
+    build:
+      context: ../../DATA/ai-stack/stable-diffusion-webui-docker/services/comfy
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./Dockerfile
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - CLI_ARGS=${CLI_ARGS:-}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - stable-diffusion-webui-docker_data:/data
+      - stable-diffusion-webui-docker_output:/output
+      - stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/data:/data
+      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/output:/output
+      # - ../DATA/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+
+    hostname: ${NAME:-stable-diffusion-webui}
+
+    networks:
+      host:
+      ai-services:
+
+    ports:
+      - ${PORT:-7860}:7860
+
+    env_file:
+      - ./stable-diffusion-webui/.env
+
+    stop_signal: SIGKILL
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-7860}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
