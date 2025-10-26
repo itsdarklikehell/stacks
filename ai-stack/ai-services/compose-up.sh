@@ -7,6 +7,7 @@ COMPOSE_FILES=(
 	anythingllm
 	autoheal
 	basic-memory
+	big-agi
 	chroma
 	clickhouse
 	coqui-tts-cpu
@@ -20,8 +21,10 @@ COMPOSE_FILES=(
 	librechat
 	libretranslate-whispher
 	lobe-chat
+	# llmstack
 	localai
 	minio
+	midori-ai-subsystem-manager
 	mongo-whispher
 	n8n
 	ollama

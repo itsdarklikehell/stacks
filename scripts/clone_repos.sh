@@ -351,6 +351,7 @@ function CLONE_LOCALAI() {
 	echo "Cloning LocalAI"
 	echo ""
 	git clone --recursive https://github.com/mudler/LocalAI.git localai
+	git clone --recursive https://github.com/mudler/LocalAI-examples.git localai-examples
 	cd localai || exit 1
 
 	function LOCAL_SETUP() {
@@ -367,6 +368,40 @@ function CLONE_LOCALAI() {
 		cp -f "${WD}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
 		cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
 		# docker build -t localai .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_LLMSTACK() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning LLMStack"
+	echo ""
+	git clone --recursive https://github.com/trypromptly/LLMStack.git llmstack
+	cd llmstack || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
+		cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
+		cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
+		cd client || exit 1
+		npm install
+		npm run build
+		cd ..
+		make api
+		make api-image
+		make app
+		# docker build -t llmstack .
 	}
 	# LOCAL_SETUP
 	DOCKER_SETUP
@@ -394,6 +429,87 @@ function CLONE_LOCALAGI() {
 		cp -f "${WD}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
 		cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
 		# docker build -t localagi .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_BIGAGI() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning BIG-AGI"
+	echo ""
+	git clone --recursive https://github.com/enricoros/big-agi.git big-agi
+	cd big-agi || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
+		cp -f "${WD}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
+		cp -f "${WD}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
+		# docker build -t big-agi .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_NEXTCLOUD() {
+	cd "${WD}" || exit
+	cd "../DATA/essential-stack" || exit 1
+
+	echo "Cloning nextcloud"
+	echo ""
+	git clone --recursive hhttps://github.com/nextcloud/all-in-one.git nextcloud
+	cd nextcloud || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-nextcloud-uv" CustomDockerfile-nextcloud-uv
+		cp -f "${WD}/CustomDockerfile-nextcloud-conda" CustomDockerfile-nextcloud-conda
+		cp -f "${WD}/CustomDockerfile-nextcloud-venv" CustomDockerfile-text-nextcloud-venv
+		# docker build -t nextcloud .
+	}
+	# LOCAL_SETUP
+	DOCKER_SETUP
+}
+function CLONE_MIDORIAISUBSYSTEM() {
+	cd "${WD}" || exit
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning subsystem-manager"
+	echo ""
+	git clone --recursive https://github.com/lunamidori5/subsystem-manager.git big-agi
+	cd subsystem-manager || exit 1
+
+	function LOCAL_SETUP() {
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
+		cp -f "${WD}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
+		cp -f "${WD}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
+		# docker build -t subsystem-manager .
 	}
 	# LOCAL_SETUP
 	DOCKER_SETUP
@@ -813,6 +929,9 @@ function CLONE_WHISPERX() {
 # CLONE_LIBRECHAT >/dev/null 2>&1
 # CLONE_LOCALAGI >/dev/null 2>&1
 CLONE_LOCALAI >/dev/null 2>&1
+CLONE_BIGAGI >/dev/null 2>&1
+CLONE_MIDORIAISUBSYSTEM >/dev/null 2>&1
+CLONE_LLMSTACK
 # CLONE_LOCALRECALL >/dev/null 2>&1
 # CLONE_MELOTTS >/dev/null 2>&1
 # CLONE_OLLMVT >/dev/null 2>&1

@@ -28,6 +28,8 @@ volumes:
   dockge_data: # ../../DATA/essential-stack/dockge/data
   dashy_data:
   dashy_config:
+  nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer # This line is not allowed to be changed as otherwise the built-in backup solution will not work
 
 secrets:
   INITIAL_ADMIN_EMAIL:

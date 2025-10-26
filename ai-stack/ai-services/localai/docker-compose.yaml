@@ -141,24 +141,24 @@ services:
         until wget -q -O - http://localrecall:8084 > /dev/null 2>&1; do echo 'Waiting for localrecall...'; sleep 1; done; echo 'localrecall is up!',
       ]
 
-  # dind:
-  #   image: docker:dind
-  #   container_name: dind
-  #   restart: unless-stopped
+  dind:
+    image: docker:dind
+    container_name: dind
+    restart: unless-stopped
 
-  #   privileged: true
+    privileged: true
 
-  #   environment:
-  #     - DOCKER_TLS_CERTDIR=
+    environment:
+      - DOCKER_TLS_CERTDIR=
 
-  #   ports:
-  #     - 2358:2358
+    ports:
+      - 2358:2358
 
-  #   healthcheck:
-  #     test: [CMD, docker, info]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 3
+    healthcheck:
+      test: [CMD, docker, info]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   localagi:
     container_name: localagi
@@ -168,12 +168,10 @@ services:
     depends_on:
       localai:
         condition: service_healthy
-
-      # localrecall-healthcheck:
-      #   condition: service_completed_successfully
-
-      # dind:
-      #   condition: service_healthy
+      localrecall-healthcheck:
+        condition: service_completed_successfully
+      dind:
+        condition: service_healthy
 
     build:
       context: ../../DATA/ai-stack/localagi
@@ -192,7 +190,7 @@ services:
       - LOCALAGI_STATE_DIR=/pool
       - LOCALAGI_TIMEOUT=5m
       - LOCALAGI_ENABLE_CONVERSATIONS_LOGGING=true
-      # - LOCALAGI_SSHBOX_URL=root:root@sshbox:2222
+      - LOCALAGI_SSHBOX_URL=root:root@sshbox:2222
       - DOCKER_HOST=tcp://dind:2358
 
     extra_hosts:
@@ -201,22 +199,22 @@ services:
     volumes:
       - ../../DATA/ai-stack/localagi/volumes:/pool
 
-  # sshbox:
-  #   container_name: sshbox
-  #   restart: unless-stopped
+  sshbox:
+    container_name: sshbox
+    restart: unless-stopped
 
-  #   build:
-  #     context: ../../DATA/ai-stack/localagi
-  #     dockerfile: Dockerfile.sshbox
+    build:
+      context: ../../DATA/ai-stack/localagi
+      dockerfile: Dockerfile.sshbox
 
-  #   ports:
-  #     - 2222:2222
+    ports:
+      - 2222:2222
 
-  #   environment:
-  #     - SSH_USER=root
-  #     - SSH_PASSWORD=root
-  #     - DOCKER_HOST=tcp://dind:2358
+    environment:
+      - SSH_USER=root
+      - SSH_PASSWORD=root
+      - DOCKER_HOST=tcp://dind:2358
 
-  #   depends_on:
-  #     dind:
-  #       condition: service_healthy
+    depends_on:
+      dind:
+        condition: service_healthy
