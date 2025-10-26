@@ -14,7 +14,7 @@ COMPOSE_FILES=(
 	docker-proxy
 	nginx-proxy-manager
 	portainer
-	nextcloud
+	# nextcloud
 	portracker
 	uptime-kuma
 	vscodium

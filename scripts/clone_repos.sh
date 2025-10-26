@@ -383,27 +383,27 @@ function CLONE_LLMSTACK() {
 
 	function LOCAL_SETUP() {
 		./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		# uv pip install pip
-		# uv sync --all-extras
-		# uv pip install -e .
+		uv venv --clear --seed
+		source .venv/bin/activate
+		uv pip install pip
+		uv sync --all-extras
+		uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
 		cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
-		cd client || exit 1
+		# cd llmstack/client || exit 1
 		npm install
 		npm run build
-		cd ..
+		# cd ../../
 		make api
 		make api-image
 		make app
 		# docker build -t llmstack .
 	}
-	# LOCAL_SETUP
+	LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_LOCALAGI() {
@@ -931,7 +931,7 @@ function CLONE_WHISPERX() {
 CLONE_LOCALAI >/dev/null 2>&1
 CLONE_BIGAGI >/dev/null 2>&1
 CLONE_MIDORIAISUBSYSTEM >/dev/null 2>&1
-CLONE_LLMSTACK
+CLONE_LLMSTACK >/dev/null 2>&1
 # CLONE_LOCALRECALL >/dev/null 2>&1
 # CLONE_MELOTTS >/dev/null 2>&1
 # CLONE_OLLMVT >/dev/null 2>&1

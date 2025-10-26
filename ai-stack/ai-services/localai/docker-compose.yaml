@@ -47,7 +47,6 @@ services:
 
     command:
       - granite-embedding-107m-multilingual
-      - phi-2
       - moondream2-20250414
 
     volumes:

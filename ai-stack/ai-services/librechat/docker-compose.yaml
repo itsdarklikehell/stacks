@@ -91,7 +91,7 @@ services:
         max-file: 3
 
   mongodb:
-    container_name: chat-mongodb
+    container_name: librechat-mongodb
     image: mongo
     restart: always
 
@@ -121,7 +121,7 @@ services:
         max-file: 3
 
   meilisearch:
-    container_name: chat-meilisearch
+    container_name: librechat-meilisearch
     image: getmeili/meilisearch:v1.12.3
     restart: always
 
@@ -154,7 +154,7 @@ services:
         max-file: 3
 
   vectordb:
-    container_name: vectordb
+    container_name: librechat-vectordb
     image: pgvector/pgvector:0.8.0-pg15-trixie
     restart: always
 
@@ -185,7 +185,7 @@ services:
         max-file: 3
 
   rag_api:
-    container_name: rag_api
+    container_name: librechat-rag_api
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
     restart: always
 
