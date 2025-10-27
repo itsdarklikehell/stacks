@@ -757,9 +757,11 @@ volumes:
 
 secrets:
   GF_SECURITY_ADMIN_USER:
-    file: ../../secrets/grafana_password
-  GF_SECURITY_ADMIN_PASSWORD_FILE:
     file: ../../secrets/grafana_username
+  GF_SECURITY_ADMIN_PASSWORD:
+    file: ../../secrets/grafana_password
+  GF_AUTH_GOOGLE_CLIENT_SECRET:
+    file: ../../secrets/grafana_google_client_secret
 #   mariadb_root_password:
 #     file: ../../secrets/mariadb_root_password
 #   mariadb_password:

@@ -28,6 +28,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
     #   - ../../DATA/ai-stack/airi/.env:/airi/.env
     #   - ../../DATA/ai-stack/airi/avatars:/app/avatars
     #   - ../../DATA/ai-stack/airi/avatars:/app/backgrounds

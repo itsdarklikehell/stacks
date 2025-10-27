@@ -11,12 +11,8 @@ COMPOSE_FILES=(
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-	echo "Added: ${f}/docker-compose.yaml"
 	ARGS+="-f ${f}/docker-compose.yaml "
-done
-for f in "${COMPOSE_FILES[@]}"; do
 	FOLDER="../../DATA/${STACKNAME}-stack/${f}"
-	echo "Making folder: ${FOLDER}"
 	mkdir -p "${FOLDER}"
 	CREATE_FOLDERS
 done

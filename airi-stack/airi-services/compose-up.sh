@@ -10,19 +10,15 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "anything-llm" ]]; then
+	if [[ ${f} == "airi" ]]; then
 		mkdir -p "${FOLDER}/${f}_storage"
 	fi
 }
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
-	echo "Added: ${f}/docker-compose.yaml"
 	ARGS+="-f ${f}/docker-compose.yaml "
-done
-for f in "${COMPOSE_FILES[@]}"; do
 	FOLDER="../../DATA/${STACKNAME}-stack/${f}"
-	echo "Making folder: ${FOLDER}"
 	mkdir -p "${FOLDER}"
 	CREATE_FOLDERS
 done

@@ -40,7 +40,8 @@ services:
 
     secrets:
       - GF_SECURITY_ADMIN_USER
-      - GF_SECURITY_ADMIN_PASSWORD_FILE
+      - GF_SECURITY_ADMIN_PASSWORD
+      - GF_AUTH_GOOGLE_CLIENT_SECRET
 
     networks:
       host:
