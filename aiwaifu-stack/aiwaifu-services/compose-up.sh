@@ -1,5 +1,5 @@
 #!/bin/bash
-# Launch all AI stack services using modular compose files
+
 set -e
 cd "$(dirname "$0")"
 

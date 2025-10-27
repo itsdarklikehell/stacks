@@ -1,5 +1,4 @@
 #!/bin/bash
-# sudo apt update && sudo apt upgrade -y
 
 WD="$(dirname "$(realpath "$0")")" || true
 export STACKNAME="riko"

@@ -28,6 +28,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
     #   - ../../DATA/arr-stack/jaison-core/.env:/jaison-core/.env
     #   - ../../DATA/arr-stack/jaison-core/avatars:/app/avatars
     #   - ../../DATA/arr-stack/jaison-core/avatars:/app/backgrounds

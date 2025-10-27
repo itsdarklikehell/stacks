@@ -1,5 +1,5 @@
 #!/bin/bash
-# Launch all AI stack services using modular compose files
+
 set -e
 cd "$(dirname "$0")"
 
@@ -8,6 +8,12 @@ COMPOSE_FILES=(
 	jaison-core
 	watchtower
 )
+
+function CREATE_FOLDERS() {
+	if [[ ${f} == "wolf" ]]; then
+		mkdir -p "${FOLDER}/${f}_etc"
+	fi
+}
 
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do

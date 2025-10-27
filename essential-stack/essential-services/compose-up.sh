@@ -1,5 +1,5 @@
 #!/bin/bash
-# Launch all AI stack services using modular compose files
+
 set -e
 cd "$(dirname "$0")"
 
@@ -23,7 +23,7 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "wolfs" ]]; then
+	if [[ ${f} == "wolf" ]]; then
 		mkdir -p "${FOLDER}/${f}_etc"
 	fi
 	if [[ ${f} == "uptime-kuma" ]]; then
