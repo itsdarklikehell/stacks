@@ -21,10 +21,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - libretranslate-whispher_data:/home/libretranslate/.local/share
       - libretranslate-whispher_cache:/home/libretranslate/.local/cache
-      # - ../../DATA/ai-stack/libretranslate-whispher/data:/home/libretranslate/.local/share
-      # - ../../DATA/ai-stack/libretranslate-whispher/cache:/home/libretranslate/.local/cache
 
     hostname: ${NAME:-libretranslate-whispher}
 

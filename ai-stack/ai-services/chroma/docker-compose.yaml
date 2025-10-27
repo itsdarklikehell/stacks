@@ -24,6 +24,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      
       - chroma_data:/chroma
       - chroma_index:/index_data
 

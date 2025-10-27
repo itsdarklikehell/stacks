@@ -30,10 +30,14 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - whishper_logs:/var/log/whishper
+      - whisper_models:/Whisper-WebUI/models
+      - whisper_uploads:/Whisper-WebUI/models
       - whisper_cache:/.cache
-      - ../../DATA/ai-stack/Whisper-WebUI/models:/Whisper-WebUI/models
-      - ../../DATA/ai-stack/Whisper-WebUI/outputs:/Whisper-WebUI/outputs
-      - ../../DATA/ai-stack/Whisper-WebUI/configs:/Whisper-WebUI/configs
+      - whisper_outputs:/Whisper-WebUI/outputs
+      - whisper_configs:/Whisper-WebUI/configs
 
     hostname: ${NAME:-whisper-webui}
 

@@ -34,14 +34,15 @@ services:
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
 
     volumes:
-      - type: bind
-        source: ./librechat/.env
-        target: /app/.env
-      - ../../DATA/ai-stack/LibreChat/images:/app/client/public/images
-      - ../../DATA/ai-stack/LibreChat/uploads:/app/uploads
-      - ../../DATA/ai-stack/LibreChat/logs:/app/logs
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - librechat_images:/app/client/public/images
+
+      - librechat_uploads:/app/uploads
+
+      - librechat_logs:/app/logs
 
     hostname: ${NAME:-librechat}
 
@@ -107,7 +108,11 @@ services:
       ai-services:
 
     volumes:
-      - ../../DATA/ai-stack/LibreChat/data-node:/data/db
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - librechat_mongo_data:/data/db
 
     command: mongod --noauth
 
@@ -138,7 +143,7 @@ services:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
     volumes:
-      - ../../DATA/ai-stack/LibreChat/meili_data_v1.12:/meili_data
+      - librechat_meili_data:/meili_data
 
     env_file:
       - ./librechat/.env
@@ -169,7 +174,7 @@ services:
       POSTGRES_PASSWORD: mypassword
 
     volumes:
-      - librechat_pgdata:/var/lib/postgresql/data
+      - librechat_postgress_data:/var/lib/postgresql/data
 
     env_file:
       - ./librechat/.env

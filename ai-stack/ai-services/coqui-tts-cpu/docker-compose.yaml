@@ -9,9 +9,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - kokoro_data:/kokoro
-      - kokoro_index_data:/index_data
-    # - ../../DATA/ai-stack/coqui-tts-cpu:/kokoro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - coqui-tts-cpu_data:/kokoro
+      - coqui-tts-cpu_index_data:/index_data
 
     hostname: ${NAME:-coqui-tts-cpu}
 

@@ -53,15 +53,25 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - ../../DATA/ai-stack/localai/.cache:/.cache:cached
+      # - localai_cache:/.cache:cached
 
       - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
-      - ../../DATA/ai-stack/localai/backends:/backends:cached
+      # - localai_backends:/usr/share/localai/backends:cached
 
       - ../../DATA/ai-stack/localai/configuration:/configuration:cached
+      # - localai_configuration:/configuration:cached
+
       - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
+      # - localai_content:cached
+
       - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached
+      # - localai_images:cached
+
       - ../../DATA/ai-stack/localai/models:/models:cached
+      # - localai_models:/models:cached
 
     user: ${PUID:-1000}:${PGID:-1000}
 

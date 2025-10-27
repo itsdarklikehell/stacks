@@ -24,7 +24,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - koboldccp-data:/workspace/:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - koboldccp-workspace:/workspace/:rw
 
     hostname: ${NAME:-koboldccp}
 

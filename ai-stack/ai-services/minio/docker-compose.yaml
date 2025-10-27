@@ -14,7 +14,7 @@ services:
       ai-services:
 
     env_file:
-      - ../../DATA/ai-stack/clickhouse/.env
+      - ./minio/.env
 
     ports:
       - ${CONSOLE_PORT:-9001}:9001
@@ -26,6 +26,10 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - minio_data:/var/lib/minio/data
 
     command: minio server /var/lib/minio/data --address 0.0.0.0:${HTTP_PORT:-9002} --console-address ":${CONSOLE_PORT:-9001}"
@@ -60,7 +64,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     env_file:
-      - ../../DATA/ai-stack/clickhouse/.env
+      - ./minio/.env
 
     entrypoint: >
       /bin/bash -c "
@@ -98,9 +102,13 @@ services:
       ai-services:
 
     env_file:
-      - ../../DATA/ai-stack/clickhouse/.env
+      - ./minio/.env
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/templates/prometheus.yaml:/home/prometheus-template.yaml:ro
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
@@ -143,7 +151,7 @@ services:
       ai-services:
 
     env_file:
-      - ../../DATA/ai-stack/clickhouse/.env
+      - ./minio/.env
 
     environment:
       - PUID=${PUID:-1000}
@@ -151,6 +159,10 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
     entrypoint: >
@@ -187,7 +199,7 @@ services:
       ai-services:
 
     env_file:
-      - ../../DATA/ai-stack/clickhouse/.env
+      - ./minio/.env
 
     environment:
       - PUID=${PUID:-1000}
@@ -195,6 +207,10 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
     entrypoint: >

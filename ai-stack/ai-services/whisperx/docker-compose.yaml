@@ -34,8 +34,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - whisper_cache:/.cache
-      - ../../DATA/ai-stack/whisperX:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - whisperx_cache:/.cache
+      - whisperx_data:/app
 
     hostname: ${NAME:-whisperX}
 

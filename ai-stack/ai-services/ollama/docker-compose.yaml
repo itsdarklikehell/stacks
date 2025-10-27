@@ -16,8 +16,11 @@ services:
       - OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}
 
     volumes:
-      - ../../DATA/ai-stack/ollama:/root/.ollama
-      # - ollama-data:/root/.ollama
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - ollama_data:/root/.ollama
 
     hostname: ${NAME:-ollama}
 

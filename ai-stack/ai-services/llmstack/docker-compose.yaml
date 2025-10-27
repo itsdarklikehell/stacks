@@ -1,13 +1,13 @@
 services:
-  api:
+  llmstack-api:
     image: llmstack-api:latest
     command: apiserver
     volumes:
-      - ../../DATA/ai-stack/llmstack:/code/llmstack
-      - userdata:/home/appuser/data
+      - llmstack_code:/code/llmstack
+      - llmstack_userdata:/home/appuser/data
 
     links:
-      - postgres:postgres
+      - llmstack-postgres:postgres
 
     ports:
       - 9000:9000
@@ -21,26 +21,26 @@ services:
     cap_add:
       - SYS_PTRACE
 
-  rqworker:
+  llmstack-rqworker:
     image: llmstack-api:latest
     command: rqworker
 
     volumes:
-      - ../../DATA/ai-stack/llmstack/:/code/llmstack
-      - userdata:/home/appuser/data
+      - llmstack_code:/code/llmstack
+      - llmstack_userdata:/home/appuser/data
 
     depends_on:
-      - redis
-      - postgres
+      - llmstack-redis
+      - llmstack-postgres
 
     links:
-      - redis:redis
-      - postgres:postgres
+      - llmstack-redis:redis
+      - llmstack-postgres:postgres
 
     env_file:
       - ./llmstack/.env
 
-  app:
+  llmastack-app:
     image: llmstack-app:latest
     ports:
       - 3000:8086
@@ -49,12 +49,12 @@ services:
       - ./llmstack/.env
 
     depends_on:
-      - api
+      - llmstack-api
 
     volumes:
-      - userdata:/usr/share/nginx/html/media
+      - llmstack_userdata:/usr/share/nginx/html/media
 
-  redis:
+  llmstack-redis:
     image: redis:latest
 
     ports:
@@ -65,12 +65,12 @@ services:
     restart: unless-stopped
 
     volumes:
-      - redisdata:/data
+      - llmstack_redis_data:/data
 
     env_file:
       - ./llmstack/.env
 
-  runner:
+  llmstack-runner:
     image: langrocks-web-browser:latest
 
     env_file:
@@ -81,7 +81,7 @@ services:
       - 50052:50052
       - 50053:50053
 
-  postgres:
+  llmstack-postgres:
     image: postgres:16-alpine
     ports:
       - 25432:5432
@@ -89,7 +89,11 @@ services:
     restart: unless-stopped
 
     volumes:
-      - postgresdata:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - llmstack_postgres_data:/var/lib/postgresql/data
 
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
@@ -100,14 +104,14 @@ services:
     env_file:
       - ./llmstack/.env
 
-  weaviate:
+  llmstack-weaviate:
     image: semitechnologies/weaviate:1.25.7
 
     ports:
       - 28080:8080
 
     volumes:
-      - weaviatedata:/var/lib/weaviate
+      - llmstack_weaviate_data:/var/lib/weaviate
 
     environment:
       QUERY_DEFAULTS_LIMIT: 20

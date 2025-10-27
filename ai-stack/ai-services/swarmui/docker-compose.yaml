@@ -27,16 +27,20 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - swarmdata:/SwarmUI/Data
-      - swarmbackend:/SwarmUI/dlbackend
-      - swarmdlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
-      - swarmextensions:/SwarmUI/src/Extensions
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - swarm_backend:/SwarmUI/dlbackend
+      - swarm_data:/SwarmUI/Data
+
+      - swarm_dlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
+
+      - swarm_extensions:/SwarmUI/src/Extensions
+
       - stable-diffusion-webui-docker_models:/SwarmUI/Models
+
       - stable-diffusion-webui-docker_output:/SwarmUI/Output
+
       - stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
-      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/data/models:/SwarmUI/Models
-      # - ../../DATA/ai-stack/stable-diffusion-webui-docker/output:/SwarmUI/Output
-      # - ../../DATA/ai-stack/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: ${NAME:-swarmui}
 

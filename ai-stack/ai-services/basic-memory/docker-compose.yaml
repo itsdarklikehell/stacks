@@ -22,7 +22,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - basic-memory-config:/root/.basic-memory:rw
+
+      - basic-memory-config:/root/.basic-memory
       - basic-memory-knowledge:/app/data
       - basic-memory-work-notes:/app/data/work
       - basic-memory-personal-notes:/app/data/personal

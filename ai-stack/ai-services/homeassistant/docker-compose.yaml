@@ -17,8 +17,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - home-assistant-config:/config
-      - home-assistant-media:/media
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - homeassistant-config:/config
+      - homeassistant-media:/media
 
     hostname: ${NAME:-homeassistant}
 

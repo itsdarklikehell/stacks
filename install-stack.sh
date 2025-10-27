@@ -180,9 +180,9 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-INSTALL_ESSENTIALS_STACK
-echo ""
+# echo ""
+# INSTALL_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 INSTALL_AI_STACK
@@ -223,8 +223,9 @@ echo ""
 # sudo chown -R "${USER}":"${USER}" "${WD}"
 echo "Installation complete.."
 
-if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
-	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
-	xdg-open "http://localhost:8383/"
-fi
+# if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
+# 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
+# 	xdg-open "http://localhost:8383/"
+# fi
+
 sudo chown -R rizzo:rizzo "${WD}/DATA"

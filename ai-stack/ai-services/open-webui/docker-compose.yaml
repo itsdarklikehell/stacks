@@ -24,7 +24,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - open-webui-data:/app/backend/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - open-webui_data:/app/backend/data
 
     hostname: ${NAME:-open-webui}
 
