@@ -171,7 +171,7 @@ INSTALL_DOCKER
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS >/dev/null 2>&1
+CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ## STACKS:
@@ -180,9 +180,9 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
 echo ""
 INSTALL_AI_STACK

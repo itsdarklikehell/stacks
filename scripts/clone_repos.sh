@@ -313,7 +313,7 @@ function CLONE_JAISON() {
 		uv pip install spacy
 		python -m spacy download en_core_web_sm
 		uv pip install unidic
-		python -m unidic download &
+		python -m unidic download >/dev/null 2>&1 &
 		python install.py
 		# python ./src/main.py --help
 		# python ./src/main.py --config=example
@@ -443,14 +443,15 @@ function CLONE_LLMSTACK() {
 	# LOCAL_SETUP
 	DOCKER_SETUP
 }
-function CLONE_SDWEBUI() {
+function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning stable-diffusion-webui-docker"
 	echo ""
-	git clone --recursive hhttps://github.com/AbdBarho/stable-diffusion-webui-docker.git llmstack
+	git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
 	cd stable-diffusion-webui-docker || exit 1
+	mkdir -p data/Models/CLIPEncoder
 
 	function LOCAL_SETUP() {
 		./install.sh
@@ -607,12 +608,12 @@ function CLONE_LOCALRECALL() {
 }
 function CLONE_MELOTTS() {
 	cd "${WD}" || exit
-	cd "../DATA/openllm-vtuber-stack" || exit 1
+	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning MeloTTS"
 	echo ""
-	git clone --recursive https://github.com/myshell-ai/MeloTTS.git MeloTTS
-	cd MeloTTS || exit
+	git clone --recursive https://github.com/myshell-ai/MeloTTS.git melotts
+	cd melotts || exit
 
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
@@ -622,7 +623,7 @@ function CLONE_MELOTTS() {
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 		uv pip install unidic
-		python -m unidic download &
+		python -m unidic download >/dev/null 2>&1 &
 		# docker build -t melotts .
 		# docker run --gpus all -itd -p 8888:8888 melotts
 		# melo-webui
@@ -640,11 +641,10 @@ function CLONE_OLLMVT() {
 	cd "${WD}" || exit
 	cd "../DATA/openllm-vtuber-stack" || exit 1
 
-	echo "Cloning Open-LLM-VTuber"
+	echo "Cloning openllm-vtuber"
 	echo ""
-	git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
-	# git clone --recursive https://github.com/itsdarklikehell/Open-LLM-VTuber.git Open-LLM-VTuber
-	cd Open-LLM-VTuber || exit
+	git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git openllm-vtuber
+	cd openllm-vtuber || exit
 	function LOCAL_SETUP() {
 		export INSTALL_WHISPER=true
 		export INSTALL_BARK=true
@@ -667,7 +667,7 @@ function CLONE_OLLMVT() {
 		uv pip install git+https://github.com/suno-ai/bark.git
 
 		uv pip install unidic
-		python -m unidic download &
+		python -m unidic download >/dev/null 2>&1 &
 
 		#     python3 - <<PYCODE
 		# import nltk
@@ -678,7 +678,7 @@ function CLONE_OLLMVT() {
 		fi
 
 		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
+		cd "../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
 		echo "Cloning Live2D Models"
 		echo ""
 		# git clone --recursive https://github.com/Eikanya/Live2d-model
@@ -689,7 +689,7 @@ function CLONE_OLLMVT() {
 		# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
 
 		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
+		cd "../DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
 		echo "Cloning VITS Models"
 		echo ""
 		# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
@@ -734,7 +734,7 @@ function CLONE_OLLMVT() {
 		fi
 
 		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
+		cd "../DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
 		# git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 		# # If you failed to clone the submodule due to network failures, please run the following command until success
 		# cd CosyVoice || exit 1
@@ -915,22 +915,6 @@ function CLONE_SIGNOZ() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
-function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
-	cd "${WD}" || exit
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning stable-diffusion-webui-docker"
-	echo ""
-	git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
-	cd stable-diffusion-webui-docker || exit 1
-
-	function DOCKER_SETUP() {
-		mkdir -p data/Models/CLIPEncoder
-		cd services/comfy/ || exit 1
-		cp -f "${WD}/CustomDockerfile-comfyui" Dockerfile
-	}
-	DOCKER_SETUP
-}
 function CLONE_SWARMUI() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
@@ -939,16 +923,26 @@ function CLONE_SWARMUI() {
 	echo ""
 	git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git swarmui
 	cd swarmui || exit 1
-
+	function LOCAL_SETUP() {
+		# ./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+		chmod +x launch-linux.sh
+		./launch-linux.sh --launch_mode none --host 0.0.0.0 >/dev/null 2>&1 &
+		xdg-open "http://0.0.0.0:7801/Install"
+	}
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
 		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
-		# docker build -t riko-project .
-		# docker stop swarmui
-		# docker rm swarmui
-		# ./launchtools/custom-launch-docker.sh
+		# docker build -t swarmui .
+		./launchtools/custom-launch-docker.sh
 	}
-	# DOCKER_SETUP
+	LOCAL_SETUP
+	DOCKER_SETUP
 }
 function CLONE_WHISPER_WEBUI() {
 	cd "${WD}" || exit
@@ -997,8 +991,8 @@ CLONE_BIGAGI
 CLONE_MIDORIAISUBSYSTEM
 CLONE_LLMSTACK
 CLONE_ANYTHINGLLM
-CLONE_SDWEBUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+CLONE_SWARMUI
 CLONE_LOCALRECALL
 CLONE_MELOTTS
 CLONE_OLLMVT
@@ -1007,6 +1001,5 @@ CLONE_PRIVATEGPT
 CLONE_PROMETHEUS
 CLONE_RIKOPROJECT
 CLONE_SIGNOZ
-CLONE_SWARMUI
 CLONE_WHISPER_WEBUI
 CLONE_WHISPERX
