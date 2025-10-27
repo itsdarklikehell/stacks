@@ -44,4 +44,3 @@ function CREATE_SECRETS() {
 		fi
 	fi
 }
-CREATE_SECRETS

@@ -37,8 +37,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - letta_data:/var/lib/postgresql/data
-      - letta_tool_execution_dir:/root/.letta/tool_execution_dir
+      - letta-server_data:/var/lib/postgresql/data
+      - letta-server_tool_execution_dir:/root/.letta/tool_execution_dir
 
     hostname: ${NAME:-letta-server}
 

@@ -22,8 +22,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - mongo-whispher_data:/data/db
-      - mongo-whispher_logs:/var/log/mongodb/
+      - mongo-whishper_data:/data/db
+      - mongo-whishper_logs:/var/log/mongodb/
 
     hostname: ${NAME:-mongo-whispher}
 

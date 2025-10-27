@@ -2,6 +2,8 @@
 # sudo apt update && sudo apt upgrade -y
 
 WD="$(dirname "$(realpath "$0")")" || true
+export STACKNAME="aiwaifu"
+
 export WD
 export UV_LINK_MODE=copy
 
@@ -10,14 +12,15 @@ cd "${WD}" || exit
 
 docker network create aiwaifu-services
 
-function DOCKER_COMPOSE_STACK(){
-    cd "aiwaifu-services" || exit 1
-    ./compose-up.sh
+function DOCKER_COMPOSE_STACK() {
+	cd "${STACKNAME}-services" || exit 1
+	./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: aiwaifu-stack ****"
+echo "*** START COMPOSING: ${STACKNAME}-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: aiwaifu-stack ****"
+echo "*** FINISHED COMPOSING: ${STACKNAME}-stack ****"
+echo ""

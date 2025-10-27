@@ -1,6 +1,6 @@
 services:
-  whishperX:
-    image: ${IMAGE:-gjhj0517/whisper-webui:latest}
+  whisper-webui:
+    image: ${IMAGE:-jhj0517/whisper-webui:latest}
     container_name: ${NAME:-whisper-webui}
     restart: ${RESTART:-unless-stopped}
 
@@ -32,12 +32,12 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - whishper_logs:/var/log/whishper
-      - whisper_models:/Whisper-WebUI/models
-      - whisper_uploads:/Whisper-WebUI/models
-      - whisper_cache:/.cache
-      - whisper_outputs:/Whisper-WebUI/outputs
-      - whisper_configs:/Whisper-WebUI/configs
+      - whisper-webui_logs:/var/log/whishper
+      - whisper-webui_models:/Whisper-WebUI/models
+      - whisper-webui_uploads:/Whisper-WebUI/models
+      - whisper-webui_cache:/.cache
+      - whisper-webui_outputs:/Whisper-WebUI/outputs
+      - whisper-webui_configs:/Whisper-WebUI/configs
 
     hostname: ${NAME:-whisper-webui}
 

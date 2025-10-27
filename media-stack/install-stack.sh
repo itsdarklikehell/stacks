@@ -1,6 +1,7 @@
 #!/bin/bash
 
 WD="$(dirname "$(realpath "$0")")" || true
+export STACKNAME="media"
 export WD
 export UV_LINK_MODE=copy
 
@@ -9,14 +10,15 @@ cd "${WD}" || exit
 
 docker network create media-services
 
-function DOCKER_COMPOSE_STACK(){
-    cd "media-services" || exit 1
-    ./compose-up.sh
+function DOCKER_COMPOSE_STACK() {
+	cd "${STACKNAME}-services" || exit 1
+	./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: media-stack ****"
+echo "*** START COMPOSING: ${STACKNAME}-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: media-stack ****"
+echo "*** FINISHED COMPOSING: ${STACKNAME}-stack ****"
+echo ""

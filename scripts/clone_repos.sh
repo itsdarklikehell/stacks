@@ -293,8 +293,8 @@ function CLONE_JAISON() {
 
 	echo "Cloning jaison-core"
 	echo ""
-	git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison-core
-	cd jaison-core || exit
+	git clone --recursive https://github.com/limitcantcode/jaison-core.git jaison
+	cd jaison || exit
 
 	function LOCAL_SETUP() {
 		export INSTALL_WHISPER=false
@@ -333,8 +333,8 @@ function CLONE_LETTA() {
 
 	echo "Cloning Letta"
 	echo ""
-	git clone --recursive https://github.com/letta-ai/letta.git letta
-	cd letta || exit
+	git clone --recursive https://github.com/letta-ai/letta.git letta-server
+	cd letta-server || exit
 
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
@@ -360,10 +360,10 @@ function CLONE_LIBRECHAT() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning LibreChat"
+	echo "Cloning librechat"
 	echo ""
-	git clone --recursive https://github.com/danny-avila/LibreChat.git LibreChat
-	cd LibreChat || exit 1
+	git clone --recursive https://github.com/danny-avila/librechat.git librechat
+	cd librechat || exit 1
 	mkdir -p images uploads logs data-node meili_data
 
 	function DOCKER_SETUP() {
@@ -970,10 +970,10 @@ function CLONE_WHISPERX() {
 	cd "${WD}" || exit
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning whisperX"
+	echo "Cloning whisperx"
 	echo ""
-	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperX
-	cd whisperX || exit 1
+	git clone --recursive https://github.com/jim60105/docker-whisperx.git whisperx
+	cd whisperx || exit 1
 
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
@@ -984,14 +984,14 @@ function CLONE_WHISPERX() {
 	# DOCKER_SETUP
 }
 
-# CLONE_AIRI
-# CLONE_AIWAIFU
-# CLONE_CHROMA
-# CLONE_CLICKHOUSE
-# CLONE_JAISON
-# CLONE_LETTA
-# CLONE_LIBRECHAT
-# CLONE_LOCALAGI
+CLONE_AIRI
+CLONE_AIWAIFU
+CLONE_CHROMA
+CLONE_CLICKHOUSE
+CLONE_JAISON
+CLONE_LETTA
+CLONE_LIBRECHAT
+CLONE_LOCALAGI
 CLONE_LOCALAI
 CLONE_BIGAGI
 CLONE_MIDORIAISUBSYSTEM
@@ -999,14 +999,14 @@ CLONE_LLMSTACK
 CLONE_ANYTHINGLLM
 CLONE_SDWEBUI
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-# CLONE_LOCALRECALL
-# CLONE_MELOTTS
-# CLONE_OLLMVT
-# CLONE_OOGABOOGA
-# CLONE_PRIVATEGPT
-# CLONE_PROMETHEUS
-# CLONE_RIKOPROJECT
-# CLONE_SIGNOZ
-# CLONE_SWARMUI
-# CLONE_WHISPER_WEBUI
-# CLONE_WHISPERX
+CLONE_LOCALRECALL
+CLONE_MELOTTS
+CLONE_OLLMVT
+CLONE_OOGABOOGA
+CLONE_PRIVATEGPT
+CLONE_PROMETHEUS
+CLONE_RIKOPROJECT
+CLONE_SIGNOZ
+CLONE_SWARMUI
+CLONE_WHISPER_WEBUI
+CLONE_WHISPERX

@@ -11,7 +11,7 @@ services:
       - host.docker.internal:host-gateway
 
     build:
-      context: ../../DATA/ai-stack/LibreChat
+      context: ../../DATA/ai-stack/librechat
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
@@ -28,7 +28,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3080}
       - HOST=0.0.0.0
-      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MONGO_URI=mongodb://mongodb:27017/librechat
       - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}

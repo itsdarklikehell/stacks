@@ -29,12 +29,12 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - swarm_backend:/SwarmUI/dlbackend
-      - swarm_data:/SwarmUI/Data
+      - swarmui_backend:/SwarmUI/dlbackend
+      - swarmui_data:/SwarmUI/Data
 
-      - swarm_dlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
+      - swarmui_dlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
 
-      - swarm_extensions:/SwarmUI/src/Extensions
+      - swarmui_extensions:/SwarmUI/src/Extensions
 
       - stable-diffusion-webui-docker_models:/SwarmUI/Models
 

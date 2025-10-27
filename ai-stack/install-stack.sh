@@ -2,6 +2,7 @@
 # sudo apt update && sudo apt upgrade -y
 
 WD="$(dirname "$(realpath "$0")")" || true
+export STACKNAME="ai"
 export WD
 export UV_LINK_MODE=copy
 
@@ -10,14 +11,15 @@ cd "${WD}" || exit
 
 docker network create ai-services
 
-function DOCKER_COMPOSE_STACK(){
-    cd "ai-services" || exit 1
-    ./compose-up.sh
+function DOCKER_COMPOSE_STACK() {
+	cd "${STACKNAME}-services" || exit 1
+	./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: ai-stack ****"
+echo "*** START COMPOSING: ${STACKNAME}-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: ai-stack ****"
+echo "*** FINISHED COMPOSING: ${STACKNAME}-stack ****"
+echo ""

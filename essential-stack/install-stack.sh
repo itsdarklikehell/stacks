@@ -2,6 +2,7 @@
 # sudo apt update && sudo apt upgrade -y
 
 WD="$(dirname "$(realpath "$0")")" || true
+export STACKNAME="essential"
 export WD
 export UV_LINK_MODE=copy
 
@@ -11,14 +12,14 @@ cd "${WD}" || exit
 docker network create essential-services
 
 function DOCKER_COMPOSE_STACK() {
-	cd "essential-services" || exit 1
+	cd "${STACKNAME}-services" || exit 1
 	./compose-up.sh
 }
 
 echo ""
-echo "*** START COMPOSING: essential-stack ****"
+echo "*** START COMPOSING: ${STACKNAME}-stack ****"
 echo ""
 DOCKER_COMPOSE_STACK
 echo ""
-echo "*** FINISHED COMPOSING: essential-stack ****"
+echo "*** FINISHED COMPOSING: ${STACKNAME}-stack ****"
 echo ""

@@ -1,14 +1,14 @@
 services:
-  whisperX:
-    image: ${IMAGE:-ghcr.io/jim60105/whisperx:latest}
+  whisperx:
+    image: ${IMAGE:-ghcr.io/jim60105/whisperx:base-en}
     # pull_policy: always
-    container_name: ${NAME:-whishperX}
+    container_name: ${NAME:-whishperx}
     restart: ${RESTART:-unless-stopped}
 
     user: ${PUID:-1000}:${PGID:-1000}
 
     build:
-      context: ../../DATA/ai-stack/whisperX
+      context: ../../DATA/ai-stack/whisperx
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
@@ -39,7 +39,7 @@ services:
       - whisperx_cache:/.cache
       - whisperx_data:/app
 
-    hostname: ${NAME:-whisperX}
+    hostname: ${NAME:-whisperx}
 
     networks:
       host:
