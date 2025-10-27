@@ -755,10 +755,10 @@ secrets:
 #     file: ../../secrets/mariadb_root_password
 #   mariadb_password:
 #     file: ../../secrets/mariadb_password
-#   gsdb_root_password:
-#     file: ../../secrets/gsdb_root_password
-#   gsdb_password:
-#     file: ../../secrets/gsdb_password
+#   gaseous-server_mariadb_root_password:
+#     file: ../../secrets/gaseous-server_mariadb_root_password
+#   gaseous-server_mariadb_password:
+#     file: ../../secrets/gaseous-server_mariadb_password
 #   romm_db_password:
 #     file: ../../secrets/romm_db_password
 #   romm_auth_secret_key:

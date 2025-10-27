@@ -13,7 +13,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - dbhost=gsdb
+      - dbhost=gaseous-server_mariadb
       - dbuser=root
       - dbpass=gaseous
       - igdbclientid=
@@ -23,7 +23,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - gaseous_data:/root/.gaseous-server
+      - gaseous-server_data:/root/.gaseous-server
 
     hostname: ${NAME:-gaseous-server}
 
@@ -38,7 +38,7 @@ services:
       - ./gaseous-server/.env
 
     depends_on:
-      - gsdb
+      - gaseous-server_mariadb
 
     deploy:
       replicas: 1
@@ -56,6 +56,72 @@ services:
     #       --tries=3,
     #       --spider,
     #       http://localhost:${PORT:-5198}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  gaseous-server-mariadb:
+    image: ${IMAGE:-mariadb}
+    container_name: ${NAME:-gaseous-server-mariadb}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - MARIADB_USER=gaseous
+      # - PORT=${PORT:-80}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - gaseous-server_mariadb:/var/lib/mysql
+
+    hostname: ${NAME:-gaseous-server_mariadb}
+
+    networks:
+      host:
+      media-services:
+
+    # ports:
+    #   - ${PORT:-80}:80
+
+    secrets:
+      - gaseous-server_mariadb_root_password
+      - gaseous-server_mariadb_password
+
+    env_file:
+      - ./gaseous-server/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

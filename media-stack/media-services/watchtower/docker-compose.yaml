@@ -42,7 +42,7 @@ services:
       - emby
       - flexget
       - gaseous-server
-      - gsdb
+      - gaseous-server_mariadb
       - gzdoom
       - jellyfin
       - mattermost
@@ -51,7 +51,7 @@ services:
       - retroarch
       - retroarchz
       - romm
-      - romm-db
+      - romm-mariadb
       - tvs99
       - webrcade
 

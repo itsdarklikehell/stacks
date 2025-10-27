@@ -13,7 +13,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - DB_HOST=${DB_HOST:-romm-db}
+      - DB_HOST=${DB_HOST:-romm-mariadb}
       - DB_NAME=${DB_NAME:-romm}
       - DB_USER=${DB_USER:-romm-user}
       - HASHEOUS_API_ENABLED=${HASHEOUS_API_ENABLED:-true}
@@ -45,7 +45,7 @@ services:
       - ${PORT:-8080}:8080
 
     depends_on:
-      romm-db:
+      romm-mariadb:
         condition: service_healthy
         restart: true
 
@@ -73,6 +73,65 @@ services:
     #   timeout: 10s
     #   start_period: 30s
     #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  romm-mariadb:
+    image: ${IMAGE:-mariadb}
+    container_name: ${NAME:-romm-mariadb}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-romm}
+      - MARIADB_USER=${MARIADB_USER:-romm-user}
+      - PORT=${PORT:-3306}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - romm-mariadb:/var/lib/mysql
+
+    secrets:
+      - romm-mariadb_root_password
+      - romm-mariadb_password
+
+    hostname: ${NAME:-romm-mariadb}
+
+    networks:
+      host:
+      media-services:
+
+    ports:
+      - ${PORT:-3306}:3306
+
+    env_file:
+      - ./romm/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    healthcheck:
+      test: [CMD, mysqladmin, ping, -h, localhost]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
 
     logging:
       driver: json-file

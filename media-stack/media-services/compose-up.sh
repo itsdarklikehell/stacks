@@ -15,7 +15,6 @@ COMPOSE_FILES=(
 	flexget
 	flycast
 	gaseous-server
-	gsdb
 	gzdoom
 	jellyfin
 	kali-linux
@@ -28,7 +27,7 @@ COMPOSE_FILES=(
 	retroarch
 	retroarchz
 	romm
-	romm-db
+	romm-mariadb
 	rpcs3
 	steamos
 	transmission
