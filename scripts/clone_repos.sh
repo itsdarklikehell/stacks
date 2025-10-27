@@ -221,7 +221,7 @@ function CLONE_AIWAIFU() {
 		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
 		# docker build -t aiwaifu .
 	}
-	LOCAL_SETUP
+	# LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_CHROMA() {
@@ -677,89 +677,96 @@ function CLONE_OLLMVT() {
 			cp config_templates/conf.default.yaml conf.yaml
 		fi
 
-		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
-		echo "Cloning Live2D Models"
-		echo ""
-		# git clone --recursive https://github.com/Eikanya/Live2d-model
-		# git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
-		# git clone --recursive https://github.com/andatoshiki/toshiki-live2d
-		# git clone --recursive https://github.com/xiaoski/live2d_models_collection
-		# git clone --recursive https://github.com/ezshine/AwesomeLive2D
-		# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+		function CLONE_L2D_MODELS() {
+			cd "${WD}" || exit
+			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
+			echo "Cloning Live2D Models"
+			echo ""
+			# git clone --recursive https://github.com/Eikanya/Live2d-model
+			# git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
+			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d
+			# git clone --recursive https://github.com/xiaoski/live2d_models_collection
+			# git clone --recursive https://github.com/ezshine/AwesomeLive2D
+			# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+		}
+		function CLONE_VOICE_MODELS() {
+			cd "${WD}" || exit
+			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
+			echo "Cloning VITS Models"
+			echo ""
+			# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
+			#     git clone https://huggingface.co/csukuangfj/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17
+			# fi
+			if [[ ! -d "vits-melo-tts-zh_en" ]]; then
+				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
+				tar xvf vits-melo-tts-zh_en.tar.bz2
+				rm vits-melo-tts-zh_en.tar.bz2
+			fi
+			if [[ ! -d "vits-piper-en_US-glados" ]]; then
+				# wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
+				# tar xvf vits-piper-en_US-glados.tar.bz2
+				# rm vits-piper-en_US-glados.tar.bz2
+				git clone --recursive https://huggingface.co/csukuangfj/vits-piper-en_US-glados
+			fi
+			if [[ ! -d "vits-piper-en_US-libritts_r-medium" ]]; then
+				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
+				tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
+				rm vits-piper-en_US-libritts_r-medium.tar.bz22
+			fi
+			if [[ ! -d "vits-ljs" ]]; then
+				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
+				tar xvf vits-ljs.tar.bz2
+				rm vits-ljs.tar.bz2
+			fi
+			if [[ ! -d "vits-vctk" ]]; then
+				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
+				tar xvf vits-vctk.tar.bz2
+				rm vits-vctk.tar.bz2
+			fi
+			if [[ ! -d "vits-piper-en_US-lessac-medium" ]]; then
+				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
+				tar xvf vits-piper-en_US-lessac-medium.tar.bz2
+				rm vits-piper-en_US-lessac-medium.tar.bz2
+			fi
+			if [[ ! -d "vits-piper-en_GB-cori-high " ]]; then
+				git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
+			fi
+			if [[ ! -d "vits-piper-nl_NL-miro-high " ]]; then
+				git clone https://huggingface.co/csukuangfj/vits-piper-nl_NL-miro-high
+			fi
+		}
+		function CLONE_TTS_BACKENDS() {
+			cd "${WD}" || exit
+			cd "../DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
+			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
+			# # If you failed to clone the submodule due to network failures, please run the following command until success
+			cd CosyVoice || exit 1
+			git submodule update --init --recursive
+			# # conda create -n cosyvoice -y python=3.10
+			# # conda activate cosyvoice
+			uv venv --clear --seed
+			uv sync
+			# uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
+			mkdir -p pretrained_models
+			# git clone https://www.modelscope.cn/iic/CosyVoice2-0.5B.git pretrained_models/CosyVoice2-0.5B
+			# git clone https://www.modelscope.cn/iic/CosyVoice-300M.git pretrained_models/CosyVoice-300M
+			# git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git pretrained_models/CosyVoice-300M-SFT
+			# git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git pretrained_models/CosyVoice-300M-Instruct
+			git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git pretrained_models/CosyVoice-ttsfrd
+			cd pretrained_models/CosyVoice-ttsfrd/ || exit 1
+			unzip resource.zip -d .
+			uv pip install ttsfrd_dependency-0.1-py3-none-any.whl
+			uv pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
 
-		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
-		echo "Cloning VITS Models"
-		echo ""
-		# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
-		#     git clone https://huggingface.co/csukuangfj/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17
-		# fi
-		if [[ ! -d "vits-melo-tts-zh_en" ]]; then
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
-			tar xvf vits-melo-tts-zh_en.tar.bz2
-			rm vits-melo-tts-zh_en.tar.bz2
-		fi
-		if [[ ! -d "vits-piper-en_US-glados" ]]; then
-			# wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
-			# tar xvf vits-piper-en_US-glados.tar.bz2
-			# rm vits-piper-en_US-glados.tar.bz2
-			git clone --recursive https://huggingface.co/csukuangfj/vits-piper-en_US-glados
-		fi
-		if [[ ! -d "vits-piper-en_US-libritts_r-medium" ]]; then
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
-			tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
-			rm vits-piper-en_US-libritts_r-medium.tar.bz22
-		fi
-		if [[ ! -d "vits-ljs" ]]; then
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
-			tar xvf vits-ljs.tar.bz2
-			rm vits-ljs.tar.bz2
-		fi
-		if [[ ! -d "vits-vctk" ]]; then
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
-			tar xvf vits-vctk.tar.bz2
-			rm vits-vctk.tar.bz2
-		fi
-		if [[ ! -d "vits-piper-en_US-lessac-medium" ]]; then
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
-			tar xvf vits-piper-en_US-lessac-medium.tar.bz2
-			rm vits-piper-en_US-lessac-medium.tar.bz2
-		fi
-		if [[ ! -d "vits-piper-en_GB-cori-high " ]]; then
-			git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
-		fi
-		if [[ ! -d "vits-piper-nl_NL-miro-high " ]]; then
-			git clone https://huggingface.co/csukuangfj/vits-piper-nl_NL-miro-high
-		fi
-
-		cd "${WD}" || exit
-		cd "../DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
-		# git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
-		# # If you failed to clone the submodule due to network failures, please run the following command until success
-		# cd CosyVoice || exit 1
-		# git submodule update --init --recursive
-		# # conda create -n cosyvoice -y python=3.10
-		# # conda activate cosyvoice
-		# uv venv --clear --seed
-		# uv sync
-		# uv pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
-		# mkdir -p pretrained_models
-		# git clone https://www.modelscope.cn/iic/CosyVoice2-0.5B.git pretrained_models/CosyVoice2-0.5B
-		# git clone https://www.modelscope.cn/iic/CosyVoice-300M.git pretrained_models/CosyVoice-300M
-		# git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git pretrained_models/CosyVoice-300M-SFT
-		# git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git pretrained_models/CosyVoice-300M-Instruct
-		# git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git pretrained_models/CosyVoice-ttsfrd
-		# cd pretrained_models/CosyVoice-ttsfrd/ || exit 1
-		# unzip resource.zip -d .
-		# uv pip install ttsfrd_dependency-0.1-py3-none-any.whl
-		# uv pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
-
-		# # If you encounter sox compatibility issues
-		# # ubuntu
-		# sudo apt install -y sox libsox-dev
-
-		# uv run run_server.py
+			# # If you encounter sox compatibility issues
+			# # ubuntu
+			sudo apt install -y sox libsox-dev
+		}
+		CLONE_TTS_BACKENDS >/dev/null 2>&1 &
+		CLONE_L2D_MODELS >/dev/null 2>&1 &
+		uv run run_server.py >/dev/null 2>&1 &
+		CLONE_L2D_MODELS >/dev/null 2>&1 &
+		CLONE_VOICE_MODELS >/dev/null 2>&1 &
 	}
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
@@ -936,6 +943,10 @@ function CLONE_SWARMUI() {
 		xdg-open "http://0.0.0.0:7801/Install"
 	}
 	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-swarmui-uv" CustomDockerfile-airi-uv
+		cp -f "${WD}/CustomDockerfile-swarmui-conda" CustomDockerfile-airi-conda
+		cp -f "${WD}/CustomDockerfile-swarmui-venv" CustomDockerfile-airi-venv
+
 		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
 		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 		# docker build -t swarmui .
@@ -978,28 +989,28 @@ function CLONE_WHISPERX() {
 	# DOCKER_SETUP
 }
 
-CLONE_AIRI
-CLONE_AIWAIFU
-CLONE_CHROMA
-CLONE_CLICKHOUSE
-CLONE_JAISON
-CLONE_LETTA
-CLONE_LIBRECHAT
-CLONE_LOCALAGI
-CLONE_LOCALAI
-CLONE_BIGAGI
-CLONE_MIDORIAISUBSYSTEM
-CLONE_LLMSTACK
-CLONE_ANYTHINGLLM
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-CLONE_SWARMUI
-CLONE_LOCALRECALL
-CLONE_MELOTTS
-CLONE_OLLMVT
-CLONE_OOGABOOGA
-CLONE_PRIVATEGPT
-CLONE_PROMETHEUS
-CLONE_RIKOPROJECT
-CLONE_SIGNOZ
+# CLONE_AIRI
+# CLONE_AIWAIFU
+# CLONE_CHROMA
+# CLONE_CLICKHOUSE
+# CLONE_JAISON
+# CLONE_LETTA
+# CLONE_LIBRECHAT
+# CLONE_LOCALAGI
+# CLONE_LOCALAI
+# CLONE_BIGAGI
+# CLONE_MIDORIAISUBSYSTEM
+# CLONE_LLMSTACK
+# CLONE_ANYTHINGLLM
+# CLONE_LOCALRECALL
+# CLONE_MELOTTS
+# CLONE_OLLMVT
+# CLONE_OOGABOOGA
+# CLONE_PRIVATEGPT
+# CLONE_PROMETHEUS
+# CLONE_RIKOPROJECT
+# CLONE_SIGNOZ
 CLONE_WHISPER_WEBUI
-CLONE_WHISPERX
+# CLONE_WHISPERX
+# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+# CLONE_SWARMUI

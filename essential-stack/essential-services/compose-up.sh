@@ -47,7 +47,8 @@ function CREATE_FOLDERS() {
 	fi
 	if [[ ${f} == "dashy" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_lconfig"
+		mkdir -p "${FOLDER}/${f}_config"
+		touch "${FOLDER}/${f}_data/conf.yml"
 	fi
 	if [[ ${f} == "nextcloud" ]]; then
 		mkdir -p "${FOLDER}/${f}_nextcloud_aio_mastercontainer"
