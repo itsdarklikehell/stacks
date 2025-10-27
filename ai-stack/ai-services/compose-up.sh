@@ -39,7 +39,7 @@ COMPOSE_FILES=(
 	# stable-diffusion-webui
 	# stable-diffusion-webui-docker
 	# swarmui
-	text-generation-webui-docker
+	# text-generation-webui-docker
 	# voice-chat-ai
 	watchtower
 	# whishper
