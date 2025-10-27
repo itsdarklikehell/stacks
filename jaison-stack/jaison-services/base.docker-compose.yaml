@@ -1,14 +1,3 @@
-# Shared networks, volumes, and secrets for all services
-# NETWORK SEGMENTATION:
-# - Use dedicated networks for each stack
-# - Restrict inter-stack communication unless required
-# - Document network policies
-#
-# CI/CD & DOCUMENTATION:
-# - Use GitHub Actions or similar for automated testing/deployment
-# - Document all customizations and manual steps in README.md
-# - Keep this file and .env in sync
-
 name: jaison-services
 
 networks:
