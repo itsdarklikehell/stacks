@@ -937,8 +937,8 @@ function CLONE_SWARMUI() {
 
 	echo "Cloning SwarmUI"
 	echo ""
-	git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
-	cd SwarmUI || exit 1
+	git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git swarmui
+	cd swarmui || exit 1
 
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
@@ -956,8 +956,8 @@ function CLONE_WHISPER_WEBUI() {
 
 	echo "Cloning Whisper-WebUI"
 	echo ""
-	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git Whisper-WebUI
-	cd Whisper-WebUI || exit 1
+	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git whisper-webui
+	cd whisper-webui || exit 1
 
 	function DOCKER_SETUP() {
 		cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
@@ -972,7 +972,7 @@ function CLONE_WHISPERX() {
 
 	echo "Cloning whisperx"
 	echo ""
-	git clone --recursive https://github.com/jim60105/docker-whisperx.git whisperx
+	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperx
 	cd whisperx || exit 1
 
 	function DOCKER_SETUP() {

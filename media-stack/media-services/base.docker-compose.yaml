@@ -22,102 +22,155 @@ volumes:
     #   device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
 
   romm_resources:
-    name: romm_resources
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/romm/romm_resources
+    # name: romm_resources
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/romm/romm_resources
   romm_redis_data:
-    name: romm_redis_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/romm/romm_redis_data
+    # name: romm_redis_data
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/romm/romm_redis_data
   romm_library:
-    name: romm_library
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/romm/romm_library
+    # name: romm_library
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/romm/romm_library
   romm_assets:
-    name: romm_assets
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/romm/romm_assets
+    # name: romm_assets
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/romm/romm_assets
   romm_config:
-    name: romm_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/romm/romm_config
+    # name: romm_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/romm/romm_config
 
   webrcade_content:
-    name: webrcade_content
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/webrcade/webrcade_content
+    # name: webrcade_content
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/webrcade/webrcade_content
 
   tvs99_config:
-    name: tvs99_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/tvs99/config/config.tvs.yml
+    # name: tvs99_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/tvs99/config/config.tvs.yml
   tvs99_data:
-    name: tvs99_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/tvs99/tvs99_data
+    # name: tvs99_data
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/tvs99/tvs99_data
 
   retroarchz_roms:
-    name: retroarchz_roms
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/retroarchz/retroarchz_roms
+    # name: retroarchz_roms
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/retroarchz/retroarchz_roms
 
   retroarch_config:
-    name: retroarch_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/retroarch/retroarch_config
+    # name: retroarch_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/retroarch/retroarch_config
 
   quakejs_config:
-    name: quakejs_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/quakejs/quakejs_config
+    # name: quakejs_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/quakejs/quakejs_config
 
-  plex_config: # ../../DATA/media-stack/plex/config
-  plex_transcode: # ../../DATA/media-stack/plex/transcode
+  plex_config:
+    # name: plex_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/plex/plex_config
+  plex_transcode:
+    # name: plex_transcode
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/plex/plex_transcode
+  plex_media:
+    # name: plex_media
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/plex/plex_media
 
-  plex_media: # ../../DATA/media-stack/plex/media
+  gzdoom_config:
+    # name: gzdoom_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/gzdoom/gzdoom_config
 
-  gzdoom_config: # ../../DATA/media-stack/gzdoom/config
+  flexget_config:
+    # name: flexget_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/flexget/flexget_config
+  flexget_downloads:
+    # name: flexget_downloads
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/flexget/flexget_downloads
 
-  flexget_config: # ../../DATA/media-stack/flexget/config
-  flexget_downloads: # ../../DATA/media-stack/flexget/downloads
+  emby_config:
+    # name: emby_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/emby/emby_config
+  emby_media:
+    # name: emby_media
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/emby/emby_media
 
-  emby_config: # ../../DATA/media-stack/emby/config
-  emby_media: # ../../DATA/media-stack/emby/media
-
-  calibre_library: # ../../DATA/media-stack/calibre-web/calibre-library
+  calibre_library:
+    # name: calibre_library
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/calibre-web/calibre-calibre_library
 
 secrets:
   rreading_glasses_db_password:

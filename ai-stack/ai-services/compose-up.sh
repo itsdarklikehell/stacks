@@ -37,6 +37,7 @@ COMPOSE_FILES=(
 	signoz
 	stable-diffusion-models-download
 	stable-diffusion-webui
+	stable-diffusion-webui-docker
 	swarmui
 	text-generation-webui-docker
 	voice-chat-ai
