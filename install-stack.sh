@@ -228,4 +228,4 @@ echo "Installation complete.."
 # 	xdg-open "http://localhost:8383/"
 # fi
 
-sudo chown -R rizzo:rizzo "${WD}/DATA"
+sudo chown -R ${USER}:${USER} "${WD}/DATA"
