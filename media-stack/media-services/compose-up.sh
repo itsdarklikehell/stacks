@@ -4,39 +4,40 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
-	beets
-	calibre-web
-	deluge
-	dolphin
-	duckstation
-	emby
-	emulatorjs
-	flexget
-	flycast
-	gaseous-server
-	gzdoom
-	jellyfin
-	kali-linux
-	mattermost
-	modmanager
-	nextcloud
-	plex
-	qbittorrent
-	quakejs
-	retroarch
-	retroarchz
-	romm
-	romm-mariadb
-	rpcs3
-	steamos
-	transmission
-	tvs99
-	watchtower
-	webcord
-	webrcade
-	wireguard
-	xemu
+	# autoheal
+	# beets
+	# calibre-web
+	# deluge
+	# dolphin
+	# duckstation
+	# emby
+	# emulatorjs
+	# flexget
+	# flycast
+	# gaseous-server
+	# gzdoom
+	# jellyfin
+	# kali-linux
+	# mattermost
+	# modmanager
+	# nextcloud
+	# plex
+	# qbittorrent
+	# quakejs
+	# retroarch
+	# retroarchz
+	# romm
+	# romm-mariadb
+	# rpcs3
+	# steamos
+	# transmission
+	# tvs99
+	# watchtower
+	# webcord
+	# webrcade
+	# wireguard
+	viewtube
+	# xemu
 )
 
 function CREATE_FOLDERS() {

@@ -989,6 +989,34 @@ function CLONE_WHISPERX() {
 	# DOCKER_SETUP
 }
 
+
+function CLONE_VIEWTUBE() {
+	cd "${WD}" || exit
+	cd "../DATA/media-stack" || exit 1
+
+	echo "Cloning viewtube"
+	echo ""
+	git clone --recursive https://github.com/ViewTube/viewtube.git viewtube
+	cd viewtube || exit 1
+
+	function LOCAL_SETUP() {
+		# ./install.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+		# uv pip install pip
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		cp -f "${WD}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
+		cp -f "${WD}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
+		cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
+		# docker build -t viewtube .
+	}
+	LOCAL_SETUP
+	# DOCKER_SETUP
+}
 # CLONE_AIRI
 # CLONE_AIWAIFU
 # CLONE_CHROMA
@@ -1005,12 +1033,13 @@ function CLONE_WHISPERX() {
 # CLONE_LOCALRECALL
 # CLONE_MELOTTS
 # CLONE_OLLMVT
-# CLONE_OOGABOOGA
-# CLONE_PRIVATEGPT
-# CLONE_PROMETHEUS
+CLONE_OOGABOOGA
+CLONE_PRIVATEGPT
+CLONE_PROMETHEUS
 # CLONE_RIKOPROJECT
-# CLONE_SIGNOZ
-CLONE_WHISPER_WEBUI
+CLONE_SIGNOZ
+# CLONE_WHISPER_WEBUI
+CLONE_VIEWTUBE
 # CLONE_WHISPERX
-# CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
-# CLONE_SWARMUI
+CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
+CLONE_SWARMUI

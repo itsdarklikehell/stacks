@@ -184,17 +184,17 @@ echo ""
 INSTALL_ESSENTIALS_STACK
 echo ""
 
-# echo ""
-# INSTALL_AI_STACK
-# echo ""
+echo ""
+INSTALL_AI_STACK
+echo ""
 
 # echo ""
 # INSTALL_ARR_STACK
 # echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
 # echo ""
 # INSTALL_AIWAIFU_STACK

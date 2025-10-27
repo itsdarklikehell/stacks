@@ -49,7 +49,8 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_config"
 		if [[ ! -f "${FOLDER}/${f}_config/conf.yml" ]]; then
-			wget https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25203%2520-%2520Demo%2520Home%2520Lab%2520-%2520conf.yml -O "${FOLDER}/${f}_config/conf.yml"
+			cd "${FOLDER}/${f}_config" || exit 1
+			wget https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25203%2520-%2520Demo%2520Home%2520Lab%2520-%2520conf.yml -O "conf.yml"
 		fi
 		# touch "${FOLDER}/${f}_data/conf.yml"
 	fi

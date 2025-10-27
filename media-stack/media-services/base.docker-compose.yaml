@@ -104,6 +104,14 @@ volumes:
     #   o: bind
     #   device: ../../DATA/media-stack/quakejs/quakejs_config
 
+  viewtube_data:
+    # name: viewtube_data
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/viewtube
+    
   plex_config:
     # name: plex_config
     # driver: local
