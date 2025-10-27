@@ -82,7 +82,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/dashy/dashy_config
+      device: ../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
   nextcloud_aio_mastercontainer:
     name: nextcloud_aio_mastercontainer

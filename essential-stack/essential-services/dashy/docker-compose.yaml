@@ -20,9 +20,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/essential-stack/dashy/dashy_data/conf.yml:/app/user-data/conf.yml
-      # - dashy_config:/app/user-data/conf.yml
+      - dashy_config:/app/user-data/conf.yml
       - dashy_data:/app/user-data
+      # - ../../DATA/essential-stack/dashy/dashy_data/conf.yml:/app/user-data/conf.yml
 
     hostname: ${NAME:-dashy}
 

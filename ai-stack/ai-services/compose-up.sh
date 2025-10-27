@@ -42,7 +42,7 @@ COMPOSE_FILES=(
 	text-generation-webui-docker
 	voice-chat-ai
 	watchtower
-	whishper
+	# whishper
 	whisper-webui
 	whisperx
 	wyoming-piper
