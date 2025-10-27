@@ -76,13 +76,6 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/essential-stack/dashy/dashy_data
-  dashy_config:
-    name: dashy_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
   nextcloud_aio_mastercontainer:
     name: nextcloud_aio_mastercontainer
