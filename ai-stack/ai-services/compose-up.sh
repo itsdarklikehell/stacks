@@ -26,7 +26,7 @@ COMPOSE_FILES=(
 	localai
 	midori-ai-subsystem-manager
 	minio
-	mongo-whispher
+	# mongo-whispher
 	n8n
 	ollama
 	open-webui
