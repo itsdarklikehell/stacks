@@ -36,6 +36,10 @@ services:
       host:
       essential-services:
 
+    expose: 
+      - 3007/tcp
+      - 3006/tcp
+
     ports:
       - ${PORT:-3007}:3007
       - 3006:3006

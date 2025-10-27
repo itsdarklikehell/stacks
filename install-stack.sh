@@ -225,7 +225,7 @@ echo "Installation complete.."
 
 # if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
 # 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
-# 	xdg-open "http://localhost:8383/"
+# 	# xdg-open "http://localhost:8383/"
 # fi
 
 sudo chown -R ${USER}:${USER} "${WD}/DATA"

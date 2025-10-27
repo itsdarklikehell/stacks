@@ -940,7 +940,7 @@ function CLONE_SWARMUI() {
 		# uv pip install -r requirements.txt
 		chmod +x launch-linux.sh
 		./launch-linux.sh --launch_mode none --host 0.0.0.0 >/dev/null 2>&1 &
-		xdg-open "http://0.0.0.0:7801/Install"
+		# xdg-open "http://0.0.0.0:7801/Install"
 	}
 	function DOCKER_SETUP() {
 		cp -f "${WD}/CustomDockerfile-swarmui-uv" CustomDockerfile-airi-uv
