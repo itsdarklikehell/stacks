@@ -11,7 +11,7 @@ COMPOSE_FILES=(
 	chroma
 	clickhouse
 	# coqui-tts-cpu
-	faster-whisper-gpu
+	# faster-whisper-gpu
 	grafana
 	hollama
 	homeassistant
@@ -20,7 +20,7 @@ COMPOSE_FILES=(
 	letta-mcp-server
 	letta-server
 	librechat
-	libretranslate-whispher
+	# libretranslate-whispher
 	# llmstack
 	lobe-chat
 	localai
