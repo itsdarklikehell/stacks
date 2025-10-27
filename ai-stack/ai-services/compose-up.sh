@@ -7,16 +7,16 @@ COMPOSE_FILES=(
 	anything-llm
 	autoheal
 	basic-memory
-	big-agi
+	# big-agi
 	chroma
 	clickhouse
-	coqui-tts-cpu
+	# coqui-tts-cpu
 	faster-whisper-gpu
 	grafana
 	hollama
 	homeassistant
-	koboldccp
-	kokoro-tts
+	# koboldccp
+	# kokoro-tts
 	letta-mcp-server
 	letta-server
 	librechat
@@ -30,22 +30,22 @@ COMPOSE_FILES=(
 	n8n
 	ollama
 	open-webui
-	piper
+	# piper
 	private-gpt
 	prometheus
 	searxng
 	signoz
-	stable-diffusion-models-download
-	stable-diffusion-webui
-	stable-diffusion-webui-docker
-	swarmui
+	# stable-diffusion-models-download
+	# stable-diffusion-webui
+	# stable-diffusion-webui-docker
+	# swarmui
 	text-generation-webui-docker
-	voice-chat-ai
+	# voice-chat-ai
 	watchtower
 	# whishper
-	whisper-webui
-	whisperx
-	wyoming-piper
+	# whisper-webui
+	# whisperx
+	# wyoming-piper
 )
 
 function CREATE_FOLDERS() {
