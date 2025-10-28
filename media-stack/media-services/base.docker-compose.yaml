@@ -7,140 +7,155 @@ networks:
 
 volumes:
   gaseous-server_data:
-    # name: gaseous-server_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/gaseous-server/gaseous-server_data
+    name: gaseous-server_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gaseous-server/gaseous-server_data
   gaseous-server_mariadb:
-    # name: gaseous-server_mariadb
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
+    name: gaseous-server_mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
 
   romm_resources:
-    # name: romm_resources
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/romm/romm_resources
+    name: romm_resources
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_resources
   romm_redis_data:
-    # name: romm_redis_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/romm/romm_redis_data
+    name: romm_redis_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_redis_data
   romm_library:
-    # name: romm_library
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/romm/romm_library
+    name: romm_library
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_library
   romm_assets:
-    # name: romm_assets
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/romm/romm_assets
+    name: romm_assets
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_assets
   romm_config:
-    # name: romm_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/romm/romm_config
+    name: romm_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_config
+  romm-mariadb:
+    name: romm-mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/romm/romm_mariadb
 
   webrcade_content:
-    # name: webrcade_content
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/webrcade/webrcade_content
+    name: webrcade_content
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/webrcade/webrcade_content
 
   tvs99_config:
-    # name: tvs99_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/tvs99/config/config.tvs.yml
+    name: tvs99_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
   tvs99_data:
-    # name: tvs99_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/tvs99/tvs99_data
+    name: tvs99_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/tvs99/tvs99_data
 
   retroarchz_roms:
-    # name: retroarchz_roms
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/retroarchz/retroarchz_roms
+    name: retroarchz_roms
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/retroarchz/retroarchz_roms
 
   retroarch_config:
-    # name: retroarch_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/retroarch/retroarch_config
+    name: retroarch_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/retroarch/retroarch_config
 
   quakejs_config:
-    # name: quakejs_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/quakejs/quakejs_config
+    name: quakejs_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/quakejs/quakejs_config
 
   viewtube_data:
-    # name: viewtube_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/viewtube
-    
+    name: viewtube_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/viewtube/viewtube_data
+  
+  emulatorjs_config:
+    name: emulatorjs_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/emulatorjs/emulatorjs_config
+  
   plex_config:
-    # name: plex_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/plex/plex_config
+    name: plex_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/plex/plex_config
   plex_transcode:
-    # name: plex_transcode
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/plex/plex_transcode
+    name: plex_transcode
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/plex/plex_transcode
   plex_media:
-    # name: plex_media
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/plex/plex_media
+    name: plex_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/plex/plex_media
 
   gzdoom_config:
-    # name: gzdoom_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/gzdoom/gzdoom_config
+    name: gzdoom_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gzdoom/gzdoom_config
 
   flexget_config:
     # name: flexget_config

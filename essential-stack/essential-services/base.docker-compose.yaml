@@ -60,6 +60,14 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/essential-stack/homarr/homarr_appdata
+  
+  nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/nextcloud_aio/nextcloud_aio_mastercontainer
 
   dockge_data:
     name: dockge_data

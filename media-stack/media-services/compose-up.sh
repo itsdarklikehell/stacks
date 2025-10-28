@@ -11,38 +11,72 @@ COMPOSE_FILES=(
 	# dolphin
 	# duckstation
 	# emby
-	# emulatorjs
 	# flexget
 	# flycast
-	# gaseous-server
 	# gzdoom
 	# jellyfin
 	# kali-linux
 	# mattermost
 	# modmanager
-	# nextcloud
 	# plex
 	# qbittorrent
-	# quakejs
-	# retroarch
-	# retroarchz
-	# romm
-	# romm-mariadb
+	quakejs
+	retroarch
 	# rpcs3
 	# steamos
 	# transmission
-	# tvs99
 	# watchtower
 	# webcord
-	# webrcade
 	# wireguard
-	viewtube
 	# xemu
+	# emulatorjs
+	gaseous-server
+	retroarchz
+	romm
+	tvs99
+	viewtube
+	webrcade
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "wolf" ]]; then
-		mkdir -p "${FOLDER}/${f}_etc"
+	if [[ ${f} == "viewtube" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+	fi
+	if [[ ${f} == "gaseous-server" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_mariadb"
+	fi
+	if [[ ${f} == "romm" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_resources"
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_library"
+		mkdir -p "${FOLDER}/${f}_assets"
+		mkdir -p "${FOLDER}/${f}_mariadb"
+	fi
+	if [[ ${f} == "webrcade" ]]; then
+		mkdir -p "${FOLDER}/${f}_content"
+	fi
+	if [[ ${f} == "gzdoom" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "quakejs" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "retroarch" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "tvs99" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "retroarchz" ]]; then
+		mkdir -p "${FOLDER}/${f}_roms"
+	fi
+	if [[ ${f} == "plex" ]]; then
+		mkdir -p "${FOLDER}/${f}_media"
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_transcode"
 	fi
 }
 

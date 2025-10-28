@@ -4,7 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	# nextcloud
+	nextcloud
 	autoheal
 	autopulse
 	code-server

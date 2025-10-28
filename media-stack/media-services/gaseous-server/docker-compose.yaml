@@ -38,7 +38,7 @@ services:
       - ./gaseous-server/.env
 
     depends_on:
-      - gaseous-server_mariadb
+      - gaseous-server-mariadb
 
     deploy:
       replicas: 1
@@ -67,7 +67,6 @@ services:
       options:
         max-size: 10m
         max-file: 3
-
   gaseous-server-mariadb:
     image: ${IMAGE:-mariadb}
     container_name: ${NAME:-gaseous-server-mariadb}

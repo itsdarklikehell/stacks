@@ -68,7 +68,7 @@ services:
         max-file: 3
 
   viewtube-mongodb:
-    image: mongo
+    image: mongo:latest
     container_name: ${NAME:-viewtube-mongodb}
 
     ports:
@@ -79,7 +79,7 @@ services:
       media-services:
 
   viewtube-redis:
-    image: redis
+    image: redis:latest
     container_name: ${NAME:-viewtube-redis}
 
     networks:

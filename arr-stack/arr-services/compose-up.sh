@@ -31,6 +31,12 @@ COMPOSE_FILES=(
 	whisparr
 )
 
+function CREATE_FOLDERS() {
+	if [[ ${f} == "aiwafu" ]]; then
+		mkdir -p "${FOLDER}/${f}_storage"
+	fi
+}
+
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${f}/docker-compose.yaml "
