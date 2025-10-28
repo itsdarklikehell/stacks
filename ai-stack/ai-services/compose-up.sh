@@ -51,6 +51,12 @@ COMPOSE_FILES=(
 function CREATE_FOLDERS() {
 	if [[ ${f} == "anything-llm" ]]; then
 		mkdir -p "${FOLDER}/${f}_storage"
+		if [[ ! -f "${FOLDER}/${f}_storage/.env" ]]; then
+			echo "Downloading example anything-llm .env file"
+			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${f}_storage/.env"
+		else
+			echo "anything-llm .env file already exists, skipping download"
+		fi
 	fi
 	if [[ ${f} == "basic-memory" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
@@ -72,6 +78,10 @@ function CREATE_FOLDERS() {
 	fi
 	if [[ ${f} == "grafana" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
+	fi
+	if [[ ${f} == "mongo-whispher" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_logs"
 	fi
 	if [[ ${f} == "homeassistant" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
@@ -150,6 +160,8 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_training"
 		mkdir -p "${FOLDER}/${f}_extensions"
 		mkdir -p "${FOLDER}/${f}_coqui_tts"
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_instruction-templates"
 	fi
 	if [[ ${f} == "llmstack" ]]; then
 		mkdir -p "${FOLDER}/${f}_code"
@@ -182,10 +194,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_dlnodes"
 		mkdir -p "${FOLDER}/${f}_extensions"
 	fi
-	if [[ ${f} == "text-generation-webui-docker" ]]; then
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_data"
-	fi
+
 	if [[ ${f} == "whishper" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_logs"
@@ -215,21 +224,6 @@ function CREATE_FOLDERS() {
 	fi
 	if [[ ${f} == "wyoming-piper" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
-	fi
-	if [[ ${f} == "text-generation-webui-docker" ]]; then
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_characters"
-		mkdir -p "${FOLDER}/${f}_grammars"
-		mkdir -p "${FOLDER}/${f}_templates"
-		mkdir -p "${FOLDER}/${f}_loras"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_presets"
-		mkdir -p "${FOLDER}/${f}_prompts"
-		mkdir -p "${FOLDER}/${f}_training"
-		mkdir -p "${FOLDER}/${f}_extensions"
-		mkdir -p "${FOLDER}/${f}_coqui_tts"
 	fi
 }
 

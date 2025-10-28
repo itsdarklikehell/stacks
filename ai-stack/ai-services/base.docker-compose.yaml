@@ -294,20 +294,21 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/minio/minio_data
 
-  mongo-whishper_data:
-    name: mongo-whishper_data
+  mongo-whispher_data:
+    name: mongo-whispher_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/mongo-whispher/mongo-whishper_data
-  mongo-whishper_logs:
-    name: mongo-whishper_logs
+      device: ../../DATA/ai-stack/mongo-whispher/mongo-whispher_data
+
+  mongo-whispher_logs:
+    name: mongo-whispher_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/mongo-whispher/mongo-whishper_logs
+      device: ../../DATA/ai-stack/mongo-whispher/mongo-whispher_logs
 
   n8n_data:
     name: n8n_data
@@ -523,12 +524,12 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/whishper/whishper_models
   whishper_uploads:
-    name: whishper_uploads
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/ai-stack/whispher/whishper_uploads
+    # name: whishper_uploads
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/ai-stack/whispher/whishper_uploads
   whishper_cache:
     name: whishper_cache
     driver: local
@@ -742,7 +743,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/extensions/text-generation-webui-docker_coqui_tts
+      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_coqui_tts
 
 secrets:
   GF_SECURITY_ADMIN_USER:

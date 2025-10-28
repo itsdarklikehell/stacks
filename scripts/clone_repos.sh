@@ -144,6 +144,7 @@ function CLONE_AIRI() {
 		# INSTALL_AIRI_CHAT
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
 		cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
 		cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
@@ -163,18 +164,20 @@ function CLONE_ANYTHINGLLM() {
 	mkdir -p anything-llm_storage anything-llm_skills
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
-		cp -f "${WD}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
-		cp -f "${WD}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
+		# cp -f "${WD}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
+		# cp -f "${WD}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
 		# docker build -t anything-llm .
 	}
 	# LOCAL_SETUP
@@ -192,7 +195,7 @@ function CLONE_AIWAIFU() {
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
@@ -216,6 +219,7 @@ function CLONE_AIWAIFU() {
 		# python ./main.py
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
 		cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
 		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
@@ -236,12 +240,12 @@ function CLONE_CHROMA() {
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
+		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
 		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
 		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
@@ -267,8 +271,8 @@ function CLONE_CLICKHOUSE() {
 		./script.sh
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
+
+		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
@@ -284,8 +288,8 @@ function CLONE_CLICKHOUSE() {
 		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
 		# docker build -t chroma .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+	LOCAL_SETUP
+	# DOCKER_SETUP
 }
 function CLONE_JAISON() {
 	cd "${WD}" || exit
@@ -303,12 +307,12 @@ function CLONE_JAISON() {
 		# sudo apt install -y ffmpeg
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
-		# uv pip install -e .
+		uv pip install -e .
 		uv pip install -r requirements.txt
 		uv pip install --no-deps -r requirements.no_deps.txt
-		# uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+		uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 		uv pip install nltk
 		uv pip install spacy
 		python -m spacy download en_core_web_sm
@@ -319,12 +323,13 @@ function CLONE_JAISON() {
 		# python ./src/main.py --config=example
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
 		cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
 		cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
 		# docker build -t jaison-core . --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 	}
-	LOCAL_SETUP
+	# LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_LETTA() {
@@ -339,7 +344,7 @@ function CLONE_LETTA() {
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
 
 		uv pip install -e .
@@ -347,6 +352,7 @@ function CLONE_LETTA() {
 		# uv run letta server
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
 		cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
 		cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
@@ -392,18 +398,20 @@ function CLONE_LOCALAI() {
 	mkdir -p models
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
-		cp -f "${WD}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
-		cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
+		# cp -f "${WD}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
+		# cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
 		# docker build -t localai .
 	}
 	# LOCAL_SETUP
@@ -419,21 +427,24 @@ function CLONE_LLMSTACK() {
 	cd llmstack || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
-		cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
-		cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
-		# cd llmstack/client || exit 1
-		# npm install
-		# npm run build
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
+		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
+		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
+		cd llmstack/client || exit 1
+		# npx update-browserslist-db@latest --update-db
+		npm install
+		npm run build
 		# cd ../../
 		# make api
 		# make api-image
@@ -454,18 +465,20 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	mkdir -p data/Models/CLIPEncoder
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-uv" CustomDockerfile-stable-diffusion-webui-docker-uv
-		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-conda" CustomDockerfile-stable-diffusion-webui-docker-conda
-		cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-uv" CustomDockerfile-stable-diffusion-webui-docker-uv
+		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-conda" CustomDockerfile-stable-diffusion-webui-docker-conda
+		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
 		# docker build -t stable-diffusion-webui-docker .
 	}
 	# LOCAL_SETUP
@@ -481,18 +494,20 @@ function CLONE_LOCALAGI() {
 	cd localagi || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
-		cp -f "${WD}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
-		cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
+		# cp -f "${WD}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
+		# cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
 		# docker build -t localagi .
 	}
 	# LOCAL_SETUP
@@ -508,18 +523,20 @@ function CLONE_BIGAGI() {
 	cd big-agi || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
-		cp -f "${WD}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
-		cp -f "${WD}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
+		# cp -f "${WD}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
+		# cp -f "${WD}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
 		# docker build -t big-agi .
 	}
 	# LOCAL_SETUP
@@ -531,22 +548,24 @@ function CLONE_NEXTCLOUD() {
 
 	echo "Cloning nextcloud"
 	echo ""
-	git clone --recursive hhttps://github.com/nextcloud/all-in-one.git nextcloud
+	git clone --recursive https://github.com/nextcloud/all-in-one.git nextcloud
 	cd nextcloud || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-nextcloud-uv" CustomDockerfile-nextcloud-uv
-		cp -f "${WD}/CustomDockerfile-nextcloud-conda" CustomDockerfile-nextcloud-conda
-		cp -f "${WD}/CustomDockerfile-nextcloud-venv" CustomDockerfile-text-nextcloud-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-nextcloud-uv" CustomDockerfile-nextcloud-uv
+		# cp -f "${WD}/CustomDockerfile-nextcloud-conda" CustomDockerfile-nextcloud-conda
+		# cp -f "${WD}/CustomDockerfile-nextcloud-venv" CustomDockerfile-text-nextcloud-venv
 		# docker build -t nextcloud .
 	}
 	# LOCAL_SETUP
@@ -562,18 +581,20 @@ function CLONE_MIDORIAISUBSYSTEM() {
 	cd subsystem-manager || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
-		cp -f "${WD}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
-		cp -f "${WD}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
+		# cp -f "${WD}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
+		# cp -f "${WD}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
 		# docker build -t subsystem-manager .
 	}
 	# LOCAL_SETUP
@@ -589,18 +610,20 @@ function CLONE_LOCALRECALL() {
 	cd localrecall || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
-		cp -f "${WD}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
-		cp -f "${WD}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
+		# cp -f "${WD}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
+		# cp -f "${WD}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
 		# docker build -t localrecall .
 	}
 	# LOCAL_SETUP
@@ -618,8 +641,8 @@ function CLONE_MELOTTS() {
 	function LOCAL_SETUP() {
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
-		uv sync --all-extras
+
+		# uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 		uv pip install unidic
@@ -629,6 +652,7 @@ function CLONE_MELOTTS() {
 		# melo-webui
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
 		cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
 		cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
@@ -651,7 +675,7 @@ function CLONE_OLLMVT() {
 
 		uv venv --clear --seed
 		source .venv/bin/activate
-		uv pip install pip
+
 		uv sync --all-extras
 
 		# uv pip install -e .
@@ -765,10 +789,12 @@ function CLONE_OLLMVT() {
 		CLONE_TTS_BACKENDS >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
 		uv run run_server.py >/dev/null 2>&1 &
+		xdg-open "http://localhost:11434" >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
 		CLONE_VOICE_MODELS >/dev/null 2>&1 &
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
 		cp -f "${WD}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
 		cp -f "${WD}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
@@ -789,18 +815,20 @@ function CLONE_OOGABOOGA() {
 	cd text-generation-webui-docker || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
-		cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
+		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
+		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
 		# docker build -t text-generation-webui-docker .
 	}
 	# LOCAL_SETUP
@@ -815,13 +843,25 @@ function CLONE_PRIVATEGPT() {
 	git clone --recursive https://github.com/zylon-ai/private-gpt.git private-gpt
 	cd private-gpt || exit 1
 
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
-		cp -f "${WD}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
-		cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
+		# cp -f "${WD}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
+		# cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
 		# docker build -t private-gpt .
 	}
-	# DOCKER_SETUP
+	# LOCAL_SETUP
+	DOCKER_SETUP
 }
 function CLONE_PROMETHEUS() {
 	cd "${WD}" || exit
@@ -830,23 +870,25 @@ function CLONE_PROMETHEUS() {
 	echo "Cloning prometheus"
 	echo ""
 	git clone --recursive https://github.com/prometheus/prometheus.git prometheus
-	cd signoz || exit 1
+	cd prometheus || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# make && sudo make install
 
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
-		cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
-		cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
+		# cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
+		# cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
 		# docker build -t prometheus .
 	}
 	# LOCAL_SETUP
@@ -886,6 +928,7 @@ function CLONE_RIKOPROJECT() {
 		# uv run ./server/main_chat.py
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
 		cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
 		cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
@@ -905,22 +948,24 @@ function CLONE_SIGNOZ() {
 	cd signoz || exit 1
 
 	function LOCAL_SETUP() {
+		echo "Using Local setup"
 		./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-signoz-uv" CustomDockerfile-signoz-uv
-		cp -f "${WD}/CustomDockerfile-signoz-conda" CustomDockerfile-signoz-conda
-		cp -f "${WD}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-signoz-uv" CustomDockerfile-signoz-uv
+		# cp -f "${WD}/CustomDockerfile-signoz-conda" CustomDockerfile-signoz-conda
+		# cp -f "${WD}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
 		# docker build -t signoz .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+	# LOCAL_SETUP
+	DOCKER_SETUP
 }
 function CLONE_SWARMUI() {
 	cd "${WD}" || exit
@@ -934,7 +979,7 @@ function CLONE_SWARMUI() {
 		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
@@ -943,9 +988,10 @@ function CLONE_SWARMUI() {
 		# xdg-open "http://0.0.0.0:7801/Install"
 	}
 	function DOCKER_SETUP() {
-		cp -f "${WD}/CustomDockerfile-swarmui-uv" CustomDockerfile-airi-uv
-		cp -f "${WD}/CustomDockerfile-swarmui-conda" CustomDockerfile-airi-conda
-		cp -f "${WD}/CustomDockerfile-swarmui-venv" CustomDockerfile-airi-venv
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
+		# cp -f "${WD}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
+		# cp -f "${WD}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
 
 		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
 		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
@@ -981,6 +1027,7 @@ function CLONE_WHISPERX() {
 	cd whisperx || exit 1
 
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
 		cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
 		cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
@@ -988,7 +1035,6 @@ function CLONE_WHISPERX() {
 	}
 	# DOCKER_SETUP
 }
-
 
 function CLONE_VIEWTUBE() {
 	cd "${WD}" || exit
@@ -1003,12 +1049,13 @@ function CLONE_VIEWTUBE() {
 		# ./install.sh
 		uv venv --clear --seed
 		source .venv/bin/activate
-		# uv pip install pip
+		#
 		# uv sync --all-extras
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
+		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
 		cp -f "${WD}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
 		cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
@@ -1017,6 +1064,7 @@ function CLONE_VIEWTUBE() {
 	LOCAL_SETUP
 	# DOCKER_SETUP
 }
+
 CLONE_AIRI
 CLONE_AIWAIFU
 CLONE_CHROMA
@@ -1024,22 +1072,23 @@ CLONE_CLICKHOUSE
 CLONE_JAISON
 CLONE_LETTA
 CLONE_LIBRECHAT
-CLONE_LOCALAGI
 CLONE_LOCALAI
+CLONE_LOCALAGI
 CLONE_BIGAGI
 CLONE_MIDORIAISUBSYSTEM
+CLONE_NEXTCLOUD
 CLONE_LLMSTACK
 CLONE_ANYTHINGLLM
 CLONE_LOCALRECALL
-# CLONE_MELOTTS
+CLONE_MELOTTS
 CLONE_OLLMVT
 CLONE_OOGABOOGA
 CLONE_PRIVATEGPT
 CLONE_PROMETHEUS
-# CLONE_RIKOPROJECT
+CLONE_RIKOPROJECT
 CLONE_SIGNOZ
-# CLONE_WHISPER_WEBUI
+CLONE_WHISPER_WEBUI
 CLONE_VIEWTUBE
-# CLONE_WHISPERX
+CLONE_WHISPERX
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
 CLONE_SWARMUI
