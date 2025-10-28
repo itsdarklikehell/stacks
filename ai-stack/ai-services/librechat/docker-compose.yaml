@@ -10,12 +10,12 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-    build:
-      context: ../../DATA/ai-stack/librechat
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-      dockerfile: ./Dockerfile
+    # build:
+    #   context: ../../DATA/ai-stack/librechat
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
+    #   dockerfile: ./Dockerfile
 
     labels:
       - com.centurylinklabs.watchtower.enable=true

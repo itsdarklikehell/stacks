@@ -21,7 +21,7 @@ COMPOSE_FILES=(
 	letta-server
 	librechat
 	libretranslate-whispher
-	llmstack
+	# llmstack
 	lobe-chat
 	localai
 	midori-ai-subsystem-manager
@@ -69,9 +69,6 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_initdb"
 		mkdir -p "${FOLDER}/${f}_logs"
 		mkdir -p "${FOLDER}/${f}_users"
-	fi
-	if [[ ${f} == "faster-whisper" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
 	fi
 	if [[ ${f} == "grafana" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
@@ -137,6 +134,23 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_config"
 		mkdir -p "${FOLDER}/${f}_data"
 	fi
+	if [[ ${f} == "faster-whisper-gpu" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "text-generation-webui-docker" ]]; then
+		mkdir -p "${FOLDER}/${f}_cache"
+		mkdir -p "${FOLDER}/${f}_characters"
+		mkdir -p "${FOLDER}/${f}_grammars"
+		mkdir -p "${FOLDER}/${f}_templates"
+		mkdir -p "${FOLDER}/${f}_loras"
+		mkdir -p "${FOLDER}/${f}_logs"
+		mkdir -p "${FOLDER}/${f}_models"
+		mkdir -p "${FOLDER}/${f}_presets"
+		mkdir -p "${FOLDER}/${f}_prompts"
+		mkdir -p "${FOLDER}/${f}_training"
+		mkdir -p "${FOLDER}/${f}_extensions"
+		mkdir -p "${FOLDER}/${f}_coqui_tts"
+	fi
 	if [[ ${f} == "llmstack" ]]; then
 		mkdir -p "${FOLDER}/${f}_code"
 		mkdir -p "${FOLDER}/${f}_userdata"
@@ -173,6 +187,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_data"
 	fi
 	if [[ ${f} == "whishper" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_logs"
 		mkdir -p "${FOLDER}/${f}_models"
 		mkdir -p "${FOLDER}/${f}_uploads"
@@ -181,6 +196,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_configs"
 	fi
 	if [[ ${f} == "whisperx" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_logs"
 		mkdir -p "${FOLDER}/${f}_models"
 		mkdir -p "${FOLDER}/${f}_uploads"
@@ -189,6 +205,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_configs"
 	fi
 	if [[ ${f} == "whisper-webui" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_logs"
 		mkdir -p "${FOLDER}/${f}_models"
 		mkdir -p "${FOLDER}/${f}_uploads"

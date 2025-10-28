@@ -6,13 +6,13 @@ services:
 
     user: ${PUID:-1000}:${PGID:-1000}
 
-    build:
-      context: ../../DATA/ai-stack/whisper-webui
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-      dockerfile: ./Dockerfile
-      # dockerfile: ./CustomDockerfile.docker
+    # build:
+    #   context: ../../DATA/ai-stack/whisper-webui
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
+    #   dockerfile: ./Dockerfile
+    #   # dockerfile: ./CustomDockerfile.docker
 
     entrypoint: python app.py --server_port 7861 --server_name 0.0.0.0
 

@@ -101,13 +101,13 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/clickhouse/clickhouse_users
 
-  faster-whisper-config:
-    name: faster-whisper-config
+  faster-whisper-gpu_config:
+    name: faster-whisper-gpu_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/faster-whisper/faster-whisper_config
+      device: ../../DATA/ai-stack/faster-whisper-gpu/faster-whisper-gpu_config
 
   grafana_data:
     name: grafana_data
@@ -702,12 +702,12 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_logs
   text-generation-webui-docker_models:
-    name: text-generation-webui-text-generation-webui-docker_models
+    name: text-generation-webui-docker_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-text-generation-webui-docker_models
+      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_models
   text-generation-webui-docker_presets:
     name: text-generation-webui-docker_presets
     driver: local

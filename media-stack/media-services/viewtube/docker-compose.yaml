@@ -24,6 +24,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+
       - viewtube_data:/data
 
     hostname: ${NAME:-viewtube}

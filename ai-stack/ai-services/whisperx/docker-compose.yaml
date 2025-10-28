@@ -2,20 +2,20 @@ services:
   whisperx:
     image: ${IMAGE:-ghcr.io/jim60105/whisperx:base-en}
     # pull_policy: always
-    container_name: ${NAME:-whishperx}
+    container_name: ${NAME:-whisperx}
     restart: ${RESTART:-unless-stopped}
 
     user: ${PUID:-1000}:${PGID:-1000}
 
-    build:
-      context: ../../DATA/ai-stack/whisperx
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-        LANG: en # en, nl, de
-        WHISPER_MODEL: base # tiny, base, distil-large-v3, large-v3 no_model
-      # target: whisperx:base-en # whisperx:base-en, whisperx:large-v3-ja, whisperx:ubi-no_model
-      dockerfile: ./Dockerfile
+    # build:
+    #   context: ../../DATA/ai-stack/whisperx
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
+    #     LANG: en # en, nl, de
+    #     WHISPER_MODEL: base # tiny, base, distil-large-v3, large-v3 no_model
+    #   # target: whisperx:base-en # whisperx:base-en, whisperx:large-v3-ja, whisperx:ubi-no_model
+    #   dockerfile: ./Dockerfile
 
     command:
       [--, --model, large-v3, --language, en, --output_format, srt, audio.mp3]

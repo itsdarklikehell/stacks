@@ -23,7 +23,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - faster-whisper-config:/config
+      - faster-whisper-gpu_config:/config
 
     networks:
       host:
