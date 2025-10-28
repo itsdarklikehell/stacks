@@ -23,40 +23,17 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - text-generation-webui-docker_cache:/root/.cache
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/cache:/root/.cache
-
       - text-generation-webui-docker_characters:/app/user_data/characters
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/characters:/app/user_data/characters
-
       - text-generation-webui-docker_grammars:/app/user_data/grammars
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/grammars:/app/user_data/grammars
-
       - text-generation-webui-docker_instruction-templates:/app/user_data/instruction-templates
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/instruction-templates:/app/user_data/instruction-templates
-
       - text-generation-webui-docker_loras:/app/user_data/loras
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/loras:/app/user_data/loras
-
-      - .text-generation-webui-docker_logs:/app/user_data/logs
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/logs:/app/user_data/logs
-
+      - text-generation-webui-docker_logs:/app/user_data/logs
       - text-generation-webui-docker_models:/app/user_data/models
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/models:/app/user_data/models
-
-      - .text-generation-webui-docker_presets:/app/user_data/presets
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/presets:/app/user_data/presets
-
+      - text-generation-webui-docker_presets:/app/user_data/presets
       - text-generation-webui-docker_prompts:/app/user_data/prompts
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/prompts:/app/user_data/prompts
-
       - text-generation-webui-docker_training:/app/user_data/training
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/training:/app/user_data/training
-
       - text-generation-webui-docker_extensions:/app/extensions
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/extensions:/app/extensions
-
       - text-generation-webui-docker_coqui_tts:/app/extensions/coqui_tts
-      # - ../../DATA/ai-stack/text-generation-webui-docker/config/extensions/coqui_tts:/app/extensions/coqui_tts
 
     hostname: ${NAME:-text-generation-webui-docker}
 

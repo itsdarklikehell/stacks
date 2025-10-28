@@ -229,19 +229,19 @@ volumes:
       device: ../../DATA/ai-stack/librechat/librechat_meili_data
 
   libretranslate-whispher_cache:
-    name: libretranslate-whishper_cache
+    name: libretranslate-whispher_cache
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whishper_cache
-  libretranslate-whishper_data:
-    name: libretranslate-whishper_data
+      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_cache
+  libretranslate-whispher_data:
+    name: libretranslate-whispher_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whishper_data
+      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_data
 
   localai_cache:
     name: localai_cache
@@ -503,12 +503,12 @@ volumes:
       device: ../../DATA/ai-stack/swarmui/swarmui_extensions
 
   whishper_data:
-    name: whisper_data
+    name: whishper_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper/whisper_data
+      device: ../../DATA/ai-stack/whishper/whishper_data
   whishper_logs:
     name: whishper_logs
     driver: local
@@ -524,33 +524,33 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/whishper/whishper_models
   whishper_uploads:
-    # name: whishper_uploads
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/ai-stack/whispher/whishper_uploads
+    name: whishper_uploads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/ai-stack/whishper/whishper_uploads
   whishper_cache:
     name: whishper_cache
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whispher/whishper_cache
+      device: ../../DATA/ai-stack/whishper/whishper_cache
   whishper_outputs:
     name: whishper_outputs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whispher/whishper_outputs
+      device: ../../DATA/ai-stack/whishper/whishper_outputs
   whishper_configs:
     name: whishper_configs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whispher/whishper_configs
+      device: ../../DATA/ai-stack/whishper/whishper_configs
 
   whisperx_data:
     name: whisperx_data

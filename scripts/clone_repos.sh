@@ -788,8 +788,7 @@ function CLONE_OLLMVT() {
 		}
 		CLONE_TTS_BACKENDS >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
-		uv run run_server.py >/dev/null 2>&1 &
-		xdg-open "http://localhost:11434" >/dev/null 2>&1 &
+		# uv run run_server.py >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
 		CLONE_VOICE_MODELS >/dev/null 2>&1 &
 	}
@@ -984,8 +983,8 @@ function CLONE_SWARMUI() {
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 		chmod +x launch-linux.sh
-		./launch-linux.sh --launch_mode none --host 0.0.0.0 >/dev/null 2>&1 &
-		# xdg-open "http://0.0.0.0:7801/Install"
+		# ./launch-linux.sh --launch_mode none --host 0.0.0.0 >/dev/null 2>&1 &
+
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"

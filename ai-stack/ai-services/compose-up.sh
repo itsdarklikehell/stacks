@@ -16,7 +16,7 @@ COMPOSE_FILES=(
 	hollama
 	homeassistant
 	# koboldccp
-	# kokoro-tts
+	kokoro-tts
 	letta-mcp-server
 	letta-server
 	librechat
@@ -194,7 +194,6 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_dlnodes"
 		mkdir -p "${FOLDER}/${f}_extensions"
 	fi
-
 	if [[ ${f} == "whishper" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_logs"

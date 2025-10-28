@@ -175,14 +175,14 @@ INSTALL_DOCKER
 # echo ""
 
 ## STACKS:
-
+echo "Building is set to: ${BUILDING}"
 PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-INSTALL_ESSENTIALS_STACK
-echo ""
+# echo ""
+# INSTALL_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 INSTALL_AI_STACK
@@ -227,4 +227,6 @@ echo "Installation complete.."
 # 	# xdg-open "http://localhost:8383/"
 # fi
 
-sudo chown -R "${USER}":"${USER}" "${WD}/DATA"
+sudo chown -R "${USER}":"${USER}" "${WD}"
+# xdg-open "http://localhost:11434" >/dev/null 2>&1 &
+# xdg-open "http://0.0.0.0:7801/Install" >/dev/null 2>&1 &
