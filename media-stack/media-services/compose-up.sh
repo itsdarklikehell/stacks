@@ -61,7 +61,7 @@ function BUILDING() {
 	if [[ ${BUILDING} == "force_rebuild" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 	elif [[ ${BUILDING} == "true" ]]; then
-		docker compose -f base.docker-compose.yaml ${ARGS} up -d --force-recreate --remove-orphans
+		docker compose -f base.docker-compose.yaml ${ARGS} up -d
 	elif [[ ${BUILDING} == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
