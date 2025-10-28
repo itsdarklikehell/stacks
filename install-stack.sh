@@ -168,25 +168,25 @@ echo "Installing Docker"
 echo ""
 INSTALL_DOCKER
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 ## STACKS:
 echo "Building is set to: ${BUILDING}"
-# PRUNING
+PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# INSTALL_AI_STACK
-# echo ""
+echo ""
+INSTALL_AI_STACK
+echo ""
 
 echo ""
 INSTALL_MEDIA_STACK

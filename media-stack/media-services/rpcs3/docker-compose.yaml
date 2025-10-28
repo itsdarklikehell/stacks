@@ -1,7 +1,7 @@
 services:
-  rcps3:
-    image: ${IMAGE:-lscr.io/linuxserver/rcps3}
-    container_name: ${NAME:-rcps3}
+  rpcs3:
+    image: ${IMAGE:-lscr.io/linuxserver/rpcs3}
+    container_name: ${NAME:-rpcs3}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,9 +20,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - rcps3_config:/config
+      - rpcs3_config:/config
 
-    hostname: ${NAME:-rcps3}
+    hostname: ${NAME:-rpcs3}
 
     networks:
       host:
@@ -38,7 +38,7 @@ services:
     #   - seccomp:unconfined
 
     env_file:
-      - ./rcps3/.env
+      - ./rpcs3/.env
 
     runtime: nvidia
     deploy:

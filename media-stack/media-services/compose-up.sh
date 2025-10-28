@@ -21,7 +21,7 @@ COMPOSE_FILES=(
 	duckstation
 	emby
 	flexget
-	flycast
+	# flycast
 	gaseous-server
 	gzdoom
 	jellyfin
@@ -44,7 +44,7 @@ function CREATE_FOLDERS() {
 	if [[ ${f} == "kali-linux" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
-	if [[ ${f} == "rcps3" ]]; then
+	if [[ ${f} == "rpcs3" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
 	if [[ ${f} == "gaseous-server" ]]; then
