@@ -6,35 +6,35 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
 	anything-llm
 	autoheal
-	basic-memory
+	# basic-memory
 	# big-agi
-	chroma
-	clickhouse
+	# chroma
+	# clickhouse
 	# coqui-tts-cpu
 	# faster-whisper-gpu
-	grafana
-	hollama
+	# grafana
+	# hollama
 	homeassistant
 	# koboldccp
 	# kokoro-tts
 	letta-mcp-server
 	letta-server
-	librechat
+	# librechat
 	# libretranslate-whispher
 	# llmstack
-	lobe-chat
+	# lobe-chat
 	localai
-	midori-ai-subsystem-manager
-	minio
+	# midori-ai-subsystem-manager
+	# minio
 	# mongo-whispher
 	n8n
 	ollama
 	open-webui
 	# piper
-	private-gpt
+	# private-gpt
 	prometheus
 	searxng
-	signoz
+	# signoz
 	# stable-diffusion-models-download
 	# stable-diffusion-webui
 	# stable-diffusion-webui-docker
