@@ -6,6 +6,74 @@ networks:
     external: true
 
 volumes:
+  duckstation_config:
+    name: duckstation_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/duckstation/duckstation_config
+  duckstation_downloads:
+    name: duckstation_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/duckstation/duckstation_downloads
+
+  dolphin_config:
+    name: dolphin_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/dolphin/dolphin_config
+  dolphin_downloads:
+    name: dolphin_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/dolphin/dolphin_downloads
+
+  xemu_config:
+    name: xemu_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/xemu/xemu_config
+  xemu_downloads:
+    name: xemu_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/xemu/xemu_downloads
+
+  rpcs3_config:
+    name: rpcs3_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/rcps3/rcps3_config
+
+  flycast_downloads:
+    name: flycast_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flycast/flycast_downloads
+  flycast_config:
+    name: flycast_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flycast/flexget_config
+
   gaseous-server_data:
     name: gaseous-server_data
     driver: local
@@ -20,6 +88,14 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
+
+  kali-linux_config:
+    name: kali-linux_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/kali-linux/kali-linux_config
 
   romm_resources:
     name: romm_resources
@@ -56,8 +132,8 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/romm/romm_config
-  romm-mariadb:
-    name: romm-mariadb
+  romm_mariadb:
+    name: romm_mariadb
     driver: local
     driver_opts:
       type: none
@@ -73,19 +149,19 @@ volumes:
       device: ../../DATA/media-stack/webrcade/webrcade_content
 
   tvs99_config:
-    name: tvs99_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
+    # name: tvs99_config
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
   tvs99_data:
-    name: tvs99_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/tvs99/tvs99_data
+    # name: tvs99_data
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ../../DATA/media-stack/tvs99/tvs99_data
 
   retroarchz_roms:
     name: retroarchz_roms
@@ -118,15 +194,7 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/viewtube/viewtube_data
-  
-  emulatorjs_config:
-    name: emulatorjs_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/emulatorjs/emulatorjs_config
-  
+
   plex_config:
     name: plex_config
     driver: local
@@ -158,61 +226,64 @@ volumes:
       device: ../../DATA/media-stack/gzdoom/gzdoom_config
 
   flexget_config:
-    # name: flexget_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/flexget/flexget_config
+    name: flexget_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flexget/flexget_config
   flexget_downloads:
-    # name: flexget_downloads
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/flexget/flexget_downloads
+    name: flexget_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flexget/flexget_downloads
 
   emby_config:
-    # name: emby_config
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/emby/emby_config
+    name: emby_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/emby/emby_config
   emby_media:
-    # name: emby_media
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/emby/emby_media
+    name: emby_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/emby/emby_media
 
-  calibre_library:
-    # name: calibre_library
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../DATA/media-stack/calibre-web/calibre-calibre_library
+  calibre-web_library:
+    name: calibre-web_library
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/calibre-web/calibre-web_library
 
 secrets:
   rreading_glasses_db_password:
     file: ../../secrets/rreading_glasses_db_password
-  romm_db_password:
-    file: ../../secrets/romm_db_password
+
+  romm_mariadb_password:
+    file: ../../secrets/romm_mariadb_password
+  romm_mariadb_root_password:
+    file: ../../secrets/romm_mariadb_root_password
   romm_auth_secret_key:
     file: ../../secrets/romm_auth_secret_key
+
   gaseous-server_mariadb_root_password:
     file: ../../secrets/gaseous-server_mariadb_root_password
   gaseous-server_mariadb_password:
     file: ../../secrets/gaseous-server_mariadb_password
-  romm-mariadb_root_password:
-    file: ../../secrets/romm-mariadb_root_password
-  romm-mariadb_password:
-    file: ../../secrets/romm-mariadb_password
+
   screenscraper_password:
     file: ../../secrets/screenscraper_password
+
   retroachievements_api_key:
     file: ../../secrets/retroachievements_api_key
+
   steamgriddb_api_key:
     file: ../../secrets/steamgriddb_api_key

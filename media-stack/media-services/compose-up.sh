@@ -4,47 +4,68 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	# autoheal
 	# beets
-	# calibre-web
 	# deluge
-	# dolphin
-	# duckstation
-	# emby
-	# flexget
-	# flycast
-	# gzdoom
-	# jellyfin
-	# kali-linux
 	# mattermost
 	# modmanager
-	# plex
 	# qbittorrent
-	quakejs
-	retroarch
-	# rpcs3
+	# romm
 	# steamos
 	# transmission
 	# watchtower
 	# webcord
 	# wireguard
-	# xemu
-	# emulatorjs
+	autoheal
+	calibre-web
+	dolphin
+	duckstation
+	emby
+	flexget
+	flycast
 	gaseous-server
+	gzdoom
+	jellyfin
+	kali-linux
+	plex
+	quakejs
+	retroarch
 	retroarchz
-	romm
+	rpcs3
 	tvs99
 	viewtube
 	webrcade
+	xemu
 )
 
 function CREATE_FOLDERS() {
 	if [[ ${f} == "viewtube" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 	fi
+	if [[ ${f} == "kali-linux" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "rcps3" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
 	if [[ ${f} == "gaseous-server" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_mariadb"
+	fi
+	if [[ ${f} == "duckstation" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
+	fi
+	if [[ ${f} == "xemu" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
+	fi
+	if [[ ${f} == "dolphin" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
+	fi
+	if [[ ${f} == "flycast" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
 	fi
 	if [[ ${f} == "romm" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
@@ -53,6 +74,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_library"
 		mkdir -p "${FOLDER}/${f}_assets"
 		mkdir -p "${FOLDER}/${f}_mariadb"
+		mkdir -p "${FOLDER}/${f}_redis_data"
 	fi
 	if [[ ${f} == "webrcade" ]]; then
 		mkdir -p "${FOLDER}/${f}_content"
@@ -63,11 +85,22 @@ function CREATE_FOLDERS() {
 	if [[ ${f} == "quakejs" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
+	if [[ ${f} == "calibre-web" ]]; then
+		mkdir -p "${FOLDER}/${f}_library"
+	fi
 	if [[ ${f} == "retroarch" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
 	if [[ ${f} == "tvs99" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "flexget" ]]; then
+		mkdir -p "${FOLDER}/${f}_downloads"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+	if [[ ${f} == "emby" ]]; then
+		mkdir -p "${FOLDER}/${f}_media"
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
 	if [[ ${f} == "retroarchz" ]]; then

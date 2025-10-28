@@ -29,7 +29,7 @@ services:
       - romm_config:/romm/config
 
     secrets:
-      - romm_db_password
+      - romm_mariadb_password
       - romm_auth_secret_key
       - screenscraper_password
       - retroachievements_api_key
@@ -101,11 +101,11 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - romm-mariadb:/var/lib/mysql
+      - romm_mariadb:/var/lib/mysql
 
     secrets:
-      - romm-mariadb_root_password
-      - romm-mariadb_password
+      - romm_mariadb_root_password
+      - romm_mariadb_password
 
     hostname: ${NAME:-romm-mariadb}
 

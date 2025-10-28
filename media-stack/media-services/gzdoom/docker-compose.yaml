@@ -29,7 +29,7 @@ services:
 
     ports:
       - ${PORT:-3020}:3020
-      - 3001:3001
+      - 3011:3011
 
     shm_size: 1gb
 

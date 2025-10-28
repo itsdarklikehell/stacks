@@ -1,8 +1,8 @@
 services:
   jellyfin:
-    image: IMAGE:-linuxserver/jellyfin}
-    container_name: NAME:-jellyfin}
-    restart: RESTART:-unless-stopped}
+    image: ${IMAGE:-linuxserver/jellyfin}
+    container_name: ${NAME:-jellyfin}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -13,27 +13,27 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - RT=${PORT:-8096}
+      - PORT=${PORT:-8096}
 
     volumes:
-      - tc/localtime:/etc/localtime:ro
-      - tc/timezone:/etc/timezone:ro
-      - ar/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: NAME:-jellyfin}
+    hostname: ${NAME:-jellyfin}
 
     networks:
       host:
       media-services:
 
     expose:
-      - PORT:-8096}/tcp
+      - ${PORT:-8096}/tcp
 
     ports:
-      - PORT:-8096}:8096/tcp
+      - ${PORT:-8096}:8096/tcp
 
     env_file:
-      - jellyfin/.env
+      - ./jellyfin/.env
 
     deploy:
       replicas: 1
@@ -50,7 +50,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       tp://localhost:${PORT:-8096}/api/health,
+    #       http://localhost:${PORT:-8096}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
