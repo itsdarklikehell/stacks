@@ -9,17 +9,17 @@ services:
     restart: ${RESTART:-unless-stopped}
     hostname: ${NAME:-localai}
 
-    build:
-      context: ../../DATA/ai-stack/localai
-      dockerfile: Dockerfile
-      args:
-        - IMAGE_TYPE=aio
-        - BASE_IMAGE=ubuntu:22.04
-        - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
-        - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
-        # - BUILD_TYPE=cublas
-        - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
-        - LOCALAI_SINGLE_ACTIVE_BACKEND=true
+    # build:
+    #   context: ../../DATA/ai-stack/localai
+    #   dockerfile: Dockerfile
+    #   args:
+    #     - IMAGE_TYPE=aio
+    #     - BASE_IMAGE=ubuntu:22.04
+    #     - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
+    #     - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+    #     # - BUILD_TYPE=cublas
+    #     - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
+    #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
 
     labels:
       - com.centurylinklabs.watchtower.enable=true

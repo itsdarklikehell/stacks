@@ -6,46 +6,46 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
 	anything-llm
 	autoheal
-	# basic-memory
-	# big-agi
-	# chroma
-	# clickhouse
-	# coqui-tts-cpu
-	# faster-whisper-gpu
-	# grafana
-	# hollama
+	basic-memory
+	big-agi
+	chroma
+	clickhouse
+	coqui-tts-cpu
+	faster-whisper-gpu
+	grafana
+	hollama
 	homeassistant
 	# koboldccp
 	# kokoro-tts
 	letta-mcp-server
 	letta-server
-	# librechat
-	# libretranslate-whispher
-	# llmstack
-	# lobe-chat
+	librechat
+	libretranslate-whispher
+	llmstack
+	lobe-chat
 	localai
-	# midori-ai-subsystem-manager
-	# minio
-	# mongo-whispher
+	midori-ai-subsystem-manager
+	minio
+	mongo-whispher
 	n8n
 	ollama
 	open-webui
-	# piper
-	# private-gpt
+	piper
+	private-gpt
 	prometheus
 	searxng
-	# signoz
-	# stable-diffusion-models-download
-	# stable-diffusion-webui
-	# stable-diffusion-webui-docker
-	# swarmui
-	# text-generation-webui-docker
-	# voice-chat-ai
+	signoz
+	stable-diffusion-models-download
+	stable-diffusion-webui
+	stable-diffusion-webui-docker
+	swarmui
+	text-generation-webui-docker
+	voice-chat-ai
 	watchtower
-	# whishper
-	# whisper-webui
-	# whisperx
-	# wyoming-piper
+	whishper
+	whisper-webui
+	whisperx
+	wyoming-piper
 )
 
 function CREATE_FOLDERS() {

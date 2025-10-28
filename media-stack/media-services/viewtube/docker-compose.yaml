@@ -1,12 +1,11 @@
 services:
   viewtube:
-    # image: ${IMAGE:-viewtubeinc/pms-docker}
+    image: ${IMAGE:-mauriceo/viewtube:latest}
     container_name: ${NAME:-viewtube}
     restart: ${RESTART:-unless-stopped}
 
-
-    build:
-      context: ../../DATA/media-stack/viewtube
+    # build:
+    #   context: ../../DATA/media-stack/viewtube
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -18,7 +17,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8066}
-      - VIEWTUBE_DATABASE_HOST=${VIEWTUBE_DATABASE_HOST:-viewtube-db}
+      - VIEWTUBE_DATABASE_HOST=${VIEWTUBE_DATABASE_HOST:-viewtube-mongodb}
       - VIEWTUBE_REDIS_HOST=${VIEWTUBE_REDIS_HOST:-viewtube-redis}
       - VIEWTUBE_ADMIN_USER=${VIEWTUBE_ADMIN_USER:-admin}
 
@@ -67,9 +66,10 @@ services:
         max-size: 10m
         max-file: 3
 
-
   viewtube-mongodb:
     image: mongo
+    container_name: ${NAME:-viewtube-mongodb}
+
     ports:
       - 27018:27017
 
@@ -79,7 +79,8 @@ services:
 
   viewtube-redis:
     image: redis
-    
+    container_name: ${NAME:-viewtube-redis}
+
     networks:
       host:
       media-services:
