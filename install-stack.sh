@@ -227,6 +227,6 @@ echo "Installation complete.."
 # 	# xdg-open "http://localhost:8383/"
 # fi
 
-sudo chown -R "${USER}":"${USER}" "${WD}"
+# sudo chown -R "${USER}":"${USER}" "${WD}"
 # xdg-open "http://localhost:11434" >/dev/null 2>&1 &
 # xdg-open "http://0.0.0.0:7801/Install" >/dev/null 2>&1 &
