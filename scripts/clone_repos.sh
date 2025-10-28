@@ -23,9 +23,11 @@ function CLONE_AIRI() {
 	cd "../DATA/airi-stack" || exit 1
 
 	function LOCAL_SETUP() {
+		npx npm-check-updates -u
 		npm i -g @antfu/ni
 		npm i -g shiki
 		npm i -g pkgroll
+
 		function INSTALL_XSAI() {
 			cd "${WD}" || exit
 			cd "../DATA/airi-stack" || exit 1
@@ -35,6 +37,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai.git xsai
 			cd xsai || exit
 
+			npx npm-check-updates -u
 			ni
 			nr build
 		}
@@ -47,6 +50,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
 			cd xsai-transformers || exit
 
+			npx npm-check-updates -u
 			ni
 			nr build
 		}
@@ -72,6 +76,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/airi.git airi
 			cd airi || exit
 
+			npx npm-check-updates -u
 			ni
 			nr build
 
@@ -88,6 +93,7 @@ function CLONE_AIRI() {
 			cp .env .env.local
 			# docker compose -p airi-telegram-bot-db up -d
 
+			npx npm-check-updates -u
 			ni
 			nr build
 			# nr -F @proj-airi/telegram-bot db:generate
@@ -98,6 +104,7 @@ function CLONE_AIRI() {
 			cd ../discord-bot || exit
 			cp .env .env.local
 
+			npx npm-check-updates -u
 			ni
 			nr build
 			# nr -F @proj-airi/discord-bot dev
@@ -106,6 +113,7 @@ function CLONE_AIRI() {
 			cd ../minecraft || exit
 			cp .env .env.local
 
+			npx npm-check-updates -u
 			ni
 			nr build
 			# nr -F @proj-airi/minecraft dev
@@ -125,6 +133,7 @@ function CLONE_AIRI() {
 
 			cd "${WD}" || exit
 			cd "../DATA/airi-stack/airi" || exit 1
+			npx npm-check-updates -u
 
 			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
 			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
@@ -132,16 +141,16 @@ function CLONE_AIRI() {
 		}
 		# echo "Cloning airi"
 		# echo ""
-		# INSTALL_AIRI
+		INSTALL_AIRI
 		# echo "Cloning xsai"
 		# echo ""
-		# INSTALL_XSAI
+		INSTALL_XSAI
 		# echo "Cloning xsai-transformers"
 		# echo ""
-		# INSTALL_XSAI_TRANSFORMERS
+		INSTALL_XSAI_TRANSFORMERS
 		# echo "Cloning airi_chat"
 		# echo ""
-		# INSTALL_AIRI_CHAT
+		INSTALL_AIRI_CHAT
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
@@ -441,8 +450,11 @@ function CLONE_LLMSTACK() {
 		# cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
 		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
+		npx npm-check-updates -u
+
 		cd llmstack/client || exit 1
-		# npx update-browserslist-db@latest --update-db
+
+		npx npm-check-updates -u
 		npm install
 		npm run build
 		# cd ../../
