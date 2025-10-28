@@ -8,7 +8,7 @@ export OLLAMA="docker"                           # local, docker
 export PERM_DATA="${WD}/DATA"                    #
 export CLEANUP="false"                           # false, true
 export PRUNE="normal"                            # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export BUILDING="true"                           # false, true, force_rebuild
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
 
@@ -180,21 +180,21 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-# echo ""
-# INSTALL_ESSENTIALS_STACK
-# echo ""
+echo ""
+INSTALL_ESSENTIALS_STACK
+echo ""
 
 echo ""
 INSTALL_AI_STACK
 echo ""
 
-# echo ""
-# INSTALL_ARR_STACK
-# echo ""
+echo ""
+INSTALL_ARR_STACK
+echo ""
 
-# echo ""
-# INSTALL_MEDIA_STACK
-# echo ""
+echo ""
+INSTALL_MEDIA_STACK
+echo ""
 
 # echo ""
 # INSTALL_AIWAIFU_STACK
