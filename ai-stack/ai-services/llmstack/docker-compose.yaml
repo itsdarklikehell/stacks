@@ -26,6 +26,10 @@ services:
     command: rqworker
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - llmstack_code:/code/llmstack
       - llmstack_userdata:/home/appuser/data
 
@@ -65,6 +69,10 @@ services:
     restart: unless-stopped
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - llmstack_redis_data:/data
 
     env_file:
@@ -91,15 +99,15 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - llmstack_postgres_data:/var/lib/postgresql/data
 
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-}
-      PGDATA: /var/lib/postgresql/data/pgdata
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=${DATABASE_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-}
+      - PGDATA=/var/lib/postgresql/data/pgdata
 
     env_file:
       - ./llmstack/.env
@@ -114,13 +122,13 @@ services:
       - llmstack_weaviate_data:/var/lib/weaviate
 
     environment:
-      QUERY_DEFAULTS_LIMIT: 20
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
-      PERSISTENCE_DATA_PATH: /var/lib/weaviate
-      DEFAULT_VECTORIZER_MODULE: text2vec-openai
-      ENABLE_MODULES: text2vec-openai
-      CLUSTER_HOSTNAME: weaviate-node
-      LOG_LEVEL: error
+      - QUERY_DEFAULTS_LIMIT=20
+      - AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true
+      - PERSISTENCE_DATA_PATH=/var/lib/weaviate
+      - DEFAULT_VECTORIZER_MODULE=text2vec-openai
+      - ENABLE_MODULES=text2vec-openai
+      - CLUSTER_HOSTNAME=weaviate-node
+      - LOG_LEVEL=error
 
     env_file:
       - ./llmstack/.env

@@ -4,40 +4,93 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	# beets
-	# deluge
-	# mattermost
-	# modmanager
-	# qbittorrent
-	# romm
-	# steamos
-	# transmission
-	# watchtower
-	# webcord
-	# wireguard
 	autoheal
+	beets
 	calibre-web
+	deluge
 	dolphin
 	duckstation
 	emby
 	flexget
-	# flycast
+	flycast
 	gaseous-server
 	gzdoom
 	jellyfin
 	kali-linux
-	plex
-	quakejs
-	retroarch
-	retroarchz
-	rpcs3
-	tvs99
-	viewtube
-	webrcade
-	xemu
+	mattermost
+	# modmanager
+	# plex
+	# qbittorrent
+	# quakejs
+	# retroarch
+	# retroarchz
+	# romm
+	# rpcs3
+	# steamos
+	# transmission
+	# tvs99
+	# viewtube
+	# watchtower
+	# webcord
+	# webrcade
+	# wireguard
+	# xemu
 )
 
 function CREATE_FOLDERS() {
+	if [[ ${f} == "beets" ]]; then
+		mkdir -p "${FOLDER}/${f}_downloads"
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_media"
+	fi
+
+	if [[ ${f} == "calibre-web" ]]; then
+		mkdir -p "${FOLDER}/${f}_library"
+	fi
+
+	if [[ ${f} == "deluge" ]]; then
+		mkdir -p "${FOLDER}/${f}_downloads"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
+	if [[ ${f} == "dolphin" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
+	fi
+
+	if [[ ${f} == "duckstation" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_downloads"
+	fi
+
+	if [[ ${f} == "emby" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_media"
+	fi
+
+	if [[ ${f} == "flexget" ]]; then
+		mkdir -p "${FOLDER}/${f}_downloads"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
+	if [[ ${f} == "flycast" ]]; then
+		mkdir -p "${FOLDER}/${f}_downloads"
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
+	if [[ ${f} == "gaseous-server" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_mariadb"
+	fi
+
+	if [[ ${f} == "gzdoom" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
+	if [[ ${f} == "kali-linux" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
 	if [[ ${f} == "viewtube" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 	fi
@@ -47,23 +100,11 @@ function CREATE_FOLDERS() {
 	if [[ ${f} == "rpcs3" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
-	if [[ ${f} == "gaseous-server" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_mariadb"
-	fi
-	if [[ ${f} == "duckstation" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
-	fi
 	if [[ ${f} == "xemu" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 		mkdir -p "${FOLDER}/${f}_downloads"
 	fi
 	if [[ ${f} == "dolphin" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
-	fi
-	if [[ ${f} == "flycast" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
 		mkdir -p "${FOLDER}/${f}_downloads"
 	fi
@@ -79,14 +120,8 @@ function CREATE_FOLDERS() {
 	if [[ ${f} == "webrcade" ]]; then
 		mkdir -p "${FOLDER}/${f}_content"
 	fi
-	if [[ ${f} == "gzdoom" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-	fi
 	if [[ ${f} == "quakejs" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
-	fi
-	if [[ ${f} == "calibre-web" ]]; then
-		mkdir -p "${FOLDER}/${f}_library"
 	fi
 	if [[ ${f} == "retroarch" ]]; then
 		mkdir -p "${FOLDER}/${f}_config"
@@ -95,14 +130,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_config"
 	fi
-	if [[ ${f} == "flexget" ]]; then
-		mkdir -p "${FOLDER}/${f}_downloads"
-		mkdir -p "${FOLDER}/${f}_config"
-	fi
-	if [[ ${f} == "emby" ]]; then
-		mkdir -p "${FOLDER}/${f}_media"
-		mkdir -p "${FOLDER}/${f}_config"
-	fi
+
 	if [[ ${f} == "retroarchz" ]]; then
 		mkdir -p "${FOLDER}/${f}_roms"
 	fi

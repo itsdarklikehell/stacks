@@ -18,6 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+
       - beets_config:/config
       - beets_media:/data
       - beets_downloads:/downloads

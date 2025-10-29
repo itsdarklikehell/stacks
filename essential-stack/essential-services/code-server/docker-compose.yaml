@@ -25,7 +25,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/essential-stack/code-server/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - code-server_config:/config
 
     hostname: ${NAME:-code-server}
 

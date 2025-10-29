@@ -18,7 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
     hostname: ${NAME:-midori-ai-subsystem-manager}
 
@@ -68,3 +68,8 @@ services:
       - 9222:3400 # Map host's port 9222 to container's port 3000
     environment:
       - MAX_CONCURRENT_SESSIONS=10
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro

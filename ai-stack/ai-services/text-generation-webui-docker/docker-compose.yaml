@@ -20,7 +20,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - text-generation-webui-docker_cache:/root/.cache
       - text-generation-webui-docker_characters:/app/user_data/characters

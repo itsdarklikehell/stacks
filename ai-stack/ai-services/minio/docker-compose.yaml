@@ -28,7 +28,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - minio_data:/var/lib/minio/data
 
@@ -57,6 +57,11 @@ services:
     networks:
       host:
       ai-services:
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
     environment:
       - PUID=${PUID:-1000}
@@ -107,7 +112,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/templates/prometheus.yaml:/home/prometheus-template.yaml:ro
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
@@ -161,7 +166,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
@@ -209,7 +214,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 

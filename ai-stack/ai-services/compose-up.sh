@@ -103,7 +103,7 @@ function CREATE_FOLDERS() {
 		mkdir -p "${FOLDER}/${f}_tool_execution_dir"
 	fi
 	if [[ ${f} == "librechat" ]]; then
-		mkdir -p "${FOLDER}/${f}_postgress_data"
+		mkdir -p "${FOLDER}/${f}_vectordb_data"
 		mkdir -p "${FOLDER}/${f}_mongo_data"
 		mkdir -p "${FOLDER}/${f}_images"
 		mkdir -p "${FOLDER}/${f}_uploads"

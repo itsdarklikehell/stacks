@@ -39,22 +39,14 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - clickhouse_backups:/var/lib/clickhouse/backups
-      # - clickhouse_backups:/backups
-
       - clickhouse_configs:/etc/clickhouse-server/config.d
-
       - clickhouse_data:/var/lib/clickhouse
-      # - clickhouse_data:/bitnami/clickhouse
-
       - clickhouse_initdb:/docker-entrypoint-initdb.d
-
       - clickhouse_logs:/var/log/clickhouse-server/
-
       - clickhouse_users:/etc/clickhouse-server/users.d
-
       # - ../../DATA/ai-stack/clickhouse/config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
       # - ../../DATA/ai-stack/chroma/config/chroma_users.xml:/etc/clickhouse-server/users.d/chroma.xml
 

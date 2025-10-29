@@ -30,7 +30,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - private-gpt-ollama_local_data:/home/worker/app/local_data
 
     hostname: ${NAME:-private-gpt-ollama}
@@ -115,7 +116,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - private-gpt-llamacpp-cpu_local_data:/home/worker/app/local_data
       - private-gpt-llamacpp-cpu_models/:/home/worker/app/models

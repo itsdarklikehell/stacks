@@ -20,11 +20,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - /dev/:/dev/:rw
-      - /run/udev:/run/udev:rw
+      # - /run/udev:/run/udev:rw
+      # - wolf_dev:/dev/:rw
+      - wolf_udev:/dev/udev:rw
       - wolf_etc:/etc/wolf
-      # - ../../DATA/essential-stack/wolf/etc:/etc/wolf
 
     device_cgroup_rules:
       - c 13:* rmw

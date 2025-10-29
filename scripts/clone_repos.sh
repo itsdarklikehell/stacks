@@ -23,10 +23,6 @@ function CLONE_AIRI() {
 	cd "../DATA/airi-stack" || exit 1
 
 	function LOCAL_SETUP() {
-		npx npm-check-updates -u
-		npm i -g @antfu/ni
-		npm i -g shiki
-		npm i -g pkgroll
 
 		function INSTALL_XSAI() {
 			cd "${WD}" || exit
@@ -75,8 +71,11 @@ function CLONE_AIRI() {
 			echo ""
 			git clone --recursive https://github.com/moeru-ai/airi.git airi
 			cd airi || exit
-
 			npx npm-check-updates -u
+			npm i -g @antfu/ni
+			npm i -g shiki
+			npm i -g pkgroll
+
 			ni
 			nr build
 
@@ -450,7 +449,8 @@ function CLONE_LLMSTACK() {
 		# cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
 		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
-		npx npm-check-updates -u
+
+		# npx npm-check-updates -u
 
 		cd llmstack/client || exit 1
 

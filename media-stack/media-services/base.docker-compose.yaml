@@ -6,20 +6,50 @@ networks:
     external: true
 
 volumes:
-  duckstation_config:
-    name: duckstation_config
+  beets_config:
+    name: beets_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/duckstation/duckstation_config
-  duckstation_downloads:
-    name: duckstation_downloads
+      device: ../../DATA/media-stack/beets/beets_config
+  beets_media:
+    name: beets_media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/duckstation/duckstation_downloads
+      device: ../../DATA/media-stack/beets/beets_media
+  beets_downloads:
+    name: beets_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/beets/beets_downloads
+
+  calibre-web_library:
+    name: calibre-web_library
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/calibre-web/calibre-web_library
+
+  deluge_downloads:
+    name: deluge_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/deluge/deluge_downloads
+  deluge_config:
+    name: deluge_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/deluge/deluge_config
 
   dolphin_config:
     name: dolphin_config
@@ -35,6 +65,99 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/dolphin/dolphin_downloads
+
+  duckstation_config:
+    name: duckstation_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/duckstation/duckstation_config
+  duckstation_downloads:
+    name: duckstation_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/duckstation/duckstation_downloads
+
+  emby_config:
+    name: emby_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/emby/emby_config
+  emby_media:
+    name: emby_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/emby/emby_media
+
+  flexget_config:
+    name: flexget_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flexget/flexget_config
+  flexget_downloads:
+    name: flexget_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flexget/flexget_downloads
+
+  flycast_downloads:
+    name: flycast_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flycast/flycast_downloads
+  flycast_config:
+    name: flycast_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/flycast/flycast_config
+
+  gaseous-server_data:
+    name: gaseous-server_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gaseous-server/gaseous-server_data
+  gaseous-server_mariadb:
+    name: gaseous-server_mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
+
+  gzdoom_config:
+    name: gzdoom_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/gzdoom/gzdoom_config
+
+  kali-linux_config:
+    name: kali-linux_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/media-stack/kali-linux/kali-linux_config
+
+
 
   xemu_config:
     name: xemu_config
@@ -58,44 +181,6 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/rpcs3/rpcs3_config
-
-  flycast_downloads:
-    name: flycast_downloads
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/flycast/flycast_downloads
-  flycast_config:
-    name: flycast_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/flycast/flexget_config
-
-  gaseous-server_data:
-    name: gaseous-server_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/gaseous-server/gaseous-server_data
-  gaseous-server_mariadb:
-    name: gaseous-server_mariadb
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
-
-  kali-linux_config:
-    name: kali-linux_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/kali-linux/kali-linux_config
 
   romm_resources:
     name: romm_resources
@@ -216,52 +301,6 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/media-stack/plex/plex_media
-
-  gzdoom_config:
-    name: gzdoom_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/gzdoom/gzdoom_config
-
-  flexget_config:
-    name: flexget_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/flexget/flexget_config
-  flexget_downloads:
-    name: flexget_downloads
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/flexget/flexget_downloads
-
-  emby_config:
-    name: emby_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/emby/emby_config
-  emby_media:
-    name: emby_media
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/emby/emby_media
-
-  calibre-web_library:
-    name: calibre-web_library
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/media-stack/calibre-web/calibre-web_library
 
 secrets:
   rreading_glasses_db_password:

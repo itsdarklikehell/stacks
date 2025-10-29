@@ -28,7 +28,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/essential-stack/vscodium/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - vscodium_config:/config
 
     hostname: ${NAME:-vscodium}
 
@@ -36,7 +38,7 @@ services:
       host:
       essential-services:
 
-    expose: 
+    expose:
       - 3007/tcp
       - 3006/tcp
 

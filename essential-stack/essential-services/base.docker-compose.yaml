@@ -6,6 +6,67 @@ networks:
     external: true
 
 volumes:
+  code-server_config:
+    name: code-server_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/code-server/code-server_config
+
+  dashy_data:
+    name: dashy_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/dashy/dashy_data
+
+  dockge_data:
+    name: dockge_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/dockge/dockge_data
+
+  homarr_appdata:
+    name: homarr_appdata
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/homarr/homarr_appdata
+
+  nextcloud_data:
+    name: nextcloud_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/nextcloud/nextcloud_data
+  nextcloud_config:
+    name: nextcloud_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/nextcloud/nextcloud_config
+  nextcloud_html:
+    name: nextcloud_html
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/nextcloud/nextcloud_html
+  nextcloud_custom_apps:
+    name: nextcloud_custom_apps
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/essential-stack/nextcloud/nextcloud_custom_apps
+  
   wolf_etc:
     name: wolf_etc
     driver: local
@@ -13,6 +74,20 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/essential-stack/wolf/wolf_etc
+  wolf_dev:
+    name: wolf_dev
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /dev/
+  wolf_udev:
+    name: wolf_udev
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /run/udev
 
   uptime-kuma_data:
     name: uptime-kuma_data
@@ -53,45 +128,13 @@ volumes:
       o: bind
       device: ../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_letsencrypt
 
-  homarr_appdata:
-    name: homarr_appdata
+  vscodium_config:
+    name: vscodium_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/homarr/homarr_appdata
-  
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/essential-stack/nextcloud_aio/nextcloud_aio_mastercontainer
-
-  dockge_data:
-    name: dockge_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/essential-stack/dockge/dockge_data
-
-  dashy_data:
-    name: dashy_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/essential-stack/dashy/dashy_data
-
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../DATA/essential-stack/nextcloud/nextcloud_aio_mastercontainer
+      device: ../../DATA/essential-stack/vscodium/config
 
 secrets:
   INITIAL_ADMIN_EMAIL:

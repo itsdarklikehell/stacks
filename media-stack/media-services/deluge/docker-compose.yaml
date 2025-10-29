@@ -18,6 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+
       - deluge_config:/config
       - deluge_downloads:/downloads
 

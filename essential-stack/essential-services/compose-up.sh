@@ -4,7 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	nextcloud
+	# nextcloud
 	autoheal
 	autopulse
 	code-server
@@ -23,28 +23,10 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "wolf" ]]; then
-		mkdir -p "${FOLDER}/${f}_etc"
+	if [[ ${f} == "code-server" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
 	fi
-	if [[ ${f} == "uptime-kuma" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-	fi
-	if [[ ${f} == "portracker" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-	fi
-	if [[ ${f} == "portainer" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-	fi
-	if [[ ${f} == "nginx-proxy-manager" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_letsencrypt"
-	fi
-	if [[ ${f} == "homarr" ]]; then
-		mkdir -p "${FOLDER}/${f}_appdata"
-	fi
-	if [[ ${f} == "dockge" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-	fi
+
 	if [[ ${f} == "dashy" ]]; then
 		mkdir -p "${FOLDER}/${f}_data"
 		mkdir -p "${FOLDER}/${f}_config"
@@ -55,9 +37,46 @@ function CREATE_FOLDERS() {
 			echo "Dashy config.yml already exists, skipping download"
 		fi
 	fi
-	if [[ ${f} == "nextcloud" ]]; then
-		mkdir -p "${FOLDER}/${f}_nextcloud_aio_mastercontainer"
+
+	if [[ ${f} == "dockge" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
 	fi
+
+	if [[ ${f} == "homarr" ]]; then
+		mkdir -p "${FOLDER}/${f}_appdata"
+	fi
+
+	if [[ ${f} == "nextcloud" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_aio_mastercontainer"
+	fi
+
+	if [[ ${f} == "nginx-proxy-manager" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+		mkdir -p "${FOLDER}/${f}_letsencrypt"
+	fi
+
+	if [[ ${f} == "portainer" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+	fi
+
+	if [[ ${f} == "portracker" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+	fi
+
+	if [[ ${f} == "uptime-kuma" ]]; then
+		mkdir -p "${FOLDER}/${f}_data"
+	fi
+
+	if [[ ${f} == "vscodium" ]]; then
+		mkdir -p "${FOLDER}/${f}_config"
+	fi
+
+	if [[ ${f} == "wolf" ]]; then
+		mkdir -p "${FOLDER}/${f}_etc"
+	fi
+
 }
 
 ARGS=""

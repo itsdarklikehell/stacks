@@ -13,11 +13,12 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - PORT=${PORT:-8084}
+      - PORT=${PORT:-8084}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+
       - calibre-web_library:/calibre-library
 
     hostname: ${NAME:-calibre-web}

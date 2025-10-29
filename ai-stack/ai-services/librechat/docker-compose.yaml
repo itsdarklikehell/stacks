@@ -28,20 +28,18 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3080}
       - HOST=0.0.0.0
-      - MONGO_URI=mongodb://mongodb:27017/librechat
-      - MEILI_HOST=http://meilisearch:7700
+      - MONGO_URI=mongodb://librechat-mongodb:27017/librechat
+      - MEILI_HOST=http://librechat-meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
-      - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
+      - RAG_API_URL=http://librechat-rag-api:${RAG_PORT:-8000}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - librechat_images:/app/client/public/images
-
       - librechat_uploads:/app/uploads
-
       - librechat_logs:/app/logs
 
     hostname: ${NAME:-librechat}
@@ -91,7 +89,7 @@ services:
         max-size: 10m
         max-file: 3
 
-  mongodb:
+  librechat-mongodb:
     container_name: librechat-mongodb
     image: mongo
     restart: always
@@ -110,7 +108,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - librechat_mongo_data:/data/db
 
@@ -125,7 +123,7 @@ services:
         max-size: 10m
         max-file: 3
 
-  meilisearch:
+  librechat-meilisearch:
     container_name: librechat-meilisearch
     image: getmeili/meilisearch:v1.12.3
     restart: always
@@ -138,11 +136,15 @@ services:
       # - autoheal-app=true
 
     environment:
-      - MEILI_HOST=http://meilisearch:7700
+      - MEILI_HOST=http://librechat-meilisearch:7700
       - MEILI_NO_ANALYTICS=true
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - librechat_meili_data:/meili_data
 
     env_file:
@@ -158,7 +160,7 @@ services:
         max-size: 10m
         max-file: 3
 
-  vectordb:
+  librechat-vectordb:
     container_name: librechat-vectordb
     image: pgvector/pgvector:0.8.0-pg15-trixie
     restart: always
@@ -169,12 +171,16 @@ services:
       # - autoheal-app=true
 
     environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
 
     volumes:
-      - librechat_postgress_data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - librechat_vectordb_data:/var/lib/postgresql/data
 
     env_file:
       - ./librechat/.env
@@ -189,8 +195,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  rag_api:
-    container_name: librechat-rag_api
+  librechat-rag-api:
+    container_name: librechat-rag-api
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
     restart: always
 
@@ -200,11 +206,16 @@ services:
       # - autoheal-app=true
 
     environment:
-      - DB_HOST=vectordb
+      - DB_HOST=librechat-vectordb
       - RAG_PORT=${RAG_PORT:-8000}
 
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
     depends_on:
-      - vectordb
+      - librechat-vectordb
 
     env_file:
       - ./librechat/.env

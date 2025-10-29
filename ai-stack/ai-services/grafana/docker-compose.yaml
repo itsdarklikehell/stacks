@@ -25,17 +25,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - grafana_data:/var/lib/grafana
 
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/etc/grafana/provisioning/dashboards/:/etc/grafana/provisioning/dashboards/
-
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/etc/grafana/provisioning/datasources/:/etc/grafana/provisioning/datasources/
-
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/var/lib/grafana/dashboards/:/var/lib/grafana/dashboards/
-
-      # uncomment the following line, if you don't have access to grafana.com plugins and download a plugin manually (read README.md file)
       - ../../DATA/ai-stack/clickhouse/config_files/grafana/var/lib/grafana/plugins/:/var/lib/grafana/plugins/
 
     secrets:

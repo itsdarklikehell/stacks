@@ -26,10 +26,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - wyoming-piper_data:/data
-      # - ../../DATA/ai-stack/wyoming-piper/data:/data
 
     hostname: ${NAME:-wyoming-piper}
 

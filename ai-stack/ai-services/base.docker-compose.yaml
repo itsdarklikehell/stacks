@@ -185,13 +185,13 @@ volumes:
       o: bind
       device: ../../DATA/ai-stack/letta-server/letta-server_tool_execution_dir
 
-  librechat_postgress_data:
-    name: librechat_postgress_data
+  librechat_vectordb_data:
+    name: librechat_vectordb_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_postgress_data
+      device: ../../DATA/ai-stack/librechat/librechat_vectordb_data
   librechat_mongo_data:
     name: librechat_mongo_data
     driver: local

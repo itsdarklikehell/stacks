@@ -19,8 +19,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - uptime-kuma_data:/app/data
-      # - ../../DATA/essential-stack/uptime-kuma/data:/app/data
 
     hostname: ${NAME:-uptime-kuma}
 
