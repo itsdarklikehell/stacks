@@ -63,13 +63,22 @@ function CREATE_SECRETS() {
 function CLONE_REPOS() {
 	SCRIPTS/clone_repos.sh
 }
+
 function INSTALL_STACK() {
-	"${CONFIGS_DIR}"/install-stack.sh
+	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
+
+	# echo "Building is set to: ${BUILDING}"
+	# echo "Working directory is set to ${WD}"
+	# echo "Configs directory is set to ${CONFIGS_DIR}"
+	# echo "Data directory is set to ${PERM_DATA}"
+	# echo "Secrets directory is set to ${SECRETS_DIR}"
+	# echo "Stacks directory is set to ${STACKS_DIR}"
+
+	"${STACK_DIR}"/install-stack.sh
 }
 
 function SETUP_ESSENTIALS_STACK() {
-	export STACK_NAME="essentials"
-	export CONFIGS_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
+	export STACK_NAME="essential"
 	INSTALL_STACK
 }
 function SETUP_MEDIA_STACK() {
@@ -126,11 +135,6 @@ INSTALL_DOCKER
 # echo ""
 
 ## STACKS:
-# echo "Building is set to: ${BUILDING}"
-# echo "Working directory is set to ${WD}"
-# echo "Configs directory is set to ${CONFIGS_DIR}"
-# echo "Data directory is set to ${PERM_DATA}"
-# echo "Secrets directory is set to ${SECRETS_DIR}"
 
 # CLEANUP_DATA
 # PRUNING
@@ -138,42 +142,42 @@ CREATE_NETWORKS
 CREATE_SECRETS
 
 echo ""
-INSTALL_ESSENTIALS_STACK
+SETUP_ESSENTIALS_STACK
 echo ""
 
 echo ""
-INSTALL_AI_STACK
+SETUP_AI_STACK
 echo ""
 
 echo ""
-INSTALL_MEDIA_STACK
+SETUP_MEDIA_STACK
 echo ""
 
 # echo ""
-# INSTALL_ARR_STACK
+# SETUP_ARR_STACK
 # echo ""
 
 # echo ""
-# INSTALL_AIWAIFU_STACK
+# SETUP_AIWAIFU_STACK
 # echo ""
 
 # echo ""
-# INSTALL_AIRI_STACK
+# SETUP_AIRI_STACK
 # echo ""
 
 # echo ""
-# INSTALL_OPENLLM_VTUBER_STACK
+# SETUP_OPENLLM_VTUBER_STACK
 # echo ""
 
 # echo ""
-# INSTALL_JAISON_STACK
+# SETUP_JAISON_STACK
 # echo ""
 
 # echo ""
-# INSTALL_PROJECT_RIKO_STACK
+# SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-PULL_MODELS
+# PULL_MODELS
 
 # dockly # lazydocker
 

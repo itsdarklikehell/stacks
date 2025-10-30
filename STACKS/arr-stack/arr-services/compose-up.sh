@@ -41,7 +41,12 @@ ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${f}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
-	mkdir -p "${FOLDER}"
+	if [[ ! -d ${FOLDER} ]]; then
+		echo "Creating folder: ${FOLDER}"
+		mkdir -p "${FOLDER}"
+	else
+		echo "Folder already exists: ${FOLDER}, skipping creation"
+	fi
 	CREATE_FOLDERS
 done
 
