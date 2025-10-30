@@ -67,12 +67,12 @@ function CLONE_REPOS() {
 function INSTALL_STACK() {
 	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
 
-	# echo "Building is set to: ${BUILDING}"
-	# echo "Working directory is set to ${WD}"
-	# echo "Configs directory is set to ${CONFIGS_DIR}"
-	# echo "Data directory is set to ${PERM_DATA}"
-	# echo "Secrets directory is set to ${SECRETS_DIR}"
-	# echo "Stacks directory is set to ${STACKS_DIR}"
+	echo "Building is set to: ${BUILDING}"
+	echo "Working directory is set to ${WD}"
+	echo "Configs directory is set to ${CONFIGS_DIR}"
+	echo "Data directory is set to ${PERM_DATA}"
+	echo "Secrets directory is set to ${SECRETS_DIR}"
+	echo "Stacks directory is set to ${STACKS_DIR}"
 
 	"${STACK_DIR}"/install-stack.sh
 }

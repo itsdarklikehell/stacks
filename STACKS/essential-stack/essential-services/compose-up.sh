@@ -23,73 +23,117 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "code-server" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	for FOLDERNAME in "${FOLDERS[@]}"; do
+		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
+			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+		# else
+		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		fi
+	done
+}
+
+function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "code-server" ]]; then
+		FOLDERS=(
+			"config"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "dashy" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_config"
-		if [[ ! -f "${FOLDER}/${f}_config/conf.yml" ]]; then
+	if [[ ${SERVICE_NAME} == "dashy" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+		)
+		CREATE_FOLDERS
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_config/conf.yml" ]]; then
 			echo "Downloading example dashy config.yml"
-			wget https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25203%2520-%2520Demo%2520Home%2520Lab%2520-%2520conf.yml -O "${FOLDER}/${f}_config/conf.yml"
-		else
-			echo "Dashy config.yml already exists, skipping download"
+			wget https://gist.githubusercontent.com/Lissy93/000f712a5ce98f212817d20bc16bab10/raw/b08f2473610970c96d9bc273af7272173aa93ab1/Example%25203%2520-%2520Demo%2520Home%2520Lab%2520-%2520conf.yml -O "${FOLDER}/${SERVICE_NAME}_config/conf.yml"
 		fi
 	fi
 
-	if [[ ${f} == "dockge" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "dockge" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "homarr" ]]; then
-		mkdir -p "${FOLDER}/${f}_appdata"
+	if [[ ${SERVICE_NAME} == "homarr" ]]; then
+		FOLDERS=(
+			"appdata"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "nextcloud" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_aio_mastercontainer"
+	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+			"aio_mastercontainer"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "nginx-proxy-manager" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_letsencrypt"
+	if [[ ${SERVICE_NAME} == "nginx-proxy-manager" ]]; then
+		FOLDERS=(
+			"data"
+			"letsencrypt"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "portainer" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "portainer" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "portracker" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "portracker" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "uptime-kuma" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "uptime-kuma" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "vscodium" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "vscodium" ]]; then
+		FOLDERS=(
+			"config"
+		)
+		CREATE_FOLDERS
 	fi
 
-	if [[ ${f} == "wolf" ]]; then
-		mkdir -p "${FOLDER}/${f}_etc"
+	if [[ ${SERVICE_NAME} == "wolf" ]]; then
+		FOLDERS=(
+			"etc"
+		)
+		CREATE_FOLDERS
 	fi
 
 }
 
 ARGS=""
-for f in "${COMPOSE_FILES[@]}"; do
-	ARGS+="-f ${f}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
+for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
+	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 	if [[ ! -d ${FOLDER} ]]; then
+		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"
-	else
-		echo "Folder already exists: ${FOLDER}, skipping creation"
+	# else
+	# 	echo ""
+	# 	echo "Folder already exists: ${FOLDER}, skipping creation"
 	fi
-	CREATE_FOLDERS
+	SETUP_FOLDERS
 done
 
 function BUILDING() {

@@ -49,194 +49,308 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "anything-llm" ]]; then
-		mkdir -p "${FOLDER}/${f}_storage"
-		if [[ ! -f "${FOLDER}/${f}_storage/.env" ]]; then
+	for FOLDERNAME in "${FOLDERS[@]}"; do
+		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
+			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+		# else
+		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		fi
+	done
+}
+
+function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "anything-llm" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+			"models"
+			"prompts"
+			"vectorstores"
+		)
+		CREATE_FOLDERS
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
 			echo "Downloading example anything-llm .env file"
-			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${f}_storage/.env"
+			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${SERVICE_NAME}_storage/.env"
 		else
 			echo "anything-llm .env file already exists, skipping download"
 		fi
 	fi
-	if [[ ${f} == "basic-memory" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_knowledge"
-		mkdir -p "${FOLDER}/${f}_personal-notes"
-		mkdir -p "${FOLDER}/${f}_work-notes"
+	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
+		FOLDERS=(
+			"config"
+			"knowledge"
+			"personal-notes"
+			"work-notes"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "chroma" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_index"
+	if [[ ${SERVICE_NAME} == "chroma" ]]; then
+		FOLDERS=(
+			"data"
+			"index"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "clickhouse" ]]; then
-		mkdir -p "${FOLDER}/${f}_backups"
-		mkdir -p "${FOLDER}/${f}_configs"
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_initdb"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_users"
+	if [[ ${SERVICE_NAME} == "clickhouse" ]]; then
+		FOLDERS=(
+			"backups"
+			"configs"
+			"data"
+			"initdb"
+			"logs"
+			"users"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "grafana" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "grafana" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "mongo-whispher" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_logs"
+	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
+		FOLDERS=(
+			"data"
+			"logs"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "homeassistant" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_media"
+	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
+		FOLDERS=(
+			"config"
+			"media"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "koboldccp" ]]; then
-		mkdir -p "${FOLDER}/${f}_workspace"
+	if [[ ${SERVICE_NAME} == "koboldccp" ]]; then
+		FOLDERS=(
+			"workspace"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "kokoro-tts" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_index_data"
+	if [[ ${SERVICE_NAME} == "kokoro-tts" ]]; then
+		FOLDERS=(
+			"data"
+			"index_data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "coqui-tts-cpu" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_index_data"
+	if [[ ${SERVICE_NAME} == "coqui-tts-cpu" ]]; then
+		FOLDERS=(
+			"data"
+			"index_data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "letta-server" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_tool_execution_dir"
+	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
+		FOLDERS=(
+			"data"
+			"tool_execution_dir"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "librechat" ]]; then
-		mkdir -p "${FOLDER}/${f}_vectordb_data"
-		mkdir -p "${FOLDER}/${f}_mongo_data"
-		mkdir -p "${FOLDER}/${f}_images"
-		mkdir -p "${FOLDER}/${f}_uploads"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_meili_data"
+	if [[ ${SERVICE_NAME} == "librechat" ]]; then
+		FOLDERS=(
+			"vectordb_data"
+			"mongo_data"
+			"images"
+			"uploads"
+			"logs"
+			"meili_data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "libretranslate-whispher" ]]; then
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "libretranslate-whispher" ]]; then
+		FOLDERS=(
+			"cache"
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "localai" ]]; then
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_backends"
-		mkdir -p "${FOLDER}/${f}_configuration"
-		mkdir -p "${FOLDER}/${f}_content"
-		mkdir -p "${FOLDER}/${f}_localai_images"
-		mkdir -p "${FOLDER}/${f}_models"
+	if [[ ${SERVICE_NAME} == "localai" ]]; then
+		FOLDERS=(
+			"cache"
+			"backends"
+			"configuration"
+			"content"
+			"images"
+			"models"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "minio" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "minio" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "mongo-whispher" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_logs"
+	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
+		FOLDERS=(
+			"data"
+			"logs"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "n8n" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_local_files"
+	if [[ ${SERVICE_NAME} == "n8n" ]]; then
+		FOLDERS=(
+			"data"
+			"local_files"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "ollama" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_models"
+	if [[ ${SERVICE_NAME} == "ollama" ]]; then
+		FOLDERS=(
+			"data"
+			"models"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "open-webui" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "piper" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "piper" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "faster-whisper-gpu" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "faster-whisper-gpu" ]]; then
+		FOLDERS=(
+			"config"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "text-generation-webui-docker" ]]; then
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_characters"
-		mkdir -p "${FOLDER}/${f}_grammars"
-		mkdir -p "${FOLDER}/${f}_templates"
-		mkdir -p "${FOLDER}/${f}_loras"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_presets"
-		mkdir -p "${FOLDER}/${f}_prompts"
-		mkdir -p "${FOLDER}/${f}_training"
-		mkdir -p "${FOLDER}/${f}_extensions"
-		mkdir -p "${FOLDER}/${f}_coqui_tts"
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_instruction-templates"
+	if [[ ${SERVICE_NAME} == "text-generation-webui-docker" ]]; then
+		FOLDERS=(
+			"cache"
+			"characters"
+			"grammars"
+			"templates"
+			"loras"
+			"logs"
+			"models"
+			"presets"
+			"prompts"
+			"training"
+			"extensions"
+			"coqui_tts"
+			"data"
+			"instruction-templates"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "llmstack" ]]; then
-		mkdir -p "${FOLDER}/${f}_code"
-		mkdir -p "${FOLDER}/${f}_userdata"
-		mkdir -p "${FOLDER}/${f}_postgres_data"
-		mkdir -p "${FOLDER}/${f}_weaviate_data"
-		mkdir -p "${FOLDER}/${f}_redis_data"
+	if [[ ${SERVICE_NAME} == "llmstack" ]]; then
+		FOLDERS=(
+			"code"
+			"userdata"
+			"postgres_data"
+			"weaviate_data"
+			"redis_data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "prometheus" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "prometheus" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "searxng" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "searxng" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "signoz" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_index"
+	if [[ ${SERVICE_NAME} == "signoz" ]]; then
+		FOLDERS=(
+			"data"
+			"index"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "stable-diffusion-webui-docker" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_embeddings"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_output"
-		mkdir -p "${FOLDER}/${f}_workflows"
+	if [[ ${SERVICE_NAME} == "stable-diffusion-webui-docker" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+			"embeddings"
+			"models"
+			"output"
+			"workflows"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "swarmui" ]]; then
-		mkdir -p "${FOLDER}/${f}_backend"
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_dlnodes"
-		mkdir -p "${FOLDER}/${f}_extensions"
+	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
+		FOLDERS=(
+			"backend"
+			"data"
+			"dlnodes"
+			"extensions"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "whishper" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_uploads"
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_outputs"
-		mkdir -p "${FOLDER}/${f}_configs"
+	if [[ ${SERVICE_NAME} == "whishper" ]]; then
+		FOLDERS=(
+			"data"
+			"logs"
+			"models"
+			"uploads"
+			"cache"
+			"outputs"
+			"configs"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "whisperx" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_uploads"
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_outputs"
-		mkdir -p "${FOLDER}/${f}_configs"
+	if [[ ${SERVICE_NAME} == "whisperx" ]]; then
+		FOLDERS=(
+			"data"
+			"logs"
+			"models"
+			"uploads"
+			"cache"
+			"outputs"
+			"configs"
+		)
+		CREATE_FOLDERS
+
 	fi
-	if [[ ${f} == "whisper-webui" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_logs"
-		mkdir -p "${FOLDER}/${f}_models"
-		mkdir -p "${FOLDER}/${f}_uploads"
-		mkdir -p "${FOLDER}/${f}_cache"
-		mkdir -p "${FOLDER}/${f}_outputs"
-		mkdir -p "${FOLDER}/${f}_configs"
+	if [[ ${SERVICE_NAME} == "whisper-webui" ]]; then
+		FOLDERS=(
+			"data"
+			"logs"
+			"models"
+			"uploads"
+			"cache"
+			"outputs"
+			"configs"
+		)
+		CREATE_FOLDERS
 	fi
-	if [[ ${f} == "wyoming-piper" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "wyoming-piper" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		CREATE_FOLDERS
 	fi
 }
 
 ARGS=""
-for f in "${COMPOSE_FILES[@]}"; do
-	ARGS+="-f ${f}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
+for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
+	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 	if [[ ! -d ${FOLDER} ]]; then
+		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"
-	else
-		echo "Folder already exists: ${FOLDER}, skipping creation"
+	# else
+	# 	echo ""
+	# 	echo "Folder already exists: ${FOLDER}, skipping creation"
 	fi
-	CREATE_FOLDERS
+	SETUP_FOLDERS
 done
 
 function BUILDING() {

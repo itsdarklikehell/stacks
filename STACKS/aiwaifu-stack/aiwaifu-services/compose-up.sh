@@ -10,22 +10,35 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "aiwafu" ]]; then
-		mkdir -p "${FOLDER}/${f}_storage"
+	for FOLDERNAME in "${FOLDERS[@]}"; do
+		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
+			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+		# else
+		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		fi
+	done
+}
+
+function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "aiwafu" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_storage"
 	fi
 }
 
 ARGS=""
-for f in "${COMPOSE_FILES[@]}"; do
-	ARGS+="-f ${f}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
+for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
+	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 	if [[ ! -d ${FOLDER} ]]; then
+		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"
-	else
-		echo "Folder already exists: ${FOLDER}, skipping creation"
+	# else
+	# 	echo ""
+	# 	echo "Folder already exists: ${FOLDER}, skipping creation"
 	fi
-	CREATE_FOLDERS
+	SETUP_FOLDERS
 done
 
 function BUILDING() {

@@ -39,120 +39,133 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
-	if [[ ${f} == "beets" ]]; then
-		mkdir -p "${FOLDER}/${f}_downloads"
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_media"
+	for FOLDERNAME in "${FOLDERS[@]}"; do
+		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
+			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
+		# else
+		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		fi
+	done
+}
+
+function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "beets" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
 	fi
 
-	if [[ ${f} == "calibre-web" ]]; then
-		mkdir -p "${FOLDER}/${f}_library"
+	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_library"
 	fi
 
-	if [[ ${f} == "deluge" ]]; then
-		mkdir -p "${FOLDER}/${f}_downloads"
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "deluge" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "dolphin" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
+	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
 	fi
 
-	if [[ ${f} == "duckstation" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
+	if [[ ${SERVICE_NAME} == "duckstation" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
 	fi
 
-	if [[ ${f} == "emby" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_media"
+	if [[ ${SERVICE_NAME} == "emby" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
 	fi
 
-	if [[ ${f} == "flexget" ]]; then
-		mkdir -p "${FOLDER}/${f}_downloads"
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "flexget" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "flycast" ]]; then
-		mkdir -p "${FOLDER}/${f}_downloads"
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "flycast" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "gaseous-server" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_mariadb"
+	if [[ ${SERVICE_NAME} == "gaseous-server" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_mariadb"
 	fi
 
-	if [[ ${f} == "gzdoom" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "gzdoom" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "kali-linux" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "viewtube" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
+	if [[ ${SERVICE_NAME} == "viewtube" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
 	fi
-	if [[ ${f} == "kali-linux" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
-	if [[ ${f} == "rpcs3" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "rpcs3" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
-	if [[ ${f} == "xemu" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
+	if [[ ${SERVICE_NAME} == "xemu" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
 	fi
-	if [[ ${f} == "dolphin" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_downloads"
+	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
 	fi
-	if [[ ${f} == "romm" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_resources"
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_library"
-		mkdir -p "${FOLDER}/${f}_assets"
-		mkdir -p "${FOLDER}/${f}_mariadb"
-		mkdir -p "${FOLDER}/${f}_redis_data"
+	if [[ ${SERVICE_NAME} == "romm" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_resources"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_library"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_assets"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_mariadb"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_redis_data"
 	fi
-	if [[ ${f} == "webrcade" ]]; then
-		mkdir -p "${FOLDER}/${f}_content"
+	if [[ ${SERVICE_NAME} == "webrcade" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_content"
 	fi
-	if [[ ${f} == "quakejs" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "quakejs" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
-	if [[ ${f} == "retroarch" ]]; then
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "retroarch" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
-	if [[ ${f} == "tvs99" ]]; then
-		mkdir -p "${FOLDER}/${f}_data"
-		mkdir -p "${FOLDER}/${f}_config"
+	if [[ ${SERVICE_NAME} == "tvs99" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
 	fi
 
-	if [[ ${f} == "retroarchz" ]]; then
-		mkdir -p "${FOLDER}/${f}_roms"
+	if [[ ${SERVICE_NAME} == "retroarchz" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_roms"
 	fi
-	if [[ ${f} == "plex" ]]; then
-		mkdir -p "${FOLDER}/${f}_media"
-		mkdir -p "${FOLDER}/${f}_config"
-		mkdir -p "${FOLDER}/${f}_transcode"
+	if [[ ${SERVICE_NAME} == "plex" ]]; then
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_transcode"
 	fi
 }
 
 ARGS=""
-for f in "${COMPOSE_FILES[@]}"; do
-	ARGS+="-f ${f}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
+for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
+	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 	if [[ ! -d ${FOLDER} ]]; then
+		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"
-	else
-		echo "Folder already exists: ${FOLDER}, skipping creation"
+	# else
+	# 	echo ""
+	# 	echo "Folder already exists: ${FOLDER}, skipping creation"
 	fi
-	CREATE_FOLDERS
+	SETUP_FOLDERS
 done
 
 function BUILDING() {
