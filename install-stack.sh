@@ -1,24 +1,21 @@
 #!/bin/bash
 
 WD="$(dirname "$(realpath "$0")")" || true
-export WD                                        #
-export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    #
-export UV_LINK_MODE=copy                         #
-export OLLAMA="docker"                           # local, docker
+export WD                                     #
+export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta" #
+export UV_LINK_MODE=copy                      #
+export OLLAMA="docker"                        # local, docker
 
-export PERM_DATA="${WD}/DATA"                    # folders that store stack data
-export STACKS_DIR="${WD}/STACKS"				# folders that store stack configs
+export SECRETS_DIR="${WD}/SECRETS" # folder that store secrets
+export PERM_DATA="${WD}/DATA"      # folders that store stack data
+export CONFIGS_DIR="${WD}/STACKS"  # folders that store stack configs
 
-export CLEANUP="false"                           # false, true
-export PRUNE="normal"                            # false, true/normal, all
-export BUILDING="true"                           # false, true, force_rebuild
+export CLEANUP="false" # false, true
+export PRUNE="normal"  # false, true/normal, all
+export BUILDING="true" # false, true, force_rebuild
 
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
-
-echo "Working directory is set to ${WD}"
-echo "Stacks directory is set to ${STACKS_DIR}"
-echo "Data directory is set to ${PERM_DATA}"
 
 cd "${WD}" || exit
 git pull origin main
@@ -66,36 +63,50 @@ function CREATE_SECRETS() {
 function CLONE_REPOS() {
 	SCRIPTS/clone_repos.sh
 }
+function INSTALL_STACK() {
+	"${CONFIGS_DIR}"/install-stack.sh
+}
 
-function INSTALL_ESSENTIALS_STACK() {
-	essential-stack/install-stack.sh
+function SETUP_ESSENTIALS_STACK() {
+	export STACK_NAME="essentials"
+	export CONFIGS_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
+	INSTALL_STACK
 }
-function INSTALL_MEDIA_STACK() {
-	media-stack/install-stack.sh
+function SETUP_MEDIA_STACK() {
+	export STACK_NAME="media"
+	INSTALL_STACK
 }
-function INSTALL_AI_STACK() {
-	ai-stack/install-stack.sh
+function SETUP_AI_STACK() {
+	export STACK_NAME="ai"
+	INSTALL_STACK
 }
-function INSTALL_JAISON_STACK() {
-	jaison-stack/install-stack.sh
+function SETUP_JAISON_STACK() {
+	export STACK_NAME="jaison"
+	INSTALL_STACK
 }
-function INSTALL_VOICE_CHAT_AI_STACK() {
-	voice-chat-ai-stack/install-stack.sh
+function SETUP_VOICE_CHAT_AI_STACK() {
+	export STACK_NAME="voice-chat-ai"
+	INSTALL_STACK
 }
-function INSTALL_PROJECT_RIKO_STACK() {
-	riko-stack/install-stack.sh
+function SETUP_PROJECT_RIKO_STACK() {
+	export STACK_NAME="riko"
+	INSTALL_STACK
 }
-function INSTALL_OPENLLM_VTUBER_STACK() {
-	openllm-vtuber-stack/install-stack.sh
+function SETUP_OPENLLM_VTUBER_STACK() {
+	export STACK_NAME="openllm-vtuber"
+	"${STACK_NAME}"-vtuber-stack/install-stack.sh
 }
-function INSTALL_ARR_STACK() {
-	arr-stack/install-stack.sh
+function SETUP_ARR_STACK() {
+	export STACK_NAME="arr"
+	INSTALL_STACK
 }
-function INSTALL_AIWAIFU_STACK() {
-	aiwaifu-stack/install-stack.sh
+function SETUP_AIWAIFU_STACK() {
+	export STACK_NAME="aiwaifu"
+	INSTALL_STACK
 }
-function INSTALL_AIRI_STACK() {
-	airi-stack/install-stack.sh
+function SETUP_AIRI_STACK() {
+	export STACK_NAME="airi"
+	INSTALL_STACK
 }
 
 # Install essential dependencies
@@ -115,7 +126,12 @@ INSTALL_DOCKER
 # echo ""
 
 ## STACKS:
-echo "Building is set to: ${BUILDING}"
+# echo "Building is set to: ${BUILDING}"
+# echo "Working directory is set to ${WD}"
+# echo "Configs directory is set to ${CONFIGS_DIR}"
+# echo "Data directory is set to ${PERM_DATA}"
+# echo "Secrets directory is set to ${SECRETS_DIR}"
+
 # CLEANUP_DATA
 # PRUNING
 CREATE_NETWORKS
