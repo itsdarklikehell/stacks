@@ -36,7 +36,8 @@ services:
       - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
       - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
       - PORT=${PORT:-8083}
-      - MODELS_PATH=/models
+      - MODELS_PATH=/usr/share/localai/models
+      - BACKENDS_PATH=/usr/share/localai/backends
       - THREADS=1
       # - PROFILE=gpu-8g
 
@@ -56,22 +57,21 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - ../../DATA/ai-stack/localai/.cache:/.cache:cached
-      # - localai_cache:/.cache:cached
-
-      - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
-      # - localai_backends:/usr/share/localai/backends:cached
-
       - ../../DATA/ai-stack/localai/configuration:/configuration:cached
-      # - localai_configuration:/configuration:cached
-
       - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
-      # - localai_content:cached
-
       - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached
-      # - localai_images:cached
+      # - ../../DATA/ai-stack/localai/models:/models:cached
+      - ../../DATA/ai-stack/localai/models:/usr/share/localai/models:cached
+      # - ../../DATA/ai-stack/localai/backends:/backends:cached
+      - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
 
-      - ../../DATA/ai-stack/localai/models:/models:cached
+      # - localai_cache:/.cache:cached
+      # - localai_backends:/usr/share/localai/backends:cached
+      # - localai_configuration:/configuration:cached
+      # - localai_content:cached
+      # - localai_images:cached
       # - localai_models:/models:cached
+      # - localai_models:/usr/share/localai/models:cached
 
     user: ${PUID:-1000}:${PGID:-1000}
 

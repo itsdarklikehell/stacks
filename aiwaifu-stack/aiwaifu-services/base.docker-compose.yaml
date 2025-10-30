@@ -4,3 +4,12 @@ networks:
   host:
   aiwaifu-services:
     external: true
+
+volumes:
+  aiwaifu_data:
+    name: aiwaifu_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../DATA/aiwaifu-stack/aiwaifu/aiwaifu_data
