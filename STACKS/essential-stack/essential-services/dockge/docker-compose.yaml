@@ -14,7 +14,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       # Tell Dockge where to find the stacks
-      - DOCKGE_STACKS_DIR=../../../stacks
+      - DOCKGE_STACKS_DIR=../../../STACKS
       - PORT=${PORT:-5001}
 
     volumes:
@@ -23,7 +23,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - dockge_data:/app/data
-      - ../../../stacks:/opt/stacks
+      - ../../../STACKS:/opt/stacks
       # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
       # ⚠️ 1. FULL path only. No relative path (MUST)
       # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
