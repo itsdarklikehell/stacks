@@ -12,7 +12,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/code-server/code-server_config
+      device: ../../../DATA/essential-stack/code-server/code-server_config
 
   dashy_data:
     name: dashy_data
@@ -20,7 +20,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/dashy/dashy_data
+      device: ../../../DATA/essential-stack/dashy/dashy_data
 
   dockge_data:
     name: dockge_data
@@ -28,7 +28,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/dockge/dockge_data
+      device: ../../../DATA/essential-stack/dockge/dockge_data
 
   homarr_appdata:
     name: homarr_appdata
@@ -36,7 +36,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/homarr/homarr_appdata
+      device: ../../../DATA/essential-stack/homarr/homarr_appdata
 
   nextcloud_data:
     name: nextcloud_data
@@ -44,28 +44,28 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nextcloud/nextcloud_data
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_data
   nextcloud_config:
     name: nextcloud_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nextcloud/nextcloud_config
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_config
   nextcloud_html:
     name: nextcloud_html
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nextcloud/nextcloud_html
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_html
   nextcloud_custom_apps:
     name: nextcloud_custom_apps
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nextcloud/nextcloud_custom_apps
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_custom_apps
 
   wolf_etc:
     name: wolf_etc
@@ -73,7 +73,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/wolf/wolf_etc
+      device: ../../../DATA/essential-stack/wolf/wolf_etc
   wolf_dev:
     name: wolf_dev
     driver: local
@@ -95,7 +95,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/uptime-kuma/uptime-kuma_data
+      device: ../../../DATA/essential-stack/uptime-kuma/uptime-kuma_data
 
   portracker_data:
     name: portracker_data
@@ -103,7 +103,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/portracker/portracker_data
+      device: ../../../DATA/essential-stack/portracker/portracker_data
 
   portainer_data:
     name: portainer_data
@@ -111,7 +111,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/portainer/portainer_data
+      device: ../../../DATA/essential-stack/portainer/portainer_data
 
   nginx-proxy-manager_data:
     name: nginx-proxy-manager_data
@@ -119,14 +119,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_data
+      device: ../../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_data
   nginx-proxy-manager_letsencrypt:
     name: nginx-proxy-manager_letsencrypt
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_letsencrypt
+      device: ../../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_letsencrypt
 
   vscodium_config:
     name: vscodium_config
@@ -134,7 +134,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/essential-stack/vscodium/config
+      device: ../../../DATA/essential-stack/vscodium/config
 
 secrets:
   INITIAL_ADMIN_EMAIL:

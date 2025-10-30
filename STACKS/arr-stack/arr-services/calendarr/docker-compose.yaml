@@ -49,8 +49,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - alendarr-logs:/app/logs:rw
       - alendarr-custom_footers:/app/custom_footers:rw
-      # - ../../DATA/arr-stack/calendarr/logs:/app/logs:rw
-      # - ../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
+      # - ../../../DATA/arr-stack/calendarr/logs:/app/logs:rw
+      # - ../../../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
 
     hostname: ${NAME:-calendarr}
 

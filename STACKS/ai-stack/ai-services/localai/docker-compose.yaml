@@ -10,7 +10,7 @@ services:
     hostname: ${NAME:-localai}
 
     # build:
-    #   context: ../../DATA/ai-stack/localai
+    #   context: ../../../DATA/ai-stack/localai
     #   dockerfile: Dockerfile
     #   args:
     #     - IMAGE_TYPE=aio
@@ -56,14 +56,14 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - ../../DATA/ai-stack/localai/.cache:/.cache:cached
-      - ../../DATA/ai-stack/localai/configuration:/configuration:cached
-      - ../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
-      - ../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached
-      # - ../../DATA/ai-stack/localai/models:/models:cached
-      - ../../DATA/ai-stack/localai/models:/usr/share/localai/models:cached
-      # - ../../DATA/ai-stack/localai/backends:/backends:cached
-      - ../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
+      - ../../../DATA/ai-stack/localai/.cache:/.cache:cached
+      - ../../../DATA/ai-stack/localai/configuration:/configuration:cached
+      - ../../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
+      - ../../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached
+      # - ../../../DATA/ai-stack/localai/models:/models:cached
+      - ../../../DATA/ai-stack/localai/models:/usr/share/localai/models:cached
+      # - ../../../DATA/ai-stack/localai/backends:/backends:cached
+      - ../../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
 
       # - localai_cache:/.cache:cached
       # - localai_backends:/usr/share/localai/backends:cached
@@ -117,7 +117,7 @@ services:
   #   restart: unless-stopped
 
   #   build:
-  #     context: ../../DATA/ai-stack/localrecall
+  #     context: ../../../DATA/ai-stack/localrecall
   #     dockerfile: Dockerfile
 
   #   ports:
@@ -136,8 +136,8 @@ services:
   #     - FILE_ASSETS=/assets
 
   #   volumes:
-  #     - ../../DATA/ai-stack/localrecall/volumes/db:/db
-  #     - ../../DATA/ai-stack/localrecall/volumes/assets/:/assets
+  #     - ../../../DATA/ai-stack/localrecall/volumes/db:/db
+  #     - ../../../DATA/ai-stack/localrecall/volumes/assets/:/assets
 
   # localrecall-healthcheck:
   #   image: busybox
@@ -188,7 +188,7 @@ services:
   #       condition: service_healthy
 
   #   build:
-  #     context: ../../DATA/ai-stack/localagi
+  #     context: ../../../DATA/ai-stack/localagi
   #     dockerfile: Dockerfile.webui
 
   #   ports:
@@ -211,14 +211,14 @@ services:
   #     - host.docker.internal:host-gateway
 
   #   volumes:
-  #     - ../../DATA/ai-stack/localagi/volumes:/pool
+  #     - ../../../DATA/ai-stack/localagi/volumes:/pool
 
   # sshbox:
   #   container_name: sshbox
   #   restart: unless-stopped
 
   #   build:
-  #     context: ../../DATA/ai-stack/localagi
+  #     context: ../../../DATA/ai-stack/localagi
   #     dockerfile: Dockerfile.sshbox
 
   #   ports:

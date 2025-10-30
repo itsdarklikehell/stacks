@@ -5,7 +5,7 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../DATA/airi-stack/airi
+      context: ../../../DATA/airi-stack/airi
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
@@ -30,17 +30,17 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-    #   - ../../DATA/ai-stack/airi/.env:/airi/.env
-    #   - ../../DATA/ai-stack/airi/avatars:/app/avatars
-    #   - ../../DATA/ai-stack/airi/avatars:/app/backgrounds
-    #   - ../../DATA/ai-stack/airi/characters:/app/characters
-    #   - ../../DATA/ai-stack/airi/chat_history:/app/chat_history
-    #   - ../../DATA/ai-stack/airi/live2d-models:/app/live2d-models
-    #   - ../../DATA/ai-stack/airi/logs:/app/logs
-    #   - ../../DATA/ai-stack/airi/prompts/utils:/app/prompts/utils
-    #   - ../../DATA/ai-stack/airi/SCRIPTS:/app/SCRIPTS
-    #   - ../../DATA/ai-stack/airi/mcp_servers.json:/app/mcp_servers.json
-    #   - ../../DATA/ai-stack/airi/model_dict.json:/app/model_dict.json
+    #   - ../../../DATA/ai-stack/airi/.env:/airi/.env
+    #   - ../../../DATA/ai-stack/airi/avatars:/app/avatars
+    #   - ../../../DATA/ai-stack/airi/avatars:/app/backgrounds
+    #   - ../../../DATA/ai-stack/airi/characters:/app/characters
+    #   - ../../../DATA/ai-stack/airi/chat_history:/app/chat_history
+    #   - ../../../DATA/ai-stack/airi/live2d-models:/app/live2d-models
+    #   - ../../../DATA/ai-stack/airi/logs:/app/logs
+    #   - ../../../DATA/ai-stack/airi/prompts/utils:/app/prompts/utils
+    #   - ../../../DATA/ai-stack/airi/SCRIPTS:/app/SCRIPTS
+    #   - ../../../DATA/ai-stack/airi/mcp_servers.json:/app/mcp_servers.json
+    #   - ../../../DATA/ai-stack/airi/model_dict.json:/app/model_dict.json
 
     hostname: ${NAME:-airi}
 

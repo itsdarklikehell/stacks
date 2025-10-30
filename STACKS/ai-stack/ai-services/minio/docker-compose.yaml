@@ -114,8 +114,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - ../../DATA/ai-stack/clickhouse/config_files/prometheus/templates/prometheus.yaml:/home/prometheus-template.yaml:ro
-      - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
+      - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/templates/prometheus.yaml:/home/prometheus-template.yaml:ro
+      - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
     environment:
       - PUID=${PUID:-1000}
@@ -168,7 +168,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
+      - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
     entrypoint: >
       /bin/bash -c "
@@ -216,7 +216,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - ../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
+      - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
 
     entrypoint: >
       /bin/bash -c "

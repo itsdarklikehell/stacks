@@ -82,7 +82,7 @@ function CREATE_FOLDERS() {
 ARGS=""
 for f in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${f}/docker-compose.yaml "
-	FOLDER="../../DATA/${STACK_NAME}-stack/${f}"
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${f}"
 	mkdir -p "${FOLDER}"
 	CREATE_FOLDERS
 done

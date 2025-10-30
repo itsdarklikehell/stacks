@@ -5,7 +5,7 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     # build:
-    #   context: ../../DATA/media-stack/viewtube
+    #   context: ../../../DATA/media-stack/viewtube
 
     labels:
       - com.centurylinklabs.watchtower.enable=true

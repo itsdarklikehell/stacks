@@ -5,7 +5,7 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../DATA/ai-stack/stable-diffusion-webui-docker/services/download/
+      context: ../../../DATA/ai-stack/stable-diffusion-webui-docker/services/download/
       args:
         UID: ${PUID:-1000}
         GID: ${PUID:-1000}

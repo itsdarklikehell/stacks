@@ -19,7 +19,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - dasharr-dasharr_config:/app/config
-      # - ../../DATA/arr-stack/dasharr/dasharr_config:/app/config
+      # - ../../../DATA/arr-stack/dasharr/dasharr_config:/app/config
 
     hostname: ${NAME:-dasharr}
 

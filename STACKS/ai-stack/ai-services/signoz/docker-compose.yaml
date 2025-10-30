@@ -17,7 +17,7 @@ services:
       - CLICKHOUSE_PORT=${CLICKHOUSE_PORT:-8124}
 
     # build:
-    #   context: ../../DATA/ai-stack/signoz
+    #   context: ../../../DATA/ai-stack/signoz
     # dockerfile: ./Dockerfile
 
     volumes:

@@ -19,7 +19,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - rganizr-config:/config
-      # - ../../DATA/arr-stack/organizr/config:/config
+      # - ../../../DATA/arr-stack/organizr/config:/config
 
     hostname: ${NAME:-organizr}
 

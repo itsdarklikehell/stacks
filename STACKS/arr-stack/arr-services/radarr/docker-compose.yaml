@@ -20,8 +20,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - radarr-config:/config
       - radarr-media:/media
-      # - ../../DATA/arr-stack/radarr/config:/config
-      # - ../../DATA/arr-stack/radarr/media:/media
+      # - ../../../DATA/arr-stack/radarr/config:/config
+      # - ../../../DATA/arr-stack/radarr/media:/media
 
     hostname: ${NAME:-radarr}
 

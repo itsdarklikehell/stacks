@@ -20,8 +20,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - lidarr-config:/config
       - lidarr-media:/media
-      # - ../../DATA/arr-stack/lidarr/config:/config
-      # - ../../DATA/arr-stack/lidarr/media:/media
+      # - ../../../DATA/arr-stack/lidarr/config:/config
+      # - ../../../DATA/arr-stack/lidarr/media:/media
 
     hostname: ${NAME:-lidarr}
 

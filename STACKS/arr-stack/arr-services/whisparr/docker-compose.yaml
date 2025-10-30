@@ -17,8 +17,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../DATA/arr-stack/whisparr/config:/config
-      - ../../DATA/arr-stack/whisparr/media:/media
+      - ../../../DATA/arr-stack/whisparr/config:/config
+      - ../../../DATA/arr-stack/whisparr/media:/media
 
     hostname: ${NAME:-whisparr}
 

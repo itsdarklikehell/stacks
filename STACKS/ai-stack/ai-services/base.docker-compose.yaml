@@ -12,7 +12,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/anything-llm/anything-llm_storage
+      device: ../../../DATA/ai-stack/anything-llm/anything-llm_storage
 
   basic-memory-config:
     name: basic-memory-config
@@ -20,28 +20,28 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/basic-memory/basic-memory_config
+      device: ../../../DATA/ai-stack/basic-memory/basic-memory_config
   basic-memory-knowledge:
     name: basic-memory-knowledge
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/basic-memory/basic-memory_knowledge
+      device: ../../../DATA/ai-stack/basic-memory/basic-memory_knowledge
   basic-memory-personal-notes:
     name: basic-memory-personal-notes
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/basic-memory/basic-memory_personal-notes
+      device: ../../../DATA/ai-stack/basic-memory/basic-memory_personal-notes
   basic-memory-work-notes:
     name: basic-memory-work-notes
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/basic-memory/basic-memory_work-notes
+      device: ../../../DATA/ai-stack/basic-memory/basic-memory_work-notes
 
   chroma_data:
     name: chroma_data
@@ -49,14 +49,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/chroma/chroma_data
+      device: ../../../DATA/ai-stack/chroma/chroma_data
   chroma_index:
     name: chroma_index
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/chroma/chroma_index
+      device: ../../../DATA/ai-stack/chroma/chroma_index
 
   clickhouse_backups:
     name: clickhouse_backups
@@ -64,42 +64,42 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_backups
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_backups
   clickhouse_configs:
     name: clickhouse_configs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_configs
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_configs
   clickhouse_data:
     name: clickhouse_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_data
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_data
   clickhouse_initdb:
     name: clickhouse_initdb
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_initdb
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_initdb
   clickhouse_logs:
     name: clickhouse_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_logs
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_logs
   clickhouse_users:
     name: clickhouse_users
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/clickhouse/clickhouse_users
+      device: ../../../DATA/ai-stack/clickhouse/clickhouse_users
 
   faster-whisper-gpu_config:
     name: faster-whisper-gpu_config
@@ -107,7 +107,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/faster-whisper-gpu/faster-whisper-gpu_config
+      device: ../../../DATA/ai-stack/faster-whisper-gpu/faster-whisper-gpu_config
 
   grafana_data:
     name: grafana_data
@@ -115,7 +115,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/grafana/grafana_data
+      device: ../../../DATA/ai-stack/grafana/grafana_data
 
   homeassistant-config:
     name: homeassistant-config
@@ -123,14 +123,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/homeassistant/homeassistant_config
+      device: ../../../DATA/ai-stack/homeassistant/homeassistant_config
   homeassistant-media:
     name: homeassistant-media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/homeassistant/homeassistant_media
+      device: ../../../DATA/ai-stack/homeassistant/homeassistant_media
 
   koboldccp-workspace:
     name: koboldccp-workspace
@@ -138,7 +138,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/koboldccp/koboldccp_workspace
+      device: ../../../DATA/ai-stack/koboldccp/koboldccp_workspace
 
   kokoro_data:
     name: kokoro_data
@@ -146,14 +146,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/kokoro-tts/kokoro-tts_data
+      device: ../../../DATA/ai-stack/kokoro-tts/kokoro-tts_data
   kokoro_index_data:
     name: kokoro_index_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/kokoro-tts/kokoro-tts_index_data
+      device: ../../../DATA/ai-stack/kokoro-tts/kokoro-tts_index_data
 
   coqui-tts-cpu_data:
     name: coqui-tts-cpu_data
@@ -161,14 +161,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/coqui-tts-cpu/coqui-tts-cpu_data
+      device: ../../../DATA/ai-stack/coqui-tts-cpu/coqui-tts-cpu_data
   coqui-tts-cpu_index_data:
     name: coqui-tts-cpu_index_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/coqui-tts-cpu/coqui-tts-cpu_index_data
+      device: ../../../DATA/ai-stack/coqui-tts-cpu/coqui-tts-cpu_index_data
 
   letta-server_data:
     name: letta_data
@@ -176,14 +176,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/letta-server/letta-server_data
+      device: ../../../DATA/ai-stack/letta-server/letta-server_data
   letta-server_tool_execution_dir:
     name: letta-server_tool_execution_dir
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/letta-server/letta-server_tool_execution_dir
+      device: ../../../DATA/ai-stack/letta-server/letta-server_tool_execution_dir
 
   librechat_vectordb_data:
     name: librechat_vectordb_data
@@ -191,42 +191,42 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_vectordb_data
+      device: ../../../DATA/ai-stack/librechat/librechat_vectordb_data
   librechat_mongo_data:
     name: librechat_mongo_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_mongo_data
+      device: ../../../DATA/ai-stack/librechat/librechat_mongo_data
   librechat_images:
     name: librechat_images
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_images
+      device: ../../../DATA/ai-stack/librechat/librechat_images
   librechat_uploads:
     name: librechat_uploads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_uploads
+      device: ../../../DATA/ai-stack/librechat/librechat_uploads
   librechat_logs:
     name: librechat_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_logs
+      device: ../../../DATA/ai-stack/librechat/librechat_logs
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/librechat/librechat_meili_data
+      device: ../../../DATA/ai-stack/librechat/librechat_meili_data
 
   libretranslate-whispher_cache:
     name: libretranslate-whispher_cache
@@ -234,14 +234,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_cache
+      device: ../../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_cache
   libretranslate-whispher_data:
     name: libretranslate-whispher_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_data
+      device: ../../../DATA/ai-stack/libretranslate-whispher/libretranslate-whispher_data
 
   localai_cache:
     name: localai_cache
@@ -249,42 +249,42 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_cache
+      device: ../../../DATA/ai-stack/localai/localai_cache
   localai_backends:
     name: localai_backends
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_backends
+      device: ../../../DATA/ai-stack/localai/localai_backends
   localai_configuration:
     name: localai_configuration
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_configuration
+      device: ../../../DATA/ai-stack/localai/localai_configuration
   localai_content:
     name: localai_content
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_content
+      device: ../../../DATA/ai-stack/localai/localai_content
   localai_images:
     name: localai_images
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_images
+      device: ../../../DATA/ai-stack/localai/localai_images
   localai_models:
     name: localai_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/localai/localai_models
+      device: ../../../DATA/ai-stack/localai/localai_models
 
   minio_data:
     name: minio_data
@@ -292,7 +292,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/minio/minio_data
+      device: ../../../DATA/ai-stack/minio/minio_data
 
   mongo-whispher_data:
     name: mongo-whispher_data
@@ -300,7 +300,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/mongo-whispher/mongo-whispher_data
+      device: ../../../DATA/ai-stack/mongo-whispher/mongo-whispher_data
 
   mongo-whispher_logs:
     name: mongo-whispher_logs
@@ -308,7 +308,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/mongo-whispher/mongo-whispher_logs
+      device: ../../../DATA/ai-stack/mongo-whispher/mongo-whispher_logs
 
   n8n_data:
     name: n8n_data
@@ -316,14 +316,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/n8n/n8n_data
+      device: ../../../DATA/ai-stack/n8n/n8n_data
   n8n_local_files:
     name: n8n_local_files
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/n8n/n8n_local_files
+      device: ../../../DATA/ai-stack/n8n/n8n_local_files
 
   ollama_data:
     name: ollama_data
@@ -331,14 +331,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/ollama/ollama_data
+      device: ../../../DATA/ai-stack/ollama/ollama_data
   ollama_models:
     name: ollama_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/ollama/ollama_models
+      device: ../../../DATA/ai-stack/ollama/ollama_models
 
   open-webui_data:
     name: open-webui_data
@@ -346,7 +346,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/open-webui/open-webui_data
+      device: ../../../DATA/ai-stack/open-webui/open-webui_data
 
   piper_config:
     name: piper_config
@@ -354,14 +354,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/piper/piper_config
+      device: ../../../DATA/ai-stack/piper/piper_config
   piper_data:
     name: piper_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/piper/piper_data
+      device: ../../../DATA/ai-stack/piper/piper_data
 
   llmstack_code:
     name: llmstack_code
@@ -369,35 +369,35 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/llmstack/llmstack_code
+      device: ../../../DATA/ai-stack/llmstack/llmstack_code
   llmstack_userdata:
     name: llmstack_userdata
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/llmstack/llmstack_userdata
+      device: ../../../DATA/ai-stack/llmstack/llmstack_userdata
   llmstack_postgres_data:
     name: llmstack_postgres_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/llmstack/  llmstack_postgres_data
+      device: ../../../DATA/ai-stack/llmstack/  llmstack_postgres_data
   llmstack_weaviate_data:
     name: llmstack_weaviate_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/llmstack/llmstack_weaviate_data
+      device: ../../../DATA/ai-stack/llmstack/llmstack_weaviate_data
   llmstack_redis_data:
     name: llmstack_redis_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/llmstack/llmstack_redis_data
+      device: ../../../DATA/ai-stack/llmstack/llmstack_redis_data
 
   prometheus_data:
     name: prometheus_data
@@ -405,7 +405,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/prometheus/prometheus_data
+      device: ../../../DATA/ai-stack/prometheus/prometheus_data
 
   searxng_data:
     name: searxng_data
@@ -413,7 +413,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/searxng/searxng_data
+      device: ../../../DATA/ai-stack/searxng/searxng_data
 
   signoz_data:
     name: signoz_data
@@ -421,14 +421,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/signoz/signoz_data
+      device: ../../../DATA/ai-stack/signoz/signoz_data
   signoz_index:
     name: signoz_index
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/signoz/signoz_index
+      device: ../../../DATA/ai-stack/signoz/signoz_index
 
   stable-diffusion-webui-docker_config:
     name: stable-diffusion-webui-docker_config
@@ -436,42 +436,42 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_config
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_config
   stable-diffusion-webui-docker_data:
     name: stable-diffusion-webui-docker_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_data
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_data
   stable-diffusion-webui-docker_embeddings:
     name: stable-diffusion-webui-docker_embeddings
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_embeddings
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_embeddings
   stable-diffusion-webui-docker_models:
     name: stable-diffusion-webui-docker_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_models
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_models
   stable-diffusion-webui-docker_output:
     name: stable-diffusion-webui-docker_output
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_output
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_output
   stable-diffusion-webui-docker_workflows:
     name: stable-diffusion-webui-docker_workflows
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_workflows
+      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_workflows
 
   swarmui_backend:
     name: swarmui_backend
@@ -479,28 +479,28 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/swarmui/swarmui_backend
+      device: ../../../DATA/ai-stack/swarmui/swarmui_backend
   swarmui_data:
     name: swarmui_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/swarmui/swarmui_data
+      device: ../../../DATA/ai-stack/swarmui/swarmui_data
   swarmui_dlnodes:
     name: swarmui_dlnodes
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/swarmui/swarmui_dlnodes
+      device: ../../../DATA/ai-stack/swarmui/swarmui_dlnodes
   swarmui_extensions:
     name: swarmui_extensions
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/swarmui/swarmui_extensions
+      device: ../../../DATA/ai-stack/swarmui/swarmui_extensions
 
   whishper_data:
     name: whishper_data
@@ -508,49 +508,49 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_data
+      device: ../../../DATA/ai-stack/whishper/whishper_data
   whishper_logs:
     name: whishper_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_logs
+      device: ../../../DATA/ai-stack/whishper/whishper_logs
   whishper_models:
     name: whishper_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_models
+      device: ../../../DATA/ai-stack/whishper/whishper_models
   whishper_uploads:
     name: whishper_uploads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_uploads
+      device: ../../../DATA/ai-stack/whishper/whishper_uploads
   whishper_cache:
     name: whishper_cache
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_cache
+      device: ../../../DATA/ai-stack/whishper/whishper_cache
   whishper_outputs:
     name: whishper_outputs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_outputs
+      device: ../../../DATA/ai-stack/whishper/whishper_outputs
   whishper_configs:
     name: whishper_configs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whishper/whishper_configs
+      device: ../../../DATA/ai-stack/whishper/whishper_configs
 
   whisperx_data:
     name: whisperx_data
@@ -558,49 +558,49 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_data
+      device: ../../../DATA/ai-stack/whisperx/whisperx_data
   whisperx_logs:
     name: whisperx_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_logs
+      device: ../../../DATA/ai-stack/whisperx/whisperx_logs
   whisperx_models:
     name: whisperx_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_models
+      device: ../../../DATA/ai-stack/whisperx/whisperx_models
   whisperx_uploads:
     name: whisperx_uploads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_uploads
+      device: ../../../DATA/ai-stack/whisperx/whisperx_uploads
   whisperx_cache:
     name: whisperx_cache
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_cache
+      device: ../../../DATA/ai-stack/whisperx/whisperx_cache
   whisperx_outputs:
     name: whisperx_outputs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_outputs
+      device: ../../../DATA/ai-stack/whisperx/whisperx_outputs
   whisperx_configs:
     name: whisperx_configs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisperx/whisperx_configs
+      device: ../../../DATA/ai-stack/whisperx/whisperx_configs
 
   whisper-webui_data:
     name: whisper-webui_data
@@ -608,49 +608,49 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_data
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_data
   whisper-webui_logs:
     name: whisper-webui_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_logs
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_logs
   whisper-webui_models:
     name: whisper-webui_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_models
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_models
   whisper-webui_uploads:
     name: whisper-webui_uploads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_uploads
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_uploads
   whisper-webui_cache:
     name: whisper-webui_cache
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_cache
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_cache
   whisper-webui_outputs:
     name: whisper-webui_outputs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_outputs
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_outputs
   whisper-webui_configs:
     name: whisper-webui_configs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/whisper-webui/whisper-webui_configs
+      device: ../../../DATA/ai-stack/whisper-webui/whisper-webui_configs
 
   wyoming-piper_data:
     name: wyoming-piper_data
@@ -658,7 +658,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/wyoming-piper/wyoming-piper_data
+      device: ../../../DATA/ai-stack/wyoming-piper/wyoming-piper_data
 
   text-generation-webui-docker_cache:
     name: text-generation-webui-docker_cache
@@ -666,84 +666,84 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_cache
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_cache
   text-generation-webui-docker_characters:
     name: text-generation-webui-docker_characters
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_characters
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_characters
   text-generation-webui-docker_grammars:
     name: text-generation-webui-docker_grammars
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_grammars
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_grammars
   text-generation-webui-docker_instruction-templates:
     name: text-generation-webui-docker_instruction-templates
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_instruction-templates
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_instruction-templates
   text-generation-webui-docker_loras:
     name: text-generation-webui-docker_loras
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_loras
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_loras
   text-generation-webui-docker_logs:
     name: text-generation-webui-docker_logs
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_logs
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_logs
   text-generation-webui-docker_models:
     name: text-generation-webui-docker_models
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_models
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_models
   text-generation-webui-docker_presets:
     name: text-generation-webui-docker_presets
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_presets
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_presets
   text-generation-webui-docker_prompts:
     name: text-generation-webui-docker_prompts
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_prompts
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_prompts
   text-generation-webui-docker_training:
     name: text-generation-webui-docker_training
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_training
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_training
   text-generation-webui-docker_extensions:
     name: text-generation-webui-docker_extensions
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_extensions
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_extensions
   text-generation-webui-docker_coqui_tts:
     name: text-generation-webui-docker_coqui_tts
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_coqui_tts
+      device: ../../../DATA/ai-stack/text-generation-webui-docker/text-generation-webui-docker_coqui_tts
 
 secrets:
   GF_SECURITY_ADMIN_USER:

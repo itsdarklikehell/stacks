@@ -21,9 +21,9 @@ services:
       - sickgear-data:/data
       - sickgear-incoming:/incoming
       - sickgear-tv:/tv
-      # - ../../DATA/arr-stack/sickgear/data:/data
-      # - ../../DATA/arr-stack/sickgear/incoming:/incoming
-      # - ../../DATA/arr-stack/sickgear/tv:/tv
+      # - ../../../DATA/arr-stack/sickgear/data:/data
+      # - ../../../DATA/arr-stack/sickgear/incoming:/incoming
+      # - ../../../DATA/arr-stack/sickgear/tv:/tv
 
     hostname: ${NAME:-sickgear}
 

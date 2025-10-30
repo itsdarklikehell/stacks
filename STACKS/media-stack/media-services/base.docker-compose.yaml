@@ -12,21 +12,21 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/beets/beets_config
+      device: ../../../DATA/media-stack/beets/beets_config
   beets_media:
     name: beets_media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/beets/beets_media
+      device: ../../../DATA/media-stack/beets/beets_media
   beets_downloads:
     name: beets_downloads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/beets/beets_downloads
+      device: ../../../DATA/media-stack/beets/beets_downloads
 
   calibre-web_library:
     name: calibre-web_library
@@ -34,7 +34,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/calibre-web/calibre-web_library
+      device: ../../../DATA/media-stack/calibre-web/calibre-web_library
 
   deluge_downloads:
     name: deluge_downloads
@@ -42,14 +42,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/deluge/deluge_downloads
+      device: ../../../DATA/media-stack/deluge/deluge_downloads
   deluge_config:
     name: deluge_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/deluge/deluge_config
+      device: ../../../DATA/media-stack/deluge/deluge_config
 
   dolphin_config:
     name: dolphin_config
@@ -57,14 +57,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/dolphin/dolphin_config
+      device: ../../../DATA/media-stack/dolphin/dolphin_config
   dolphin_downloads:
     name: dolphin_downloads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/dolphin/dolphin_downloads
+      device: ../../../DATA/media-stack/dolphin/dolphin_downloads
 
   duckstation_config:
     name: duckstation_config
@@ -72,14 +72,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/duckstation/duckstation_config
+      device: ../../../DATA/media-stack/duckstation/duckstation_config
   duckstation_downloads:
     name: duckstation_downloads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/duckstation/duckstation_downloads
+      device: ../../../DATA/media-stack/duckstation/duckstation_downloads
 
   emby_config:
     name: emby_config
@@ -87,14 +87,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/emby/emby_config
+      device: ../../../DATA/media-stack/emby/emby_config
   emby_media:
     name: emby_media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/emby/emby_media
+      device: ../../../DATA/media-stack/emby/emby_media
 
   flexget_config:
     name: flexget_config
@@ -102,14 +102,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/flexget/flexget_config
+      device: ../../../DATA/media-stack/flexget/flexget_config
   flexget_downloads:
     name: flexget_downloads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/flexget/flexget_downloads
+      device: ../../../DATA/media-stack/flexget/flexget_downloads
 
   flycast_downloads:
     name: flycast_downloads
@@ -117,14 +117,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/flycast/flycast_downloads
+      device: ../../../DATA/media-stack/flycast/flycast_downloads
   flycast_config:
     name: flycast_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/flycast/flycast_config
+      device: ../../../DATA/media-stack/flycast/flycast_config
 
   gaseous-server_data:
     name: gaseous-server_data
@@ -132,14 +132,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/gaseous-server/gaseous-server_data
+      device: ../../../DATA/media-stack/gaseous-server/gaseous-server_data
   gaseous-server_mariadb:
     name: gaseous-server_mariadb
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
+      device: ../../../DATA/media-stack/gaseous-server/gaseous-server_mariadb
 
   gzdoom_config:
     name: gzdoom_config
@@ -147,7 +147,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/gzdoom/gzdoom_config
+      device: ../../../DATA/media-stack/gzdoom/gzdoom_config
 
   kali-linux_config:
     name: kali-linux_config
@@ -155,7 +155,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/kali-linux/kali-linux_config
+      device: ../../../DATA/media-stack/kali-linux/kali-linux_config
 
   xemu_config:
     name: xemu_config
@@ -163,14 +163,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/xemu/xemu_config
+      device: ../../../DATA/media-stack/xemu/xemu_config
   xemu_downloads:
     name: xemu_downloads
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/xemu/xemu_downloads
+      device: ../../../DATA/media-stack/xemu/xemu_downloads
 
   rpcs3_config:
     name: rpcs3_config
@@ -178,7 +178,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/rpcs3/rpcs3_config
+      device: ../../../DATA/media-stack/rpcs3/rpcs3_config
 
   romm_resources:
     name: romm_resources
@@ -186,42 +186,42 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_resources
+      device: ../../../DATA/media-stack/romm/romm_resources
   romm_redis_data:
     name: romm_redis_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_redis_data
+      device: ../../../DATA/media-stack/romm/romm_redis_data
   romm_library:
     name: romm_library
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_library
+      device: ../../../DATA/media-stack/romm/romm_library
   romm_assets:
     name: romm_assets
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_assets
+      device: ../../../DATA/media-stack/romm/romm_assets
   romm_config:
     name: romm_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_config
+      device: ../../../DATA/media-stack/romm/romm_config
   romm_mariadb:
     name: romm_mariadb
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/romm/romm_mariadb
+      device: ../../../DATA/media-stack/romm/romm_mariadb
 
   webrcade_content:
     name: webrcade_content
@@ -229,7 +229,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/webrcade/webrcade_content
+      device: ../../../DATA/media-stack/webrcade/webrcade_content
 
   tvs99_config:
     # name: tvs99_config
@@ -237,14 +237,14 @@ volumes:
     # driver_opts:
     #   type: none
     #   o: bind
-    #   device: ../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
+    #   device: ../../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
   tvs99_data:
     # name: tvs99_data
     # driver: local
     # driver_opts:
     #   type: none
     #   o: bind
-    #   device: ../../DATA/media-stack/tvs99/tvs99_data
+    #   device: ../../../DATA/media-stack/tvs99/tvs99_data
 
   retroarchz_roms:
     name: retroarchz_roms
@@ -252,7 +252,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/retroarchz/retroarchz_roms
+      device: ../../../DATA/media-stack/retroarchz/retroarchz_roms
 
   retroarch_config:
     name: retroarch_config
@@ -260,7 +260,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/retroarch/retroarch_config
+      device: ../../../DATA/media-stack/retroarch/retroarch_config
 
   quakejs_config:
     name: quakejs_config
@@ -268,7 +268,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/quakejs/quakejs_config
+      device: ../../../DATA/media-stack/quakejs/quakejs_config
 
   viewtube_data:
     name: viewtube_data
@@ -276,7 +276,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/viewtube/viewtube_data
+      device: ../../../DATA/media-stack/viewtube/viewtube_data
 
   plex_config:
     name: plex_config
@@ -284,21 +284,21 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/plex/plex_config
+      device: ../../../DATA/media-stack/plex/plex_config
   plex_transcode:
     name: plex_transcode
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/plex/plex_transcode
+      device: ../../../DATA/media-stack/plex/plex_transcode
   plex_media:
     name: plex_media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../DATA/media-stack/plex/plex_media
+      device: ../../../DATA/media-stack/plex/plex_media
 
 secrets:
   rreading_glasses_db_password:

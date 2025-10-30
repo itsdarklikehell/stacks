@@ -8,7 +8,7 @@ services:
     user: ${PUID:-1000}:${PGID:-1000}
 
     # build:
-    #   context: ../../DATA/ai-stack/private-gpt
+    #   context: ../../../DATA/ai-stack/private-gpt
     #   args:
     #     UID: ${PUID:-1000}
     #     GID: ${PGID:-1000}
@@ -94,7 +94,7 @@ services:
     user: ${PUID:-1000}:${PGID:-1000}
 
     # build:
-    #   context: ../../DATA/ai-stack/private-gpt
+    #   context: ../../../DATA/ai-stack/private-gpt
     #   args:
     #     UID: ${PUID:-1000}
     #     GID: ${PGID:-1000}

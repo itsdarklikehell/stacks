@@ -11,7 +11,7 @@ services:
       - host.docker.internal:host-gateway
 
     # build:
-    #   context: ../../DATA/ai-stack/librechat
+    #   context: ../../../DATA/ai-stack/librechat
     #   args:
     #     UID: ${PUID:-1000}
     #     GID: ${PGID:-1000}
