@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Create secrets script started."
+
 # Create Docker networks for the AI stack
 function CREATE_SECRETS() {
 	mkdir -p "${WD}/secrets"

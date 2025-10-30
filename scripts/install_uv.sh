@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Install uv script started."
+
 # Install uv and related tools on Ubuntu
 function INSTALL_UV(){
     # check if uv is installed and if not install it

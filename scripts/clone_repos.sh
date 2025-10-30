@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Clone repos script started."
 
 WD="$(dirname "$(realpath "$0")")" || true
 export WD

@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Install Docker script started."
+
 # Install Docker and related tools on Ubuntu
 function INSTALL_DOCKER() {
 	# check if docker is installed and if not install it

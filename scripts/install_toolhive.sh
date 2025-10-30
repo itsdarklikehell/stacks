@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Install toolhive script started."
+
 # Install toolhive and related tools on Ubuntu
 function INSTALL_toolhive(){
     # check if toolhive is installed and if not install it

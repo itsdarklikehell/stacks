@@ -15,67 +15,9 @@ export TWITCH_CLIENT_SECRET="your_client_secret" #
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 git pull origin main
+
 function PULL_MODELS() {
-	models=(
-		'embeddinggemma:latest'
-		'gemma3:latest'
-		'llama3.2:latest'
-		'nomic-embed-text:latest'
-		'smallthinker:latest'
-		# 'adi0adi/ollama_stheno-8b_v3.1_q6k:latest'
-		# 'aiden_lu/peach-9b-8k-roleplay:latest'
-		# 'ALIENTELLIGENCE/roleplaymaster:latest'
-		# 'antonos9/roleplay:latest'
-		# 'BlackDream/blue-orchid-2x7b:latest'
-		# 'codellama:latest'
-		# 'deepseek-coder'
-		# 'deepseek-r1'
-		# 'gpt-oss:120b'
-		# 'gpt-oss:20b'
-		# 'granite:latest'
-		# 'gurubot/pivot-roleplay-v0.2:latest'
-		# 'jimscard/adult-film-screenwriter-nsfw:latest'
-		# 'kingzeus/llama-3.1-8b-darkidol:latest'
-		# 'kubernetes_bad/chargen-v2:latest'
-		# 'leeplenty/ellaria:latest'
-		# 'llama3.2-coder:latest'
-		# 'magistral:latest'
-		# 'mgistral:latest'
-		# 'mistral:7b-instruct'
-		# 'mistral:latest'
-		# 'mxbai-embed-large'
-		# 'nchapman/mn-12b-inferor-v0.0:latest'
-		# 'nchapman/mn-12b-mag-mell-r1:latest'
-		# 'nemotron-mini:latest'
-		# 'Plexi09/SentientAI:latest'
-		# 'qwen2.5-coder:32b'
-		# 'qwen2.5:latest'
-		# 'qwen3:4b'
-		# 'qwen3:8b'
-		# 'qwen3:latest'
-	)
-	for model in "${models[@]}"; do
-		echo "Pulling model: ${model}"
-		if command -v ollama >/dev/null 2>&1; then
-			ollama pull "${model}" # >/dev/null 2>&1
-		fi
-		if docker inspect "ollama" >/dev/null 2>&1; then
-			if docker inspect -f '{{.State.Status}}' "ollama" | grep -q "running" || true; then
-				docker exec -it ollama sh -c "ollama pull ${model}"
-			else
-				echo "The container ollama is not running."
-				docker start "ollama"
-			fi
-		else
-			echo "The container ollama does not exist."
-			# source ai-stack/ai-services/ollama/.env
-			# Create and start the container if it does not exist
-
-			# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-
-			# docker compose -f ai-stack/ai-services/base.docker-compose.yaml -f ai-stack/ai-services/ollama/docker-compose.yaml
-		fi
-	done
+	scripts/pull_models.sh
 }
 function PRUNING() {
 	echo ""
@@ -91,28 +33,12 @@ function PRUNING() {
 	sleep 3
 }
 function CLEANUP_DATA() {
-	FOLDERS=(
-		"${PERM_DATA}/airi-stack"
-		"${PERM_DATA}/ai-stack"
-		"${PERM_DATA}/aiwaifu-stack"
-		"${PERM_DATA}/arr-stack"
-		"${PERM_DATA}/essential-stack"
-		"${PERM_DATA}/jaison-stack"
-		"${PERM_DATA}/media-stack"
-		"${PERM_DATA}/openllm-vtuber-stack"
-		"${PERM_DATA}/riko-stack"
-		"${PERM_DATA}"
-	)
-	for folder in "${FOLDERS[@]}"; do
-		echo ""
-		echo "Removing ${folder}"
-		sudo rm -rf "${folder}"
-	done
+	if [[ ${CLEANUP} == "true" ]]; then
+		# export PRUNE="normal"      # false, true/normal, all
+		# export BUILDING="recreate" # false, true, recreate
+		scripts/cleanup.sh
+	fi
 }
-if [[ ${CLEANUP} == "true" ]]; then
-	export BUILDING="recreate" # false, true, recreate
-	CLEANUP_DATA
-fi
 function INSTALL_DRIVERS() {
 	scripts/install_drivers.sh
 }
@@ -176,7 +102,7 @@ INSTALL_DOCKER
 
 ## STACKS:
 echo "Building is set to: ${BUILDING}"
-
+# CLEANUP_DATA
 # PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS

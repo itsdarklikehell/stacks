@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Install requirements for Riko script started."
+
 # CHECK NVIDIA VERSION WITH NVIDIA-SMI I HAVE 12.7 BUT IF YOU HAVE 12.8 UV pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu12 or uv pip install torch==2.6.0 torchaudio --index-url https://download.pytorch.org/whl/nightly/cu130
 
 apt-get update
