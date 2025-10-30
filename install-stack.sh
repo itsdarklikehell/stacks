@@ -70,6 +70,7 @@ function START_BROWSER() {
 		SCRIPTS/start_browser.sh
 	fi
 }
+
 function CREATE_NETWORKS() {
 	SCRIPTS/create_networks.sh
 }
@@ -158,49 +159,53 @@ echo ""
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
-echo ""
-SETUP_ARR_STACK
-echo ""
+# echo ""
+# SETUP_ARR_STACK
+# echo ""
 
-echo ""
-SETUP_AIWAIFU_STACK
-echo ""
+# echo ""
+# SETUP_AIWAIFU_STACK
+# echo ""
 
-echo ""
-SETUP_AIRI_STACK
-echo ""
+# echo ""
+# SETUP_AIRI_STACK
+# echo ""
 
-echo ""
-SETUP_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# SETUP_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-SETUP_JAISON_STACK
-echo ""
+# echo ""
+# SETUP_JAISON_STACK
+# echo ""
 
-echo ""
-SETUP_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# SETUP_PROJECT_RIKO_STACK
+# echo ""
 
-echo ""
-PULL_MODELS
-echo ""
+# echo ""
+# PULL_MODELS
+# echo ""
 
-echo ""
-START_OLLMVT
-echo ""
+# echo ""
+# START_OLLMVT
+# echo ""
+
+# echo ""
+# START_BROWSER
+# echo ""
 
 echo "Installation complete.."
 

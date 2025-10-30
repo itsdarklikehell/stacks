@@ -30,6 +30,99 @@ function CLONE_AIRI() {
 
 	function LOCAL_SETUP() {
 
+		if command -v cargo &>/dev/null; then
+			echo "Cargo is already installed"
+		else
+			sudo apt install -y cargo
+		fi
+
+		function INSTALL_AIRI() {
+			cd "${WD}" || exit 1
+			cd "../DATA/airi-stack" || exit 1
+
+			echo "Cloning airi"
+			echo ""
+			git clone --recursive https://github.com/moeru-ai/airi.git airi
+			cd airi || exit
+
+			function INSTALL_AIRI_PLUGINS() {
+
+				function TELEGRAMBOT() {
+					cd "${WD}" || exit 1
+					cd "../DATA/airi-stack/airi/services/telegram-bot" || exit 1
+					cp .env .env.local
+
+					docker compose -p airi-telegram-bot-db up -d >/dev/null 2>&1
+
+					sleep 3
+
+					npx npm-check-updates -u >/dev/null 2>&1 &
+
+					ni >/dev/null 2>&1 &
+					nr -F @proj-airi/telegram-bot db:generate >/dev/null 2>&1
+					nr -F @proj-airi/telegram-bot db:push >/dev/null 2>&1
+					nr -F @proj-airi/telegram-bot dev >/dev/null 2>&1
+				}
+				function DISCORDBOT() {
+					cd "${WD}" || exit 1
+					cd "../DATA/airi-stack/airi/services/discord-bot" || exit 1
+					cp .env .env.local
+
+					npx npm-check-updates -u >/dev/null 2>&1 &
+
+					ni >/dev/null 2>&1 &
+					nr -F @proj-airi/discord-bot dev >/dev/null 2>&1 &
+				}
+				function MINECRAFTBOT() {
+					cd "${WD}" || exit 1
+					cd "../DATA/airi-stack/airi/services/minecraft" || exit 1
+
+					cp .env .env.local
+
+					npx npm-check-updates -u >/dev/null 2>&1 &
+
+					ni >/dev/null 2>&1 &
+					nr -F @proj-airi/minecraft dev >/dev/null 2>&1 &
+				}
+				TELEGRAMBOT
+				DISCORDBOT
+				MINECRAFTBOT
+			}
+
+			npm i -g @antfu/ni >/dev/null 2>&1 &
+			npm i -g shiki >/dev/null 2>&1 &
+			npm i -g pkgroll >/dev/null 2>&1 &
+			npm i -g @craco/craco >/dev/null 2>&1 &
+
+			npx npm-check-updates -u >/dev/null 2>&1 &
+
+			INSTALL_AIRI_PLUGINS >/dev/null 2>&1 &
+
+			ni >/dev/null 2>&1 &
+			nr build >/dev/null 2>&1 &
+
+			## export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+			## corepack enable
+			## cargo fetch
+
+			# Run as desktop pet:
+			# pnpm dev:tamagotchi # >/dev/null 2>&1 &
+			nr dev:tamagotchi >/dev/null 2>&1 &
+
+			# Run as web app:
+			# pnpm dev --host # >/dev/null 2>&1 &
+			nr dev --host >/dev/null 2>&1 &
+
+			# pnpm dev:docs # >/dev/null 2>&1 &
+			nr dev:docs >/dev/null 2>&1 &
+
+			cd "${WD}" || exit 1
+			cd "../DATA/airi-stack/airi" || exit 1
+			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+		}
+
 		function INSTALL_XSAI() {
 			cd "${WD}" || exit
 			cd "../DATA/airi-stack" || exit 1
@@ -39,10 +132,12 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai.git xsai
 			cd xsai || exit
 
-			npx npm-check-updates -u
-			ni
-			nr build
+			npx npm-check-updates -u >/dev/null 2>&1 &
+
+			ni >/dev/null 2>&1 &
+			nr build >/dev/null 2>&1 &
 		}
+
 		function INSTALL_XSAI_TRANSFORMERS() {
 			cd "${WD}" || exit
 			cd "../DATA/airi-stack" || exit 1
@@ -52,10 +147,12 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
 			cd xsai-transformers || exit
 
-			npx npm-check-updates -u
-			ni
-			nr build
+			npx npm-check-updates -u >/dev/null 2>&1 &
+
+			ni >/dev/null 2>&1 &
+			nr build >/dev/null 2>&1 &
 		}
+
 		function INSTALL_AIRI_CHAT() {
 			cd "${WD}" || exit
 			cd "../DATA/airi-stack" || exit 1
@@ -65,98 +162,24 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
 			cd airi-chat || exit
 
-			ni
-			nr build
+			npx npm-check-updates -u >/dev/null 2>&1 &
+
+			ni >/dev/null 2>&1 &
+			nr build >/dev/null 2>&1 &
 		}
-		function INSTALL_AIRI() {
 
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack" || exit 1
-
-			echo "Cloning airi"
-			echo ""
-			git clone --recursive https://github.com/moeru-ai/airi.git airi
-			cd airi || exit
-			npx npm-check-updates -u
-			npm i -g @antfu/ni
-			npm i -g shiki
-			npm i -g pkgroll
-			npm i -g @craco/craco
-
-			ni
-			nr build
-
-			# For Rust dependencies
-			# Not required if you are not going to develop on either crates or apps/tamagotchi
-			sudo apt install -y cargo
-			cargo fetch
-
-			export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-			corepack enable
-
-			# telegram bot setup
-			cd services/telegram-bot || exit
-			cp .env .env.local
-			# docker compose -p airi-telegram-bot-db up -d
-
-			npx npm-check-updates -u
-			ni
-			nr build
-			# nr -F @proj-airi/telegram-bot db:generate
-			# nr -F @proj-airi/telegram-bot db:push
-			# nr -F @proj-airi/telegram-bot dev
-
-			# discord bot setup
-			cd ../discord-bot || exit
-			cp .env .env.local
-
-			npx npm-check-updates -u
-			ni
-			nr build
-			# nr -F @proj-airi/discord-bot dev
-
-			# minecraft bot setup
-			cd ../minecraft || exit
-			cp .env .env.local
-
-			npx npm-check-updates -u
-			ni
-			nr build
-			# nr -F @proj-airi/minecraft dev
-
-			cd .. || exit
-
-			# Run as desktop pet:
-			# pnpm dev:tamagotchi
-			# nr dev:tamagotchi
-
-			# Run as web app:
-			# nr dev
-			# pnpm dev --host
-
-			# nr dev:docs
-			# pnpm dev:docs
-
-			cd "${WD}" || exit
-			cd "../DATA/airi-stack/airi" || exit 1
-			npx npm-check-updates -u
-
-			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
-			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
-			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
-		}
 		# echo "Cloning airi"
 		# echo ""
 		INSTALL_AIRI
-		# echo "Cloning xsai"
-		# echo ""
-		INSTALL_XSAI
-		# echo "Cloning xsai-transformers"
-		# echo ""
-		INSTALL_XSAI_TRANSFORMERS
-		# echo "Cloning airi_chat"
-		# echo ""
-		INSTALL_AIRI_CHAT
+		# # echo "Cloning xsai"
+		# # echo ""
+		# INSTALL_XSAI
+		# # echo "Cloning xsai-transformers"
+		# # echo ""
+		# INSTALL_XSAI_TRANSFORMERS
+		# # echo "Cloning airi_chat"
+		# # echo ""
+		# INSTALL_AIRI_CHAT
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
@@ -443,13 +466,12 @@ function CLONE_LLMSTACK() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
+		cd llmstack/client || exit 1
 
-		uv sync --all-extras
-		uv pip install -e .
-		# uv pip install -r requirements.txt
+		npx npm-check-updates -u >/dev/null 2>&1 &
+
+		ni >/dev/null 2>&1 &
+		nr build >/dev/null 2>&1 &
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
@@ -457,20 +479,13 @@ function CLONE_LLMSTACK() {
 		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
 
-		# npx npm-check-updates -u
-
-		cd llmstack/client || exit 1
-
-		npx npm-check-updates -u
-		npm install
-		npm run build
 		# cd ../../
 		# make api
 		# make api-image
 		# make app
 		# docker build -t llmstack .
 	}
-	# LOCAL_SETUP
+	LOCAL_SETUP
 	DOCKER_SETUP
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
