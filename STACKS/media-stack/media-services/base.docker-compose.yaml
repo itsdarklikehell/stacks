@@ -302,25 +302,25 @@ volumes:
 
 secrets:
   rreading_glasses_db_password:
-    file: ../../SECRETS/rreading_glasses_db_password
+    file: ../../../SECRETS/rreading_glasses_db_password
 
   romm_mariadb_password:
-    file: ../../SECRETS/romm_mariadb_password
+    file: ../../../SECRETS/romm_mariadb_password
   romm_mariadb_root_password:
-    file: ../../SECRETS/romm_mariadb_root_password
+    file: ../../../SECRETS/romm_mariadb_root_password
   romm_auth_secret_key:
-    file: ../../SECRETS/romm_auth_secret_key
+    file: ../../../SECRETS/romm_auth_secret_key
 
   gaseous-server_mariadb_root_password:
-    file: ../../SECRETS/gaseous-server_mariadb_root_password
+    file: ../../../SECRETS/gaseous-server_mariadb_root_password
   gaseous-server_mariadb_password:
-    file: ../../SECRETS/gaseous-server_mariadb_password
+    file: ../../../SECRETS/gaseous-server_mariadb_password
 
   screenscraper_password:
-    file: ../../SECRETS/screenscraper_password
+    file: ../../../SECRETS/screenscraper_password
 
   retroachievements_api_key:
-    file: ../../SECRETS/retroachievements_api_key
+    file: ../../../SECRETS/retroachievements_api_key
 
   steamgriddb_api_key:
-    file: ../../SECRETS/steamgriddb_api_key
+    file: ../../../SECRETS/steamgriddb_api_key
