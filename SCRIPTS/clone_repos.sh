@@ -21,6 +21,7 @@ mkdir -p "../DATA/essential-stack"
 mkdir -p "../DATA/riko-stack"
 mkdir -p "../DATA/aiwaifu-stack"
 mkdir -p "../DATA/airi-stack"
+
 ./install_uv.sh
 ./install_toolhive.sh
 
