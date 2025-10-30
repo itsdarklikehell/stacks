@@ -396,9 +396,9 @@ function CLONE_LETTA() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
-		cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
-		cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
+		# cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
+		# cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
+		# cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
 
 		# docker build -t letta .
 	}
