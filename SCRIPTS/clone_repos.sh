@@ -443,7 +443,7 @@ function CLONE_LOCALAI() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -512,7 +512,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 		uv venv --clear --seed
 		source .venv/bin/activate
 
-		uv sync --all-extras
+		# uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
@@ -538,7 +538,7 @@ function CLONE_LOCALAGI() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -568,7 +568,7 @@ function CLONE_BIGAGI() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -598,7 +598,7 @@ function CLONE_NEXTCLOUD() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -628,7 +628,7 @@ function CLONE_MIDORIAISUBSYSTEM() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -658,7 +658,7 @@ function CLONE_LOCALRECALL() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -1076,7 +1076,7 @@ function CLONE_WHISPER_WEBUI() {
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
+		cp -f "../../../STACKS/ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
 
 		# docker build -t whisper-webui .
 	}
@@ -1105,9 +1105,9 @@ function CLONE_WHISPERX() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1135,9 +1135,9 @@ function CLONE_VIEWTUBE() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
-		cp -f "${WD}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
-		cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
+		# cp -f "${WD}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
+		# cp -f "${WD}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
+		# cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
 		# docker build -t viewtube .
 	}
 
