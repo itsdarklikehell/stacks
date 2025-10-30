@@ -30,9 +30,7 @@ function CLONE_AIRI() {
 
 	function LOCAL_SETUP() {
 
-		if command -v cargo &>/dev/null; then
-			echo "Cargo is already installed"
-		else
+		if ! command -v cargo &>/dev/null; then
 			sudo apt install -y cargo
 		fi
 
@@ -173,13 +171,13 @@ function CLONE_AIRI() {
 		INSTALL_AIRI
 		# # echo "Cloning xsai"
 		# # echo ""
-		# INSTALL_XSAI
+		INSTALL_XSAI >/dev/null 2>&1 &
 		# # echo "Cloning xsai-transformers"
 		# # echo ""
-		# INSTALL_XSAI_TRANSFORMERS
+		INSTALL_XSAI_TRANSFORMERS
 		# # echo "Cloning airi_chat"
 		# # echo ""
-		# INSTALL_AIRI_CHAT
+		INSTALL_AIRI_CHAT
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
@@ -188,8 +186,9 @@ function CLONE_AIRI() {
 		cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
 		# docker build -t airi .
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_ANYTHINGLLM() {
 	cd "${WD}" || exit
@@ -218,8 +217,9 @@ function CLONE_ANYTHINGLLM() {
 		# cp -f "${WD}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
 		# docker build -t anything-llm .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit
@@ -263,8 +263,9 @@ function CLONE_AIWAIFU() {
 		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
 		# docker build -t aiwaifu .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_CHROMA() {
 	cd "${WD}" || exit
@@ -289,8 +290,9 @@ function CLONE_CHROMA() {
 		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
 		# docker build -t chroma .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_CLICKHOUSE() {
 	cd "${WD}" || exit
@@ -326,8 +328,9 @@ function CLONE_CLICKHOUSE() {
 		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
 		# docker build -t chroma .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_JAISON() {
 	cd "${WD}" || exit
@@ -367,8 +370,9 @@ function CLONE_JAISON() {
 		cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
 		# docker build -t jaison-core . --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LETTA() {
 	cd "${WD}" || exit
@@ -397,8 +401,9 @@ function CLONE_LETTA() {
 
 		# docker build -t letta .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LIBRECHAT() {
 	cd "${WD}" || exit
@@ -417,7 +422,7 @@ function CLONE_LIBRECHAT() {
 		# cp docker-compose.override.yml.example docker-compose.override.yml
 		# docker build -t whisper-webui .
 	}
-	# DOCKER_SETUP
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAI() {
 	cd "${WD}" || exit
@@ -452,8 +457,9 @@ function CLONE_LOCALAI() {
 		# cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
 		# docker build -t localai .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LLMSTACK() {
 	cd "${WD}" || exit
@@ -485,8 +491,9 @@ function CLONE_LLMSTACK() {
 		# make app
 		# docker build -t llmstack .
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	cd "${WD}" || exit
@@ -515,8 +522,9 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
 		# docker build -t stable-diffusion-webui-docker .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAGI() {
 	cd "${WD}" || exit
@@ -544,8 +552,9 @@ function CLONE_LOCALAGI() {
 		# cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
 		# docker build -t localagi .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_BIGAGI() {
 	cd "${WD}" || exit
@@ -573,8 +582,9 @@ function CLONE_BIGAGI() {
 		# cp -f "${WD}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
 		# docker build -t big-agi .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_NEXTCLOUD() {
 	cd "${WD}" || exit
@@ -602,8 +612,9 @@ function CLONE_NEXTCLOUD() {
 		# cp -f "${WD}/CustomDockerfile-nextcloud-venv" CustomDockerfile-text-nextcloud-venv
 		# docker build -t nextcloud .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_MIDORIAISUBSYSTEM() {
 	cd "${WD}" || exit
@@ -631,8 +642,9 @@ function CLONE_MIDORIAISUBSYSTEM() {
 		# cp -f "${WD}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
 		# docker build -t subsystem-manager .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALRECALL() {
 	cd "${WD}" || exit
@@ -660,8 +672,9 @@ function CLONE_LOCALRECALL() {
 		# cp -f "${WD}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
 		# docker build -t localrecall .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_MELOTTS() {
 	cd "${WD}" || exit
@@ -687,13 +700,14 @@ function CLONE_MELOTTS() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
-		cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
-		cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
+		# cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
+		# cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
+		# cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
 		# docker build -t melotts .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OLLMVT() {
 	cd "${WD}" || exit
@@ -835,8 +849,9 @@ function CLONE_OLLMVT() {
 		# docker build -t open-llm-vtuber .
 		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OOGABOOGA() {
 	cd "${WD}" || exit
@@ -864,8 +879,9 @@ function CLONE_OOGABOOGA() {
 		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
 		# docker build -t text-generation-webui-docker .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PRIVATEGPT() {
 	cd "${WD}" || exit
@@ -893,8 +909,9 @@ function CLONE_PRIVATEGPT() {
 		# cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
 		# docker build -t private-gpt .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PROMETHEUS() {
 	cd "${WD}" || exit
@@ -924,8 +941,9 @@ function CLONE_PROMETHEUS() {
 		# cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
 		# docker build -t prometheus .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_RIKOPROJECT() {
 	cd "${WD}" || exit
@@ -968,8 +986,9 @@ function CLONE_RIKOPROJECT() {
 		cp -f "${WD}/install_reqs-riko.sh" install_reqs.sh
 		# docker build -t riko-project .
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SIGNOZ() {
 	cd "${WD}" || exit
@@ -997,8 +1016,9 @@ function CLONE_SIGNOZ() {
 		# cp -f "${WD}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
 		# docker build -t signoz .
 	}
-	# LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SWARMUI() {
 	cd "${WD}" || exit
@@ -1031,8 +1051,9 @@ function CLONE_SWARMUI() {
 		# docker build -t swarmui .
 		./launchtools/custom-launch-docker.sh
 	}
-	LOCAL_SETUP
-	DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPER_WEBUI() {
 	cd "${WD}" || exit
@@ -1043,12 +1064,24 @@ function CLONE_WHISPER_WEBUI() {
 	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git whisper-webui
 	cd whisper-webui || exit 1
 
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
 	function DOCKER_SETUP() {
 		cp -f "../../../ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
 
 		# docker build -t whisper-webui .
 	}
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPERX() {
 	cd "${WD}" || exit
@@ -1059,6 +1092,16 @@ function CLONE_WHISPERX() {
 	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperx
 	cd whisperx || exit 1
 
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
 		cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
@@ -1066,7 +1109,9 @@ function CLONE_WHISPERX() {
 		cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
 function CLONE_VIEWTUBE() {
@@ -1094,8 +1139,9 @@ function CLONE_VIEWTUBE() {
 		cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
 		# docker build -t viewtube .
 	}
-	LOCAL_SETUP
-	# DOCKER_SETUP
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
 CLONE_AIRI
