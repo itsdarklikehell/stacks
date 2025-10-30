@@ -5,7 +5,6 @@ echo "CLEANUP is set to: ${CLEANUP}"
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
-
 function CLEANUP_DATA() {
 	FOLDERS=(
 		"${PERM_DATA}/airi-stack"

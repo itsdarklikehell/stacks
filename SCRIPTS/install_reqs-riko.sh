@@ -5,12 +5,12 @@ echo "Install requirements for Riko script started."
 
 apt-get update
 apt-get install -y --no-install-recommends \
-    build-essential \
-    git \
-    curl \
-    ca-certificates \
-    python3 \
-    python3-pip
+	build-essential \
+	git \
+	curl \
+	ca-certificates \
+	python3 \
+	python3-pip
 apt-get install --fix-broken -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py

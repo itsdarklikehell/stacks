@@ -4,15 +4,16 @@ WD="$(dirname "$(realpath "$0")")" || true
 export WD                                     #
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta" #
 export UV_LINK_MODE=copy                      #
-export OLLAMA="docker"                        # local, docker
 
+export OLLAMA="docker"             # local, docker
 export SECRETS_DIR="${WD}/SECRETS" # folder that store secrets
 export PERM_DATA="${WD}/DATA"      # folders that store stack data
-export CONFIGS_DIR="${WD}/STACKS"  # folders that store stack configs
 
-export CLEANUP="false" # false, true
-export PRUNE="normal"  # false, true/normal, all
-export BUILDING="true" # false, true, force_rebuild
+export CONFIGS_DIR="${WD}/STACKS" # folders that store stack configs
+export CLEANUP="true"             # false, true
+export PRUNE="all"                # false, true/normal, all
+export BUILDING="true"            # false, true, force_rebuild
+export PULL_MODELS="true"         # false, true
 
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
@@ -21,7 +22,11 @@ cd "${WD}" || exit
 git pull origin main
 
 function PULL_MODELS() {
-	SCRIPTS/pull_models.sh
+	if [[ ${PULL_MODELS} == "true" ]]; then
+		SCRIPTS/pull_models.sh
+	elif [[ ${PULL_MODELS} == "false" ]]; then
+		echo "Skipping model pulling"
+	fi
 }
 
 function PRUNING() {
@@ -128,16 +133,16 @@ echo "Installing Docker"
 echo ""
 INSTALL_DOCKER
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+CLEANUP_DATA
+PRUNING
+
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS >/dev/null 2>&1
+echo ""
 
 ## STACKS:
-
-# CLEANUP_DATA
-# PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
@@ -153,31 +158,33 @@ echo ""
 SETUP_MEDIA_STACK
 echo ""
 
-# echo ""
-# SETUP_ARR_STACK
-# echo ""
+echo ""
+SETUP_ARR_STACK
+echo ""
 
-# echo ""
-# SETUP_AIWAIFU_STACK
-# echo ""
+echo ""
+SETUP_AIWAIFU_STACK
+echo ""
 
-# echo ""
-# SETUP_AIRI_STACK
-# echo ""
+echo ""
+SETUP_AIRI_STACK
+echo ""
 
-# echo ""
-# SETUP_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+SETUP_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# SETUP_JAISON_STACK
-# echo ""
+echo ""
+SETUP_JAISON_STACK
+echo ""
 
-# echo ""
-# SETUP_PROJECT_RIKO_STACK
-# echo ""
+echo ""
+SETUP_PROJECT_RIKO_STACK
+echo ""
 
-# PULL_MODELS
+echo ""
+PULL_MODELS
+echo ""
 
 # dockly # lazydocker
 

@@ -304,7 +304,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 	fi
-		CREATE_FOLDERS
+	CREATE_FOLDERS
 }
 
 ARGS=""

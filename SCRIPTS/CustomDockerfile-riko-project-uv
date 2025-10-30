@@ -18,7 +18,7 @@ FROM nvidia/cuda:${CUDA_VERSION}-cudnn-devel-ubuntu${UBUNTU_VERSION}
 ENV DEBIAN_FRONTEND=noninteractive
 # Update and install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-software-properties-common build-essential wget curl git ffmpeg ca-certificates libsndfile1
+    software-properties-common build-essential wget curl git ffmpeg ca-certificates libsndfile1
 
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update

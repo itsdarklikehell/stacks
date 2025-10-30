@@ -68,7 +68,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"downloads"
 			"config"
-			)
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
@@ -149,25 +149,25 @@ function SETUP_FOLDERS() {
 			"downloads"
 		)
 	fi
-	
+
 	if [[ ${SERVICE_NAME} == "viewtube" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
-	
+
 	if [[ ${SERVICE_NAME} == "webrcade" ]]; then
 		FOLDERS=(
 			"content"
 		)
 	fi
-	
+
 	if [[ ${SERVICE_NAME} == "quakejs" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
-	
+
 	if [[ ${SERVICE_NAME} == "retroarch" ]]; then
 		FOLDERS=(
 			"config"

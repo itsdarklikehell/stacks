@@ -22,7 +22,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "riko-project" ]]; then
-	FOLDERS=(
+		FOLDERS=(
 			"config"
 			"data"
 			"logs"
