@@ -18,10 +18,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - radarr-config:/config
-      - radarr-media:/media
-      # - ../../../DATA/arr-stack/radarr/config:/config
-      # - ../../../DATA/arr-stack/radarr/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - radarr_config:/config
+      - radarr_media:/media
 
     hostname: ${NAME:-radarr}
 

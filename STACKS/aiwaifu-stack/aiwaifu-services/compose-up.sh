@@ -22,8 +22,11 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "aiwafu" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_storage"
+		FOLDERS=(
+			"storage"
+		)
 	fi
+	CREATE_FOLDERS
 }
 
 ARGS=""

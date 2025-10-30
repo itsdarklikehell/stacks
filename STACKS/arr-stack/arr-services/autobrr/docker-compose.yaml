@@ -17,7 +17,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../../DATA/arr-stack/autobrr/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - autobrr_config:/config
 
     hostname: ${NAME:-autobrr}
 

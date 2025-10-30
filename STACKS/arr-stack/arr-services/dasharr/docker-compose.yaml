@@ -18,8 +18,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - dasharr-dasharr_config:/app/config
-      # - ../../../DATA/arr-stack/dasharr/dasharr_config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - dasharr_config:/app/config
 
     hostname: ${NAME:-dasharr}
 

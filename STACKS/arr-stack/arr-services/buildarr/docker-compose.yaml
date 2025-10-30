@@ -18,8 +18,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - buildarr-config:/config
-      # - ../../../DATA/arr-stack/buildarr/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - buildarr_config:/config
 
     hostname: ${NAME:-buildarr}
 

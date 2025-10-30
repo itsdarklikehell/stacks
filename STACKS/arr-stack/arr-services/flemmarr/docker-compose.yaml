@@ -18,8 +18,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - flemmarr-config:/config
-      # - ../../../DATA/arr-stack/flemmarr/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - flemmarr_config:/config
 
     hostname: ${NAME:-flemmarr}
 

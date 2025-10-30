@@ -83,14 +83,12 @@ function SETUP_FOLDERS() {
 			"personal-notes"
 			"work-notes"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "chroma" ]]; then
 		FOLDERS=(
 			"data"
 			"index"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "clickhouse" ]]; then
 		FOLDERS=(
@@ -101,54 +99,46 @@ function SETUP_FOLDERS() {
 			"logs"
 			"users"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "grafana" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
 		FOLDERS=(
 			"data"
 			"logs"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "koboldccp" ]]; then
 		FOLDERS=(
 			"workspace"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "kokoro-tts" ]]; then
 		FOLDERS=(
 			"data"
 			"index_data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "coqui-tts-cpu" ]]; then
 		FOLDERS=(
 			"data"
 			"index_data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "librechat" ]]; then
 		FOLDERS=(
@@ -159,14 +149,12 @@ function SETUP_FOLDERS() {
 			"logs"
 			"meili_data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "libretranslate-whispher" ]]; then
 		FOLDERS=(
 			"cache"
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "localai" ]]; then
 		FOLDERS=(
@@ -177,53 +165,45 @@ function SETUP_FOLDERS() {
 			"images"
 			"models"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "minio" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
 		FOLDERS=(
 			"data"
 			"logs"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "n8n" ]]; then
 		FOLDERS=(
 			"data"
 			"local_files"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "ollama" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "piper" ]]; then
 		FOLDERS=(
 			"config"
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "faster-whisper-gpu" ]]; then
 		FOLDERS=(
 			"config"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "text-generation-webui-docker" ]]; then
 		FOLDERS=(
@@ -242,7 +222,6 @@ function SETUP_FOLDERS() {
 			"data"
 			"instruction-templates"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "llmstack" ]]; then
 		FOLDERS=(
@@ -252,26 +231,22 @@ function SETUP_FOLDERS() {
 			"weaviate_data"
 			"redis_data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "prometheus" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "searxng" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "signoz" ]]; then
 		FOLDERS=(
 			"data"
 			"index"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "stable-diffusion-webui-docker" ]]; then
 		FOLDERS=(
@@ -282,7 +257,6 @@ function SETUP_FOLDERS() {
 			"output"
 			"workflows"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
 		FOLDERS=(
@@ -291,7 +265,6 @@ function SETUP_FOLDERS() {
 			"dlnodes"
 			"extensions"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "whishper" ]]; then
 		FOLDERS=(
@@ -303,7 +276,6 @@ function SETUP_FOLDERS() {
 			"outputs"
 			"configs"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "whisperx" ]]; then
 		FOLDERS=(
@@ -315,8 +287,6 @@ function SETUP_FOLDERS() {
 			"outputs"
 			"configs"
 		)
-		CREATE_FOLDERS
-
 	fi
 	if [[ ${SERVICE_NAME} == "whisper-webui" ]]; then
 		FOLDERS=(
@@ -328,14 +298,13 @@ function SETUP_FOLDERS() {
 			"outputs"
 			"configs"
 		)
-		CREATE_FOLDERS
 	fi
 	if [[ ${SERVICE_NAME} == "wyoming-piper" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
+		CREATE_FOLDERS
 }
 
 ARGS=""

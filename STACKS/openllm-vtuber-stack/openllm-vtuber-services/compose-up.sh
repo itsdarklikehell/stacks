@@ -21,10 +21,14 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-	if [[ ${SERVICE_NAME} == "aiwafu" ]]; then
-		FOLDERS=("storage")
-		CREATE_FOLDERS
+	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+			"logs"
+		)
 	fi
+	CREATE_FOLDERS
 }
 
 ARGS=""

@@ -17,8 +17,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../../DATA/arr-stack/whisparr/config:/config
-      - ../../../DATA/arr-stack/whisparr/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - whisparr_config:/config
+      - whisparr_media:/media
 
     hostname: ${NAME:-whisparr}
 

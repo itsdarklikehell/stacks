@@ -18,9 +18,11 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../../DATA/arr-stack/checkrr/config/checkrr.yaml:/etc/checkrr.yaml
-      - ../../../DATA/arr-stack/checkrr/config/checkrr.db:/checkrr.db
-      - ../../../DATA/arr-stack/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - checkrr_config:/etc/checkrr.yaml
+      - checkrr_data:/checkrr.db
+      - checkrr_media:/media
 
     hostname: ${NAME:-checkrr}
 

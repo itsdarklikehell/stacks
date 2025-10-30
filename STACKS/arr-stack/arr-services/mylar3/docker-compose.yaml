@@ -18,12 +18,11 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - mylar3-config:/config
-      - mylar3-comics:/comics
-      - mylar3-downloads:/downloads
-      # - ../../../DATA/arr-stack/mylar3/mylar3/config:/config
-      # - ../../../DATA/arr-stack/mylar3/comics:/comics
-      # - ../../../DATA/arr-stack/mylar3/downloads:/downloads
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - mylar3_config:/config
+      - mylar3_comics:/comics
+      - mylar3_downloads:/downloads
 
     hostname: ${NAME:-mylar3}
 

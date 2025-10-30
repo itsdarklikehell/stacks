@@ -18,10 +18,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - bazarr-config:/config
-      - bazarr-media:/media
-      # - ../../../DATA/arr-stack/bazarr/config:/config
-      # - ../../../DATA/arr-stack/bazarr/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - bazarr_config:/config
+      - bazarr_media:/media
 
     hostname: ${NAME:-bazarr}
 

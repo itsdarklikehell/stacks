@@ -18,10 +18,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - sonarr-config:/config
-      - sonarr-media:/media
-      # - ../../../DATA/arr-stack/sonarr/config:/config
-      # - ../../../DATA/arr-stack/sonarr/media:/media
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - sonarr_config:/config
+      - sonarr_media:/media
 
     hostname: ${NAME:-sonarr}
 

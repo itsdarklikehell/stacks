@@ -21,9 +21,14 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-	if [[ ${SERVICE_NAME} == "wolf" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_etc"
+	if [[ ${SERVICE_NAME} == "jaison-core" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
+			"logs"
+		)
 	fi
+	CREATE_FOLDERS
 }
 
 ARGS=""

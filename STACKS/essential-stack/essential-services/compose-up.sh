@@ -38,7 +38,6 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "dashy" ]]; then
@@ -57,14 +56,12 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"appdata"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
@@ -73,7 +70,6 @@ function SETUP_FOLDERS() {
 			"data"
 			"aio_mastercontainer"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "nginx-proxy-manager" ]]; then
@@ -81,44 +77,38 @@ function SETUP_FOLDERS() {
 			"data"
 			"letsencrypt"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "portainer" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "portracker" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "uptime-kuma" ]]; then
 		FOLDERS=(
 			"data"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "vscodium" ]]; then
 		FOLDERS=(
 			"config"
 		)
-		CREATE_FOLDERS
 	fi
 
 	if [[ ${SERVICE_NAME} == "wolf" ]]; then
 		FOLDERS=(
 			"etc"
 		)
-		CREATE_FOLDERS
 	fi
-
+	CREATE_FOLDERS
 }
 
 ARGS=""

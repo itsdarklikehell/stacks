@@ -18,12 +18,11 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - sickgear-data:/data
-      - sickgear-incoming:/incoming
-      - sickgear-tv:/tv
-      # - ../../../DATA/arr-stack/sickgear/data:/data
-      # - ../../../DATA/arr-stack/sickgear/incoming:/incoming
-      # - ../../../DATA/arr-stack/sickgear/tv:/tv
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - sickgear_data:/data
+      - sickgear_incoming:/incoming
+      - sickgear_tv:/tv
 
     hostname: ${NAME:-sickgear}
 

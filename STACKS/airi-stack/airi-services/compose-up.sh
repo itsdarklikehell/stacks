@@ -22,9 +22,11 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "airi" ]]; then
-		FOLDERS=("storage")
-		CREATE_FOLDERS
+		FOLDERS=(
+			"storage"
+		)
 	fi
+	CREATE_FOLDERS
 }
 
 ARGS=""

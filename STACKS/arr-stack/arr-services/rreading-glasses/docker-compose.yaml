@@ -96,7 +96,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - rreading_glasses_data:/var/lib/postgresql/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - rreading-glasses_data:/var/lib/postgresql/data
 
     secrets:
       - rreading_glasses_db_password

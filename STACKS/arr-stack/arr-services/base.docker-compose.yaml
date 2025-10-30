@@ -1,4 +1,4 @@
-name: rr-services
+name: arr-services
 
 networks:
   host:
@@ -6,36 +6,293 @@ networks:
     external: true
 
 volumes:
-  rreading_glasses_data:
-  kapowarr-db: # ./../DATA/arr-stack/kapowarr/db:/app/db
-  kapowarr-download_folder: # ./../DATA/arr-stack/kapowarr/download_folder:/app/temp_downloads
-  kapowarr-root_folder: # ./../DATA/arr-stack/kapowarr/root_folder:/comics-1
-  bazarr-config: # ./../DATA/arr-stack/bazarr/config:/config
-  bazarr-media: # ./../DATA/arr-stack/bazarr/media:/media
-  buildarr-config: # ./../DATA/arr-stack/buildarr/config:/config
-  calendarr-logs: # ./../DATA/arr-stack/calendarr/logs:/app/logs:rw
-  calendarr-custom_footers: # ./../DATA/arr-stack/calendarr/custom_footers:/app/custom_footers:rw
-  dasharr-dasharr_config: # ./../DATA/arr-stack/dasharr/dasharr_config:/app/config
-  flemmarr-config: # ./../DATA/arr-stack/flemmarr/config:/config
-  jellyseerr-appdata: # ./../DATA/arr-stack/jellyseerr/appdata:/app
-  jellyseerr-config: # ./../DATA/arr-stack/jellyseerr/appdata/config:/app/config
-  lidarr-config: # ./../DATA/arr-stack/lidarr/config:/config
-  lidarr-media: # ./../DATA/arr-stack/lidarr/media:/media
-  mylar3-config: # ./../DATA/arr-stack/mylar3/mylar3/config:/config
-  mylar3-comics: # ./../DATA/arr-stack/mylar3/comics:/comics
-  mylar3-downloads: # ./../DATA/arr-stack/mylar3/downloads:/downloads
-  organizr-config: # ./../DATA/arr-stack/organizr/config:/config
-  overseerr-appdata: # ./../DATA/arr-stack/overseerr/appdata:/app
-  overseerr-config: # ./../DATA/arr-stack/overseerr/appdata/config:/app/config
-  prowlarr-config: # ./../DATA/arr-stack/prowlarr/config:/config
-  radarr-config: # ./../DATA/arr-stack/radarr/config:/config
-  radarr-media: # ./../DATA/arr-stack/radarr/media:/media
-  requestrr-config: # ./../DATA/arr-stack/requestrr/config:/root/config
-  sickgear-data: # ./../DATA/arr-stack/sickgear/data:/data
-  sickgear-incoming: # ./../DATA/arr-stack/sickgear/incoming:/incoming
-  sickgear-tv: # ./../DATA/arr-stack/sickgear/tv:/tv
-  sonarr-config: # ./../DATA/arr-stack/sonarr/config:/config
-  sonarr-media: # ./../DATA/arr-stack/sonarr/media:/media
+  autobrr_config:
+    name: autobrr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/autobrr/autobrr_config
+
+  bazarr_config:
+    name: bazarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/bazarr/bazarr_config
+  bazarr_media:
+    name: bazarr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/bazarr/bazarr_media
+
+  buildarr_config:
+    name: buildarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/buildarr/buildarr_config
+
+  calendarr_custom_footers:
+    name: calendarr_custom_footers
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/calendarr/calendarr_custom_footers
+  calendarr_logs:
+    name: calendarr_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/calendarr/calendarr_logs
+
+  checkrr_config:
+    name: checkrr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/checkrr/checkrr_config/checkrr.yaml
+  checkrr_data:
+    name: checkrr_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/checkrr/checkrr_data/checkrr.db
+  checkrr_media:
+    name: checkrr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/checkrr/media
+
+  dasharr_config:
+    name: dasharr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/dasharr/dasharr_config
+
+  flemmarr_config:
+    name: flemmarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/flemmarr/flemmarr_config
+
+  jellyseerr_appdata:
+    name: jellyseerr_appdata
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/jellyseerr/jellyseerr_appdata
+  jellyseerr_config:
+    name: jellyseerr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/jellyseerr/jellyseerr_config
+
+  kapowarr_db:
+    name: kapowarr_db
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/kapowarr/kapowarr_db
+  kapowarr_downloads:
+    name: kapowarr_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/kapowarr/kapowarr_downloads
+  kapowarr_comics_folder:
+    name: kapowarr_comics_folder
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/kapowarr/kapowarr_comics_folder
+
+  lidarr_config:
+    name: lidarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/lidarr/lidarr_config
+  lidarr_media:
+    name: lidarr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/lidarr/lidarr_media
+
+  logarr_config:
+    name: logarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/logarr/logarr_config
+  logarr_logs:
+    name: logarr_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/logarr/loggarr_logs
+
+  mylar3_comics:
+    name: mylar3_comics
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/mylar3/mylar3_comics
+  mylar3_config:
+    name: mylar3_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/mylar3/mylar3_config
+  mylar3_downloads:
+    name: mylar3_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/mylar3/mylar3_downloads
+
+  organizr_config:
+    name: organizr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/organizr/organizr_config
+
+  overseerr_appdata:
+    name: overseerr_appdata
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/overseerr/overseerr_appdata
+  overseerr_config:
+    name: overseerr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/overseerr/overseerr_config
+
+  prowlarr_config:
+    name: prowlarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/prowlarr/prowlarr_config
+
+  radarr_config:
+    name: radarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/radarr/radarr_config
+  radarr_media:
+    name: radarr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/radarr/radarr_media
+
+  requestrr_config:
+    name: requestrr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/requestrr/requestrr_config
+
+  rreading-glasses_data:
+    name: rreading-glasses_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/rreading-glasses/data
+
+  sickgear_data:
+    name: sickgear_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/sickgear/sickgear_data
+
+  sickgear_incoming:
+    name: sickgear_incoming
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/sickgear/sickgear_incoming
+  sickgear_tv:
+    name: sickgear_tv
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/sickgear/sickgear_tv
+
+  sonarr_config:
+    name: sonarr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/sonarr/config
+  sonarr_media:
+    name: sonarr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/sonarr/media
+
+  whisparr_config:
+    name: whisparr_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/whisparr/config
+  whisparr_media:
+    name: whisparr_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/arr-stack/whisparr/media
 
 secrets:
   rreading_glasses_db_password:

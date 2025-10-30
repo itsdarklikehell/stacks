@@ -51,106 +51,150 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "beets" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
+		FOLDERS=(
+			"downloads"
+			"config"
+			"media"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_library"
+		FOLDERS=(
+			"library"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "deluge" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"downloads"
+			"config"
+			)
 	fi
 
 	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "duckstation" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "emby" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
+		FOLDERS=(
+			"config"
+			"media"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "flexget" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"downloads"
+			"config"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "flycast" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "gaseous-server" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_mariadb"
+		FOLDERS=(
+			"mariadb"
+			"data"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "gzdoom" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"config"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"config"
+		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "viewtube" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
-	fi
-	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-	fi
-	if [[ ${SERVICE_NAME} == "rpcs3" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-	fi
-	if [[ ${SERVICE_NAME} == "xemu" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-	fi
-	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_downloads"
-	fi
 	if [[ ${SERVICE_NAME} == "romm" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_resources"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_library"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_assets"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_mariadb"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_redis_data"
+		FOLDERS=(
+			"data"
+			"resources"
+			"config"
+			"library"
+			"assets"
+			"mariadb"
+			"redis_data"
+		)
 	fi
+
+	if [[ ${SERVICE_NAME} == "rpcs3" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "xemu" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
+	fi
+	
+	if [[ ${SERVICE_NAME} == "viewtube" ]]; then
+		FOLDERS=(
+			"data"
+		)
+	fi
+	
 	if [[ ${SERVICE_NAME} == "webrcade" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_content"
+		FOLDERS=(
+			"content"
+		)
 	fi
+	
 	if [[ ${SERVICE_NAME} == "quakejs" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"config"
+		)
 	fi
+	
 	if [[ ${SERVICE_NAME} == "retroarch" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"config"
+		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "tvs99" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_data"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
+		FOLDERS=(
+			"data"
+			"config"
+		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "retroarchz" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_roms"
+		FOLDERS=(
+			"roms"
+		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "plex" ]]; then
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_media"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_config"
-		mkdir -p "${FOLDER}/${SERVICE_NAME}_transcode"
+		FOLDERS=(
+			"media"
+			"config"
+			"transcode"
+		)
 	fi
+	CREATE_FOLDERS
 }
 
 ARGS=""
