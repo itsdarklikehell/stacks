@@ -14,6 +14,7 @@ export CLEANUP="true"             # false, true
 export PRUNE="all"                # false, true/normal, all
 export BUILDING="true"            # false, true, force_rebuild
 export PULL_MODELS="true"         # false, true
+export START_OLLMVT="true"      # false, true
 
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
@@ -58,6 +59,14 @@ function INSTALL_DOCKER() {
 	SCRIPTS/install_docker.sh
 }
 
+function START_OLLMVT() {
+	if [[ ${START_OLLMVT} == "true" ]]; then
+		SCRIPTS/start_ollmvt.sh
+	elif [[ ${START_OLLMVT} == "false" ]]; then
+		echo "Skipping OpenLLM-VTuber start"
+	fi
+}
+
 function CREATE_NETWORKS() {
 	SCRIPTS/create_networks.sh
 }
@@ -77,7 +86,7 @@ function INSTALL_STACK() {
 	echo "Configs directory is set to ${CONFIGS_DIR}"
 	echo "Data directory is set to ${PERM_DATA}"
 	echo "Secrets directory is set to ${SECRETS_DIR}"
-	echo "Stacks directory is set to ${STACKS_DIR}"
+	echo "Stacks directory is set to ${STACK_DIR}"
 
 	"${STACK_DIR}"/install-stack.sh
 }
@@ -139,7 +148,7 @@ PRUNING
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS >/dev/null 2>&1
+CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ## STACKS:
@@ -186,7 +195,9 @@ echo ""
 PULL_MODELS
 echo ""
 
-# dockly # lazydocker
+echo ""
+START_OLLMVT
+echo ""
 
 echo "Installation complete.."
 
