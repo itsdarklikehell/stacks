@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
+
 models=(
 	'embeddinggemma:latest'
 	'gemma3:latest'
@@ -39,6 +40,7 @@ models=(
 	# 'qwen3:8b'
 	# 'qwen3:latest'
 )
+
 for model in "${models[@]}"; do
 	echo "Pulling model: ${model}"
 	if command -v ollama >/dev/null 2>&1; then

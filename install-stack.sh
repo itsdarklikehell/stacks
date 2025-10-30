@@ -10,11 +10,12 @@ export SECRETS_DIR="${WD}/SECRETS" # folder that store secrets
 export PERM_DATA="${WD}/DATA"      # folders that store stack data
 
 export CONFIGS_DIR="${WD}/STACKS" # folders that store stack configs
-export CLEANUP="true"             # false, true
+export CLEANUP="false"            # false, true
 export PRUNE="all"                # false, true/normal, all
 export BUILDING="true"            # false, true, force_rebuild
 export PULL_MODELS="true"         # false, true
-export START_OLLMVT="true"      # false, true
+export START_OLLMVT="true"        # false, true
+export START_BROWSER="true"       # false, true
 
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
@@ -62,11 +63,13 @@ function INSTALL_DOCKER() {
 function START_OLLMVT() {
 	if [[ ${START_OLLMVT} == "true" ]]; then
 		SCRIPTS/start_ollmvt.sh
-	elif [[ ${START_OLLMVT} == "false" ]]; then
-		echo "Skipping OpenLLM-VTuber start"
 	fi
 }
-
+function START_BROWSER() {
+	if [[ ${START_BROWSER} == "true" ]]; then
+		SCRIPTS/start_browser.sh
+	fi
+}
 function CREATE_NETWORKS() {
 	SCRIPTS/create_networks.sh
 }
@@ -201,11 +204,4 @@ echo ""
 
 echo "Installation complete.."
 
-# if [[ -f "${HOME}/bin/start_ai.sh" ]]; then
-# 	# gnome-terminal -- "${HOME}/bin/start_ai.sh"
-# 	# xdg-open "http://localhost:8383/"
-# fi
-
 # sudo chown -R "${USER}":"${USER}" "${WD}"
-# xdg-open "http://localhost:11434" >/dev/null 2>&1 &
-# xdg-open "http://0.0.0.0:7801/Install" >/dev/null 2>&1 &

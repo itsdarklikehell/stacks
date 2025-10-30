@@ -1,9 +1,7 @@
 #!/bin/bash
 echo "Install toolhive script started."
 
-# Install toolhive and related tools on Ubuntu
 function INSTALL_toolhive() {
-	# check if toolhive is installed and if not install it
 	if command -v toolhive &>/dev/null; then
 		echo "toolhive is already installed"
 	else
@@ -13,5 +11,5 @@ function INSTALL_toolhive() {
 		echo "toolhive installation completed."
 	fi
 }
-# Call the function to install toolhive
+
 INSTALL_toolhive >/dev/null 2>&1

@@ -81,6 +81,7 @@ function CLONE_AIRI() {
 			npm i -g @antfu/ni
 			npm i -g shiki
 			npm i -g pkgroll
+			npm i -g @craco/craco
 
 			ni
 			nr build
