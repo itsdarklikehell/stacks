@@ -11,7 +11,7 @@ echo "Configs directory is set to ${CONFIGS_DIR}"
 echo "Data directory is set to ${PERM_DATA}"
 echo "Secrets directory is set to ${SECRETS_DIR}"
 
-cd "${WD}" || exit
+cd "${WD}" || exit 1
 
 mkdir -p "../DATA/ai-stack"
 mkdir -p "../DATA/jaison-stack"
@@ -26,7 +26,7 @@ mkdir -p "../DATA/airi-stack"
 ./install_toolhive.sh
 
 function CLONE_AIRI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/airi-stack" || exit 1
 
 	function LOCAL_SETUP() {
@@ -123,7 +123,7 @@ function CLONE_AIRI() {
 		}
 
 		function INSTALL_XSAI() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai"
@@ -138,7 +138,7 @@ function CLONE_AIRI() {
 		}
 
 		function INSTALL_XSAI_TRANSFORMERS() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai-transformers"
@@ -153,7 +153,7 @@ function CLONE_AIRI() {
 		}
 
 		function INSTALL_AIRI_CHAT() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/airi-stack" || exit 1
 
 			echo "Cloning airi_chat"
@@ -172,7 +172,7 @@ function CLONE_AIRI() {
 		INSTALL_AIRI
 		# # echo "Cloning xsai"
 		# # echo ""
-		INSTALL_XSAI >/dev/null 2>&1 &
+		INSTALL_XSAI
 		# # echo "Cloning xsai-transformers"
 		# # echo ""
 		INSTALL_XSAI_TRANSFORMERS
@@ -192,7 +192,7 @@ function CLONE_AIRI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_ANYTHINGLLM() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning anything-llm"
@@ -223,7 +223,7 @@ function CLONE_ANYTHINGLLM() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_AIWAIFU() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/aiwaifu-stack" || exit 1
 
 	echo "Cloning AIwaifu"
@@ -235,27 +235,28 @@ function CLONE_AIWAIFU() {
 		uv venv --clear --seed
 		source .venv/bin/activate
 
-		uv sync --all-extras
-		uv pip install -e .
-		# uv pip install -r requirements.txt
+		uv pip install -r requirements.txt
+		uv pip install poetry fairseq
 
-		# pipx install poetry --force
 		# poetry env use 3.8
 		# poetry lock
 		# poetry install
 		# poetry env activate
-		# uv venv .venv --clear
-		# uv pip install -r requirements.txt
-		# cd AIVoifu/voice_conversion/Sovits/monotonic_align || exit 1
-		# python setup.py build_ext --inplace && cd ../../../../
+
+		# cd "${WD}" || exit 1
+		# cd "${DATA_DIR}/aiwaifu-stack/aiwaifu/AIVoifu/voice_conversion/Sovits/monotonic_align" || exit 1
+		# python setup.py build_ext --inplace
+
+		cd "${WD}" || exit 1
+		cd "../DATA/aiwaifu-stack/aiwaifu" || exit 1
 
 		# this run on localhost 8267 by default
-		# python ./api_inference_server.py
+		python ./api_inference_server.py
 
 		# this will connect to all the server (Locally)
 		# it is possible to host the api model on the external server, just beware of security issue
 		# I'm planning to make a docker container for hosting on cloud provider for inference, but not soon
-		# python ./main.py
+		python ./main.py
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
@@ -265,11 +266,11 @@ function CLONE_AIWAIFU() {
 		# docker build -t aiwaifu .
 	}
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
+	LOCAL_SETUP >/dev/null 2>&1 &
+	DOCKER_SETUP >/dev/null 2>&1 &
 }
 function CLONE_CHROMA() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning chroma"
@@ -296,7 +297,7 @@ function CLONE_CHROMA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_CLICKHOUSE() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning clickhouse"
@@ -334,7 +335,7 @@ function CLONE_CLICKHOUSE() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_JAISON() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/jaison-stack" || exit 1
 
 	echo "Cloning jaison-core"
@@ -351,7 +352,7 @@ function CLONE_JAISON() {
 		source .venv/bin/activate
 
 		# uv sync --all-extras
-		uv pip install -e .
+		# uv pip install -e .
 		uv pip install -r requirements.txt
 		uv pip install --no-deps -r requirements.no_deps.txt
 		uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
@@ -376,7 +377,7 @@ function CLONE_JAISON() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LETTA() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning Letta"
@@ -407,7 +408,7 @@ function CLONE_LETTA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LIBRECHAT() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning librechat"
@@ -426,7 +427,7 @@ function CLONE_LIBRECHAT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAI"
@@ -463,7 +464,7 @@ function CLONE_LOCALAI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LLMSTACK() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning LLMStack"
@@ -497,7 +498,7 @@ function CLONE_LLMSTACK() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning stable-diffusion-webui-docker"
@@ -528,7 +529,7 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAGI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAGI"
@@ -558,7 +559,7 @@ function CLONE_LOCALAGI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_BIGAGI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning BIG-AGI"
@@ -588,7 +589,7 @@ function CLONE_BIGAGI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_NEXTCLOUD() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/essential-stack" || exit 1
 
 	echo "Cloning nextcloud"
@@ -618,7 +619,7 @@ function CLONE_NEXTCLOUD() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_MIDORIAISUBSYSTEM() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning subsystem-manager"
@@ -648,7 +649,7 @@ function CLONE_MIDORIAISUBSYSTEM() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALRECALL() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalRecall"
@@ -678,7 +679,7 @@ function CLONE_LOCALRECALL() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_MELOTTS() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning MeloTTS"
@@ -711,7 +712,7 @@ function CLONE_MELOTTS() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OLLMVT() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/openllm-vtuber-stack" || exit 1
 
 	echo "Cloning openllm-vtuber"
@@ -751,7 +752,7 @@ function CLONE_OLLMVT() {
 		fi
 
 		function CLONE_L2D_MODELS() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
@@ -763,7 +764,7 @@ function CLONE_OLLMVT() {
 			# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
 		}
 		function CLONE_VOICE_MODELS() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
@@ -809,7 +810,7 @@ function CLONE_OLLMVT() {
 			fi
 		}
 		function CLONE_TTS_BACKENDS() {
-			cd "${WD}" || exit
+			cd "${WD}" || exit 1
 			cd "../DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
 			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 			# # If you failed to clone the submodule due to network failures, please run the following command until success
@@ -855,7 +856,7 @@ function CLONE_OLLMVT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OOGABOOGA() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning text-generation-webui-docker"
@@ -885,7 +886,7 @@ function CLONE_OOGABOOGA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PRIVATEGPT() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning privateGPT"
@@ -915,7 +916,7 @@ function CLONE_PRIVATEGPT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PROMETHEUS() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning prometheus"
@@ -947,7 +948,7 @@ function CLONE_PROMETHEUS() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_RIKOPROJECT() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/riko-stack" || exit 1
 
 	echo "Cloning riko-project"
@@ -992,7 +993,7 @@ function CLONE_RIKOPROJECT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SIGNOZ() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning signoz"
@@ -1022,7 +1023,7 @@ function CLONE_SIGNOZ() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SWARMUI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning SwarmUI"
@@ -1057,7 +1058,7 @@ function CLONE_SWARMUI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPER_WEBUI() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning Whisper-WebUI"
@@ -1085,7 +1086,7 @@ function CLONE_WHISPER_WEBUI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPERX() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning whisperx"
@@ -1116,7 +1117,7 @@ function CLONE_WHISPERX() {
 }
 
 function CLONE_VIEWTUBE() {
-	cd "${WD}" || exit
+	cd "${WD}" || exit 1
 	cd "../DATA/media-stack" || exit 1
 
 	echo "Cloning viewtube"

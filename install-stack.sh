@@ -175,38 +175,38 @@ echo ""
 SETUP_ARR_STACK
 echo ""
 
-echo ""
-SETUP_AIWAIFU_STACK
-echo ""
+# echo ""
+# SETUP_AIWAIFU_STACK
+# echo ""
 
-echo ""
-SETUP_AIRI_STACK
-echo ""
+# echo ""
+# SETUP_AIRI_STACK
+# echo ""
 
-echo ""
-SETUP_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# SETUP_OPENLLM_VTUBER_STACK
+# echo ""
 
-echo ""
-SETUP_JAISON_STACK
-echo ""
+# echo ""
+# SETUP_JAISON_STACK
+# echo ""
 
-echo ""
-SETUP_PROJECT_RIKO_STACK
-echo ""
+# echo ""
+# SETUP_PROJECT_RIKO_STACK
+# echo ""
 
 echo ""
 PULL_MODELS
 echo ""
 
 echo ""
-START_OLLMVT
+START_OLLMVT >/dev/null 2>&1 &
 echo ""
 
 echo ""
-START_BROWSER
+START_BROWSER >/dev/null 2>&1 &
 echo ""
 
-echo "Installation complete.."
+# echo "Installation complete.."
 
 # sudo chown -R "${USER}":"${USER}" "${WD}"
