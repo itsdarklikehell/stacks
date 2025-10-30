@@ -1,24 +1,21 @@
 #!/bin/bash
 
 WD="$(dirname "$(realpath "$0")")" || true
-export WD                                     #
-export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta" #
-export UV_LINK_MODE=copy                      #
-
-export OLLAMA="docker"             # local, docker
-export SECRETS_DIR="${WD}/SECRETS" # folder that store secrets
-export PERM_DATA="${WD}/DATA"      # folders that store stack data
-
-export CONFIGS_DIR="${WD}/STACKS" # folders that store stack configs
-export CLEANUP="false"            # false, true
-export PRUNE="all"                # false, true/normal, all
-export BUILDING="true"            # false, true, force_rebuild
-export PULL_MODELS="true"         # false, true
-export START_OLLMVT="true"        # false, true
-export START_BROWSER="true"       # false, true
-
-export TWITCH_CLIENT_ID="your_client_id"         #
-export TWITCH_CLIENT_SECRET="your_client_secret" #
+export WD                                        # set working dir
+export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    # set letta sandbox mount point
+export UV_LINK_MODE=copy                         # set uv link mode
+export OLLAMA="docker"                           # local, docker
+export SECRETS_DIR="${WD}/SECRETS"               # folder that store secrets
+export PERM_DATA="${WD}/DATA"                    # folders that store stack data
+export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
+export CLEANUP="false"                           # false, true
+export PRUNE="all"                               # false, true/normal, all
+export BUILDING="true"                           # false, true, force_rebuild
+export PULL_MODELS="true"                        # false, true
+export START_OLLMVT="true"                       # false, true
+export START_BROWSER="true"                      # false, true
+export TWITCH_CLIENT_ID="your_client_id"         # set twitch client id
+export TWITCH_CLIENT_SECRET="your_client_secret" # set twitch client secret
 
 cd "${WD}" || exit
 git pull origin main
