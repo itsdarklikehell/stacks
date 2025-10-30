@@ -864,7 +864,7 @@ function CLONE_OOGABOOGA() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -894,7 +894,7 @@ function CLONE_PRIVATEGPT() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -924,7 +924,7 @@ function CLONE_PROMETHEUS() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# make && sudo make install
 
 		# uv venv --clear --seed
@@ -1001,7 +1001,7 @@ function CLONE_SIGNOZ() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -1066,7 +1066,7 @@ function CLONE_WHISPER_WEBUI() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -1094,7 +1094,7 @@ function CLONE_WHISPERX() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
