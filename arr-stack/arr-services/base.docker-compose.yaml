@@ -39,6 +39,6 @@ volumes:
 
 secrets:
   rreading_glasses_db_password:
-    file: ./../secrets/rreading_glasses_db_password
+    file: ./../SECRETS/rreading_glasses_db_password
   hardcover_auth:
-    file: ./../secrets/hardcover_auth
+    file: ./../SECRETS/hardcover_auth

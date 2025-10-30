@@ -38,7 +38,7 @@ services:
       - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models:/app/live2d-models
       - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/logs:/app/logs
       - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/prompts/utils:/app/prompts/utils
-      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/scripts:/app/scripts
+      - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/SCRIPTS:/app/SCRIPTS
       - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/mcp_servers.json:/app/mcp_servers.json
       - ../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/model_dict.json:/app/model_dict.json
 

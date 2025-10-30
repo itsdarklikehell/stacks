@@ -38,7 +38,7 @@ services:
     #   - ../../DATA/ai-stack/aiwaifu/live2d-models:/app/live2d-models
     #   - ../../DATA/ai-stack/aiwaifu/logs:/app/logs
     #   - ../../DATA/ai-stack/aiwaifu/prompts/utils:/app/prompts/utils
-    #   - ../../DATA/ai-stack/aiwaifu/scripts:/app/scripts
+    #   - ../../DATA/ai-stack/aiwaifu/SCRIPTS:/app/SCRIPTS
     #   - ../../DATA/ai-stack/aiwaifu/mcp_servers.json:/app/mcp_servers.json
     #   - ../../DATA/ai-stack/aiwaifu/model_dict.json:/app/model_dict.json
 

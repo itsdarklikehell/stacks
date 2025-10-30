@@ -5,20 +5,28 @@ export WD                                        #
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    #
 export UV_LINK_MODE=copy                         #
 export OLLAMA="docker"                           # local, docker
-export PERM_DATA="${WD}/DATA"                    #
+
+export PERM_DATA="${WD}/DATA"                    # folders that store stack data
+export STACKS_DIR="${WD}/STACKS"				# folders that store stack configs
+
 export CLEANUP="false"                           # false, true
 export PRUNE="normal"                            # false, true/normal, all
 export BUILDING="true"                           # false, true, force_rebuild
+
 export TWITCH_CLIENT_ID="your_client_id"         #
 export TWITCH_CLIENT_SECRET="your_client_secret" #
 
 echo "Working directory is set to ${WD}"
+echo "Stacks directory is set to ${STACKS_DIR}"
+echo "Data directory is set to ${PERM_DATA}"
+
 cd "${WD}" || exit
 git pull origin main
 
 function PULL_MODELS() {
-	scripts/pull_models.sh
+	SCRIPTS/pull_models.sh
 }
+
 function PRUNING() {
 	echo ""
 	echo "Pruning is set to: ${PRUNE}"
@@ -32,28 +40,33 @@ function PRUNING() {
 	fi
 	sleep 3
 }
+
 function CLEANUP_DATA() {
 	if [[ ${CLEANUP} == "true" ]]; then
 		# export PRUNE="normal"      # false, true/normal, all
 		# export BUILDING="recreate" # false, true, recreate
-		scripts/cleanup.sh
+		SCRIPTS/cleanup.sh
 	fi
 }
+
 function INSTALL_DRIVERS() {
-	scripts/install_drivers.sh
+	SCRIPTS/install_drivers.sh
 }
 function INSTALL_DOCKER() {
-	scripts/install_docker.sh
+	SCRIPTS/install_docker.sh
 }
+
 function CREATE_NETWORKS() {
-	scripts/create_networks.sh
+	SCRIPTS/create_networks.sh
 }
 function CREATE_SECRETS() {
-	scripts/create_secrets.sh
+	SCRIPTS/create_secrets.sh
 }
+
 function CLONE_REPOS() {
-	scripts/clone_repos.sh
+	SCRIPTS/clone_repos.sh
 }
+
 function INSTALL_ESSENTIALS_STACK() {
 	essential-stack/install-stack.sh
 }
@@ -84,6 +97,7 @@ function INSTALL_AIWAIFU_STACK() {
 function INSTALL_AIRI_STACK() {
 	airi-stack/install-stack.sh
 }
+
 # Install essential dependencies
 echo ""
 echo "Installing Drivers"

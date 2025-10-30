@@ -66,7 +66,7 @@ volumes:
       type: none
       o: bind
       device: ../../DATA/essential-stack/nextcloud/nextcloud_custom_apps
-  
+
   wolf_etc:
     name: wolf_etc
     driver: local
@@ -138,6 +138,6 @@ volumes:
 
 secrets:
   INITIAL_ADMIN_EMAIL:
-    file: ../../secrets/nginx-proxy-manager_username
+    file: ../../SECRETS/nginx-proxy-manager_username
   INITIAL_ADMIN_PASSWORD:
-    file: ../../secrets/nginx-proxy-manager_password
+    file: ../../SECRETS/nginx-proxy-manager_password

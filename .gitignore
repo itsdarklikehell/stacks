@@ -1,7 +1,4 @@
-# Ignore Docker secrets and local overrides
-secrets/*
-
-#Ignore vscode AI rules
+SECRETS/*
 .github/instructions/codacy.instructions.md
 .codacy
 .trunk

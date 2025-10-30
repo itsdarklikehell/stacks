@@ -6,6 +6,9 @@ export WD
 export UV_LINK_MODE=copy
 
 echo "Working directory is set to ${WD}"
+echo "Stacks directory is set to ${STACKS_DIR}"
+echo "Data directory is set to ${PERM_DATA}"
+
 cd "${WD}" || exit
 
 docker network create arr-services

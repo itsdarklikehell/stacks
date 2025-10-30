@@ -747,30 +747,30 @@ volumes:
 
 secrets:
   GF_SECURITY_ADMIN_USER:
-    file: ../../secrets/grafana_username
+    file: ../../SECRETS/grafana_username
   GF_SECURITY_ADMIN_PASSWORD:
-    file: ../../secrets/grafana_password
+    file: ../../SECRETS/grafana_password
   GF_AUTH_GOOGLE_CLIENT_SECRET:
-    file: ../../secrets/grafana_google_client_secret
+    file: ../../SECRETS/grafana_google_client_secret
 #   mariadb_root_password:
-#     file: ../../secrets/mariadb_root_password
+#     file: ../../SECRETS/mariadb_root_password
 #   mariadb_password:
-#     file: ../../secrets/mariadb_password
+#     file: ../../SECRETS/mariadb_password
 #   gaseous-server_mariadb_root_password:
-#     file: ../../secrets/gaseous-server_mariadb_root_password
+#     file: ../../SECRETS/gaseous-server_mariadb_root_password
 #   gaseous-server_mariadb_password:
-#     file: ../../secrets/gaseous-server_mariadb_password
+#     file: ../../SECRETS/gaseous-server_mariadb_password
 #   romm_db_password:
-#     file: ../../secrets/romm_db_password
+#     file: ../../SECRETS/romm_db_password
 #   romm_auth_secret_key:
-#     file: ../../secrets/romm_auth_secret_key
+#     file: ../../SECRETS/romm_auth_secret_key
 #   screenscraper_password:
-#     file: ../../secrets/screenscraper_password
+#     file: ../../SECRETS/screenscraper_password
 #   retroachievements_api_key:
-#     file: ../../secrets/retroachievements_api_key
+#     file: ../../SECRETS/retroachievements_api_key
 #   steamgriddb_api_key:
-#     file: ../../secrets/steamgriddb_api_key
+#     file: ../../SECRETS/steamgriddb_api_key
 #   hardcover_auth:
-#     file: ../../secrets/hardcover_auth
+#     file: ../../SECRETS/hardcover_auth
 #   rreading_glasses_db_password:
-#     file: ../../secrets/rreading_glasses_db_password
+#     file: ../../SECRETS/rreading_glasses_db_password
