@@ -350,7 +350,7 @@ function CLONE_JAISON() {
 		uv venv --clear --seed
 		source .venv/bin/activate
 
-		uv sync --all-extras
+		# uv sync --all-extras
 		uv pip install -e .
 		uv pip install -r requirements.txt
 		uv pip install --no-deps -r requirements.no_deps.txt
