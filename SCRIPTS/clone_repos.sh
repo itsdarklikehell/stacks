@@ -203,7 +203,7 @@ function CLONE_ANYTHINGLLM() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
 		#
@@ -287,9 +287,9 @@ function CLONE_CHROMA() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		# cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		# cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
 		# docker build -t chroma .
 	}
 
@@ -308,6 +308,11 @@ function CLONE_CLICKHOUSE() {
 	function LOCAL_SETUP() {
 		if [[ ! -f .env ]]; then
 			cp .env.sample .env
+			sed -i -e 's/<minio_root_user>/root/g' .env
+			sed -i -e 's/<minio_root_password>/root/g' .env
+			sed -i -e 's/<minio_clickhouse_backup_bucket>/clickhouse_backups/g' .env
+			sed -i -e 's/<clickhouse_admin_user_password>/root/g' .env
+			sed -i -e 's/<clickhouse_business_injection_user_password>/root/g' .env
 		fi
 		chmod +x script.sh
 		./script.sh
@@ -324,9 +329,9 @@ function CLONE_CLICKHOUSE() {
 		fi
 		chmod +x script.sh
 		./script.sh
-		cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		# cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		# cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
 		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
 		# docker build -t chroma .
 	}
@@ -435,12 +440,6 @@ function CLONE_LOCALAI() {
 	git clone --recursive https://github.com/mudler/LocalAI.git localai
 	git clone --recursive https://github.com/mudler/LocalAI-examples.git localai-examples
 	cd localai || exit 1
-	mkdir -p .cache
-	mkdir -p backends
-	mkdir -p configuration
-	mkdir -p content
-	mkdir -p images
-	mkdir -p models
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
@@ -509,12 +508,12 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		./install.sh
+		# ./install.sh
 		uv venv --clear --seed
 		source .venv/bin/activate
 
 		# uv sync --all-extras
-		uv pip install -e .
+		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
@@ -1032,8 +1031,8 @@ function CLONE_SWARMUI() {
 	cd swarmui || exit 1
 	function LOCAL_SETUP() {
 		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
+		uv venv --clear --seed
+		source .venv/bin/activate
 		#
 		# uv sync --all-extras
 		# uv pip install -e .
