@@ -14,6 +14,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/anything-llm/anything-llm_storage
 
+  prompt-optimizer_huggingface_cache:
+    name: prompt-optimizer_huggingface_cache
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/prompt-optimizer/prompt-optimizer_huggingface_cache
+
   basic-memory-config:
     name: basic-memory-config
     driver: local

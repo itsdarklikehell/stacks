@@ -63,7 +63,7 @@ services:
         max-file: 3
 
     depends_on:
-      - browserless
+      - midori-ai-subsystem-manager-browserless
 
   midori-ai-subsystem-manager-browserless:
     image: browserless/chrome:latest
