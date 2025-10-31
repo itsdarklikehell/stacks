@@ -5,7 +5,7 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     ports:
-      - ${PORT:-9090}:9090
+      - ${PORT:-9099}:9099
 
     labels:
       - com.centurylinklabs.watchtower.enable=true

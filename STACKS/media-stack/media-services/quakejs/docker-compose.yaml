@@ -19,14 +19,18 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ../../../DATA/media-stack/quakejs/config:/config
-      # - quakejs_config:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      - quakejs_config:/config
 
     hostname: ${NAME:-quakejs}
 
     networks:
       host:
       media-services:
+
+    expose:
+      - ${PORT:-8086}
 
     ports:
       - ${PORT:-8086}:80

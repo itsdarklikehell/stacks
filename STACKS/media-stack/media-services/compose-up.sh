@@ -18,24 +18,23 @@ COMPOSE_FILES=(
 	jellyfin
 	kali-linux
 	mattermost
-
-	# modmanager
-	# plex
-	# qbittorrent
-	# quakejs
-	# retroarch
-	# retroarchz
+	modmanager
+	plex
+	qbittorrent
+	quakejs
+	retroarch
+	retroarchz
 	# romm
-	# rpcs3
-	# steamos
-	# transmission
-	# tvs99
-	# viewtube
+	rpcs3
+	steamos
+	transmission
+	tvs99
+	viewtube
 	# watchtower
-	# webcord
-	# webrcade
+	webcord
+	webrcade
 	# wireguard
-	# xemu
+	xemu
 )
 
 function CREATE_FOLDERS() {
@@ -50,6 +49,54 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "modmanager" ]]; then
+		FOLDERS=(
+			"cache"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "webcord" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "steamos" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "transmission" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watch"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "qbittorrent" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "quakejs" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "plex" ]]; then
+		FOLDERS=(
+			"config"
+			"transcode"
+			"media"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "beets" ]]; then
 		FOLDERS=(
 			"downloads"
@@ -159,12 +206,6 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "webrcade" ]]; then
 		FOLDERS=(
 			"content"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "quakejs" ]]; then
-		FOLDERS=(
-			"config"
 		)
 	fi
 

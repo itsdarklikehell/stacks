@@ -32,9 +32,9 @@ services:
       - c 13:* rmw
 
     devices:
-      - /dev/dri
-      - /dev/uinput
-      - /dev/uhid
+      - /dev/dri:/dev/dri
+      - /dev/uinput:/dev/uinput
+      - /dev/uhid:/dev/uhid
 
     networks:
       host:

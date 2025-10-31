@@ -13,13 +13,15 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3000}
+      - PORT=${PORT:-3025}
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - xemu_config:/config
       - xemu_downloads:/downloads
 
@@ -30,8 +32,8 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-3000}:3000
-      - 3001:3001
+      - ${PORT:-3025}:3025
+      - 3026:3026
 
     env_file:
       - ./xemu/.env
@@ -59,7 +61,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3000}/api/health,
+    #       http://localhost:${PORT:-3025}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

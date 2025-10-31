@@ -51,6 +51,21 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/deluge/deluge_config
 
+  qbittorrent_downloads:
+    name: qbittorrent_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/qbittorrent/qbittorrent_downloads
+  qbittorrent_config:
+    name: qbittorrent_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/qbittorrent/qbittorrent_config
+
   dolphin_config:
     name: dolphin_config
     driver: local
@@ -180,6 +195,14 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/rpcs3/rpcs3_config
 
+  steamos_config:
+    name: steamos_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/steamos/steamos_config
+
   romm_resources:
     name: romm_resources
     driver: local
@@ -231,6 +254,43 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/webrcade/webrcade_content
 
+  webcord_config:
+    name: webcord_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/webcord/webcord_config
+  webcord_downloads:
+    name: webcord_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/webcord/webcord_downloads
+
+  transmission_config:
+    name: transmission_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/transmission/transmission_config
+  transmission_downloads:
+    name: transmission_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/transmission/transmission_downloads
+  transmission_watch:
+    name: transmission_watch
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/transmission/transmission_watch
+
   tvs99_config:
     # name: tvs99_config
     # driver: local
@@ -239,12 +299,12 @@ volumes:
     #   o: bind
     #   device: ../../../DATA/media-stack/tvs99/tvs99_config/config.tvs.yml
   tvs99_data:
-    # name: tvs99_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: ../../../DATA/media-stack/tvs99/tvs99_data
+    name: tvs99_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/tvs99/tvs99_data
 
   retroarchz_roms:
     name: retroarchz_roms
@@ -299,6 +359,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/plex/plex_media
+
+  modmanager_cache:
+    name: modmanager_cache
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/modmanager/modmanager_cache
 
 secrets:
   rreading_glasses_db_password:

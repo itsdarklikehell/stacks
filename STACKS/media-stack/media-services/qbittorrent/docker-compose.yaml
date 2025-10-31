@@ -13,12 +13,14 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - WEBUI_PORT=${PORT:-8080}
-      - TORRENTING_PORT=6881
+      - WEBUI_PORT=${PORT:-8280}
+      - TORRENTING_PORT=6882
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - qbittorrent_config:/config
       - qbittorrent_downloads:/downloads
 
@@ -29,10 +31,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8080}:8080
-      - 6881:6881
-      - 6881:6881/udp
-      - 58846:58846
+      - ${PORT:-8280}:8280
+      - 6882:6882
+      - 6882:6882/udp
+      - 58847:58847
 
     env_file:
       - ./qbittorrent/.env

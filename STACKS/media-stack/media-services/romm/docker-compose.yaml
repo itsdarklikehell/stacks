@@ -17,11 +17,13 @@ services:
       - DB_NAME=${DB_NAME:-romm}
       - DB_USER=${DB_USER:-romm-user}
       - HASHEOUS_API_ENABLED=${HASHEOUS_API_ENABLED:-true}
-      - PORT=${PORT:-8080}
+      - PORT=${PORT:-8480}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - romm_resources:/romm/resources
       - romm_redis_data:/redis-data
       - romm_library:/romm/library
@@ -42,7 +44,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8080}:8080
+      - ${PORT:-8480}:8480
 
     depends_on:
       romm-mariadb:

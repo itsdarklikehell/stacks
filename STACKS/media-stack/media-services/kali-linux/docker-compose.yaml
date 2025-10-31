@@ -13,7 +13,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - CUSTOM_PORT=${CUSTOM_PORT:-3000}
+      - CUSTOM_PORT=${CUSTOM_PORT:-3012}
       - PORT=${PORT:-3012}
 
     volumes:
@@ -54,7 +54,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3000}/api/health,
+    #       http://localhost:${PORT:-3012}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

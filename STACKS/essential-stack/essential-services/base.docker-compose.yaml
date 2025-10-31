@@ -134,7 +134,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/vscodium/config
+      device: ../../../DATA/essential-stack/vscodium/vscodium_config
 
 secrets:
   INITIAL_ADMIN_EMAIL:

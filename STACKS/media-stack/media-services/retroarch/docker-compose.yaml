@@ -18,6 +18,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
       - retroarch_config:/config
 
     hostname: ${NAME:-retroarch}
@@ -27,8 +29,8 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-3003}:3003
-      - 3004:3004
+      - ${PORT:-3014}:3014
+      - 3015:3015
 
     shm_size: 1gb
 

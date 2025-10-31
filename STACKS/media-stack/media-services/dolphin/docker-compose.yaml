@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
-      - PORT=${PORT:-3002}
+      - PORT=${PORT:-4002}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -31,7 +31,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-3002}:3002
+      - ${PORT:-4002}:4002
 
     env_file:
       - ./dolphin/.env

@@ -96,6 +96,7 @@ services:
     image: browserless/chrome:latest
     container_name: browserless
     ports:
-      - 9222:3400 # Map host's port 9222 to container's port 3000
+      - 9222:3400
+
     environment:
       - MAX_CONCURRENT_SESSIONS=10
