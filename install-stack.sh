@@ -156,17 +156,17 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 SETUP_AI_STACK
 echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
 # echo ""
 # SETUP_ARR_STACK

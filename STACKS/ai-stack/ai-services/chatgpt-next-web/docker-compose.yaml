@@ -1,0 +1,68 @@
+services:
+  chatgpt-next-web:
+    image: ${IMAGE:-yidadaa/chatgpt-next-web}
+    restart: ${RESTART:-always}
+    container_name: ${NAME:-chatgpt-next-web}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    # build:
+    #   context: ../../../DATA/ai-stack/chatgpt-next-web
+    #   dockerfile: Dockerfile
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-3034}
+      - CODE=your-password
+      - OPENAI_API_KEY=sk-xxxx
+      # - PROXY_URL=http://localhost:7890
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    hostname: ${NAME:-chatgpt-next-web}
+
+    networks:
+      host:
+      ai-services:
+
+    ports:
+      - ${PORT:-3034}:3034
+
+    env_file:
+      - ./chatgpt-next-web/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-3034}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

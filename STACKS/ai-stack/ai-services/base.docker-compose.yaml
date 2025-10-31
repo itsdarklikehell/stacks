@@ -502,6 +502,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/swarmui/swarmui_extensions
 
+  vllm-openai_huggingface_cache:
+    name: vllm-openai_huggingface_cache
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/vllm-openai/vllm-openai_huggingface_cache
+
   whishper_data:
     name: whishper_data
     driver: local

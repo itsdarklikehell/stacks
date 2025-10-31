@@ -11,6 +11,10 @@ services:
         GID: ${PGID:-1000}
       dockerfile: ./Dockerfile
 
+    profiles:
+      - download
+      - comfy
+
     labels:
       - com.centurylinklabs.watchtower.enable=true
       # - autoheal-app

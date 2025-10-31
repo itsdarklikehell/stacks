@@ -4,10 +4,14 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
+	# koboldccp
+	# llmstack
 	anything-llm
 	autoheal
 	basic-memory
 	big-agi
+	chatbot-ollama
+	chatgpt-next-web
 	chroma
 	clickhouse
 	coqui-tts-cpu
@@ -15,15 +19,15 @@ COMPOSE_FILES=(
 	grafana
 	hollama
 	homeassistant
-	# koboldccp
+	invokeai
 	kokoro-tts
 	letta-mcp-server
 	letta-server
 	librechat
 	libretranslate-whispher
-	# llmstack
 	lobe-chat
 	localai
+	make-sense
 	midori-ai-subsystem-manager
 	minio
 	mongo-whispher
@@ -32,6 +36,7 @@ COMPOSE_FILES=(
 	open-webui
 	piper
 	private-gpt
+	prompt-optimizer
 	prometheus
 	searxng
 	signoz
@@ -41,6 +46,7 @@ COMPOSE_FILES=(
 	swarmui
 	text-generation-webui-docker
 	voice-chat-ai
+	vllm-openai
 	watchtower
 	whishper
 	whisper-webui
@@ -82,6 +88,11 @@ function SETUP_FOLDERS() {
 			"knowledge"
 			"personal-notes"
 			"work-notes"
+		)
+	fi
+	if [[ ${SERVICE_NAME} == "vllm-openai" ]]; then
+		FOLDERS=(
+			"huggingface_cache"
 		)
 	fi
 	if [[ ${SERVICE_NAME} == "chroma" ]]; then

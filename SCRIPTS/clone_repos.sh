@@ -522,6 +522,12 @@ function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
 		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-conda" CustomDockerfile-stable-diffusion-webui-docker-conda
 		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
 		# docker build -t stable-diffusion-webui-docker .
+
+		# docker compose --profile download up --build
+		# wait until its done, then:
+		# docker compose --profile [ui] up --build
+		# where [ui] is one of: invoke | auto | auto-cpu | comfy | comfy-cpu
+
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -1115,6 +1121,40 @@ function CLONE_WHISPERX() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
+function CLONE_MAKESENSE() {
+	cd "${WD}" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning make-sense"
+	echo ""
+	git clone --recursive https://github.com/SkalskiP/make-sense.git make-sense
+	cd make-sense || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		npx npm-check-updates -u >/dev/null 2>&1 &
+
+		ni >/dev/null 2>&1 &
+		# nr start >/dev/null 2>&1 &
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# Build Docker Image
+		# docker build -t make-sense -f docker/Dockerfile .
+
+		# Run Docker Image as Service
+		# docker run -dit -p 3000:3000 --restart=always --name=make-sense make-sense
+
+		# Get Docker Container Logs
+		# docker logs make-sense
+
+		# Access make-sense: http://localhost:3000/
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+}
+
 function CLONE_VIEWTUBE() {
 	cd "${WD}" || exit 1
 	cd "../DATA/media-stack" || exit 1
@@ -1147,28 +1187,29 @@ function CLONE_VIEWTUBE() {
 
 CLONE_AIRI
 CLONE_AIWAIFU
+CLONE_ANYTHINGLLM
+CLONE_BIGAGI
 CLONE_CHROMA
 CLONE_CLICKHOUSE
 CLONE_JAISON
 CLONE_LETTA
 CLONE_LIBRECHAT
-CLONE_LOCALAI
+CLONE_LLMSTACK
 CLONE_LOCALAGI
-CLONE_BIGAGI
+CLONE_LOCALAI
+CLONE_LOCALRECALL
+CLONE_MAKESENSE
+CLONE_MELOTTS
 CLONE_MIDORIAISUBSYSTEM
 CLONE_NEXTCLOUD
-CLONE_LLMSTACK
-CLONE_ANYTHINGLLM
-CLONE_LOCALRECALL
-CLONE_MELOTTS
 CLONE_OLLMVT
 CLONE_OOGABOOGA
 CLONE_PRIVATEGPT
 CLONE_PROMETHEUS
 CLONE_RIKOPROJECT
 CLONE_SIGNOZ
-CLONE_WHISPER_WEBUI
-CLONE_VIEWTUBE
-CLONE_WHISPERX
 CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
 CLONE_SWARMUI
+CLONE_VIEWTUBE
+CLONE_WHISPER_WEBUI
+CLONE_WHISPERX

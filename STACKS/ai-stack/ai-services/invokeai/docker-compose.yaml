@@ -1,15 +1,8 @@
 services:
-  stable-diffusion-webui:
-    # image: ${IMAGE:-comfy-ui}
-    container_name: ${NAME:-stable-diffusion-webui}
+  invokeai:
+    image: ${IMAGE:-ghcr.io/invoke-ai/invokeai}
+    container_name: ${NAME:-invokeai}
     restart: ${RESTART:-unless-stopped}
-
-    build:
-      context: ../../../DATA/ai-stack/stable-diffusion-webui-docker/services/comfy
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
-      dockerfile: ./Dockerfile
 
     profiles:
       - download
@@ -24,28 +17,23 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - CLI_ARGS=${CLI_ARGS:-}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - stable-diffusion-webui-docker_data:/data
-      - stable-diffusion-webui-docker_output:/output
-      - stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
-
-    hostname: ${NAME:-stable-diffusion-webui}
+    hostname: ${NAME:-invokeai}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-7860}:7860
+      - ${PORT:-9090}:9090
 
     env_file:
-      - ./stable-diffusion-webui/.env
+      - ./invokeai/.env
 
     stop_signal: SIGKILL
 
@@ -71,7 +59,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://localhost:${PORT:-7860}/api/health,
+    #     http://localhost:${PORT:-9090}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s
