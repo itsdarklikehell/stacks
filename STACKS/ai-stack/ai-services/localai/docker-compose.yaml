@@ -131,7 +131,7 @@ services:
   #     - EMBEDDING_MODEL=granite-embedding-107m-multilingual
   #     - FILE_ASSETS=/assets
   #     # - OPENAI_API_KEY=sk-1234567890
-  #     - OPENAI_BASE_URL=http://localai:${PORT:-8083}
+  #     - OPENAI_BASE_URL=http://192.168.1.2:${PORT:-8083}
   #     - LISTENING_ADDRESS=0.0.0.0:8084
   #     - FILE_ASSETS=/assets
 

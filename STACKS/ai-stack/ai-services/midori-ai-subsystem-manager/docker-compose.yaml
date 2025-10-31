@@ -14,6 +14,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3400}
+      - LOCALAI_API_HOST=http://192.168.1.2:8083
+      - OLLAMA_API_HOST=http://192.168.1.2:11434
+      - PUPPETEER_WSS_ENDPOINT=ws://midori-ai-subsystem-manager-browserless:3400
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -62,8 +65,10 @@ services:
     depends_on:
       - browserless
 
-  browserless:
+  midori-ai-subsystem-manager-browserless:
     image: browserless/chrome:latest
+    container_name: midori-ai-subsystem-manager-browserless
+
     ports:
       - 9222:3400
 
