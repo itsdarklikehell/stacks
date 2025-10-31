@@ -1,6 +1,5 @@
 services:
   make-sense:
-    image: ${IMAGE:-make-sense}
     restart: ${RESTART:-always}
     container_name: ${NAME:-make-sense}
 
@@ -9,9 +8,9 @@ services:
       # - autoheal-app
       # - autoheal-app=true
 
-    # build:
-    #   context: ../../../DATA/ai-stack/make-sense
-    #   dockerfile: Dockerfile
+    build:
+      context: ../../../DATA/ai-stack/make-sense
+      dockerfile: Dockerfile
 
     environment:
       - PUID=${PUID:-1000}
