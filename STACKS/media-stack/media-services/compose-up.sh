@@ -18,6 +18,12 @@ COMPOSE_FILES=(
 	jellyfin
 	kali-linux
 	mattermost
+
+	airsonic-advanced
+	ardour
+	gimp
+	lazylibrarian
+
 	modmanager
 	plex
 	qbittorrent
@@ -62,6 +68,20 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "lazylibrarian" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+			"data"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "steamos" ]]; then
 		FOLDERS=(
 			"config"
@@ -80,6 +100,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"music"
+			"playlists"
 			"podcasts"
 			"media"
 		)

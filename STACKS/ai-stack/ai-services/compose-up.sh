@@ -34,10 +34,7 @@ COMPOSE_FILES=(
 	n8n
 	ollama
 	ouroboros
-	airsonic-advanced
-	ardour
-	gimp
-	lazylibrarian
+
 	open-webui
 	piper
 	private-gpt
@@ -104,14 +101,6 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 			"index"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "lazylibrarian" ]]; then
-		FOLDERS=(
-			"config"
-			"downloads"
-			"data"
 		)
 	fi
 
