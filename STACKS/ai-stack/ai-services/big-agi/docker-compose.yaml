@@ -60,7 +60,7 @@ services:
         max-file: 3
 
     depends_on:
-      - browserless
+      - big-agi-browserless
 
   big-agi-browserless:
     image: browserless/chrome:latest
