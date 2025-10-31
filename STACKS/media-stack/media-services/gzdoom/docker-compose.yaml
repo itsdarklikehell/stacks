@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - CUSTOM_PORT=${CUSTOM_PORT:-3007}
       - CUSTOM_HTTPS_PORT=${CUSTOM_HTTPS_PORT:-3007}
-      - CUSTOM_WS_PORT=${CUSTOM_WS_PORT:-8082}
+      - CUSTOM_WS_PORT=${CUSTOM_WS_PORT:-3010}
       - PORT=${PORT:-3010}
       - DRINODE=/dev/dri/renderD128
 
@@ -62,7 +62,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3007}/api/health,
+    #       http://localhost:${PORT:-3010}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

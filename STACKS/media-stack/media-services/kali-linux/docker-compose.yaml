@@ -13,7 +13,6 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - CUSTOM_PORT=${CUSTOM_PORT:-3012}
       - PORT=${PORT:-3012}
 
     volumes:
