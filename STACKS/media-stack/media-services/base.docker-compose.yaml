@@ -28,6 +28,50 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/beets/beets_downloads
 
+  ardour_config:
+    name: ardour_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/ardour/ardour_config
+
+  airsonic-advanced_config:
+    name: airsonic-advanced_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_config
+  airsonic-advanced_music:
+    name: airsonic-advanced_music
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_music
+  airsonic-advanced_playlists:
+    name: airsonic-advanced_playlists
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_playlists
+  airsonic-advanced_podcasts:
+    name: airsonic-advanced_podcasts
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-airsonic-advanced_podcasts
+  airsonic-advanced_media:
+    name: airsonic-advanced_media
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-airsonic-advanced_media
+
   calibre-web_library:
     name: calibre-web_library
     driver: local
@@ -50,6 +94,28 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/deluge/deluge_config
+
+  lazylibrarian_downloads:
+    name: lazylibrarian_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lazylibrarian/lazylibrarian_downloads
+  lazylibrarian_config:
+    name: lazylibrarian_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lazylibrarian/lazylibrarian_config
+  lazylibrarian_data:
+    name: lazylibrarian_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lazylibrarian/lazylibrarian_data
 
   qbittorrent_downloads:
     name: qbittorrent_downloads

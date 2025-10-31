@@ -33,6 +33,11 @@ COMPOSE_FILES=(
 	mongo-whispher
 	n8n
 	ollama
+	ouroboros
+	airsonic-advanced
+	ardour
+	gimp
+	lazylibrarian
 	open-webui
 	piper
 	private-gpt
@@ -101,6 +106,15 @@ function SETUP_FOLDERS() {
 			"index"
 		)
 	fi
+
+	if [[ ${SERVICE_NAME} == "lazylibrarian" ]]; then
+		FOLDERS=(
+			"config"
+			"downloads"
+			"data"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "clickhouse" ]]; then
 		FOLDERS=(
 			"backups"

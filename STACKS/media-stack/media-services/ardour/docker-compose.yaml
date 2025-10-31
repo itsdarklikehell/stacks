@@ -1,0 +1,64 @@
+services:
+  ardour:
+    image: ${IMAGE:-quay.io/linuxserver.io/ardour:latest}
+    container_name: ${NAME:-ardour}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      # - autoheal-app
+      # - autoheal-app=true
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-4041}
+      - SUBFOLDER=/
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+      - ardour_config:/config
+
+    hostname: ${NAME:-ardour}
+
+    networks:
+      host:
+      media-services:
+
+    ports:
+      - ${PORT:-4041}:4041
+      - 4042:4042
+
+    env_file:
+      - ./ardour/.env
+
+    tty: true
+
+    stdin_open: true
+
+    deploy:
+      replicas: 1
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-4041}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

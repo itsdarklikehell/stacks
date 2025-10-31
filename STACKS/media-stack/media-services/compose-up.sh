@@ -76,6 +76,15 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "airsonic-advanced" ]]; then
+		FOLDERS=(
+			"config"
+			"music"
+			"podcasts"
+			"media"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "qbittorrent" ]]; then
 		FOLDERS=(
 			"config"
