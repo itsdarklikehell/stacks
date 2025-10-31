@@ -24,8 +24,6 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - prompt-optimizer_huggingface_cache:/root/.cache/huggingface
-
     hostname: ${NAME:-prompt-optimizer}
 
     networks:

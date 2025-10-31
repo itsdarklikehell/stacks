@@ -1,46 +1,46 @@
 services:
-  make-sense:
-    restart: ${RESTART:-always}
-    container_name: ${NAME:-make-sense}
+  gimp:
+    image: ${IMAGE:-quay.io/linuxserver.io/gimp:latest}
+    container_name: ${NAME:-gimp}
+    restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
-    build:
-      context: ../../../DATA/ai-stack/make-sense
-      dockerfile: ./docker/Dockerfile
-
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3033}
+      - PORT=${PORT:-4042}
+      - SUBFOLDER=/
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-make-sense}
+      - gimp_config:/config
+
+    hostname: ${NAME:-gimp}
 
     networks:
       host:
-      ai-services:
+      media-services:
 
     ports:
-      - ${PORT:-3033}:3033
+      - ${PORT:-4042}:4042
+      - 4042:4042
 
     env_file:
-      - ./make-sense/.env
-
-    deploy:
-      replicas: 1
+      - ./gimp/.env
 
     tty: true
 
     stdin_open: true
+
+    deploy:
+      replicas: 1
 
     # healthcheck:
     #   test:
@@ -50,7 +50,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3033}/api/health,
+    #       http://localhost:${PORT:-4042}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

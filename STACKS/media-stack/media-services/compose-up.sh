@@ -74,6 +74,12 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "gimp" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "lazylibrarian" ]]; then
 		FOLDERS=(
 			"config"

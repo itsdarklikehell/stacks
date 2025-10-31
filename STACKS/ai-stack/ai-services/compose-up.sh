@@ -27,14 +27,13 @@ COMPOSE_FILES=(
 	libretranslate-whispher
 	lobe-chat
 	localai
-	make-sense
+	# make-sense
 	midori-ai-subsystem-manager
 	minio
 	mongo-whispher
 	n8n
 	ollama
 	ouroboros
-
 	open-webui
 	piper
 	private-gpt
@@ -92,6 +91,13 @@ function SETUP_FOLDERS() {
 			"work-notes"
 		)
 	fi
+
+	if [[ ${SERVICE_NAME} == "vllm-openai" ]]; then
+		FOLDERS=(
+			"huggingface_cache"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "vllm-openai" ]]; then
 		FOLDERS=(
 			"huggingface_cache"

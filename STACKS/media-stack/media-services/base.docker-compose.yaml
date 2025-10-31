@@ -36,6 +36,14 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/ardour/ardour_config
 
+  gimp_config:
+    name: gimp_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/gimp/gimp_config
+
   airsonic-advanced_config:
     name: airsonic-advanced_config
     driver: local
