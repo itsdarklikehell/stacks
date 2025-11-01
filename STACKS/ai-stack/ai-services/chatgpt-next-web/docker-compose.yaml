@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -21,6 +22,26 @@ services:
       - CODE=your-password
       - OPENAI_API_KEY=sk-xxxx
       # - PROXY_URL=http://localhost:7890
+      - AI302_API_KEY=
+      - AI302_URL=
+      - ANTHROPIC_API_KEY=
+      - ANTHROPIC_API_VERSION=
+      - ANTHROPIC_URL=
+      - BASE_URL=
+      - CUSTOM_MODELS=
+      - DEEPSEEK_API_KEY=
+      - DEFAULT_MODEL=
+      - DISABLE_FAST_LINK=
+      - DISABLE_GPT4=
+      - ENABLE_BALANCE_QUERY=
+      - ENABLE_MCP=true
+      - GOOGLE_API_KEY=
+      - GOOGLE_URL=
+      - HIDE_USER_API_KEY=
+      - OPENAI_ORG_ID=
+      - SILICONFLOW_API_KEY=
+      - SILICONFLOW_URL=
+      - WHITE_WEBDAV_ENDPOINTS=
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

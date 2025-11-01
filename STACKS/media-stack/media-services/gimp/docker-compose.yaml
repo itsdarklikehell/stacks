@@ -1,11 +1,12 @@
 services:
   gimp:
-    image: ${IMAGE:-quay.io/linuxserver.io/gimp:latest}
+    image: ${IMAGE:-lscr.io/linuxserver/gimp:latest}
     container_name: ${NAME:-gimp}
     restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -13,7 +14,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-4042}
+      - PORT=${PORT:-4043}
       - SUBFOLDER=/
 
     volumes:
@@ -29,8 +30,8 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4042}:4042
-      - 4042:4042
+      - ${PORT:-4043}:4043
+      - 4043:4043
 
     env_file:
       - ./gimp/.env
@@ -50,7 +51,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-4042}/api/health,
+    #       http://localhost:${PORT:-4043}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -13,7 +14,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8081}
+      - PORT=${PORT:-8881}
       - OPENAI_API_KEY=sk-xxxx
       - ACCESS_PASSWORD=password
       - ACCESS_USERNAME=admin
@@ -31,7 +32,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-8081}:8081
+      - ${PORT:-8881}:8881
 
     env_file:
       - ./prompt-optimizer/.env

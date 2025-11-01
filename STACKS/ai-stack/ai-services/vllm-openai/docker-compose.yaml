@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -13,8 +14,10 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3039}
+      - PORT=${PORT:-3339}
       - OPENAI_API_KEY=sk-xxxx
+      - VLLM_PORT=${PORT:-3339}
+      - VLLM_TARGET_DEVICE=cuda
 
     ipc: host
 
@@ -34,7 +37,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-3039}:3039
+      - ${PORT:-3339}:3339
 
     env_file:
       - ./vllm-openai/.env
@@ -54,7 +57,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3039}/api/health,
+    #       http://localhost:${PORT:-3339}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -13,8 +14,8 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - AUTOPULSE_APP_DATABASE_URL=${AUTOPULSE_APP_DATABASE_URL:-postgres://postgres:autopulse@postgresql/autopulse}
-      # - PORT=${PORT:-80}
+      - AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse
+      - PORT=${PORT:-2885}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -27,8 +28,8 @@ services:
       host:
       essential-services:
 
-    # ports:
-    #   - ${PORT:-80}:80
+    ports:
+      - ${PORT:-2885}:2885
 
     env_file:
       - ./autopulse/.env

@@ -6,6 +6,28 @@ networks:
     external: true
 
 volumes:
+  beszel_data:
+    name: beszel_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_data
+  beszel_socket:
+    name: beszel_socket
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_socket
+  beszel_agent_data:
+    name: beszel_agent_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_agent_data
+
   code-server_config:
     name: code-server_config
     driver: local

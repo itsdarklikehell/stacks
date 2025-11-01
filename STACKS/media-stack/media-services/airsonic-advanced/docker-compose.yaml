@@ -1,11 +1,12 @@
 services:
   airsonic-advanced:
-    image: ${IMAGE:-quay.io/linuxserver.io/airsonic-advanced:latest}
+    image: ${IMAGE:-lscr.io/linuxserver/airsonic-advanced:latest}
     container_name: ${NAME:-airsonic-advanced}
     restart: ${RESTART:-unless-stopped}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -40,8 +41,6 @@ services:
     tty: true
 
     stdin_open: true
-
-    device: /dev/snd:/dev/snd
 
     deploy:
       replicas: 1

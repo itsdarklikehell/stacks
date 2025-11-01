@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -14,7 +15,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3039}
-      - OPENAI_API_KEY=sk-xxxx
+      - DEFAULT_MODEL=llama3.2:latest
+      - OLLAMA_HOST=http://192.168.1.2:11434
+      - NEXT_PUBLIC_API_TIMEOUT=600000
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

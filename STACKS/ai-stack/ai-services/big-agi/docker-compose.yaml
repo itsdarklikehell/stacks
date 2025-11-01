@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -15,7 +16,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3400}
 
-    command: next, start, -p, 3400
+    command: next start -p 3400
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -32,7 +33,7 @@ services:
       - ./big-agi/.env
 
     ports:
-      - ${PORT:-3400}:3400
+      - 3400:3400
 
     tty: true
 
@@ -66,7 +67,7 @@ services:
     image: browserless/chrome:latest
     container_name: big-agi-browserless
     ports:
-      - 9222:3400
+      - 3402:3400
 
     environment:
       - MAX_CONCURRENT_SESSIONS=10

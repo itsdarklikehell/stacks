@@ -71,14 +71,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-airsonic-advanced_podcasts
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_podcasts
   airsonic-advanced_media:
     name: airsonic-advanced_media
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-airsonic-advanced_media
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_media
 
   calibre-web_library:
     name: calibre-web_library

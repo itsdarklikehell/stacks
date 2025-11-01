@@ -18,12 +18,10 @@ COMPOSE_FILES=(
 	jellyfin
 	kali-linux
 	mattermost
-
 	airsonic-advanced
 	ardour
 	gimp
 	lazylibrarian
-
 	modmanager
 	plex
 	qbittorrent

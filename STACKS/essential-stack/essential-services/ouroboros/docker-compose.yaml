@@ -13,6 +13,16 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - DOCKER_SOCKETS=unix://var/run/docker.sock
+      - CRON="*/5 * * * *"
+      - SELF_UPDATE=true
+      - CLEANUP=true
+      - LABELS_ONLY=false
+      - LABEL_ENABLE=false
+      - LATEST=true
+      - INTERVAL=60
+      # - MONITOR="nginx telegraf portainer"
+      # - IGNORE="mariadb influxdb mongo postgres"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -23,7 +33,7 @@ services:
 
     networks:
       host:
-      ai-services:
+      essential-services:
 
     # ports:
     #   - ${PORT:-80}:80

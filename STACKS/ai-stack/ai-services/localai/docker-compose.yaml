@@ -4,7 +4,6 @@ services:
     image: ${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-12}
     # image: ${IMAGE:-localai/localai:latest-aio-gpu-nvidia-cuda-11}
     # image: ${IMAGE:-localai/localai:latest}
-    # image: ${IMAGE:-quay.io/go-skynet/local-ai:master}
     container_name: ${NAME:-localai}
     restart: ${RESTART:-unless-stopped}
     hostname: ${NAME:-localai}
@@ -23,6 +22,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -56,21 +56,30 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/ai-stack/localai/.cache:/.cache:cached
-      - ../../../DATA/ai-stack/localai/configuration:/configuration:cached
-      - ../../../DATA/ai-stack/localai/content:/tmp/generated/content:cached
-      - ../../../DATA/ai-stack/localai/images:/tmp/generated/content/images:cached
-      # - ../../../DATA/ai-stack/localai/models:/models:cached
-      - ../../../DATA/ai-stack/localai/models:/usr/share/localai/models:cached
-      # - ../../../DATA/ai-stack/localai/backends:/backends:cached
-      - ../../../DATA/ai-stack/localai/backends:/usr/share/localai/backends:cached
+      # - ../../../DATA/ai-stack/localai/localai_cache:cached
+
+      # - ../../../DATA/ai-stack/localai/localai_configuration:/configuration:cached
+
+      # - ../../../DATA/ai-stack/localai/localai_content:/tmp/generated/content:cached
+
+      # - ../../../DATA/ai-stack/localai/localai_images:/tmp/generated/content/images:cached
+
+      # - ../../../DATA/ai-stack/localai/localai_models:/usr/share/localai/models:cached
+
+      # - ../../../DATA/ai-stack/localai/localai_backends:/usr/share/localai/backends:cached
+
+      - ../../../DATA/ai-stack/localai/localai_cache:/.cache
+      - ../../../DATA/ai-stack/localai/localai_configuration:/configuration
+      - ../../../DATA/ai-stack/localai/localai_content:/tmp/generated/content
+      - ../../../DATA/ai-stack/localai/localai_images:/tmp/generated/content/images
+      - ../../../DATA/ai-stack/localai/localai_models:/usr/share/localai/models
+      - ../../../DATA/ai-stack/localai/localai_backends:/usr/share/localai/backends
 
       # - localai_cache:/.cache:cached
       # - localai_backends:/usr/share/localai/backends:cached
       # - localai_configuration:/configuration:cached
       # - localai_content:cached
       # - localai_images:cached
-      # - localai_models:/models:cached
       # - localai_models:/usr/share/localai/models:cached
 
     user: ${PUID:-1000}:${PGID:-1000}

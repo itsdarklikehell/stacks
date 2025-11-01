@@ -6,6 +6,7 @@ services:
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
       # - autoheal-app
       # - autoheal-app=true
 
@@ -13,6 +14,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8003}
       - BASIC_MEMORY_DEFAULT_PROJECT=main
       - BASIC_MEMORY_SYNC_CHANGES=true
       - BASIC_MEMORY_LOG_LEVEL=INFO
@@ -29,7 +31,7 @@ services:
       - basic-memory-personal-notes:/app/data/personal
       # OPTIONAL: Mount additional knowledge directories for multiple projects
 
-    command: [basic-memory, mcp, --transport sse, --host 0.0.0.0, --port 8003]
+    command: basic-memory mcp --transport sse --host 0.0.0.0 --port 8003
 
     hostname: ${NAME:-basic-memory-server}
 

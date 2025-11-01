@@ -7,13 +7,17 @@ COMPOSE_FILES=(
 	# nextcloud
 	autoheal
 	autopulse
+	beszel
 	code-server
 	dashy
 	docker-proxy
 	dockge
 	homarr
 	it-tools
+	ouroboros
+	kubepi
 	nginx-proxy-manager
+	pairdrop
 	portainer
 	portracker
 	uptime-kuma
@@ -34,6 +38,14 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
+	if [[ ${SERVICE_NAME} == "beszel" ]]; then
+		FOLDERS=(
+			"data"
+			"agent_data"
+			"socket"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "code-server" ]]; then
 		FOLDERS=(
 			"config"

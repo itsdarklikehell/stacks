@@ -33,7 +33,6 @@ COMPOSE_FILES=(
 	mongo-whispher
 	n8n
 	ollama
-	ouroboros
 	open-webui
 	piper
 	private-gpt
