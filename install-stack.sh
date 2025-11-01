@@ -160,9 +160,9 @@ echo ""
 SETUP_ESSENTIALS_STACK
 echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK

@@ -22,7 +22,6 @@ COMPOSE_FILES=(
 	portainer
 	portracker
 	uptime-kuma
-	vscodium
 	watchtower
 	wolf
 )
@@ -114,12 +113,6 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "uptime-kuma" ]]; then
 		FOLDERS=(
 			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "vscodium" ]]; then
-		FOLDERS=(
-			"config"
 		)
 	fi
 

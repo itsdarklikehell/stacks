@@ -1,7 +1,7 @@
 services:
-  watchtower-essential-services:
+  watchtower:
     image: ${IMAGE:-containrrr/watchtower}
-    container_name: ${NAME:-watchtower-essential-services}
+    container_name: ${NAME:-watchtower}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -24,7 +24,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-watchtower-essential-services}
+    hostname: ${NAME:-watchtower}
 
     networks:
       host:
@@ -37,7 +37,7 @@ services:
       replicas: 1
 
     depends_on:
-      - autoheal-essential-services
+      - autoheal
       - portainer
       - nginx-proxy-manager
       # - autopulse

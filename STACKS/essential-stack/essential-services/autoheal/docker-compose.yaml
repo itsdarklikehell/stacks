@@ -1,5 +1,5 @@
 services:
-  autoheal-essential-services:
+  autoheal:
     image: ${IMAGE:-willfarrell/autoheal}
     container_name: ${NAME:-autoheal}
     restart: ${RESTART:-unless-stopped}
