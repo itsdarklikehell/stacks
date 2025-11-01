@@ -1,7 +1,7 @@
 services:
   openllm-vtuber:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    # image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
+    image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
     container_name: ${NAME:-openllm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
@@ -10,8 +10,8 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-        INSTALL_ORIGINAL_WHISPER: false
-        INSTALL_BARK: false
+        INSTALL_ORIGINAL_WHISPER: true
+        INSTALL_BARK: true
       dockerfile: ./CustomDockerfile-openllm-vtuber-uv
       # dockerfile: ./CustomDockerfile-openllm-vtuber-conda
       # dockerfile: ./CustomDockerfile-openllm-vtuber-venv
