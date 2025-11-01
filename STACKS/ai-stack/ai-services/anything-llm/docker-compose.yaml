@@ -20,7 +20,7 @@ services:
       - EMBEDDING_ENGINE=ollama
       - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
       - EMBEDDING_MODEL_PREF=nomic-embed-text:latest
-      - JWT_SECRET="make this a large list of random numbers and letters 20+"
+      - JWT_SECRET=2cc18cd7-66e3-48b0-8975-75d4edda8fe5
       - LLM_PROVIDER=ollama
       - OLLAMA_BASE_PATH=http://192.168.1.2:11434
       - OLLAMA_MODEL_PREF=llama3.2:latest

@@ -35,6 +35,7 @@ services:
       - MEILI_HOST=http://librechat-meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
       - RAG_API_URL=http://librechat-rag-api:${RAG_PORT:-8000}
+      - VLLM_API_BASE=http://vllm:3339
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

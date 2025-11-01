@@ -164,9 +164,9 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
 # echo ""
 # SETUP_ARR_STACK

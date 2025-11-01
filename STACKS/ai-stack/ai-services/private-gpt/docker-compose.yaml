@@ -14,7 +14,11 @@ services:
     #     GID: ${PGID:-1000}
     #   dockerfile: ./Dockerfile
 
-    profiles: [ollama-api]
+    profiles:
+      - ""
+      - ollama-cpu
+      - ollama-cuda
+      - ollama-api
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -29,6 +33,11 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8001}
+      - HF_TOKEN=${HF_TOKEN}
+      - PGPT_EMBED_MODE=ollama
+      - PGPT_MODE=ollama
+      - PGPT_OLLAMA_API_BASE=http://192.168.1.2:11434
+      - PGPT_PROFILES=docker
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -88,6 +97,10 @@ services:
         max-size: 10m
         max-file: 3
 
+    depends_on:
+      ollama:
+        condition: service_healthy
+
   private-gpt-llamacpp-cpu:
     image: ${IMAGE:-zylonai/private-gpt:0.6.2-ollama}
     # pull_policy: always
@@ -103,7 +116,8 @@ services:
     #     GID: ${PGID:-1000}
     #   dockerfile: ./Dockerfile
 
-    profiles: [ollama-api]
+    profiles:
+      - llamacpp-cpu
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
