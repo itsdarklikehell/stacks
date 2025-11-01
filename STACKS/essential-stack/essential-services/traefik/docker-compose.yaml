@@ -1,8 +1,10 @@
 services:
-  big-agi:
-    image: ${IMAGE:-ghcr.io/enricoros/big-agi:latest}
-    container_name: ${NAME:-big-agi}
+  traefik:
+    image: ${IMAGE:-traefik:latest}
+    container_name: ${NAME:-traefik}
     restart: ${RESTART:-unless-stopped}
+    security_opt:
+      - no-new-privileges:true
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -16,41 +18,43 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3400}
-
-    command: next start -p 3400
+      - PORT=${PORT:-89}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-    hostname: ${NAME:-big-agi}
+      - traefik_certs:/certs:ro
+      - traefik_dynamic:/etc/traefik/dynamic:ro
+
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --entrypoints.web.address=:89
+
+    hostname: ${NAME:-traefik}
 
     networks:
       host:
-      ai-services:
-
-    env_file:
-      - ./big-agi/.env
+      essential-services:
 
     ports:
-      - 3400:3400
+      - ${PORT:-89}:89
+      - 8989:8989
+
+    env_file:
+      - ./traefik/.env
+
+    deploy:
+      replicas: 1
 
     tty: true
 
     stdin_open: true
 
     # healthcheck:
-    # test:
-    #   [
-    #     CMD,
-    #     wget,
-    #     --no-verbose,
-    #     --tries=3,
-    #     --spider,
-    #     http://localhost:${PORT:-3400}/api/health,
-    #   ]
+    #   test: CMD curl -f http://localhost:${PORT:-89}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s
@@ -61,15 +65,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-
-    depends_on:
-      - big-agi-browserless
-
-  big-agi-browserless:
-    image: browserless/chrome:latest
-    container_name: big-agi-browserless
-    ports:
-      - 3402:3400
-
-    environment:
-      - MAX_CONCURRENT_SESSIONS=10

@@ -7,8 +7,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
-      # - autoheal-app
-      # - autoheal-app=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     cap_add:
       - IPC_LOCK
@@ -60,7 +62,7 @@ services:
               capabilities: [compute, video, graphics, utility]
 
     # healthcheck:
-    #   test: [CMD, node, /app/services/healthcheck]
+    #   test: CMD curl -f http://localhost:${PORT:-3007}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

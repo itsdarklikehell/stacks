@@ -7,8 +7,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
-      # - autoheal-app
-      # - autoheal-app=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -40,7 +42,7 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: [CMD, node, /app/services/healthcheck]
+    #   test: CMD curl -f http://localhost:${PORT:-8890}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s
@@ -60,14 +62,16 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
-      # - autoheal-app
-      # - autoheal-app=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - HUB_URL=http://beszel:8890
+      - HUB_URL=http://localhost:8890
       - LISTEN=/beszel_socket/beszel.sock
       - KEY=key
       - TOKEN=token
@@ -98,7 +102,7 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: [CMD, node, /app/services/healthcheck]
+    #   test: CMD curl -f http://localhost:${PORT:-7578}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

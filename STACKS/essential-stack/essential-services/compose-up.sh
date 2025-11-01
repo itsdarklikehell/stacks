@@ -14,6 +14,7 @@ COMPOSE_FILES=(
 	dockge
 	homarr
 	it-tools
+	traefik
 	ouroboros
 	kubepi
 	nginx-proxy-manager
@@ -43,6 +44,13 @@ function SETUP_FOLDERS() {
 			"data"
 			"agent_data"
 			"socket"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "traefik" ]]; then
+		FOLDERS=(
+			"certs"
+			"dynamic"
 		)
 	fi
 

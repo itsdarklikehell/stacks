@@ -7,8 +7,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
-      # - autoheal-app
-      # - autoheal-app=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -16,8 +18,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - NODE_ENV=production
       - PORT=${PORT:-8483}
-      - NODE_IP=0.0.0.0
-      - NODE_PORT=8483
+      # - NODE_IP=0.0.0.0
+      # - NODE_PORT=8483
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -31,7 +33,7 @@ services:
       essential-services:
 
     ports:
-      - ${PORT:-8483}:8483
+      - ${PORT:-8483}:80
 
     env_file:
       - ./kubepi/.env
@@ -40,7 +42,7 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: [CMD, node, /app/services/healthcheck]
+    #   test: CMD curl -f http://localhost:${PORT:-8483}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

@@ -49,15 +49,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test:
-    #     [
-    #       CMD,
-    #       wget,
-    #       --no-verbose,
-    #       --tries=3,
-    #       --spider,
-    #       http://localhost:${PORT:-80}/api/health,
-    #     ]
+    #   test: CMD curl -f http://localhost:${PORT:-8483}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

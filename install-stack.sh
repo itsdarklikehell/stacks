@@ -10,7 +10,7 @@ export PERM_DATA="${WD}/DATA"                    # folders that store stack data
 export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
 export CLEANUP="false"                           # false, true
 export PRUNE="normal"                            # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export BUILDING="true"                           # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
 export START_BROWSER="true"                      # false, true
@@ -144,7 +144,7 @@ echo ""
 INSTALL_DOCKER
 
 CLEANUP_DATA
-PRUNING
+# PRUNING
 
 # echo ""
 # echo "Cloning repos"

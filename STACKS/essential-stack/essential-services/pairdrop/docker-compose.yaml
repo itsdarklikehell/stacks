@@ -7,8 +7,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
-      # - autoheal-app
-      # - autoheal-app=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -41,7 +43,7 @@ services:
       replicas: 1
 
     # healthcheck:
-    #   test: [CMD, node, /app/services/healthcheck]
+    #   test: CMD curl -f http://localhost:${PORT:-8583}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

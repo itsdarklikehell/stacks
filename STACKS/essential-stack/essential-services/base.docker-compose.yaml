@@ -36,6 +36,21 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/code-server/code-server_config
 
+  traefik_certs:
+    name: traefik_certs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/traefik/traefik_certs
+  traefik_dynamic:
+    name: traefik_dynamic
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/traefik/traefik_dynamic
+
   dashy_data:
     name: dashy_data
     driver: local
