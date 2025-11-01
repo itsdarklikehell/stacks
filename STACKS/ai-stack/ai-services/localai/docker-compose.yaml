@@ -59,30 +59,25 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       # - ../../../DATA/ai-stack/localai/localai_cache:cached
-
       # - ../../../DATA/ai-stack/localai/localai_configuration:/configuration:cached
-
       # - ../../../DATA/ai-stack/localai/localai_content:/tmp/generated/content:cached
-
       # - ../../../DATA/ai-stack/localai/localai_images:/tmp/generated/content/images:cached
-
       # - ../../../DATA/ai-stack/localai/localai_models:/usr/share/localai/models:cached
-
       # - ../../../DATA/ai-stack/localai/localai_backends:/usr/share/localai/backends:cached
 
-      - ../../../DATA/ai-stack/localai/localai_cache:/.cache
-      - ../../../DATA/ai-stack/localai/localai_configuration:/configuration
-      - ../../../DATA/ai-stack/localai/localai_content:/tmp/generated/content
-      - ../../../DATA/ai-stack/localai/localai_images:/tmp/generated/content/images
-      - ../../../DATA/ai-stack/localai/localai_models:/usr/share/localai/models
-      - ../../../DATA/ai-stack/localai/localai_backends:/usr/share/localai/backends
+      # - ../../../DATA/ai-stack/localai/localai_cache:/.cache
+      # - ../../../DATA/ai-stack/localai/localai_configuration:/configuration
+      # - ../../../DATA/ai-stack/localai/localai_content:/tmp/generated/content
+      # - ../../../DATA/ai-stack/localai/localai_images:/tmp/generated/content/images
+      # - ../../../DATA/ai-stack/localai/localai_models:/usr/share/localai/models
+      # - ../../../DATA/ai-stack/localai/localai_backends:/usr/share/localai/backends
 
-      # - localai_cache:/.cache:cached
-      # - localai_backends:/usr/share/localai/backends:cached
-      # - localai_configuration:/configuration:cached
-      # - localai_content:cached
-      # - localai_images:cached
-      # - localai_models:/usr/share/localai/models:cached
+      - localai_cache:/.cache
+      - localai_configuration:/configuration
+      - localai_content:/tmp/generated/content
+      - localai_images:/tmp/generated/content/images
+      - localai_models:/usr/share/localai/models
+      - localai_backends:/usr/share/localai/backends
 
     user: ${PUID:-1000}:${PGID:-1000}
 

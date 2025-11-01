@@ -144,7 +144,7 @@ echo ""
 INSTALL_DOCKER
 
 CLEANUP_DATA
-# PRUNING
+PRUNING
 
 # echo ""
 # echo "Cloning repos"
