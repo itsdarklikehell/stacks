@@ -4,7 +4,6 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
 	autobrr
 	bazarr
 	buildarr
@@ -27,7 +26,6 @@ COMPOSE_FILES=(
 	rreading-glasses
 	sonarr
 	sickgear
-	watchtower
 	whisparr
 )
 

@@ -4,9 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
 	riko-project
-	watchtower
 )
 
 function CREATE_FOLDERS() {

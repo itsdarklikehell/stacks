@@ -4,9 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
 	jaison-core
-	watchtower
 )
 
 function CREATE_FOLDERS() {

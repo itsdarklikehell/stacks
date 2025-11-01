@@ -28,7 +28,7 @@ services:
       essential-services:
 
     ports:
-      - ${PORT:-8088}:8080
+      - ${PORT:-8088}:8088
 
     env_file:
       - ./it-tools/.env

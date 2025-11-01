@@ -7,7 +7,6 @@ COMPOSE_FILES=(
 	# koboldccp
 	# llmstack
 	anything-llm
-	autoheal
 	basic-memory
 	big-agi
 	chatbot-ollama
@@ -47,7 +46,6 @@ COMPOSE_FILES=(
 	text-generation-webui-docker
 	voice-chat-ai
 	vllm-openai
-	watchtower
 	whishper
 	whisper-webui
 	whisperx

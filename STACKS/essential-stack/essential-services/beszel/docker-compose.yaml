@@ -69,8 +69,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - HUB_URL=http://beszel:8890
       - LISTEN=/beszel_socket/beszel.sock
-      # - KEY=
-      # - TOKEN=
+      - KEY=key
+      - TOKEN=token
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

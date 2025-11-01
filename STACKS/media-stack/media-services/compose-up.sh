@@ -4,7 +4,6 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	autoheal
 	beets
 	calibre-web
 	deluge
@@ -34,7 +33,6 @@ COMPOSE_FILES=(
 	transmission
 	tvs99
 	viewtube
-	# watchtower
 	webcord
 	webrcade
 	# wireguard

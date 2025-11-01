@@ -23,5 +23,7 @@ function CREATE_SECRETS() {
 	touch "${WD}/SECRETS/grafana_password"
 	touch "${WD}/SECRETS/grafana_google_client_secret"
 	touch "${WD}/SECRETS/rreading_glasses_db_password"
+	touch "${WD}/SECRETS/code_server_password"
+	touch "${WD}/SECRETS/code_server_sudo_password"
 }
 CREATE_SECRETS

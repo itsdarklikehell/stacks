@@ -163,3 +163,7 @@ secrets:
     file: ../../../SECRETS/nginx-proxy-manager_username
   INITIAL_ADMIN_PASSWORD:
     file: ../../../SECRETS/nginx-proxy-manager_password
+  CODE_SERVER_PASSWORD:
+    file: ../../../SECRETS/code_server_password
+  CODE_SERVER_SUDO_PASSWORD:
+    file: ../../../SECRETS/code_server_sudo_password

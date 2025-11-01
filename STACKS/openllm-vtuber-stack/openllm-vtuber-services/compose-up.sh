@@ -5,8 +5,6 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
 	openllm-vtuber
-	autoheal
-	watchtower
 )
 
 function CREATE_FOLDERS() {
