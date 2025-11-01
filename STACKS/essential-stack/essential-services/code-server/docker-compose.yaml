@@ -23,7 +23,7 @@ services:
       - PWA_APPNAME=code-server
       # - HASHED_PASSWORD=
       # - SUDO_PASSWORD_HASH=
-      # - PROXY_DOMAIN=code-server.my.domain #optional
+      # - PROXY_DOMAIN=code-server.my.domain
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

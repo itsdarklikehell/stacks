@@ -26,7 +26,7 @@ services:
       - airsonic-advanced_music:/music
       - airsonic-advanced_playlists:/playlists
       - airsonic-advanced_podcasts:/podcasts
-      - airsonic-advanced_media:/media #optional
+      - airsonic-advanced_media:/media
 
     hostname: ${NAME:-airsonic-advanced}
 

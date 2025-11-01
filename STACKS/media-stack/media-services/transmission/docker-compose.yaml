@@ -17,12 +17,12 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-9091}
-      # - TRANSMISSION_WEB_HOME= #optional
-      # - USER= #optional
-      # - PASS= #optional
-      # - WHITELIST= #optional
-      # - PEERPORT= #optional
-      # - HOST_WHITELIST= #optional
+      # - TRANSMISSION_WEB_HOME=
+      # - USER=
+      # - PASS=
+      # - WHITELIST=
+      # - PEERPORT=
+      # - HOST_WHITELIST=
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

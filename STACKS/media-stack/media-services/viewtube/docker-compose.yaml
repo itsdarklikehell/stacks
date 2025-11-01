@@ -22,7 +22,7 @@ services:
       - PORT=${PORT:-8066}
       - VIEWTUBE_DATABASE_HOST=${VIEWTUBE_DATABASE_HOST:-viewtube-mongodb}
       - VIEWTUBE_REDIS_HOST=${VIEWTUBE_REDIS_HOST:-viewtube-redis}
-      - VIEWTUBE_ADMIN_USER=${VIEWTUBE_ADMIN_USER:-admin}
+      # - VIEWTUBE_ADMIN_USER=${VIEWTUBE_ADMIN_USER:-admin}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

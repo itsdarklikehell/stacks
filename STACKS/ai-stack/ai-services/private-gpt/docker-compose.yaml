@@ -44,7 +44,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - private-gpt-ollama_local_data:/home/worker/app/local_data
+      - private-gpt_ollama_local_data:/home/worker/app/local_data
 
     hostname: ${NAME:-private-gpt-ollama}
 
@@ -97,9 +97,9 @@ services:
         max-size: 10m
         max-file: 3
 
-    depends_on:
-      ollama:
-        condition: service_healthy
+    # depends_on:
+    #   ollama:
+    #     condition: service_healthy
 
   private-gpt-llamacpp-cpu:
     image: ${IMAGE:-zylonai/private-gpt:0.6.2-ollama}
@@ -138,8 +138,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - private-gpt-llamacpp-cpu_local_data:/home/worker/app/local_data
-      - private-gpt-llamacpp-cpu_models/:/home/worker/app/models
+      - private-gpt_llamacpp-cpu_local_data:/home/worker/app/local_data
+      - private-gpt_llamacpp-cpu_models/:/home/worker/app/models
 
     hostname: ${NAME:-private-gpt-llamacpp-cpu}
 

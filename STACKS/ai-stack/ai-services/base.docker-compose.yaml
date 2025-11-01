@@ -51,6 +51,28 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/basic-memory/basic-memory_work-notes
 
+  private-gpt_ollama_local_data:
+    name: private-gpt_ollama_local_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/private-gpt/private-gpt_ollama_local_data
+  private-gpt_llamacpp-cpu_local_data:
+    name: private-gpt_llamacpp-cpu_local_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/private-gpt/private-gpt_llamacpp-cpu_local_data
+  private-gpt_llamacpp-cpu_models:
+    name: private-gpt_llamacpp-cpu_models
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/private-gpt/private-gpt_llamacpp-cpu_models
+
   chroma_data:
     name: chroma_data
     driver: local

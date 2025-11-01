@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 COMPOSE_FILES=(
 	# koboldccp
 	# llmstack
+	# make-sense
 	anything-llm
 	basic-memory
 	big-agi
@@ -26,7 +27,6 @@ COMPOSE_FILES=(
 	libretranslate-whispher
 	lobe-chat
 	localai
-	# make-sense
 	midori-ai-subsystem-manager
 	minio
 	mongo-whispher
@@ -35,8 +35,8 @@ COMPOSE_FILES=(
 	open-webui
 	piper
 	private-gpt
-	prompt-optimizer
 	prometheus
+	prompt-optimizer
 	searxng
 	signoz
 	stable-diffusion-models-download
@@ -44,8 +44,8 @@ COMPOSE_FILES=(
 	stable-diffusion-webui-docker
 	swarmui
 	text-generation-webui-docker
-	voice-chat-ai
 	vllm-openai
+	voice-chat-ai
 	whishper
 	whisper-webui
 	whisperx
@@ -80,6 +80,15 @@ function SETUP_FOLDERS() {
 			echo "anything-llm .env file already exists, skipping download"
 		fi
 	fi
+
+	if [[ ${SERVICE_NAME} == "private-gpt" ]]; then
+		FOLDERS=(
+			"ollama_local_data"
+			"llamacpp-cpu_local_data"
+			"llamacpp-cpu_models"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
 		FOLDERS=(
 			"config"
@@ -95,11 +104,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "vllm-openai" ]]; then
-		FOLDERS=(
-			"huggingface_cache"
-		)
-	fi
 	if [[ ${SERVICE_NAME} == "chroma" ]]; then
 		FOLDERS=(
 			"data"

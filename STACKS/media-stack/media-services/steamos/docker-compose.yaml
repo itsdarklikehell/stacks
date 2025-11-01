@@ -23,9 +23,9 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - DRINODE=/dev/dri/renderD128
-      # - HOST_IP=192.168.100.10 #optional
-      # - STARTUP=KDE #optional
-      # - RESOLUTION=1920x1080 #optional
+      # - HOST_IP=192.168.100.10
+      # - STARTUP=KDE
+      # - RESOLUTION=1920x1080
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
 
@@ -35,8 +35,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - steamos_config:/config
-      # - /dev/input:/dev/input #optional
-      # - /run/udev/data:/run/udev/data #optional
+      # - /dev/input:/dev/input
+      # - /run/udev/data:/run/udev/data
 
     hostname: ${NAME:-steamos}
 
@@ -47,11 +47,11 @@ services:
     ports:
       - ${PORT:-3018}:3018
       - 3019:3019
-      # - 27031-27036:27031-27036/udp #optional
-      # - 27031-27036:27031-27036 #optional
-      # - 47984-47990:47984-47990 #optional
-      # - 48010-48010:48010-48010 #optional
-      # - 47998-48000:47998-48000/udp #optional
+      # - 27031-27036:27031-27036/udp
+      # - 27031-27036:27031-27036
+      # - 47984-47990:47984-47990
+      # - 48010-48010:48010-48010
+      # - 47998-48000:47998-48000/udp
 
     shm_size: 1gb
 

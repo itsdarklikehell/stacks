@@ -18,13 +18,13 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-10200}
       - PIPER_VOICE=en_US-lessac-medium
-      - LOCAL_ONLY= #optional
-      - PIPER_LENGTH=1.0 #optional
-      - PIPER_NOISE=0.667 #optional
-      - PIPER_NOISEW=0.333 #optional
-      - PIPER_SPEAKER=0 #optional
-      - PIPER_PROCS=1 #optional
-      - STREAMING= #optional
+      - LOCAL_ONLY=
+      - PIPER_LENGTH=1.0
+      - PIPER_NOISE=0.667
+      - PIPER_NOISEW=0.333
+      - PIPER_SPEAKER=0
+      - PIPER_PROCS=1
+      - STREAMING=
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
