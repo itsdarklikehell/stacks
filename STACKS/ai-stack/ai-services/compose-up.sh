@@ -14,26 +14,26 @@ COMPOSE_FILES=(
 	chatgpt-next-web
 	chroma
 	clickhouse
-	coqui-tts-cpu
-	faster-whisper-gpu
+	# coqui-tts-cpu
+	# faster-whisper-gpu
 	grafana
 	hollama
 	homeassistant
 	invokeai
-	kokoro-tts
+	# kokoro-tts
 	letta-mcp-server
 	letta-server
 	librechat
 	libretranslate-whispher
 	lobe-chat
 	localai
-	midori-ai-subsystem-manager
+	# midori-ai-subsystem-manager
 	minio
 	mongo-whispher
 	n8n
 	ollama
 	open-webui
-	piper
+	# piper
 	private-gpt
 	prometheus
 	prompt-optimizer
@@ -43,13 +43,13 @@ COMPOSE_FILES=(
 	stable-diffusion-webui
 	stable-diffusion-webui-docker
 	swarmui
-	text-generation-webui-docker
-	vllm-openai
+	# text-generation-webui-docker
+	# vllm-openai
 	voice-chat-ai
-	whishper
-	whisper-webui
-	whisperx
-	wyoming-piper
+	# whishper
+	# whisper-webui
+	# whisperx
+	# wyoming-piper
 )
 
 function CREATE_FOLDERS() {
@@ -121,46 +121,54 @@ function SETUP_FOLDERS() {
 			"users"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "grafana" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
 		FOLDERS=(
 			"data"
 			"logs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "koboldccp" ]]; then
 		FOLDERS=(
 			"workspace"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "kokoro-tts" ]]; then
 		FOLDERS=(
 			"data"
 			"index_data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "coqui-tts-cpu" ]]; then
 		FOLDERS=(
 			"data"
 			"index_data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "librechat" ]]; then
 		FOLDERS=(
 			"vectordb_data"
@@ -171,12 +179,14 @@ function SETUP_FOLDERS() {
 			"meili_data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "libretranslate-whispher" ]]; then
 		FOLDERS=(
 			"cache"
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "localai" ]]; then
 		FOLDERS=(
 			"cache"
@@ -187,45 +197,53 @@ function SETUP_FOLDERS() {
 			"models"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "minio" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
 		FOLDERS=(
 			"data"
 			"logs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "n8n" ]]; then
 		FOLDERS=(
 			"data"
 			"local_files"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "ollama" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "piper" ]]; then
 		FOLDERS=(
 			"config"
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "faster-whisper-gpu" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "text-generation-webui-docker" ]]; then
 		FOLDERS=(
 			"cache"
@@ -244,6 +262,7 @@ function SETUP_FOLDERS() {
 			"instruction-templates"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "llmstack" ]]; then
 		FOLDERS=(
 			"code"
@@ -253,22 +272,26 @@ function SETUP_FOLDERS() {
 			"redis_data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "prometheus" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "searxng" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "signoz" ]]; then
 		FOLDERS=(
 			"data"
 			"index"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "stable-diffusion-webui-docker" ]]; then
 		FOLDERS=(
 			"config"
@@ -279,6 +302,7 @@ function SETUP_FOLDERS() {
 			"workflows"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
 		FOLDERS=(
 			"backend"
@@ -287,6 +311,7 @@ function SETUP_FOLDERS() {
 			"extensions"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "whishper" ]]; then
 		FOLDERS=(
 			"data"
@@ -298,6 +323,7 @@ function SETUP_FOLDERS() {
 			"configs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "whisperx" ]]; then
 		FOLDERS=(
 			"data"
@@ -309,6 +335,7 @@ function SETUP_FOLDERS() {
 			"configs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "whisper-webui" ]]; then
 		FOLDERS=(
 			"data"
@@ -320,6 +347,7 @@ function SETUP_FOLDERS() {
 			"configs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "wyoming-piper" ]]; then
 		FOLDERS=(
 			"data"

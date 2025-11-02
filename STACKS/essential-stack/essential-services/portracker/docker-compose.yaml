@@ -21,7 +21,7 @@ services:
       - PORT=${PORT:-4999}
       - POST_PROC=${HOST_PROC:-/host/proc}
       - INCLUDE_UDP=${INCLUDE_UDP:-true}
-      - DEBUG=${DEBUG:-true}
+      - DEBUG=${DEBUG:-false}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

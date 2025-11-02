@@ -46,23 +46,27 @@ function SETUP_FOLDERS() {
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "bazarr" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "buildarr" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "calendarr" ]]; then
 		FOLDERS=(
 			"custom_footers"
 			"logs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "checkrr" ]]; then
 		FOLDERS=(
 			"config"
@@ -70,22 +74,26 @@ function SETUP_FOLDERS() {
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "dasharr" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "flemmarr" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "jellyseerr" ]]; then
 		FOLDERS=(
 			"config"
 			"appdata"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "kapowarr" ]]; then
 		FOLDERS=(
 			"db"
@@ -93,18 +101,21 @@ function SETUP_FOLDERS() {
 			"comics_folder"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "lidarr" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "logarr" ]]; then
 		FOLDERS=(
 			"config"
 			"logs"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "mylar3" ]]; then
 		FOLDERS=(
 			"config"
@@ -112,39 +123,46 @@ function SETUP_FOLDERS() {
 			"downloads"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "overseerr_appdata" ]]; then
 		FOLDERS=(
 			"config"
 			"appdata"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "prowlarr" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "radarr" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "requestrr" ]]; then
 		FOLDERS=(
 			"config"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "sickgear" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "sonarr" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
+
 	if [[ ${SERVICE_NAME} == "whisparr" ]]; then
 		FOLDERS=(
 			"config"
