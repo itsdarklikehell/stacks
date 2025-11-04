@@ -21,8 +21,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS:-whishper}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - mongo-whispher_data:/data/db

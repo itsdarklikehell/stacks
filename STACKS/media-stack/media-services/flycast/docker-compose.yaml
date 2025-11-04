@@ -21,8 +21,8 @@ services:
       - PORT=${PORT:-3008}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - flycast_config:/config
       - flycast_downloads:/downloads

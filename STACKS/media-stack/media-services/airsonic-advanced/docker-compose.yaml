@@ -19,8 +19,8 @@ services:
       - PORT=${PORT:-4040}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - airsonic-advanced_config:/config
       - airsonic-advanced_music:/music

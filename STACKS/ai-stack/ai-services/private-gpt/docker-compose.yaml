@@ -40,8 +40,8 @@ services:
       - PGPT_PROFILES=docker
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - private-gpt_ollama_local_data:/home/worker/app/local_data
@@ -134,8 +134,8 @@ services:
       - PORT=${PORT:-8001}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - private-gpt_llamacpp-cpu_local_data:/home/worker/app/local_data

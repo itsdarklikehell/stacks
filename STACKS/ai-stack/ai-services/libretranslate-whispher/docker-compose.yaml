@@ -22,8 +22,8 @@ services:
       - LT_UPDATE_MODELS=${LT_UPDATE_MODELS:-True}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - libretranslate-whispher_cache:/home/libretranslate/.local/cache

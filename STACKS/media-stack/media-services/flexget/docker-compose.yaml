@@ -19,8 +19,8 @@ services:
       - PORT=${PORT:-5050}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - flexget_config:/config
       - flexget_downloads:/downloads

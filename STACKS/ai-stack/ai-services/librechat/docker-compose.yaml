@@ -38,8 +38,8 @@ services:
       - VLLM_API_BASE=http://vllm:3339
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_images:/app/client/public/images
@@ -113,8 +113,8 @@ services:
       ai-services:
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_mongo_data:/data/db
@@ -151,8 +151,8 @@ services:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-xxxx}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_meili_data:/meili_data
@@ -189,8 +189,8 @@ services:
       - POSTGRES_PASSWORD=mypassword
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_vectordb_data:/var/lib/postgresql/data
@@ -226,8 +226,8 @@ services:
       - RAG_PORT=${RAG_PORT:-8000}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
     depends_on:

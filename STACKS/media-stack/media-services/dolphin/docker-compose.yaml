@@ -21,8 +21,8 @@ services:
       - PORT=${PORT:-4002}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - dolphin_config:/config
       - dolphin_downloads:/downloads

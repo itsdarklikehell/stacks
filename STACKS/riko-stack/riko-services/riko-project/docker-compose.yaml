@@ -29,8 +29,8 @@ services:
       - homarr
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - ../../../DATA/riko-stack/riko-project/character_files:/riko-project/character_files
       - ../../../DATA/riko-stack/riko-project/client:/riko-project/client
       - ../../../DATA/riko-stack/riko-project/server:/riko-project/server

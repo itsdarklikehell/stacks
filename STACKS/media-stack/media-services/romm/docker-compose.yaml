@@ -23,8 +23,8 @@ services:
       - PORT=${PORT:-8480}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - romm_resources:/romm/resources
@@ -107,8 +107,8 @@ services:
       - PORT=${PORT:-3306}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - romm_mariadb:/var/lib/mysql
 
     secrets:

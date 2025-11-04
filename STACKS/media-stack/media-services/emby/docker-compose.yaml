@@ -19,8 +19,8 @@ services:
       - PORT=${PORT:-8097}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - emby_config:/config
       - emby_media:/data

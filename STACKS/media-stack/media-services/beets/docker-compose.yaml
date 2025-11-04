@@ -19,8 +19,8 @@ services:
       - PORT=${PORT:-8337}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
 
       - beets_config:/config
       - beets_media:/data

@@ -17,8 +17,8 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8443}
-      # - PASSWORD=admin
-      # - SUDO_PASSWORD=admin
+      - PASSWORD=admin
+      - SUDO_PASSWORD=admin
       - DEFAULT_WORKSPACE=/config/workspace
       - PWA_APPNAME=code-server
       # - HASHED_PASSWORD=
@@ -26,15 +26,15 @@ services:
       # - PROXY_DOMAIN=code-server.my.domain
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - code-server_config:/config
 
-    secrets:
-      - CODE_SERVER_PASSWORD
-      - CODE_SERVER_SUDO_PASSWORD
+    # secrets:
+    #   - CODE_SERVER_PASSWORD
+    #   - CODE_SERVER_SUDO_PASSWORD
 
     hostname: ${NAME:-code-server}
 

@@ -21,8 +21,8 @@ services:
       - EXTRA_LAUNCH_ARGS="--listen --listen-port 7862"
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - text-generation-webui-docker_cache:/root/.cache

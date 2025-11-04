@@ -23,8 +23,8 @@ services:
       - DRINODE=/dev/dri/renderD128
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - gzdoom_config:/config
 
     hostname: ${NAME:-gzdoom}

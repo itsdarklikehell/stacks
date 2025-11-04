@@ -29,8 +29,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - minio_data:/var/lib/minio/data
@@ -65,8 +65,8 @@ services:
       ai-services:
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
     environment:
@@ -119,8 +119,8 @@ services:
       - ./minio/.env
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/templates/prometheus.yaml:/home/prometheus-template.yaml:ro
@@ -176,8 +176,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml
@@ -227,8 +227,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/prometheus.yaml:/home/prometheus.yaml

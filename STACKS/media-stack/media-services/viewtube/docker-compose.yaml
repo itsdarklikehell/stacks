@@ -25,8 +25,8 @@ services:
       # - VIEWTUBE_ADMIN_USER=${VIEWTUBE_ADMIN_USER:-admin}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - viewtube_data:/data

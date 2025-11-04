@@ -19,8 +19,8 @@ services:
       - PORT=${PORT:-3012}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - kali-linux_config:/config
 
     hostname: ${NAME:-kali-linux}

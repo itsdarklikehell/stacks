@@ -22,8 +22,8 @@ services:
       # - PUPPETEER_WSS_ENDPOINT=ws://midori-ai-subsystem-manager-browserless:3401
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-midori-ai-subsystem-manager}
@@ -89,6 +89,6 @@ services:
       - MAX_CONCURRENT_SESSIONS=10
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock

@@ -31,8 +31,8 @@ services:
       # - PORT=${PORT:-12393}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - ../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/conf.yaml:/app/conf.yaml
       - ../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/avatars
       - ../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/backgrounds

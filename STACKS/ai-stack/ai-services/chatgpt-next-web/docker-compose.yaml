@@ -46,8 +46,8 @@ services:
       - WHITE_WEBDAV_ENDPOINTS=
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-chatgpt-next-web}

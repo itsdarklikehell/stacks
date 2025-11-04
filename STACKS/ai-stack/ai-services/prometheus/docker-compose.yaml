@@ -25,8 +25,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/ai-stack/clickhouse/config_files/prometheus/:/etc/prometheus/
