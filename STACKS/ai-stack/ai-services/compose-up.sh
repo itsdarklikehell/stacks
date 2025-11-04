@@ -4,9 +4,20 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
+	# coqui-tts-cpu
+	# faster-whisper-gpu
 	# koboldccp
+	# kokoro-tts
 	# llmstack
 	# make-sense
+	# midori-ai-subsystem-manager
+	# piper
+	# text-generation-webui-docker
+	# vllm-openai
+	# whishper
+	# whisper-webui
+	# whisperx
+	# wyoming-piper
 	anything-llm
 	basic-memory
 	big-agi
@@ -14,27 +25,22 @@ COMPOSE_FILES=(
 	chatgpt-next-web
 	chroma
 	clickhouse
-	# coqui-tts-cpu
-	# faster-whisper-gpu
-	grafana
 	comfyui
+	grafana
 	hollama
 	homeassistant
 	invokeai
-	# kokoro-tts
 	letta-mcp-server
 	letta-server
 	librechat
 	libretranslate-whispher
 	lobe-chat
 	localai
-	# midori-ai-subsystem-manager
 	minio
 	mongo-whispher
 	n8n
 	ollama
 	open-webui
-	# piper
 	private-gpt
 	prometheus
 	prompt-optimizer
@@ -44,13 +50,7 @@ COMPOSE_FILES=(
 	stable-diffusion-webui
 	stable-diffusion-webui-docker
 	swarmui
-	# text-generation-webui-docker
-	# vllm-openai
 	voice-chat-ai
-	# whishper
-	# whisper-webui
-	# whisperx
-	# wyoming-piper
 )
 
 function CREATE_FOLDERS() {
