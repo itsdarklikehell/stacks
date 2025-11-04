@@ -17,6 +17,7 @@ COMPOSE_FILES=(
 	# coqui-tts-cpu
 	# faster-whisper-gpu
 	grafana
+	comfyui
 	hollama
 	homeassistant
 	invokeai
@@ -86,6 +87,12 @@ function SETUP_FOLDERS() {
 			"ollama_local_data"
 			"llamacpp-cpu_local_data"
 			"llamacpp-cpu_models"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "comfyui" ]]; then
+		FOLDERS=(
+			"common_storage"
 		)
 	fi
 

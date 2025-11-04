@@ -1120,6 +1120,36 @@ function CLONE_WHISPERX() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
+function CLONE_AI-DOCK() {
+	cd "${WD}" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning comfyui"
+	echo ""
+	git clone --recursive https://github.com/ai-dock/comfyui.git comfyui
+	cd comfyui || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		# ./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+}
 
 function CLONE_MAKESENSE() {
 	cd "${WD}" || exit 1
