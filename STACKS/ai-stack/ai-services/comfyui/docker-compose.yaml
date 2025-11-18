@@ -1,5 +1,3 @@
-version: 3.8
-# Compose file build variables set in .env
 services:
   ai-dock:
     platform: linux/amd64
