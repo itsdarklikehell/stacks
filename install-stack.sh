@@ -162,9 +162,9 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
 # echo ""
 # SETUP_ARR_STACK
@@ -190,13 +190,13 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-echo ""
-PULL_MODELS
-echo ""
+# echo ""
+# PULL_MODELS
+# echo ""
 
-echo ""
-START_OLLMVT >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_OLLMVT # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_BROWSER >/dev/null 2>&1 &
