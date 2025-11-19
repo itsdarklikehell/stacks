@@ -10,7 +10,7 @@ export PERM_DATA="${WD}/DATA"                    # folders that store stack data
 export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
 export CLEANUP="false"                           # false, true
 export PRUNE="false"                             # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export BUILDING="true"                           # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
 export START_BROWSER="true"                      # false, true
@@ -195,7 +195,7 @@ echo ""
 # echo ""
 
 # echo ""
-# START_OLLMVT # >/dev/null 2>&1 &
+START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
 # echo ""

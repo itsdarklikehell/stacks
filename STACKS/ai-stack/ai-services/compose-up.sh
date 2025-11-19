@@ -25,7 +25,7 @@ COMPOSE_FILES=(
 	chatgpt-next-web
 	chroma
 	clickhouse
-	comfyui
+	# comfyui
 	grafana
 	hollama
 	homeassistant
