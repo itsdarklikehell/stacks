@@ -13,6 +13,9 @@ services:
       - homarr
 
     environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://192.168.1.2:11434}
@@ -39,7 +42,6 @@ services:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-
       - letta-server_data:/var/lib/postgresql/data
       - letta-server_tool_execution_dir:/root/.letta/tool_execution_dir
 

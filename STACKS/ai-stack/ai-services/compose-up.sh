@@ -19,38 +19,38 @@ COMPOSE_FILES=(
 	# whisperx
 	# wyoming-piper
 	anything-llm
-	basic-memory
+	# basic-memory
 	big-agi
-	chatbot-ollama
-	chatgpt-next-web
-	chroma
-	clickhouse
+	# chatbot-ollama
+	# chatgpt-next-web
+	# chroma
+	# clickhouse
 	# comfyui
-	grafana
-	hollama
+	# grafana
+	# hollama
 	homeassistant
-	invokeai
+	# invokeai
 	letta-mcp-server
 	letta-server
-	librechat
-	libretranslate-whispher
-	lobe-chat
+	# librechat
+	# libretranslate-whispher
+	# lobe-chat
 	localai
-	minio
-	mongo-whispher
+	# minio
+	# mongo-whispher
 	n8n
 	ollama
 	open-webui
-	private-gpt
-	prometheus
-	prompt-optimizer
+	# private-gpt
+	# prometheus
+	# prompt-optimizer
 	searxng
-	signoz
-	stable-diffusion-models-download
-	stable-diffusion-webui
-	stable-diffusion-webui-docker
-	swarmui
-	voice-chat-ai
+	# signoz
+	# stable-diffusion-models-download
+	# stable-diffusion-webui
+	# stable-diffusion-webui-docker
+	# swarmui
+	# voice-chat-ai
 )
 
 function CREATE_FOLDERS() {

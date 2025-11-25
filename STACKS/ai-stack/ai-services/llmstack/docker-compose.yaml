@@ -104,6 +104,9 @@ services:
       - llmstack_postgres_data:/var/lib/postgresql/data
 
     environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_USER=${DATABASE_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-}
@@ -122,6 +125,9 @@ services:
       - llmstack_weaviate_data:/var/lib/weaviate
 
     environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
       - QUERY_DEFAULTS_LIMIT=20
       - AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true
       - PERSISTENCE_DATA_PATH=/var/lib/weaviate
