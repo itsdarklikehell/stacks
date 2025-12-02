@@ -4,7 +4,7 @@ echo "Start ollmvt script started."
 export UV_LINK_MODE=copy
 
 RUN_OLLMVTUBER() {
-	sudo chown -R rizzo:rizzo /media/rizzo/RAIDSTATION/stacks/DATA/openllm-vtuber-stack/openllm-vtuber
+	# sudo chown -R rizzo:rizzo /media/rizzo/RAIDSTATION/stacks/DATA/openllm-vtuber-stack/openllm-vtuber
 
 	cd /media/rizzo/RAIDSTATION/stacks/DATA/openllm-vtuber-stack/openllm-vtuber || exit 1
 

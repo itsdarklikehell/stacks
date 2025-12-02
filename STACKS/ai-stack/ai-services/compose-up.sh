@@ -25,7 +25,7 @@ COMPOSE_FILES=(
 	# chatgpt-next-web
 	# chroma
 	# clickhouse
-	# comfyui
+	comfyui
 	# grafana
 	# hollama
 	homeassistant
@@ -46,10 +46,10 @@ COMPOSE_FILES=(
 	# prompt-optimizer
 	searxng
 	# signoz
-	# stable-diffusion-models-download
-	# stable-diffusion-webui
-	# stable-diffusion-webui-docker
-	# swarmui
+	stable-diffusion-models-download
+	stable-diffusion-webui
+	stable-diffusion-webui-docker
+	swarmui
 	# voice-chat-ai
 )
 
