@@ -98,7 +98,7 @@ function CLONE_AIRI() {
 			INSTALL_AIRI_PLUGINS >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
-			nr build >/dev/null 2>&1 &
+			# nr -F build >/dev/null 2>&1 &
 
 			## export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 			## corepack enable
@@ -106,12 +106,11 @@ function CLONE_AIRI() {
 
 			# Run as desktop pet:
 			# pnpm dev:tamagotchi # >/dev/null 2>&1 &
-			nr dev:tamagotchi >/dev/null 2>&1 &
+			nr -F dev:tamagotchi >/dev/null 2>&1 &
 
 			# Run as web app:
 			# pnpm dev --host # >/dev/null 2>&1 &
-			nr dev --host >/dev/null 2>&1 &
-
+			# nr -F dev --host >/dev/null 2>&1 &
 			# pnpm dev:docs # >/dev/null 2>&1 &
 			nr dev:docs >/dev/null 2>&1 &
 
@@ -134,7 +133,7 @@ function CLONE_AIRI() {
 			npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
-			nr build >/dev/null 2>&1 &
+			# nr -F build >/dev/null 2>&1 &
 		}
 
 		function INSTALL_XSAI_TRANSFORMERS() {
@@ -149,7 +148,7 @@ function CLONE_AIRI() {
 			npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
-			nr build >/dev/null 2>&1 &
+			# nr -F build >/dev/null 2>&1 &
 		}
 
 		function INSTALL_AIRI_CHAT() {
@@ -164,7 +163,7 @@ function CLONE_AIRI() {
 			npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
-			nr build >/dev/null 2>&1 &
+			# nr -F build >/dev/null 2>&1 &
 		}
 
 		# echo "Cloning airi"
@@ -478,7 +477,7 @@ function CLONE_LLMSTACK() {
 		npx npm-check-updates -u >/dev/null 2>&1 &
 
 		ni >/dev/null 2>&1 &
-		nr build >/dev/null 2>&1 &
+		# nr -F build >/dev/null 2>&1 &
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"

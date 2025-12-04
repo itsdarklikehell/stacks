@@ -8,8 +8,8 @@ function INSTALL_DOCKER() {
 		echo "Docker is already installed"
 	else
 		echo "Installing Docker..."
-		sudo apt-get update
-		sudo apt-get install -y \
+		sudo apt update
+		sudo apt install -y \
 			ca-certificates \
 			curl \
 			gnupg \
@@ -26,11 +26,14 @@ function INSTALL_DOCKER() {
 
 		curl -fsSL https://get.docker.com -o get-docker.sh
 		sh get-docker.sh
-		sudo usermod -aG docker "${USER}"
 
 		# Post-installation steps:
 		# sudo groupadd docker
 		# newgrp docker
+
+		sudo usermod -aG docker "${USER}"
+
+		sudo systemctl enable --now docker
 
 		echo "Docker installation completed."
 	fi
