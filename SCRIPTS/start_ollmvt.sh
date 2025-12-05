@@ -12,11 +12,11 @@ RUN_OLLMVTUBER() {
 		source .venv/bin/activate
 	else
 		uv venv
+		uv sync
+		uv pip install -r requirements.txt
 		source .venv/bin/activate
 	fi
 
-	uv sync
-	uv pip install -r requirements.txt
 	uv run run_server.py
 }
 
