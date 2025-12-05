@@ -28,7 +28,7 @@ WORKDIR /app
 # Ensure the installed uv binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
 
-RUN uv sync
+RUN uv sync --all-extras
 RUN uv venv --seed
 # Enable venv
 ENV PATH=".venv/bin:$PATH"
