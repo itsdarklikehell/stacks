@@ -38,6 +38,7 @@ models=(
 	# 'nchapman/mn-12b-mag-mell-r1:latest'
 	# 'nemotron-mini:latest'
 	# 'Plexi09/SentientAI:latest'
+	'qwen2.5:latest'
 	'qwen3:4b'
 	'qwen3:8b'
 	'smollm2:latest'

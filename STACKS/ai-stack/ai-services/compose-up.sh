@@ -34,7 +34,7 @@ COMPOSE_FILES=(
 	letta-server
 	# librechat
 	# libretranslate-whispher
-	# lobe-chat
+	lobe-chat
 	localai
 	# minio
 	# mongo-whispher
