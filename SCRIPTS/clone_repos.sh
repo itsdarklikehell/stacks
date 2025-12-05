@@ -719,20 +719,21 @@ function CLONE_OLLMVT() {
 	cd "${WD}" || exit 1
 	cd "../DATA/openllm-vtuber-stack" || exit 1
 
-	echo "Cloning openllm-vtuber"
+	echo "Cloning Open-LLM-VTuber"
 	echo ""
-	git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git openllm-vtuber
-	cd openllm-vtuber || exit
+	git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
+	cd Open-LLM-VTuber || exit
 	function LOCAL_SETUP() {
 		export INSTALL_WHISPER=true
 		export INSTALL_BARK=true
+		export UV_LINK_MODE=copy
 
 		uv venv --clear --seed
 		source .venv/bin/activate
 
 		uv sync --all-extras
 
-		# uv pip install -e .
+		uv pip install -e .
 		uv pip install -r requirements.txt
 		uv pip install -r requirements-bilibili.txt
 
@@ -747,29 +748,33 @@ function CLONE_OLLMVT() {
 		uv pip install unidic
 		python -m unidic download >/dev/null 2>&1 &
 
-		#     python3 - <<PYCODE
+
+		# python - <<PYCODE
 		# import nltk
 		# nltk.download('averaged_perceptron_tagger_eng')
 		# PYCODE
+
 		if [[ ! -f "conf.yaml" ]]; then
 			cp config_templates/conf.default.yaml conf.yaml
+		else
+			echo "conf.yaml already exists, skipping copy."
 		fi
 
 		function CLONE_L2D_MODELS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
+			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
-			# git clone --recursive https://github.com/Eikanya/Live2d-model
-			# git clone --recursive https://github.com/Mnaisuka/Live2d-model Live2d-models
-			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d
-			# git clone --recursive https://github.com/xiaoski/live2d_models_collection
-			# git clone --recursive https://github.com/ezshine/AwesomeLive2D
-			# git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models
+			git clone --recursive https://github.com/ezshine/AwesomeLive2D ezshine-AwesomeLive2D
+			git clone --recursive https://github.com/Mnaisuka/Live2d-model Mnaisuka-Live2d-model
+			git clone --recursive https://github.com/xiaoski/live2d_models_collection xiaoski-live2d_models_collection
+			git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models n0099-TouhouCannonBall-Live2d-Models
+			# git clone --recursive https://github.com/Eikanya/Live2d-model Eikanya-Live2d-model
+			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d andatoshiki-toshiki-live2d
 		}
 		function CLONE_VOICE_MODELS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
+			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
 			# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
@@ -815,7 +820,7 @@ function CLONE_OLLMVT() {
 		}
 		function CLONE_TTS_BACKENDS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
+			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
 			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 			# # If you failed to clone the submodule due to network failures, please run the following command until success
 			cd CosyVoice || exit 1
