@@ -32,7 +32,7 @@ COMPOSE_FILES=(
 	# invokeai
 	letta-mcp-server
 	letta-server
-	# librechat
+	librechat
 	# libretranslate-whispher
 	lobe-chat
 	localai
