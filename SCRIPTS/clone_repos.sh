@@ -363,8 +363,15 @@ function CLONE_JAISON() {
 		uv pip install nltk
 		uv pip install spacy
 		python -m spacy download en_core_web_sm
+
 		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		python -m unidic download
+
+		# python - <<PYCODE
+		# import nltk
+		# nltk.download('averaged_perceptron_tagger_eng')
+		# PYCODE
+
 		python install.py
 		# python ./src/main.py --help
 		# python ./src/main.py --config=example
@@ -698,8 +705,15 @@ function CLONE_MELOTTS() {
 		# uv sync --all-extras
 		uv pip install -e .
 		# uv pip install -r requirements.txt
+
 		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		python -m unidic download
+
+		# python - <<PYCODE
+		# import nltk
+		# nltk.download('averaged_perceptron_tagger_eng')
+		# PYCODE
+
 		# docker build -t melotts .
 		# docker run --gpus all -itd -p 8888:8888 melotts
 		# melo-webui
@@ -747,7 +761,7 @@ function CLONE_OLLMVT() {
 		uv pip install unidic
 		python -m unidic download
 
-		# 		python - <<PYCODE
+		# python - <<PYCODE
 		# import nltk
 		# nltk.download('averaged_perceptron_tagger_eng')
 		# PYCODE
@@ -1122,23 +1136,29 @@ function CLONE_WHISPERX() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_AI-DOCK() {
+
+function CLONE_COMFYUI() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
 	echo "Cloning comfyui"
 	echo ""
-	git clone --recursive https://github.com/ai-dock/comfyui.git comfyui
+	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git comfyui
 	cd comfyui || exit 1
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
 		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
+		export UV_LINK_MODE=copy
+
+		uv venv --clear --seed
+		source .venv/bin/activate
+
+		uv pip install --upgrade pip
+		uv sync --all-extras
+
+		uv pip install comfy-cli
+		uv run comfy-cli install --nvidia --restore
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
@@ -1151,6 +1171,73 @@ function CLONE_AI-DOCK() {
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
+
+	cd custom_nodes || exit 1
+	git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	cd ComfyUI-Manager || exit 1
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+}
+function CLONE_FORGE() {
+	cd "${WD}" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning forge"
+	echo ""
+	git clone --recursive https://github.com/lllyasviel/stable-diffusion-webui-forge.git forge
+	cd forge || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		# ./install.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+
+		uv sync --all-extras
+		uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+function CLONE_INVOKEAI() {
+	cd "${WD}" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning invoke-ai"
+	echo ""
+	git clone --recursive https://github.com/invoke-ai/InvokeAI.git invoke-ai
+	cd invoke-ai || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		# ./install.sh
+		uv venv --clear --seed
+		source .venv/bin/activate
+
+		uv sync --all-extras
+		uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
 }
 
 function CLONE_MAKESENSE() {
@@ -1223,6 +1310,9 @@ CLONE_ANYTHINGLLM
 CLONE_BIGAGI
 CLONE_CHROMA
 CLONE_CLICKHOUSE
+CLONE_COMFYUI
+CLONE_FORGE
+CLONE_INVOKEAI
 CLONE_JAISON
 CLONE_LETTA
 CLONE_LIBRECHAT

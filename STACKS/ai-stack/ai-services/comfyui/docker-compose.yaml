@@ -1,8 +1,12 @@
 services:
-  comfyui-boot:
+  comfyui:
     image: ${IMAGE:-yanwk/comfyui-boot:cu124-slim}
-    container_name: ${NAME:-comfyui-cu124}
+    container_name: ${NAME:-comfyui}
     restart: ${RESTART:-unless-stopped}
+
+    # build:
+    #   context: ../../../DATA/ai-stack/comfyui
+    #   dockerfile: Dockerfile
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -18,12 +22,13 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - COMFYUI_PORT=${PORT:-8288}
 
     stdin_open: true
     tty: true
 
     ports:
-      - ${PORT:-8288}:8188
+      - ${PORT:-8288}:8288
 
     volumes:
       - comfyui_common_storage:/root

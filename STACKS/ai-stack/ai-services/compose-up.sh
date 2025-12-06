@@ -29,7 +29,8 @@ COMPOSE_FILES=(
 	# grafana
 	# hollama
 	homeassistant
-	# invokeai
+	invokeai
+	forge
 	letta-mcp-server
 	letta-server
 	librechat
@@ -46,10 +47,10 @@ COMPOSE_FILES=(
 	# prompt-optimizer
 	searxng
 	# signoz
-	stable-diffusion-models-download
-	stable-diffusion-webui
-	stable-diffusion-webui-docker
-	swarmui
+	# stable-diffusion-models-download
+	# stable-diffusion-webui
+	# stable-diffusion-webui-docker
+	# swarmui
 	# voice-chat-ai
 )
 
@@ -90,9 +91,21 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "comfyui" ]]; then
+	# if [[ ${SERVICE_NAME} == "comfyui" ]]; then
+	# 	FOLDERS=(
+	# 		"common_storage"
+	# 	)
+	# fi
+
+	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
-			"common_storage"
+			"forge_data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "invokeai" ]]; then
+		FOLDERS=(
+			"invokeai_data"
 		)
 	fi
 

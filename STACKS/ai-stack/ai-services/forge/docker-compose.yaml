@@ -1,7 +1,7 @@
 services:
-  invokeai:
-    image: ${IMAGE:-ghcr.io/invoke-ai/invokeai}
-    container_name: ${NAME:-invokeai}
+  forge:
+    image: ${IMAGE:-aidockorg/stable-diffusion-webui-forge-cuda}
+    container_name: ${NAME:-forge}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,26 +16,27 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - NVIDIA_VISIBLE_DEVICES=all
+      - WEB_ENABLE_AUTH=false
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - invokeai_data:/invokeai
+      - forge_data:/opt/stable-diffusion-webui-forge
 
-    hostname: ${NAME:-invokeai}
+    hostname: ${NAME:-forge}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - ${PORT:-9090}:9090
+      - ${PORT:-7861}:7861
+      - 1111:1111
 
     env_file:
-      - ./invokeai/.env
+      - ./forge/.env
 
     stop_signal: SIGKILL
 

@@ -9,8 +9,8 @@ export SECRETS_DIR="${WD}/SECRETS"               # folder that store secrets
 export PERM_DATA="${WD}/DATA"                    # folders that store stack data
 export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
 export CLEANUP="false"                           # false, true
-export PRUNE="all"                               # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
+export PRUNE="true"                              # false, true/normal, all
+export BUILDING="true"                           # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
 export START_BROWSER="true"                      # false, true
@@ -147,7 +147,7 @@ PRUNING
 echo ""
 echo "Cloning repos"
 echo ""
-# CLONE_REPOS # >/dev/null 2>&1
+CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ## STACKS:
@@ -190,9 +190,9 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-# echo ""
-# PULL_MODELS
-# echo ""
+echo ""
+PULL_MODELS >/dev/null 2>&1 &
+echo ""
 
 echo ""
 START_OLLMVT >/dev/null 2>&1 &
