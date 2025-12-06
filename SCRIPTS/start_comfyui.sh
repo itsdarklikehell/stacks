@@ -22,6 +22,7 @@ RUN_COMFYUI() {
 		uv run comfy-cli install --nvidia --restore
 
 	fi
+
 	if [[ ${BACKGROUND} == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --listen 0.0.0.0 --port "${COMFYUI_PORT}"
