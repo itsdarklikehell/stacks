@@ -25,6 +25,19 @@ mkdir -p "../DATA/airi-stack"
 ./install_uv.sh
 ./install_toolhive.sh
 
+function IMPORT_NLTK() {
+	echo "Importing NLTK averaged_perceptron_tagger_eng"
+	temp_file=$(mktemp /tmp/import_nltk.py)
+
+	cat > "${temp_file}" <<'EOF'
+import nltk
+nltk.download('averaged_perceptron_tagger_eng')
+EOF
+
+	python "${temp_file}"
+	rm "${temp_file}"
+}
+
 function CLONE_AIRI() {
 	cd "${WD}" || exit 1
 	cd "../DATA/airi-stack" || exit 1
@@ -365,12 +378,9 @@ function CLONE_JAISON() {
 		python -m spacy download en_core_web_sm
 
 		uv pip install unidic
-		python -m unidic download
+		python -m unidic download >/dev/null 2>&1 &
 
-		# python - <<PYCODE
-		# import nltk
-		# nltk.download('averaged_perceptron_tagger_eng')
-		# PYCODE
+		IMPORT_NLTK >/dev/null 2>&1 &
 
 		python install.py
 		# python ./src/main.py --help
@@ -670,12 +680,9 @@ function CLONE_MELOTTS() {
 		# uv pip install -r requirements.txt
 
 		uv pip install unidic
-		python -m unidic download
+		python -m unidic download >/dev/null 2>&1 &
 
-		# python - <<PYCODE
-		# import nltk
-		# nltk.download('averaged_perceptron_tagger_eng')
-		# PYCODE
+		IMPORT_NLTK >/dev/null 2>&1 &
 
 		# docker build -t melotts .
 		# docker run --gpus all -itd -p 8888:8888 melotts
@@ -722,12 +729,9 @@ function CLONE_OLLMVT() {
 		uv pip install git+https://github.com/suno-ai/bark.git
 
 		uv pip install unidic
-		python -m unidic download
+		python -m unidic download >/dev/null 2>&1 &
 
-		# python - <<PYCODE
-		# import nltk
-		# nltk.download('averaged_perceptron_tagger_eng')
-		# PYCODE
+		IMPORT_NLTK >/dev/null 2>&1 &
 
 		if [[ ! -f "conf.yaml" ]]; then
 			cp config_templates/conf.default.yaml conf.yaml
