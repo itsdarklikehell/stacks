@@ -1116,8 +1116,8 @@ function CLONE_COMFYUI() {
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
 		# ./install.sh
-		export UV_LINK_MODE=copy
 		if [[ ! -f .venv/bin/activate ]]; then
+			export UV_LINK_MODE=copy
 			uv venv --clear --seed
 			source .venv/bin/activate
 
@@ -1126,7 +1126,6 @@ function CLONE_COMFYUI() {
 
 			uv pip install comfy-cli
 			uv run comfy-cli install --nvidia --restore
-		# uv pip install -r requirements.txt
 		fi
 	}
 	function DOCKER_SETUP() {

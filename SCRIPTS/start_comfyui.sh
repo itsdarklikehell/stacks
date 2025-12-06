@@ -12,6 +12,7 @@ RUN_COMFYUI() {
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
 	else
+		export UV_LINK_MODE=copy
 		uv venv --clear --seed
 		source .venv/bin/activate
 
@@ -20,7 +21,6 @@ RUN_COMFYUI() {
 
 		uv pip install comfy-cli
 		uv run comfy-cli install --nvidia --restore
-
 	fi
 
 	if [[ ${BACKGROUND} == "true" ]]; then
