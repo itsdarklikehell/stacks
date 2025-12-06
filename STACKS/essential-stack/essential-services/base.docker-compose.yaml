@@ -36,6 +36,42 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/code-server/code-server_config
 
+  pterodactyl_database:
+    name: pterodactyl_database
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_database
+  pterodactyl_var:
+    name: pterodactyl_var
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_var
+  pterodactyl_nginx:
+    name: pterodactyl_nginx
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_nginx
+  pterodactyl_certs:
+    name: pterodactyl_certs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_certs
+  pterodactyl_logs:
+    name: pterodactyl_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_logs
+
   traefik_certs:
     name: traefik_certs
     driver: local
