@@ -29,7 +29,7 @@ function IMPORT_NLTK() {
 	echo "Importing NLTK averaged_perceptron_tagger_eng"
 	temp_file=$(mktemp /tmp/import_nltk.py)
 
-	cat > "${temp_file}" <<'EOF'
+	cat >"${temp_file}" <<'EOF'
 import nltk
 nltk.download('averaged_perceptron_tagger_eng')
 EOF
@@ -1117,16 +1117,17 @@ function CLONE_COMFYUI() {
 		echo "Using Local setup"
 		# ./install.sh
 		export UV_LINK_MODE=copy
+		if [[ ! -f .venv/bin/activate ]]; then
+			uv venv --clear --seed
+			source .venv/bin/activate
 
-		uv venv --clear --seed
-		source .venv/bin/activate
+			uv pip install --upgrade pip
+			uv sync --all-extras
 
-		uv pip install --upgrade pip
-		uv sync --all-extras
-
-		uv pip install comfy-cli
-		uv run comfy-cli install --nvidia --restore
+			uv pip install comfy-cli
+			uv run comfy-cli install --nvidia --restore
 		# uv pip install -r requirements.txt
+		fi
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
