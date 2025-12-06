@@ -1,0 +1,53 @@
+services:
+  automatic1111-sd-webui:
+    image: ${IMAGE:-goolashe/automatic1111-sd-webui}
+    container_name: ${NAME:-automatic1111-sd-webui}
+    restart: ${RESTART:-unless-stopped}
+
+    # build:
+    #   context: ../../../DATA/ai-stack/automatic1111
+    #   dockerfile: Dockerfile
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - CLI_ARGS=--no-half --precision full --allow-code --enable-insecure-extension-access --api
+
+    stdin_open: true
+    tty: true
+
+    ports:
+      - ${PORT:-7860}:7860
+
+    volumes:
+      - automatic1111_data:/data
+      - automatic1111_output:/output
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./automatic1111/.env
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]

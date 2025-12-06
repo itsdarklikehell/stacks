@@ -43,6 +43,13 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_database
+  pterodactyl_cache:
+    name: pterodactyl_cache
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pterodactyl/pterodactyl_cache
   pterodactyl_var:
     name: pterodactyl_var
     driver: local

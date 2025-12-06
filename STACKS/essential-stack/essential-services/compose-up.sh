@@ -62,11 +62,12 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
 		FOLDERS=(
-			"pterodactyl_database"
-			"pterodactyl_var"
-			"pterodactyl_nginx"
-			"pterodactyl_certs"
-			"pterodactyl_logs"
+			"database"
+			"var"
+			"cache"
+			"nginx"
+			"certs"
+			"logs"
 		)
 	fi
 

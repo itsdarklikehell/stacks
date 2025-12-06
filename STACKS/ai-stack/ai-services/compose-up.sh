@@ -99,13 +99,13 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
-			"forge_data"
+			"data"
 		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "invokeai" ]]; then
 		FOLDERS=(
-			"invokeai_data"
+			"data"
 		)
 	fi
 

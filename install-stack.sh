@@ -9,7 +9,7 @@ export SECRETS_DIR="${WD}/SECRETS"               # folder that store secrets
 export PERM_DATA="${WD}/DATA"                    # folders that store stack data
 export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
 export CLEANUP="false"                           # false, true
-export PRUNE="true"                              # false, true/normal, all
+export PRUNE="false"                             # false, true/normal, all
 export BUILDING="true"                           # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
@@ -209,9 +209,9 @@ echo ""
 START_OLLMVT >/dev/null 2>&1 &
 echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
 # echo "Installation complete.."
 
