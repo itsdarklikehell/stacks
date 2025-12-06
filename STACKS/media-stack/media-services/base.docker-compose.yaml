@@ -9,6 +9,7 @@ volumes:
   beets_config:
     name: beets_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -16,6 +17,7 @@ volumes:
   beets_media:
     name: beets_media
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -23,6 +25,7 @@ volumes:
   beets_downloads:
     name: beets_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -31,6 +34,7 @@ volumes:
   ardour_config:
     name: ardour_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -39,6 +43,7 @@ volumes:
   gimp_config:
     name: gimp_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -47,6 +52,7 @@ volumes:
   airsonic-advanced_config:
     name: airsonic-advanced_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -54,6 +60,7 @@ volumes:
   airsonic-advanced_music:
     name: airsonic-advanced_music
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -61,6 +68,7 @@ volumes:
   airsonic-advanced_playlists:
     name: airsonic-advanced_playlists
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -68,6 +76,7 @@ volumes:
   airsonic-advanced_podcasts:
     name: airsonic-advanced_podcasts
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -75,6 +84,7 @@ volumes:
   airsonic-advanced_media:
     name: airsonic-advanced_media
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -83,6 +93,7 @@ volumes:
   calibre-web_library:
     name: calibre-web_library
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -91,6 +102,7 @@ volumes:
   deluge_downloads:
     name: deluge_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -98,6 +110,7 @@ volumes:
   deluge_config:
     name: deluge_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -106,6 +119,7 @@ volumes:
   lazylibrarian_downloads:
     name: lazylibrarian_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -113,6 +127,7 @@ volumes:
   lazylibrarian_config:
     name: lazylibrarian_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -120,6 +135,7 @@ volumes:
   lazylibrarian_data:
     name: lazylibrarian_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -128,6 +144,7 @@ volumes:
   qbittorrent_downloads:
     name: qbittorrent_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -135,6 +152,7 @@ volumes:
   qbittorrent_config:
     name: qbittorrent_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -143,6 +161,7 @@ volumes:
   dolphin_config:
     name: dolphin_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -150,6 +169,7 @@ volumes:
   dolphin_downloads:
     name: dolphin_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -158,6 +178,7 @@ volumes:
   duckstation_config:
     name: duckstation_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -165,6 +186,7 @@ volumes:
   duckstation_downloads:
     name: duckstation_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -173,6 +195,7 @@ volumes:
   emby_config:
     name: emby_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -180,6 +203,7 @@ volumes:
   emby_media:
     name: emby_media
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -188,6 +212,7 @@ volumes:
   flexget_config:
     name: flexget_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -195,6 +220,7 @@ volumes:
   flexget_downloads:
     name: flexget_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -203,6 +229,7 @@ volumes:
   flycast_downloads:
     name: flycast_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -210,6 +237,7 @@ volumes:
   flycast_config:
     name: flycast_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -218,6 +246,7 @@ volumes:
   gaseous-server_data:
     name: gaseous-server_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -225,6 +254,7 @@ volumes:
   gaseous-server_mariadb:
     name: gaseous-server_mariadb
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -233,6 +263,7 @@ volumes:
   gzdoom_config:
     name: gzdoom_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -241,6 +272,7 @@ volumes:
   kali-linux_config:
     name: kali-linux_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -249,6 +281,7 @@ volumes:
   xemu_config:
     name: xemu_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -256,6 +289,7 @@ volumes:
   xemu_downloads:
     name: xemu_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -264,6 +298,7 @@ volumes:
   rpcs3_config:
     name: rpcs3_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -272,6 +307,7 @@ volumes:
   steamos_config:
     name: steamos_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -280,6 +316,7 @@ volumes:
   romm_resources:
     name: romm_resources
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -287,6 +324,7 @@ volumes:
   romm_redis_data:
     name: romm_redis_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -294,6 +332,7 @@ volumes:
   romm_library:
     name: romm_library
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -301,6 +340,7 @@ volumes:
   romm_assets:
     name: romm_assets
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -308,6 +348,7 @@ volumes:
   romm_config:
     name: romm_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -315,6 +356,7 @@ volumes:
   romm_mariadb:
     name: romm_mariadb
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -323,6 +365,7 @@ volumes:
   webrcade_content:
     name: webrcade_content
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -331,6 +374,7 @@ volumes:
   webcord_config:
     name: webcord_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -338,6 +382,7 @@ volumes:
   webcord_downloads:
     name: webcord_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -346,6 +391,7 @@ volumes:
   transmission_config:
     name: transmission_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -353,6 +399,7 @@ volumes:
   transmission_downloads:
     name: transmission_downloads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -360,6 +407,7 @@ volumes:
   transmission_watch:
     name: transmission_watch
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -375,6 +423,7 @@ volumes:
   tvs99_data:
     name: tvs99_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -383,6 +432,7 @@ volumes:
   retroarchz_roms:
     name: retroarchz_roms
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -391,6 +441,7 @@ volumes:
   retroarch_config:
     name: retroarch_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -399,6 +450,7 @@ volumes:
   quakejs_config:
     name: quakejs_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -407,6 +459,7 @@ volumes:
   viewtube_data:
     name: viewtube_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -415,6 +468,7 @@ volumes:
   plex_config:
     name: plex_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -422,6 +476,7 @@ volumes:
   plex_transcode:
     name: plex_transcode
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -429,6 +484,7 @@ volumes:
   plex_media:
     name: plex_media
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -437,6 +493,7 @@ volumes:
   modmanager_cache:
     name: modmanager_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind

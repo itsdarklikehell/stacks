@@ -32,8 +32,10 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-7861}:7861
       - 1111:1111
+      - ${PORT:-7860}:7860
+      - 8384:8384
+      - 8888:8888
 
     env_file:
       - ./forge/.env
@@ -65,7 +67,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://localhost:${PORT:-9090}/api/health,
+    #     http://localhost:${PORT:-7861}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

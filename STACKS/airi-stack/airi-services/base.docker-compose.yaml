@@ -9,6 +9,7 @@ volumes:
   airi_data:
     name: airi_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind

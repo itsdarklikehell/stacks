@@ -54,7 +54,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-8028}/api/health,
+    #       http://localhost:${PORT:-8881}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

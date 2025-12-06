@@ -502,43 +502,6 @@ function CLONE_LLMSTACK() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_STABLE-DIFFUSION-WEBUI-DOCKER() {
-	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
-
-	echo "Cloning stable-diffusion-webui-docker"
-	echo ""
-	git clone --recursive https://github.com/AbdBarho/stable-diffusion-webui-docker.git stable-diffusion-webui-docker
-	cd stable-diffusion-webui-docker || exit 1
-	mkdir -p data/Models/CLIPEncoder
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-uv" CustomDockerfile-stable-diffusion-webui-docker-uv
-		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-conda" CustomDockerfile-stable-diffusion-webui-docker-conda
-		# cp -f "${WD}/CustomDockerfile-stable-diffusion-webui-docker-venv" CustomDockerfile-text-stable-diffusion-webui-docker-venv
-		# docker build -t stable-diffusion-webui-docker .
-
-		# docker compose --profile download up --build
-		# wait until its done, then:
-		# docker compose --profile [ui] up --build
-		# where [ui] is one of: invoke | auto | auto-cpu | comfy | comfy-cpu
-
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_LOCALAGI() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
@@ -1172,12 +1135,12 @@ function CLONE_COMFYUI() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	cd custom_nodes || exit 1
-	git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
-	cd ComfyUI-Manager || exit 1
+	# cd custom_nodes || exit 1
+	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	# cd ComfyUI-Manager || exit 1
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_FORGE() {
 	cd "${WD}" || exit 1
@@ -1330,7 +1293,6 @@ CLONE_PRIVATEGPT
 CLONE_PROMETHEUS
 CLONE_RIKOPROJECT
 CLONE_SIGNOZ
-CLONE_STABLE-DIFFUSION-WEBUI-DOCKER
 CLONE_SWARMUI
 CLONE_VIEWTUBE
 CLONE_WHISPER_WEBUI

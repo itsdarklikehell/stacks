@@ -30,14 +30,33 @@ volumes:
   comfyui_common_storage:
     name: comfyui_common_storage
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/comfyui/comfyui_common_storage
 
+  automatic1111_data:
+    name: automatic1111_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/automatic1111/automatic1111_data
+  automatic1111_output:
+    name: automatic1111_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/automatic1111/automatic1111_output
+
   anything-llm_storage:
     name: anything-llm_storage
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -46,6 +65,7 @@ volumes:
   prompt-optimizer_huggingface_cache:
     name: prompt-optimizer_huggingface_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -54,6 +74,7 @@ volumes:
   invokeai_data:
     name: invokeai_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -62,6 +83,7 @@ volumes:
   forge_data:
     name: forge_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -70,6 +92,7 @@ volumes:
   basic-memory-config:
     name: basic-memory-config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -77,6 +100,7 @@ volumes:
   basic-memory-knowledge:
     name: basic-memory-knowledge
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -84,6 +108,7 @@ volumes:
   basic-memory-personal-notes:
     name: basic-memory-personal-notes
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -91,6 +116,7 @@ volumes:
   basic-memory-work-notes:
     name: basic-memory-work-notes
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -99,6 +125,7 @@ volumes:
   private-gpt_ollama_local_data:
     name: private-gpt_ollama_local_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -106,6 +133,7 @@ volumes:
   private-gpt_llamacpp-cpu_local_data:
     name: private-gpt_llamacpp-cpu_local_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -113,6 +141,7 @@ volumes:
   private-gpt_llamacpp-cpu_models:
     name: private-gpt_llamacpp-cpu_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -121,6 +150,7 @@ volumes:
   chroma_data:
     name: chroma_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -128,6 +158,7 @@ volumes:
   chroma_index:
     name: chroma_index
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -136,6 +167,7 @@ volumes:
   clickhouse_backups:
     name: clickhouse_backups
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -143,6 +175,7 @@ volumes:
   clickhouse_configs:
     name: clickhouse_configs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -150,6 +183,7 @@ volumes:
   clickhouse_data:
     name: clickhouse_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -157,6 +191,7 @@ volumes:
   clickhouse_initdb:
     name: clickhouse_initdb
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -164,6 +199,7 @@ volumes:
   clickhouse_logs:
     name: clickhouse_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -171,6 +207,7 @@ volumes:
   clickhouse_users:
     name: clickhouse_users
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -179,6 +216,7 @@ volumes:
   faster-whisper-gpu_config:
     name: faster-whisper-gpu_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -187,6 +225,7 @@ volumes:
   grafana_data:
     name: grafana_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -195,6 +234,7 @@ volumes:
   homeassistant-config:
     name: homeassistant-config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -202,6 +242,7 @@ volumes:
   homeassistant-media:
     name: homeassistant-media
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -210,6 +251,7 @@ volumes:
   koboldccp-workspace:
     name: koboldccp-workspace
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -218,6 +260,7 @@ volumes:
   kokoro_data:
     name: kokoro_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -225,6 +268,7 @@ volumes:
   kokoro_index_data:
     name: kokoro_index_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -233,6 +277,7 @@ volumes:
   coqui-tts-cpu_data:
     name: coqui-tts-cpu_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -240,6 +285,7 @@ volumes:
   coqui-tts-cpu_index_data:
     name: coqui-tts-cpu_index_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -248,6 +294,7 @@ volumes:
   letta-server_data:
     name: letta_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -255,6 +302,7 @@ volumes:
   letta-server_tool_execution_dir:
     name: letta-server_tool_execution_dir
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -263,6 +311,7 @@ volumes:
   librechat_vectordb_data:
     name: librechat_vectordb_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -270,6 +319,7 @@ volumes:
   librechat_mongo_data:
     name: librechat_mongo_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -277,6 +327,7 @@ volumes:
   librechat_images:
     name: librechat_images
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -284,6 +335,7 @@ volumes:
   librechat_uploads:
     name: librechat_uploads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -291,6 +343,7 @@ volumes:
   librechat_logs:
     name: librechat_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -298,6 +351,7 @@ volumes:
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -306,6 +360,7 @@ volumes:
   libretranslate-whispher_cache:
     name: libretranslate-whispher_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -313,6 +368,7 @@ volumes:
   libretranslate-whispher_data:
     name: libretranslate-whispher_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -321,6 +377,7 @@ volumes:
   localai_cache:
     name: localai_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -328,6 +385,7 @@ volumes:
   localai_backends:
     name: localai_backends
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -335,6 +393,7 @@ volumes:
   localai_configuration:
     name: localai_configuration
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -342,6 +401,7 @@ volumes:
   localai_content:
     name: localai_content
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -349,6 +409,7 @@ volumes:
   localai_images:
     name: localai_images
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -356,6 +417,7 @@ volumes:
   localai_models:
     name: localai_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -364,6 +426,7 @@ volumes:
   minio_data:
     name: minio_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -372,6 +435,7 @@ volumes:
   mongo-whispher_data:
     name: mongo-whispher_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -380,6 +444,7 @@ volumes:
   mongo-whispher_logs:
     name: mongo-whispher_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -388,6 +453,7 @@ volumes:
   n8n_data:
     name: n8n_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -395,6 +461,7 @@ volumes:
   n8n_local_files:
     name: n8n_local_files
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -403,6 +470,7 @@ volumes:
   ollama_data:
     name: ollama_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -410,6 +478,7 @@ volumes:
   ollama_models:
     name: ollama_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -418,6 +487,7 @@ volumes:
   open-webui_data:
     name: open-webui_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -426,6 +496,7 @@ volumes:
   piper_config:
     name: piper_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -433,6 +504,7 @@ volumes:
   piper_data:
     name: piper_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -441,6 +513,7 @@ volumes:
   llmstack_code:
     name: llmstack_code
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -448,6 +521,7 @@ volumes:
   llmstack_userdata:
     name: llmstack_userdata
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -455,6 +529,7 @@ volumes:
   llmstack_postgres_data:
     name: llmstack_postgres_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -462,6 +537,7 @@ volumes:
   llmstack_weaviate_data:
     name: llmstack_weaviate_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -469,6 +545,7 @@ volumes:
   llmstack_redis_data:
     name: llmstack_redis_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -477,6 +554,7 @@ volumes:
   prometheus_data:
     name: prometheus_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -485,6 +563,7 @@ volumes:
   searxng_data:
     name: searxng_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -493,6 +572,7 @@ volumes:
   signoz_data:
     name: signoz_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -500,57 +580,16 @@ volumes:
   signoz_index:
     name: signoz_index
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/signoz/signoz_index
 
-  stable-diffusion-webui-docker_config:
-    name: stable-diffusion-webui-docker_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_config
-  stable-diffusion-webui-docker_data:
-    name: stable-diffusion-webui-docker_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_data
-  stable-diffusion-webui-docker_embeddings:
-    name: stable-diffusion-webui-docker_embeddings
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_embeddings
-  stable-diffusion-webui-docker_models:
-    name: stable-diffusion-webui-docker_models
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_models
-  stable-diffusion-webui-docker_output:
-    name: stable-diffusion-webui-docker_output
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_output
-  stable-diffusion-webui-docker_workflows:
-    name: stable-diffusion-webui-docker_workflows
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui-docker/stable-diffusion-webui-docker_workflows
-
   swarmui_backend:
     name: swarmui_backend
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -558,6 +597,7 @@ volumes:
   swarmui_data:
     name: swarmui_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -565,6 +605,7 @@ volumes:
   swarmui_dlnodes:
     name: swarmui_dlnodes
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -572,6 +613,7 @@ volumes:
   swarmui_extensions:
     name: swarmui_extensions
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -580,6 +622,7 @@ volumes:
   vllm-openai_huggingface_cache:
     name: vllm-openai_huggingface_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -588,6 +631,7 @@ volumes:
   whishper_data:
     name: whishper_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -595,6 +639,7 @@ volumes:
   whishper_logs:
     name: whishper_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -602,6 +647,7 @@ volumes:
   whishper_models:
     name: whishper_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -609,6 +655,7 @@ volumes:
   whishper_uploads:
     name: whishper_uploads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -616,6 +663,7 @@ volumes:
   whishper_cache:
     name: whishper_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -623,6 +671,7 @@ volumes:
   whishper_outputs:
     name: whishper_outputs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -630,6 +679,7 @@ volumes:
   whishper_configs:
     name: whishper_configs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -638,6 +688,7 @@ volumes:
   whisperx_data:
     name: whisperx_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -645,6 +696,7 @@ volumes:
   whisperx_logs:
     name: whisperx_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -652,6 +704,7 @@ volumes:
   whisperx_models:
     name: whisperx_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -659,6 +712,7 @@ volumes:
   whisperx_uploads:
     name: whisperx_uploads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -666,6 +720,7 @@ volumes:
   whisperx_cache:
     name: whisperx_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -673,6 +728,7 @@ volumes:
   whisperx_outputs:
     name: whisperx_outputs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -680,6 +736,7 @@ volumes:
   whisperx_configs:
     name: whisperx_configs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -688,6 +745,7 @@ volumes:
   whisper-webui_data:
     name: whisper-webui_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -695,6 +753,7 @@ volumes:
   whisper-webui_logs:
     name: whisper-webui_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -702,6 +761,7 @@ volumes:
   whisper-webui_models:
     name: whisper-webui_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -709,6 +769,7 @@ volumes:
   whisper-webui_uploads:
     name: whisper-webui_uploads
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -716,6 +777,7 @@ volumes:
   whisper-webui_cache:
     name: whisper-webui_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -723,6 +785,7 @@ volumes:
   whisper-webui_outputs:
     name: whisper-webui_outputs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -730,6 +793,7 @@ volumes:
   whisper-webui_configs:
     name: whisper-webui_configs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -738,6 +802,7 @@ volumes:
   wyoming-piper_data:
     name: wyoming-piper_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -746,6 +811,7 @@ volumes:
   text-generation-webui-docker_cache:
     name: text-generation-webui-docker_cache
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -753,6 +819,7 @@ volumes:
   text-generation-webui-docker_characters:
     name: text-generation-webui-docker_characters
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -760,6 +827,7 @@ volumes:
   text-generation-webui-docker_grammars:
     name: text-generation-webui-docker_grammars
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -767,6 +835,7 @@ volumes:
   text-generation-webui-docker_instruction-templates:
     name: text-generation-webui-docker_instruction-templates
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -774,6 +843,7 @@ volumes:
   text-generation-webui-docker_loras:
     name: text-generation-webui-docker_loras
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -781,6 +851,7 @@ volumes:
   text-generation-webui-docker_logs:
     name: text-generation-webui-docker_logs
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -788,6 +859,7 @@ volumes:
   text-generation-webui-docker_models:
     name: text-generation-webui-docker_models
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -795,6 +867,7 @@ volumes:
   text-generation-webui-docker_presets:
     name: text-generation-webui-docker_presets
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -802,6 +875,7 @@ volumes:
   text-generation-webui-docker_prompts:
     name: text-generation-webui-docker_prompts
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -809,6 +883,7 @@ volumes:
   text-generation-webui-docker_training:
     name: text-generation-webui-docker_training
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -816,6 +891,7 @@ volumes:
   text-generation-webui-docker_extensions:
     name: text-generation-webui-docker_extensions
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -823,6 +899,7 @@ volumes:
   text-generation-webui-docker_coqui_tts:
     name: text-generation-webui-docker_coqui_tts
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind

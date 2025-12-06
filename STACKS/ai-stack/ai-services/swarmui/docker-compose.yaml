@@ -36,9 +36,9 @@ services:
       - swarmui_data:/SwarmUI/Data
       - swarmui_dlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
       - swarmui_extensions:/SwarmUI/src/Extensions
-      - stable-diffusion-webui-docker_models:/SwarmUI/Models
-      - stable-diffusion-webui-docker_output:/SwarmUI/Output
-      - stable-diffusion-webui-docker_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - swarmui_models:/SwarmUI/Models
+      - swarmui_output:/SwarmUI/Output
+      - swarmui_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
 
     hostname: ${NAME:-swarmui}
 

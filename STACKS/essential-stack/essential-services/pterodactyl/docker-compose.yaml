@@ -80,8 +80,8 @@ services:
       - homarr
 
     ports:
-      - ${PORT:-80}:80
-      - ${PORT_SSL:-443}:443
+      - ${PORT:-8028}:8028
+      # - ${PORT_SSL:-443}:443
 
     links:
       - pterodactyl_database

@@ -9,6 +9,7 @@ volumes:
   aiwaifu_data:
     name: aiwaifu_data
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind

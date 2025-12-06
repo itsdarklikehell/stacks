@@ -9,6 +9,7 @@ COMPOSE_FILES=(
 	# koboldccp
 	# kokoro-tts
 	# llmstack
+	automatic1111
 	# make-sense
 	# midori-ai-subsystem-manager
 	# piper
@@ -47,9 +48,6 @@ COMPOSE_FILES=(
 	# prompt-optimizer
 	searxng
 	# signoz
-	# stable-diffusion-models-download
-	# stable-diffusion-webui
-	# stable-diffusion-webui-docker
 	# swarmui
 	# voice-chat-ai
 )
@@ -91,15 +89,22 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	# if [[ ${SERVICE_NAME} == "comfyui" ]]; then
-	# 	FOLDERS=(
-	# 		"common_storage"
-	# 	)
-	# fi
+	if [[ ${SERVICE_NAME} == "comfyui" ]]; then
+		FOLDERS=(
+			"common_storage"
+		)
+	fi
 
 	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
+		FOLDERS=(
+			"data"
+			"output"
 		)
 	fi
 
@@ -312,23 +317,17 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "stable-diffusion-webui-docker" ]]; then
-		FOLDERS=(
-			"config"
-			"data"
-			"embeddings"
-			"models"
-			"output"
-			"workflows"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
 		FOLDERS=(
 			"backend"
 			"data"
 			"dlnodes"
 			"extensions"
+			"config"
+			"embeddings"
+			"models"
+			"output"
+			"workflows"
 		)
 	fi
 
