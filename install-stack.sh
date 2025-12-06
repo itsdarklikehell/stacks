@@ -13,6 +13,7 @@ export PRUNE="true"                              # false, true/normal, all
 export BUILDING="true"                           # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
+export START_COMFYUI="true"                      # false, true
 export START_BROWSER="true"                      # false, true
 export TWITCH_CLIENT_ID="your_client_id"         # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret" # set twitch client secret
@@ -60,6 +61,12 @@ function START_OLLMVT() {
 		SCRIPTS/start_ollmvt.sh
 	fi
 }
+function START_COMFYUI() {
+	if [[ ${START_COMFYUI} == "true" ]]; then
+		SCRIPTS/start_comfyui.sh
+	fi
+}
+
 function START_BROWSER() {
 	if [[ ${START_BROWSER} == "true" ]]; then
 		SCRIPTS/start_browser.sh
@@ -192,6 +199,10 @@ echo ""
 
 echo ""
 PULL_MODELS >/dev/null 2>&1 &
+echo ""
+
+echo ""
+START_CONFYUI >/dev/null 2>&1 &
 echo ""
 
 echo ""

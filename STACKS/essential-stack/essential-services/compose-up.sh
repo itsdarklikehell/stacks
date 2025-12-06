@@ -19,6 +19,7 @@ COMPOSE_FILES=(
 	kubepi
 	nginx-proxy-manager
 	pairdrop
+	pterodactyl
 	portainer
 	portracker
 	uptime-kuma
@@ -56,6 +57,16 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "code-server" ]]; then
 		FOLDERS=(
 			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
+		FOLDERS=(
+			"pterodactyl_database"
+			"pterodactyl_var"
+			"pterodactyl_nginx"
+			"pterodactyl_certs"
+			"pterodactyl_logs"
 		)
 	fi
 

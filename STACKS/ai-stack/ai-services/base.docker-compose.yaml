@@ -6,27 +6,27 @@ networks:
     external: true
 
 volumes:
-  comfyui_workspace:
-    name: comfyui_workspace
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/comfyui/comfyui_workspace
-  comfyui_authorized_keys:
-    name: comfyui_authorized_keys
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/comfyui/config/authorized_keys
-  comfyui_api-wrapper:
-    name: comfyui_api-wrapper
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/comfyui/build/COPY_ROOT_1/opt/ai-dock/api-wrapper
+  # comfyui_workspace:
+  #   name: comfyui_workspace
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/ai-stack/comfyui/comfyui_workspace
+  # comfyui_authorized_keys:
+  #   name: comfyui_authorized_keys
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/ai-stack/comfyui/config/authorized_keys
+  # comfyui_api-wrapper:
+  #   name: comfyui_api-wrapper
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/ai-stack/comfyui/build/COPY_ROOT_1/opt/ai-dock/api-wrapper
   comfyui_common_storage:
     name: comfyui_common_storage
     driver: local
@@ -50,6 +50,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/prompt-optimizer/prompt-optimizer_huggingface_cache
+
+  invokeai_data:
+    name: invokeai_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/invokeai/invokeai_data
+
+  forge_data:
+    name: forge_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/forge/forge_data
 
   basic-memory-config:
     name: basic-memory-config
