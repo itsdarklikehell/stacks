@@ -60,10 +60,12 @@ services:
 
       - localai_cache:/.cache
       - localai_configuration:/configuration
-      - localai_content:/tmp/generated/content
-      - localai_images:/tmp/generated/content/images
-      - localai_models:/usr/share/localai/models
+
       - localai_backends:/usr/share/localai/backends
+      # - localai_content:/tmp/generated/content
+      - ../../DATA/ai-stack/comfyui/output:/tmp/generated/content
+      # - localai_models:/usr/share/localai/models
+      - ../../DATA/ai-stack/comfyui/models:/usr/share/localai/models
 
     user: ${PUID:-1000}:${PGID:-1000}
 

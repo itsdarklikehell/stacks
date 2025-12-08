@@ -21,18 +21,18 @@ COMPOSE_FILES=(
 	# wyoming-piper
 	anything-llm
 	# basic-memory
-	big-agi
+	# big-agi
 	# chatbot-ollama
 	# chatgpt-next-web
 	# chroma
 	# clickhouse
-	comfyui
+	# comfyui
 	# grafana
 	# hollama
 	homeassistant
 	invokeai
 	forge
-	letta-mcp-server
+	# letta-mcp-server
 	letta-server
 	librechat
 	# libretranslate-whispher
@@ -40,7 +40,7 @@ COMPOSE_FILES=(
 	localai
 	# minio
 	# mongo-whispher
-	n8n
+	# n8n
 	ollama
 	open-webui
 	# private-gpt

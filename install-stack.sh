@@ -10,7 +10,7 @@ export PERM_DATA="${WD}/DATA"                    # folders that store stack data
 export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
 export CLEANUP="false"                           # false, true
 export PRUNE="true"                              # false, true/normal, all
-export BUILDING="true"                           # false, true, force_rebuild
+export BUILDING="force_rebuild"                  # false, true, force_rebuild
 export PULL_MODELS="true"                        # false, true
 export START_OLLMVT="true"                       # false, true
 export START_COMFYUI="true"                      # false, true
@@ -197,9 +197,9 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-# echo ""
-# PULL_MODELS >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_COMFYUI

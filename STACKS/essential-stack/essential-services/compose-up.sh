@@ -7,24 +7,24 @@ COMPOSE_FILES=(
 	# nextcloud
 	autoheal
 	autopulse
-	beszel
-	code-server
+	# beszel
+	# code-server
 	dashy
-	docker-proxy
-	dockge
+	# docker-proxy
+	# dockge
 	homarr
 	it-tools
-	traefik
-	ouroboros
-	kubepi
+	# traefik
+	# ouroboros
+	# kubepi
 	nginx-proxy-manager
-	pairdrop
-	pterodactyl
-	portainer
-	portracker
-	uptime-kuma
+	# pairdrop
+	# pterodactyl
+	# portainer
+	# portracker
+	# uptime-kuma
 	watchtower
-	wolf
+	# wolf
 )
 
 function CREATE_FOLDERS() {

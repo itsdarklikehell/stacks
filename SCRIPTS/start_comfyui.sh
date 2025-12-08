@@ -31,5 +31,13 @@ RUN_COMFYUI() {
 		uv run comfy-cli launch --no-background -- --listen 0.0.0.0 --port "${COMFYUI_PORT}"
 	fi
 }
+RUN_COMFYUIMINI() {
 
+	cd /media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini || exit 1
+
+	./scripts/start.sh &
+
+	echo "Starting ComfyUI Mini..."
+}
+RUN_COMFYUIMINI
 RUN_COMFYUI

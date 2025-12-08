@@ -64,7 +64,7 @@ function CLONE_AIRI() {
 					cd "../DATA/airi-stack/airi/services/telegram-bot" || exit 1
 					cp .env .env.local
 
-					docker compose -p airi-telegram-bot-db up -d >/dev/null 2>&1
+					# docker compose -p airi-telegram-bot-db up -d >/dev/null 2>&1
 
 					sleep 3
 
@@ -1146,6 +1146,61 @@ function CLONE_COMFYUI() {
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 }
+
+function CLONE_COMFYUIMINI() {
+	cd "${WD}" || exit 1
+	cd "../DATA/ai-stack" || exit 1
+
+	echo "Cloning comfyui-mini"
+	echo ""
+	git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git ComfyUIMini
+	cd ComfyUIMini || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+
+		cp config/default.example.json config/default.json
+
+		chmod +x scripts/install.sh
+		./scripts/install.sh
+
+		# npm install
+		# npm run build
+		chmod +x scripts/start.sh
+		./scripts/start.sh >/dev/null 2>&1 &
+		# npm start
+
+		# if [[ ! -f .venv/bin/activate ]]; then
+		# 	export UV_LINK_MODE=copy
+		# 	uv venv --clear --seed
+		# 	source .venv/bin/activate
+
+		# 	uv pip install --upgrade pip
+		# 	uv sync --all-extras
+
+		# 	uv pip install comfy-cli
+		# 	uv run comfy-cli install --nvidia --restore
+		# fi
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+	# cd custom_nodes || exit 1
+	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	# cd ComfyUI-Manager || exit 1
+
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
+}
+
 function CLONE_FORGE() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
@@ -1278,6 +1333,7 @@ CLONE_BIGAGI
 CLONE_CHROMA
 CLONE_CLICKHOUSE
 CLONE_COMFYUI
+CLONE_COMFYUIMINI
 CLONE_FORGE
 CLONE_INVOKEAI
 CLONE_JAISON

@@ -35,6 +35,8 @@ services:
       - automatic1111_data:/data
       - automatic1111_output:/output
 
+      - ../../DATA/ai-stack/comfyui/models:/data/models
+
     networks:
       host:
       ai-services:

@@ -38,7 +38,7 @@ services:
 
     depends_on:
       - autoheal
-      - portainer
+      # - portainer
       - nginx-proxy-manager
       # - autopulse
       # - docker-proxy
