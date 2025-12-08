@@ -36,6 +36,15 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/comfyui/comfyui_common_storage
 
+  stable-diffusion-webui_configdir:
+    name: stable-diffusion-webui_configdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/stable-diffusion-webui/stable-diffusion-webui_configdir
+
   automatic1111_data:
     name: automatic1111_data
     driver: local

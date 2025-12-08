@@ -37,8 +37,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/ai-stack/comfyui/models:/sd/models
-      - ../../../DATA/ai-stack/comfyui/output:/sd/outputs
+      - stable-diffusion-webui_configdir:/.local
+      - ../../../DATA/ai-stack/comfyui/models:/data/models
+      - ../../../DATA/ai-stack/comfyui/output:/data/output
 
     user: ${PUID:-1000}:${PGID:-1000}
 

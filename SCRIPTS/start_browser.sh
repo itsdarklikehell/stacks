@@ -2,28 +2,22 @@
 echo "Start browser script started."
 
 URLS=(
-	"http://localhost:8283"                                                     # letta-server
-	"https://app.letta.com/settings/organization/projects?view-mode=selfHosted" # letta projects
-	"http://localhost:7801/Install"                                             # SwarmUI
-	"http://localhost:8188"                                                     # ComfyUI
-	"http://localhost:8123"                                                     # home assistant
-	"http://localhost:8080"                                                     # open-webui
-	"http://localhost:3002"                                                     # anythingllm
-	"http://localhost:3210"                                                     # lobe.ai
-	"http://localhost:11434"                                                    # ollama
-	"http://localhost:9090"                                                     # invokeai
-	"http://localhost:8081"                                                     # searxng
-	# "http://localhost:3400"                                                     #
-	# "http://localhost:5678"                                                     #
-	# "http://localhost:12393"                                                    #
-	# "http://localhost:8288"                                                     #
-	# "http://localhost:1111"                                                     #
-	# "http://localhost:7860"                                                     #
-	# "http://localhost:7861"                                                     #
-	# "http://localhost:8384"                                                     #
-	# "http://localhost:8888"                                                     #
-	# "http://localhost:3080"                                                     #
-	# "http://localhost:8083"                                                     #
+	"http://0.0.0.0:8283"         # letta-server
+	"http://0.0.0.0:7801/Install" # SwarmUI
+	"http://0.0.0.0:8188"         # ComfyUI
+	"http://0.0.0.0:1111"         # forge-ai
+	"http://0.0.0.0:8123"         # home assistant
+	"http://0.0.0.0:8080"         # open-webui
+	"http://0.0.0.0:3002"         # anythingllm
+	"http://0.0.0.0:3210"         # lobe.ai
+	"http://0.0.0.0:11434"        # ollama
+	"http://0.0.0.0:9090"         # invokeai
+	"http://0.0.0.0:8081"         # searxng
+	"http://0.0.0.0:7861"         # sd-automatic1111
+	"http://0.0.0.0:7862"         # sd-comfyui-webui
+	"http://0.0.0.0:7863"         # sd-fast-stable-diffusion-webui
+	"http://0.0.0.0:7864"         # sd-stable-diffusion-webui
+	"http://0.0.0.0:8501"         # stable-diffusion-webui
 )
 
 RUN_BROWSER() {

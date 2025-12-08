@@ -43,6 +43,7 @@ COMPOSE_FILES=(
 	# n8n
 	ollama
 	open-webui
+	localai
 	# private-gpt
 	# prometheus
 	# prompt-optimizer
@@ -86,6 +87,12 @@ function SETUP_FOLDERS() {
 			"ollama_local_data"
 			"llamacpp-cpu_local_data"
 			"llamacpp-cpu_models"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
+		FOLDERS=(
+			"configdir"
 		)
 	fi
 
