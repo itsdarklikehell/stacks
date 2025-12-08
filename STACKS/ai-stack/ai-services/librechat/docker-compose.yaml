@@ -47,7 +47,8 @@ services:
       # - librechat_models:/app/client/public/models
       - ../../../DATA/ai-stack/comfyui/models:/app/client/public/models
       # - librechat_images:/app/client/public/images
-      - ../../DATA/ai-stack/comfyui/output:/app/client/public/images
+      - ../../../DATA/ai-stack/comfyui/output:/app/client/public/images
+      - ../../../DATA/ai-stack/comfyui/output:/app/client/public/images/output
 
     hostname: ${NAME:-librechat}
 

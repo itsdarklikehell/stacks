@@ -63,6 +63,7 @@ services:
 
       - anything-llm_storage:/app/server/storage
       - ../../../DATA/ai-stack/comfyui/models:/app/server/storage/models
+      - ../../../DATA/ai-stack/comfyui/output:/app/server/storage/output
 
     hostname: ${NAME:-anything-llm}
 

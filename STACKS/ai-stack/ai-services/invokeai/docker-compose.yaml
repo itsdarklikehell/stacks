@@ -25,7 +25,7 @@ services:
 
       - invokeai_data:/invokeai
       - ../../../DATA/ai-stack/comfyui/models:/invokeai/models
-      - ../../DATA/ai-stack/comfyui/output:/invokeai/outputs
+      - ../../../DATA/ai-stack/comfyui/output:/invokeai/outputs
 
     hostname: ${NAME:-invokeai}
 

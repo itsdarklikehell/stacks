@@ -67,9 +67,12 @@ services:
 
       - localai_backends:/localai/backends
       # - localai_content:/tmp/generated/content
-      - ../../DATA/ai-stack/comfyui/output:/tmp/generated/content
       # - localai_models:/localai/models
+
       - ../../../DATA/ai-stack/comfyui/models:/localai/models
+      - ../../../DATA/ai-stack/comfyui/output:/tmp/generated/content
+      - ../../../DATA/ai-stack/comfyui/output:/localai/output
+
     user: ${PUID:-1000}:${PGID:-1000}
 
     networks:

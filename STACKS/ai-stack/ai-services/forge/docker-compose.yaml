@@ -25,7 +25,7 @@ services:
 
       - forge_data:/opt/stable-diffusion-webui-forge
       - ../../../DATA/ai-stack/comfyui/models:/opt/stable-diffusion-webui-forge/models
-      - ../../DATA/ai-stack/comfyui/output:/opt/stable-diffusion-webui-forge/outputs
+      - ../../../DATA/ai-stack/comfyui/output:/opt/stable-diffusion-webui-forge/outputs
 
     hostname: ${NAME:-forge}
 

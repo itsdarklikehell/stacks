@@ -37,8 +37,8 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../DATA/ai-stack/comfyui/output:/sd/outputs
       - ../../../DATA/ai-stack/comfyui/models:/sd/models
+      - ../../../DATA/ai-stack/comfyui/output:/sd/outputs
 
     user: ${PUID:-1000}:${PGID:-1000}
 
