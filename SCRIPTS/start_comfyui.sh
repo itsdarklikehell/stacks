@@ -34,7 +34,7 @@ RUN_COMFYUI() {
 RUN_COMFYUIMINI() {
 
 	cd /media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini || exit 1
-
+	./scripts/install.sh
 	./scripts/start.sh &
 
 	echo "Starting ComfyUI Mini..."
