@@ -1,8 +1,9 @@
 services:
-  forge:
-    image: ${IMAGE:-aidockorg/stable-diffusion-webui-forge-cuda}
-    container_name: ${NAME:-forge}
+  stable-diffusion-webui:
+    image: ${IMAGE:-tukirito/sygil-webui:latest}
+    container_name: ${NAME:-stable-diffusion-webui}
     restart: ${RESTART:-unless-stopped}
+    hostname: ${NAME:-stable-diffusion-webui}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -16,36 +17,40 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - WEB_ENABLE_AUTH=false
+      - PORT=${PORT:-8501}
+      - STREAMLIT_SERVER_HEADLESS=true
+      - WEBUI_SCRIPT=webui_streamlit.py
+      - VALIDATE_MODELS=false
+
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+      - IPC_LOCK
+
+    # command:
+    # - granite-embedding-107m-multilingual
+    # - moondream2-20250414
+    # - huggingfacetb_smollm3-3b
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - forge_data:/opt/stable-diffusion-webui-forge
-      - ../../../DATA/ai-stack/comfyui/models:/opt/stable-diffusion-webui-forge/models
-      - ../../DATA/ai-stack/comfyui/output:/opt/stable-diffusion-webui-forge/outputs
+      - ../../DATA/ai-stack/comfyui/output:/sd/outputs
+      - ../../../DATA/ai-stack/comfyui/models:/sd/models
 
-    hostname: ${NAME:-forge}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
       ai-services:
 
     ports:
-      - 1111:1111
-      - ${PORT:-7860}:7860
-      - 8384:8384
-      - 8888:8888
+      - ${PORT:-8501}:8501
 
     env_file:
-      - ./forge/.env
-
-    stop_signal: SIGKILL
-
-    devices:
-      - /dev/nvidia0:/dev/nvidia0
+      - ./stable-diffusion-webui/.env
 
     runtime: nvidia
     deploy:
@@ -61,20 +66,11 @@ services:
 
     stdin_open: true
 
-    # healthcheck:
-    # test:
-    #   [
-    #     CMD,
-    #     wget,
-    #     --no-verbose,
-    #     --tries=3,
-    #     --spider,
-    #     http://localhost:${PORT:-7861}/api/health,
-    #   ]
-    #   interval: 30s
-    #   timeout: 10s
-    #   start_period: 30s
-    #   retries: 3
+    healthcheck:
+      test: [CMD, curl, -f, http://localhost:8083/readyz]
+      interval: 1m
+      timeout: 20m
+      retries: 5
 
     logging:
       driver: json-file

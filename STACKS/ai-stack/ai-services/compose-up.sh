@@ -37,7 +37,7 @@ COMPOSE_FILES=(
 	librechat
 	# libretranslate-whispher
 	lobe-chat
-	localai
+	stable-diffusion-webui
 	# minio
 	# mongo-whispher
 	# n8n

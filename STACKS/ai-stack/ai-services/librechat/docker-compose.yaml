@@ -45,7 +45,7 @@ services:
       - librechat_uploads:/app/uploads
       - librechat_logs:/app/logs
       # - librechat_models:/app/client/public/models
-      - ../../DATA/ai-stack/comfyui/models:/app/client/public/models
+      - ../../../DATA/ai-stack/comfyui/models:/app/client/public/models
       # - librechat_images:/app/client/public/images
       - ../../DATA/ai-stack/comfyui/output:/app/client/public/images
 

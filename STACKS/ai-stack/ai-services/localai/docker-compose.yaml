@@ -16,9 +16,10 @@ services:
     #     - BASE_IMAGE=ubuntu:22.04
     #     - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
     #     - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
-    #     # - BUILD_TYPE=cublas
+    #     - BUILD_TYPE=cublas
     #     - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
     #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
+    #     - THREADS=1
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -33,13 +34,16 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - SERVER_PORT=${SERVER_PORT:-8083}
+
       - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
       - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
       - PORT=${PORT:-8083}
       - STORAGE_DIR=/app/server/storage
-      - MODELS_PATH=/usr/share/localai/models
-      - BACKENDS_PATH=/usr/share/localai/backends
+      - MODELS_PATH=/localai/models
+      - BACKENDS_PATH=/localai/backends
+      - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
       - THREADS=1
+      - LOCALAI_SINGLE_ACTIVE_BACKEND=true
       # - PROFILE=gpu-8g
       # - DEBUG=false
 
@@ -61,12 +65,11 @@ services:
       - localai_cache:/.cache
       - localai_configuration:/configuration
 
-      - localai_backends:/usr/share/localai/backends
+      - localai_backends:/localai/backends
       # - localai_content:/tmp/generated/content
       - ../../DATA/ai-stack/comfyui/output:/tmp/generated/content
-      # - localai_models:/usr/share/localai/models
-      - ../../DATA/ai-stack/comfyui/models:/usr/share/localai/models
-
+      # - localai_models:/localai/models
+      - ../../../DATA/ai-stack/comfyui/models:/localai/models
     user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
