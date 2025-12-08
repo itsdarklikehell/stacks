@@ -215,4 +215,4 @@ echo ""
 
 # echo "Installation complete.."
 
-sudo chown -R "${USER}":"${USER}" "${WD}"
+# sudo chown -R "${USER}":"${USER}" "${WD}"
