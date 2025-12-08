@@ -34,8 +34,8 @@ function CREATE_FOLDERS() {
 		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
 			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
 			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
-		# else
-		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		else
+			echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
 		fi
 	done
 }

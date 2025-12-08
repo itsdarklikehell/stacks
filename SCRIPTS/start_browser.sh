@@ -18,6 +18,7 @@ URLS=(
 	"http://0.0.0.0:7863"         # sd-fast-stable-diffusion-webui
 	"http://0.0.0.0:7864"         # sd-stable-diffusion-webui
 	"http://0.0.0.0:8501"         # stable-diffusion-webui
+	"http://0.0.0.0:8688"         # cushy-studio
 )
 
 RUN_BROWSER() {
