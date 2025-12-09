@@ -29,7 +29,7 @@ URLS=(
 	# "http://192.168.1.2:8501"         # stable-diffusion-webui
 )
 
-RUN_BROWSER() {
+function RUN_BROWSER() {
 	for URL in "${URLS[@]}"; do
 		xdg-open "${URL}" >/dev/null 2>&1 &
 	done

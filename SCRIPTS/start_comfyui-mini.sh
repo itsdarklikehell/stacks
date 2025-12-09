@@ -7,7 +7,7 @@ export COMFYUI_PORT=8188
 
 export COMFYMINI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini"
 
-RUN_COMFYUIMINI() {
+function RUN_COMFYUIMINI() {
 
 	cd "${COMFYMINI_PATH}" || exit 1
 	# ./scripts/install.sh

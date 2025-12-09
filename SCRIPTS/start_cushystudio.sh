@@ -7,7 +7,7 @@ export CUSHYSTUDIO_PORT=8688
 
 export CUSHYSTUDIO_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/CushyStudio"
 
-RUN_CUSHYSTUDIO() {
+function RUN_CUSHYSTUDIO() {
 
 	cd "${CUSHYSTUDIO_PATH}" || exit 1
 

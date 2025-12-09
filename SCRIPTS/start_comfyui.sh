@@ -5,7 +5,7 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export REPAIR=true
+export REPAIR=false
 
 export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
@@ -13,14 +13,14 @@ export COMFYUI_MODEL_PATH="${COMFY_PATH}/models"
 
 ln -sf "${COMFYUI_MODEL_PATH}" "${COMFY_PATH}/custom_nodes/models"
 
-function REPAIR_COMFYUI() {
+function TRY_REPAIR_COMFYUI() {
 	if [[ ${REPAIR} == "true" ]]; then
 		for dir in "${COMFY_PATH}"/custom_nodes/*; do
 			if [[ -d "${dir}" ]]; then
 				if [[ -f "${dir}/install.py" ]]; then
 					echo ""
 					echo "Reinstalling dependencies for custom node: ${dir} using install.py"
-					uv run python "${dir}/install.py" --force
+					uv run python "${dir}/install.py"
 					echo ""
 				elif [[ -f "${dir}/requirements.txt" ]]; then
 					echo ""
@@ -32,10 +32,12 @@ function REPAIR_COMFYUI() {
 				fi
 			fi
 		done
+	else
+		echo "Skipping repair of ComfyUI custom nodes."
 	fi
 }
 
-RUN_COMFYUI() {
+function RUN_COMFYUI() {
 
 	cd "${COMFY_PATH}" || exit 1
 
@@ -56,7 +58,7 @@ RUN_COMFYUI() {
 	fi
 
 	echo ""
-	REPAIR_COMFYUI
+	TRY_REPAIR_COMFYUI
 	echo ""
 
 	uv run comfy-cli update all
