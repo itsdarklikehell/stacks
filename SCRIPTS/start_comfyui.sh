@@ -5,9 +5,12 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
+export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
+export COMFYMINI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini"
+
 RUN_COMFYUI() {
 
-	cd "${BASEPATH}/DATA/ai-stack/comfyui" || exit 1
+	cd "${COMFY_PATH}" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
@@ -33,7 +36,7 @@ RUN_COMFYUI() {
 }
 RUN_COMFYUIMINI() {
 
-	cd "${BASEPATH}/DATA/ai-stack/ComfyUIMini" || exit 1
+	cd "${COMFYMINI_PATH}" || exit 1
 	# ./scripts/install.sh
 	./scripts/start.sh &
 
