@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+
 echo "Start browser script started."
 
 URLS=(

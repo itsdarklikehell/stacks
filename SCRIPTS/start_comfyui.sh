@@ -4,6 +4,7 @@ echo "Start comfyui script started."
 export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
+export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
@@ -23,13 +24,16 @@ RUN_COMFYUI() {
 
 		uv pip install comfy-cli
 		uv run comfy-cli install --nvidia --restore
+		uv run comfy-cli update all
 	fi
 
 	if [[ ${BACKGROUND} == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
+		uv run comfy-cli update all
 		uv run comfy-cli launch --background -- --listen "${IP_ADDRESS}" --port "${COMFYUI_PORT}"
 	else
 		echo "Starting ComfyUI in foreground mode..."
+		uv run comfy-cli update all
 		uv run comfy-cli launch --no-background -- --listen "${IP_ADDRESS}" --port "${COMFYUI_PORT}"
 	fi
 }
