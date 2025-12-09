@@ -199,13 +199,13 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
@@ -243,21 +243,21 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-# echo ""
-# START_COMFYUI
-# echo ""
+echo ""
+START_COMFYUI
+echo ""
 
 # echo ""
 # START_CUSHYSTUDIO >/dev/null 2>&1 &
 # echo ""
 
-# echo ""
-# START_OLLMVT # >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_OLLMVT # >/dev/null 2>&1 &
+echo ""
 
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_BROWSER >/dev/null 2>&1 &
+echo ""
 
 # echo "Installation complete.."
 
