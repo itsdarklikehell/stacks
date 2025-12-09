@@ -5,7 +5,13 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export REPAIR=true
+if [[ "$1" == "--repair" ]] || [[ "$1" == "-r" ]]; then
+	echo "Repair mode enabled."
+	export REPAIR=true
+elif [[ -z "$1" ]] || [[ "$1" == "--no-repair" ]] || [[ "$1" == "-nr" ]]; then
+	echo "Repair mode disabled."
+	export REPAIR=false
+fi
 
 export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
