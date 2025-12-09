@@ -1106,16 +1106,68 @@ function CLONE_WHISPERX() {
 function CLONE_COMFYUI() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
+	export BACKGROUND=true
+	export COMFYUI_PORT=8188
+
+	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
+	export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
+
+	# if [[ "$1" == "-r" ]] || [[ "$1" == "--repair" ]] || [[ "$1" == "--reinstall" ]]; then
+	# 	echo "Repair mode enabled."
+	# 	export REPAIR=true
+	# elif [[ "$1" == "-fr" ]] || [[ "$1" == "--full-repair" ]] || [[ "$1" == "--factory-reset" ]] || [[ "$1" == "--full-reinstal" ]]; then
+	# 	echo "Full repair mode enabled."
+	# 	export REPAIR=true
+	# 	rm -rf "${COMFYUI_PATH}/.venv"
+	# elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-repair" ]]; then
+	# 	echo "Skipping repair mode."
+	# 	export REPAIR=false
+	# fi
 
 	echo "Cloning comfyui"
 	echo ""
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git comfyui
 	cd comfyui || exit 1
 
+	ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
+
+	function TRY_REPAIR_COMFYUI() {
+		if [[ "${REPAIR}" == "true" ]]; then
+			for dir in "${COMFYUI_PATH}"/custom_nodes/*; do
+				if [[ -d "${dir}" ]]; then
+					if [[ -f "${dir}/install.py" ]]; then
+						echo ""
+						echo "Reinstalling dependencies for custom node: ${dir} using install.py"
+						uv run python "${dir}/install.py"
+						echo ""
+					elif [[ -f "${dir}/requirements.txt" ]]; then
+						echo ""
+						echo "Reinstalling requirements for custom node: ${dir} using requirements.txt"
+						uv pip install -r "${dir}/requirements.txt"
+						echo ""
+					# elif [[ -f "${dir}/pyproject.toml" ]]; then
+					# 	echo ""
+					# 	echo "Reinstalling package for custom node: ${dir} using pyproject.toml"
+					# 	uv pip install -e "${dir}"
+					# 	echo ""
+					else
+						echo "No install.py, requirements.txt, setup.py, or pyproject.toml found in ${dir}. Skipping."
+					fi
+				fi
+			done
+		else
+			echo "Skipping repair of ComfyUI custom nodes."
+		fi
+		uv run comfy-cli update all
+	}
+
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
 		# ./install.sh
-		if [[ ! -f .venv/bin/activate ]]; then
+
+		if [[ -f .venv/bin/activate ]]; then
+			source .venv/bin/activate
+		else
 			export UV_LINK_MODE=copy
 			uv venv --clear --seed
 			source .venv/bin/activate
@@ -1134,16 +1186,44 @@ function CLONE_COMFYUI() {
 		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
+	function RUN_COMFYUI() {
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
+		cd "${COMFYUI_PATH}" || exit 1
 
-	# cd custom_nodes || exit 1
-	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
-	# cd ComfyUI-Manager || exit 1
+		if [[ -f .venv/bin/activate ]]; then
+			source .venv/bin/activate
+		else
+			export UV_LINK_MODE=copy
+			uv venv --clear --seed
+			source .venv/bin/activate
 
-	# LOCAL_SETUP  # >/dev/null 2>&1 &
-	# DOCKER_SETUP # >/dev/null 2>&1 &
+			uv pip install --upgrade pip
+			uv sync --all-extras
+
+			uv pip install comfy-cli
+			uv run comfy-cli install --nvidia --restore
+
+			echo "ComfyUI virtual environment created and dependencies installed."
+		fi
+
+		echo ""
+		TRY_REPAIR_COMFYUI
+		echo ""
+
+		if [[ ${BACKGROUND} == "true" ]]; then
+			echo "Starting ComfyUI in background mode..."
+			uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
+		else
+			echo "Starting ComfyUI in foreground mode..."
+			uv run comfy-cli launch --no-background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
+		fi
+	}
+
+	LOCAL_SETUP        # >/dev/null 2>&1 &
+	DOCKER_SETUP       # >/dev/null 2>&1 &
+	TRY_REPAIR_COMFYUI # >/dev/null 2>&1 &
+	RUN_COMFYUI &      # >/dev/null 2>&1 &
+
 }
 
 function CLONE_CUSHYSTUDIO() {

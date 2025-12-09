@@ -6,7 +6,6 @@ export BACKGROUND=false
 export COMFYUI_PORT=8188
 
 export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
-
 export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
 
 if [[ "$1" == "-r" ]] || [[ "$1" == "--repair" ]] || [[ "$1" == "--reinstall" ]]; then
@@ -21,7 +20,7 @@ elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-repair" ]]; then
 	export REPAIR=false
 fi
 
-ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/models"
+ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
 
 function TRY_REPAIR_COMFYUI() {
 	if [[ "${REPAIR}" == "true" ]]; then
@@ -50,6 +49,7 @@ function TRY_REPAIR_COMFYUI() {
 	else
 		echo "Skipping repair of ComfyUI custom nodes."
 	fi
+	uv run comfy-cli update all
 }
 
 function RUN_COMFYUI() {
@@ -76,7 +76,6 @@ function RUN_COMFYUI() {
 	TRY_REPAIR_COMFYUI
 	echo ""
 
-	uv run comfy-cli update all
 	if [[ ${BACKGROUND} == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
