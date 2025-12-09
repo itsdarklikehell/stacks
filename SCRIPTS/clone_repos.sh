@@ -262,7 +262,7 @@ function CLONE_AIWAIFU() {
 		cd "${WD}" || exit 1
 		cd "../DATA/aiwaifu-stack/aiwaifu" || exit 1
 
-		# this run on localhost 8267 by default
+		# this run on 0.0.0.0 8267 by default
 		python ./api_inference_server.py
 
 		# this will connect to all the server (Locally)
@@ -1332,7 +1332,7 @@ function CLONE_MAKESENSE() {
 		# Get Docker Container Logs
 		# docker logs make-sense
 
-		# Access make-sense: http://localhost:3000/
+		# Access make-sense: http://0.0.0.0:3000/
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &

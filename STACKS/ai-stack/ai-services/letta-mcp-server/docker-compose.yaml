@@ -59,7 +59,7 @@ services:
     #   [
     #     CMD,
     #     curl,
-    #     http://localhost:${PORT:-3005}/health,
+    #     http://0.0.0.0:${PORT:-3005}/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

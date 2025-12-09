@@ -53,7 +53,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-4043}/api/health,
+    #       http://0.0.0.0:${PORT:-4043}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
