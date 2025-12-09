@@ -18,7 +18,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-3039}
       - DEFAULT_MODEL=llama3.2:latest
-      - OLLAMA_HOST=http://0.0.0.0:11434
+      - OLLAMA_HOST=http://192.168.1.2:11434
       - NEXT_PUBLIC_API_TIMEOUT=600000
 
     volumes:

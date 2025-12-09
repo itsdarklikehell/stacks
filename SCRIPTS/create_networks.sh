@@ -11,7 +11,7 @@ export IPGATEWAY
 function CREATE_NETWORKS() {
 	docker network create -d macvlan \
 		--subnet="${IPGATEWAY}.0/24" \
-		--gateway="$(ip route show 0.0.0.0/0 dev "${DEVICE}" | cut -d\  -f3 || true)" \
+		--gateway="$(ip route show 192.168.1.2/0 dev "${DEVICE}" | cut -d\  -f3 || true)" \
 		-o parent="${DEVICE}" \
 		macvlan
 }

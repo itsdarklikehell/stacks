@@ -18,7 +18,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-39090}
       - LOCALAI_API_HOST=http://0.0.0.0:8083
-      - OLLAMA_API_HOST=http://0.0.0.0:11434
+      - OLLAMA_API_HOST=http://192.168.1.2:11434
       # - PUPPETEER_WSS_ENDPOINT=ws://midori-ai-subsystem-manager-browserless:3401
 
     volumes:
