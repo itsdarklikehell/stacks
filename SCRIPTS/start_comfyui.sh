@@ -5,17 +5,21 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-if [[ "$1" == "--repair" ]] || [[ "$1" == "-r" ]]; then
-	echo "Repair mode enabled."
-	export REPAIR=true
-elif [[ -z "$1" ]] || [[ "$1" == "--no-repair" ]] || [[ "$1" == "-nr" ]]; then
-	echo "Repair mode disabled."
-	export REPAIR=false
-fi
-
 export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
 export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
+
+if [[ "$1" == "-r" ]] || [[ "$1" == "--repair" ]] || [[ "$1" == "--reinstall" ]]; then
+	echo "Repair mode enabled."
+	export REPAIR=true
+elif [[ "$1" == "-fr" ]] || [[ "$1" == "--full-repair" ]] || [[ "$1" == "--factory-reset" ]] || [[ "$1" == "--full-reinstal" ]]; then
+	echo "Full repair mode enabled."
+	export REPAIR=true
+	rm -rf "${COMFYUI_PATH}/.venv"
+elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-repair" ]]; then
+	echo "Skipping repair mode."
+	export REPAIR=false
+fi
 
 ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/models"
 
