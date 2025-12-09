@@ -4,9 +4,10 @@ echo "Start comfyui script started."
 export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
-export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
+
+export COMFYUI_MODEL_PATH="${COMFY_PATH}/models"
 
 RUN_COMFYUI() {
 
