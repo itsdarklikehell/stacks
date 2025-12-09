@@ -171,8 +171,8 @@ function SETUP_AUTOSTART() {
 
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
-		echo "linking ${BASEPATH}/SCRIPTS/${SCRIPT} to /home/${USER}/.config/autostart/"
 		ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
+		sudo ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /usr/share/applications/
 	done
 }
 
