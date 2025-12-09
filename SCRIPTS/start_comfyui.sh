@@ -6,7 +6,6 @@ export BACKGROUND=false
 export COMFYUI_PORT=8188
 
 export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
-export COMFYMINI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini"
 
 RUN_COMFYUI() {
 
@@ -34,14 +33,5 @@ RUN_COMFYUI() {
 		uv run comfy-cli launch --no-background -- --listen "${IP_ADDRESS}" --port "${COMFYUI_PORT}"
 	fi
 }
-RUN_COMFYUIMINI() {
 
-	cd "${COMFYMINI_PATH}" || exit 1
-	# ./scripts/install.sh
-	./scripts/start.sh &
-
-	echo "Starting ComfyUI Mini..."
-}
-
-RUN_COMFYUIMINI
 RUN_COMFYUI
