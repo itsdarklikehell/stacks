@@ -22,7 +22,7 @@ services:
       - PORT=${PORT:-5678}
       - N8N_PROTOCOL=${N8N_PROTOCOL:-https}
       - N8N_RUNNERS_ENABLED=${N8N_RUNNERS_ENABLED:-true}
-      - OLLAMA_HOST=${OLLAMA_HOST:-http://192.168.1.2:11434}
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://192.168.178.63:11434}
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}/
       - GENERIC_TIMEZONE=${TZ:-Europe/Amsterdam}

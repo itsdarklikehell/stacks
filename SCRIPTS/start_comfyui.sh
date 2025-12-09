@@ -7,7 +7,7 @@ export COMFYUI_PORT=8188
 
 RUN_COMFYUI() {
 
-	cd /media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui || exit 1
+	cd /media/hans/opslag/stacks/DATA/ai-stack/comfyui || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
@@ -33,11 +33,15 @@ RUN_COMFYUI() {
 }
 RUN_COMFYUIMINI() {
 
-	cd /media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini || exit 1
-	./scripts/install.sh
+	cd /media/hans/opslag/stacks/DATA/ai-stack/ComfyUIMini || exit 1
+	# ./scripts/install.sh 
 	./scripts/start.sh &
 
 	echo "Starting ComfyUI Mini..."
 }
+
+cd /media/hans/opslag/stacks/SCRIPTS || exit 1
+./start_browser.sh
+
 RUN_COMFYUIMINI
 RUN_COMFYUI

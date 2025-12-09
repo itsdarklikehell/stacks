@@ -68,7 +68,7 @@ function INSTALL_DRIVERS() {
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker
 		docker rm nvidia-smi
-		docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
+		docker run --rm --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
 	fi
 
 	echo "NVIDIA driver ${DRIVER_VERSION} installation completed."

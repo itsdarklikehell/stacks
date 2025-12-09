@@ -17,8 +17,8 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-39090}
-      - LOCALAI_API_HOST=http://192.168.1.2:8083
-      - OLLAMA_API_HOST=http://192.168.1.2:11434
+      - LOCALAI_API_HOST=http://192.168.178.63:8083
+      - OLLAMA_API_HOST=http://192.168.178.63:11434
       # - PUPPETEER_WSS_ENDPOINT=ws://midori-ai-subsystem-manager-browserless:3401
 
     volumes:

@@ -36,6 +36,10 @@ function INSTALL_DOCKER() {
 		sudo systemctl enable --now docker
 
 		echo "Docker installation completed."
+
+		sudo mv /var/lib/docker /media/hans/opslag/docker
+		sudo ln -s /media/hans/opslag/docker /var/lib/docker
+		sudo ls -la /var/lib/docker
 	fi
 	# check if lazydocker is installed and if not install it
 	if command -v lazydocker &>/dev/null; then

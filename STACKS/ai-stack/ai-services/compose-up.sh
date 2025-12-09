@@ -9,7 +9,7 @@ COMPOSE_FILES=(
 	# koboldccp
 	# kokoro-tts
 	# llmstack
-	automatic1111
+	# automatic1111
 	# make-sense
 	# midori-ai-subsystem-manager
 	# piper
@@ -37,7 +37,7 @@ COMPOSE_FILES=(
 	librechat
 	# libretranslate-whispher
 	lobe-chat
-	stable-diffusion-webui
+	# stable-diffusion-webui
 	# minio
 	# mongo-whispher
 	# n8n
