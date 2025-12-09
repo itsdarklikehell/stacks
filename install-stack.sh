@@ -156,6 +156,7 @@ function SETUP_AUTOSTART() {
 	scripts=(
 		start_browser.sh
 		start_comfyui.sh
+		start_comfyui-mini.sh
 		start_cushystudio.sh
 		start_ollmvt.sh
 		install-stack.sh
@@ -163,19 +164,24 @@ function SETUP_AUTOSTART() {
 	desktop_scripts=(
 		start_browser.desktop
 		start_comfyui.desktop
+		start_comfyui-mini.desktop
+		start_cushystudio.desktop
 		start_ollmvt.desktop
 	)
 	for SCRIPT in "${scripts[@]}"; do
 		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
-			ln -sf "${BASEPATH}/${SCRIPT}" /home/"${USER}"/bin/
+			ln -sf "${BASEPATH}/${SCRIPT}" "/home/${USER}/bin/"
+			chmod +x "/home/${USER}/bin/${SCRIPT}"
 		else
-			ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/bin/
+			ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/"
+			chmod +x "/home/${USER}/bin/${SCRIPT}"
 		fi
 
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
 		ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
 		sudo ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /usr/share/applications/
+		sudo chmod +x "/usr/share/applications/${SCRIPT}"
 	done
 }
 
