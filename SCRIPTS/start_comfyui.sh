@@ -40,8 +40,5 @@ RUN_COMFYUIMINI() {
 	echo "Starting ComfyUI Mini..."
 }
 
-cd "${BASEPATH}/SCRIPTS" || exit 1
-./start_browser.sh
-
 RUN_COMFYUIMINI
 RUN_COMFYUI
