@@ -24,6 +24,8 @@ export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 cd "${WD}" || exit
 git pull origin main
+chmod +x "${WD}/install-stack.sh"
+chmod +x "${WD}/SCRIPTS/*"
 
 function PULL_MODELS() {
 	if [[ ${PULL_MODELS} == "true" ]]; then
