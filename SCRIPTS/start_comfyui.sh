@@ -7,7 +7,7 @@ export COMFYUI_PORT=8188
 
 RUN_COMFYUI() {
 
-	cd /media/hans/opslag/stacks/DATA/ai-stack/comfyui || exit 1
+	cd "${BASEPATH}/DATA/ai-stack/comfyui" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
@@ -23,7 +23,7 @@ RUN_COMFYUI() {
 		uv run comfy-cli install --nvidia --restore
 	fi
 
-	if [[ ${BACKGROUND} == "true" ]]; then
+	if [[ "${BACKGROUND}" == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --listen 0.0.0.0 --port "${COMFYUI_PORT}"
 	else
@@ -33,14 +33,14 @@ RUN_COMFYUI() {
 }
 RUN_COMFYUIMINI() {
 
-	cd /media/hans/opslag/stacks/DATA/ai-stack/ComfyUIMini || exit 1
-	# ./scripts/install.sh 
+	cd "${BASEPATH}/DATA/ai-stack/ComfyUIMini" || exit 1
+	# ./scripts/install.sh
 	./scripts/start.sh &
 
 	echo "Starting ComfyUI Mini..."
 }
 
-cd /media/hans/opslag/stacks/SCRIPTS || exit 1
+cd "${BASEPATH}/SCRIPTS" || exit 1
 ./start_browser.sh
 
 RUN_COMFYUIMINI

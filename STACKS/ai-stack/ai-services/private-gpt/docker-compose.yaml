@@ -36,7 +36,7 @@ services:
       - HF_TOKEN=${HF_TOKEN}
       - PGPT_EMBED_MODE=ollama
       - PGPT_MODE=ollama
-      - PGPT_OLLAMA_API_BASE=http://192.168.178.63:11434
+      - PGPT_OLLAMA_API_BASE=http://${IP_ADDRESS}:11434
       - PGPT_PROFILES=docker
 
     volumes:
