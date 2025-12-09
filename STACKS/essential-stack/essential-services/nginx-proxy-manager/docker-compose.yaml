@@ -60,19 +60,11 @@ services:
     deploy:
       replicas: 1
 
-    healthcheck:
-      test: CMD /usr/bin/check-health
-      interval: 30s
-      timeout: 10s
-      start_period: 30s
-      retries: 3
-
     # healthcheck:
-    #   test: CMD curl -f http://localhost:${PORT:-80}/health
-    #   interval: 30s
-    #   timeout: 10s
-    #   start_period: 30s
-    #   retries: 3
+    #   test: [CMD, /usr/bin/check-health]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
 
     logging:
       driver: json-file

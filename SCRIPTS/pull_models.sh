@@ -3,6 +3,7 @@ echo "Working directory is set to ${WD}"
 cd "${WD}" || exit
 
 models=(
+	'deepseek-r1:latest'
 	'embeddinggemma:latest'
 	'gemma3:latest'
 	'llama3.2:latest'
