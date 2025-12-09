@@ -20,6 +20,8 @@ export START_BROWSER="true"                      # false, true
 export TWITCH_CLIENT_ID="your_client_id"         # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret" # set twitch client secret
 
+export DOCKER_FILES="/media/rizzo/RAIDSTATION/docker"
+
 export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 cd "${WD}" || exit
