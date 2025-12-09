@@ -5,7 +5,8 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export CUSHYSTUDIO_PORT=8688
 
-export CUSHYSTUDIO_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/CushyStudio"
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export CUSHYSTUDIO_PATH="${STACK_BASEPATH}/DATA/ai-stack/CushyStudio"
 
 function RUN_CUSHYSTUDIO() {
 

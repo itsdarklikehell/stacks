@@ -1176,7 +1176,7 @@ function CLONE_COMFYUI() {
 			uv sync --all-extras
 
 			uv pip install comfy-cli
-			uv run comfy-cli install --nvidia --restore
+			yes | uv run comfy-cli install --nvidia --restore || true
 		fi
 	}
 	function DOCKER_SETUP() {
@@ -1201,7 +1201,7 @@ function CLONE_COMFYUI() {
 			uv sync --all-extras
 
 			uv pip install comfy-cli
-			uv run comfy-cli install --nvidia --restore
+			yes | uv run comfy-cli install --nvidia --restore || true
 
 			echo "ComfyUI virtual environment created and dependencies installed."
 		fi
@@ -1248,7 +1248,7 @@ function CLONE_CUSHYSTUDIO() {
 		# 	uv sync --all-extras
 
 		# 	uv pip install comfy-cli
-		# 	uv run comfy-cli install --nvidia --restore
+		# 	yes | uv run comfy-cli install --nvidia --restore || true
 		# fi
 	}
 	function DOCKER_SETUP() {
@@ -1302,7 +1302,7 @@ function CLONE_COMFYUIMINI() {
 		# 	uv sync --all-extras
 
 		# 	uv pip install comfy-cli
-		# 	uv run comfy-cli install --nvidia --restore
+		# 	yes | uv run comfy-cli install --nvidia --restore || true
 		# fi
 	}
 	function DOCKER_SETUP() {
