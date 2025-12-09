@@ -2,6 +2,7 @@
 
 WD="$(dirname "$(realpath "$0")")" || true
 export WD                                        # set working dir
+export BASEPATH="${WD}"                          # set base path
 export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    # set letta sandbox mount point
 export UV_LINK_MODE=copy                         # set uv link mode
 export OLLAMA="docker"                           # local, docker
@@ -18,6 +19,8 @@ export START_CUSHYSTUDIO="true"                  # false, true
 export START_BROWSER="true"                      # false, true
 export TWITCH_CLIENT_ID="your_client_id"         # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret" # set twitch client secret
+
+export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 cd "${WD}" || exit
 git pull origin main
@@ -163,7 +166,7 @@ PRUNING
 # echo ""
 # CLONE_REPOS # >/dev/null 2>&1
 # echo ""
-7
+
 ## STACKS:
 CREATE_NETWORKS
 CREATE_SECRETS
@@ -208,21 +211,21 @@ echo ""
 PULL_MODELS >/dev/null 2>&1 &
 echo ""
 
-# echo ""
-# START_COMFYUI
-# echo ""
+echo ""
+START_COMFYUI
+echo ""
 
-# echo ""
-# START_CUSHYSTUDIO >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_CUSHYSTUDIO >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_BROWSER >/dev/null 2>&1 &
+echo ""
 
 # echo "Installation complete.."
 

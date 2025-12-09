@@ -7,7 +7,7 @@ export CUSHYSTUDIO_PORT=8688
 
 RUN_CUSHYSTUDIO() {
 
-	cd ${BASEPATH}/DATA/ai-stack/CushyStudio || exit 1
+	cd "${BASEPATH}/DATA/ai-stack/CushyStudio" || exit 1
 
 	./_mac-linux-start.sh
 }

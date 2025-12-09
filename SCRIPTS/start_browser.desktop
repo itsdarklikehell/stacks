@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Exec=gnome-terminal -- start_comfyui.sh
+Exec=gnome-terminal -- start_browser.sh
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name[nl_NL]=start_comfyui.sh
-Name=start_comfyui.sh
+Name[nl_NL]=start_browser.sh
+Name=start_browser.sh
 Comment[nl_NL]=
-Comment=start comfyui
+Comment=start browser

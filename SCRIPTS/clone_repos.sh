@@ -1027,7 +1027,7 @@ function CLONE_SWARMUI() {
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 		chmod +x launch-linux.sh
-		# ./launch-linux.sh --launch_mode none --host 0.0.0.0 >/dev/null 2>&1 &
+		# ./launch-linux.sh --launch_mode none --host ${IP_ADDRESS} >/dev/null 2>&1 &
 
 	}
 	function DOCKER_SETUP() {
