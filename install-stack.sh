@@ -245,9 +245,9 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-echo ""
-START_COMFYUI &
-echo ""
+# echo ""
+# START_COMFYUI # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_CUSHYSTUDIO >/dev/null 2>&1 &
