@@ -148,8 +148,27 @@ function SETUP_AIRI_STACK() {
 	INSTALL_STACK
 }
 
-# Install essential dependencies
-echo ""
+function SETUP_AUTOSTART() {
+	scripts=(
+		start_browser.sh
+		start_comfyui.sh
+		start_cushystudio.sh
+		start_ollmvt.sh
+	)
+	desktop_scripts=(
+		start_browser.desktop
+		start_comfyui.desktop
+		start_ollmvt.desktop
+	)
+	for SCRIPT in "${scripts[@]}"; do
+		ln -s "${SCRIPT}" ~/bin/
+	done
+	for SCRIPT in "${desktop_scripts[@]}"; do
+		ln -s "${SCRIPT}" ~/.config/autostart/
+	done
+}
+
+echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
 INSTALL_DRIVERS
@@ -209,6 +228,10 @@ echo ""
 
 echo ""
 PULL_MODELS >/dev/null 2>&1 &
+echo ""
+
+echo ""
+SETUP_AUTOSTART
 echo ""
 
 echo ""

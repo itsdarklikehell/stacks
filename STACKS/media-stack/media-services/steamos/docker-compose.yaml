@@ -16,18 +16,16 @@ services:
       - NET_ADMIN
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-3018}
       - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
       - DRINODE=/dev/dri/renderD128
-      # - HOST_IP=192.168.100.10
-      # - STARTUP=KDE
-      # - RESOLUTION=1920x1080
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
+      - PGID=${PGID:-1000}
+      - PORT=${PORT:-3018}
+      - PUID=${PUID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - HOST_IP=192.168.100.10
+      # - RESOLUTION=1920x1080
+      # - STARTUP=KDE
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

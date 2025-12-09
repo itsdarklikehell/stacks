@@ -16,18 +16,22 @@ services:
       - homarr
 
     environment:
+      - AGENT_SEARXNG_API_URL=http://${IP_ADDRESS}:8081/search?q=<query>
+      - COLLECTOR_ALLOW_ANY_IP=true
+      - COMMUNITY_HUB_BUNDLE_DOWNLOADS_ENABLED=1
       - EMBEDDING_BASE_PATH=http://${IP_ADDRESS}:11434
       - EMBEDDING_ENGINE=ollama
       - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
       - EMBEDDING_MODEL_PREF=nomic-embed-text:latest
       - JWT_SECRET=2cc18cd7-66e3-48b0-8975-75d4edda8fe5
       - LLM_PROVIDER=ollama
+      - LOCAL_AI_API_KEY=sk-123abc
+      - LOCAL_AI_BASE_PATH=http://${IP_ADDRESS}:8083/v1
+      - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
+      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
       - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
       - OLLAMA_MODEL_PREF=llama3.2:latest
       - OLLAMA_MODEL_TOKEN_LIMIT=4096
-      - PASSWORDMINCHAR=8
-      - COLLECTOR_ALLOW_ANY_IP=true
-      - COMMUNITY_HUB_BUNDLE_DOWNLOADS_ENABLED=1
       - PASSWORDLOWERCASE=1
       - PASSWORDMAXCHAR=250
       - PASSWORDMINCHAR=8
@@ -45,11 +49,6 @@ services:
       - VECTOR_DB=lancedb
       - WHISPER_MODEL_PREF=Xenova/whisper-large
       - WHISPER_PROVIDER=local
-      - AGENT_SEARXNG_API_URL=http://${IP_ADDRESS}:8081/search?q=<query>
-      - LOCAL_AI_API_KEY=sk-123abc
-      - LOCAL_AI_BASE_PATH=http://${IP_ADDRESS}:8083/v1
-      - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
-      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
 
     cap_add:
       - SYS_NICE

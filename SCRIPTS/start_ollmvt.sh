@@ -6,7 +6,7 @@ export UV_LINK_MODE=copy
 RUN_OLLMVTUBER() {
 	# sudo chown -R rizzo:rizzo ${BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber
 
-	cd ${BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber || exit 1
+	cd "${BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
