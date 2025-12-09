@@ -7,15 +7,15 @@ export COMFYUI_PORT=8188
 
 export REPAIR=true
 
-export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
+export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
-export COMFYUI_MODEL_PATH="${COMFY_PATH}/models"
+export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
 
-ln -sf "${COMFYUI_MODEL_PATH}" "${COMFY_PATH}/custom_nodes/models"
+ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/models"
 
 function TRY_REPAIR_COMFYUI() {
 	if [[ "${REPAIR}" == "true" ]]; then
-		for dir in "${COMFY_PATH}"/custom_nodes/*; do
+		for dir in "${COMFYUI_PATH}"/custom_nodes/*; do
 			if [[ -d "${dir}" ]]; then
 				if [[ -f "${dir}/install.py" ]]; then
 					echo ""
@@ -44,7 +44,7 @@ function TRY_REPAIR_COMFYUI() {
 
 function RUN_COMFYUI() {
 
-	cd "${COMFY_PATH}" || exit 1
+	cd "${COMFYUI_PATH}" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
 		source .venv/bin/activate
