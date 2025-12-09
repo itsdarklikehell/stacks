@@ -16,7 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - OLLAMA_BASE_URLS=${OLLAMA_BASE_URLS:-http://${IP_ADDRESS}:11434}
+      - OLLAMA_BASE_URLS=${OLLAMA_BASE_URLS:-http://0.0.0.0:11434}
       - ENABLE_RAG_WEB_SEARCH=True
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
