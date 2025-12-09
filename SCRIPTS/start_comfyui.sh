@@ -5,7 +5,7 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export REPAIR=false
+export REPAIR=true
 
 export COMFY_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
 
@@ -14,7 +14,7 @@ export COMFYUI_MODEL_PATH="${COMFY_PATH}/models"
 ln -sf "${COMFYUI_MODEL_PATH}" "${COMFY_PATH}/custom_nodes/models"
 
 function TRY_REPAIR_COMFYUI() {
-	if [[ ${REPAIR} == "true" ]]; then
+	if [[ "${REPAIR}" == "true" ]]; then
 		for dir in "${COMFY_PATH}"/custom_nodes/*; do
 			if [[ -d "${dir}" ]]; then
 				if [[ -f "${dir}/install.py" ]]; then
@@ -27,8 +27,13 @@ function TRY_REPAIR_COMFYUI() {
 					echo "Reinstalling requirements for custom node: ${dir} using requirements.txt"
 					uv pip install -r "${dir}/requirements.txt"
 					echo ""
+				# elif [[ -f "${dir}/pyproject.toml" ]]; then
+				# 	echo ""
+				# 	echo "Reinstalling package for custom node: ${dir} using pyproject.toml"
+				# 	uv pip install -e "${dir}"
+				# 	echo ""
 				else
-					echo "No install.py or requirements.txt found in ${dir}, skipping."
+					echo "No install.py, requirements.txt, setup.py, or pyproject.toml found in ${dir}. Skipping."
 				fi
 			fi
 		done
