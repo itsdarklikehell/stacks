@@ -32,7 +32,6 @@ function REPAIR_COMFYUI() {
 				fi
 			fi
 		done
-		uv run comfy-cli update all
 	fi
 }
 
@@ -60,6 +59,7 @@ RUN_COMFYUI() {
 	REPAIR_COMFYUI
 	echo ""
 
+	uv run comfy-cli update all
 	if [[ ${BACKGROUND} == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
