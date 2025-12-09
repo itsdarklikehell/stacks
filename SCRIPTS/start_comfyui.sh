@@ -15,26 +15,23 @@ ln -sf "${COMFYUI_MODEL_PATH}" "${COMFY_PATH}/custom_nodes/models"
 
 function REPAIR_COMFYUI() {
 	if [[ ${REPAIR} == "true" ]]; then
-		echo "Repairing ComfyUI installation..."
-		echo ""
-
-		for dir in "${COMFY_PATH}/custom_nodes"/*; do
-			echo "Checking custom node: ${dir}"
-			if [[ -f "${dir}/install.py" ]]; then
-				echo "Reinstalling dependencies for custom node: ${dir}"
-				uv run python "${dir}/install.py" --force
-				echo ""
-			elif [[ -f "${dir}/requirements.txt" ]]; then
-				echo "Reinstalling requirements for custom node: ${dir}"
-				uv pip install -r "${dir}/requirements.txt"
-				echo ""
+		for dir in "${COMFY_PATH}"/custom_nodes/*; do
+			if [[ -d "${dir}" ]]; then
+				if [[ -f "${dir}/install.py" ]]; then
+					echo ""
+					echo "Reinstalling dependencies for custom node: ${dir} using install.py"
+					uv run python "${dir}/install.py" --force
+					echo ""
+				elif [[ -f "${dir}/requirements.txt" ]]; then
+					echo ""
+					echo "Reinstalling requirements for custom node: ${dir} using requirements.txt"
+					uv pip install -r "${dir}/requirements.txt"
+					echo ""
+				else
+					echo "No install.py or requirements.txt found in ${dir}, skipping."
+				fi
 			fi
 		done
-
-		# echo "Installing additional requirements..."
-		# find "${COMFY_PATH}" -type f -name "install.py" -exec uv run python "{}" \;
-		# find "${COMFY_PATH}" -type f -name "requirements.txt" -exec uv pip install -r "{}" \;
-		# echo ""
 		uv run comfy-cli update all
 	fi
 }
@@ -55,6 +52,8 @@ RUN_COMFYUI() {
 
 		uv pip install comfy-cli
 		uv run comfy-cli install --nvidia --restore
+
+		echo "ComfyUI virtual environment created and dependencies installed."
 	fi
 
 	echo ""
