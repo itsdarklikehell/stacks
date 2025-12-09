@@ -154,6 +154,7 @@ function SETUP_AUTOSTART() {
 		start_comfyui.sh
 		start_cushystudio.sh
 		start_ollmvt.sh
+		install-stack.sh
 	)
 	desktop_scripts=(
 		start_browser.desktop
@@ -161,10 +162,17 @@ function SETUP_AUTOSTART() {
 		start_ollmvt.desktop
 	)
 	for SCRIPT in "${scripts[@]}"; do
-		ln -s "${SCRIPT}" ~/bin/
+		echo "linking ${BASEPATH}/SCRIPTS/${SCRIPT} to /home/${USER}/bin/"
+		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
+			ln -s "${BASEPATH}/${SCRIPT}" /home/"${USER}"/bin/
+		else
+			ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/bin/
+		fi
+
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
-		ln -s "${SCRIPT}" ~/.config/autostart/
+		echo "linking ${BASEPATH}/SCRIPTS/${SCRIPT} to /home/${USER}/.config/autostart/"
+		ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
 	done
 }
 
@@ -190,13 +198,13 @@ PRUNING
 CREATE_NETWORKS
 CREATE_SECRETS
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
