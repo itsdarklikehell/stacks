@@ -164,17 +164,16 @@ function SETUP_AUTOSTART() {
 		start_ollmvt.desktop
 	)
 	for SCRIPT in "${scripts[@]}"; do
-		echo "linking ${BASEPATH}/SCRIPTS/${SCRIPT} to /home/${USER}/bin/"
 		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
-			ln -s "${BASEPATH}/${SCRIPT}" /home/"${USER}"/bin/
+			ln -sf "${BASEPATH}/${SCRIPT}" /home/"${USER}"/bin/
 		else
-			ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/bin/
+			ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/bin/
 		fi
 
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
-		ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
-		sudo ln -s "${BASEPATH}/SCRIPTS/${SCRIPT}" /usr/share/applications/
+		ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
+		sudo ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /usr/share/applications/
 	done
 }
 
