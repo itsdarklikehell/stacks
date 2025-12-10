@@ -37,6 +37,8 @@ services:
 
     hostname: ${NAME:-basic-memory-server}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       ai-services:

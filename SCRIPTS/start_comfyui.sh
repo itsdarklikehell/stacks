@@ -11,19 +11,18 @@ export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nod
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/comfyui"
-
 export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
 
-if [[ "$1" == "-r" ]] || [[ "$1" == "--repair" ]] || [[ "$1" == "--reinstall" ]]; then
-	echo "Repair mode enabled."
-	export REPAIR=true
-elif [[ "$1" == "-fr" ]] || [[ "$1" == "--full-repair" ]] || [[ "$1" == "--factory-reset" ]] || [[ "$1" == "--full-reinstal" ]]; then
-	echo "Full repair mode enabled."
-	export REPAIR=true
+if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
+	echo "Install custom nodes enabled."
+	export INSTALL_CUSTOM_NODES=true
+elif [[ "$1" == "-fr" ]] || [[ "$1" == "--full-reinstall" ]] || [[ "$1" == "--factory-reset" ]] || [[ "$1" == "--full-reinstall" ]]; then
+	echo "Full re-install custom nodes enabled."
+	export INSTALL_CUSTOM_NODES=true
 	rm -rf "${COMFYUI_PATH}/.venv"
-elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-repair" ]]; then
-	echo "Skipping repair mode."
-	export REPAIR=false
+elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-reinstall" ]]; then
+	echo "Skipping reinstall custom nodes."
+	export INSTALL_CUSTOM_NODES=false
 fi
 
 echo "Cloning comfyui"
@@ -60,12 +59,17 @@ function INSTALL_CUSTOM_NODES() {
 			echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 		fi
 	}
-	if [[ ${REPAIR} == "true" ]]; then
-		echo "Repairing ComfyUI custom nodes..."
+	if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
+		echo "Installing ComfyUI custom nodes..."
 		ESSENTIAL
-		# EXTRAS
 	else
-		echo "Skipping ComfyUI custom node repair."
+		echo "Skipping ComfyUI custom node install."
+	fi
+	if [[ ${INSTALL_EXTRA_NODES} == "true" ]]; then
+		echo "Installing ComfyUI extra nodes..."
+		EXTRAS
+	else
+		echo "Skipping ComfyUI extra node install."
 	fi
 	if [[ ${UPDATE} == "true" ]]; then
 		echo "Updating all ComfyUI custom nodes..."
@@ -100,6 +104,7 @@ function DOCKER_SETUP() {
 	# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 	# docker build -t whisperx .
 }
+
 function RUN_COMFYUI() {
 
 	cd "${COMFYUI_PATH}" || exit 1
@@ -132,7 +137,8 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-REPAIR=true
+INSTALL_DEFAULT_NODES=false
+INSTALL_EXTRA_NODES=false
 UPDATE=false
 
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &

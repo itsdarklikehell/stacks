@@ -28,6 +28,8 @@ services:
 
     hostname: ${NAME:-chatbot-ollama}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       ai-services:
