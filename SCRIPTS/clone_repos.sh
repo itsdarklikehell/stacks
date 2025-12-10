@@ -14,16 +14,20 @@ echo "Secrets directory is set to ${SECRETS_DIR}"
 
 cd "${WD}" || exit 1
 
-mkdir -p "../DATA/ai-stack"
-mkdir -p "../DATA/ai-models"
-mkdir -p "../DATA/ai-outputs"
-mkdir -p "../DATA/jaison-stack"
-mkdir -p "../DATA/openllm-vtuber-stack"
-mkdir -p "../DATA/media-stack"
-mkdir -p "../DATA/essential-stack"
-mkdir -p "../DATA/riko-stack"
-mkdir -p "../DATA/aiwaifu-stack"
-mkdir -p "../DATA/airi-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+
+mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/jaison-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/media-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/riko-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/aiwaifu-stack"
+mkdir -p "${STACK_BASEPATH}/DATA/airi-stack"
 
 ./install_uv.sh
 ./install_toolhive.sh
@@ -43,7 +47,7 @@ EOF
 
 function CLONE_AIRI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/airi-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 	function LOCAL_SETUP() {
 
@@ -53,7 +57,7 @@ function CLONE_AIRI() {
 
 		function INSTALL_AIRI() {
 			cd "${WD}" || exit 1
-			cd "../DATA/airi-stack" || exit 1
+			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning airi"
 			echo ""
@@ -64,7 +68,7 @@ function CLONE_AIRI() {
 
 				function TELEGRAMBOT() {
 					cd "${WD}" || exit 1
-					cd "../DATA/airi-stack/airi/services/telegram-bot" || exit 1
+					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/telegram-bot" || exit 1
 					cp .env .env.local
 
 					# docker compose -p airi-telegram-bot-db up -d >/dev/null 2>&1
@@ -80,7 +84,7 @@ function CLONE_AIRI() {
 				}
 				function DISCORDBOT() {
 					cd "${WD}" || exit 1
-					cd "../DATA/airi-stack/airi/services/discord-bot" || exit 1
+					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/discord-bot" || exit 1
 					cp .env .env.local
 
 					npx npm-check-updates -u >/dev/null 2>&1 &
@@ -90,7 +94,7 @@ function CLONE_AIRI() {
 				}
 				function MINECRAFTBOT() {
 					cd "${WD}" || exit 1
-					cd "../DATA/airi-stack/airi/services/minecraft" || exit 1
+					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/minecraft" || exit 1
 
 					cp .env .env.local
 
@@ -131,7 +135,7 @@ function CLONE_AIRI() {
 			nr dev:docs >/dev/null 2>&1 &
 
 			cd "${WD}" || exit 1
-			cd "../DATA/airi-stack/airi" || exit 1
+			cd "${STACK_BASEPATH}/DATA/airi-stack/airi" || exit 1
 			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
 			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
 			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
@@ -139,7 +143,7 @@ function CLONE_AIRI() {
 
 		function INSTALL_XSAI() {
 			cd "${WD}" || exit 1
-			cd "../DATA/airi-stack" || exit 1
+			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai"
 			echo ""
@@ -154,7 +158,7 @@ function CLONE_AIRI() {
 
 		function INSTALL_XSAI_TRANSFORMERS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/airi-stack" || exit 1
+			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai-transformers"
 			echo ""
@@ -169,7 +173,7 @@ function CLONE_AIRI() {
 
 		function INSTALL_AIRI_CHAT() {
 			cd "${WD}" || exit 1
-			cd "../DATA/airi-stack" || exit 1
+			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning airi_chat"
 			echo ""
@@ -208,7 +212,7 @@ function CLONE_AIRI() {
 }
 function CLONE_ANYTHINGLLM() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning anything-llm"
 	echo ""
@@ -239,7 +243,7 @@ function CLONE_ANYTHINGLLM() {
 }
 function CLONE_AIWAIFU() {
 	cd "${WD}" || exit 1
-	cd "../DATA/aiwaifu-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/aiwaifu-stack" || exit 1
 
 	echo "Cloning AIwaifu"
 	echo ""
@@ -263,7 +267,7 @@ function CLONE_AIWAIFU() {
 		# python setup.py build_ext --inplace
 
 		cd "${WD}" || exit 1
-		cd "../DATA/aiwaifu-stack/aiwaifu" || exit 1
+		cd "${STACK_BASEPATH}/DATA/aiwaifu-stack/aiwaifu" || exit 1
 
 		# this run on 0.0.0.0 8267 by default
 		python ./api_inference_server.py
@@ -286,7 +290,7 @@ function CLONE_AIWAIFU() {
 }
 function CLONE_CHROMA() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning chroma"
 	echo ""
@@ -313,7 +317,7 @@ function CLONE_CHROMA() {
 }
 function CLONE_CLICKHOUSE() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning clickhouse"
 	echo ""
@@ -356,7 +360,7 @@ function CLONE_CLICKHOUSE() {
 }
 function CLONE_JAISON() {
 	cd "${WD}" || exit 1
-	cd "../DATA/jaison-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/jaison-stack" || exit 1
 
 	echo "Cloning jaison-core"
 	echo ""
@@ -402,7 +406,7 @@ function CLONE_JAISON() {
 }
 function CLONE_LETTA() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning Letta"
 	echo ""
@@ -433,7 +437,7 @@ function CLONE_LETTA() {
 }
 function CLONE_LIBRECHAT() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning librechat"
 	echo ""
@@ -452,7 +456,7 @@ function CLONE_LIBRECHAT() {
 }
 function CLONE_LOCALAI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAI"
 	echo ""
@@ -483,7 +487,7 @@ function CLONE_LOCALAI() {
 }
 function CLONE_LLMSTACK() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LLMStack"
 	echo ""
@@ -505,7 +509,7 @@ function CLONE_LLMSTACK() {
 		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
 		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
 
-		# cd ../../
+		# cd ${STACK_BASEPATH}/${STACK_BASEPATH}/
 		# make api
 		# make api-image
 		# make app
@@ -517,7 +521,7 @@ function CLONE_LLMSTACK() {
 }
 function CLONE_LOCALAGI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAGI"
 	echo ""
@@ -547,7 +551,7 @@ function CLONE_LOCALAGI() {
 }
 function CLONE_BIGAGI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning BIG-AGI"
 	echo ""
@@ -578,7 +582,7 @@ function CLONE_BIGAGI() {
 
 function CLONE_MIDORIAISUBSYSTEM() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning subsystem-manager"
 	echo ""
@@ -608,7 +612,7 @@ function CLONE_MIDORIAISUBSYSTEM() {
 }
 function CLONE_LOCALRECALL() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalRecall"
 	echo ""
@@ -638,7 +642,7 @@ function CLONE_LOCALRECALL() {
 }
 function CLONE_MELOTTS() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning MeloTTS"
 	echo ""
@@ -675,7 +679,7 @@ function CLONE_MELOTTS() {
 }
 function CLONE_OLLMVT() {
 	cd "${WD}" || exit 1
-	cd "../DATA/openllm-vtuber-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
 	echo "Cloning Open-LLM-VTuber"
 	echo ""
@@ -715,7 +719,7 @@ function CLONE_OLLMVT() {
 
 		function CLONE_L2D_MODELS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
 			git clone --recursive https://github.com/ezshine/AwesomeLive2D ezshine-AwesomeLive2D
@@ -727,7 +731,7 @@ function CLONE_OLLMVT() {
 		}
 		function CLONE_VOICE_MODELS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
 			# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
@@ -773,7 +777,7 @@ function CLONE_OLLMVT() {
 		}
 		function CLONE_TTS_BACKENDS() {
 			cd "${WD}" || exit 1
-			cd "../DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
 			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 			# # If you failed to clone the submodule due to network failures, please run the following command until success
 			cd CosyVoice || exit 1
@@ -819,7 +823,7 @@ function CLONE_OLLMVT() {
 }
 function CLONE_OOGABOOGA() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning text-generation-webui-docker"
 	echo ""
@@ -849,7 +853,7 @@ function CLONE_OOGABOOGA() {
 }
 function CLONE_PRIVATEGPT() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning privateGPT"
 	echo ""
@@ -879,7 +883,7 @@ function CLONE_PRIVATEGPT() {
 }
 function CLONE_PROMETHEUS() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning prometheus"
 	echo ""
@@ -911,7 +915,7 @@ function CLONE_PROMETHEUS() {
 }
 function CLONE_RIKOPROJECT() {
 	cd "${WD}" || exit 1
-	cd "../DATA/riko-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/riko-stack" || exit 1
 
 	echo "Cloning riko-project"
 	echo ""
@@ -956,7 +960,7 @@ function CLONE_RIKOPROJECT() {
 }
 function CLONE_SIGNOZ() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning signoz"
 	echo ""
@@ -986,7 +990,7 @@ function CLONE_SIGNOZ() {
 }
 function CLONE_SWARMUI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning SwarmUI"
 	echo ""
@@ -1020,7 +1024,7 @@ function CLONE_SWARMUI() {
 }
 function CLONE_WHISPER_WEBUI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning Whisper-WebUI"
 	echo ""
@@ -1038,7 +1042,7 @@ function CLONE_WHISPER_WEBUI() {
 		# uv pip install -r requirements.txt
 	}
 	function DOCKER_SETUP() {
-		cp -f "../../../STACKS/ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
+		cp -f "${STACK_BASEPATH}/${STACK_BASEPATH}/${STACK_BASEPATH}/STACKS/ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
 
 		# docker build -t whisper-webui .
 	}
@@ -1048,7 +1052,7 @@ function CLONE_WHISPER_WEBUI() {
 }
 function CLONE_WHISPERX() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning whisperx"
 	echo ""
@@ -1079,7 +1083,7 @@ function CLONE_WHISPERX() {
 
 function CLONE_COMFYUI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	export UV_LINK_MODE=copy
 	export BACKGROUND=true
@@ -1111,13 +1115,16 @@ function CLONE_COMFYUI() {
 
 	mv "${COMFYUI_PATH}/models/*" "${STACK_BASEPATH}/DATA/ai-models"
 	mv "${COMFYUI_PATH}/output/*" "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+	mv "${COMFYUI_PATH}/input/*" "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 
 	rm -rf "${COMFYUI_PATH}/models"
 	rm -rf "${COMFYUI_PATH}/output"
+	rm -rf "${COMFYUI_PATH}/input"
 
 	ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
 
 	ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output" "${COMFYUI_PATH}/output"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input" "${COMFYUI_PATH}/input"
 
 	ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
 
@@ -1236,7 +1243,7 @@ function CLONE_COMFYUI() {
 
 function CLONE_CUSHYSTUDIO() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning cushy-studio"
 	echo ""
@@ -1280,7 +1287,7 @@ function CLONE_CUSHYSTUDIO() {
 
 function CLONE_COMFYUIMINI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning ComfyUIMini"
 	echo ""
@@ -1334,7 +1341,7 @@ function CLONE_COMFYUIMINI() {
 
 function CLONE_FORGE() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning forge"
 	echo ""
@@ -1364,7 +1371,7 @@ function CLONE_FORGE() {
 }
 function CLONE_INVOKEAI() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning invoke-ai"
 	echo ""
@@ -1395,7 +1402,7 @@ function CLONE_INVOKEAI() {
 
 function CLONE_MAKESENSE() {
 	cd "${WD}" || exit 1
-	cd "../DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning make-sense"
 	echo ""
@@ -1429,7 +1436,7 @@ function CLONE_MAKESENSE() {
 
 function CLONE_VIEWTUBE() {
 	cd "${WD}" || exit 1
-	cd "../DATA/media-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/media-stack" || exit 1
 
 	echo "Cloning viewtube"
 	echo ""

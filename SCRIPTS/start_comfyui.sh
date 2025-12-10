@@ -12,6 +12,12 @@ export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
+mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+
 if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	echo "Install custom nodes enabled."
 	export INSTALL_CUSTOM_NODES=true
@@ -31,13 +37,16 @@ cd "${COMFYUI_PATH}" || exit 1
 
 mv "${COMFYUI_PATH}/models/*" "${STACK_BASEPATH}/DATA/ai-models"
 mv "${COMFYUI_PATH}/output/*" "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+mv "${COMFYUI_PATH}/input/*" "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 
 rm -rf "${COMFYUI_PATH}/models"
 rm -rf "${COMFYUI_PATH}/output"
+rm -rf "${COMFYUI_PATH}/input"
 
 ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
 
 ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output" "${COMFYUI_PATH}/output"
+ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input" "${COMFYUI_PATH}/input"
 
 ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
 
@@ -146,8 +155,8 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-INSTALL_DEFAULT_NODES=false
-INSTALL_EXTRA_NODES=false
+INSTALL_DEFAULT_NODES=true
+INSTALL_EXTRA_NODES=true
 UPDATE=true
 
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
