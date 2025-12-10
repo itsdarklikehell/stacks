@@ -5,8 +5,6 @@ services:
     container_name: ${NAME:-librechat}
     restart: ${RESTART:-unless-stopped}
 
-    user: ${PUID:-1000}:${PGID:-1000}
-
     extra_hosts:
       - host.docker.internal:host-gateway
 
@@ -51,6 +49,8 @@ services:
       - ../../../DATA/ai-stack/comfyui/output:/app/client/public/images/output
 
     hostname: ${NAME:-librechat}
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -110,18 +110,20 @@ services:
       - homarr-app=true
       - homarr
 
-    user: ${PGID:-1000}:${PUID:-1000}
-
-    networks:
-      host:
-      ai-services:
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_mongo_data:/data/db
+
+    hostname: ${NAME:-librechat-mongodb}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      ai-services:
 
     command: mongod --noauth
 
@@ -138,8 +140,6 @@ services:
     container_name: librechat-meilisearch
     image: getmeili/meilisearch:v1.12.3
     restart: always
-
-    user: ${PGID:-1000}:${PUID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -160,6 +160,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - librechat_meili_data:/meili_data
+
+    hostname: ${NAME:-librechat-meilisearch}
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     env_file:
       - ./librechat/.env
@@ -202,6 +206,10 @@ services:
     env_file:
       - ./librechat/.env
 
+    hostname: ${NAME:-librechat-vectordb}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       ai-services:
@@ -239,6 +247,10 @@ services:
 
     env_file:
       - ./librechat/.env
+
+    hostname: ${NAME:-librechat-rag-api}
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
