@@ -284,6 +284,30 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/swarmui/swarmui_extensions
+  swarmui_models:
+    name: swarmui_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/swarmui/swarmui_models
+  swarmui_output:
+    name: swarmui_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/swarmui/swarmui_output
+  swarmui_workflows:
+    name: swarmui_workflows
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/swarmui/swarmui_workflows
 
 secrets:
   GF_SECURITY_ADMIN_USER:

@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
 	anything-llm
-	automatic1111
+	# automatic1111
 	big-agi
 	comfyui
 	forge
@@ -20,7 +20,7 @@ COMPOSE_FILES=(
 	ollama
 	open-webui
 	searxng
-	stable-diffusion-webui
+	# stable-diffusion-webui
 	swarmui
 )
 

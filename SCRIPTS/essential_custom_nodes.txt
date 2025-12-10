@@ -1,6 +1,6 @@
 ComfyUI-Manager
 
-# Favorite nodes
+### Favorite nodes
 comfyui-impact-subpack
 comfy-mtb
 comfyui-advanced-controlnet
@@ -20,7 +20,7 @@ comfyui-impact-pack
 comfyui-animatediff-evolved
 comfyui_controlnet_aux
 comfyui_ipadapter_plus
-# A1111 nodes
+### A1111 nodes
 sd-webui-color-enhance
 nui-suite
 comfyui-unprompted
@@ -54,7 +54,7 @@ ComfyUI-TiledDiffusion
 comfyui-inspire-pack
 comfyui-wd14-tagger
 comfyui_ultimatesdupscale
-# More A1111 nodes
+### More A1111 nodes
 Comfyui-XYZ-stitch
 comfyui_otacoo
 format-lora-stack
