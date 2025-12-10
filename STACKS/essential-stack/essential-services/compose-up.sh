@@ -4,27 +4,15 @@ set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
-	# nextcloud
 	autoheal
 	autopulse
-	# beszel
-	# code-server
 	dashy
-	# docker-proxy
-	# dockge
 	homarr
 	it-tools
-	# traefik
-	# ouroboros
-	# kubepi
 	nginx-proxy-manager
-	# pairdrop
-	# pterodactyl
-	# portainer
-	# portracker
-	# uptime-kuma
+	portainer
+	portracker
 	watchtower
-	# wolf
 )
 
 function CREATE_FOLDERS() {
@@ -39,37 +27,6 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-	if [[ ${SERVICE_NAME} == "beszel" ]]; then
-		FOLDERS=(
-			"data"
-			"agent_data"
-			"socket"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "traefik" ]]; then
-		FOLDERS=(
-			"certs"
-			"dynamic"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "code-server" ]]; then
-		FOLDERS=(
-			"config"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
-		FOLDERS=(
-			"database"
-			"var"
-			"cache"
-			"nginx"
-			"certs"
-			"logs"
-		)
-	fi
 
 	if [[ ${SERVICE_NAME} == "dashy" ]]; then
 		FOLDERS=(
@@ -83,23 +40,15 @@ function SETUP_FOLDERS() {
 		fi
 	fi
 
-	if [[ ${SERVICE_NAME} == "dockge" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"appdata"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
+	if [[ ${SERVICE_NAME} == "portainer" ]]; then
 		FOLDERS=(
-			"config"
 			"data"
-			"aio_mastercontainer"
 		)
 	fi
 
@@ -110,29 +59,12 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "portainer" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "portracker" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "uptime-kuma" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "wolf" ]]; then
-		FOLDERS=(
-			"etc"
-		)
-	fi
 	CREATE_FOLDERS
 }
 

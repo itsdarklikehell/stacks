@@ -573,36 +573,7 @@ function CLONE_BIGAGI() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_NEXTCLOUD() {
-	cd "${WD}" || exit 1
-	cd "../DATA/essential-stack" || exit 1
 
-	echo "Cloning nextcloud"
-	echo ""
-	git clone --recursive https://github.com/nextcloud/all-in-one.git nextcloud
-	cd nextcloud || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-nextcloud-uv" CustomDockerfile-nextcloud-uv
-		# cp -f "${WD}/CustomDockerfile-nextcloud-conda" CustomDockerfile-nextcloud-conda
-		# cp -f "${WD}/CustomDockerfile-nextcloud-venv" CustomDockerfile-text-nextcloud-venv
-		# docker build -t nextcloud .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_MIDORIAISUBSYSTEM() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
@@ -1496,7 +1467,6 @@ CLONE_LOCALRECALL
 CLONE_MAKESENSE
 CLONE_MELOTTS
 CLONE_MIDORIAISUBSYSTEM
-CLONE_NEXTCLOUD
 CLONE_OLLMVT
 CLONE_OOGABOOGA
 CLONE_PRIVATEGPT
