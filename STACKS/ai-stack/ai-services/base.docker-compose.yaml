@@ -56,6 +56,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs/automatic1111_output
+  automatic1111_models:
+    name: automatic1111_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
 
   anything-llm_storage:
     name: anything-llm_storage
