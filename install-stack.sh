@@ -1,33 +1,33 @@
 #!/bin/bash
 
 WD="$(dirname "$(realpath "$0")")" || true
-export WD                                        # set working dir
-export BASEPATH="${WD}"                          # set base path
-export LETTA_SANDBOX_MOUNT_PATH="${WD}/letta"    # set letta sandbox mount point
-export UV_LINK_MODE=copy                         # set uv link mode
-export OLLAMA="docker"                           # local, docker
-export SECRETS_DIR="${WD}/SECRETS"               # folder that store secrets
-export PERM_DATA="${WD}/DATA"                    # folders that store stack data
-export CONFIGS_DIR="${WD}/STACKS"                # folders that store stack configs
-export CLEANUP="false"                           # false, true
-export PRUNE="false"                             # false, true/normal, all
-export BUILDING="force_rebuild"                  # false, true, force_rebuild
-export PULL_MODELS="true"                        # false, true
-export START_OLLMVT="true"                       # false, true
-export START_COMFYUI="true"                      # false, true
-export START_CUSHYSTUDIO="true"                  # false, true
-export START_BROWSER="true"                      # false, true
-export TWITCH_CLIENT_ID="your_client_id"         # set twitch client id
-export TWITCH_CLIENT_SECRET="your_client_secret" # set twitch client secret
+export WD                                                                       # set working dir
+export STACK_BASEPATH="${WD}"                                                   # set base path
+export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
+export UV_LINK_MODE=copy                                                        # set uv link mode
+export OLLAMA="docker"                                                          # local, docker
+export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
+export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
+export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
+export CLEANUP="false"                                                          # false, true
+export PRUNE="false"                                                            # false, true/normal, all
+export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
+export PULL_MODELS="true"                                                       # false, true
+export START_OLLMVT="true"                                                      # false, true
+export START_COMFYUI="true"                                                     # false, true
+export START_CUSHYSTUDIO="true"                                                 # false, true
+export START_BROWSER="true"                                                     # false, true
+export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
+export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 
 export DOCKER_FILES="/media/rizzo/RAIDSTATION/docker"
 
 export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
-cd "${WD}" || exit
+cd "${STACK_BASEPATH}" || exit
 git pull origin main
-chmod +x "${WD}/install-stack.sh"
-chmod +x "${WD}/SCRIPTS/*"
+chmod +x "${BASEPATH}/install-stack.sh"
+chmod +x "${BASEPATH}/SCRIPTS/*"
 
 function PULL_MODELS() {
 	if [[ ${PULL_MODELS} == "true" ]]; then
@@ -102,7 +102,7 @@ function INSTALL_STACK() {
 	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
 
 	echo "Building is set to: ${BUILDING}"
-	echo "Working directory is set to ${WD}"
+	echo "Working directory is set to ${STACK_BASEPATH}"
 	echo "Configs directory is set to ${CONFIGS_DIR}"
 	echo "Data directory is set to ${PERM_DATA}"
 	echo "Secrets directory is set to ${SECRETS_DIR}"
@@ -197,11 +197,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ## STACKS:
 CREATE_NETWORKS
@@ -269,4 +269,4 @@ echo ""
 
 echo "Installation complete.."
 
-# sudo chown -R "${USER}":"${USER}" "${WD}"
+# sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}"

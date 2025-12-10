@@ -117,9 +117,9 @@ function LOCAL_SETUP() {
 }
 function DOCKER_SETUP() {
 	echo "Using Docker setup"
-	# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-	# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-	# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+	# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+	# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+	# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 	# docker build -t whisperx .
 }
 

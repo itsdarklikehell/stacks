@@ -1,22 +1,24 @@
 #!/bin/bash
+
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+
 echo "Cleanup script started."
 echo "CLEANUP is set to: ${CLEANUP}"
 
-echo "Working directory is set to ${WD}"
-cd "${WD}" || exit
+cd "${STACK_BASEPATH}" || exit
 
 function CLEANUP_DATA() {
 	FOLDERS=(
-		"${PERM_DATA}/airi-stack"
-		"${PERM_DATA}/ai-stack"
-		"${PERM_DATA}/aiwaifu-stack"
-		"${PERM_DATA}/arr-stack"
-		"${PERM_DATA}/essential-stack"
-		"${PERM_DATA}/jaison-stack"
-		"${PERM_DATA}/media-stack"
-		"${PERM_DATA}/openllm-vtuber-stack"
-		"${PERM_DATA}/riko-stack"
-		"${PERM_DATA}"
+		"${STACK_BASEPATH}/DATA/airi-stack"
+		"${STACK_BASEPATH}/DATA/ai-stack"
+		"${STACK_BASEPATH}/DATA/aiwaifu-stack"
+		"${STACK_BASEPATH}/DATA/arr-stack"
+		"${STACK_BASEPATH}/DATA/essential-stack"
+		"${STACK_BASEPATH}/DATA/jaison-stack"
+		"${STACK_BASEPATH}/DATA/media-stack"
+		"${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+		"${STACK_BASEPATH}/DATA/riko-stack"
+		"${STACK_BASEPATH}/DATA"
 	)
 	for folder in "${FOLDERS[@]}"; do
 		echo ""
