@@ -1,18 +1,18 @@
 #!/bin/bash
 echo "Clone repos script started."
-WD="$(dirname "$(realpath "$0")")" || true
-export WD
+SCRIPT_DIR="$(dirname "$(realpath "$0")")" || true
+export SCRIPT_DIR
 
 export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 export UV_LINK_MODE=copy
 
 echo "Building is set to: ${BUILDING}"
-echo "Working directory is set to ${WD}"
+echo "Working directory is set to ${SCRIPT_DIR}"
 echo "Configs directory is set to ${CONFIGS_DIR}"
 echo "Data directory is set to ${PERM_DATA}"
 echo "Secrets directory is set to ${SECRETS_DIR}"
 
-cd "${WD}" || exit 1
+cd "${SCRIPT_DIR}" || exit 1
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
@@ -55,7 +55,6 @@ function CLONE_AIRI() {
 		fi
 
 		function INSTALL_AIRI() {
-			cd "${WD}" || exit 1
 			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning airi"
@@ -66,7 +65,6 @@ function CLONE_AIRI() {
 			function INSTALL_AIRI_PLUGINS() {
 
 				function TELEGRAMBOT() {
-					cd "${WD}" || exit 1
 					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/telegram-bot" || exit 1
 					cp .env .env.local
 
@@ -82,7 +80,6 @@ function CLONE_AIRI() {
 					nr -F @proj-airi/telegram-bot dev >/dev/null 2>&1
 				}
 				function DISCORDBOT() {
-					cd "${WD}" || exit 1
 					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/discord-bot" || exit 1
 					cp .env .env.local
 
@@ -92,7 +89,6 @@ function CLONE_AIRI() {
 					nr -F @proj-airi/discord-bot dev >/dev/null 2>&1 &
 				}
 				function MINECRAFTBOT() {
-					cd "${WD}" || exit 1
 					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/minecraft" || exit 1
 
 					cp .env .env.local
@@ -133,15 +129,13 @@ function CLONE_AIRI() {
 			# pnpm dev:docs # >/dev/null 2>&1 &
 			nr dev:docs >/dev/null 2>&1 &
 
-			cd "${WD}" || exit 1
 			cd "${STACK_BASEPATH}/DATA/airi-stack/airi" || exit 1
-			cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
-			cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
-			cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+			cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+			cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+			cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
 		}
 
 		function INSTALL_XSAI() {
-			cd "${WD}" || exit 1
 			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai"
@@ -156,7 +150,6 @@ function CLONE_AIRI() {
 		}
 
 		function INSTALL_XSAI_TRANSFORMERS() {
-			cd "${WD}" || exit 1
 			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning xsai-transformers"
@@ -171,7 +164,6 @@ function CLONE_AIRI() {
 		}
 
 		function INSTALL_AIRI_CHAT() {
-			cd "${WD}" || exit 1
 			cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 			echo "Cloning airi_chat"
@@ -200,9 +192,9 @@ function CLONE_AIRI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
-		cp -f "${WD}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
-		cp -f "${WD}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-uv" CustomDockerfile-airi-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-conda" CustomDockerfile-airi-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-airi-venv" CustomDockerfile-airi-venv
 		# docker build -t airi .
 	}
 
@@ -230,9 +222,9 @@ function CLONE_ANYTHINGLLM() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
-		# cp -f "${WD}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
-		# cp -f "${WD}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
 		# docker build -t anything-llm .
 	}
 
@@ -259,11 +251,9 @@ function CLONE_AIWAIFU() {
 		# poetry install
 		# poetry env activate
 
-		# cd "${WD}" || exit 1
 		# cd "${DATA_DIR}/aiwaifu-stack/aiwaifu/AIVoifu/voice_conversion/Sovits/monotonic_align" || exit 1
 		# python setup.py build_ext --inplace
 
-		cd "${WD}" || exit 1
 		cd "${STACK_BASEPATH}/DATA/aiwaifu-stack/aiwaifu" || exit 1
 
 		# this run on 0.0.0.0 8267 by default
@@ -276,9 +266,9 @@ function CLONE_AIWAIFU() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
-		cp -f "${WD}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
-		cp -f "${WD}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-aiwaifu-uv" CustomDockerfile-aiwaifu-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-aiwaifu-conda" CustomDockerfile-aiwaifu-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-aiwaifu-venv" CustomDockerfile-aiwaifu-venv
 		# docker build -t aiwaifu .
 	}
 
@@ -302,9 +292,9 @@ function CLONE_CHROMA() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		# cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		# cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
 		# docker build -t chroma .
 	}
 
@@ -343,9 +333,9 @@ function CLONE_CLICKHOUSE() {
 		fi
 		chmod +x script.sh
 		./script.sh
-		# cp -f "${WD}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		# cp -f "${WD}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		# cp -f "${WD}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
 		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
 		# docker build -t chroma .
 	}
@@ -389,9 +379,9 @@ function CLONE_JAISON() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
-		cp -f "${WD}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
-		cp -f "${WD}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-jaison-core-uv" CustomDockerfile-jaison-core-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-jaison-core-conda" CustomDockerfile-jaison-core-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-jaison-core-venv" CustomDockerfile-jaison-core-venv
 		# docker build -t jaison-core . --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 	}
 
@@ -418,9 +408,9 @@ function CLONE_LETTA() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
-		# cp -f "${WD}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
-		# cp -f "${WD}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
 
 		# docker build -t letta .
 	}
@@ -467,9 +457,9 @@ function CLONE_LOCALAI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
-		# cp -f "${WD}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
-		# cp -f "${WD}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
 		# docker build -t localai .
 	}
 
@@ -495,9 +485,9 @@ function CLONE_LLMSTACK() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
-		# cp -f "${WD}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
-		# cp -f "${WD}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
 
 		# cd ${STACK_BASEPATH}/${STACK_BASEPATH}/
 		# make api
@@ -529,9 +519,9 @@ function CLONE_LOCALAGI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
-		# cp -f "${WD}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
-		# cp -f "${WD}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
 		# docker build -t localagi .
 	}
 
@@ -558,9 +548,9 @@ function CLONE_BIGAGI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
-		# cp -f "${WD}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
-		# cp -f "${WD}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
 		# docker build -t big-agi .
 	}
 
@@ -588,9 +578,9 @@ function CLONE_MIDORIAISUBSYSTEM() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
-		# cp -f "${WD}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
-		# cp -f "${WD}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
 		# docker build -t subsystem-manager .
 	}
 
@@ -617,9 +607,9 @@ function CLONE_LOCALRECALL() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
-		# cp -f "${WD}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
-		# cp -f "${WD}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
 		# docker build -t localrecall .
 	}
 
@@ -653,9 +643,9 @@ function CLONE_MELOTTS() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
-		# cp -f "${WD}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
-		# cp -f "${WD}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
 		# docker build -t melotts .
 	}
 
@@ -702,7 +692,7 @@ function CLONE_OLLMVT() {
 		fi
 
 		function CLONE_L2D_MODELS() {
-			cd "${WD}" || exit 1
+
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
@@ -714,7 +704,7 @@ function CLONE_OLLMVT() {
 			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d andatoshiki-toshiki-live2d
 		}
 		function CLONE_VOICE_MODELS() {
-			cd "${WD}" || exit 1
+
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
@@ -760,7 +750,7 @@ function CLONE_OLLMVT() {
 			fi
 		}
 		function CLONE_TTS_BACKENDS() {
-			cd "${WD}" || exit 1
+
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
 			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 			# # If you failed to clone the submodule due to network failures, please run the following command until success
@@ -794,9 +784,9 @@ function CLONE_OLLMVT() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
-		cp -f "${WD}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
-		cp -f "${WD}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 
 		# docker build -t open-llm-vtuber .
 		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
@@ -825,9 +815,9 @@ function CLONE_OOGABOOGA() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
-		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
-		# cp -f "${WD}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
 		# docker build -t text-generation-webui-docker .
 	}
 
@@ -854,9 +844,9 @@ function CLONE_PRIVATEGPT() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
-		# cp -f "${WD}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
-		# cp -f "${WD}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
 		# docker build -t private-gpt .
 	}
 
@@ -885,9 +875,9 @@ function CLONE_PROMETHEUS() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
-		# cp -f "${WD}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
-		# cp -f "${WD}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
 		# docker build -t prometheus .
 	}
 
@@ -903,10 +893,10 @@ function CLONE_RIKOPROJECT() {
 	cd riko-project || exit
 
 	function LOCAL_SETUP() {
-		cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
-		cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
-		cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
-		cp -f "${WD}/install_reqs-riko.sh" install_reqs.sh
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
+		cp -f "${SCRIPT_DIR}/install_reqs-riko.sh" install_reqs.sh
 
 		# sed -i "s/python_mecab_ko; sys_platform != 'win32'//" requirements.txt
 		# sed -i "s/transformers>=4.43/transformers>=4.53.0/" requirements.txt
@@ -928,10 +918,10 @@ function CLONE_RIKOPROJECT() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		cp -f "${WD}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
-		cp -f "${WD}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
-		cp -f "${WD}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
-		cp -f "${WD}/install_reqs-riko.sh" install_reqs.sh
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-uv" CustomDockerfile-riko-project-uv
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-conda" CustomDockerfile-riko-project-conda
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-riko-project-venv" CustomDockerfile-riko-project-venv
+		cp -f "${SCRIPT_DIR}/install_reqs-riko.sh" install_reqs.sh
 		# docker build -t riko-project .
 	}
 
@@ -958,9 +948,9 @@ function CLONE_SIGNOZ() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-signoz-uv" CustomDockerfile-signoz-uv
-		# cp -f "${WD}/CustomDockerfile-signoz-conda" CustomDockerfile-signoz-conda
-		# cp -f "${WD}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-uv" CustomDockerfile-signoz-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-conda" CustomDockerfile-signoz-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
 		# docker build -t signoz .
 	}
 
@@ -987,12 +977,12 @@ function CLONE_SWARMUI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
-		# cp -f "${WD}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
-		# cp -f "${WD}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
 
-		cp -f "${WD}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
-		cp -f "${WD}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
+		cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
+		cp -f "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 		# docker build -t swarmui .
 		./launchtools/custom-launch-docker.sh
 	}
@@ -1047,9 +1037,9 @@ function CLONE_WHISPERX() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1170,9 +1160,9 @@ function CLONE_COMFYUI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1242,9 +1232,9 @@ function CLONE_CUSHYSTUDIO() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1295,9 +1285,9 @@ function CLONE_COMFYUIMINI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1331,9 +1321,9 @@ function CLONE_FORGE() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1360,9 +1350,9 @@ function CLONE_INVOKEAI() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${WD}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${WD}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 	}
 
@@ -1423,9 +1413,9 @@ function CLONE_VIEWTUBE() {
 	}
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${WD}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
-		# cp -f "${WD}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
-		# cp -f "${WD}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
 		# docker build -t viewtube .
 	}
 
