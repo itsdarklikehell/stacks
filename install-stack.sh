@@ -211,9 +211,9 @@ echo ""
 SETUP_ESSENTIALS_STACK
 echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
@@ -244,7 +244,7 @@ echo ""
 # echo ""
 
 echo ""
-PULL_MODELS >/dev/null 2>&1 &
+PULL_MODELS # >/dev/null 2>&1 &
 echo ""
 
 echo ""
@@ -263,9 +263,9 @@ echo ""
 # START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
 echo "Installation complete.."
 
