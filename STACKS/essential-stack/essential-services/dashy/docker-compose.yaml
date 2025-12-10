@@ -23,7 +23,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - dashy_config:/app/user-data/conf.yml
       - dashy_data:/app/user-data

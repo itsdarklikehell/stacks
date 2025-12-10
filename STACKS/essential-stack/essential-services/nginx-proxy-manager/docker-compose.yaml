@@ -32,7 +32,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - nginx-proxy-manager_data:/data
       - nginx-proxy-manager_letsencrypt:/etc/letsencrypt
 

@@ -21,7 +21,7 @@ COMPOSE_FILES=(
 	open-webui
 	searxng
 	# stable-diffusion-webui
-	swarmui
+	# swarmui
 )
 
 function CREATE_FOLDERS() {

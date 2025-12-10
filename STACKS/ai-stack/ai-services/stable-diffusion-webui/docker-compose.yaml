@@ -35,7 +35,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - stable-diffusion-webui_configdir:/.local
       - ../../../DATA/ai-stack/comfyui/models:/data/models
