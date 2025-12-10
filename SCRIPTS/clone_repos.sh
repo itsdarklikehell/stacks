@@ -46,7 +46,6 @@ EOF
 }
 
 function CLONE_AIRI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
 	function LOCAL_SETUP() {
@@ -211,7 +210,6 @@ function CLONE_AIRI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_ANYTHINGLLM() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning anything-llm"
@@ -242,7 +240,6 @@ function CLONE_ANYTHINGLLM() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_AIWAIFU() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/aiwaifu-stack" || exit 1
 
 	echo "Cloning AIwaifu"
@@ -289,7 +286,6 @@ function CLONE_AIWAIFU() {
 	DOCKER_SETUP >/dev/null 2>&1 &
 }
 function CLONE_CHROMA() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning chroma"
@@ -316,7 +312,6 @@ function CLONE_CHROMA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_CLICKHOUSE() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning clickhouse"
@@ -359,7 +354,6 @@ function CLONE_CLICKHOUSE() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_JAISON() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/jaison-stack" || exit 1
 
 	echo "Cloning jaison-core"
@@ -405,7 +399,6 @@ function CLONE_JAISON() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LETTA() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning Letta"
@@ -436,7 +429,6 @@ function CLONE_LETTA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LIBRECHAT() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning librechat"
@@ -455,7 +447,6 @@ function CLONE_LIBRECHAT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAI"
@@ -486,7 +477,6 @@ function CLONE_LOCALAI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LLMSTACK() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LLMStack"
@@ -520,7 +510,6 @@ function CLONE_LLMSTACK() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALAGI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalAGI"
@@ -550,7 +539,6 @@ function CLONE_LOCALAGI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_BIGAGI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning BIG-AGI"
@@ -581,7 +569,6 @@ function CLONE_BIGAGI() {
 }
 
 function CLONE_MIDORIAISUBSYSTEM() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning subsystem-manager"
@@ -611,7 +598,6 @@ function CLONE_MIDORIAISUBSYSTEM() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_LOCALRECALL() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning LocalRecall"
@@ -641,7 +627,6 @@ function CLONE_LOCALRECALL() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_MELOTTS() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning MeloTTS"
@@ -678,7 +663,6 @@ function CLONE_MELOTTS() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OLLMVT() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
 	echo "Cloning Open-LLM-VTuber"
@@ -822,7 +806,6 @@ function CLONE_OLLMVT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_OOGABOOGA() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning text-generation-webui-docker"
@@ -852,7 +835,6 @@ function CLONE_OOGABOOGA() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PRIVATEGPT() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning privateGPT"
@@ -882,7 +864,6 @@ function CLONE_PRIVATEGPT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_PROMETHEUS() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning prometheus"
@@ -914,7 +895,6 @@ function CLONE_PROMETHEUS() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_RIKOPROJECT() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/riko-stack" || exit 1
 
 	echo "Cloning riko-project"
@@ -959,7 +939,6 @@ function CLONE_RIKOPROJECT() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SIGNOZ() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning signoz"
@@ -989,7 +968,6 @@ function CLONE_SIGNOZ() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_SWARMUI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning SwarmUI"
@@ -1023,7 +1001,6 @@ function CLONE_SWARMUI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPER_WEBUI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning Whisper-WebUI"
@@ -1051,7 +1028,6 @@ function CLONE_WHISPER_WEBUI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 function CLONE_WHISPERX() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning whisperx"
@@ -1082,7 +1058,6 @@ function CLONE_WHISPERX() {
 }
 
 function CLONE_COMFYUI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	export UV_LINK_MODE=copy
@@ -1242,7 +1217,6 @@ function CLONE_COMFYUI() {
 }
 
 function CLONE_CUSHYSTUDIO() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning cushy-studio"
@@ -1286,7 +1260,6 @@ function CLONE_CUSHYSTUDIO() {
 }
 
 function CLONE_COMFYUIMINI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning ComfyUIMini"
@@ -1340,7 +1313,6 @@ function CLONE_COMFYUIMINI() {
 }
 
 function CLONE_FORGE() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning forge"
@@ -1370,7 +1342,6 @@ function CLONE_FORGE() {
 
 }
 function CLONE_INVOKEAI() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning invoke-ai"
@@ -1401,7 +1372,6 @@ function CLONE_INVOKEAI() {
 }
 
 function CLONE_MAKESENSE() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	echo "Cloning make-sense"
@@ -1435,7 +1405,6 @@ function CLONE_MAKESENSE() {
 }
 
 function CLONE_VIEWTUBE() {
-	cd "${WD}" || exit 1
 	cd "${STACK_BASEPATH}/DATA/media-stack" || exit 1
 
 	echo "Cloning viewtube"
