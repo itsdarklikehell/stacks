@@ -47,6 +47,8 @@ services:
 
     hostname: ${NAME:-jaison-core}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       jaison-services:

@@ -25,6 +25,8 @@ services:
 
     hostname: ${NAME:-jellyfin}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       media-services:

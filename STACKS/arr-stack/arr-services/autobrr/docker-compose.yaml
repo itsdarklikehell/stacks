@@ -26,6 +26,8 @@ services:
 
     hostname: ${NAME:-autobrr}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       arr-services:
@@ -42,8 +44,6 @@ services:
     tty: true
 
     stdin_open: true
-
-    user: ${PUID:-1000}:${PGID:-1000}
 
     # healthcheck:
     #   test:

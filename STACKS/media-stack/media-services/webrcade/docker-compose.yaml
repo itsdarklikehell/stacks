@@ -27,6 +27,8 @@ services:
 
     hostname: ${NAME:-webrcade}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     ports:
       - ${PORT:-87}:87
       - 447:447

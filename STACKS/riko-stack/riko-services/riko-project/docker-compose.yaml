@@ -47,6 +47,8 @@ services:
 
     hostname: ${NAME:-riko-project}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       riko-services:
