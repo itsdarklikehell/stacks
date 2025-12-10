@@ -39,3 +39,56 @@ ComfyUI_RH_OminiControl
 ComfyUI-Align
 comfyui-lumi-batcher
 efficiency-nodes-comfyui
+#WAS
+ComfyUI-CountS2VExtend
+SimpleFlux1Merger
+comfyui-pvm-node
+ComfyUI_LMStudio_EasyQuery
+WASABI
+comfyui_flux_corrector
+was-node-suite-comfyui
+asterr
+was-lmstudio-easyquery
+comfyui_blackmagic
+ComfyUI_TextListProduct
+comfyui-checkpoint-automatic-config
+was-affine
+viperyl_ComfyUI-BiRefNet
+caching_to_not_waste
+face-upscaling-and-seamless-embedding
+PPF_Noise_ComfyUI
+ComfyUI-IcyHider
+comfyui_preset_merger
+comfyui_jankdiffusehigh
+was-extras
+ComfyUI-sudo-latent-upscale
+powernoisesuite
+comfyui-styles-all
+freeu_advanced
+comfyui_jankhidiffusion
+was-ns
+civitai_comfy_nodes
+#ReActor
+ComfyUI-AudioReactor
+comfyui-simswap
+#Impact
+# ComfyUI-WhirlpoolUpscaler
+# ComfyUI-yt_dl
+# ComfyUI-WanResolutionSelector
+# comfyui_prompttester
+# ComfyUI-LBW_flux
+# comfyui_if_ai_loadimages
+# comfyui-hiforce-plugin
+# comfyui-textonsegs
+# comfyui-if_ai_parlerttsnode
+# comfyui-if_datasetmkr
+# comfyui-if_ai_hfdownloadernode
+# comfyui-if_ai_dreamtalk
+# comfyui-if_ai_wishperspeechnode
+# comfyui-if_videoprompts
+# comfyui-if_gemini
+# hunyuanvideo-foley
+# tbg-sam3
+# comfyui-if_llm
+# comfyui_if_memoavatar
+# comfyui-if_trellis
