@@ -35,6 +35,8 @@ services:
 
     hostname: ${NAME:-traefik}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       essential-services:

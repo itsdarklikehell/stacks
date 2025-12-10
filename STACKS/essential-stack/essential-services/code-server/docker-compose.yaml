@@ -38,6 +38,8 @@ services:
 
     hostname: ${NAME:-code-server}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       essential-services:

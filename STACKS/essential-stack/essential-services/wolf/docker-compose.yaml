@@ -48,6 +48,8 @@ services:
 
     hostname: ${NAME:-wolf}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     env_file:
       - ./wolf/.env
 

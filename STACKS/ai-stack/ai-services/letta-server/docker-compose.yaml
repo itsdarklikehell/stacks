@@ -49,6 +49,8 @@ services:
 
     hostname: ${NAME:-letta-server}
 
+    user: ${PUID:-1000}:${PGID:-1000}
+
     # command: [--logpath, /var/log/mongodb/mongod.log]
 
     networks:

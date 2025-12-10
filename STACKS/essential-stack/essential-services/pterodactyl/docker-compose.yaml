@@ -39,6 +39,10 @@ services:
 
     command: --default-authentication-plugin=mysql_native_password
 
+    hostname: ${NAME:-pterodactyl_database}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
     volumes:
       - pterodactyl_database:/var/lib/mysql
 
@@ -63,6 +67,10 @@ services:
       - homarr-app=true
       - homarr
 
+    hostname: ${NAME:-pterodactyl_cache}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
     env_file:
       - ./pterodactyl/.env
 
@@ -70,6 +78,10 @@ services:
     image: ghcr.io/pterodactyl/panel:latest
     restart: ${RESTART:-unless-stopped}
     container_name: ${NAME:-pterodactyl_panel}
+
+    hostname: ${NAME:-pterodactyl_panel}
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true

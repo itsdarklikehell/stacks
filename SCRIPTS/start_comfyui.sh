@@ -7,10 +7,11 @@ export COMFYUI_PORT=8188
 
 export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 
-export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/comfyui_essential_custom_nodes.txt"
-export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/comfyui_extra_custom_nodes.txt"
+export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
+export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/comfyui"
+
 export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
 
 if [[ "$1" == "-r" ]] || [[ "$1" == "--repair" ]] || [[ "$1" == "--reinstall" ]]; then
@@ -32,31 +33,46 @@ cd "${COMFYUI_PATH}" || exit 1
 
 ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
 
-function TRY_REPAIR_COMFYUI() {
-	if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
-		echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
-		while IFS= read -r node_name; do
-			if [[ -n "${node_name}" ]]; then
-				uv run comfy-cli node install "${node_name}"
-			fi
-		done <"${ESSENTIAL_CUSTOM_NODELIST}"
-		echo ""
+function INSTALL_CUSTOM_NODES() {
+	ESSENTIAL() {
+		if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
+			echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
+			while IFS= read -r node_name; do
+				if [[ -n "${node_name}" ]]; then
+					uv run comfy-cli node install "${node_name}"
+				fi
+			done <"${ESSENTIAL_CUSTOM_NODELIST}"
+			echo ""
+		else
+			echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+		fi
+	}
+	EXTRAS() {
+		if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
+			echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
+			while IFS= read -r node_name; do
+				if [[ -n "${node_name}" ]]; then
+					uv run comfy-cli node install "${node_name}"
+				fi
+			done <"${EXTRA_CUSTOM_NODELIST}"
+			echo ""
+		else
+			echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+		fi
+	}
+	if [[ ${REPAIR} == "true" ]]; then
+		echo "Repairing ComfyUI custom nodes..."
+		ESSENTIAL
+		# EXTRAS
 	else
-		echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+		echo "Skipping ComfyUI custom node repair."
 	fi
-	if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
-		echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
-		while IFS= read -r node_name; do
-			if [[ -n "${node_name}" ]]; then
-				uv run comfy-cli node install "${node_name}"
-			fi
-		done <"${EXTRA_CUSTOM_NODELIST}"
-		echo ""
+	if [[ ${UPDATE} == "true" ]]; then
+		echo "Updating all ComfyUI custom nodes..."
+		uv run comfy-cli update all
 	else
-		echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+		echo "Skipping ComfyUI custom node update."
 	fi
-
-	uv run comfy-cli update all
 }
 
 function LOCAL_SETUP() {
@@ -113,7 +129,11 @@ function RUN_COMFYUI() {
 	fi
 }
 
-LOCAL_SETUP        # >/dev/null 2>&1 &
-DOCKER_SETUP       # >/dev/null 2>&1 &
-TRY_REPAIR_COMFYUI # >/dev/null 2>&1 &
+LOCAL_SETUP  # >/dev/null 2>&1 &
+DOCKER_SETUP # >/dev/null 2>&1 &
+
+REPAIR=true
+UPDATE=false
+
+INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 RUN_COMFYUI
