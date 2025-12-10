@@ -30,6 +30,12 @@ echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
+mv "${COMFYUI_MODEL_PATH}/*" "${STACK_BASEPATH}/DATA/ai-models"
+
+rm -rf "${COMFYUI_MODEL_PATH}"
+
+ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_MODEL_PATH}"
+
 ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
 
 function INSTALL_CUSTOM_NODES() {

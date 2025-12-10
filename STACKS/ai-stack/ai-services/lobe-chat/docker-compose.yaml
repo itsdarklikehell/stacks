@@ -27,8 +27,8 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - ../../../DATA/ai-stack/comfyui/models:/app/public/models
-      # - ../../../DATA/ai-stack/comfyui/output:/app/public/output
+      - lobe-chat_models:/app/public/models
+      - lobe-chat_output:/app/public/output
 
     hostname: ${NAME:-lobe-chat}
 

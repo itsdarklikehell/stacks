@@ -39,9 +39,9 @@ services:
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
+      - automatic1111_output:/workspace/stable-diffusion-webui/output
 
-      - ../../../DATA/ai-stack/comfyui/models:/workspace/stable-diffusion-webui/models
-      - ../../../DATA/ai-stack/comfyui/output:/workspace/stable-diffusion-webui/output
+      - automatic1111_models:/workspace/stable-diffusion-webui/models
 
     networks:
       host:
@@ -100,9 +100,9 @@ services:
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
+      - automatic1111_output:/workspace/stable-diffusion-webui/output
 
-      - ../../../DATA/ai-stack/comfyui/models:/workspace/stable-diffusion-webui/models
-      - ../../../DATA/ai-stack/comfyui/output:/workspace/stable-diffusion-webui/output
+      - automatic1111_models:/workspace/stable-diffusion-webui/models
 
     networks:
       host:
@@ -161,9 +161,9 @@ services:
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
+      - automatic1111_output:/workspace/stable-diffusion-webui/output
 
-      - ../../../DATA/ai-stack/comfyui/models:/workspace/stable-diffusion-webui/models
-      - ../../../DATA/ai-stack/comfyui/output:/workspace/stable-diffusion-webui/output
+      - automatic1111_models:/workspace/stable-diffusion-webui/models
 
     networks:
       host:
@@ -222,9 +222,9 @@ services:
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
+      - automatic1111_output:/workspace/stable-diffusion-webui/output
 
-      - ../../../DATA/ai-stack/comfyui/models:/workspace/stable-diffusion-webui/models
-      - ../../../DATA/ai-stack/comfyui/output:/workspace/stable-diffusion-webui/output
+      - automatic1111_models:/workspace/stable-diffusion-webui/models
 
     networks:
       host:

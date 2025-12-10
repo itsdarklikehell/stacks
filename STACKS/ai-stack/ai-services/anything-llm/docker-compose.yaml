@@ -61,8 +61,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - anything-llm_storage:/app/server/storage
-      - ../../../DATA/ai-stack/comfyui/models:/app/server/storage/models
-      - ../../../DATA/ai-stack/comfyui/output:/app/server/storage/output
+      - anything-llm_models:/app/server/storage/models
+      - anything-llm_output:/app/server/storage/output
 
     hostname: ${NAME:-anything-llm}
 

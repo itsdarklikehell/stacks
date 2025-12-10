@@ -38,8 +38,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - stable-diffusion-webui_configdir:/.local
-      - ../../../DATA/ai-stack/comfyui/models:/data/models
-      - ../../../DATA/ai-stack/comfyui/output:/data/output
+      - stable-diffusion-webui_models:/data/models
+      - stable-diffusion-webui_output:/data/output
 
     user: ${PUID:-1000}:${PGID:-1000}
 

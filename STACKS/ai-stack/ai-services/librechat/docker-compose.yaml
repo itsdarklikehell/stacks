@@ -41,12 +41,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - librechat_uploads:/app/uploads
+      - librechat_models:/app/client/public/models
       - librechat_logs:/app/logs
-      # - librechat_models:/app/client/public/models
-      - ../../../DATA/ai-stack/comfyui/models:/app/client/public/models
-      # - librechat_images:/app/client/public/images
-      - ../../../DATA/ai-stack/comfyui/output:/app/client/public/images
-      - ../../../DATA/ai-stack/comfyui/output:/app/client/public/images/output
+      - librechat_output:/app/client/public/images
 
     hostname: ${NAME:-librechat}
 

@@ -24,8 +24,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
       - forge_data:/opt/stable-diffusion-webui-forge
-      - ../../../DATA/ai-stack/comfyui/models:/opt/stable-diffusion-webui-forge/models
-      - ../../../DATA/ai-stack/comfyui/output:/opt/stable-diffusion-webui-forge/outputs
+      - forge_models:/opt/stable-diffusion-webui-forge/models
+      - forge_output:/opt/stable-diffusion-webui-forge/outputs
 
     hostname: ${NAME:-forge}
 

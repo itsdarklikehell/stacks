@@ -23,6 +23,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/stable-diffusion-webui/stable-diffusion-webui_configdir
+  stable-diffusion-webui_models:
+    name: stable-diffusion-webui_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
+  stable-diffusion-webui_output:
+    name: stable-diffusion-webui_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/stable-diffusion-webui/stable-diffusion-webui_output
 
   automatic1111_data:
     name: automatic1111_data
@@ -49,6 +65,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/anything-llm/anything-llm_storage
+  anything-llm_models:
+    name: anything-llm_storage
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
+  anything-llm_output:
+    name: anything-llm_storage
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/anything-llm/anything-llm_output
 
   invokeai_data:
     name: invokeai_data
@@ -58,6 +90,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/invokeai/invokeai_data
+  invokeai_models:
+    name: invokeai_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
+  invokeai_output:
+    name: invokeai_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/invokeai/invokeai_output
 
   forge_data:
     name: forge_data
@@ -67,6 +115,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/forge/forge_data
+  forge_models:
+    name: forge_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
+  forge_output:
+    name: forge_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/forge/forge_output
 
   homeassistant-config:
     name: homeassistant-config
@@ -134,6 +198,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/librechat/librechat_uploads
+  librechat_models:
+    name: librechat_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
   librechat_logs:
     name: librechat_logs
     driver: local
@@ -142,6 +214,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/librechat/librechat_logs
+  librechat_output:
+    name: librechat_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/librechat/librechat_output
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
@@ -151,6 +231,23 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/librechat/librechat_meili_data
 
+  lobe-chat_models:
+    name: lobe-chat_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models
+  lobe-chat_output:
+    name: lobe-chat_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/lobe-chat/lobe-chat_output
+
   localai_cache:
     name: localai_cache
     driver: local
@@ -159,14 +256,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/localai/localai_cache
-  localai_backends:
-    name: localai_backends
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/localai/localai_backends
   localai_configuration:
     name: localai_configuration
     driver: local
@@ -175,6 +264,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/localai/localai_configuration
+  localai_backends:
+    name: localai_backends
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/localai/localai_backends
   localai_content:
     name: localai_content
     driver: local
@@ -182,15 +279,8 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/localai/localai_content
-  localai_images:
-    name: localai_images
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/localai/localai_images
+      device: ../../../DATA/ai-stack/localai/content
+
   localai_models:
     name: localai_models
     driver: local
@@ -198,7 +288,15 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/localai/localai_models
+      device: ../../../DATA/ai-models
+  localai_output:
+    name: localai_images
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/localai/localai_output
 
   n8n_data:
     name: n8n_data
@@ -232,7 +330,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/ollama/ollama_models
+      device: ../../../DATA/ai-models
 
   open-webui_data:
     name: open-webui_data
@@ -291,7 +389,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_models
+      device: ../../../DATA/ai-models
   swarmui_output:
     name: swarmui_output
     driver: local

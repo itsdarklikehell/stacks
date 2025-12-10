@@ -40,7 +40,6 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"data"
-			"models"
 			"prompts"
 			"vectorstores"
 		)
@@ -51,14 +50,6 @@ function SETUP_FOLDERS() {
 		else
 			echo "anything-llm .env file already exists, skipping download"
 		fi
-	fi
-
-	if [[ ${SERVICE_NAME} == "private-gpt" ]]; then
-		FOLDERS=(
-			"ollama_local_data"
-			"llamacpp-cpu_local_data"
-			"llamacpp-cpu_models"
-		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
@@ -101,67 +92,10 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "vllm-openai" ]]; then
-		FOLDERS=(
-			"huggingface_cache"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "chroma" ]]; then
-		FOLDERS=(
-			"data"
-			"index"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "clickhouse" ]]; then
-		FOLDERS=(
-			"backups"
-			"configs"
-			"data"
-			"initdb"
-			"logs"
-			"users"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "grafana" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
-		FOLDERS=(
-			"data"
-			"logs"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "koboldccp" ]]; then
-		FOLDERS=(
-			"workspace"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "kokoro-tts" ]]; then
-		FOLDERS=(
-			"data"
-			"index_data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "coqui-tts-cpu" ]]; then
-		FOLDERS=(
-			"data"
-			"index_data"
 		)
 	fi
 
@@ -183,34 +117,13 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "libretranslate-whispher" ]]; then
-		FOLDERS=(
-			"cache"
-			"data"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "localai" ]]; then
 		FOLDERS=(
 			"cache"
-			"backends"
 			"configuration"
+			"backends"
 			"content"
-			"images"
-			"models"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "minio" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "mongo-whispher" ]]; then
-		FOLDERS=(
-			"data"
-			"logs"
+			"output"
 		)
 	fi
 
@@ -224,59 +137,10 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "ollama" ]]; then
 		FOLDERS=(
 			"data"
-			"models"
 		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "piper" ]]; then
-		FOLDERS=(
-			"config"
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "faster-whisper-gpu" ]]; then
-		FOLDERS=(
-			"config"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "text-generation-webui-docker" ]]; then
-		FOLDERS=(
-			"cache"
-			"characters"
-			"grammars"
-			"templates"
-			"loras"
-			"logs"
-			"models"
-			"presets"
-			"prompts"
-			"training"
-			"extensions"
-			"coqui_tts"
-			"data"
-			"instruction-templates"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "llmstack" ]]; then
-		FOLDERS=(
-			"code"
-			"userdata"
-			"postgres_data"
-			"weaviate_data"
-			"redis_data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "prometheus" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -288,13 +152,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "signoz" ]]; then
-		FOLDERS=(
-			"data"
-			"index"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
 		FOLDERS=(
 			"backend"
@@ -303,53 +160,11 @@ function SETUP_FOLDERS() {
 			"extensions"
 			"config"
 			"embeddings"
-			"models"
 			"output"
 			"workflows"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "whishper" ]]; then
-		FOLDERS=(
-			"data"
-			"logs"
-			"models"
-			"uploads"
-			"cache"
-			"outputs"
-			"configs"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "whisperx" ]]; then
-		FOLDERS=(
-			"data"
-			"logs"
-			"models"
-			"uploads"
-			"cache"
-			"outputs"
-			"configs"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "whisper-webui" ]]; then
-		FOLDERS=(
-			"data"
-			"logs"
-			"models"
-			"uploads"
-			"cache"
-			"outputs"
-			"configs"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "wyoming-piper" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
 	CREATE_FOLDERS
 }
 
