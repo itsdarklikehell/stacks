@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Start comfyui script started."
+echo "Start ComfyUI script started."
 
 export UV_LINK_MODE=copy
 export BACKGROUND=false
@@ -10,8 +10,7 @@ export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 
-export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/comfyui"
-export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
+export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
 if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	echo "Install custom nodes enabled."
@@ -25,18 +24,22 @@ elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-reinstall" ]]; the
 	export INSTALL_CUSTOM_NODES=false
 fi
 
-echo "Cloning comfyui"
+echo "Cloning ComfyUI"
 echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
-mv "${COMFYUI_MODEL_PATH}/*" "${STACK_BASEPATH}/DATA/ai-models"
+mv "${COMFYUI_PATH}/models/*" "${STACK_BASEPATH}/DATA/ai-models"
+mv "${COMFYUI_PATH}/output/*" "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 
-rm -rf "${COMFYUI_MODEL_PATH}"
+rm -rf "${COMFYUI_PATH}/models"
+rm -rf "${COMFYUI_PATH}/output"
 
-ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_MODEL_PATH}"
+ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
 
-ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
+ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output" "${COMFYUI_PATH}/output"
+
+ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
 
 function INSTALL_CUSTOM_NODES() {
 	ESSENTIAL() {

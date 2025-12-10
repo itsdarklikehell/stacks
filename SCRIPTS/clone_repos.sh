@@ -16,6 +16,7 @@ cd "${WD}" || exit 1
 
 mkdir -p "../DATA/ai-stack"
 mkdir -p "../DATA/ai-models"
+mkdir -p "../DATA/ai-outputs"
 mkdir -p "../DATA/jaison-stack"
 mkdir -p "../DATA/openllm-vtuber-stack"
 mkdir -p "../DATA/media-stack"
@@ -1089,8 +1090,7 @@ function CLONE_COMFYUI() {
 	export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 	export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 
-	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/comfyui"
-	export COMFYUI_MODEL_PATH="${COMFYUI_PATH}/models"
+	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
 	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	# 	echo "Install custom nodes enabled."
@@ -1104,18 +1104,22 @@ function CLONE_COMFYUI() {
 	# 	export INSTALL_CUSTOM_NODES=false
 	# fi
 
-	echo "Cloning comfyui"
+	echo "Cloning ComfyUI"
 	echo ""
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 	cd "${COMFYUI_PATH}" || exit 1
 
-	mv "${COMFYUI_MODEL_PATH}/*" "${STACK_BASEPATH}/DATA/ai-models"
+	mv "${COMFYUI_PATH}/models/*" "${STACK_BASEPATH}/DATA/ai-models"
+	mv "${COMFYUI_PATH}/output/*" "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 
-	rm -rf "${COMFYUI_MODEL_PATH}"
+	rm -rf "${COMFYUI_PATH}/models"
+	rm -rf "${COMFYUI_PATH}/output"
 
-	ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_MODEL_PATH}"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
 
-	ln -sf "${COMFYUI_MODEL_PATH}" "${COMFYUI_PATH}/custom_nodes/"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output" "${COMFYUI_PATH}/output"
+
+	ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
 
 	function INSTALL_CUSTOM_NODES() {
 		ESSENTIAL() {
@@ -1278,7 +1282,7 @@ function CLONE_COMFYUIMINI() {
 	cd "${WD}" || exit 1
 	cd "../DATA/ai-stack" || exit 1
 
-	echo "Cloning comfyui-mini"
+	echo "Cloning ComfyUIMini"
 	echo ""
 	git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git ComfyUIMini
 	cd ComfyUIMini || exit 1

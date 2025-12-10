@@ -23,7 +23,7 @@ URLS=(
 	# "http://0.0.0.0:3080"         # librechat
 	# "http://0.0.0.0:7801/Install" # SwarmUI
 	# "http://0.0.0.0:7861"         # sd-automatic1111
-	# "http://0.0.0.0:7862"         # sd-comfyui-webui
+	# "http://0.0.0.0:7862"         # sd-ComfyUI-webui
 	# "http://0.0.0.0:7863"         # sd-fast-stable-diffusion-webui
 	# "http://0.0.0.0:7864"         # sd-stable-diffusion-webui
 	# "http://0.0.0.0:8501"         # stable-diffusion-webui

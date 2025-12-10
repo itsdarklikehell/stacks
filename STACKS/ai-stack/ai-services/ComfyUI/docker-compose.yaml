@@ -1,11 +1,11 @@
 services:
-  comfyui:
+  ComfyUI:
     image: ${IMAGE:-yanwk/comfyui-boot:cu124-slim}
-    container_name: ${NAME:-comfyui}
+    container_name: ${NAME:-ComfyUI}
     restart: ${RESTART:-unless-stopped}
 
     # build:
-    #   context: ../../../DATA/ai-stack/comfyui
+    #   context: ../../../DATA/ai-stack/ComfyUI
     #   dockerfile: Dockerfile
 
     labels:
@@ -31,14 +31,14 @@ services:
       - ${PORT:-8288}:8288
 
     volumes:
-      - comfyui_common_storage:/root
+      - ComfyUI_common_storage:/root
 
     networks:
       host:
       ai-services:
 
     env_file:
-      - ./comfyui/.env
+      - ./ComfyUI/.env
 
     runtime: nvidia
     deploy:

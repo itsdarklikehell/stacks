@@ -6,14 +6,14 @@ networks:
     external: true
 
 volumes:
-  comfyui_common_storage:
-    name: comfyui_common_storage
+  ComfyUI_common_storage:
+    name: ComfyUI_common_storage
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/comfyui/comfyui_common_storage
+      device: ../../../DATA/ai-stack/ComfyUI/ComfyUI_common_storage
 
   stable-diffusion-webui_configdir:
     name: stable-diffusion-webui_configdir
@@ -38,7 +38,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/stable-diffusion-webui/stable-diffusion-webui_output
+      device: ../../../DATA/ai-outputs/stable-diffusion-webui_output
 
   automatic1111_data:
     name: automatic1111_data
@@ -55,7 +55,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/automatic1111/automatic1111_output
+      device: ../../../DATA/ai-outputs/automatic1111_output
 
   anything-llm_storage:
     name: anything-llm_storage
@@ -80,7 +80,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/anything-llm/anything-llm_output
+      device: ../../../DATA/ai-outputs/anything-llm_output
 
   invokeai_data:
     name: invokeai_data
@@ -105,7 +105,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/invokeai/invokeai_output
+      device: ../../../DATA/ai-outputs/invokeai_output
 
   forge_data:
     name: forge_data
@@ -130,7 +130,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/forge/forge_output
+      device: ../../../DATA/ai-outputs/forge_output
 
   homeassistant-config:
     name: homeassistant-config
@@ -221,7 +221,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_output
+      device: ../../../DATA/ai-outputs/librechat_output
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
@@ -246,7 +246,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/lobe-chat/lobe-chat_output
+      device: ../../../DATA/ai-outputs/lobe-chat_output
 
   localai_cache:
     name: localai_cache
@@ -296,7 +296,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/localai/localai_output
+      device: ../../../DATA/ai-outputs/localai_output
 
   n8n_data:
     name: n8n_data
@@ -397,7 +397,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_output
+      device: ../../../DATA/ai-outputs/swarmui_output
   swarmui_workflows:
     name: swarmui_workflows
     driver: local

@@ -7,7 +7,7 @@ COMPOSE_FILES=(
 	anything-llm
 	# automatic1111
 	big-agi
-	comfyui
+	ComfyUI
 	forge
 	homeassistant
 	invokeai
@@ -58,7 +58,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "comfyui" ]]; then
+	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
 		)
@@ -73,7 +73,6 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
 		FOLDERS=(
 			"data"
-			"output"
 		)
 	fi
 
@@ -123,7 +122,6 @@ function SETUP_FOLDERS() {
 			"configuration"
 			"backends"
 			"content"
-			"output"
 		)
 	fi
 
@@ -160,7 +158,6 @@ function SETUP_FOLDERS() {
 			"extensions"
 			"config"
 			"embeddings"
-			"output"
 			"workflows"
 		)
 	fi

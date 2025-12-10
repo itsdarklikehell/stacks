@@ -60,9 +60,9 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
-  sd-comfyui-webui:
+  sd-ComfyUI-webui:
     image: runpod/stable-diffusion:comfy-ui-6.0.0
-    container_name: ${NAME:-sd-comfyui-webui}
+    container_name: ${NAME:-sd-ComfyUI-webui}
     restart: ${RESTART:-unless-stopped}
 
     # build:
