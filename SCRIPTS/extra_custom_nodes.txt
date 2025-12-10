@@ -12,7 +12,7 @@ EXO-Custom-ComfyUI-Nodes
 Factory-Prompts_comfyui
 flux-prompt-generator
 PromptCreatorNode
-#rgthree
+### rgthree
 comfyui-gps-supplements
 multi-lora-stack
 Comfyui-EasySettingPipes
@@ -20,7 +20,7 @@ comfyui-vslinx-nodes
 comfyui_sillynodes
 efficiency-nodes-ED
 rgthree-comfy
-#Efficiency
+### Efficiency
 ComfyUI-LoRAWeightAxisXY
 va-nodes
 ComfyUI-Utilitools
@@ -39,7 +39,7 @@ ComfyUI_RH_OminiControl
 ComfyUI-Align
 comfyui-lumi-batcher
 efficiency-nodes-comfyui
-#WAS
+### WAS
 ComfyUI-CountS2VExtend
 SimpleFlux1Merger
 comfyui-pvm-node
@@ -68,10 +68,10 @@ freeu_advanced
 comfyui_jankhidiffusion
 was-ns
 civitai_comfy_nodes
-#ReActor
+### ReActor
 ComfyUI-AudioReactor
 comfyui-simswap
-#Impact
+### Impact
 # ComfyUI-WhirlpoolUpscaler
 # ComfyUI-yt_dl
 # ComfyUI-WanResolutionSelector
