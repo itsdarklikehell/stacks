@@ -1241,8 +1241,8 @@ function CLONE_COMFYUI() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	INSTALL_DEFAULT_NODES=true
-	INSTALL_EXTRA_NODES=true
+	INSTALL_DEFAULT_NODES=false
+	INSTALL_EXTRA_NODES=false
 	UPDATE=true
 
 	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &

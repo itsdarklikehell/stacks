@@ -156,7 +156,7 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-INSTALL_DEFAULT_NODES=false
+INSTALL_DEFAULT_NODES=true
 INSTALL_EXTRA_NODES=false
 UPDATE=true
 

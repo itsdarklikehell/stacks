@@ -43,11 +43,11 @@ services:
     user: ${PUID:-1000}:${PGID:-1000}
 
     build:
-      context: ../../../DATA/ai-stack/puppeteer
+      context: ../../../DATA/ai-stack/puppeteer/docker
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
 
     networks:
       host:
