@@ -1,6 +1,6 @@
 services:
   puppeteer-chrome-linux:
-    image: ${IMAGE:-ghcr.io/puppeteer/puppeteer:latest}
+    # image: ${IMAGE:-ghcr.io/puppeteer/puppeteer:latest}
     # image: ${IMAGE:-rcormie/puppeteer-nodejs-18:v1.0.0}
     container_name: ${NAME:-puppeteer-chrome-linux}
     restart: ${RESTART:-unless-stopped}

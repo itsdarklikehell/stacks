@@ -214,7 +214,12 @@ function CLONE_PUPPETEER() {
 		ni # >/dev/null 2>&1 &
 
 		ni puppeteer      # Downloads compatible Chrome during installation.
+		yes | pnpm add puppeteer
+
 		ni puppeteer-core # Alternatively, install as a library, without downloading Chrome.
+		yes | pnpm add puppeteer-core
+
+		npx puppeteer install chrome
 
 		yes | npx npm-check-updates -u >/dev/null 2>&1 &
 		bash docker/pack.sh
