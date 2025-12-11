@@ -41,7 +41,7 @@ services:
       - stable-diffusion-webui_models:/data/models
       - stable-diffusion-webui_output:/data/output
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:

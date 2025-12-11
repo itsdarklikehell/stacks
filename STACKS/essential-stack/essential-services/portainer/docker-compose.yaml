@@ -23,11 +23,14 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /:/host
+
       - portainer_data:/data
 
     hostname: ${NAME:-portainer}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -54,6 +57,70 @@ services:
       timeout: 10s
       start_period: 30s
       retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  portainer_agent:
+    container_name: ${NAME:-portainer_agent}
+    image: ${IMAGE:-portainer/agent:latest}
+    # image: ${IMAGE:-portainer/agent:2.33.5}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-9001}
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /:/host
+
+      - portainer_data:/data
+
+    hostname: ${NAME:-portainer_agent}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - 9001:9001
+
+    env_file:
+      - ./portainer/.env
+
+    tty: true
+
+    stdin_open: true
+
+    deploy:
+      replicas: 1
+
+    # healthcheck:
+    #   test: CMD curl -f http://0.0.0.0:${PORT:-8000}/health
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
     logging:
       driver: json-file
