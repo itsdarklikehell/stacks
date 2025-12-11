@@ -31,8 +31,8 @@ services:
       - HOST=0.0.0.0
       - MONGO_URI=mongodb://librechat-mongodb:27017/librechat
       - MEILI_HOST=http://librechat-meilisearch:7700
-      - RAG_PORT=${RAG_PORT:-8000}
-      - RAG_API_URL=http://librechat-rag-api:${RAG_PORT:-8000}
+      - RAG_PORT=${RAG_PORT:-8002}
+      - RAG_API_URL=http://librechat-rag-api:${RAG_PORT:-8002}
       - VLLM_API_BASE=http://vllm:3339
 
     volumes:
@@ -232,7 +232,7 @@ services:
 
     environment:
       - DB_HOST=librechat-vectordb
-      - RAG_PORT=${RAG_PORT:-8000}
+      - RAG_PORT=${RAG_PORT:-8002}
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
