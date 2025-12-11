@@ -73,7 +73,7 @@ services:
 
     hostname: ${NAME:-portracker}
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -175,7 +175,7 @@ services:
 
     hostname: ${NAME:-portracker-docker-proxy}
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
