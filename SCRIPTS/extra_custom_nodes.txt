@@ -328,3 +328,44 @@ ComfyUI-WanVideoWrapper
 # comfyui_tensorrt
 # ComfyUI-Allor
 # ComfyUI-nunchaku
+
+### lora-manager
+ComfyUI-DvD-LoraTriggerwordsManager
+comfyui-lora-manager
+
+### workflow manager
+inpainting-works
+comfyui-browser
+
+### slider
+ComfyUI-EsesImageCompare
+woohee-simple-slider
+lonemilk-upscalernew-4k
+upscaler-4k
+comfyui-clipslider-sc
+comfyui-image-compare
+ComfyUI-NeoGriever
+Dynamic_Sliders_stack
+ComfyUI-Auto_Crop_By_NPS
+comfyui-ns-manysliders
+comfyui-clipslider
+aiia
+comfyui_slider_sidebar
+comfyui-mxtoolkit
+
+### compare
+comfyui_kontext_Analyze
+duhaifeng_ComfyUI-Flux-Inpainting
+comfyui-text-diff
+barakapa-nodes
+comfyui-birefnet-trt
+Comfyui-FaceCompare
+ComfyUI_CompareModelWeights
+ComfyUI_MaskAreaCondition
+comfyscope
+Compare_videos
+imagesimilarity
+comfyui-flux-inpainting
+comfyui-logicutils
+ComfyUI-BiRefNet-Hugo
+ComfyUI-Crystools

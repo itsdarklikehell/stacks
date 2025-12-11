@@ -3,6 +3,8 @@
 set -e
 cd "$(dirname "$0")"
 
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+
 COMPOSE_FILES=(
 	openllm-vtuber
 )

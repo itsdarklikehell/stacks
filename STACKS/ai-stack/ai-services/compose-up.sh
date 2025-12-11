@@ -3,11 +3,13 @@
 set -e
 cd "$(dirname "$0")"
 
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+
 COMPOSE_FILES=(
 	anything-llm
-	automatic1111
+	# automatic1111
 	big-agi
-	ComfyUI
+	# ComfyUI
 	forge
 	homeassistant
 	invokeai
@@ -20,7 +22,7 @@ COMPOSE_FILES=(
 	ollama
 	open-webui
 	searxng
-	stable-diffusion-webui
+	# stable-diffusion-webui
 	# swarmui
 )
 
@@ -121,7 +123,6 @@ function SETUP_FOLDERS() {
 			"cache"
 			"configuration"
 			"backends"
-			"content"
 		)
 	fi
 

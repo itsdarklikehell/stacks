@@ -14,8 +14,6 @@ export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
 
 if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
@@ -35,20 +33,23 @@ echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
-mv "${COMFYUI_PATH}/models/*" "${STACK_BASEPATH}/DATA/ai-models"
-mv "${COMFYUI_PATH}/output/*" "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
-mv "${COMFYUI_PATH}/input/*" "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+SETUP_FOLDERS() {
+	mv "${COMFYUI_PATH}/models" "${STACK_BASEPATH}/DATA/ai-models"
+	mv "${COMFYUI_PATH}/output" "${STACK_BASEPATH}/DATA/ai-outputs"
+	mv "${COMFYUI_PATH}/input" "${STACK_BASEPATH}/DATA/ai-inputs"
 
-rm -rf "${COMFYUI_PATH}/models"
-rm -rf "${COMFYUI_PATH}/output"
-rm -rf "${COMFYUI_PATH}/input"
+	rm -rf "${COMFYUI_PATH}/models"
+	rm -rf "${COMFYUI_PATH}/output"
+	rm -rf "${COMFYUI_PATH}/input"
 
-ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
 
-ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output" "${COMFYUI_PATH}/output"
-ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input" "${COMFYUI_PATH}/input"
+	ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
+}
 
-ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
+SETUP_FOLDERS
 
 function INSTALL_CUSTOM_NODES() {
 	ESSENTIAL() {
@@ -77,19 +78,19 @@ function INSTALL_CUSTOM_NODES() {
 			echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 		fi
 	}
-	if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
+	if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
 		echo "Installing ComfyUI custom nodes..."
 		ESSENTIAL
 	else
 		echo "Skipping ComfyUI custom node install."
 	fi
-	if [[ ${INSTALL_EXTRA_NODES} == "true" ]]; then
+	if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
 		echo "Installing ComfyUI extra nodes..."
 		EXTRAS
 	else
 		echo "Skipping ComfyUI extra node install."
 	fi
-	if [[ ${UPDATE} == "true" ]]; then
+	if [[ "${UPDATE}" == "true" ]]; then
 		echo "Updating all ComfyUI custom nodes..."
 		uv run comfy-cli update all
 	else

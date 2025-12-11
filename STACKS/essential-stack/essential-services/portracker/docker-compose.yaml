@@ -67,7 +67,7 @@ services:
 
       # Required: Docker socket access for container discovery
       # Comment out if using docker-proxy setup below
-      # - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - /var/run/docker.sock:/var/run/docker.sock
 
       - portracker_data:/data
 
@@ -171,7 +171,7 @@ services:
       - VOLUMES=0
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-portracker-docker-proxy}
 

@@ -17,7 +17,7 @@ services:
     #     - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
     #     - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
     #     - BUILD_TYPE=cublas
-    #     - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
+    #     - LOCALAI_IMAGE_PATH=/localai/output
     #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
     #     - THREADS=1
 
@@ -41,7 +41,7 @@ services:
       - STORAGE_DIR=/app/server/storage
       - MODELS_PATH=/localai/models
       - BACKENDS_PATH=/localai/backends
-      - LOCALAI_IMAGE_PATH=/tmp/generated/content/images
+      - LOCALAI_IMAGE_PATH=/localai/output
       - THREADS=1
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
       # - PROFILE=gpu-8g
@@ -60,14 +60,14 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - localai_cache:/.cache
       - localai_configuration:/configuration
       - localai_backends:/localai/backends
-      - localai_content:/tmp/generated/content
       - localai_models:/localai/models
       - localai_output:/localai/output
+      # - localai_content:/localai/content/images
 
     user: ${PUID:-1000}:${PGID:-1000}
 

@@ -38,7 +38,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/stable-diffusion-webui_output
+      device: ../../../DATA/ai-outputs
 
   automatic1111_data:
     name: automatic1111_data
@@ -55,7 +55,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/automatic1111_output
+      device: ../../../DATA/ai-outputs
   automatic1111_models:
     name: automatic1111_models
     driver: local
@@ -74,7 +74,7 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/anything-llm/anything-llm_storage
   anything-llm_models:
-    name: anything-llm_storage
+    name: anything-llm_models
     driver: local
     # external: true
     driver_opts:
@@ -82,13 +82,13 @@ volumes:
       o: bind
       device: ../../../DATA/ai-models
   anything-llm_output:
-    name: anything-llm_storage
+    name: anything-llm_output
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/anything-llm_output
+      device: ../../../DATA/ai-outputs
 
   invokeai_data:
     name: invokeai_data
@@ -113,7 +113,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/invokeai_output
+      device: ../../../DATA/ai-outputs
 
   forge_data:
     name: forge_data
@@ -138,7 +138,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/forge_output
+      device: ../../../DATA/ai-outputs
 
   homeassistant-config:
     name: homeassistant-config
@@ -229,7 +229,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/librechat_output
+      device: ../../../DATA/ai-outputs
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
@@ -254,7 +254,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/lobe-chat_output
+      device: ../../../DATA/ai-outputs
 
   localai_cache:
     name: localai_cache
@@ -304,7 +304,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/localai_output
+      device: ../../../DATA/ai-outputs
 
   n8n_data:
     name: n8n_data
@@ -405,7 +405,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/swarmui_output
+      device: ../../../DATA/ai-outputs
   swarmui_workflows:
     name: swarmui_workflows
     driver: local

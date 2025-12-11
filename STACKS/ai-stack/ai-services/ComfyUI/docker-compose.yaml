@@ -16,22 +16,22 @@ services:
       - homarr-app=true
       - homarr
 
-    user: ${PUID:-1000}:${PGID:-1000}
-
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - COMFYUI_PORT=${PORT:-8288}
 
-    stdin_open: true
-    tty: true
-
-    ports:
-      - ${PORT:-8288}:8288
-
     volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - ComfyUI_common_storage:/root
+
+    hostname: ${NAME:-ComfyUI}
+
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -39,6 +39,13 @@ services:
 
     env_file:
       - ./ComfyUI/.env
+
+    ports:
+      - ${PORT:-8288}:8288
+
+    tty: true
+
+    stdin_open: true
 
     runtime: nvidia
     deploy:

@@ -35,7 +35,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
@@ -96,7 +96,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
@@ -157,7 +157,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output
@@ -218,7 +218,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - automatic1111_data:/workspace
       # - automatic1111_output:/output

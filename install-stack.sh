@@ -26,8 +26,7 @@ export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main
-chmod +x "${BASEPATH}/install-stack.sh"
-chmod +x "${BASEPATH}/SCRIPTS/*"
+chmod +x "install-stack.sh"
 
 function PULL_MODELS() {
 	if [[ ${PULL_MODELS} == "true" ]]; then
@@ -169,18 +168,24 @@ function SETUP_AUTOSTART() {
 		start_ollmvt.desktop
 	)
 	for SCRIPT in "${scripts[@]}"; do
-		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
-			ln -sf "${BASEPATH}/${SCRIPT}" "/home/${USER}/bin/"
-			chmod +x "/home/${USER}/bin/${SCRIPT}"
+		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
+			rm "/home/${USER}/bin/${SCRIPT}"
+			ln -sf "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			chmod +x "${STACK_BASEPATH}/${SCRIPT}"
 		else
-			ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/"
-			chmod +x "/home/${USER}/bin/${SCRIPT}"
+			rm "/home/${USER}/bin/${SCRIPT}"
+			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		fi
+		chmod +x "/home/${USER}/bin/${SCRIPT}"
 
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
-		ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /home/"${USER}"/.config/autostart/
-		sudo ln -sf "${BASEPATH}/SCRIPTS/${SCRIPT}" /usr/share/applications/
+		rm "/home/${USER}/.config/autostart/${SCRIPT}"
+		ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
+		sudo ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
+
+		chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		sudo chmod +x "/usr/share/applications/${SCRIPT}"
 	done
 }
@@ -206,6 +211,10 @@ PRUNING
 ## STACKS:
 CREATE_NETWORKS
 CREATE_SECRETS
+
+echo ""
+SETUP_AUTOSTART
+echo ""
 
 echo ""
 SETUP_ESSENTIALS_STACK
@@ -245,10 +254,6 @@ echo ""
 
 echo ""
 PULL_MODELS # >/dev/null 2>&1 &
-echo ""
-
-echo ""
-SETUP_AUTOSTART
 echo ""
 
 # echo ""
