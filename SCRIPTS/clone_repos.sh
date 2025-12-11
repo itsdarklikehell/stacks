@@ -1311,7 +1311,7 @@ function CLONE_COMFYUIMINI() {
 		cp config/default.example.json config/default.json
 
 		chmod +x scripts/install.sh
-		./scripts/install.sh
+		yes | ./scripts/install.sh
 
 		# npm install
 		# npm run build
