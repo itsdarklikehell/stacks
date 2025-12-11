@@ -201,6 +201,35 @@ function CLONE_AIRI() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
+function CLONE_PUPPETEER() {
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+
+	echo "Cloning puppeteer"
+	echo ""
+	git clone --recursive https://github.com/puppeteer/puppeteer.git puppeteer
+	cd puppeteer || exit 1
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		# ./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
+		# docker build -t anything-llm .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+}
 function CLONE_ANYTHINGLLM() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -1202,7 +1231,7 @@ function CLONE_COMFYUI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
 	INSTALL_DEFAULT_NODES=true
-	INSTALL_EXTRA_NODES=false
+	INSTALL_EXTRA_NODES=true
 	UPDATE=true
 
 	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
@@ -1428,26 +1457,14 @@ function CLONE_VIEWTUBE() {
 
 # CLONE_AIRI
 # CLONE_AIWAIFU
-CLONE_ANYTHINGLLM
-CLONE_BIGAGI
 # CLONE_CHROMA
 # CLONE_CLICKHOUSE
-CLONE_COMFYUI
-CLONE_COMFYUIMINI
-CLONE_CUSHYSTUDIO
-CLONE_FORGE
-CLONE_INVOKEAI
 # CLONE_JAISON
-CLONE_LETTA
-CLONE_LIBRECHAT
 # CLONE_LLMSTACK
 # CLONE_LOCALAGI
-CLONE_LOCALAI
 # CLONE_LOCALRECALL
 # CLONE_MAKESENSE
 # CLONE_MELOTTS
-CLONE_MIDORIAISUBSYSTEM
-CLONE_OLLMVT
 # CLONE_OOGABOOGA
 # CLONE_PRIVATEGPT
 # CLONE_PROMETHEUS
@@ -1457,3 +1474,16 @@ CLONE_OLLMVT
 # CLONE_VIEWTUBE
 # CLONE_WHISPER_WEBUI
 # CLONE_WHISPERX
+CLONE_ANYTHINGLLM
+CLONE_BIGAGI
+CLONE_COMFYUI
+CLONE_COMFYUIMINI
+CLONE_CUSHYSTUDIO
+CLONE_FORGE
+CLONE_INVOKEAI
+CLONE_LETTA
+CLONE_LIBRECHAT
+CLONE_LOCALAI
+CLONE_MIDORIAISUBSYSTEM
+CLONE_OLLMVT
+CLONE_PUPPETEER

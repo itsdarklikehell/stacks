@@ -21,6 +21,7 @@ COMPOSE_FILES=(
 	n8n
 	ollama
 	open-webui
+	puppeteer
 	searxng
 	# stable-diffusion-webui
 	# swarmui

@@ -1,0 +1,91 @@
+services:
+  puppeteer-chrome-linux:
+    image: ${IMAGE:-ghcr.io/puppeteer/puppeteer:latest}
+    # image: ${IMAGE:-rcormie/puppeteer-nodejs-18:v1.0.0}
+    container_name: ${NAME:-puppeteer-chrome-linux}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8280}
+
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+      - IPC_LOCK
+
+    # working_dir: /app
+
+    # command: node server.js
+
+    command: node -e "`cat test/smoke-test.js`"
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # - ./app:/app
+      # - /app/node_modules
+
+    hostname: ${NAME:-puppeteer-chrome-linux}
+
+    user: ${PUID:-1000}:${PGID:-1000}
+
+    build:
+      context: ../../../DATA/ai-stack/puppeteer
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
+      dockerfile: ./docker/Dockerfile
+
+    networks:
+      host:
+      ai-services:
+
+    env_file:
+      - ./puppeteer/.env
+
+    ports:
+      - ${PORT:-8280}:8280
+
+    init: true
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://0.0.0.0:${PORT:-3400}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+    depends_on:
+      - puppeteer-browserless
