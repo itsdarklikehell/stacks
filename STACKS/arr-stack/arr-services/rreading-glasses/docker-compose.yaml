@@ -28,7 +28,7 @@ services:
 
     hostname: ${NAME:-rreading-glasses}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -67,7 +67,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://0.0.0.0{PORT:-8788}/api/health,
+    #       http://localhost{PORT:-8788}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
@@ -138,7 +138,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://0.0.0.0:${PORT:-5433}/api/health,
+    #       http://localhost:${PORT:-5433}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

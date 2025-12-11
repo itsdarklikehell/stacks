@@ -28,7 +28,7 @@ services:
 
     hostname: ${NAME:-letta-mcp-server}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     # command: [--logpath, /var/log/mongodb/mongod.log]
 
@@ -61,7 +61,7 @@ services:
     #   [
     #     CMD,
     #     curl,
-    #     http://0.0.0.0:${PORT:-3005}/health,
+    #     http://localhost:${PORT:-3005}/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s

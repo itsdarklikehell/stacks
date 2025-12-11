@@ -213,7 +213,7 @@ function CLONE_PUPPETEER() {
 		echo "Using Local setup"
 		ni # >/dev/null 2>&1 &
 
-		ni puppeteer      # Downloads compatible Chrome during installation.
+		ni puppeteer # Downloads compatible Chrome during installation.
 		yes | pnpm add puppeteer
 
 		ni puppeteer-core # Alternatively, install as a library, without downloading Chrome.
@@ -1435,7 +1435,7 @@ function CLONE_MAKESENSE() {
 		# Get Docker Container Logs
 		# docker logs make-sense
 
-		# Access make-sense: http://0.0.0.0:3000/
+		# Access make-sense: http://localhost:3000/
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &

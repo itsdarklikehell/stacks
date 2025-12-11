@@ -25,7 +25,7 @@ services:
 
     hostname: ${NAME:-mattermost}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -45,7 +45,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: [CMD, curl, -f, http://0.0.0.0:${PORT:-8065}]
+    #   test: [CMD, curl, -f, http://localhost:${PORT:-8065}]
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

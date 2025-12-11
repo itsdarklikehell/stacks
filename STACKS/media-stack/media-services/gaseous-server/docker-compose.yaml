@@ -30,7 +30,7 @@ services:
 
     hostname: ${NAME:-gaseous-server}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -60,7 +60,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://0.0.0.0:${PORT:-5198}/api/health,
+    #       http://localhost:${PORT:-5198}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
@@ -128,7 +128,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://0.0.0.0:${PORT:-80}/api/health,
+    #       http://localhost:${PORT:-80}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

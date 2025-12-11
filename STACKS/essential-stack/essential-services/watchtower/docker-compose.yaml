@@ -26,7 +26,7 @@ services:
 
     hostname: ${NAME:-watchtower}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -57,7 +57,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: CMD curl -f http://0.0.0.0:${PORT:-80}/health
+    #   test: CMD curl -f http://localhost:${PORT:-80}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

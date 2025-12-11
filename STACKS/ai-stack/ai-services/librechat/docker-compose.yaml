@@ -47,7 +47,7 @@ services:
 
     hostname: ${NAME:-librechat}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -81,7 +81,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://0.0.0.0:${PORT:-8082}/api/health,
+    #     http://localhost:${PORT:-8082}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s
@@ -116,7 +116,7 @@ services:
 
     hostname: ${NAME:-librechat-mongodb}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -160,7 +160,7 @@ services:
 
     hostname: ${NAME:-librechat-meilisearch}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     env_file:
       - ./librechat/.env
@@ -205,7 +205,7 @@ services:
 
     hostname: ${NAME:-librechat-vectordb}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -247,7 +247,7 @@ services:
 
     hostname: ${NAME:-librechat-rag-api}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:

@@ -40,7 +40,7 @@ services:
 
     hostname: ${NAME:-puppeteer-chrome-linux}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     build:
       context: ../../../DATA/ai-stack/puppeteer/docker
@@ -73,7 +73,7 @@ services:
     #     --no-verbose,
     #     --tries=3,
     #     --spider,
-    #     http://0.0.0.0:${PORT:-3400}/api/health,
+    #     http://localhost:${PORT:-3400}/api/health,
     #   ]
     #   interval: 30s
     #   timeout: 10s
