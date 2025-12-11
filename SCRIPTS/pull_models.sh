@@ -6,7 +6,6 @@ models=(
 	'codellama:latest'
 	'deepseek-r1:latest'
 	'dolphin-mistral:latest'
-	'dolphin-mixtral:latest'
 	'dolphin-phi:latest'
 	'dolphincoder:latest'
 	'embeddinggemma:latest'
@@ -36,6 +35,7 @@ models=(
 	'wizard-vicuna-uncensored:latest'
 )
 # 'huihui_ai/qwq-abliterated:latest'
+# 'dolphin-mixtral:latest'
 # 'huihui_ai/tongyi-deepresearch-abliterated:latest'
 
 # container_name to check if ollama docker service is running:

@@ -158,6 +158,7 @@ function SETUP_AUTOSTART() {
 		start_comfyui-mini.sh
 		start_cushystudio.sh
 		start_ollmvt.sh
+		pull_models.sh
 		install-stack.sh
 	)
 	desktop_scripts=(

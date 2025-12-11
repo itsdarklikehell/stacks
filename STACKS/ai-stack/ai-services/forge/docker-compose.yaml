@@ -17,6 +17,8 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - WEB_ENABLE_AUTH=false
+      - CKPT_DIR=/opt/stable-diffusion-webui-forge/models
+      - PORT=${PORT:-7860}
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
@@ -26,6 +28,10 @@ services:
       - forge_data:/opt/stable-diffusion-webui-forge
       - forge_models:/opt/stable-diffusion-webui-forge/models
       - forge_output:/opt/stable-diffusion-webui-forge/outputs
+
+      - forge_data:/workspace
+      - forge_models:/workspace/models
+      - forge_output:/workspace/outputs
 
     hostname: ${NAME:-forge}
 
