@@ -17,9 +17,13 @@ services:
     #     - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
     #     - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
     #     - BUILD_TYPE=cublas
-    #     - LOCALAI_IMAGE_PATH=/localai/output
     #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
     #     - THREADS=1
+    #     - LOCALAI_IMAGE_PATH=/localai/output
+    #     - MODELS_PATH=/localai/models
+    #     - BACKENDS_PATH=/localai/backends
+    #     - LOCALAI_IMAGE_PATH=/localai/output
+    #     - DEBUG=true
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -42,20 +46,18 @@ services:
       - MODELS_PATH=/localai/models
       - BACKENDS_PATH=/localai/backends
       - LOCALAI_IMAGE_PATH=/localai/output
-      - THREADS=1
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
-      # - PROFILE=gpu-8g
-      # - DEBUG=false
+      - THREADS=1
+      - PROFILE=gpu-8g
+      - DEBUG=true
 
     cap_add:
       - SYS_NICE
       - NET_ADMIN
       - IPC_LOCK
 
-    # command:
-    # - granite-embedding-107m-multilingual
-    # - moondream2-20250414
-    # - huggingfacetb_smollm3-3b
+    # command: local-ai run --p2p
+    # command: local-ai run --p2p --federated
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

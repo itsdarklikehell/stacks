@@ -72,7 +72,7 @@ function CLONE_AIRI() {
 
 					sleep 3
 
-					npx npm-check-updates -u >/dev/null 2>&1 &
+					yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 					ni >/dev/null 2>&1 &
 					nr -F @proj-airi/telegram-bot db:generate >/dev/null 2>&1
@@ -83,7 +83,7 @@ function CLONE_AIRI() {
 					cd "${STACK_BASEPATH}/DATA/airi-stack/airi/services/discord-bot" || exit 1
 					cp .env .env.local
 
-					npx npm-check-updates -u >/dev/null 2>&1 &
+					yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 					ni >/dev/null 2>&1 &
 					nr -F @proj-airi/discord-bot dev >/dev/null 2>&1 &
@@ -93,7 +93,7 @@ function CLONE_AIRI() {
 
 					cp .env .env.local
 
-					npx npm-check-updates -u >/dev/null 2>&1 &
+					yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 					ni >/dev/null 2>&1 &
 					nr -F @proj-airi/minecraft dev >/dev/null 2>&1 &
@@ -108,7 +108,7 @@ function CLONE_AIRI() {
 			npm i -g pkgroll >/dev/null 2>&1 &
 			npm i -g @craco/craco >/dev/null 2>&1 &
 
-			npx npm-check-updates -u >/dev/null 2>&1 &
+			yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 			INSTALL_AIRI_PLUGINS >/dev/null 2>&1 &
 
@@ -143,7 +143,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai.git xsai
 			cd xsai || exit
 
-			npx npm-check-updates -u >/dev/null 2>&1 &
+			yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
 			# nr -F build >/dev/null 2>&1 &
@@ -157,7 +157,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/xsai-transformers.git xsai-transformers
 			cd xsai-transformers || exit
 
-			npx npm-check-updates -u >/dev/null 2>&1 &
+			yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
 			# nr -F build >/dev/null 2>&1 &
@@ -171,7 +171,7 @@ function CLONE_AIRI() {
 			git clone --recursive https://github.com/moeru-ai/chat.git airi-chat
 			cd airi-chat || exit
 
-			npx npm-check-updates -u >/dev/null 2>&1 &
+			yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 			ni >/dev/null 2>&1 &
 			# nr -F build >/dev/null 2>&1 &
@@ -211,6 +211,17 @@ function CLONE_PUPPETEER() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
+		ni # >/dev/null 2>&1 &
+
+		ni puppeteer      # Downloads compatible Chrome during installation.
+		ni puppeteer-core # Alternatively, install as a library, without downloading Chrome.
+
+		yes | npx npm-check-updates -u >/dev/null 2>&1 &
+		bash docker/pack.sh
+
+		# npm init --yes
+		# npm install puppeteer puppeteer-core @puppeteer/browsers
+
 		# ./install.sh
 		# uv venv --clear --seed
 		# source .venv/bin/activate
@@ -507,7 +518,7 @@ function CLONE_LLMSTACK() {
 		echo "Using Local setup"
 		cd llmstack/client || exit 1
 
-		npx npm-check-updates -u >/dev/null 2>&1 &
+		yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 		ni >/dev/null 2>&1 &
 		# nr -F build >/dev/null 2>&1 &
@@ -1403,7 +1414,7 @@ function CLONE_MAKESENSE() {
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"
-		npx npm-check-updates -u >/dev/null 2>&1 &
+		yes | npx npm-check-updates -u >/dev/null 2>&1 &
 
 		ni >/dev/null 2>&1 &
 		# nr start >/dev/null 2>&1 &
