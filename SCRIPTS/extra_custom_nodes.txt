@@ -18,6 +18,7 @@ comfyui-impact-pack
 comfyui-animatediff-evolved
 comfyui_controlnet_aux
 comfyui_ipadapter_plus
+
 ### A1111 nodes
 sd-webui-color-enhance
 nui-suite
@@ -52,6 +53,7 @@ ComfyUI-TiledDiffusion
 comfyui-inspire-pack
 comfyui-wd14-tagger
 comfyui_ultimatesdupscale
+
 ### More A1111 nodes
 Comfyui-XYZ-stitch
 comfyui_otacoo
@@ -83,6 +85,7 @@ EXO-Custom-ComfyUI-Nodes
 Factory-Prompts_comfyui
 flux-prompt-generator
 PromptCreatorNode
+
 ### rgthree
 comfyui-gps-supplements
 multi-lora-stack
@@ -91,6 +94,7 @@ comfyui-vslinx-nodes
 comfyui_sillynodes
 efficiency-nodes-ED
 rgthree-comfy
+
 ### Efficiency
 ComfyUI-LoRAWeightAxisXY
 va-nodes
@@ -110,6 +114,7 @@ ComfyUI_RH_OminiControl
 ComfyUI-Align
 comfyui-lumi-batcher
 efficiency-nodes-comfyui
+
 ### WAS
 ComfyUI-CountS2VExtend
 SimpleFlux1Merger
@@ -139,9 +144,11 @@ freeu_advanced
 comfyui_jankhidiffusion
 was-ns
 civitai_comfy_nodes
+
 ### ReActor
 ComfyUI-AudioReactor
 comfyui-simswap
+
 ### Impact
 # ComfyUI-WhirlpoolUpscaler
 # ComfyUI-yt_dl
@@ -163,6 +170,7 @@ comfyui-simswap
 # comfyui-if_llm
 # comfyui_if_memoavatar
 # comfyui-if_trellis
+
 ### IPAdapter
 comfyui_ipadapter_plus_v2
 pah-nodes
@@ -204,6 +212,7 @@ powernoisesuite
 comfyui_jankdiffusehigh
 comfyui-styles-all
 SimpleFlux1Merger
+
 ### ControlNet
 ComfyUI-XingLiu
 ComfyUI_VideoEditing
@@ -241,6 +250,7 @@ ComfyUI-Olm-Sketch
 comfyui-dream-painter
 uber_comfy_nodes
 ComfyUI-InstantIDUtils
+
 ### TeaCache
 donutnodes
 ComfyUI-TeaCache-lumina2
@@ -250,11 +260,13 @@ teacachehunyuanvideo
 comfyui_patches_ll
 comfyui_pulid_flux_ll
 teacache
+
 ### WaveSpeed
 wavespeed
 razv-wavespeed
 comfyui-nodes-erpk
 wavespeed-comfyui
+
 ### Wrapper
 ComfyUI-VideoBasicLatentSync
 ComfyUI-Dia_tts
@@ -365,6 +377,7 @@ comfyui-cogvideoxwrapper
 comfyui-supir
 comfyui-hunyuanvideowrapper
 ComfyUI-WanVideoWrapper
+
 ### Performance
 # comfyui-popo-utility
 # ComfyUI-translate-offline
@@ -471,3 +484,197 @@ sd-webui-prompt-postprocessor
 comfyui_starnodes
 ComfyUI-Chibi-Nodes
 mikey_nodes
+
+### templates
+prompt-templating
+comfyui-template-loader
+comfyui-wiki-workflows
+ComfyUI-Assistant
+integrated-nodes-comfyui
+ComfyUI-Apt_Preset
+sdxl_prompt_styler
+
+### styler
+hylarucoder_comfyui-copilot
+comfyui-dp-them-styler
+ComfyUI_mozman_nodes
+zsq_prompt
+ComfyUI-CSV-Styler
+NX_PromptStyler
+ComfyUI-Fans
+ComfyUI_Mexx_Styler
+ComfyUI-Prompt-Preview
+ComfyUI-HunyuanVideoStyler
+ComfyUI_MileHighStyler
+ComfyUI-Universal-Styler
+ComfyUi_PromptStylers
+
+### youtube
+ComfyUI-SuperNodes
+ComfyUI-yt_dl
+Download_Tools
+ComfyUI-YouTubeUploader
+comfyui-easyurlloader
+comfyui-youtube-downloader
+comfyui-ytdl-nodes
+youtube-dl-comfyui
+ComfyUI_QueueTube
+comfyui-youtubevideoplayer
+ComfyUI-MediaMixer
+komojini-comfyui-nodes
+
+### easy use
+ComfyUI-Easy-Use
+
+### vlm
+Unified-Vision-Prompt-Generator
+ComfyUI-FastVLM-7B
+shrug-prompter
+wo_joycaption_comfyui
+ComfyUI-OmniGen2
+prompt-assistant
+comfyui-doubutsu-describer
+ComfyUI-VLM-DreamOmni2
+comfyui-moondream2
+comfyui-modelscope
+comfyui_tagger
+llm-vlm-node
+ComfyUI-VLM-Captions
+comfyui_billbum_api_nodes
+comfyui-levelpixel-advanced
+comfyui-image-captioner
+openai-api
+joycaption_comfyui
+ComfyUI-Iterative-Mixer
+fal-api
+ComfyUI-Miaoshouai-Tagger
+comfyui_vlm_nodes
+comfyui-florence2
+
+### LLM
+ComfyUI-OpenAI-Compatible-API
+ComfyUI-Vision-LLM-Analyzer
+ComfyUI-Custom-Node-Config
+ComfyUI-AmazonBedrock
+ComfyUI-MyLLMnode
+ComfyUiRagNodes
+ComfyUI-MultiTranslator
+razv-llm
+Comfyui-LLM-Chat
+ComfyUI-OpenAI-Compat-LLM-Node
+ComfyUI-AQnodes
+ComfyUI-Prompt-Translator
+neonllama
+comfyUI_LLM
+ComfyUI-JSON-Prompt
+OllamaTools
+ComfyUI-SmolLM3
+ComfyUI-SimpleChat
+ComfyUI-LLM-GGUF
+llm-node-comfyui
+ComfyUI-LM_Studio_Tools
+Local_LLM_Prompt_Enhancer
+AkkiNodes-LLM-Suite-for-ComfyUI
+Comfy_HunyuanImage3
+comfyui-OreX
+ComfyUI-QwenPromptRewriter
+comfyui-llm-prompt-enhancer
+ComfyUI-Korean-Prompt-Engineer-with-LLM
+Cyber-BCat_ComfyUI_Auto_Caption
+comfyui_llm_api
+ComfyUI-API-Manager
+comfyui-pixtralllamavision
+apachellmpack
+ez-llm
+SambaNova
+ComfyUI-LLM
+ComfyUI-ComfyAI
+siberianodes
+lf-nodes
+Tenos_LLM_Image_Describe
+ComfyUI_LLM_Banana
+ComfyUI-RunRunRun
+comfyui-pdid-llm-nodes
+comfyui-live-search
+basicollama
+llm_hub
+ComfyUI_xObiomesh
+AS_LLM_nodes
+ComfyUI_EmAySee_CustomNodes
+comfyui-ns-util
+ComfyUI_FMJ_LLM
+comfyui-structured-outputs
+omniavatar
+thinkremover
+comfyui-yallm-node
+ComfyUI-GPT
+ComfyUI-PromptJSON
+Openrouter-Node
+yallm-llamavision
+ComfyUI_MooER
+LocalLLMnodes
+comfyui_llm_schools
+litellm
+comfyui-oshtz-nodes
+comfyui-llm-assistant
+ComfyUI_Simple_Qwen3-VL-gguf
+llm-api
+lollms_nodes_suite
+cyberdolphin
+CrasHUtils
+comfyui_auto_caption
+comfyui-ollama-llms
+brekel
+ComfyUI-Qwen3
+step_audio_editx_sm
+comfyui_stringessentials
+wwaa-customnodes
+comfyui-decadetw-auto-prompt-llm
+llm_sdxl_adapter
+ComfyUI-EBU-LMStudio
+confyui-node-prompt-stash-saver
+sparktts_mw
+ComfyUI-LLMs
+comfyui_llm_node
+llm_polymath
+llm-toolkit
+comfyui-pixtralllamamolmovision
+comfyui-funaudiollm
+z-image-utilities
+comfyui-ollama-describer
+comfyui-tara-llm-integration
+Comfyui-Spark-TTS
+ComfyUI-LLaVA-Captioner
+ComfyUI_Searge_LLM
+comfyui-if_llm
+comfyui-griptape
+anynode
+comfyui_llm_party
+
+### telegram
+comfyui-notifier
+comfyui-telegram-suite
+comfyui-decadetw-auto-messaging-realtime
+ComfyUI-SP-Nodes
+comfyui-tg
+
+### ollama
+ComfyUI-CN-Pre
+comfyui-ollama-model-manager
+ComfyUI-gpt-oss-PromptDesigner
+ComfyUI-FairyTaler
+ComfyUI-Ollama-Enhancer
+wizdroid-character
+ComfyUI-JoyCaption-beta-one-hf-llava-Prompt_node
+comfyui-fairlab
+designpack
+ComfyUI-HX-Captioner
+comfyui-ninode-utils
+comfyui-ollama-nodes
+rpg-characters
+comfyui-ollama_killer
+ComfyUI-ZMG-Nodes
+comfyui_mtclipencode
+comfyui-ollama-yn
+comfyui-ollamagemini
+bjornulf_custom_nodes

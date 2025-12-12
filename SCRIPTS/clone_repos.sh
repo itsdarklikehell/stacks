@@ -18,6 +18,7 @@ mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/jaison-stack"
@@ -1126,16 +1127,22 @@ function CLONE_COMFYUI() {
 		mv "${COMFYUI_PATH}/models" "${STACK_BASEPATH}/DATA/ai-models"
 		mv "${COMFYUI_PATH}/output" "${STACK_BASEPATH}/DATA/ai-outputs"
 		mv "${COMFYUI_PATH}/input" "${STACK_BASEPATH}/DATA/ai-inputs"
+		mv "${COMFYUI_PATH}/user/default/workflows" "${STACK_BASEPATH}/DATA/ai-workflows"
 
 		rm -rf "${COMFYUI_PATH}/models"
 		rm -rf "${COMFYUI_PATH}/output"
 		rm -rf "${COMFYUI_PATH}/input"
+		rm -rf "${COMFYUI_PATH}/user/default/workflows"
+		rm -rf "${COMFYUI_PATH}/models/workflows"
 
-		ln -sf "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
-		ln -sf "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
-		ln -sf "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
+		ln -s "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
+		ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
+		ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
+		ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/user/default/workflows"
+		ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/models/workflows"
 
-		ln -sf "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
+		ln -s "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
+
 	}
 
 	SETUP_FOLDERS
@@ -1299,10 +1306,15 @@ function CLONE_CUSHYSTUDIO() {
 function CLONE_COMFYUIMINI() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
+	export COMFYUIMINI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
+
 	echo "Cloning ComfyUIMini"
 	echo ""
-	git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git ComfyUIMini
+	git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git "${COMFYUIMINI_PATH}"
 	cd ComfyUIMini || exit 1
+
+	rm -rf "workflows"
+	ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUIMINI_PATH}/workflows"
 
 	function LOCAL_SETUP() {
 		echo "Using Local setup"

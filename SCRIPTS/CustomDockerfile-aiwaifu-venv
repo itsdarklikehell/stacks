@@ -66,7 +66,7 @@ WORKDIR /aiwaifu
 # causes issues with python's site packages otherwise.
 COPY --from=build /usr/bin/python3 /usr/bin/python3
 COPY --from=build /usr/lib/python3 /usr/lib/python3
-# RUN ln -sf /usr/bin/python3 /usr/bin/python3
+# RUN ln -s /usr/bin/python3 /usr/bin/python3
 
 # RUN python3 main.py --help
 

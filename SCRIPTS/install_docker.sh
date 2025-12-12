@@ -38,7 +38,7 @@ function INSTALL_DOCKER() {
 		echo "Docker installation completed."
 
 		sudo mv /var/lib/docker "${DOCKER_FILES}"
-		sudo ln -sf "${DOCKER_FILES}" /var/lib/docker
+		sudo ln -s "${DOCKER_FILES}" /var/lib/docker
 		sudo ls -la /var/lib/docker
 	fi
 	# check if lazydocker is installed and if not install it

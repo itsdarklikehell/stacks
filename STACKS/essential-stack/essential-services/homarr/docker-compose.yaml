@@ -16,8 +16,15 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - SECRET_ENCRYPTION_KEY=0bc51b68a65a3d2b7a2c1c6a45cf5fb4839c53fde1c6d647512e13e7230f6917
-      - PORT=${PORT:-7578}
+      - PORT=${PORT:-7575}
+      - HOMARR_DEFAULT_STOP_TIMEOUT=${HOMARR_DEFAULT_STOP_TIMEOUT:-10}
+      - HOMARR_INTERVAL=${HOMARR_INTERVAL:-5}
+      - HOMARR_ONLY_MONITOR_RUNNING=${HOMARR_ONLY_MONITOR_RUNNING:-false}
+      - HOMARR_START_PERIOD=${HOMARR_START_PERIOD:-0}
+      - DOCKER_HOSTNAMES=${DOCKER_HOSTNAMES:-localhost}
+      - SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-}
+      - HOMARR_CONTAINER_LABEL=${HOMARR_CONTAINER_LABEL:-homarr}
+      - DOCKER_PORTS=${DOCKER_PORTS:-}
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
@@ -35,7 +42,7 @@ services:
       essential-services:
 
     ports:
-      - ${PORT:-7578}:7578
+      - ${PORT:-7575}:7575
 
     env_file:
       - ./homarr/.env
@@ -48,7 +55,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: CMD curl -f http://localhost:${PORT:-7578}/health
+    #   test: CMD curl -f http://localhost:${PORT:-7575}/health
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s

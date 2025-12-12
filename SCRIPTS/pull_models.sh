@@ -33,6 +33,26 @@ models=(
 	'redule26/huihui_ai_qwen2.5-vl-7b-abliterated:latest'
 	'smallthinker:latest'
 	'wizard-vicuna-uncensored:latest'
+	'leeplenty/lumimaid-v0.2:latest'
+	'leeplenty/xwin-mlewd-v0.2:latest'
+	'HammerAI/xwin-mlewd-v0.2:latest'
+	'tulu3:latest'
+	'brxce/stable-diffusion-prompt-generator:latest'
+	'trollek/qwen2-diffusion-prompter:latest'
+	'impactframes/llama3_ifai_sd_prompt_mkr_q4km:latest'
+	'impactframes/stable_diffusion_prompt_maker:latest'
+	'hemanth/promptgenerator:latest'
+	'brxce/stable-diffusion-prompt-generator:latest'
+	'ALIENTELLIGENCE/genaiimagecsprompt:latest'
+	'gnokit/improve-prompt:latest'
+	'impactframes/dolphin_llama3_omost:latest'
+	'impactframes/ifai_promptmkr_dolphin_phi3:latest'
+	'vincentg/llama3.2-fluxassistant:latest'
+	'ALIENTELLIGENCE/imagegenaiprompter:latest'
+	'ALIENTELLIGENCE/genaiimagecspromptv:latest'
+	'ALIENTELLIGENCE/randomroleplaypromptgenerator:latest'
+	'ejschwar/llama3.2-better-prompts:latest'
+	'ALIENTELLIGENCE/aipromptassistant:latest'
 )
 # 'huihui_ai/qwq-abliterated:latest'
 # 'dolphin-mixtral:latest'
@@ -46,9 +66,7 @@ PULL_MODELS() {
 		echo "Pulling model: ${model}"
 		if command -v ollama >/dev/null 2>&1; then
 			ollama pull "${model}" # >/dev/null 2>&1
-		fi
-
-		if docker inspect "${container_name}" >/dev/null 2>&1; then
+		elif docker inspect "${container_name}" >/dev/null 2>&1; then
 			echo "The container ${container_name} exists."
 			if docker inspect -f '{{.State.Status}}' "${container_name}" | grep -q "running" || true; then
 				docker exec -it "${container_name}" sh -c "ollama pull ${model}"

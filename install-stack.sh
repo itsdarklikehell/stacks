@@ -171,11 +171,11 @@ function SETUP_AUTOSTART() {
 	for SCRIPT in "${scripts[@]}"; do
 		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
 			rm "/home/${USER}/bin/${SCRIPT}"
-			ln -sf "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			ln -s "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/${SCRIPT}"
 		else
 			rm "/home/${USER}/bin/${SCRIPT}"
-			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		fi
 		chmod +x "/home/${USER}/bin/${SCRIPT}"
@@ -183,8 +183,8 @@ function SETUP_AUTOSTART() {
 	done
 	for SCRIPT in "${desktop_scripts[@]}"; do
 		rm "/home/${USER}/.config/autostart/${SCRIPT}"
-		ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
-		sudo ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
+		ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
+		sudo ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
 
 		chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		sudo chmod +x "/usr/share/applications/${SCRIPT}"
@@ -221,9 +221,9 @@ echo ""
 SETUP_ESSENTIALS_STACK
 echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
