@@ -16,7 +16,6 @@ cd "${SCRIPT_DIR}" || exit 1
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
 

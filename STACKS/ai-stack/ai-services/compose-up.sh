@@ -6,11 +6,11 @@ cd "$(dirname "$0")"
 export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 
 COMPOSE_FILES=(
-	ai-dock-comfyui
-	ai-dock-fooocus
-	ai-dock-forge
-	ai-dock-kohya
-	ai-dock-sd-webui
+	# ai-dock-comfyui
+	# ai-dock-fooocus
+	# ai-dock-forge
+	# ai-dock-kohya
+	# ai-dock-sd-webui
 	anything-llm
 	# automatic1111
 	# big-agi

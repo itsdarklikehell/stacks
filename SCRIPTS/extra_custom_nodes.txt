@@ -440,3 +440,34 @@ comfyui-flux-inpainting
 comfyui-logicutils
 ComfyUI-BiRefNet-Hugo
 ComfyUI-Crystools
+
+### droopy noodles
+comfyui-droopy-noodles
+
+### wildcard
+DaimalyadNodes
+DuoUmiWildcards
+comfyui-ppwc
+ComfyUI-DynPromptSimplified
+ComfyUI-ChomfyNodes
+comfyui-adaptiveprompts
+lordgasmic_ComfyUI-Wildcards
+ab_wildcard
+gprompts
+comfyui-negativewildcardsprocessor
+comfyui-csvwildcards
+comfyui_gr85
+comfyui-badmannodes
+simplewildcardscomfyui
+comfyui_dados_nodes
+comfyui-wildcards
+comfyui_prompt_wildcards
+ComfyUI-Gtsuya-Nodes
+WildDivide
+santodan-custom-nodes-comfyui
+comfyui-stable-wildcards
+Listhelper
+sd-webui-prompt-postprocessor
+comfyui_starnodes
+ComfyUI-Chibi-Nodes
+mikey_nodes

@@ -57,7 +57,7 @@ services:
       - IPC_LOCK
 
     # command: local-ai run --p2p
-    # command: local-ai run --p2p --federated
+    command: local-ai run --p2p --federated
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
