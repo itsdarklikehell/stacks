@@ -1,9 +1,9 @@
 services:
-  forge:
+  ai-dock-forge:
     # image: ${IMAGE:-ghcr.io/ai-dock/stable-diffusion-webui-forge:cuda-12.1.1-base-22.04}
     image: ${IMAGE:-aidockorg/stable-diffusion-webui-forge-cuda:latest}
 
-    container_name: ${NAME:-forge}
+    container_name: ${NAME:-ai-dock-forge}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -29,7 +29,7 @@ services:
       - CIVITAI_TOKEN=${CIVITAI_TOKEN:-}
       - HF_TOKEN=${HF_TOKEN:-}
       - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-true}
-      - WEB_ENABLE_HTTPS=${WEB_ENABLE_HTTPS:-false}
+      - WEB_ENABLE_HTTPS${WEB_ENABLE_HTTPS:-false}
       - WEB_USER=${WEB_USER:-user}
       - WEB_PASSWORD=${WEB_PASSWORD:-password}
       - SSH_PORT_HOST=${SSH_PORT_HOST:-2222}
@@ -57,15 +57,15 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - forge_data:/opt/stable-diffusion-webui-forge
-      - forge_models:/opt/stable-diffusion-webui-forge/models
-      - forge_output:/opt/stable-diffusion-webui-forge/outputs
+      - ai-dock-forge_data:/opt/stable-diffusion-webui-forge
+      - ai-dock-forge_models:/opt/stable-diffusion-webui-forge/models
+      - ai-dock-forge_output:/opt/stable-diffusion-webui-forge/outputs
 
-      - forge_data:/workspace
-      - forge_models:/workspace/models
-      - forge_output:/workspace/outputs
+      - ai-dock-forge_data:/workspace
+      - ai-dock-forge_models:/workspace/models
+      - ai-dock-forge_output:/workspace/outputs
 
-    hostname: ${NAME:-forge}
+    hostname: ${NAME:-ai-dock-forge}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -74,13 +74,13 @@ services:
       ai-services:
 
     ports:
-      - ${FORGE_PORT_HOST:-7860}:7860
-      - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
-      - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
-      - ${JUPYTER_PORT_HOST-:8888}:8888
+      - ${FORGE_PORT_HOST:-17860}:17860
+      # - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
+      # - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
+      # - ${JUPYTER_PORT_HOST-:8888}:8888
 
     env_file:
-      - ./forge/.env
+      - ./ai-dock-forge/.env
 
     stop_signal: SIGKILL
 

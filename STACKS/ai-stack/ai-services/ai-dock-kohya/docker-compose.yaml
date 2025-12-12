@@ -1,9 +1,9 @@
 services:
-  forge:
-    # image: ${IMAGE:-ghcr.io/ai-dock/stable-diffusion-webui-forge:cuda-12.1.1-base-22.04}
-    image: ${IMAGE:-aidockorg/stable-diffusion-webui-forge-cuda:latest}
+  ai-dock-kohya:
+    # image: ${IMAGE:-ghcr.io/ai-dock/kohya_ss:cuda-12.1.1-base-22.04}
+    image: ${IMAGE:-aidockorg/kohya_ss-cuda:sd3-flux.1}
 
-    container_name: ${NAME:-forge}
+    container_name: ${NAME:-ai-dock-kohya}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -26,8 +26,6 @@ services:
       - WORKSPACE_SYNC=${WORKSPACE_SYNC:-false}
       - CF_TUNNEL_TOKEN=${CF_TUNNEL_TOKEN:-}
       - CF_QUICK_TUNNELS=${CF_QUICK_TUNNELS:-true}
-      - CIVITAI_TOKEN=${CIVITAI_TOKEN:-}
-      - HF_TOKEN=${HF_TOKEN:-}
       - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-true}
       - WEB_ENABLE_HTTPS=${WEB_ENABLE_HTTPS:-false}
       - WEB_USER=${WEB_USER:-user}
@@ -37,12 +35,12 @@ services:
       - SERVICEPORTAL_PORT_HOST=${SERVICEPORTAL_PORT_HOST:-1111}
       - SERVICEPORTAL_METRICS_PORT=${SERVICEPORTAL_METRICS_PORT:-21111}
       - SERVICEPORTAL_URL=${SERVICEPORTAL_URL:-}
-      - FORGE_BRANCH=${FORGE_BRANCH:-}
-      - FORGE_ARGS=${FORGE_ARGS:-}
-      - FORGE_PORT_HOST=${FORGE_PORT_HOST:-7860}
-      - FORGE_PORT_LOCAL=${FORGE_PORT_LOCAL:-17860}
-      - FORGE_METRICS_PORT=${FORGE_METRICS_PORT:-27860}
-      - FORGE_URL=${FORGE_URL:-}
+      - KOHYA_BRANCH=${KOHYA_BRANCH:-}
+      - KOHYA_ARGS=${KOHYA_ARGS:-}
+      - KOHYA_PORT_HOST=${KOHYA_PORT_HOST:-7860}
+      - KOHYA_PORT_LOCAL=${KOHYA_PORT_LOCAL:-17860}
+      - KOHYA_METRICS_PORT=${KOHYA_METRICS_PORT:-27860}
+      - KOHYA_URL=${KOHYA_URL:-}
       - JUPYTER_PORT_HOST=${JUPYTER_PORT_HOST:-8888}
       - JUPYTER_METRICS_PORT=${JUPYTER_METRICS_PORT:-28888}
       - JUPYTER_URL=${JUPYTER_URL:-}
@@ -50,6 +48,11 @@ services:
       - SYNCTHING_UI_PORT_HOST=${SYNCTHING_UI_PORT_HOST:-8384}
       - SYNCTHING_TRANSPORT_PORT_HOST=${SYNCTHING_TRANSPORT_PORT_HOST:-22999}
       - SYNCTHING_URL=${SYNCTHING_URL:-}
+      - TENSORBOARD_ARGS=${TENSORBOARD_ARGS:-"--logdir /opt/kohya_ss/logs"}
+      - TENSORBOARD_PORT_HOST=${TENSORBOARD_PORT_HOST:-6006}
+      - TENSORBOARD_PORT_LOCAL=${TENSORBOARD_PORT_LOCAL:-16006}
+      - TENSORBOARD_METRICS_PORT=${TENSORBOARD_METRICS_PORT:-26006}
+      - TENSORBOARD_URL=${TENSORBOARD_URL:-}
       #- PROVISIONING_SCRIPT=${PROVISIONING_SCRIPT:-}
 
     volumes:
@@ -57,15 +60,15 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - forge_data:/opt/stable-diffusion-webui-forge
-      - forge_models:/opt/stable-diffusion-webui-forge/models
-      - forge_output:/opt/stable-diffusion-webui-forge/outputs
+      - ai-dock-kohya_data:/opt/stable-diffusion-webui-kohya
+      - ai-dock-kohya_models:/opt/stable-diffusion-webui-kohya/models
+      - ai-dock-kohya_output:/opt/stable-diffusion-webui-kohya/outputs
 
-      - forge_data:/workspace
-      - forge_models:/workspace/models
-      - forge_output:/workspace/outputs
+      - ai-dock-kohya_data:/workspace
+      - ai-dock-kohya_models:/workspace/models
+      - ai-dock-kohya_output:/workspace/outputs
 
-    hostname: ${NAME:-forge}
+    hostname: ${NAME:-ai-dock-kohya}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -74,13 +77,13 @@ services:
       ai-services:
 
     ports:
-      - ${FORGE_PORT_HOST:-7860}:7860
-      - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
-      - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
-      - ${JUPYTER_PORT_HOST-:8888}:8888
+      - ${KOHYA_PORT_HOST:-17861}:17861
+      # - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
+      # - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
+      # - ${JUPYTER_PORT_HOST-:8888}:8888
 
     env_file:
-      - ./forge/.env
+      - ./ai-dock-kohya/.env
 
     stop_signal: SIGKILL
 

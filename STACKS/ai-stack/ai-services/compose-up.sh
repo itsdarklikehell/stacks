@@ -6,19 +6,24 @@ cd "$(dirname "$0")"
 export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 
 COMPOSE_FILES=(
+	ai-dock-comfyui
+	ai-dock-fooocus
+	ai-dock-forge
+	ai-dock-kohya
+	ai-dock-sd-webui
 	anything-llm
 	# automatic1111
-	big-agi
+	# big-agi
 	# ComfyUI
-	forge
 	homeassistant
 	invokeai
 	letta-mcp-server
 	letta-server
-	librechat
-	lobe-chat
+	# librechat
+	# lobe-chat
 	localai
-	n8n
+	forge
+	# n8n
 	ollama
 	open-webui
 	# puppeteer
@@ -64,6 +69,44 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ai-dock-comfyui" ]]; then
+		FOLDERS=(
+			"data"
+			"models"
+			"output"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ai-dock-fooocus" ]]; then
+		FOLDERS=(
+			"data"
+			"models"
+			"output"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ai-dock-forge" ]]; then
+		FOLDERS=(
+			"data"
+			"models"
+			"output"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ai-dock-kohya" ]]; then
+		FOLDERS=(
+			"data"
+			"models"
+			"output"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ai-dock-forge" ]]; then
+		FOLDERS=(
+			"data"
 		)
 	fi
 

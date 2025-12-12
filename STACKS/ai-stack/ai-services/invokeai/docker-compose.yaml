@@ -45,6 +45,7 @@ services:
 
     devices:
       - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
 
     runtime: nvidia
     deploy:

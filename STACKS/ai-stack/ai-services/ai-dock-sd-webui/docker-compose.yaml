@@ -1,9 +1,9 @@
 services:
-  forge:
-    # image: ${IMAGE:-ghcr.io/ai-dock/stable-diffusion-webui-forge:cuda-12.1.1-base-22.04}
-    image: ${IMAGE:-aidockorg/stable-diffusion-webui-forge-cuda:latest}
+  ai-dock-sd-webui:
+    # image: ${IMAGE:-ghcr.io/ai-dock/stable-diffusion-webui:cuda-11.8.0-base-22.04}
+    image: ${IMAGE:-aidockorg/stable-diffusion-webui-cuda:latest}
 
-    container_name: ${NAME:-forge}
+    container_name: ${NAME:-ai-dock-sd-webui}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,6 +20,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
       # Don't enclose values in quotes
+      - AUTO_UPDATE=${AUTO_UPDATE:-false}
       - DIRECT_ADDRESS=${DIRECT_ADDRESS:-127.0.0.1}
       - DIRECT_ADDRESS_GET_WAN=${DIRECT_ADDRESS_GET_WAN:-false}
       - WORKSPACE=${WORKSPACE:-/workspace}
@@ -33,16 +34,13 @@ services:
       - WEB_USER=${WEB_USER:-user}
       - WEB_PASSWORD=${WEB_PASSWORD:-password}
       - SSH_PORT_HOST=${SSH_PORT_HOST:-2222}
-      - SSH_PORT_LOCAL=${SSH_PORT_LOCAL:-22}
       - SERVICEPORTAL_PORT_HOST=${SERVICEPORTAL_PORT_HOST:-1111}
       - SERVICEPORTAL_METRICS_PORT=${SERVICEPORTAL_METRICS_PORT:-21111}
       - SERVICEPORTAL_URL=${SERVICEPORTAL_URL:-}
-      - FORGE_BRANCH=${FORGE_BRANCH:-}
-      - FORGE_ARGS=${FORGE_ARGS:-}
-      - FORGE_PORT_HOST=${FORGE_PORT_HOST:-7860}
-      - FORGE_PORT_LOCAL=${FORGE_PORT_LOCAL:-17860}
-      - FORGE_METRICS_PORT=${FORGE_METRICS_PORT:-27860}
-      - FORGE_URL=${FORGE_URL:-}
+      - WEBUI_ARGS=${WEBUI_ARGS:-}
+      - WEBUI_PORT_HOST=${WEBUI_PORT_HOST:-8188}
+      - WEBUI_METRICS_PORT=${WEBUI_METRICS_PORT:-28188}
+      - WEBUI_URL=${WEBUI_URL:-}
       - JUPYTER_PORT_HOST=${JUPYTER_PORT_HOST:-8888}
       - JUPYTER_METRICS_PORT=${JUPYTER_METRICS_PORT:-28888}
       - JUPYTER_URL=${JUPYTER_URL:-}
@@ -57,15 +55,15 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - forge_data:/opt/stable-diffusion-webui-forge
-      - forge_models:/opt/stable-diffusion-webui-forge/models
-      - forge_output:/opt/stable-diffusion-webui-forge/outputs
+      - ai-dock-sd-webui_data:/opt/stable-diffusion-webui-sd-webui
+      - ai-dock-sd-webui_models:/opt/stable-diffusion-webui-sd-webui/models
+      - ai-dock-sd-webui_output:/opt/stable-diffusion-webui-sd-webui/outputs
 
-      - forge_data:/workspace
-      - forge_models:/workspace/models
-      - forge_output:/workspace/outputs
+      - ai-dock-sd-webui_data:/workspace
+      - ai-dock-sd-webui_models:/workspace/models
+      - ai-dock-sd-webui_output:/workspace/outputs
 
-    hostname: ${NAME:-forge}
+    hostname: ${NAME:-ai-dock-sd-webui}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -74,13 +72,13 @@ services:
       ai-services:
 
     ports:
-      - ${FORGE_PORT_HOST:-7860}:7860
-      - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
-      - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
-      - ${JUPYTER_PORT_HOST-:8888}:8888
+      - ${WEBUI_PORT_HOST:-17862}:17862
+      # - ${SERVICEPORTAL_PORT_HOST:-1111}:1111
+      # - ${SYNCTHING_UI_PORT_HOST:-8384}:8384
+      # - ${JUPYTER_PORT_HOST-:8888}:8888
 
     env_file:
-      - ./forge/.env
+      - ./ai-dock-sd-webui/.env
 
     stop_signal: SIGKILL
 
