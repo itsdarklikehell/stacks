@@ -166,7 +166,6 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"cache"
 			"configuration"
-			"backends"
 		)
 	fi
 
