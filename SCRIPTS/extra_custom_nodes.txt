@@ -1,23 +1,23 @@
-# ### Favorite nodes
-# comfyui-impact-subpack
-# comfy-mtb
-# comfyui-advanced-controlnet
-# comfyui-reactor
-# comfyui_essentials
-# sd-dynamic-thresholding
-# comfyui-videohelpersuite
-# comfyui-layerdiffuse
-# comfyui_instantid
-# comfyui-kjnodes
-# comfyui-liveportraitkj
-# aigodlike-comfyui-translation
-# comfyui-advancedliveportrait
-# comfyui_layerstyle
-# comfyui-custom-scripts
-# comfyui-impact-pack
-# comfyui-animatediff-evolved
-# comfyui_controlnet_aux
-# comfyui_ipadapter_plus
+### Favorite nodes
+comfyui-impact-subpack
+comfy-mtb
+comfyui-advanced-controlnet
+comfyui-reactor
+comfyui_essentials
+sd-dynamic-thresholding
+comfyui-videohelpersuite
+comfyui-layerdiffuse
+comfyui_instantid
+comfyui-kjnodes
+comfyui-liveportraitkj
+aigodlike-comfyui-translation
+comfyui-advancedliveportrait
+comfyui_layerstyle
+comfyui-custom-scripts
+comfyui-impact-pack
+comfyui-animatediff-evolved
+comfyui_controlnet_aux
+comfyui_ipadapter_plus
 
 # ### A1111 nodes
 # sd-webui-color-enhance
