@@ -15,6 +15,7 @@ export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	echo "Install custom nodes enabled."
@@ -166,7 +167,7 @@ LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
 INSTALL_DEFAULT_NODES=true
-INSTALL_EXTRA_NODES=false
+INSTALL_EXTRA_NODES=true
 UPDATE=true
 
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &

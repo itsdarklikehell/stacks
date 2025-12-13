@@ -1106,6 +1106,11 @@ function CLONE_COMFYUI() {
 
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
+
 	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	# 	echo "Install custom nodes enabled."
 	# 	export INSTALL_CUSTOM_NODES=true
