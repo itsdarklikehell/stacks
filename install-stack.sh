@@ -275,6 +275,12 @@ echo ""
 # START_BROWSER >/dev/null 2>&1 &
 # echo ""
 
+sudo apt install -y cvlc
+
+wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
+wget -c "${wavfile}" -O "tadaa.wav"
+cvlc tadaa.wav >/dev/null 2>&1 &
+
 echo "Installation complete.."
 
 # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}"
