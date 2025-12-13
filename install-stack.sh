@@ -97,6 +97,10 @@ function CLONE_REPOS() {
 	SCRIPTS/clone_repos.sh
 }
 
+function START_DEDUPER() {
+	SCRIPTS/start_deduper.sh
+}
+
 function INSTALL_STACK() {
 	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
 
@@ -225,8 +229,6 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-./SCRIPTS/deduper.sh
-
 # echo ""
 # SETUP_MEDIA_STACK
 # echo ""
@@ -255,9 +257,9 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &
@@ -275,11 +277,9 @@ echo ""
 # START_BROWSER >/dev/null 2>&1 &
 # echo ""
 
-sudo apt install -y cvlc
-
-wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
-wget -c "${wavfile}" -O "tadaa.wav"
-cvlc tadaa.wav >/dev/null 2>&1 &
+echo ""
+START_DEDUPER
+echo ""
 
 echo "Installation complete.."
 

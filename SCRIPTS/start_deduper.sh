@@ -32,3 +32,8 @@ for folder in "${folders[@]}"; do
 		rm -f 'rmlint.json'
 	fi
 done
+
+sudo apt install -y vlc
+wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
+wget -c "${wavfile}" -O "tadaa.wav" >/dev/null 2>&1 &
+cvlc tadaa.wav >/dev/null 2>&1 &
