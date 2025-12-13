@@ -77,82 +77,82 @@ ComfyUI_LoRA_Sidebar
 
 
 
-ComfyUI_JPS-Nodes
-Comfyui_MiniCPMv2_6-prompt-generator
-comfyui_model_installer
-comfyui-ollama
-comfyui-ollama-prompt-encode
-ComfyUI-OllamaPromptsGeneratorTlant
-ComfyUI-OnDemand-Loaders.git
-ComfyUI-telegram-bot-node
-comfyui-workflow-models-downloader
-EXO-Custom-ComfyUI-Nodes
-Factory-Prompts_comfyui
-flux-prompt-generator
-PromptCreatorNode
+# ComfyUI_JPS-Nodes
+# Comfyui_MiniCPMv2_6-prompt-generator
+# comfyui_model_installer
+# comfyui-ollama
+# comfyui-ollama-prompt-encode
+# ComfyUI-OllamaPromptsGeneratorTlant
+# ComfyUI-OnDemand-Loaders.git
+# ComfyUI-telegram-bot-node
+# comfyui-workflow-models-downloader
+# EXO-Custom-ComfyUI-Nodes
+# Factory-Prompts_comfyui
+# flux-prompt-generator
+# PromptCreatorNode
 
-### rgthree
-comfyui-gps-supplements
-multi-lora-stack
-Comfyui-EasySettingPipes
-comfyui-vslinx-nodes
-comfyui_sillynodes
-efficiency-nodes-ED
-rgthree-comfy
+# ### rgthree
+# comfyui-gps-supplements
+# multi-lora-stack
+# Comfyui-EasySettingPipes
+# comfyui-vslinx-nodes
+# comfyui_sillynodes
+# efficiency-nodes-ED
+# rgthree-comfy
 
-### Efficiency
-ComfyUI-LoRAWeightAxisXY
-va-nodes
-ComfyUI-Utilitools
-ComfyUI-PromptSE
-comfyui-moonpack
-kaytool
-comfyui-utools
-comfyui-qbug-batch
-focus_nodes
-Den_ComfyUI_Workflow
-sdupcaletiledsize
-lora-merger-comfyui
-comfy_PoP
-comfyui_mienodes
-ComfyUI_RH_OminiControl
-ComfyUI-Align
-comfyui-lumi-batcher
-efficiency-nodes-comfyui
+# ### Efficiency
+# ComfyUI-LoRAWeightAxisXY
+# va-nodes
+# ComfyUI-Utilitools
+# ComfyUI-PromptSE
+# comfyui-moonpack
+# kaytool
+# comfyui-utools
+# comfyui-qbug-batch
+# focus_nodes
+# Den_ComfyUI_Workflow
+# sdupcaletiledsize
+# lora-merger-comfyui
+# comfy_PoP
+# comfyui_mienodes
+# ComfyUI_RH_OminiControl
+# ComfyUI-Align
+# comfyui-lumi-batcher
+# efficiency-nodes-comfyui
 
-### WAS
-ComfyUI-CountS2VExtend
-SimpleFlux1Merger
-comfyui-pvm-node
-ComfyUI_LMStudio_EasyQuery
-WASABI
-comfyui_flux_corrector
-was-node-suite-comfyui
-asterr
-was-lmstudio-easyquery
-comfyui_blackmagic
-ComfyUI_TextListProduct
-comfyui-checkpoint-automatic-config
-was-affine
-viperyl_ComfyUI-BiRefNet
-caching_to_not_waste
-face-upscaling-and-seamless-embedding
-PPF_Noise_ComfyUI
-ComfyUI-IcyHider
-comfyui_preset_merger
-comfyui_jankdiffusehigh
-was-extras
-ComfyUI-sudo-latent-upscale
-powernoisesuite
-comfyui-styles-all
-freeu_advanced
-comfyui_jankhidiffusion
-was-ns
-civitai_comfy_nodes
+# ### WAS
+# ComfyUI-CountS2VExtend
+# SimpleFlux1Merger
+# comfyui-pvm-node
+# ComfyUI_LMStudio_EasyQuery
+# WASABI
+# comfyui_flux_corrector
+# was-node-suite-comfyui
+# asterr
+# was-lmstudio-easyquery
+# comfyui_blackmagic
+# ComfyUI_TextListProduct
+# comfyui-checkpoint-automatic-config
+# was-affine
+# viperyl_ComfyUI-BiRefNet
+# caching_to_not_waste
+# face-upscaling-and-seamless-embedding
+# PPF_Noise_ComfyUI
+# ComfyUI-IcyHider
+# comfyui_preset_merger
+# comfyui_jankdiffusehigh
+# was-extras
+# ComfyUI-sudo-latent-upscale
+# powernoisesuite
+# comfyui-styles-all
+# freeu_advanced
+# comfyui_jankhidiffusion
+# was-ns
+# civitai_comfy_nodes
 
-### ReActor
-ComfyUI-AudioReactor
-comfyui-simswap
+# ### ReActor
+# ComfyUI-AudioReactor
+# comfyui-simswap
 
 ### Impact
 # ComfyUI-WhirlpoolUpscaler
