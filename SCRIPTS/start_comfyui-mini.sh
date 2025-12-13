@@ -3,9 +3,10 @@ echo "Start ComfyUI script started."
 
 export UV_LINK_MODE=copy
 export BACKGROUND=false
-export COMFYUI_PORT=8188
+export COMFYUIMINI_PORT=3000
 
-export COMFYMINI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUIMini"
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export COMFYMINI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
 
 function RUN_COMFYUIMINI() {
 

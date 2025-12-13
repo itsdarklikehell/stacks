@@ -203,11 +203,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ## STACKS:
 CREATE_NETWORKS
@@ -225,7 +225,7 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-./deduper.sh
+./SCRIPTS/deduper.sh
 
 # echo ""
 # SETUP_MEDIA_STACK
