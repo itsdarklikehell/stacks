@@ -4,7 +4,7 @@ services:
     container_name: ${NAME:-swarmui}
     restart: ${RESTART:-unless-stopped}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     build:
       context: ../../../DATA/ai-stack/swarmui
