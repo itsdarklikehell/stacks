@@ -43,9 +43,20 @@ services:
       - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
       - PORT=${PORT:-8083}
       - STORAGE_DIR=/app/server/storage
+      - LOCALAI_MODELS_PATH=/localai/models
       - MODELS_PATH=/localai/models
       - BACKENDS_PATH=/localai/backends
+      - LOCALAI_AUTOLOAD_BACKEND_GALLERIES=true
+      - LOCALAI_P2P=true
+      - LOCALAI_FEDERATED=true
+      - AUTOLOAD_BACKEND_GALLERIES=true
+      - LOCALAI_WATCHDOG_IDLE=true
+      - LOCALAI_BACKENDS_PATH=/localai/backends
       - LOCALAI_IMAGE_PATH=/localai/output
+      - LOCALAI_UPLOAD_PATH=/localai/uploads
+      - UPLOAD_PATH=/localai/uploads
+      - LOCALAI_GENERATED_CONTENT_PATH=/localai/output
+      - GENERATED_CONTENT_PATH=/localai/output
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
       - THREADS=1
       - PROFILE=gpu-8g
@@ -57,7 +68,7 @@ services:
       - IPC_LOCK
 
     # command: local-ai run --p2p
-    command: local-ai run --p2p --federated
+    # command: local-ai run --p2p --federated
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

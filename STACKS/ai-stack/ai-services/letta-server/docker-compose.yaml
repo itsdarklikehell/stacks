@@ -20,6 +20,7 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://192.168.1.2:11434}
       - PORT=${PORT:-8283}
+      - TOOL_EXEC_DIR=/root/.letta/tool_execution_dir
       # - SECURE=${SECURE:-true}
       # - LETTA_SERVER_PASSWORD=${LETTA_SERVER_PASSWORD:-letta}
       # - LETTA_UVICORN_RELOAD=${LETTA_UVICORN_RELOAD:-False}
@@ -29,7 +30,6 @@ services:
       # - LETTA_PG_MAX_OVERFLOW=${LETTA_PG_MAX_OVERFLOW:-30}
       # - LETTA_PG_POOL_TIMEOUT=${LETTA_PG_POOL_TIMEOUT:-30}
       # - LETTA_PG_POOL_RECYCLE=${LETTA_PG_POOL_RECYCLE:-1800}
-      # - TOOL_EXEC_DIR=${TOOL_EXEC_DIR:-../../../DATA/ai-stack/letta/tool_execution_dir}
       # - LETTA_OTEL_EXPORTER_OTLP_ENDPOINT=${LETTA_OTEL_EXPORTER_OTLP_ENDPOINT:-http://0.0.0.0:4317}
       # - CLICKHOUSE_DATABASE=${CLICKHOUSE_DATABASE:-clickhouse}
       # - CLICKHOUSE_ENDPOINT=${CLICKHOUSE_ENDPOINT:-http://0.0.0.0:8124}
@@ -43,7 +43,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/ai-stack/letta/pg_data:/var/lib/postgresql/data
+      # - ../../../DATA/ai-stack/letta/pg_data:/var/lib/postgresql/data
       - letta-server_data:/var/lib/postgresql/data
       # - ../../../DATA/ai-stack/letta/tool_execution_dir:/root/.letta/tool_execution_dir
       - letta-server_tool_execution_dir:/root/.letta/tool_execution_dir
@@ -57,9 +57,6 @@ services:
     networks:
       host:
       ai-services:
-        # aliases:
-        #   - pgvector_db
-        #   - letta-db
 
     ports:
       - ${PORT:-8283}:8283
