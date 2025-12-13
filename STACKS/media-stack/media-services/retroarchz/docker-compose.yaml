@@ -27,7 +27,7 @@ services:
 
     hostname: ${NAME:-retroarchz}
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:

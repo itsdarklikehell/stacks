@@ -69,6 +69,11 @@ webui-monaco-prompt
 lazy-pony-prompter
 ComfyUI_LoRA_Sidebar
 
+### automatic1111
+
+
+
+
 
 
 
@@ -678,3 +683,191 @@ comfyui_mtclipencode
 comfyui-ollama-yn
 comfyui-ollamagemini
 bjornulf_custom_nodes
+
+### sound
+ComfyUI_HunyuanVideo-Foley
+ComfyUI-Orpheus-TTS
+ComfyUI-ThinkSound
+comfyUI-Realtime-Lora
+comfyui-kokorotts
+ComfyUI-Wan-Video-Integrated-KSampler
+elevenlabs-comfyui
+soundflow
+ComfyUI-SoundHub
+comfyui-elevenlabs-integrtion
+comfyui_overly_complicated_sampling
+ComfyUI-DeepExtract
+ComfyUI-Geeky-Kokoro-TTS
+comfyui-edgetts
+ComfyUI_FoleyCrafter
+ComfyUI-Vextra-Nodes
+comfyui_jags_audiotools
+comfyui-sound-lab
+comfyui-web-viewer
+comfyui-pc-ding-dong
+
+### download
+ComfyUI-DownscaleIRN
+lora_downloader
+ComfyUI-Papcorns-Node-LoadImageFromUrl
+civitai-api-url-resolver
+ComfyUI_MJ-Scraper
+Comfyui_Object_Detect_QWen_VL
+kiko-downloader
+ComfyUI-Hangover-Moondream
+ComfyUI-Hive
+comfyui_hf_model_downloader
+zml-image
+ez-dl
+ComfyUI-Fooocus-V2-Expansion
+sno-test-unclaimed-node
+ComfyUI_RIFE_TensorRT_Auto
+comfyui-preset-download-manager
+comfyui-image-browsing
+sno-test-unclaimed-node-2
+IMtalker
+simple-model-downloader
+comfyui-universal-asset-downloader
+enhanced-civicomfy
+comfyui-animatediff
+comfyui_jamworks_client
+ComfyUI_HFDownLoad
+Spleeter
+comfyui-downloader
+ComfyUI-HeadshotPro
+image-misc
+comfyui-Lora-auto-downloader
+ComfyUI-TemporaryLoader
+dwposedeluxe
+comfyui-consistency-decoder
+comfyui_minioconnector
+base-comfyui-node
+audio-batch
+comfyui-runpoddirect
+comfyui-seggpt
+hf-model-downloader
+ComfyUI-Simple-IndexTTs
+ComfyUI-TrashNodes-DownloadHuggingface
+ComfyUI-MusePose-Remaster
+comfyui-save-image-local
+z-image-turbo
+counternodes
+ComfyUI_QwenVL_PromptCaption
+pfg-ComfyUI
+ComfyUI_HuggingFace_Downloader
+ComfyUI-WJNodes
+comfy-asset-downloader
+comfyui-p2ldgan
+ComfyUI_CosyVoice
+autodownloadmodels
+ComfyUI-InstagramDownloader
+comfyui-if_ai_hfdownloadernode
+comfyui_musev_evolved
+comfyui-easycivitai-xtnodes
+comfyui-drmn
+Comfyui_joytag
+civicomfy
+ComfyUI-MotionCtrl-SVD
+comfyui-model-downloader
+Comfyui_segformer_b2_clothes
+ComfyUI-MotionCtrl
+ComfyUI-Lotus
+comfyui-model-manager
+ComfyUI-DepthAnythingV3
+ComfyUI-Moore-AnimateAnyone
+comfyui_birefnet_ll
+facerestore_cf
+comfyui-depthanythingv2
+ComfyUI-DragNUWA
+Comfyui-MusePose
+ComfyUI-ArtGallery
+
+### easyanimate
+ComfyUI-EasyAnimate
+easyanimate
+
+### node pack
+# ComfyUI_Mokkaboss1
+# comfyui_fedcoms_node_pack
+# comfyui-sambanova
+# ComfyUI-ImageBag
+# ComfyUI_GROQ-PromptWizard
+# comfyui-alchemine-pack
+# comfyui-stegaflow
+# comfyUI_charly_replicate_api
+# ComfyUI-GCP-storage-decouple
+# ComfyUI-Dummy_Node_Pack
+# network_bending
+# ComfyUI_Node_Pack
+# SimpleVariables
+# comfyui-BatchNameLoop
+# ComfyUI-WanLightx2vScheduler
+# ComfyUI-Tensor-Prism-Node-Pack
+# comfyui-arena-suite
+# comfyui-nodesweet
+# duanyll_nodepack
+# ComfyUI-S4Tool-Image
+# OmniGen2-Simple-Node
+# FlowCV
+# ComfyUI_wavelet-colorfix
+# Comfyui_EncryptMaster
+# comfyui-wanv2v-video-stitcher
+# Pirogs-Nodes
+# ComfyUI_Selectors
+# Orion4D_pixelshift
+# ComfyUI-MusicGen-HF
+# ComfyUI-mesh-simplifier
+# ComfyUI-Reallusion
+# comfyui-audio-speed
+# ComfyUI-Qwen-Image-DF11
+# comfyui-sdnq
+# example_custom_nodepack
+# ComfyUI-DD-Nodes
+# hunyuanportrait
+# comfyui_a1rspace
+# comfyui-indextts2
+# comfyui-easy-sam3
+# flownodes
+# async-pause
+# comfyui_snacknodes
+# comfyui-dazzlenodes
+# comfyui-lumi-tools
+# TA-ComfyUI-Nodes-Pack
+# io-helpers
+# ComfyUI-Motion-Vector-Extractor
+# comfyui-line-counter
+# simple_executor
+# ComfyUI-HellrunnersMagicalNodes
+# sc-comfy-nodes
+# ComfyUI-FramePack-F1-T2V
+# comfyui-af-find-nodes
+# comfyui-stringsandthings
+# mangonodepack
+# thread
+# comfyui-dreambait-nodes
+# prompt_library
+# ComfyUI-KGnodes
+# Node_Fun_ComfyUI
+# markitdown
+# ComfyUI-WarpedToolset
+# comfyui-vidu-nodes
+# comfyui-hiforce-plugin
+# comfyui-environment-visualizer
+# comfyui-textonsegs
+# ComfyUI-Nai-Production-Nodes-Pack
+# canary-comfyui
+# ComfyUI-TBG-Takeaways
+# comfyui-levelpixel
+# comfyui-diffusersloader
+# framepack-hy
+# birefnet_universal
+# comfyui-akatz-nodes
+# antrobots-comfyUI-nodepack
+# loop-image
+# ComfyUI-MotionThiefExperiment
+# dsd
+# soulx-podcast
+# tbg-sam3
+# ICEdit
+# comfyui_fill-nodes
+# ComfyUI_LayerStyle_Advance
