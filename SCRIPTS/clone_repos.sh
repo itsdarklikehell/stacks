@@ -1160,7 +1160,7 @@ function CLONE_COMFYUI() {
 			if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
 				echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${ESSENTIAL_CUSTOM_NODELIST}"
@@ -1173,7 +1173,7 @@ function CLONE_COMFYUI() {
 			if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
 				echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${EXTRA_CUSTOM_NODELIST}"
