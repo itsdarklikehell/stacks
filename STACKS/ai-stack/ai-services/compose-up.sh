@@ -45,19 +45,23 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "anything-llm" ]]; then
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
+			echo "Downloading example anything-llm .env file"
+			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${SERVICE_NAME}_storage/.env"
+		fi
+
 		FOLDERS=(
 			"config"
 			"data"
 			"prompts"
 			"vectorstores"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+
 		CREATE_FOLDERS
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
-			echo "Downloading example anything-llm .env file"
-			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${SERVICE_NAME}_storage/.env"
-		else
-			echo "anything-llm .env file already exists, skipping download"
-		fi
 	fi
 
 	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
@@ -94,6 +98,10 @@ function SETUP_FOLDERS() {
 			"models"
 			"output"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "ai-dock-kohya" ]]; then
@@ -108,12 +116,19 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
 			"data"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
@@ -126,6 +141,10 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
@@ -167,6 +186,12 @@ function SETUP_FOLDERS() {
 			"cache"
 			"configuration"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_backends"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-backends/${SERVICE_NAME}_backends"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "n8n" ]]; then
@@ -180,6 +205,9 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
