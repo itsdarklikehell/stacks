@@ -283,4 +283,4 @@ echo ""
 
 echo "Installation complete.."
 
-# sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}"
+sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
