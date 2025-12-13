@@ -225,6 +225,8 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
+./deduper.sh
+
 # echo ""
 # SETUP_MEDIA_STACK
 # echo ""

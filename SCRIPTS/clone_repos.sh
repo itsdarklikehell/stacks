@@ -1143,6 +1143,9 @@ function CLONE_COMFYUI() {
 
 		ln -s "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
 
+		ln -s "/home/${USER}/.config/variety/Downloaded" "${COMFYUI_PATH}/input/Downloaded"
+		ln -s "/home/${USER}/.config/variety/Favorites" "${COMFYUI_PATH}/input/Favorites"
+		ln -s "/home/${USER}/.config/variety/Fetched" "${COMFYUI_PATH}/input/Fetched"
 	}
 
 	SETUP_FOLDERS
