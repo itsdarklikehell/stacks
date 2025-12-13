@@ -172,3 +172,4 @@ UPDATE=true
 
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 RUN_COMFYUI
+xdg-open http://0.0.0.0:8188/
