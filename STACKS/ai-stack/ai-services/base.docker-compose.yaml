@@ -21,7 +21,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/comfyui_models
   ai-dock-comfyui_output:
     name: ai-dock-comfyui_output
     driver: local
@@ -29,7 +29,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/comfyui_output
 
   ai-dock-fooocus_data:
     name: ai-dock-fooocus_data
@@ -46,7 +46,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/fooocus_models
   ai-dock-fooocus_output:
     name: ai-dock-fooocus_output
     driver: local
@@ -54,7 +54,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/fooocus_output
 
   ai-dock-forge_data:
     name: ai-dock-forge_data
@@ -71,7 +71,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/forge_models
   ai-dock-forge_output:
     name: ai-dock-forge_output
     driver: local
@@ -79,7 +79,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/forge_output
 
   ai-dock-kohya_data:
     name: ai-dock-kohya_data
@@ -96,7 +96,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/kohya_models
   ai-dock-kohya_output:
     name: ai-dock-kohya_output
     driver: local
@@ -104,7 +104,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/kohya_output
 
   ai-dock-sd-webui_data:
     name: ai-dock-sd-webui_data
@@ -121,7 +121,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/sd-webui_models
   ai-dock-sd-webui_output:
     name: ai-dock-sd-webui_output
     driver: local
@@ -129,7 +129,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/sd-webui_models
 
   ComfyUI_common_storage:
     name: ComfyUI_common_storage
@@ -155,7 +155,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/stable-diffusion-webui_models
   stable-diffusion-webui_output:
     name: stable-diffusion-webui_output
     driver: local
@@ -163,7 +163,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/stable-diffusion-webui_models
 
   automatic1111_data:
     name: automatic1111_data
@@ -180,7 +180,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/automatic1111_output
   automatic1111_models:
     name: automatic1111_models
     driver: local
@@ -188,7 +188,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/automatic1111_models
 
   anything-llm_storage:
     name: anything-llm_storage
@@ -205,7 +205,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/anything-llm_models
   anything-llm_output:
     name: anything-llm_output
     driver: local
@@ -213,7 +213,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/anything-llm_output
 
   invokeai_data:
     name: invokeai_data
@@ -230,7 +230,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/invokeai_models
   invokeai_output:
     name: invokeai_output
     driver: local
@@ -238,7 +238,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/invokeai_output
 
   forge_data:
     name: forge_data
@@ -255,7 +255,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/forge_models
   forge_output:
     name: forge_output
     driver: local
@@ -263,7 +263,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/forge_output
 
   homeassistant-config:
     name: homeassistant-config
@@ -338,7 +338,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/librechat_models
   librechat_logs:
     name: librechat_logs
     driver: local
@@ -354,7 +354,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/librechat_output
   librechat_meili_data:
     name: librechat_meili_data
     driver: local
@@ -371,7 +371,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/lobe-chat_models
   lobe-chat_output:
     name: lobe-chat_output
     driver: local
@@ -379,7 +379,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/lobe-chat_output
 
   localai_cache:
     name: localai_cache
@@ -412,7 +412,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/localai_models
   localai_output:
     name: localai_images
     driver: local
@@ -420,7 +420,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/localai_images
   # localai_content:
   #   name: localai_content
   #   driver: local
@@ -461,7 +461,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/ollama_models
 
   open-webui_data:
     name: open-webui_data
@@ -520,7 +520,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models
+      device: ../../../DATA/ai-models/swarmui_models
   swarmui_output:
     name: swarmui_output
     driver: local
@@ -528,7 +528,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
+      device: ../../../DATA/ai-outputs/swarmui_output
   swarmui_workflows:
     name: swarmui_workflows
     driver: local

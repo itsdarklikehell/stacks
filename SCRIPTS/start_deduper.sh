@@ -27,10 +27,10 @@ for folder in "${folders[@]}"; do
 	echo "Deduplicating ${folder}"
 	rmlint -g -o sh:rmlint.sh -c sh:symlink "${folder}" >/dev/null 2>&1 &
 	"${WD}/rmlint.sh" -dc >/dev/null 2>&1 &
-	if [[ -z "${DO_REMOVE}" ]]; then
-		rm -f "rmlint.sh"
-		rm -f "rmlint.json"
-	fi
+
+	rm -f "rmlint.sh"
+	rm -f "rmlint.json"
+
 	echo "Deduplicated ${folder}"
 done
 
