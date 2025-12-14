@@ -154,6 +154,9 @@ function CLONE_WORKFLOWS() {
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}/comfyanonymous/ComfyUI_examples"
 
 	git clone --recursive https://github.com/cubiq/ComfyUI_Workflows.git "${WORKFLOWDIR}/cubiq/ComfyUI_Workflows"
+
+	git clone --recursive https://github.com/aimpowerment/comfyui-workflows.git "${WORKFLOWDIR}/aimpowerment/comfyui-workflows"
+
 }
 
 function INSTALL_CUSTOM_NODES() {
@@ -195,8 +198,6 @@ function INSTALL_CUSTOM_NODES() {
 	}
 
 	ESSENTIAL
-	UPDATE_CUSTOM_NODES
-
 	EXTRAS
 	UPDATE_CUSTOM_NODES
 
