@@ -27,7 +27,7 @@ services:
 
     hostname: ${NAME:-big-agi}
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -73,7 +73,7 @@ services:
     ports:
       - 3402:3400
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     environment:
       - MAX_CONCURRENT_SESSIONS=10
