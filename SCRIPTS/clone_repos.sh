@@ -1106,9 +1106,9 @@ function CLONE_COMFYUI() {
 
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_outputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_inputs"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
@@ -1129,31 +1129,115 @@ function CLONE_COMFYUI() {
 	cd "${COMFYUI_PATH}" || exit 1
 
 	SETUP_FOLDERS() {
-		mv "${COMFYUI_PATH}/models" "${STACK_BASEPATH}/DATA/ai-models"
-		mv "${COMFYUI_PATH}/output" "${STACK_BASEPATH}/DATA/ai-outputs"
-		mv "${COMFYUI_PATH}/input" "${STACK_BASEPATH}/DATA/ai-inputs"
-		mv "${COMFYUI_PATH}/user/default/workflows" "${STACK_BASEPATH}/DATA/ai-workflows"
+		MODELS() {
+			if test -L "${COMFYUI_PATH}/models"; then
+				echo "${COMFYUI_PATH}/models is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/models"
+			elif test -d "${COMFYUI_PATH}/models"; then
+				echo "${COMFYUI_PATH}/models is just a plain directory"
+				mv -f "${COMFYUI_PATH}/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+				rm -rf "${COMFYUI_PATH}/models"
+				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/models"
+			fi
+			if test -L "${COMFYUI_PATH}/custom_nodes/models"; then
+				echo "${COMFYUI_PATH}/custom_nodes/models is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/custom_nodes/models"
+			elif test -d "${COMFYUI_PATH}/custom_nodes/models"; then
+				echo "${COMFYUI_PATH}/custom_nodes/models is just a plain directory"
+				mv -f "${COMFYUI_PATH}/custom_nodes/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+				rm -rf "${COMFYUI_PATH}/custom_nodes/models"
+				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
+			fi
+		}
+		OUTPUTS() {
+			if test -L "${COMFYUI_PATH}/output"; then
+				echo "${COMFYUI_PATH}/output is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/output"
+			elif test -d "${COMFYUI_PATH}/output"; then
+				echo "${COMFYUI_PATH}/output is just a plain directory"
+				mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output/comfyui_output"
+				rm -rf "${COMFYUI_PATH}/output"
+				ln -s "${STACK_BASEPATH}/DATA/ai-output/comfyui_output" "${COMFYUI_PATH}/output"
+			fi
+		}
+		INPUTS() {
+			if test -L "${COMFYUI_PATH}/input"; then
+				echo "${COMFYUI_PATH}/input is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/input"
+			elif test -d "${COMFYUI_PATH}/input"; then
+				echo "${COMFYUI_PATH}/input is just a plain directory"
+				mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+				rm -rf "${COMFYUI_PATH}/input"
+				ln -s "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input" "${COMFYUI_PATH}/input"
+			fi
+		}
+		WORKFLOWS() {
+			if test -L "${COMFYUI_PATH}/user/default/workflows"; then
+				echo "${COMFYUI_PATH}/user/default/workflows is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/user/default/workflows"
+			elif test -d "${COMFYUI_PATH}/user/default/workflows"; then
+				echo "${COMFYUI_PATH}/user/default/workflows is just a plain directory"
+				mv -f "${COMFYUI_PATH}/user/default/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+				rm -rf "${COMFYUI_PATH}/user/default/workflows"
+				ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${COMFYUI_PATH}/user/default/workflows"
+			fi
+			if test -L "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
+				echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is a symlink to a directory"
+				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+			elif test -d "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
+				echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is just a plain directory"
+				mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+				ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+			fi
+		}
+		MODELS
+		OUTPUTS
+		INPUTS
+		WORKFLOWS
 
-		rm -rf "${COMFYUI_PATH}/models"
-		rm -rf "${COMFYUI_PATH}/output"
-		rm -rf "${COMFYUI_PATH}/input"
-		rm -rf "${COMFYUI_PATH}/user/default/workflows"
-		rm -rf "${COMFYUI_PATH}/models/workflows"
+		# if test -d "/home/${USER}/.config/variety/Downloaded"; then
+		# 	if test -L "/home/${USER}/.config/variety/Downloaded"; then
+		# 		echo "/home/${USER}/.config/variety/Downloaded is a symlink to a directory"
+		# 		# ls -la "/home/${USER}/.config/variety/Downloaded"
+		# 	else
+		# 		# echo "/home/${USER}/.config/variety/Downloaded is just a plain directory"
+		# 		mv -f "/home/${USER}/.config/variety/Downloaded/*" "${COMFYUI_PATH}/input/Downloaded"
+		# 		rm -rf "/home/${USER}/.config/variety/Downloaded"
+		# 		ln -s "${COMFYUI_PATH}/input/Downloaded" "/home/${USER}/.config/variety/Downloaded"
+		# 	fi
+		# # else
+		# # 	echo "/home/${USER}/.config/variety/Downloaded is not a directory (nor a link to one)"
+		# fi
 
-		ln -s "${STACK_BASEPATH}/DATA/ai-models" "${COMFYUI_PATH}/models"
-		ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
-		ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
-		ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/user/default/workflows"
-		ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/models/workflows"
+		# if test -d "/home/${USER}/.config/variety/Favorites"; then
+		# 	if test -L "/home/${USER}/.config/variety/Favorites"; then
+		# 		echo "/home/${USER}/.config/variety/Favorites is a symlink to a directory"
+		# 		# ls -la "/home/${USER}/.config/variety/Favorites"
+		# 	else
+		# 		# echo "/home/${USER}/.config/variety/Favorites is just a plain directory"
+		# 		mv -f "/home/${USER}/.config/variety/Favorites/*" "${COMFYUI_PATH}/input/Favorites"
+		# 		rm -rf "/home/${USER}/.config/variety/Favorites"
+		# 		ln -s "${COMFYUI_PATH}/input/Favorites" "/home/${USER}/.config/variety/Favorites"
+		# 	fi
+		# # else
+		# # 	echo "/home/${USER}/.config/variety/Favorites is not a directory (nor a link to one)"
+		# fi
 
-		ln -s "${COMFYUI_PATH}/models" "${COMFYUI_PATH}/custom_nodes/models"
-
-		ln -s "/home/${USER}/.config/variety/Downloaded" "${COMFYUI_PATH}/input/Downloaded"
-		ln -s "/home/${USER}/.config/variety/Favorites" "${COMFYUI_PATH}/input/Favorites"
-		ln -s "/home/${USER}/.config/variety/Fetched" "${COMFYUI_PATH}/input/Fetched"
+		# if test -d "/home/${USER}/.config/variety/Fetched"; then
+		# 	if test -L "/home/${USER}/.config/variety/Fetched"; then
+		# 		echo "/home/${USER}/.config/variety/Fetched is a symlink to a directory"
+		# 		# ls -la "/home/${USER}/.config/variety/Fetched"
+		# 	else
+		# 		# echo "/home/${USER}/.config/variety/Fetched is just a plain directory"
+		# 		mv -f "/home/${USER}/.config/variety/Fetched/*" "${COMFYUI_PATH}/input/Fetched"
+		# 		rm -rf "/home/${USER}/.config/variety/Fetched"
+		# 		ln -s "${COMFYUI_PATH}/input/Fetched" "/home/${USER}/.config/variety/Fetched"
+		# 	fi
+		# # else
+		# # 	echo "/home/${USER}/.config/variety/Fetched is not a directory (nor a link to one)"
+		# fi
 	}
-
-	SETUP_FOLDERS
 
 	function INSTALL_CUSTOM_NODES() {
 		ESSENTIAL() {
@@ -1265,7 +1349,11 @@ function CLONE_COMFYUI() {
 	UPDATE=true
 
 	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
+
+	SETUP_FOLDERS
+
 	# RUN_COMFYUI
+	# xdg-open http://0.0.0.0:8188/
 }
 
 function CLONE_CUSHYSTUDIO() {
@@ -1511,7 +1599,7 @@ function CLONE_VIEWTUBE() {
 # CLONE_WHISPERX
 CLONE_ANYTHINGLLM
 CLONE_BIGAGI
-# CLONE_COMFYUI
+CLONE_COMFYUI
 CLONE_COMFYUIMINI
 CLONE_CUSHYSTUDIO
 CLONE_FORGE
