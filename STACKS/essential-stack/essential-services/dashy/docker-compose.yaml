@@ -1,6 +1,6 @@
 services:
   dashy:
-    image: ${IMAGE:-lissy93/dashy}
+    image: ${IMAGE:-lissy93/dashy:latest}
     container_name: ${NAME:-dashy}
     restart: ${RESTART:-unless-stopped}
 

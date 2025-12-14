@@ -1,6 +1,6 @@
 services:
   watchtower:
-    image: ${IMAGE:-containrrr/watchtower}
+    image: ${IMAGE:-containrrr/watchtower:latest}
     container_name: ${NAME:-watchtower}
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   invokeai:
-    image: ${IMAGE:-ghcr.io/invoke-ai/invokeai}
+    image: ${IMAGE:-ghcr.io/invoke-ai/invokeai:latest}
     container_name: ${NAME:-invokeai}
     restart: ${RESTART:-unless-stopped}
 

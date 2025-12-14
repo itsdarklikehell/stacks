@@ -25,11 +25,9 @@ folders=(
 
 for folder in "${folders[@]}"; do
 	echo "Deduplicating ${folder}"
-	rmlint -g -o sh:rmlint.sh -c sh:symlink "${folder}" >/dev/null 2>&1 &
-	"${WD}/rmlint.sh" -dc >/dev/null 2>&1 &
+	rmlint -g -o sh:rmlint.sh -c sh:symlink "${folder}" # -T "list" (default: defaults)>/dev/null 2>&1 &
 
-	rm -f "rmlint.sh"
-	rm -f "rmlint.json"
+	./rmlint.sh -dp # >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
 done

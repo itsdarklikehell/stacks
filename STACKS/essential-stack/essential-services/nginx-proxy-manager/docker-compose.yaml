@@ -1,6 +1,6 @@
 services:
   nginx-proxy-manager:
-    image: ${IMAGE:-jc21/nginx-proxy-manager}
+    image: ${IMAGE:-jc21/nginx-proxy-manager:latest}
     container_name: ${NAME:-nginx-proxy-manager}
     restart: ${RESTART:-unless-stopped}
 

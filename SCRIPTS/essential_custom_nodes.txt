@@ -1,3 +1,5 @@
 ### Essential nodes
 ComfyUI-Manager
 
+### droopy noodles
+comfyui-droopy-noodles

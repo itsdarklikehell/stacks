@@ -1,6 +1,6 @@
 services:
   autopulse:
-    image: ${IMAGE:-ghcr.io/dan-online/autopulse}
+    image: ${IMAGE:-ghcr.io/dan-online/autopulse:latest}
     container_name: ${NAME:-autopulse}
     restart: ${RESTART:-unless-stopped}
 

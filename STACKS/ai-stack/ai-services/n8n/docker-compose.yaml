@@ -1,6 +1,6 @@
 services:
   n8n:
-    image: ${IMAGE:-docker.n8n.io/n8nio/n8n}
+    image: ${IMAGE:-docker.n8n.io/n8nio/n8n:latest}
     restart: ${RESTART:-always}
     container_name: ${NAME:-n8n}
 

@@ -260,5 +260,9 @@ INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 
 SETUP_FOLDERS
 
+wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
+wget -c "${wavfile}" -O "tadaa.wav" >/dev/null 2>&1 &
+cvlc tadaa.wav >/dev/null 2>&1 &
+
 RUN_COMFYUI
 xdg-open http://0.0.0.0:8188/

@@ -1,6 +1,6 @@
 services:
   it-tools:
-    image: ${IMAGE:-corentinth/it-tools}
+    image: ${IMAGE:-corentinth/it-tools:latest}
     container_name: ${NAME:-it-tools}
     restart: ${RESTART:-unless-stopped}
 

@@ -1,6 +1,6 @@
 services:
   autoheal:
-    image: ${IMAGE:-willfarrell/autoheal}
+    image: ${IMAGE:-willfarrell/autoheal:latest}
     container_name: ${NAME:-autoheal}
     restart: ${RESTART:-unless-stopped}
 
