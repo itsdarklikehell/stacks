@@ -59,7 +59,6 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 
 		CREATE_FOLDERS
 	fi
@@ -100,7 +99,6 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 
 	fi
 
@@ -127,7 +125,6 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 
 	fi
 
@@ -143,7 +140,6 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 
 	fi
 
@@ -188,9 +184,6 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_backends"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-backends/${SERVICE_NAME}_backends"
 
 	fi
 

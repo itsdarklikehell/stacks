@@ -404,7 +404,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-backends/localai_backends
+      device: ../../../DATA/ai-backends
   localai_models:
     name: localai_models
     driver: local

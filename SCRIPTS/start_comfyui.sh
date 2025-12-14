@@ -269,5 +269,6 @@ SETUP_FOLDERS
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-RUN_COMFYUI
 xdg-open http://0.0.0.0:8188/
+
+RUN_COMFYUI

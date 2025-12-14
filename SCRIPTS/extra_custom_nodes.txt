@@ -77,82 +77,82 @@
 
 
 
-ComfyUI_JPS-Nodes
-Comfyui_MiniCPMv2_6-prompt-generator
-comfyui_model_installer
-comfyui-ollama
-comfyui-ollama-prompt-encode
-ComfyUI-OllamaPromptsGeneratorTlant
-ComfyUI-OnDemand-Loaders.git
-ComfyUI-telegram-bot-node
-comfyui-workflow-models-downloader
-EXO-Custom-ComfyUI-Nodes
-Factory-Prompts_comfyui
-flux-prompt-generator
-PromptCreatorNode
+# ComfyUI_JPS-Nodes
+# Comfyui_MiniCPMv2_6-prompt-generator
+# comfyui_model_installer
+# comfyui-ollama
+# comfyui-ollama-prompt-encode
+# ComfyUI-OllamaPromptsGeneratorTlant
+# ComfyUI-OnDemand-Loaders.git
+# ComfyUI-telegram-bot-node
+# comfyui-workflow-models-downloader
+# EXO-Custom-ComfyUI-Nodes
+# Factory-Prompts_comfyui
+# flux-prompt-generator
+# PromptCreatorNode
 
-### rgthree
-comfyui-gps-supplements
-multi-lora-stack
-Comfyui-EasySettingPipes
-comfyui-vslinx-nodes
-comfyui_sillynodes
-efficiency-nodes-ED
-rgthree-comfy
+# ### rgthree
+# comfyui-gps-supplements
+# multi-lora-stack
+# Comfyui-EasySettingPipes
+# comfyui-vslinx-nodes
+# comfyui_sillynodes
+# efficiency-nodes-ED
+# rgthree-comfy
 
-### Efficiency
-ComfyUI-LoRAWeightAxisXY
-va-nodes
-ComfyUI-Utilitools
-ComfyUI-PromptSE
-comfyui-moonpack
-kaytool
-comfyui-utools
-comfyui-qbug-batch
-focus_nodes
-Den_ComfyUI_Workflow
-sdupcaletiledsize
-lora-merger-comfyui
-comfy_PoP
-comfyui_mienodes
-ComfyUI_RH_OminiControl
-ComfyUI-Align
-comfyui-lumi-batcher
-efficiency-nodes-comfyui
+# ### Efficiency
+# ComfyUI-LoRAWeightAxisXY
+# va-nodes
+# ComfyUI-Utilitools
+# ComfyUI-PromptSE
+# comfyui-moonpack
+# kaytool
+# comfyui-utools
+# comfyui-qbug-batch
+# focus_nodes
+# Den_ComfyUI_Workflow
+# sdupcaletiledsize
+# lora-merger-comfyui
+# comfy_PoP
+# comfyui_mienodes
+# ComfyUI_RH_OminiControl
+# ComfyUI-Align
+# comfyui-lumi-batcher
+# efficiency-nodes-comfyui
 
-### WAS
-ComfyUI-CountS2VExtend
-SimpleFlux1Merger
-comfyui-pvm-node
-ComfyUI_LMStudio_EasyQuery
-WASABI
-comfyui_flux_corrector
-was-node-suite-comfyui
-asterr
-was-lmstudio-easyquery
-comfyui_blackmagic
-ComfyUI_TextListProduct
-comfyui-checkpoint-automatic-config
-was-affine
-viperyl_ComfyUI-BiRefNet
-caching_to_not_waste
-face-upscaling-and-seamless-embedding
-PPF_Noise_ComfyUI
-ComfyUI-IcyHider
-comfyui_preset_merger
-comfyui_jankdiffusehigh
-was-extras
-ComfyUI-sudo-latent-upscale
-powernoisesuite
-comfyui-styles-all
-freeu_advanced
-comfyui_jankhidiffusion
-was-ns
-civitai_comfy_nodes
+# ### WAS
+# ComfyUI-CountS2VExtend
+# SimpleFlux1Merger
+# comfyui-pvm-node
+# ComfyUI_LMStudio_EasyQuery
+# WASABI
+# comfyui_flux_corrector
+# was-node-suite-comfyui
+# asterr
+# was-lmstudio-easyquery
+# comfyui_blackmagic
+# ComfyUI_TextListProduct
+# comfyui-checkpoint-automatic-config
+# was-affine
+# viperyl_ComfyUI-BiRefNet
+# caching_to_not_waste
+# face-upscaling-and-seamless-embedding
+# PPF_Noise_ComfyUI
+# ComfyUI-IcyHider
+# comfyui_preset_merger
+# comfyui_jankdiffusehigh
+# was-extras
+# ComfyUI-sudo-latent-upscale
+# powernoisesuite
+# comfyui-styles-all
+# freeu_advanced
+# comfyui_jankhidiffusion
+# was-ns
+# civitai_comfy_nodes
 
-### ReActor
-ComfyUI-AudioReactor
-comfyui-simswap
+# ### ReActor
+# ComfyUI-AudioReactor
+# comfyui-simswap
 
 # ### IPAdapter
 # comfyui_ipadapter_plus_v2
@@ -196,154 +196,166 @@ comfyui-simswap
 # comfyui-styles-all
 # SimpleFlux1Merger
 
-# ### ControlNet
-# ComfyUI-XingLiu
-# ComfyUI_VideoEditing
-# diffusers-in-comfyui
-# LoRTnoC-ComfyUI
-# ComfyUI-Yolo-Cropper
-# comfyui_webcamcapture
-# comfyui-controlnetaux
-# VKRiez-Edge
-# ComfyUI-Alimama-ControlNet-compatible
-# drawthings-grpc
-# ComfyUI-YoloNasPose-Tensorrt
-# aegisflow_utility_nodes
-# comfyui-fal-api-flux
-# ComfyUI-eesahesNodes
-# ComfyUI_pose_inter
-# tbg-etur
-# ComfyUI-J
-# controlaltai-nodes
-# ComfyUI_Native_DynamiCrafter
-# ControlNet-LLLite-ComfyUI
-# comfyui-flux-continuum
-# comfyui-anyline
-# Comfy-Photoshop-SD
-# ComfyUI_Comfyroll_CustomNodes
-# x-flux-comfyui
-# ComfyUI-SmartResolutionToolkit
-# builmenlabo
-# ComfyUI_video-image-motion-transfer
-# qwen-image-controlnets-comfyui
-# ComfyUI-GPU-Preprocessor-Wrapper
-# comfyui-curved_weight_schedule
-# kanibus
-# ComfyUI-Olm-Sketch
-# comfyui-dream-painter
-# uber_comfy_nodes
-# ComfyUI-InstantIDUtils
+### ControlNet
+ComfyUI-XingLiu
+ComfyUI_VideoEditing
+diffusers-in-comfyui
+LoRTnoC-ComfyUI
+ComfyUI-Yolo-Cropper
+comfyui_webcamcapture
+comfyui-controlnetaux
+VKRiez-Edge
+ComfyUI-Alimama-ControlNet-compatible
+drawthings-grpc
+ComfyUI-YoloNasPose-Tensorrt
+aegisflow_utility_nodes
+comfyui-fal-api-flux
+ComfyUI-eesahesNodes
+ComfyUI_pose_inter
+tbg-etur
+ComfyUI-J
+controlaltai-nodes
+ComfyUI_Native_DynamiCrafter
+ControlNet-LLLite-ComfyUI
+comfyui-flux-continuum
+comfyui-anyline
+Comfy-Photoshop-SD
+ComfyUI_Comfyroll_CustomNodes
+x-flux-comfyui
+ComfyUI-SmartResolutionToolkit
+builmenlabo
+ComfyUI_video-image-motion-transfer
+qwen-image-controlnets-comfyui
+ComfyUI-GPU-Preprocessor-Wrapper
+comfyui-curved_weight_schedule
+kanibus
+ComfyUI-Olm-Sketch
+comfyui-dream-painter
+uber_comfy_nodes
+ComfyUI-InstantIDUtils
 
-# ### Wrapper
-# ComfyUI-VideoBasicLatentSync
-# ComfyUI-Dia_tts
-# ComfyUI-MinDalle
-# ComfyUI-Dreamlight
-# Comfyui_OIDN_Denoiser
-# comfyui-image-transformer
-# ComfyUI-PromptWrapper
-# ComfyUI-FlexPainter
-# ComfyUI-Fooocus-Inpaint-Wrapper
-# BoyoSupercoolWrapper
-# ComfyUI-IP-Composer
-# ComfyUI-HunyuanVideoFoley
-# ComfyUI-WanViTPoseRetargeter
-# ComfyUI-Geeky-LatentSyncWrapper
-# ComfyUI_Facefusion
-# ComfyUI-VFI
-# comfyui-Hunyuan-PromptEnhancer
-# ComfyUI-ThinkSound_Wrapper
-# ComfyUI_sm4ll-Wrapper
-# ComfyUI-HiggsAudio_Wrapper
-# IAMCCS-nodes
-# ComfyUI_PHRenderFormerWrapper
-# ComfyUI_Personalize_Anything
-# ComfyUI-Omini-Kontext
-# ComfyUI-NormalCrafterWrapper
-# ComfyUI-FramePackWrapper_Plus
-# ComfyUI-Ovi
-# Stand-In_Preprocessor_ComfyUI
-# ComfyUI-Hunyuan3d-2-1
-# ComfyUI-LBMWrapper
-# ComfyUI-LatentSyncWrapper
-# comfyui-hunyuan3dwrapper
-# ComfyUI-WanVideoWrapper_ALPHA
-# comfyui-moondream-gaze-detection
-# jhj0517_ComfyUI-jhj-Kokoro-Onnx
-# comfyui-oidn
-# ovum-cudnn-wrapper
-# Comfyui-CraftsMan3DWrapper
-# comfyui-sg-llama-cpp
-# comfyui-hibiki
-# catvton_wrapper
-# comfyui-sa2vawrapper
-# comfyui_deepdeband
-# comfyui-sam3dobjects
-# comfyui-chatterbox
-# flow2-wan-video
-# lite-tracker
-# ComfyUI-VideoChatWrapper
-# ComfyUI-Lumina-DiMOO
-# ComfyUI_CosyVoice2
-# ComfyUI-AV-LatentSync
-# ComfyUI-mem-safe-wrapper
-# SANA_LOWVRAM
-# comfyui-jhj-kokoro-onnx
-# pt-wrapper
-# ComfyUI-JoyHallo_wrapper
-# ComfyUI-PixelOE-Wrapper
-# ComfyUI-BPT
-# ComfyUI-ShadowR
-# ComfyUI-AV-FunASR
-# ComfyUI-Lumina-Next-SFT-DiffusersWrapper
-# ComfyUI_CSGO_Wrapper
-# ComfyUI_Janus_Wrapper
-# TLBVFI
-# ComfyUI_RopeWrapper
-# ComfyUI-LaVi-Bridge-Wrapper
-# comfyui_glm4_wrapper
-# dype
-# ComfyUI-CameraCtrl-Wrapper
-# ComfyUI-Hunyuan3D-1-wrapper
-# ComfyUI-FramePackWrapper_PlusOne
-# comfyui-drawthingswrapper
-# ComfyUI-BS_Kokoro-onnx
-# ComfyUI-OpenDiTWrapper
-# wanvideowrapper_qq
-# comfywarp
-# ComfyUI_CogView4_Wrapper
-# jhj0517_ComfyUI-Moondream-Gaze-Detection
-# lightx2vwrapper
-# ComfyUI-StableXWrapper
-# ComfyUI-LVCDWrapper
-# ComfyUI-MelBandRoFormer
-# ComfyUI-FreeVC_wrapper
-# demofusion-comfyui
-# ComfyUI-CatvtonFluxWrapper
-# comfyui_rgbx_wrapper
-# ComfyUI-ELLA-wrapper
-# ComfyUI_OmniGen_Wrapper
-# ComfyUI-Geowizard
-# ComfyUI-BrushNet-Wrapper
-# StableZero123-comfyui
-# comfyui-luminawrapper
-# ComfyUI-ControlNeXt-SVD
-# ComfyUI_InstantIR_Wrapper
-# ComfyUI_CatVTON_Wrapper
-# ComfyUI-PyramidFlowWrapper
-# hidream_sampler
-# comfyui-mimicmotionwrapper
-# Ruyi-Models
-# comfyui-marigold
-# comfyui-kolors-mz
-# comfyui-kwaikolorswrapper
-# comfyui-multigpu
-# comfyui-dynamicrafterwrapper
-# VibeVoice-ComfyUI
-# comfyui-cogvideoxwrapper
-# comfyui-supir
-# comfyui-hunyuanvideowrapper
-# ComfyUI-WanVideoWrapper
+### Wrapper
+ComfyUI-VideoBasicLatentSync
+ComfyUI-Dia_tts
+ComfyUI-MinDalle
+ComfyUI-Dreamlight
+Comfyui_OIDN_Denoiser
+comfyui-image-transformer
+ComfyUI-PromptWrapper
+ComfyUI-FlexPainter
+ComfyUI-Fooocus-Inpaint-Wrapper
+BoyoSupercoolWrapper
+ComfyUI-IP-Composer
+ComfyUI-HunyuanVideoFoley
+ComfyUI-WanViTPoseRetargeter
+ComfyUI-Geeky-LatentSyncWrapper
+ComfyUI_Facefusion
+ComfyUI-VFI
+comfyui-Hunyuan-PromptEnhancer
+ComfyUI-ThinkSound_Wrapper
+ComfyUI_sm4ll-Wrapper
+ComfyUI-HiggsAudio_Wrapper
+IAMCCS-nodes
+ComfyUI_PHRenderFormerWrapper
+ComfyUI_Personalize_Anything
+ComfyUI-Omini-Kontext
+ComfyUI-NormalCrafterWrapper
+ComfyUI-FramePackWrapper_Plus
+ComfyUI-Ovi
+Stand-In_Preprocessor_ComfyUI
+ComfyUI-Hunyuan3d-2-1
+ComfyUI-LBMWrapper
+ComfyUI-LatentSyncWrapper
+comfyui-hunyuan3dwrapper
+ComfyUI-WanVideoWrapper_ALPHA
+comfyui-moondream-gaze-detection
+jhj0517_ComfyUI-jhj-Kokoro-Onnx
+comfyui-oidn
+ovum-cudnn-wrapper
+Comfyui-CraftsMan3DWrapper
+comfyui-sg-llama-cpp
+comfyui-hibiki
+catvton_wrapper
+comfyui-sa2vawrapper
+comfyui_deepdeband
+comfyui-sam3dobjects
+comfyui-chatterbox
+flow2-wan-video
+lite-tracker
+ComfyUI-VideoChatWrapper
+ComfyUI-Lumina-DiMOO
+ComfyUI_CosyVoice2
+ComfyUI-AV-LatentSync
+ComfyUI-mem-safe-wrapper
+SANA_LOWVRAM
+comfyui-jhj-kokoro-onnx
+pt-wrapper
+ComfyUI-JoyHallo_wrapper
+ComfyUI-PixelOE-Wrapper
+ComfyUI-BPT
+ComfyUI-ShadowR
+ComfyUI-AV-FunASR
+ComfyUI-Lumina-Next-SFT-DiffusersWrapper
+ComfyUI_CSGO_Wrapper
+ComfyUI_Janus_Wrapper
+TLBVFI
+ComfyUI_RopeWrapper
+ComfyUI-LaVi-Bridge-Wrapper
+comfyui_glm4_wrapper
+dype
+ComfyUI-CameraCtrl-Wrapper
+ComfyUI-Hunyuan3D-1-wrapper
+ComfyUI-FramePackWrapper_PlusOne
+comfyui-drawthingswrapper
+ComfyUI-BS_Kokoro-onnx
+ComfyUI-OpenDiTWrapper
+wanvideowrapper_qq
+comfywarp
+ComfyUI_CogView4_Wrapper
+jhj0517_ComfyUI-Moondream-Gaze-Detection
+lightx2vwrapper
+ComfyUI-StableXWrapper
+ComfyUI-LVCDWrapper
+ComfyUI-MelBandRoFormer
+ComfyUI-FreeVC_wrapper
+demofusion-comfyui
+ComfyUI-CatvtonFluxWrapper
+comfyui_rgbx_wrapper
+ComfyUI-ELLA-wrapper
+ComfyUI_OmniGen_Wrapper
+ComfyUI-Geowizard
+ComfyUI-BrushNet-Wrapper
+StableZero123-comfyui
+comfyui-luminawrapper
+ComfyUI-ControlNeXt-SVD
+ComfyUI_InstantIR_Wrapper
+ComfyUI_CatVTON_Wrapper
+ComfyUI-PyramidFlowWrapper
+hidream_sampler
+comfyui-mimicmotionwrapper
+Ruyi-Models
+comfyui-marigold
+comfyui-kolors-mz
+comfyui-kwaikolorswrapper
+comfyui-multigpu
+comfyui-dynamicrafterwrapper
+VibeVoice-ComfyUI
+comfyui-cogvideoxwrapper
+comfyui-supir
+comfyui-hunyuanvideowrapper
+ComfyUI-WanVideoWrapper
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ### lora-manager
 # ComfyUI-DvD-LoraTriggerwordsManager
@@ -437,6 +449,14 @@ comfyui-simswap
 # ComfyUI_MileHighStyler
 # ComfyUI-Universal-Styler
 # ComfyUi_PromptStylers
+
+
+
+
+
+
+
+
 
 # ### youtube
 # ComfyUI-SuperNodes
