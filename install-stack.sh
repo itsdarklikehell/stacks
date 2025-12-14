@@ -281,6 +281,8 @@ echo ""
 START_DEDUPER
 echo ""
 
+"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+
 echo "Installation complete.."
 
 # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"

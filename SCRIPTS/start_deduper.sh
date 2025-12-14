@@ -34,5 +34,3 @@ for folder in "${folders[@]}"; do
 
 	echo "Deduplicated ${folder}"
 done
-
-"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
