@@ -101,14 +101,14 @@ volumes:
       o: bind
       device: ../../../DATA/arr-stack/flemmarr/flemmarr_config
 
-  jellyseerr_appdata:
-    name: jellyseerr_appdata
+  jellyseerr_data:
+    name: jellyseerr_data
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/arr-stack/jellyseerr/jellyseerr_appdata
+      device: ../../../DATA/arr-stack/jellyseerr/jellyseerr_data
   jellyseerr_config:
     name: jellyseerr_config
     driver: local
@@ -211,14 +211,14 @@ volumes:
       o: bind
       device: ../../../DATA/arr-stack/organizr/organizr_config
 
-  overseerr_appdata:
-    name: overseerr_appdata
+  overseerr_data:
+    name: overseerr_data
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/arr-stack/overseerr/overseerr_appdata
+      device: ../../../DATA/arr-stack/overseerr/overseerr_data
   overseerr_config:
     name: overseerr_config
     driver: local

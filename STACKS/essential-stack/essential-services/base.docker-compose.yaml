@@ -21,13 +21,13 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
-  homarr_appdata:
-    name: homarr_appdata
+  homarr_data:
+    name: homarr_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/homarr/homarr_appdata
+      device: ../../../DATA/essential-stack/homarr/homarr_data
 
   portracker_data:
     name: portracker_data

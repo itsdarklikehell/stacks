@@ -44,7 +44,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
-			"appdata"
+			"data"
 		)
 	fi
 

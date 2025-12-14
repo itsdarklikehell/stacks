@@ -92,7 +92,7 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "jellyseerr" ]]; then
 		FOLDERS=(
 			"config"
-			"appdata"
+			"data"
 		)
 	fi
 
@@ -126,10 +126,10 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "overseerr_appdata" ]]; then
+	if [[ ${SERVICE_NAME} == "overseerr_data" ]]; then
 		FOLDERS=(
 			"config"
-			"appdata"
+			"data"
 		)
 	fi
 

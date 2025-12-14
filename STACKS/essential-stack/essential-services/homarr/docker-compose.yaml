@@ -31,7 +31,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - homarr_appdata:/appdata
+      - homarr_data:/data
 
     hostname: ${NAME:-homarr}
 
