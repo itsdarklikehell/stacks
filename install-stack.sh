@@ -278,7 +278,7 @@ echo ""
 # echo ""
 
 echo ""
-START_DEDUPER
+START_DEDUPER >/dev/null 2>&1 &
 echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
