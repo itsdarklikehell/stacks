@@ -29,7 +29,7 @@ for folder in "${folders[@]}"; do
 
 	./rmlint.sh -dp # >/dev/null 2>&1 &
 
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh" >/dev/null 2>&1 &
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
