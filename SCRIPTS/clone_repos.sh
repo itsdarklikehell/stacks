@@ -45,6 +45,37 @@ EOF
 	rm "${temp_file}"
 }
 
+function CLONE_ANYTHINGLLM() {
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+
+	echo "Cloning anything-llm"
+	echo ""
+	git clone --recursive https://github.com/Mintplex-Labs/anything-llm.git anything-llm
+	cd anything-llm || exit 1
+	mkdir -p anything-llm_storage anything-llm_skills
+
+	function LOCAL_SETUP() {
+		echo "Using Local setup"
+		# ./install.sh
+		# uv venv --clear --seed
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
+	}
+	function DOCKER_SETUP() {
+		echo "Using Docker setup"
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
+		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
+		# docker build -t anything-llm .
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+}
+
 function CLONE_AIRI() {
 	cd "${STACK_BASEPATH}/DATA/airi-stack" || exit 1
 
@@ -201,6 +232,7 @@ function CLONE_AIRI() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
+
 function CLONE_PUPPETEER() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -235,47 +267,10 @@ function CLONE_PUPPETEER() {
 		# uv pip install -e .
 		# uv pip install -r requirements.txt
 	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
-		# docker build -t anything-llm .
-	}
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
+	LOCAL_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_ANYTHINGLLM() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	echo "Cloning anything-llm"
-	echo ""
-	git clone --recursive https://github.com/Mintplex-Labs/anything-llm.git anything-llm
-	cd anything-llm || exit 1
-	mkdir -p anything-llm_storage anything-llm_skills
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
-		# docker build -t anything-llm .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_AIWAIFU() {
 	cd "${STACK_BASEPATH}/DATA/aiwaifu-stack" || exit 1
 
@@ -320,74 +315,7 @@ function CLONE_AIWAIFU() {
 	LOCAL_SETUP >/dev/null 2>&1 &
 	DOCKER_SETUP >/dev/null 2>&1 &
 }
-function CLONE_CHROMA() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	echo "Cloning chroma"
-	echo ""
-	git clone --recursive https://github.com/ecsricktorzynski/chroma.git chroma
-	cd chroma || exit 1
-
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
-		# docker build -t chroma .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_CLICKHOUSE() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning clickhouse"
-	echo ""
-	git clone --recursive https://github.com/mostafaghadimi/clickhouse.git clickhouse
-	cd clickhouse || exit 1
-
-	function LOCAL_SETUP() {
-		if [[ ! -f .env ]]; then
-			cp .env.sample .env
-			sed -i -e 's/<minio_root_user>/root/g' .env
-			sed -i -e 's/<minio_root_password>/root/g' .env
-			sed -i -e 's/<minio_clickhouse_backup_bucket>/clickhouse_backups/g' .env
-			sed -i -e 's/<clickhouse_admin_user_password>/root/g' .env
-			sed -i -e 's/<clickhouse_business_injection_user_password>/root/g' .env
-		fi
-		chmod +x script.sh
-		./script.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		if [[ ! -f .env ]]; then
-			cp .env.sample .env
-		fi
-		chmod +x script.sh
-		./script.sh
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-uv" CustomDockerfile-chroma-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-conda" CustomDockerfile-chroma-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-chroma-venv" CustomDockerfile-chroma-venv
-		cp -f config_files/prometheus/templates/prometheus.yaml config_files/prometheus/prometheus.yaml
-		# docker build -t chroma .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_JAISON() {
 	cd "${STACK_BASEPATH}/DATA/jaison-stack" || exit 1
 
@@ -433,270 +361,7 @@ function CLONE_JAISON() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_LETTA() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	echo "Cloning Letta"
-	echo ""
-	git clone --recursive https://github.com/letta-ai/letta.git letta-server
-	cd letta-server || exit
-
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		uv sync --all-extras
-
-		uv pip install -e .
-		# uv pip install -r requirements.txt
-		# uv run letta server
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-uv" CustomDockerfile-letta-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-conda" CustomDockerfile-letta-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-letta-venv" CustomDockerfile-letta-venv
-
-		# docker build -t letta .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_LIBRECHAT() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning librechat"
-	echo ""
-	git clone --recursive https://github.com/danny-avila/librechat.git librechat
-	cd librechat || exit 1
-	mkdir -p images uploads logs data-node meili_data
-
-	function DOCKER_SETUP() {
-		if [[ ! -f .env ]]; then
-			cp .env.example .env
-		fi
-		# cp docker-compose.override.yml.example docker-compose.override.yml
-		# docker build -t whisper-webui .
-	}
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_LOCALAI() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning LocalAI"
-	echo ""
-	git clone --recursive https://github.com/mudler/LocalAI.git localai
-	git clone --recursive https://github.com/mudler/LocalAI-examples.git localai-examples
-	cd localai || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-uv" CustomDockerfile-localai-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-conda" CustomDockerfile-localai-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localai-venv" CustomDockerfile-text-localai-venv
-		# docker build -t localai .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_LLMSTACK() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning LLMStack"
-	echo ""
-	git clone --recursive https://github.com/trypromptly/LLMStack.git llmstack
-	cd llmstack || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		cd llmstack/client || exit 1
-
-		yes | npx npm-check-updates -u >/dev/null 2>&1 &
-
-		ni >/dev/null 2>&1 &
-		# nr -F build >/dev/null 2>&1 &
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-uv" CustomDockerfile-llmstack-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-conda" CustomDockerfile-llmstack-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-llmstack-venv" CustomDockerfile-text-llmstack-venv
-
-		# cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-		# make api
-		# make api-image
-		# make app
-		# docker build -t llmstack .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_LOCALAGI() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning LocalAGI"
-	echo ""
-	git clone --recursive https://github.com/mudler/LocalAGI.git localagi
-	cd localagi || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-uv" CustomDockerfile-localagi-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-conda" CustomDockerfile-localagi-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localagi-venv" CustomDockerfile-text-localagi-venv
-		# docker build -t localagi .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_BIGAGI() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning BIG-AGI"
-	echo ""
-	git clone --recursive https://github.com/enricoros/big-agi.git big-agi
-	cd big-agi || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-uv" CustomDockerfile-big-agi-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-conda" CustomDockerfile-big-agi-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-big-agi-venv" CustomDockerfile-text-big-agi-venv
-		# docker build -t big-agi .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-
-function CLONE_MIDORIAISUBSYSTEM() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning subsystem-manager"
-	echo ""
-	git clone --recursive https://github.com/lunamidori5/subsystem-manager.git subsystem-manager
-	cd subsystem-manager || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-uv" CustomDockerfile-subsystem-manager-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-conda" CustomDockerfile-subsystem-manager-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-subsystem-manager-venv" CustomDockerfile-text-subsystem-manager-venv
-		# docker build -t subsystem-manager .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_LOCALRECALL() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning LocalRecall"
-	echo ""
-	git clone --recursive https://github.com/mudler/LocalRecall.git localrecall
-	cd localrecall || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-uv" CustomDockerfile-localrecall-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-conda" CustomDockerfile-localrecall-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-localrecall-venv" CustomDockerfile-text-localrecall-venv
-		# docker build -t localrecall .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_MELOTTS() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning MeloTTS"
-	echo ""
-	git clone --recursive https://github.com/myshell-ai/MeloTTS.git melotts
-	cd melotts || exit
-
-	function LOCAL_SETUP() {
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		# uv sync --all-extras
-		uv pip install -e .
-		# uv pip install -r requirements.txt
-
-		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
-
-		IMPORT_NLTK >/dev/null 2>&1 &
-
-		# docker build -t melotts .
-		# docker run --gpus all -itd -p 8888:8888 melotts
-		# melo-webui
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-uv" CustomDockerfile-melotts-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-conda" CustomDockerfile-melotts-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-melotts-venv" CustomDockerfile-melotts-venv
-		# docker build -t melotts .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_OLLMVT() {
 	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
@@ -840,95 +505,7 @@ function CLONE_OLLMVT() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_OOGABOOGA() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	echo "Cloning text-generation-webui-docker"
-	echo ""
-	git clone --recursive https://github.com/Atinoda/text-generation-webui-docker.git text-generation-webui-docker
-	cd text-generation-webui-docker || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-uv" CustomDockerfile-text-generation-webui-docker-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-conda" CustomDockerfile-text-generation-webui-docker-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-text-generation-webui-docker-venv" CustomDockerfile-text-generation-webui-docker-venv
-		# docker build -t text-generation-webui-docker .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_PRIVATEGPT() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning privateGPT"
-	echo ""
-	git clone --recursive https://github.com/zylon-ai/private-gpt.git private-gpt
-	cd private-gpt || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-uv" CustomDockerfile-private-gpt-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-conda" CustomDockerfile-private-gpt-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-private-gpt-venv" CustomDockerfile-private-gpt-venv
-		# docker build -t private-gpt .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_PROMETHEUS() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning prometheus"
-	echo ""
-	git clone --recursive https://github.com/prometheus/prometheus.git prometheus
-	cd prometheus || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# make && sudo make install
-
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-uv" CustomDockerfile-prometheus-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-conda" CustomDockerfile-prometheus-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-prometheus-venv" CustomDockerfile-prometheus-venv
-		# docker build -t prometheus .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_RIKOPROJECT() {
 	cd "${STACK_BASEPATH}/DATA/riko-stack" || exit 1
 
@@ -973,35 +550,7 @@ function CLONE_RIKOPROJECT() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 }
-function CLONE_SIGNOZ() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	echo "Cloning signoz"
-	echo ""
-	git clone --recursive https://github.com/SigNoz/signoz.git signoz
-	cd signoz || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-uv" CustomDockerfile-signoz-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-conda" CustomDockerfile-signoz-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-signoz-venv" CustomDockerfile-signoz-venv
-		# docker build -t signoz .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
 function CLONE_SWARMUI() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -1030,62 +579,6 @@ function CLONE_SWARMUI() {
 		cp -f "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 		# docker build -t swarmui .
 		./launchtools/custom-launch-docker.sh
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_WHISPER_WEBUI() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning Whisper-WebUI"
-	echo ""
-	git clone --recursive https://github.com/jhj0517/Whisper-WebUI.git whisper-webui
-	cd whisper-webui || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		cp -f "${STACK_BASEPATH}/STACKS/ai-stack/ai-services/whisper-webui/docker-compose.yaml" docker-compose.yaml
-
-		# docker build -t whisper-webui .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-function CLONE_WHISPERX() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning whisperx"
-	echo ""
-	git clone --recursive https://github.com/jim60105/docker-whisperX.git whisperx
-	cd whisperx || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -1155,9 +648,9 @@ function CLONE_COMFYUI() {
 				# ls -la "${COMFYUI_PATH}/output"
 			elif test -d "${COMFYUI_PATH}/output"; then
 				echo "${COMFYUI_PATH}/output is just a plain directory"
-				mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output"
+				mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-outputs"
 				rm -rf "${COMFYUI_PATH}/output"
-				ln -s "${STACK_BASEPATH}/DATA/ai-output" "${COMFYUI_PATH}/output"
+				ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
 			fi
 		}
 		function INPUTS() {
@@ -1271,20 +764,27 @@ function CLONE_COMFYUI() {
 		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
 			echo "Installing ComfyUI custom nodes..."
 			ESSENTIAL
+			if [[ "${UPDATE}" == "true" ]]; then
+				echo "Updating all ComfyUI custom nodes..."
+				uv run comfy-cli update all
+			else
+				echo "Skipping ComfyUI custom node update."
+			fi
 		else
 			echo "Skipping ComfyUI custom node install."
 		fi
+
 		if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
 			echo "Installing ComfyUI extra nodes..."
 			EXTRAS
+			if [[ "${UPDATE}" == "true" ]]; then
+				echo "Updating all ComfyUI custom nodes..."
+				uv run comfy-cli update all
+			else
+				echo "Skipping ComfyUI custom node update."
+			fi
 		else
 			echo "Skipping ComfyUI extra node install."
-		fi
-		if [[ "${UPDATE}" == "true" ]]; then
-			echo "Updating all ComfyUI custom nodes..."
-			uv run comfy-cli update all
-		else
-			echo "Skipping ComfyUI custom node update."
 		fi
 	}
 
@@ -1314,34 +814,34 @@ function CLONE_COMFYUI() {
 		# docker build -t whisperx .
 	}
 
-	function RUN_COMFYUI() {
+	# function RUN_COMFYUI() {
 
-		cd "${COMFYUI_PATH}" || exit 1
+	# 	cd "${COMFYUI_PATH}" || exit 1
 
-		if [[ -f .venv/bin/activate ]]; then
-			source .venv/bin/activate
-		else
-			export UV_LINK_MODE=copy
-			uv venv --clear --seed
-			source .venv/bin/activate
+	# 	if [[ -f .venv/bin/activate ]]; then
+	# 		source .venv/bin/activate
+	# 	else
+	# 		export UV_LINK_MODE=copy
+	# 		uv venv --clear --seed
+	# 		source .venv/bin/activate
 
-			uv pip install --upgrade pip
-			uv sync --all-extras
+	# 		uv pip install --upgrade pip
+	# 		uv sync --all-extras
 
-			uv pip install comfy-cli
-			yes | uv run comfy-cli install --nvidia --restore || true
+	# 		uv pip install comfy-cli
+	# 		yes | uv run comfy-cli install --nvidia --restore || true
 
-			echo "ComfyUI virtual environment created and dependencies installed."
-		fi
+	# 		echo "ComfyUI virtual environment created and dependencies installed."
+	# 	fi
 
-		if [[ ${BACKGROUND} == "true" ]]; then
-			echo "Starting ComfyUI in background mode..."
-			uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-		else
-			echo "Starting ComfyUI in foreground mode..."
-			uv run comfy-cli launch --no-background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-		fi
-	}
+	# 	if [[ ${BACKGROUND} == "true" ]]; then
+	# 		echo "Starting ComfyUI in background mode..."
+	# 		uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
+	# 	else
+	# 		echo "Starting ComfyUI in foreground mode..."
+	# 		uv run comfy-cli launch --no-background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
+	# 	fi
+	# }
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
@@ -1356,49 +856,6 @@ function CLONE_COMFYUI() {
 
 	# RUN_COMFYUI
 	# xdg-open http://0.0.0.0:8188/
-}
-
-function CLONE_CUSHYSTUDIO() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning cushy-studio"
-	echo ""
-	git clone --recursive https://github.com/rvion/CushyStudio.git CushyStudio
-	cd CushyStudio || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		./_mac-linux-install.sh >/dev/null 2>&1 &
-		# ./_mac-linux-start.sh
-		# if [[ ! -f .venv/bin/activate ]]; then
-		# 	export UV_LINK_MODE=copy
-		# 	uv venv --clear --seed
-		# 	source .venv/bin/activate
-
-		# 	uv pip install --upgrade pip
-		# 	uv sync --all-extras
-
-		# 	uv pip install comfy-cli
-		# 	yes | uv run comfy-cli install --nvidia --restore || true
-		# fi
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-
-	# cd custom_nodes || exit 1
-	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
-	# cd ComfyUI-Manager || exit 1
-
-	# LOCAL_SETUP  # >/dev/null 2>&1 &
-	# DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
 function CLONE_COMFYUIMINI() {
@@ -1459,156 +916,16 @@ function CLONE_COMFYUIMINI() {
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
-function CLONE_FORGE() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+# CLONE_COMFYUI
+# CLONE_COMFYUIMINI
+# CLONE_PUPPETEER
 
-	echo "Cloning forge"
-	echo ""
-	git clone --recursive https://github.com/lllyasviel/stable-diffusion-webui-forge.git forge
-	cd forge || exit 1
+# CLONE_SWARMUI
 
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		uv sync --all-extras
-		uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-
-}
-function CLONE_INVOKEAI() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning invoke-ai"
-	echo ""
-	git clone --recursive https://github.com/invoke-ai/InvokeAI.git invoke-ai
-	cd invoke-ai || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-
-		uv sync --all-extras
-		uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-
-}
-
-function CLONE_MAKESENSE() {
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	echo "Cloning make-sense"
-	echo ""
-	git clone --recursive https://github.com/SkalskiP/make-sense.git make-sense
-	cd make-sense || exit 1
-
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		yes | npx npm-check-updates -u >/dev/null 2>&1 &
-
-		ni >/dev/null 2>&1 &
-		# nr start >/dev/null 2>&1 &
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# Build Docker Image
-		# docker build -t make-sense -f docker/Dockerfile .
-
-		# Run Docker Image as Service
-		# docker run -dit -p 3000:3000 --restart=always --name=make-sense make-sense
-
-		# Get Docker Container Logs
-		# docker logs make-sense
-
-		# Access make-sense: http://localhost:3000/
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
-
-function CLONE_VIEWTUBE() {
-	cd "${STACK_BASEPATH}/DATA/media-stack" || exit 1
-
-	echo "Cloning viewtube"
-	echo ""
-	git clone --recursive https://github.com/ViewTube/viewtube.git viewtube
-	cd viewtube || exit 1
-
-	function LOCAL_SETUP() {
-		# ./install.sh
-		uv venv --clear --seed
-		source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-uv" CustomDockerfile-viewtube-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-conda" CustomDockerfile-viewtube-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-viewtube-venv" CustomDockerfile-viewtube-venv
-		# docker build -t viewtube .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
-}
+CLONE_ANYTHINGLLM
 
 # CLONE_AIRI
 # CLONE_AIWAIFU
-# CLONE_CHROMA
-# CLONE_CLICKHOUSE
-# CLONE_JAISON
-# CLONE_LLMSTACK
-# CLONE_LOCALAGI
-# CLONE_LOCALRECALL
-# CLONE_MAKESENSE
-# CLONE_MELOTTS
-# CLONE_OOGABOOGA
-# CLONE_PRIVATEGPT
-# CLONE_PROMETHEUS
 # CLONE_RIKOPROJECT
-# CLONE_SIGNOZ
-# CLONE_SWARMUI
-# CLONE_VIEWTUBE
-# CLONE_WHISPER_WEBUI
-# CLONE_WHISPERX
-CLONE_ANYTHINGLLM
-CLONE_BIGAGI
-# CLONE_COMFYUI
-CLONE_COMFYUIMINI
-CLONE_CUSHYSTUDIO
-CLONE_FORGE
-CLONE_INVOKEAI
-CLONE_LETTA
-CLONE_LIBRECHAT
-CLONE_LOCALAI
-CLONE_MIDORIAISUBSYSTEM
-CLONE_OLLMVT
-CLONE_PUPPETEER
+# CLONE_JAISON
+# CLONE_OLLMVT

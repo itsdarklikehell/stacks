@@ -1,7 +1,7 @@
 services:
-  invokeai:
+  InvokeAI:
     image: ${IMAGE:-ghcr.io/invoke-ai/invokeai:latest}
-    container_name: ${NAME:-invokeai}
+    container_name: ${NAME:-InvokeAI}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -25,11 +25,11 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - invokeai_data:/invokeai
-      - invokeai_models:/invokeai/models
-      - invokeai_output:/invokeai/outputs
+      - InvokeAI_data:/invokeai
+      - InvokeAI_models:/invokeai/models
+      - InvokeAI_output:/invokeai/outputs
 
-    hostname: ${NAME:-invokeai}
+    hostname: ${NAME:-InvokeAI}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -41,7 +41,7 @@ services:
       - ${PORT:-9090}:9090
 
     env_file:
-      - ./invokeai/.env
+      - ./InvokeAI/.env
 
     stop_signal: SIGKILL
 

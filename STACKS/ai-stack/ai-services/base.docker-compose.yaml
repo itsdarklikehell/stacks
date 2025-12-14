@@ -215,24 +215,24 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs
 
-  invokeai_data:
-    name: invokeai_data
+  InvokeAI_data:
+    name: InvokeAI_data
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/invokeai/invokeai_data
-  invokeai_models:
-    name: invokeai_models
+      device: ../../../DATA/ai-stack/InvokeAI/InvokeAI_data
+  InvokeAI_models:
+    name: InvokeAI_models
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models/invokeai_models
-  invokeai_output:
-    name: invokeai_output
+      device: ../../../DATA/ai-models/InvokeAI_models
+  InvokeAI_output:
+    name: InvokeAI_output
     driver: local
     # external: true
     driver_opts:

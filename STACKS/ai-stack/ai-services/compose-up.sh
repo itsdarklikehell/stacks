@@ -16,7 +16,7 @@ COMPOSE_FILES=(
 	# big-agi
 	# ComfyUI
 	homeassistant
-	invokeai
+	InvokeAI
 	letta-mcp-server
 	letta-server
 	# librechat
@@ -137,7 +137,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "invokeai" ]]; then
+	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
 		FOLDERS=(
 			"data"
 		)

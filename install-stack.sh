@@ -213,7 +213,7 @@ echo ""
 CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
-## STACKS:
+### STACKS:
 CREATE_NETWORKS
 CREATE_SECRETS
 

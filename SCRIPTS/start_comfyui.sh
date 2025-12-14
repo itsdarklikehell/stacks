@@ -61,9 +61,9 @@ function SETUP_FOLDERS() {
 			# ls -la "${COMFYUI_PATH}/output"
 		elif test -d "${COMFYUI_PATH}/output"; then
 			echo "${COMFYUI_PATH}/output is just a plain directory"
-			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output"
+			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-outputs"
 			rm -rf "${COMFYUI_PATH}/output"
-			ln -s "${STACK_BASEPATH}/DATA/ai-output" "${COMFYUI_PATH}/output"
+			ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
 		fi
 	}
 	function INPUTS() {
@@ -177,20 +177,27 @@ function INSTALL_CUSTOM_NODES() {
 	if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
 		echo "Installing ComfyUI custom nodes..."
 		ESSENTIAL
+		if [[ "${UPDATE}" == "true" ]]; then
+			echo "Updating all ComfyUI custom nodes..."
+			uv run comfy-cli update all
+		else
+			echo "Skipping ComfyUI custom node update."
+		fi
 	else
 		echo "Skipping ComfyUI custom node install."
 	fi
+
 	if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
 		echo "Installing ComfyUI extra nodes..."
 		EXTRAS
+		if [[ "${UPDATE}" == "true" ]]; then
+			echo "Updating all ComfyUI custom nodes..."
+			uv run comfy-cli update all
+		else
+			echo "Skipping ComfyUI custom node update."
+		fi
 	else
 		echo "Skipping ComfyUI extra node install."
-	fi
-	if [[ "${UPDATE}" == "true" ]]; then
-		echo "Updating all ComfyUI custom nodes..."
-		uv run comfy-cli update all
-	else
-		echo "Skipping ComfyUI custom node update."
 	fi
 }
 

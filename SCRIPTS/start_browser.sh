@@ -15,7 +15,7 @@ URLS=(
 	"http://localhost:3002"  # anythingllm
 	"http://localhost:3210"  # lobe.ai
 	"http://localhost:11434" # ollama
-	"http://localhost:9090"  # invokeai
+	"http://localhost:9090"  # InvokeAI
 	"http://localhost:8081"  # searxng
 	"http://localhost:8123"  # home assistant
 	"http://localhost:3083"  # localai
