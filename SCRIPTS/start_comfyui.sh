@@ -151,7 +151,9 @@ function CLONE_WORKFLOWS() {
 	export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
 	cd "${WORKFLOWDIR}" || exit 1
 
-	git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}comfyanonymous/ComfyUI_examples"
+	git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}/comfyanonymous/ComfyUI_examples"
+
+	git clone --recursive https://github.com/cubiq/ComfyUI_Workflows.git "${WORKFLOWDIR}/cubiq/ComfyUI_Workflows"
 }
 
 function INSTALL_CUSTOM_NODES() {
