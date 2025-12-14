@@ -35,6 +35,10 @@ echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
+if [[ ! -f "extra_model_paths.yaml" ]]; then
+	cp extra_model_paths.yaml.example extra_model_paths.yaml
+fi
+
 function SETUP_FOLDERS() {
 
 	function MODELS() {
@@ -58,6 +62,57 @@ function SETUP_FOLDERS() {
 			rm -rf "${COMFYUI_PATH}/custom_nodes/models"
 			ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 		fi
+
+		if test -L "${COMFYUI_PATH}/models/anything-llm_models"; then
+			echo "${COMFYUI_PATH}/models/anything-llm_models is a symlink to a directory"
+			# ls -la "${COMFYUI_PATH}/models/anything-llm_models"
+		elif test -d "${COMFYUI_PATH}/models/anything-llm_models"; then
+			echo "${COMFYUI_PATH}/models/anything-llm_models is just a plain directory"
+			mv -f "${COMFYUI_PATH}/models/anything-llm_models"/* "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
+			rm -rf "${COMFYUI_PATH}/models/anything-llm_models"
+			ln -s "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models" "${COMFYUI_PATH}/models/anything-llm_models"
+		fi
+
+		if test -L "${COMFYUI_PATH}/models/InvokeAI_models"; then
+			echo "${COMFYUI_PATH}/models/InvokeAI_models is a symlink to a directory"
+			# ls -la "${COMFYUI_PATH}/models/InvokeAI_models"
+		elif test -d "${COMFYUI_PATH}/models/InvokeAI_models"; then
+			echo "${COMFYUI_PATH}/models/InvokeAI_models is just a plain directory"
+			mv -f "${COMFYUI_PATH}/models/InvokeAI_models"/* "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+			rm -rf "${COMFYUI_PATH}/models/InvokeAI_models"
+			ln -s "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models" "${COMFYUI_PATH}/models/InvokeAI_models"
+		fi
+
+		if test -L "${COMFYUI_PATH}/models/localai_models"; then
+			echo "${COMFYUI_PATH}/models/localai_models is a symlink to a directory"
+			# ls -la "${COMFYUI_PATH}/models/localai_models"
+		elif test -d "${COMFYUI_PATH}/models/localai_models"; then
+			echo "${COMFYUI_PATH}/models/localai_models is just a plain directory"
+			mv -f "${COMFYUI_PATH}/models/localai_models"/* "${STACK_BASEPATH}/DATA/ai-models/localai_models"
+			rm -rf "${COMFYUI_PATH}/models/localai_models"
+			ln -s "${STACK_BASEPATH}/DATA/ai-models/localai_models" "${COMFYUI_PATH}/models/localai_models"
+		fi
+
+		if test -L "${COMFYUI_PATH}/models/ollama_models"; then
+			echo "${COMFYUI_PATH}/models/ollama_models is a symlink to a directory"
+			# ls -la "${COMFYUI_PATH}/models/ollama_models"
+		elif test -d "${COMFYUI_PATH}/models/ollama_models"; then
+			echo "${COMFYUI_PATH}/models/ollama_models is just a plain directory"
+			mv -f "${COMFYUI_PATH}/models/ollama_models"/* "${STACK_BASEPATH}/DATA/ai-models/ollama_models"
+			rm -rf "${COMFYUI_PATH}/models/ollama_models"
+			ln -s "${STACK_BASEPATH}/DATA/ai-models/ollama_models" "${COMFYUI_PATH}/models/ollama_models"
+		fi
+
+		if test -L "${COMFYUI_PATH}/models/forge_models"; then
+			echo "${COMFYUI_PATH}/models/forge_models is a symlink to a directory"
+			# ls -la "${COMFYUI_PATH}/models/forge_models"
+		elif test -d "${COMFYUI_PATH}/models/forge_models"; then
+			echo "${COMFYUI_PATH}/models/forge_models is just a plain directory"
+			mv -f "${COMFYUI_PATH}/models/forge_models"/* "${STACK_BASEPATH}/DATA/ai-models/forge_models"
+			rm -rf "${COMFYUI_PATH}/models/forge_models"
+			ln -s "${STACK_BASEPATH}/DATA/ai-models/forge_models" "${COMFYUI_PATH}/models/forge_models"
+		fi
+
 	}
 
 	function OUTPUTS() {
