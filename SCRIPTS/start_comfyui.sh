@@ -157,6 +157,8 @@ function CLONE_WORKFLOWS() {
 
 	git clone --recursive https://github.com/aimpowerment/comfyui-workflows.git "${WORKFLOWDIR}/aimpowerment/comfyui-workflows"
 
+	git clone --recursive https://github.com/wyrde/wyrde-comfyui-workflows.git "${WORKFLOWDIR}/wyrde/wyrde-comfyui-workflows"
+
 }
 
 function INSTALL_CUSTOM_NODES() {
@@ -281,6 +283,6 @@ CLONE_WORKFLOWS
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-xdg-open http://0.0.0.0:8188/
+xdg-open "http://0.0.0.0:8188/"
 
 RUN_COMFYUI
