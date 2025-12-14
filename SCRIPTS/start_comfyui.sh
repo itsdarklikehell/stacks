@@ -159,6 +159,39 @@ function CLONE_WORKFLOWS() {
 
 	git clone --recursive https://github.com/wyrde/wyrde-comfyui-workflows.git "${WORKFLOWDIR}/wyrde/wyrde-comfyui-workflows"
 
+	git clone --recursive https://github.com/comfyui-wiki/workflows.git "${WORKFLOWDIR}/comfyui-wiki/workflows"
+
+	git clone --recursive https://github.com/loscrossos/comfy_workflows.git "${WORKFLOWDIR}/loscrossos/comfy_workflows"
+
+	git clone --recursive https://github.com/jhj0517/ComfyUI-workflows.git "${WORKFLOWDIR}/jhj0517/ComfyUI-workflows"
+
+	git clone --recursive https://github.com/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO.git "${WORKFLOWDIR}/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO"
+
+	git clone --recursive https://github.com/yolain/ComfyUI-Yolain-Workflows.git "${WORKFLOWDIR}/yolain/ComfyUI-Yolain-Workflows"
+
+	git clone --recursive https://github.com/dseditor/ComfyuiWorkflows.git "${WORKFLOWDIR}/dseditor/ComfyuiWorkflows"
+
+	git clone --recursive https://github.com/Comfy-Org/workflow_templates.git "${WORKFLOWDIR}/Comfy-Org/workflow_templates"
+
+	git clone --recursive https://github.com/Comfy-Org/workflows.git "${WORKFLOWDIR}/Comfy-Org/workflows"
+
+	git clone --recursive https://github.com/xiwan/comfyUI-workflows.git "${WORKFLOWDIR}/xiwan/comfyUI-workflows"
+
+	git clone --recursive https://github.com/BoosterCore/ChaosFlow.git "${WORKFLOWDIR}/BoosterCore/ChaosFlow"
+
+	git clone --recursive https://github.com/yuyou-dev/workflow.git "${WORKFLOWDIR}/yuyou-dev/workflow"
+
+	git clone --recursive https://github.com/dci05049/Comfyui-workflows.git "${WORKFLOWDIR}/dci05049/Comfyui-workflows"
+
+	git clone --recursive https://github.com/https://github.com/ecjojo/ecjojo-comfyui-workflows.git "${WORKFLOWDIR}/ecjojo/ecjojo-comfyui-workflows"
+
+	git clone --recursive https://github.com/ttio2tech/ComfyUI_workflows_collection.git "${WORKFLOWDIR}/ttio2tech/ComfyUI_workflows_collection"
+
+	git clone --recursive https://github.com/pwillia7/Basic_ComfyUI_Workflows.git "${WORKFLOWDIR}/pwillia7/Basic_ComfyUI_Workflows"
+
+	git clone --recursive https://github.com/pwillia7/Basic_ComfyUI_Workflows.git "${WORKFLOWDIR}/pwillia7/Basic_ComfyUI_Workflows"
+
+	git clone --recursive https://github.com/nerdyrodent/AVeryComfyNerd.git "${WORKFLOWDIR}/nerdyrodent/AVeryComfyNerd"
 }
 
 function INSTALL_CUSTOM_NODES() {
