@@ -79,6 +79,8 @@ function SETUP_FOLDERS() {
 	}
 	function WORKFLOWS() {
 		mkdir -p "${COMFYUI_PATH}/user/default/workflows"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
+
 		if test -L "${COMFYUI_PATH}/user/default/workflows"; then
 			echo "${COMFYUI_PATH}/user/default/workflows is a symlink to a directory"
 			# ls -la "${COMFYUI_PATH}/user/default/workflows"
@@ -96,6 +98,16 @@ function SETUP_FOLDERS() {
 			mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 			rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+		fi
+		if test -L "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
+			echo "$${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is a symlink to a directory"
+			# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+		elif test -d "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
+			echo "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is just a plain directory"
+			mv -f "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
+
+			rm -rf "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
+			ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 		fi
 	}
 	MODELS

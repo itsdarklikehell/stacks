@@ -353,102 +353,90 @@
 # inpainting-works
 # comfyui-browser
 
-### slider
-ComfyUI-EsesImageCompare
-woohee-simple-slider
-lonemilk-upscalernew-4k
-upscaler-4k
-comfyui-clipslider-sc
-comfyui-image-compare
-ComfyUI-NeoGriever
-Dynamic_Sliders_stack
-ComfyUI-Auto_Crop_By_NPS
-comfyui-ns-manysliders
-comfyui-clipslider
-aiia
-comfyui_slider_sidebar
-comfyui-mxtoolkit
+# ### slider
+# ComfyUI-EsesImageCompare
+# woohee-simple-slider
+# lonemilk-upscalernew-4k
+# upscaler-4k
+# comfyui-clipslider-sc
+# comfyui-image-compare
+# ComfyUI-NeoGriever
+# Dynamic_Sliders_stack
+# ComfyUI-Auto_Crop_By_NPS
+# comfyui-ns-manysliders
+# comfyui-clipslider
+# aiia
+# comfyui_slider_sidebar
+# comfyui-mxtoolkit
 
-### compare
-comfyui_kontext_Analyze
-duhaifeng_ComfyUI-Flux-Inpainting
-comfyui-text-diff
-barakapa-nodes
-comfyui-birefnet-trt
-Comfyui-FaceCompare
-ComfyUI_CompareModelWeights
-ComfyUI_MaskAreaCondition
-comfyscope
-Compare_videos
-imagesimilarity
-comfyui-flux-inpainting
-comfyui-logicutils
-ComfyUI-BiRefNet-Hugo
-ComfyUI-Crystools
+# ### compare
+# comfyui_kontext_Analyze
+# duhaifeng_ComfyUI-Flux-Inpainting
+# comfyui-text-diff
+# barakapa-nodes
+# comfyui-birefnet-trt
+# Comfyui-FaceCompare
+# ComfyUI_CompareModelWeights
+# ComfyUI_MaskAreaCondition
+# comfyscope
+# Compare_videos
+# imagesimilarity
+# comfyui-flux-inpainting
+# comfyui-logicutils
+# ComfyUI-BiRefNet-Hugo
+# ComfyUI-Crystools
 
-### wildcard
-DaimalyadNodes
-DuoUmiWildcards
-comfyui-ppwc
-ComfyUI-DynPromptSimplified
-ComfyUI-ChomfyNodes
-comfyui-adaptiveprompts
-lordgasmic_ComfyUI-Wildcards
-ab_wildcard
-gprompts
-comfyui-negativewildcardsprocessor
-comfyui-csvwildcards
-comfyui_gr85
-comfyui-badmannodes
-simplewildcardscomfyui
-comfyui_dados_nodes
-comfyui-wildcards
-comfyui_prompt_wildcards
-ComfyUI-Gtsuya-Nodes
-WildDivide
-santodan-custom-nodes-comfyui
-comfyui-stable-wildcards
-Listhelper
-sd-webui-prompt-postprocessor
-comfyui_starnodes
-ComfyUI-Chibi-Nodes
-mikey_nodes
+# ### wildcard
+# DaimalyadNodes
+# DuoUmiWildcards
+# comfyui-ppwc
+# ComfyUI-DynPromptSimplified
+# ComfyUI-ChomfyNodes
+# comfyui-adaptiveprompts
+# lordgasmic_ComfyUI-Wildcards
+# ab_wildcard
+# gprompts
+# comfyui-negativewildcardsprocessor
+# comfyui-csvwildcards
+# comfyui_gr85
+# comfyui-badmannodes
+# simplewildcardscomfyui
+# comfyui_dados_nodes
+# comfyui-wildcards
+# comfyui_prompt_wildcards
+# ComfyUI-Gtsuya-Nodes
+# WildDivide
+# santodan-custom-nodes-comfyui
+# comfyui-stable-wildcards
+# Listhelper
+# sd-webui-prompt-postprocessor
+# comfyui_starnodes
+# ComfyUI-Chibi-Nodes
+# mikey_nodes
 
+### templates
+prompt-templating
+comfyui-template-loader
+comfyui-wiki-workflows
+ComfyUI-Assistant
+integrated-nodes-comfyui
+ComfyUI-Apt_Preset
+sdxl_prompt_styler
 
-
-
-
-
-
-
-
-
-
-
-
-# ### templates
-# prompt-templating
-# comfyui-template-loader
-# comfyui-wiki-workflows
-# ComfyUI-Assistant
-# integrated-nodes-comfyui
-# ComfyUI-Apt_Preset
-# sdxl_prompt_styler
-
-# ### styler
-# hylarucoder_comfyui-copilot
-# comfyui-dp-them-styler
-# ComfyUI_mozman_nodes
-# zsq_prompt
-# ComfyUI-CSV-Styler
-# NX_PromptStyler
-# ComfyUI-Fans
-# ComfyUI_Mexx_Styler
-# ComfyUI-Prompt-Preview
-# ComfyUI-HunyuanVideoStyler
-# ComfyUI_MileHighStyler
-# ComfyUI-Universal-Styler
-# ComfyUi_PromptStylers
+### styler
+hylarucoder_comfyui-copilot
+comfyui-dp-them-styler
+ComfyUI_mozman_nodes
+zsq_prompt
+ComfyUI-CSV-Styler
+NX_PromptStyler
+ComfyUI-Fans
+ComfyUI_Mexx_Styler
+ComfyUI-Prompt-Preview
+ComfyUI-HunyuanVideoStyler
+ComfyUI_MileHighStyler
+ComfyUI-Universal-Styler
+ComfyUi_PromptStylers
 
 
 
