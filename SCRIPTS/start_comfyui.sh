@@ -13,9 +13,9 @@ export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_outputs"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_inputs"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	echo "Install custom nodes enabled."
@@ -34,8 +34,8 @@ echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
-SETUP_FOLDERS() {
-	MODELS() {
+function SETUP_FOLDERS() {
+	function MODELS() {
 		if test -L "${COMFYUI_PATH}/models"; then
 			echo "${COMFYUI_PATH}/models is a symlink to a directory"
 			# ls -la "${COMFYUI_PATH}/models"
@@ -55,46 +55,47 @@ SETUP_FOLDERS() {
 			ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 		fi
 	}
-	OUTPUTS() {
+	function OUTPUTS() {
 		if test -L "${COMFYUI_PATH}/output"; then
 			echo "${COMFYUI_PATH}/output is a symlink to a directory"
 			# ls -la "${COMFYUI_PATH}/output"
 		elif test -d "${COMFYUI_PATH}/output"; then
 			echo "${COMFYUI_PATH}/output is just a plain directory"
-			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output/comfyui_output"
+			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output"
 			rm -rf "${COMFYUI_PATH}/output"
-			ln -s "${STACK_BASEPATH}/DATA/ai-output/comfyui_output" "${COMFYUI_PATH}/output"
+			ln -s "${STACK_BASEPATH}/DATA/ai-output" "${COMFYUI_PATH}/output"
 		fi
 	}
-	INPUTS() {
+	function INPUTS() {
 		if test -L "${COMFYUI_PATH}/input"; then
 			echo "${COMFYUI_PATH}/input is a symlink to a directory"
 			# ls -la "${COMFYUI_PATH}/input"
 		elif test -d "${COMFYUI_PATH}/input"; then
 			echo "${COMFYUI_PATH}/input is just a plain directory"
-			mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+			mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs"
 			rm -rf "${COMFYUI_PATH}/input"
-			ln -s "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input" "${COMFYUI_PATH}/input"
+			ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
 		fi
 	}
-	WORKFLOWS() {
+	function WORKFLOWS() {
+		mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 		if test -L "${COMFYUI_PATH}/user/default/workflows"; then
 			echo "${COMFYUI_PATH}/user/default/workflows is a symlink to a directory"
 			# ls -la "${COMFYUI_PATH}/user/default/workflows"
 		elif test -d "${COMFYUI_PATH}/user/default/workflows"; then
 			echo "${COMFYUI_PATH}/user/default/workflows is just a plain directory"
-			mv -f "${COMFYUI_PATH}/user/default/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+			mv -f "${COMFYUI_PATH}/user/default/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 			rm -rf "${COMFYUI_PATH}/user/default/workflows"
-			ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${COMFYUI_PATH}/user/default/workflows"
+			ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/user/default/workflows"
 		fi
 		if test -L "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
 			echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is a symlink to a directory"
 			# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 		elif test -d "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
 			echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is just a plain directory"
-			mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+			mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 			rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-			ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+			ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 		fi
 	}
 	MODELS
@@ -248,16 +249,16 @@ function RUN_COMFYUI() {
 	fi
 }
 
-# LOCAL_SETUP # >/dev/null 2>&1 &
+LOCAL_SETUP # >/dev/null 2>&1 &
 # DOCKER_SETUP # >/dev/null 2>&1 &
 
 INSTALL_DEFAULT_NODES=true
-# INSTALL_EXTRA_NODES=true
+INSTALL_EXTRA_NODES=true
 UPDATE=true
 
-# INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
+INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 
 SETUP_FOLDERS
 
-# RUN_COMFYUI
-# xdg-open http://0.0.0.0:8188/
+RUN_COMFYUI
+xdg-open http://0.0.0.0:8188/

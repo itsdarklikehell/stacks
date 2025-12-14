@@ -30,7 +30,7 @@ services:
 
     hostname: ${NAME:-portainer}
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
@@ -96,7 +96,7 @@ services:
 
     hostname: ${NAME:-portainer_agent}
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+    user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:

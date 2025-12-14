@@ -1107,8 +1107,8 @@ function CLONE_COMFYUI() {
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_outputs"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_inputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
@@ -1128,8 +1128,8 @@ function CLONE_COMFYUI() {
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 	cd "${COMFYUI_PATH}" || exit 1
 
-	SETUP_FOLDERS() {
-		MODELS() {
+	function SETUP_FOLDERS() {
+		function MODELS() {
 			if test -L "${COMFYUI_PATH}/models"; then
 				echo "${COMFYUI_PATH}/models is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/models"
@@ -1149,46 +1149,47 @@ function CLONE_COMFYUI() {
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 			fi
 		}
-		OUTPUTS() {
+		function OUTPUTS() {
 			if test -L "${COMFYUI_PATH}/output"; then
 				echo "${COMFYUI_PATH}/output is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/output"
 			elif test -d "${COMFYUI_PATH}/output"; then
 				echo "${COMFYUI_PATH}/output is just a plain directory"
-				mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output/comfyui_output"
+				mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-output"
 				rm -rf "${COMFYUI_PATH}/output"
-				ln -s "${STACK_BASEPATH}/DATA/ai-output/comfyui_output" "${COMFYUI_PATH}/output"
+				ln -s "${STACK_BASEPATH}/DATA/ai-output" "${COMFYUI_PATH}/output"
 			fi
 		}
-		INPUTS() {
+		function INPUTS() {
 			if test -L "${COMFYUI_PATH}/input"; then
 				echo "${COMFYUI_PATH}/input is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/input"
 			elif test -d "${COMFYUI_PATH}/input"; then
 				echo "${COMFYUI_PATH}/input is just a plain directory"
-				mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+				mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs"
 				rm -rf "${COMFYUI_PATH}/input"
-				ln -s "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input" "${COMFYUI_PATH}/input"
+				ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
 			fi
 		}
-		WORKFLOWS() {
+		function WORKFLOWS() {
+			mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 			if test -L "${COMFYUI_PATH}/user/default/workflows"; then
 				echo "${COMFYUI_PATH}/user/default/workflows is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/user/default/workflows"
 			elif test -d "${COMFYUI_PATH}/user/default/workflows"; then
 				echo "${COMFYUI_PATH}/user/default/workflows is just a plain directory"
-				mv -f "${COMFYUI_PATH}/user/default/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+				mv -f "${COMFYUI_PATH}/user/default/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 				rm -rf "${COMFYUI_PATH}/user/default/workflows"
-				ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${COMFYUI_PATH}/user/default/workflows"
+				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/user/default/workflows"
 			fi
 			if test -L "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
 				echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			elif test -d "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
 				echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows"
+				mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-				ln -s "${STACK_BASEPATH}/DATA/ai-workflows/comfyui_workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			fi
 		}
 		MODELS
@@ -1205,6 +1206,7 @@ function CLONE_COMFYUI() {
 		# 		mv -f "/home/${USER}/.config/variety/Downloaded/*" "${COMFYUI_PATH}/input/Downloaded"
 		# 		rm -rf "/home/${USER}/.config/variety/Downloaded"
 		# 		ln -s "${COMFYUI_PATH}/input/Downloaded" "/home/${USER}/.config/variety/Downloaded"
+
 		# 	fi
 		# # else
 		# # 	echo "/home/${USER}/.config/variety/Downloaded is not a directory (nor a link to one)"
