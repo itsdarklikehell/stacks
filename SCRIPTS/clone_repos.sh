@@ -586,6 +586,7 @@ function CLONE_SWARMUI() {
 }
 
 function CLONE_COMFYUI() {
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	export UV_LINK_MODE=copy
@@ -596,6 +597,7 @@ function CLONE_COMFYUI() {
 
 	export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 	export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
+	export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
 
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
@@ -622,7 +624,9 @@ function CLONE_COMFYUI() {
 	cd "${COMFYUI_PATH}" || exit 1
 
 	function SETUP_FOLDERS() {
+
 		function MODELS() {
+
 			if test -L "${COMFYUI_PATH}/models"; then
 				echo "${COMFYUI_PATH}/models is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/models"
@@ -632,6 +636,7 @@ function CLONE_COMFYUI() {
 				rm -rf "${COMFYUI_PATH}/models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/models"
 			fi
+
 			if test -L "${COMFYUI_PATH}/custom_nodes/models"; then
 				echo "${COMFYUI_PATH}/custom_nodes/models is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/custom_nodes/models"
@@ -641,8 +646,11 @@ function CLONE_COMFYUI() {
 				rm -rf "${COMFYUI_PATH}/custom_nodes/models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 			fi
+
 		}
+
 		function OUTPUTS() {
+
 			if test -L "${COMFYUI_PATH}/output"; then
 				echo "${COMFYUI_PATH}/output is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/output"
@@ -652,8 +660,11 @@ function CLONE_COMFYUI() {
 				rm -rf "${COMFYUI_PATH}/output"
 				ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
 			fi
+
 		}
+
 		function INPUTS() {
+
 			if test -L "${COMFYUI_PATH}/input"; then
 				echo "${COMFYUI_PATH}/input is a symlink to a directory"
 				# ls -la "${COMFYUI_PATH}/input"
@@ -663,8 +674,11 @@ function CLONE_COMFYUI() {
 				rm -rf "${COMFYUI_PATH}/input"
 				ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
 			fi
+
 		}
+
 		function WORKFLOWS() {
+
 			mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 			mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 
@@ -677,6 +691,7 @@ function CLONE_COMFYUI() {
 				rm -rf "${COMFYUI_PATH}/user/default/workflows"
 				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUI_PATH}/user/default/workflows"
 			fi
+
 			if test -L "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"; then
 				echo "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
@@ -686,6 +701,7 @@ function CLONE_COMFYUI() {
 				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			fi
+
 			if test -L "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
 				echo "$${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
@@ -696,7 +712,9 @@ function CLONE_COMFYUI() {
 				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 			fi
+
 		}
+
 		MODELS
 		OUTPUTS
 		INPUTS
@@ -744,9 +762,11 @@ function CLONE_COMFYUI() {
 		# # else
 		# # 	echo "/home/${USER}/.config/variety/Fetched is not a directory (nor a link to one)"
 		# fi
+
 	}
 
 	function CLONE_WORKFLOWS() {
+
 		export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
 		cd "${WORKFLOWDIR}" || exit 1
 
@@ -791,10 +811,13 @@ function CLONE_COMFYUI() {
 		git clone --recursive https://github.com/pwillia7/Basic_ComfyUI_Workflows.git "${WORKFLOWDIR}/pwillia7/Basic_ComfyUI_Workflows"
 
 		git clone --recursive https://github.com/nerdyrodent/AVeryComfyNerd.git "${WORKFLOWDIR}/nerdyrodent/AVeryComfyNerd"
+
 	}
 
 	function INSTALL_CUSTOM_NODES() {
-		ESSENTIAL() {
+
+		function ESSENTIAL() {
+
 			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
 				echo "Installing ComfyUI custom nodes..."
 				if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
@@ -811,8 +834,11 @@ function CLONE_COMFYUI() {
 			else
 				echo "Skipping ComfyUI custom node install."
 			fi
+
 		}
-		EXTRAS() {
+
+		function EXTRAS() {
+
 			if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
 				echo "Installing ComfyUI extra nodes..."
 				if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
@@ -829,24 +855,50 @@ function CLONE_COMFYUI() {
 			else
 				echo "Skipping ComfyUI extra node install."
 			fi
+
+		}
+
+		function DISABLED() {
+
+			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+				echo "Disableing some ComfyUI custom nodes..."
+				if [[ -f "${DISABLED_CUSTOM_NODELIST}" ]]; then
+					echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
+					while IFS= read -r node_name; do
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+							uv run comfy-cli node disable "${node_name}"
+						fi
+					done <"${DISABLED_CUSTOM_NODELIST}"
+					echo ""
+				else
+					echo "No ${DISABLED_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+				fi
+			else
+				echo "Skipping disableing some ComfyUI custom node install."
+			fi
+
 		}
 
 		ESSENTIAL
 		EXTRAS
+		DISABLED
 		UPDATE_CUSTOM_NODES
 
 	}
 
 	function UPDATE_CUSTOM_NODES() {
+
 		if [[ "${UPDATE}" == "true" ]]; then
 			echo "Updating all ComfyUI custom nodes..."
 			uv run comfy-cli update all
 		else
 			echo "Skipping ComfyUI custom node update."
 		fi
+
 	}
 
 	function LOCAL_SETUP() {
+
 		echo "Using Local setup"
 		# ./install.sh
 
@@ -863,13 +915,17 @@ function CLONE_COMFYUI() {
 			uv pip install comfy-cli
 			yes | uv run comfy-cli install --nvidia --restore || true
 		fi
+
 	}
+
 	function DOCKER_SETUP() {
+
 		echo "Using Docker setup"
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
+
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -885,9 +941,11 @@ function CLONE_COMFYUI() {
 	CLONE_WORKFLOWS
 
 	# xdg-open http://0.0.0.0:8188/
+
 }
 
 function CLONE_COMFYUIMINI() {
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	export COMFYUIMINI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
@@ -901,6 +959,7 @@ function CLONE_COMFYUIMINI() {
 	ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUIMINI_PATH}/workflows"
 
 	function LOCAL_SETUP() {
+
 		echo "Using Local setup"
 
 		cp config/default.example.json config/default.json
@@ -925,13 +984,17 @@ function CLONE_COMFYUIMINI() {
 		# 	uv pip install comfy-cli
 		# 	yes | uv run comfy-cli install --nvidia --restore || true
 		# fi
+
 	}
+
 	function DOCKER_SETUP() {
+
 		echo "Using Docker setup"
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
+
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -943,6 +1006,7 @@ function CLONE_COMFYUIMINI() {
 
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	# DOCKER_SETUP # >/dev/null 2>&1 &
+
 }
 
 # CLONE_COMFYUI >/dev/null 2>&1 &

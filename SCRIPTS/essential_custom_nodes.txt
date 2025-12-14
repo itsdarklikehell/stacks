@@ -1,5 +1,8 @@
-### Essential nodes
+### Essential nodes:
 ComfyUI-Manager
 
 ### droopy noodles
 comfyui-droopy-noodles
+
+### pc ding dong
+comfyui-pc-ding-dong
