@@ -147,57 +147,65 @@ function SETUP_FOLDERS() {
 	# fi
 }
 
+function CLONE_WORKFLOWS() {
+	export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
+	cd "${WORKFLOWDIR}" || exit 1
+
+	git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}comfyanonymous/ComfyUI_examples"
+}
+
 function INSTALL_CUSTOM_NODES() {
 	ESSENTIAL() {
-		if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
-			echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
-			while IFS= read -r node_name; do
-				if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-					uv run comfy-cli node install "${node_name}"
-				fi
-			done <"${ESSENTIAL_CUSTOM_NODELIST}"
-			echo ""
+		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+			echo "Installing ComfyUI custom nodes..."
+			if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
+				echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
+				while IFS= read -r node_name; do
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						uv run comfy-cli node install "${node_name}"
+					fi
+				done <"${ESSENTIAL_CUSTOM_NODELIST}"
+				echo ""
+			else
+				echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+			fi
 		else
-			echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+			echo "Skipping ComfyUI custom node install."
 		fi
 	}
 	EXTRAS() {
-		if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
-			echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
-			while IFS= read -r node_name; do
-				if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-					uv run comfy-cli node install "${node_name}"
-				fi
-			done <"${EXTRA_CUSTOM_NODELIST}"
-			echo ""
+		if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
+			echo "Installing ComfyUI extra nodes..."
+			if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
+				echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
+				while IFS= read -r node_name; do
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						uv run comfy-cli node install "${node_name}"
+					fi
+				done <"${EXTRA_CUSTOM_NODELIST}"
+				echo ""
+			else
+				echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+			fi
 		else
-			echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+			echo "Skipping ComfyUI extra node install."
 		fi
 	}
-	if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
-		echo "Installing ComfyUI custom nodes..."
-		ESSENTIAL
-		if [[ "${UPDATE}" == "true" ]]; then
-			echo "Updating all ComfyUI custom nodes..."
-			uv run comfy-cli update all
-		else
-			echo "Skipping ComfyUI custom node update."
-		fi
-	else
-		echo "Skipping ComfyUI custom node install."
-	fi
 
-	if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
-		echo "Installing ComfyUI extra nodes..."
-		EXTRAS
-		if [[ "${UPDATE}" == "true" ]]; then
-			echo "Updating all ComfyUI custom nodes..."
-			uv run comfy-cli update all
-		else
-			echo "Skipping ComfyUI custom node update."
-		fi
+	ESSENTIAL
+	UPDATE_CUSTOM_NODES
+
+	EXTRAS
+	UPDATE_CUSTOM_NODES
+
+}
+
+function UPDATE_CUSTOM_NODES() {
+	if [[ "${UPDATE}" == "true" ]]; then
+		echo "Updating all ComfyUI custom nodes..."
+		uv run comfy-cli update all
 	else
-		echo "Skipping ComfyUI extra node install."
+		echo "Skipping ComfyUI custom node update."
 	fi
 }
 
@@ -256,8 +264,8 @@ function RUN_COMFYUI() {
 	fi
 }
 
-LOCAL_SETUP # >/dev/null 2>&1 &
-# DOCKER_SETUP # >/dev/null 2>&1 &
+LOCAL_SETUP  # >/dev/null 2>&1 &
+DOCKER_SETUP # >/dev/null 2>&1 &
 
 INSTALL_DEFAULT_NODES=true
 INSTALL_EXTRA_NODES=true
@@ -266,6 +274,7 @@ UPDATE=true
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 
 SETUP_FOLDERS
+CLONE_WORKFLOWS
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 

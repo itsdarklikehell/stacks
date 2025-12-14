@@ -734,57 +734,65 @@ function CLONE_COMFYUI() {
 		# fi
 	}
 
+	function CLONE_WORKFLOWS() {
+		export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
+		cd "${WORKFLOWDIR}" || exit 1
+
+		git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}comfyanonymous/ComfyUI_examples"
+	}
+
 	function INSTALL_CUSTOM_NODES() {
 		ESSENTIAL() {
-			if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
-				echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
-				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-						uv run comfy-cli node install "${node_name}"
-					fi
-				done <"${ESSENTIAL_CUSTOM_NODELIST}"
-				echo ""
+			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+				echo "Installing ComfyUI custom nodes..."
+				if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
+					echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
+					while IFS= read -r node_name; do
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+							uv run comfy-cli node install "${node_name}"
+						fi
+					done <"${ESSENTIAL_CUSTOM_NODELIST}"
+					echo ""
+				else
+					echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+				fi
 			else
-				echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+				echo "Skipping ComfyUI custom node install."
 			fi
 		}
 		EXTRAS() {
-			if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
-				echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
-				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-						uv run comfy-cli node install "${node_name}"
-					fi
-				done <"${EXTRA_CUSTOM_NODELIST}"
-				echo ""
+			if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
+				echo "Installing ComfyUI extra nodes..."
+				if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
+					echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
+					while IFS= read -r node_name; do
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+							uv run comfy-cli node install "${node_name}"
+						fi
+					done <"${EXTRA_CUSTOM_NODELIST}"
+					echo ""
+				else
+					echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+				fi
 			else
-				echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+				echo "Skipping ComfyUI extra node install."
 			fi
 		}
-		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
-			echo "Installing ComfyUI custom nodes..."
-			ESSENTIAL
-			if [[ "${UPDATE}" == "true" ]]; then
-				echo "Updating all ComfyUI custom nodes..."
-				uv run comfy-cli update all
-			else
-				echo "Skipping ComfyUI custom node update."
-			fi
-		else
-			echo "Skipping ComfyUI custom node install."
-		fi
 
-		if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
-			echo "Installing ComfyUI extra nodes..."
-			EXTRAS
-			if [[ "${UPDATE}" == "true" ]]; then
-				echo "Updating all ComfyUI custom nodes..."
-				uv run comfy-cli update all
-			else
-				echo "Skipping ComfyUI custom node update."
-			fi
+		ESSENTIAL
+		UPDATE_CUSTOM_NODES
+
+		EXTRAS
+		UPDATE_CUSTOM_NODES
+
+	}
+
+	function UPDATE_CUSTOM_NODES() {
+		if [[ "${UPDATE}" == "true" ]]; then
+			echo "Updating all ComfyUI custom nodes..."
+			uv run comfy-cli update all
 		else
-			echo "Skipping ComfyUI extra node install."
+			echo "Skipping ComfyUI custom node update."
 		fi
 	}
 
@@ -814,35 +822,6 @@ function CLONE_COMFYUI() {
 		# docker build -t whisperx .
 	}
 
-	# function RUN_COMFYUI() {
-
-	# 	cd "${COMFYUI_PATH}" || exit 1
-
-	# 	if [[ -f .venv/bin/activate ]]; then
-	# 		source .venv/bin/activate
-	# 	else
-	# 		export UV_LINK_MODE=copy
-	# 		uv venv --clear --seed
-	# 		source .venv/bin/activate
-
-	# 		uv pip install --upgrade pip
-	# 		uv sync --all-extras
-
-	# 		uv pip install comfy-cli
-	# 		yes | uv run comfy-cli install --nvidia --restore || true
-
-	# 		echo "ComfyUI virtual environment created and dependencies installed."
-	# 	fi
-
-	# 	if [[ ${BACKGROUND} == "true" ]]; then
-	# 		echo "Starting ComfyUI in background mode..."
-	# 		uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-	# 	else
-	# 		echo "Starting ComfyUI in foreground mode..."
-	# 		uv run comfy-cli launch --no-background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-	# 	fi
-	# }
-
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
@@ -853,8 +832,8 @@ function CLONE_COMFYUI() {
 	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 
 	SETUP_FOLDERS
+	CLONE_WORKFLOWS
 
-	# RUN_COMFYUI
 	# xdg-open http://0.0.0.0:8188/
 }
 
