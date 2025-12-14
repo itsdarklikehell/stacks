@@ -1,73 +1,73 @@
-### Favorite nodes
-comfyui-impact-subpack
-comfy-mtb
-comfyui-advanced-controlnet
-comfyui-reactor
-comfyui_essentials
-sd-dynamic-thresholding
-comfyui-videohelpersuite
-comfyui-layerdiffuse
-comfyui_instantid
-comfyui-kjnodes
-comfyui-liveportraitkj
-aigodlike-comfyui-translation
-comfyui-advancedliveportrait
-comfyui_layerstyle
-comfyui-custom-scripts
-comfyui-impact-pack
-comfyui-animatediff-evolved
-comfyui_controlnet_aux
-comfyui_ipadapter_plus
+# ### Favorite nodes
+# comfyui-impact-subpack
+# comfy-mtb
+# comfyui-advanced-controlnet
+# comfyui-reactor
+# comfyui_essentials
+# sd-dynamic-thresholding
+# comfyui-videohelpersuite
+# comfyui-layerdiffuse
+# comfyui_instantid
+# comfyui-kjnodes
+# comfyui-liveportraitkj
+# aigodlike-comfyui-translation
+# comfyui-advancedliveportrait
+# comfyui_layerstyle
+# comfyui-custom-scripts
+# comfyui-impact-pack
+# comfyui-animatediff-evolved
+# comfyui_controlnet_aux
+# comfyui_ipadapter_plus
 
-### A1111 nodes
-sd-webui-color-enhance
-nui-suite
-comfyui-unprompted
-ambw_comfyui
-image_control
-cd-tuner_negpip-ComfyUI
-abg-comfyui
-ComfyUI-RVC
-comfyui-optical-flow
-ComfyUI_SeeCoder
-comfyui-cads
-ComfyUI-sonar
-Comfyui_Lama
-ComfyUI_node_Lilly
-ComfyUI_roop
-cgem156-ComfyUI
-ComfyUI_fabric
-comfyui-diffusion-cg
-images-grid-comfy-plugin
-ComfyUI_experiments
-comfyui-seamless-tiling
-comfyui_smznodes
-comfyui-prompt-control
-ComfyUI_Noise
-comfyui-dynamicprompts
-ComfyUI_Cutoff
-ComfyUI_ADV_CLIP_emb
-masquerade-nodes-comfyui
-comfyui_fizznodes
-ComfyUI-TiledDiffusion
-comfyui-inspire-pack
-comfyui-wd14-tagger
-comfyui_ultimatesdupscale
+# ### A1111 nodes
+# sd-webui-color-enhance
+# nui-suite
+# comfyui-unprompted
+# ambw_comfyui
+# image_control
+# cd-tuner_negpip-ComfyUI
+# abg-comfyui
+# ComfyUI-RVC
+# comfyui-optical-flow
+# ComfyUI_SeeCoder
+# comfyui-cads
+# ComfyUI-sonar
+# Comfyui_Lama
+# ComfyUI_node_Lilly
+# ComfyUI_roop
+# cgem156-ComfyUI
+# ComfyUI_fabric
+# comfyui-diffusion-cg
+# images-grid-comfy-plugin
+# ComfyUI_experiments
+# comfyui-seamless-tiling
+# comfyui_smznodes
+# comfyui-prompt-control
+# ComfyUI_Noise
+# comfyui-dynamicprompts
+# ComfyUI_Cutoff
+# ComfyUI_ADV_CLIP_emb
+# masquerade-nodes-comfyui
+# comfyui_fizznodes
+# ComfyUI-TiledDiffusion
+# comfyui-inspire-pack
+# comfyui-wd14-tagger
+# comfyui_ultimatesdupscale
 
-### More A1111 nodes
-Comfyui-XYZ-stitch
-comfyui_otacoo
-format-lora-stack
-Comfyui_Prompt_styler
-CLIPTextEncodeA1111-ComfyUI
-ComfyUI-z-a1111-sd-webui-DanTagGen
-comfyui-flux-prompt-saver
-comfyui-et_dynamicprompts
-comfyui_sageutils
-comfyui-clip-with-break
-webui-monaco-prompt
-lazy-pony-prompter
-ComfyUI_LoRA_Sidebar
+# ### More A1111 nodes
+# Comfyui-XYZ-stitch
+# comfyui_otacoo
+# format-lora-stack
+# Comfyui_Prompt_styler
+# CLIPTextEncodeA1111-ComfyUI
+# ComfyUI-z-a1111-sd-webui-DanTagGen
+# comfyui-flux-prompt-saver
+# comfyui-et_dynamicprompts
+# comfyui_sageutils
+# comfyui-clip-with-break
+# webui-monaco-prompt
+# lazy-pony-prompter
+# ComfyUI_LoRA_Sidebar
 
 ### automatic1111
 
@@ -77,82 +77,82 @@ ComfyUI_LoRA_Sidebar
 
 
 
-# ComfyUI_JPS-Nodes
-# Comfyui_MiniCPMv2_6-prompt-generator
-# comfyui_model_installer
-# comfyui-ollama
-# comfyui-ollama-prompt-encode
-# ComfyUI-OllamaPromptsGeneratorTlant
-# ComfyUI-OnDemand-Loaders.git
-# ComfyUI-telegram-bot-node
-# comfyui-workflow-models-downloader
-# EXO-Custom-ComfyUI-Nodes
-# Factory-Prompts_comfyui
-# flux-prompt-generator
-# PromptCreatorNode
+ComfyUI_JPS-Nodes
+Comfyui_MiniCPMv2_6-prompt-generator
+comfyui_model_installer
+comfyui-ollama
+comfyui-ollama-prompt-encode
+ComfyUI-OllamaPromptsGeneratorTlant
+ComfyUI-OnDemand-Loaders.git
+ComfyUI-telegram-bot-node
+comfyui-workflow-models-downloader
+EXO-Custom-ComfyUI-Nodes
+Factory-Prompts_comfyui
+flux-prompt-generator
+PromptCreatorNode
 
-# ### rgthree
-# comfyui-gps-supplements
-# multi-lora-stack
-# Comfyui-EasySettingPipes
-# comfyui-vslinx-nodes
-# comfyui_sillynodes
-# efficiency-nodes-ED
-# rgthree-comfy
+### rgthree
+comfyui-gps-supplements
+multi-lora-stack
+Comfyui-EasySettingPipes
+comfyui-vslinx-nodes
+comfyui_sillynodes
+efficiency-nodes-ED
+rgthree-comfy
 
-# ### Efficiency
-# ComfyUI-LoRAWeightAxisXY
-# va-nodes
-# ComfyUI-Utilitools
-# ComfyUI-PromptSE
-# comfyui-moonpack
-# kaytool
-# comfyui-utools
-# comfyui-qbug-batch
-# focus_nodes
-# Den_ComfyUI_Workflow
-# sdupcaletiledsize
-# lora-merger-comfyui
-# comfy_PoP
-# comfyui_mienodes
-# ComfyUI_RH_OminiControl
-# ComfyUI-Align
-# comfyui-lumi-batcher
-# efficiency-nodes-comfyui
+### Efficiency
+ComfyUI-LoRAWeightAxisXY
+va-nodes
+ComfyUI-Utilitools
+ComfyUI-PromptSE
+comfyui-moonpack
+kaytool
+comfyui-utools
+comfyui-qbug-batch
+focus_nodes
+Den_ComfyUI_Workflow
+sdupcaletiledsize
+lora-merger-comfyui
+comfy_PoP
+comfyui_mienodes
+ComfyUI_RH_OminiControl
+ComfyUI-Align
+comfyui-lumi-batcher
+efficiency-nodes-comfyui
 
-# ### WAS
-# ComfyUI-CountS2VExtend
-# SimpleFlux1Merger
-# comfyui-pvm-node
-# ComfyUI_LMStudio_EasyQuery
-# WASABI
-# comfyui_flux_corrector
-# was-node-suite-comfyui
-# asterr
-# was-lmstudio-easyquery
-# comfyui_blackmagic
-# ComfyUI_TextListProduct
-# comfyui-checkpoint-automatic-config
-# was-affine
-# viperyl_ComfyUI-BiRefNet
-# caching_to_not_waste
-# face-upscaling-and-seamless-embedding
-# PPF_Noise_ComfyUI
-# ComfyUI-IcyHider
-# comfyui_preset_merger
-# comfyui_jankdiffusehigh
-# was-extras
-# ComfyUI-sudo-latent-upscale
-# powernoisesuite
-# comfyui-styles-all
-# freeu_advanced
-# comfyui_jankhidiffusion
-# was-ns
-# civitai_comfy_nodes
+### WAS
+ComfyUI-CountS2VExtend
+SimpleFlux1Merger
+comfyui-pvm-node
+ComfyUI_LMStudio_EasyQuery
+WASABI
+comfyui_flux_corrector
+was-node-suite-comfyui
+asterr
+was-lmstudio-easyquery
+comfyui_blackmagic
+ComfyUI_TextListProduct
+comfyui-checkpoint-automatic-config
+was-affine
+viperyl_ComfyUI-BiRefNet
+caching_to_not_waste
+face-upscaling-and-seamless-embedding
+PPF_Noise_ComfyUI
+ComfyUI-IcyHider
+comfyui_preset_merger
+comfyui_jankdiffusehigh
+was-extras
+ComfyUI-sudo-latent-upscale
+powernoisesuite
+comfyui-styles-all
+freeu_advanced
+comfyui_jankhidiffusion
+was-ns
+civitai_comfy_nodes
 
-# ### ReActor
-# ComfyUI-AudioReactor
-# comfyui-simswap
+### ReActor
+ComfyUI-AudioReactor
+comfyui-simswap
 
 # ### IPAdapter
 # comfyui_ipadapter_plus_v2

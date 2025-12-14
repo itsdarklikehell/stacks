@@ -916,7 +916,8 @@ function CLONE_COMFYUIMINI() {
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
-CLONE_COMFYUI
+# CLONE_COMFYUI >/dev/null 2>&1 &
+
 CLONE_COMFYUIMINI >/dev/null 2>&1 &
 CLONE_PUPPETEER >/dev/null 2>&1 &
 
