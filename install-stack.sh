@@ -207,11 +207,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_NETWORKS
@@ -277,9 +277,9 @@ echo ""
 # START_BROWSER >/dev/null 2>&1 &
 # echo ""
 
-echo ""
-START_DEDUPER
-echo ""
+# echo ""
+# START_DEDUPER
+# echo ""
 
 echo "Installation complete.."
 

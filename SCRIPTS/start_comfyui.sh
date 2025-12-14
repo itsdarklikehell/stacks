@@ -270,6 +270,7 @@ SETUP_FOLDERS
 wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
 wget -c "${wavfile}" -O "tadaa.wav" >/dev/null 2>&1 &
 cvlc tadaa.wav >/dev/null 2>&1 &
+rm tadaa.wav rm tadaa.wav
 
 RUN_COMFYUI
 xdg-open http://0.0.0.0:8188/
