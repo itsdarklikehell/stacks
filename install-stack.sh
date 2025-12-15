@@ -223,9 +223,9 @@ echo ""
 # SETUP_ESSENTIALS_STACK
 # echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
@@ -255,9 +255,9 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &

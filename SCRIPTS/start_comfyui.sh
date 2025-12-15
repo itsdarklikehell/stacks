@@ -31,9 +31,9 @@ echo ""
 git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
 cd "${COMFYUI_PATH}" || exit 1
 
-if [[ ! -f "extra_model_paths.yaml" ]]; then
-	cp extra_model_paths.yaml.example extra_model_paths.yaml
-fi
+# if [[ ! -f "extra_model_paths.yaml" ]]; then
+# 	cp extra_model_paths.yaml.example extra_model_paths.yaml
+# fi
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
@@ -524,7 +524,7 @@ function RUN_COMFYUI() {
 		echo "ComfyUI virtual environment created and dependencies installed."
 	fi
 
-	if [[ ${BACKGROUND} == "true" ]]; then
+	if [[ "${BACKGROUND}" == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --listen "0.0.0.0" --port "${COMFYUI_PORT}"
 	else
@@ -537,7 +537,7 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-INSTALL_DEFAULT_NODES=false
+INSTALL_DEFAULT_NODES=true
 INSTALL_EXTRA_NODES=false
 UPDATE=true
 
