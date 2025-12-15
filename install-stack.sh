@@ -20,8 +20,6 @@ export START_BROWSER="true"                                                     
 export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 
-export DOCKER_FILES="/media/rizzo/RAIDSTATION/docker"
-
 export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
 
 cd "${STACK_BASEPATH}" || exit
@@ -221,9 +219,9 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 SETUP_AI_STACK
@@ -257,9 +255,9 @@ echo ""
 # SETUP_PROJECT_RIKO_STACK
 # echo ""
 
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
+# echo ""
+# PULL_MODELS # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &

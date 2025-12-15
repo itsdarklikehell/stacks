@@ -3,7 +3,7 @@ echo "Start ollmvt script started."
 
 export UV_LINK_MODE=copy
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 export OLLMVT_PATH="${STACK_BASEPATH}/DATA/ai-stack/openllm-vtuber-stack/Open-LLM-VTuber"
 
 function RUN_OLLMVTUBER() {

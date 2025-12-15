@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Create secrets script started."
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 # Create Docker networks for the AI stack
 function CREATE_SECRETS() {

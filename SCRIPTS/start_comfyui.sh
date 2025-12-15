@@ -5,7 +5,7 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
@@ -35,8 +35,8 @@ if [[ ! -f "extra_model_paths.yaml" ]]; then
 	cp extra_model_paths.yaml.example extra_model_paths.yaml
 fi
 
-mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
-mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
 
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
@@ -191,9 +191,9 @@ function SETUP_FOLDERS() {
 			# ls -la "${COMFYUI_PATH}/output"
 		elif test -d "${COMFYUI_PATH}/output"; then
 			echo "${COMFYUI_PATH}/output is just a plain directory"
-			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-outputs"
+			mv -f "${COMFYUI_PATH}/output"/* "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 			rm -rf "${COMFYUI_PATH}/output"
-			ln -s "${STACK_BASEPATH}/DATA/ai-outputs" "${COMFYUI_PATH}/output"
+			ln -s "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output" "${COMFYUI_PATH}/output"
 		fi
 
 	}
@@ -205,9 +205,9 @@ function SETUP_FOLDERS() {
 			# ls -la "${COMFYUI_PATH}/input"
 		elif test -d "${COMFYUI_PATH}/input"; then
 			echo "${COMFYUI_PATH}/input is just a plain directory"
-			mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs"
+			mv -f "${COMFYUI_PATH}/input"/* "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
 			rm -rf "${COMFYUI_PATH}/input"
-			ln -s "${STACK_BASEPATH}/DATA/ai-inputs" "${COMFYUI_PATH}/input"
+			ln -s "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input" "${COMFYUI_PATH}/input"
 		fi
 
 	}
@@ -537,8 +537,8 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-INSTALL_DEFAULT_NODES=true
-INSTALL_EXTRA_NODES=true
+INSTALL_DEFAULT_NODES=false
+INSTALL_EXTRA_NODES=false
 UPDATE=true
 
 SETUP_FOLDERS

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 echo "Cleanup script started."
 echo "CLEANUP is set to: ${CLEANUP}"

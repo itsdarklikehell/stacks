@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 COMPOSE_FILES=(
 	# ai-dock-comfyui
@@ -22,7 +22,7 @@ COMPOSE_FILES=(
 	# librechat
 	# lobe-chat
 	localai
-	forge
+	# forge
 	# n8n
 	ollama
 	open-webui

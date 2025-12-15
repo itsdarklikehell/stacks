@@ -1,6 +1,22 @@
 #!/bin/bash
 echo "Install Docker script started."
 
+export DOCKER_FILES="/media/hans/4-T/docker"
+eval $(resize)
+DOCKER_FILES=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_FILES}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+# A trick to swap stdout and stderr.
+# Again, you can pack this inside if, but it seems really long for some 80-col terminal users.
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered " "${DOCKER_FILES}"
+	export DOCKER_FILES
+else
+	echo "User selected Cancel."
+	exit 1
+fi
+
+echo "(Exit status was ${exitstatus})"
+
 # Install Docker and related tools on Ubuntu
 function INSTALL_DOCKER() {
 	# check if docker is installed and if not install it

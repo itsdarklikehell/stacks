@@ -5,7 +5,7 @@ export WD                     # set working dir
 export STACK_BASEPATH="${WD}" # set base path
 export DO_REMOVE=true         #
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 export AI_MODELS_PATH="${STACK_BASEPATH}/DATA/ai-models"
 export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
