@@ -609,105 +609,105 @@ comfyui-cogvideoxwrapper
 comfyui-supir
 comfyui-hunyuanvideowrapper
 ComfyUI-WanVideoWrapper
-#### # #### # LLM
-ComfyUI-OpenAI-Compatible-API
-ComfyUI-Vision-LLM-Analyzer
-ComfyUI-Custom-Node-Config
-ComfyUI-AmazonBedrock
-ComfyUI-MyLLMnode
-ComfyUiRagNodes
-ComfyUI-MultiTranslator
-razv-llm
-Comfyui-LLM-Chat
-ComfyUI-OpenAI-Compat-LLM-Node
-ComfyUI-AQnodes
-ComfyUI-Prompt-Translator
-neonllama
-comfyUI_LLM
-ComfyUI-JSON-Prompt
-OllamaTools
-ComfyUI-SmolLM3
-ComfyUI-SimpleChat
-ComfyUI-LLM-GGUF
-llm-node-comfyui
-ComfyUI-LM_Studio_Tools
-Local_LLM_Prompt_Enhancer
-AkkiNodes-LLM-Suite-for-ComfyUI
-Comfy_HunyuanImage3
-comfyui-OreX
-ComfyUI-QwenPromptRewriter
-comfyui-llm-prompt-enhancer
-ComfyUI-Korean-Prompt-Engineer-with-LLM
-Cyber-BCat_ComfyUI_Auto_Caption
-comfyui_llm_api
-ComfyUI-API-Manager
-comfyui-pixtralllamavision
-apachellmpack
-ez-llm
-SambaNova
-ComfyUI-LLM
-ComfyUI-ComfyAI
-siberianodes
-lf-nodes
-Tenos_LLM_Image_Describe
-ComfyUI_LLM_Banana
-ComfyUI-RunRunRun
-comfyui-pdid-llm-nodes
-comfyui-live-search
-basicollama
-llm_hub
-ComfyUI_xObiomesh
-AS_LLM_nodes
-ComfyUI_EmAySee_CustomNodes
-comfyui-ns-util
-ComfyUI_FMJ_LLM
-comfyui-structured-outputs
-omniavatar
-thinkremover
-comfyui-yallm-node
-ComfyUI-GPT
-ComfyUI-PromptJSON
-Openrouter-Node
-yallm-llamavision
-ComfyUI_MooER
-LocalLLMnodes
-comfyui_llm_schools
-litellm
-comfyui-oshtz-nodes
-comfyui-llm-assistant
-ComfyUI_Simple_Qwen3-VL-gguf
-llm-api
-lollms_nodes_suite
-cyberdolphin
-CrasHUtils
-comfyui_auto_caption
-comfyui-ollama-llms
-brekel
-ComfyUI-Qwen3
-step_audio_editx_sm
-comfyui_stringessentials
-wwaa-customnodes
-comfyui-decadetw-auto-prompt-llm
-llm_sdxl_adapter
-ComfyUI-EBU-LMStudio
-confyui-node-prompt-stash-saver
-sparktts_mw
-ComfyUI-LLMs
-comfyui_llm_node
-llm_polymath
-llm-toolkit
-comfyui-pixtralllamamolmovision
-comfyui-funaudiollm
-z-image-utilities
-comfyui-ollama-describer
-comfyui-tara-llm-integration
-Comfyui-Spark-TTS
-ComfyUI-LLaVA-Captioner
-ComfyUI_Searge_LLM
-comfyui-if_llm
-comfyui-griptape
-anynode
-comfyui_llm_party
+# #### # #### # LLM
+# ComfyUI-OpenAI-Compatible-API
+# ComfyUI-Vision-LLM-Analyzer
+# ComfyUI-Custom-Node-Config
+# ComfyUI-AmazonBedrock
+# ComfyUI-MyLLMnode
+# ComfyUiRagNodes
+# ComfyUI-MultiTranslator
+# razv-llm
+# Comfyui-LLM-Chat
+# ComfyUI-OpenAI-Compat-LLM-Node
+# ComfyUI-AQnodes
+# ComfyUI-Prompt-Translator
+# neonllama
+# comfyUI_LLM
+# ComfyUI-JSON-Prompt
+# OllamaTools
+# ComfyUI-SmolLM3
+# ComfyUI-SimpleChat
+# ComfyUI-LLM-GGUF
+# llm-node-comfyui
+# ComfyUI-LM_Studio_Tools
+# Local_LLM_Prompt_Enhancer
+# AkkiNodes-LLM-Suite-for-ComfyUI
+# Comfy_HunyuanImage3
+# comfyui-OreX
+# ComfyUI-QwenPromptRewriter
+# comfyui-llm-prompt-enhancer
+# ComfyUI-Korean-Prompt-Engineer-with-LLM
+# Cyber-BCat_ComfyUI_Auto_Caption
+# comfyui_llm_api
+# ComfyUI-API-Manager
+# comfyui-pixtralllamavision
+# apachellmpack
+# ez-llm
+# SambaNova
+# ComfyUI-LLM
+# ComfyUI-ComfyAI
+# siberianodes
+# lf-nodes
+# Tenos_LLM_Image_Describe
+# ComfyUI_LLM_Banana
+# ComfyUI-RunRunRun
+# comfyui-pdid-llm-nodes
+# comfyui-live-search
+# basicollama
+# llm_hub
+# ComfyUI_xObiomesh
+# AS_LLM_nodes
+# ComfyUI_EmAySee_CustomNodes
+# comfyui-ns-util
+# ComfyUI_FMJ_LLM
+# comfyui-structured-outputs
+# omniavatar
+# thinkremover
+# comfyui-yallm-node
+# ComfyUI-GPT
+# ComfyUI-PromptJSON
+# Openrouter-Node
+# yallm-llamavision
+# ComfyUI_MooER
+# LocalLLMnodes
+# comfyui_llm_schools
+# litellm
+# comfyui-oshtz-nodes
+# comfyui-llm-assistant
+# ComfyUI_Simple_Qwen3-VL-gguf
+# llm-api
+# lollms_nodes_suite
+# cyberdolphin
+# CrasHUtils
+# comfyui_auto_caption
+# comfyui-ollama-llms
+# brekel
+# ComfyUI-Qwen3
+# step_audio_editx_sm
+# comfyui_stringessentials
+# wwaa-customnodes
+# comfyui-decadetw-auto-prompt-llm
+# llm_sdxl_adapter
+# ComfyUI-EBU-LMStudio
+# confyui-node-prompt-stash-saver
+# sparktts_mw
+# ComfyUI-LLMs
+# comfyui_llm_node
+# llm_polymath
+# llm-toolkit
+# comfyui-pixtralllamamolmovision
+# comfyui-funaudiollm
+# z-image-utilities
+# comfyui-ollama-describer
+# comfyui-tara-llm-integration
+# Comfyui-Spark-TTS
+# ComfyUI-LLaVA-Captioner
+# ComfyUI_Searge_LLM
+# comfyui-if_llm
+# comfyui-griptape
+# anynode
+# comfyui_llm_party
 
 
 

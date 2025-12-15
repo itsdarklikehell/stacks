@@ -629,6 +629,10 @@ function CLONE_COMFYUI() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
@@ -832,8 +836,9 @@ function CLONE_COMFYUI() {
 
 		function VARIETY() {
 
+			### INPUTS
 			if test -L "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"; then
-				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is a symlink to a directory"
+				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
 			elif test -d "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"; then
 				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is just a plain directory"
@@ -843,7 +848,7 @@ function CLONE_COMFYUI() {
 			fi
 
 			if test -L "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"; then
-				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is a symlink to a directory"
+				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
 			elif test -d "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"; then
 				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is just a plain directory"
@@ -853,13 +858,44 @@ function CLONE_COMFYUI() {
 			fi
 
 			if test -L "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"; then
-				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is a symlink to a directory"
+				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites is a symlink to a directory"
 				# ls -la "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 			elif test -d "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"; then
 				echo "${STACK_BASEPATH}/DATA/ai-inputs/variety is just a plain directory"
 				mv -f "${STACK_BASEPATH}/DATA/ai-inputs/variety"/* "${COMFYUI_PATH}/input/Favorites"
 				rm -rf "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 				ln -s "/home/${USER}/.config/variety/Favorites" "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+			fi
+
+			### OUTPUTS
+			if test -L "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded is a symlink to a directory"
+				# ls -la "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+			elif test -d "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety is just a plain directory"
+				mv -f "${STACK_BASEPATH}/DATA/ai-outputs/variety"/* "${COMFYUI_PATH}/input/Downloaded"
+				rm -rf "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+				ln -s "/home/${USER}/.config/variety/Downloaded" "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+			fi
+
+			if test -L "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched is a symlink to a directory"
+				# ls -la "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+			elif test -d "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety is just a plain directory"
+				mv -f "${STACK_BASEPATH}/DATA/ai-outputs/variety"/* "${COMFYUI_PATH}/input/Fetched"
+				rm -rf "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+				ln -s "/home/${USER}/.config/variety/Fetched" "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+			fi
+
+			if test -L "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites is a symlink to a directory"
+				# ls -la "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+			elif test -d "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"; then
+				echo "${STACK_BASEPATH}/DATA/ai-outputs/variety is just a plain directory"
+				mv -f "${STACK_BASEPATH}/DATA/ai-outputs/variety"/* "${COMFYUI_PATH}/input/Favorites"
+				rm -rf "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+				ln -s "/home/${USER}/.config/variety/Favorites" "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 			fi
 
 		}
