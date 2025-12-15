@@ -634,12 +634,22 @@ function CLONE_COMFYUI() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
 
 	mkdir -p "${COMFYUI_PATH}/user/default/workflows"
