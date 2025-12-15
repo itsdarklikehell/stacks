@@ -77,7 +77,6 @@ comfyui-ollama-prompt-encode
 ComfyUI-OllamaPromptsGeneratorTlant
 ComfyUI-OnDemand-Loaders.git
 ComfyUI-telegram-bot-node
-comfyui-workflow-models-downloader
 EXO-Custom-ComfyUI-Nodes
 Factory-Prompts_comfyui
 flux-prompt-generator
