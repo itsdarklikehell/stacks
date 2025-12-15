@@ -10,6 +10,7 @@ export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
+export REMOVED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/removed_custom_nodes.txt"
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
@@ -433,9 +434,30 @@ function INSTALL_CUSTOM_NODES() {
 
 	}
 
+	function REMOVED() {
+
+		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+			echo "Removing some ComfyUI custom nodes..."
+			if [[ -f "${REMOVED_CUSTOM_NODELIST}" ]]; then
+				echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
+				while IFS= read -r node_name; do
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						uv run comfy-cli node disable "${node_name}"
+					fi
+				done <"${REMOVED_CUSTOM_NODELIST}"
+				echo ""
+			else
+				echo "No ${REMOVED_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
+			fi
+		else
+			echo "Skipping Removing some ComfyUI custom node install."
+		fi
+
+	}
 	ESSENTIAL
 	EXTRAS
 	DISABLED
+	REMOVED
 	UPDATE_CUSTOM_NODES
 
 }

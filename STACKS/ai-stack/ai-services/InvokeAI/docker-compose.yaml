@@ -19,6 +19,8 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       - SCAN_MODELS_ON_STARTUP=true
       - ALLOW_UNKNOWN_MODELS=true
+      - INVOKEAI_ENABLE_PARTIAL_LOADING=true
+      - INVOKEAI_SCAN_MODELS_ON_STARTUP=true
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
