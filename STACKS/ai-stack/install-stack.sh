@@ -4,6 +4,7 @@ WD="$(dirname "$(realpath "$0")")" || true
 
 export WD
 export UV_LINK_MODE=copy
+
 export STACK_NAME="ai"
 
 cd "${WD}" || exit
