@@ -1,8 +1,6 @@
 #!/bin/bash
 echo "Install Docker script started."
 
-export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
-
 function REMOVE_DOCKER() {
 	sudo systemctl stop docker
 	sudo systemctl disable docker

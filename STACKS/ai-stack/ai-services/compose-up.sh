@@ -3,8 +3,6 @@
 set -e
 cd "$(dirname "$0")"
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
-
 COMPOSE_FILES=(
 	# ai-dock-comfyui
 	# ai-dock-fooocus

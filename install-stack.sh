@@ -2,7 +2,6 @@
 WD="$(dirname "$(realpath "$0")")" || true
 export WD                     # set working dir
 export STACK_BASEPATH="${WD}" # set base path
-export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 
 export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
 export UV_LINK_MODE=copy                                                        # set uv link mode
@@ -20,40 +19,54 @@ export START_CUSHYSTUDIO="true"                                                 
 export START_BROWSER="true"                                                     # false, true
 export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
-export IP_ADDRESS=$(hostname -I | awk '{print $1}')                             # get machine IP address
 
-eval "$(resize)"
-DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [[ "${exitstatus}" = 0 ]]; then
-	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
-else
-	echo "User selected Cancel."
-	exit 1
-fi
-export DOCKER_BASEPATH
+# if [[ "$1" == "-i" ]] || [[ "$1" == "--interactive" ]]; then
+# 	echo "Interactive mode enabled."
+# 	export INTERACTIVE=true
+# fi
 
-eval "$(resize)" || true
-STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [[ "${exitstatus}" = 0 ]]; then
-	echo "User selected Ok and entered: S{STACK_BASEPATH}"
-else
-	echo "User selected Cancel."
-	exit 1
-fi
-export STACK_BASEPATH
+function SETUP_ENV() {
 
-eval "$(resize)"
-IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [[ "${exitstatus}" = 0 ]]; then
-	echo "User selected Ok and entered " "${IP_ADDRESS}"
-else
-	echo "User selected Cancel."
-	exit 1
-fi
-export IP_ADDRESS
+	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
+
+	eval "$(resize)"
+	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export DOCKER_BASEPATH
+
+	eval "$(resize)" || true
+	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered: S{STACK_BASEPATH}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export STACK_BASEPATH
+
+	eval "$(resize)"
+	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered " "${IP_ADDRESS}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export IP_ADDRESS
+
+}
+SETUP_ENV
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main
@@ -237,9 +250,9 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &
@@ -257,9 +270,9 @@ echo ""
 # START_BROWSER >/dev/null 2>&1 &
 # echo ""
 
-# echo ""
-# START_DEDUPER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_DEDUPER # >/dev/null 2>&1 &
+echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
