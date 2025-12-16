@@ -181,6 +181,7 @@ function SETUP_ESSENTIALS_STACK() {
 	export STACK_NAME="essential"
 	INSTALL_STACK
 }
+
 function SETUP_AI_STACK() {
 	export STACK_NAME="ai"
 	INSTALL_STACK
@@ -224,8 +225,6 @@ echo ""
 echo ""
 SETUP_AI_STACK
 echo ""
-
-exit 1
 
 # echo ""
 # PULL_MODELS # >/dev/null 2>&1 &
