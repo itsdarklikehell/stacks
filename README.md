@@ -1,76 +1,80 @@
 # Stacks — README
 
-Kort overzicht
+Overview
 
-- **Doel**: Deze repository bevat een modulair, Docker-gebaseerd stacksysteem voor AI, Essentials, Management en Media services.
-- **Hoofdcomponenten**: AI Stack, Essentials Stack, Management Stack, Media Stack.
+- **Purpose**: This repository contains a modular, Docker-based stack system for AI, Essentials, Management, and Media services.
+- **Main Components**: AI Stack, Essentials Stack, Management Stack, Media Stack.
 
 **Quick Start**
 
-- **Build & start**: Gebruik `docker-compose up --build` om de stacks te bouwen en te starten.
-- **Stoppen**: Gebruik `docker-compose down`.
-- **Logs**: Controleer runtime logs via Docker of in `/var/log/ai-stack/` voor AI-stack logs.
+- **Build & start**: Use `docker-compose up --build` to build and start the stacks.
+- **Stop**: Use `docker-compose down`.
+- **Logs**: Check runtime logs via Docker or in `/var/log/ai-stack/` for AI-stack logs.
 
 **Stacks**
 
-- **AI Stack**: [ai-stack/](ai-stack/) — Orkestreert AI/ML services waaronder:
-  - **AnythingLLM**: Documentverwerking en LLM-integratie.
-  - **Ollama**: Lokale LLM-hosting.
-  - **Faster-Whisper**: GPU-versnelde spraakherkenning.
-  - **Home Assistant**: IoT-automatisering.
-  - **LibreTranslate**: Zelf-gehoste vertaling.
-- **Essentials Stack**: [essential-stack/](essential-stack/) — Basisdiensten en infrastructuur.
-- **Management Stack**: [management-stack/](management-stack/) — Monitoring en beheer.
-- **Media Stack**: [media-stack/](media-stack/) — Asset- en mediabeheer.
+- **AI Stack**: [ai-stack/](ai-stack/) — Orchestrates AI/ML services including:
+  - **AnythingLLM**: Document processing and LLM integration.
+  - **Ollama**: Local LLM hosting.
+  - **Faster-Whisper**: GPU-accelerated speech recognition.
+  - **Home Assistant**: IoT automation.
+  - **LibreTranslate**: Self-hosted translation.
+- **Essentials Stack**: [essential-stack/](essential-stack/) — Foundational services and infrastructure.
+- **Management Stack**: [management-stack/](management-stack/) — Monitoring and control.
+- **Media Stack**: [media-stack/](media-stack/) — Asset and media management.
 
-**Belangrijke commando's**
+**Key Commands**
 
-- Start en bouw alle services:
+- Build and start all services:
 
 ```bash
 docker-compose up --build
 ```
 
-- Draai integration tests voor de AI Stack:
+- Run integration tests for the AI Stack:
 
 ```bash
 docker-compose run --service ai-stack integration-tests
 ```
 
-**Configuratie**
+**Configuration**
 
-- **Env vars**: Configuratie gebeurt via environment variables.
-- **Datastores**: PostgreSQL wordt gebruikt voor persistente opslag; connectie-instellingen zitten in de compose-configuratie ([docker-compose.yml](docker-compose.yml) indien aanwezig).
-- **Netwerk**: Services communiceren via gRPC waar aangegeven.
+- **Env vars**: Configuration is managed via environment variables.
+- **Datastores**: PostgreSQL is used for persistent storage; connection settings are in the compose configuration ([docker-compose.yml](docker-compose.yml) if present).
+- **Networking**: Services communicate via gRPC where applicable.
 
-**Conventies**
+**Conventions**
 
-- **Naamgeving**: Gebruik snake_case voor servicenames en variabelen.
-- **Bestanden**: Docker Compose op root-niveau definieert services en volumes.
-- **Code stijl**: Volg bestaande projectconventies per stack.
+- **Naming**: Use snake_case for service names and variables.
+- **Files**: Docker Compose at the root level defines services and volumes.
+- **Code style**: Follow existing project conventions per stack.
 
-**Integratiepunten**
+**Integration Points**
 
-- **AnythingLLM**: Integreert met externe API's voor documentverwerking (controleer service-definitie in [ai-stack/](ai-stack/)).
-- **Ollama**: Vereist een bereikbare Ollama-server.
-- **gRPC**: Meerdere services gebruiken gRPC; gebruik `grpcurl` om services te inspecteren en te debuggen.
+- **AnythingLLM**: Integrates with external APIs for document processing (check service definition in [ai-stack/](ai-stack/)).
+- **Ollama**: Requires an accessible Ollama server.
+- **gRPC**: Multiple services use gRPC; use `grpcurl` for service inspection and debugging.
 
 **Debugging & Logging**
 
 - **Docker logs**: `docker-compose logs -f <service>`
-- **Lokale logs**: Bekijk `/var/log/ai-stack/` voor AI-stack-specifieke logs.
-- **gRPC debug**: `grpcurl` voor schema-inspectie en call-testing.
+- **Local logs**: Check `/var/log/ai-stack/` for AI-stack-specific logs.
+- **gRPC debug**: Use `grpcurl` for schema inspection and call testing.
 
 **Testing**
 
-- **Integratie-tests**: In de `ai-stack` map; draai ze met de hierboven vermelde `docker-compose run`-opdracht.
-- **Locatie tests**: [ai-stack/](ai-stack/) bevat test-configuratie en scripts.
+- **Integration tests**: In the `ai-stack` directory; run them with the `docker-compose run` command mentioned above.
+- **Test location**: [ai-stack/](ai-stack/) contains test configuration and scripts.
 
 **Contributing**
 
-- **Werkwijze**: Fork, feature branch, open PR met duidelijke beschrijving en tests waar relevant.
-- **Code review**: Voeg commit- en PR-beschrijvingen toe met reproduceerbare stappen.
+- **Workflow**: Fork, create a feature branch, open a PR with clear description and relevant tests.
+- **Code review**: Add commit and PR descriptions with reproducible steps.
 
 **License**
 
-- **Status**: Geen licentiebestand in deze README genoemd — voeg een `LICENSE` toe als je een specifieke licentie wil publiceren.
+- **Status**: No license file mentioned in this README — add a `LICENSE` file if you want to publish under a specific license.
+
+**Dutch Version**
+
+For documentation in Dutch, see [LEESMIJ.md](LEESMIJ.md).
