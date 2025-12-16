@@ -7,3 +7,4 @@ comfyui-droopy-noodles
 ### pc ding dong
 comfyui-pc-ding-dong
 comfyui-workflow-models-downloader
+comfyui-runpoddirect
