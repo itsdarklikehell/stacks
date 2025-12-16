@@ -19,7 +19,7 @@ services:
       - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-1h}
       - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
       - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
-      - OLLAMA_MODELS=${OLLAMA_MODELS:-/root/.ollama/models}
+      - OLLAMA_MODELS=/root/.ollama/models
       - OLLAMA_VULKAN=1
 
     volumes:
