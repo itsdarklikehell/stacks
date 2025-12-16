@@ -8,7 +8,7 @@ DONE_SOUND() {
 	wavfile=https://www.winhistory.de/more/winstart/down/owin31.wav
 	wget -q -c "${wavfile}" -O "/tmp/tadaa.wav"
 	cvlc -q --play-and-exit "/tmp/tadaa.wav"
-	rm "/tmp/tadaa.wav"
+	rm "${STACK_BASEPATH}/tadaa.wav"
 }
 
 DONE_SOUND
