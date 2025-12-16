@@ -12,7 +12,7 @@ export PERM_DATA="${STACK_BASEPATH}/DATA"                                       
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
 export PRUNE="false"                                                            # false, true/normal, all
-export BUILDING="normal"                                                        # false, true, force_rebuild
+export BUILDING="true"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -22,27 +22,38 @@ export TWITCH_CLIENT_ID="your_client_id"                                        
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export IP_ADDRESS=$(hostname -I | awk '{print $1}')                             # get machine IP address
 
-# eval "$(resize)"
-# DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
-# exitstatus=$?
-# if [[ "${exitstatus}" = 0 ]]; then
-# 	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
-# else
-# 	echo "User selected Cancel."
-# 	exit 1
-# fi
-# export DOCKER_BASEPATH
+eval "$(resize)"
+DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+else
+	echo "User selected Cancel."
+	exit 1
+fi
+export DOCKER_BASEPATH
 
-# eval "$(resize)" || true
-# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
-# exitstatus=$?
-# if [[ "${exitstatus}" = 0 ]]; then
-# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
-# else
-# 	echo "User selected Cancel."
-# 	exit 1
-# fi
-# export STACK_BASEPATH
+eval "$(resize)" || true
+STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered: S{STACK_BASEPATH}"
+else
+	echo "User selected Cancel."
+	exit 1
+fi
+export STACK_BASEPATH
+
+eval "$(resize)"
+IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered " "${IP_ADDRESS}"
+else
+	echo "User selected Cancel."
+	exit 1
+fi
+export IP_ADDRESS
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main

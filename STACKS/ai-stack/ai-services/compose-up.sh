@@ -37,8 +37,8 @@ function CREATE_FOLDERS() {
 		if [[ ! -d "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}" ]]; then
 			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
 			mkdir -p "${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}"
-		else
-			echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
+		# else
+		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}_${FOLDERNAME}, skipping creation"
 		fi
 	done
 }
@@ -251,7 +251,7 @@ function BUILDING() {
 	echo ""
 	if [[ ${BUILDING} == "force_rebuild" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
-	elif [[ ${BUILDING} == "true" ]]; then
+	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d
 	elif [[ ${BUILDING} == "false" ]]; then
 		echo "Skipping docker compose up"
