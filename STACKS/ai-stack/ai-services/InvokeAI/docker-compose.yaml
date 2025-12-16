@@ -17,10 +17,16 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - NVIDIA_VISIBLE_DEVICES=all
-      - SCAN_MODELS_ON_STARTUP=true
       - ALLOW_UNKNOWN_MODELS=true
+      - INVOKEAI_ALLOW_UNKNOWN_MODELS=true
+      # - SCAN_MODELS_ON_STARTUP=true
+      # - INVOKEAI_SCAN_MODELS_ON_STARTUP=true
       - INVOKEAI_ENABLE_PARTIAL_LOADING=true
-      - INVOKEAI_SCAN_MODELS_ON_STARTUP=true
+      - ENABLE_PARTIAL_LOADING=true
+      # - DEVICE_WORKING_MEM_GB=4
+      # - INVOKEAI_DEVICE_WORKING_MEM_GB=4
+      # - INVOKEAI_KEEP_RAM_COPY_OF_WEIGHTS=false
+      # - KEEP_RAM_COPY_OF_WEIGHTS=false
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
