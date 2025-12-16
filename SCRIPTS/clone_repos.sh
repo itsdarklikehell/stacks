@@ -988,7 +988,7 @@ function CLONE_COMFYUI() {
 
 		git clone --recursive https://github.com/dci05049/Comfyui-workflows.git "${WORKFLOWDIR}/dci05049/Comfyui-workflows"
 
-		git clone --recursive https://github.com/https://github.com/ecjojo/ecjojo-comfyui-workflows.git "${WORKFLOWDIR}/ecjojo/ecjojo-comfyui-workflows"
+		git clone --recursive https://github.com/ecjojo/ecjojo-comfyui-workflows.git "${WORKFLOWDIR}/ecjojo/ecjojo-comfyui-workflows"
 
 		git clone --recursive https://github.com/ttio2tech/ComfyUI_workflows_collection.git "${WORKFLOWDIR}/ttio2tech/ComfyUI_workflows_collection"
 
