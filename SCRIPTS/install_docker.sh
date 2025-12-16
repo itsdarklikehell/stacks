@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "Install Docker script started."
 
+export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+
 # Install Docker and related tools on Ubuntu
 function INSTALL_DOCKER() {
 	# check if docker is installed and if not install it
@@ -37,9 +39,18 @@ function INSTALL_DOCKER() {
 
 		echo "Docker installation completed."
 
-		sudo mv /var/lib/docker "${DOCKER_BASEPATH}"
-		sudo ln -s "${DOCKER_BASEPATH}" /var/lib/docker
-		sudo ls -la /var/lib/docker
+		if test -L "/var/lib/docker"; then
+			echo "/var/lib/docker is a symlink to a directory"
+			# ls -la "/var/lib/docker"
+		elif test -d "/var/lib/docker"; then
+			echo "/var/lib/docker is just a plain directory"
+
+			sudo mv /var/lib/docker "${DOCKER_BASEPATH}"
+			sudo ln -s "${DOCKER_BASEPATH}" /var/lib/docker
+			sudo ls -la /var/lib/docker
+
+		fi
+
 	fi
 	# check if lazydocker is installed and if not install it
 	if command -v lazydocker &>/dev/null; then

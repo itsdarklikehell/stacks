@@ -12,7 +12,7 @@ export PERM_DATA="${STACK_BASEPATH}/DATA"                                       
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
 export PRUNE="false"                                                            # false, true/normal, all
-export BUILDING="false"                                                         # false, true, force_rebuild
+export BUILDING="normal"                                                        # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -22,50 +22,31 @@ export TWITCH_CLIENT_ID="your_client_id"                                        
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export IP_ADDRESS=$(hostname -I | awk '{print $1}')                             # get machine IP address
 
-eval "$(resize)"
-DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [[ "${exitstatus}" = 0 ]]; then
-	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
-	export DOCKER_BASEPATH
-else
-	echo "User selected Cancel."
-	exit 1
-fi
-
-eval "$(resize)" || true
-STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [[ "${exitstatus}" = 0 ]]; then
-	echo "User selected Ok and entered: S{STACK_BASEPATH}"
-	export STACK_BASEPATH
-else
-	echo "User selected Cancel."
-	exit 1
-fi
-
-# if [[ -f ".env" ]]; then
-# 	# shellcheck source=.env
-# 	source ".env"
-# 	echo "Settings file is loaded"
+# eval "$(resize)"
+# DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+# exitstatus=$?
+# if [[ "${exitstatus}" = 0 ]]; then
+# 	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 # else
-# 	echo "Settings file is missing"
-# 	echo "Please copy .env.exaple to .env and edit it."
-# 	echo "Make sure the paths are correct then run this script again."
+# 	echo "User selected Cancel."
 # 	exit 1
 # fi
+# export DOCKER_BASEPATH
+
+# eval "$(resize)" || true
+# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+# exitstatus=$?
+# if [[ "${exitstatus}" = 0 ]]; then
+# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
+# else
+# 	echo "User selected Cancel."
+# 	exit 1
+# fi
+# export STACK_BASEPATH
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main
 chmod +x "install-stack.sh"
-
-function PULL_MODELS() {
-	if [[ "${PULL_MODELS}" == "true" ]]; then
-		SCRIPTS/pull_models.sh
-	elif [[ "${PULL_MODELS}" == "false" ]]; then
-		echo "Skipping model pulling"
-	fi
-}
 
 function PRUNING() {
 	echo ""
@@ -90,100 +71,21 @@ function CLEANUP_DATA() {
 function INSTALL_DRIVERS() {
 	SCRIPTS/install_drivers.sh
 }
+
 function INSTALL_DOCKER() {
 	SCRIPTS/install_docker.sh
-}
-
-function START_OLLMVT() {
-	if [[ "${START_OLLMVT}" == "true" ]]; then
-		SCRIPTS/start_ollmvt.sh
-	fi
-}
-function START_COMFYUI() {
-	if [[ "${START_COMFYUI}" == "true" ]]; then
-		SCRIPTS/start_comfyui.sh
-	fi
-}
-
-function START_CUSHYSTUDIO() {
-	if [[ "${START_CUSHYSTUDIO}" == "true" ]]; then
-		SCRIPTS/start_cushystudio.sh
-	fi
-}
-
-function START_BROWSER() {
-	if [[ "${START_BROWSER}" == "true" ]]; then
-		SCRIPTS/start_browser.sh
-	fi
 }
 
 function CREATE_NETWORKS() {
 	SCRIPTS/create_networks.sh
 }
+
 function CREATE_SECRETS() {
 	SCRIPTS/create_secrets.sh
 }
 
 function CLONE_REPOS() {
 	SCRIPTS/clone_repos.sh
-}
-
-function START_DEDUPER() {
-	SCRIPTS/start_deduper.sh
-}
-
-function INSTALL_STACK() {
-	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
-
-	echo "Building is set to: ${BUILDING}"
-	echo "Working directory is set to ${STACK_BASEPATH}"
-	echo "Configs directory is set to ${CONFIGS_DIR}"
-	echo "Data directory is set to ${PERM_DATA}"
-	echo "Secrets directory is set to ${SECRETS_DIR}"
-	echo "Stacks directory is set to ${STACK_DIR}"
-
-	"${STACK_DIR}"/install-stack.sh
-}
-
-function SETUP_ESSENTIALS_STACK() {
-	export STACK_NAME="essential"
-	INSTALL_STACK
-}
-function SETUP_MEDIA_STACK() {
-	export STACK_NAME="media"
-	INSTALL_STACK
-}
-function SETUP_AI_STACK() {
-	export STACK_NAME="ai"
-	INSTALL_STACK
-}
-function SETUP_JAISON_STACK() {
-	export STACK_NAME="jaison"
-	INSTALL_STACK
-}
-function SETUP_VOICE_CHAT_AI_STACK() {
-	export STACK_NAME="voice-chat-ai"
-	INSTALL_STACK
-}
-function SETUP_PROJECT_RIKO_STACK() {
-	export STACK_NAME="riko"
-	INSTALL_STACK
-}
-function SETUP_OPENLLM_VTUBER_STACK() {
-	export STACK_NAME="openllm-vtuber"
-	"${STACK_NAME}"-vtuber-stack/install-stack.sh
-}
-function SETUP_ARR_STACK() {
-	export STACK_NAME="arr"
-	INSTALL_STACK
-}
-function SETUP_AIWAIFU_STACK() {
-	export STACK_NAME="aiwaifu"
-	INSTALL_STACK
-}
-function SETUP_AIRI_STACK() {
-	export STACK_NAME="airi"
-	INSTALL_STACK
 }
 
 function SETUP_AUTOSTART() {
@@ -226,6 +128,69 @@ function SETUP_AUTOSTART() {
 	done
 }
 
+function INSTALL_STACK() {
+	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
+
+	echo "Building is set to: ${BUILDING}"
+	echo "Working directory is set to ${STACK_BASEPATH}"
+	echo "Configs directory is set to ${CONFIGS_DIR}"
+	echo "Data directory is set to ${PERM_DATA}"
+	echo "Secrets directory is set to ${SECRETS_DIR}"
+	echo "Stacks directory is set to ${STACK_DIR}"
+
+	"${STACK_DIR}"/install-stack.sh
+}
+
+function PULL_MODELS() {
+	if [[ "${PULL_MODELS}" == "true" ]]; then
+		SCRIPTS/pull_models.sh
+	elif [[ "${PULL_MODELS}" == "false" ]]; then
+		echo "Skipping model pulling"
+	fi
+}
+
+function START_OLLMVT() {
+	if [[ "${START_OLLMVT}" == "true" ]]; then
+		SCRIPTS/start_ollmvt.sh
+	fi
+}
+
+function START_COMFYUI() {
+	if [[ "${START_COMFYUI}" == "true" ]]; then
+		SCRIPTS/start_comfyui.sh
+	fi
+}
+
+function START_CUSHYSTUDIO() {
+	if [[ "${START_CUSHYSTUDIO}" == "true" ]]; then
+		SCRIPTS/start_cushystudio.sh
+	fi
+}
+
+function START_BROWSER() {
+	if [[ "${START_BROWSER}" == "true" ]]; then
+		SCRIPTS/start_browser.sh
+	fi
+}
+
+function START_DEDUPER() {
+	SCRIPTS/start_deduper.sh
+}
+
+function SETUP_ESSENTIALS_STACK() {
+	export STACK_NAME="essential"
+	INSTALL_STACK
+}
+function SETUP_AI_STACK() {
+	export STACK_NAME="ai"
+	INSTALL_STACK
+}
+
+function SETUP_OPENLLM_VTUBER_STACK() {
+	export STACK_NAME="openllm-vtuber"
+	"${STACK_NAME}"-vtuber-stack/install-stack.sh
+}
+
 echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
@@ -260,37 +225,11 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+exit 1
 
 # echo ""
-# SETUP_ARR_STACK
+# PULL_MODELS # >/dev/null 2>&1 &
 # echo ""
-
-# echo ""
-# SETUP_AIWAIFU_STACK
-# echo ""
-
-# echo ""
-# SETUP_AIRI_STACK
-# echo ""
-
-# echo ""
-# SETUP_OPENLLM_VTUBER_STACK
-# echo ""
-
-# echo ""
-# SETUP_JAISON_STACK
-# echo ""
-
-# echo ""
-# SETUP_PROJECT_RIKO_STACK
-# echo ""
-
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &
@@ -304,13 +243,13 @@ echo ""
 # START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_DEDUPER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_DEDUPER >/dev/null 2>&1 &
+# echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 

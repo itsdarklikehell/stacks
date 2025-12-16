@@ -1,6 +1,0 @@
-name: jaison-services
-
-networks:
-  host:
-  jaison-services:
-    external: true

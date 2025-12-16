@@ -1,6 +1,0 @@
-name: riko-services
-
-networks:
-  host:
-  riko-services:
-    external: true

@@ -17,24 +17,20 @@ cd "${SCRIPT_DIR}" || exit 1
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/forge_input"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/jaison-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -43,41 +39,32 @@ mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/riko-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/aiwaifu-stack"
 mkdir -p "${STACK_BASEPATH}/DATA/airi-stack"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-
 mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-
 mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-./install_uv.sh
-./install_toolhive.sh
+
+"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
+"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
 
 function IMPORT_NLTK() {
 	echo "Importing NLTK averaged_perceptron_tagger_eng"
@@ -907,11 +894,11 @@ function SETUP_FOLDERS() {
 
 	}
 
-	# MODELS
-	# OUTPUTS
-	# INPUTS
-	# WORKFLOWS
-	# VARIETY
+	MODELS
+	OUTPUTS
+	INPUTS
+	WORKFLOWS
+	VARIETY
 }
 
 function CLONE_COMFYUI() {
@@ -1196,15 +1183,11 @@ function CLONE_COMFYUIMINI() {
 }
 
 SETUP_FOLDERS >/dev/null 2>&1 &
-# CLONE_COMFYUI >/dev/null 2>&1 &
-
+# CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI >/dev/null 2>&1 &
 CLONE_PUPPETEER >/dev/null 2>&1 &
-
 CLONE_SWARMUI >/dev/null 2>&1 &
-
 CLONE_ANYTHINGLLM >/dev/null 2>&1 &
-
 CLONE_AIRI >/dev/null 2>&1 &
 CLONE_AIWAIFU >/dev/null 2>&1 &
 CLONE_RIKOPROJECT >/dev/null 2>&1 &
