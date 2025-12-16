@@ -20,8 +20,6 @@ Kort overzicht
   - **Home Assistant**: IoT-automatisering.
   - **LibreTranslate**: Zelf-gehoste vertaling.
 - **Essentials Stack**: [essential-stack/](essential-stack/) — Basisdiensten en infrastructuur.
-- **Management Stack**: [management-stack/](management-stack/) — Monitoring en beheer.
-- **Media Stack**: [media-stack/](media-stack/) — Asset- en mediabeheer.
 
 **Belangrijke commando's**
 

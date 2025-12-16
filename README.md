@@ -20,8 +20,6 @@ Overview
   - **Home Assistant**: IoT automation.
   - **LibreTranslate**: Self-hosted translation.
 - **Essentials Stack**: [essential-stack/](essential-stack/) — Foundational services and infrastructure.
-- **Management Stack**: [management-stack/](management-stack/) — Monitoring and control.
-- **Media Stack**: [media-stack/](media-stack/) — Asset and media management.
 
 **Key Commands**
 
