@@ -55,7 +55,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -363,15 +362,6 @@ function LINK_FOLDERS() {
 				rm -rf "${COMFYUI_PATH}/models/anything-llm_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models" "${COMFYUI_PATH}/models/anything-llm_models"
 			fi
-			if test -L "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-				rm -rf "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/anything-llm_models/comfyui_models"
-			fi
 
 			## InvokeAI
 			if test -L "${COMFYUI_PATH}/models/InvokeAI_models"; then
@@ -382,15 +372,6 @@ function LINK_FOLDERS() {
 				mv -f "${COMFYUI_PATH}/models/InvokeAI_models"/* "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
 				rm -rf "${COMFYUI_PATH}/models/InvokeAI_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models" "${COMFYUI_PATH}/models/InvokeAI_models"
-			fi
-			if test -L "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-				rm -rf "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/InvokeAI_models/comfyui_models"
 			fi
 
 			## LocalAI
@@ -403,15 +384,6 @@ function LINK_FOLDERS() {
 				rm -rf "${COMFYUI_PATH}/models/localai_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/localai_models" "${COMFYUI_PATH}/models/localai_models"
 			fi
-			if test -L "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-				rm -rf "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/localai_models/comfyui_models"
-			fi
 
 			## Ollama
 			if test -L "${COMFYUI_PATH}/models/ollama_models"; then
@@ -423,15 +395,6 @@ function LINK_FOLDERS() {
 				rm -rf "${COMFYUI_PATH}/models/ollama_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/ollama_models" "${COMFYUI_PATH}/models/ollama_models"
 			fi
-			if test -L "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-				rm -rf "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/ollama_models/comfyui_models"
-			fi
 
 			## Forge
 			if test -L "${COMFYUI_PATH}/models/forge_models"; then
@@ -442,15 +405,6 @@ function LINK_FOLDERS() {
 				mv -f "${COMFYUI_PATH}/models/forge_models"/* "${STACK_BASEPATH}/DATA/ai-models/forge_models"
 				rm -rf "${COMFYUI_PATH}/models/forge_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/forge_models" "${COMFYUI_PATH}/models/forge_models"
-			fi
-			if test -L "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"; then
-				echo "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-				rm -rf "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/forge_models/comfyui_models"
 			fi
 
 		}
@@ -574,17 +528,6 @@ function LINK_FOLDERS() {
 				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			fi
 
-			if test -L "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-				echo "$${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-				echo "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
-
-				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-			fi
-
 		}
 
 		function LINK_COMFYUI_VARIETY() {
@@ -658,6 +601,7 @@ function LINK_FOLDERS() {
 			fi
 
 		}
+
 		LINK_COMFYUI_MODELS
 		LINK_INVOKEAI_MODELS
 		LINK_LOCALAI_MODELS
@@ -668,7 +612,6 @@ function LINK_FOLDERS() {
 		LINK_COMFYUI_INPUTS
 
 		LINK_COMFYUI_OUTPUTS
-		LINK_ANYTHINGLLM_OUTPUTS
 
 		LINK_COMFYUI_WORKFLOWS
 
@@ -747,7 +690,6 @@ function CLONE_COMFYUI() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"

@@ -114,7 +114,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -141,6 +140,15 @@ function LINK_FOLDERS() {
 				mv -f "${COMFYUI_PATH}/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 				rm -rf "${COMFYUI_PATH}/models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/models"
+			fi
+			if test -L "${COMFYUI_PATH}/custom_nodes/models"; then
+				echo "${COMFYUI_PATH}/custom_nodes/models is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/custom_nodes/models"
+			elif test -d "${COMFYUI_PATH}/custom_nodes/models"; then
+				echo "${COMFYUI_PATH}/custom_nodes/models is just a plain directory"
+				mv -f "${COMFYUI_PATH}/custom_nodes/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+				rm -rf "${COMFYUI_PATH}/custom_nodes/models"
+				ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 			fi
 
 			## Anything-LLM
@@ -319,17 +327,6 @@ function LINK_FOLDERS() {
 				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 			fi
 
-			if test -L "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-				echo "$${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is a symlink to a directory"
-				# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-			elif test -d "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-				echo "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is just a plain directory"
-				mv -f "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
-
-				rm -rf "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-				ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-			fi
-
 		}
 
 		function LINK_COMFYUI_VARIETY() {
@@ -403,6 +400,7 @@ function LINK_FOLDERS() {
 			fi
 
 		}
+
 		LINK_COMFYUI_MODELS
 		LINK_INVOKEAI_MODELS
 		LINK_LOCALAI_MODELS
@@ -413,7 +411,6 @@ function LINK_FOLDERS() {
 		LINK_COMFYUI_INPUTS
 
 		LINK_COMFYUI_OUTPUTS
-		LINK_ANYTHINGLLM_OUTPUTS
 
 		LINK_COMFYUI_WORKFLOWS
 
