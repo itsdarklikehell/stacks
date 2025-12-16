@@ -1,35 +1,55 @@
 #!/bin/bash
 
-WD="$(dirname "$(realpath "$0")")" || true
-export WD                                                                       # set working dir
-export STACK_BASEPATH="${WD}"                                                   # set base path
-export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
-export UV_LINK_MODE=copy                                                        # set uv link mode
-export OLLAMA="docker"                                                          # local, docker
-export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
-export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
-export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
-export CLEANUP="false"                                                          # false, true
-export PRUNE="false"                                                            # false, true/normal, all
-export BUILDING="false"                                                         # false, true, force_rebuild
-export PULL_MODELS="true"                                                       # false, true
-export START_OLLMVT="true"                                                      # false, true
-export START_COMFYUI="true"                                                     # false, true
-export START_CUSHYSTUDIO="true"                                                 # false, true
-export START_BROWSER="true"                                                     # false, true
-export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
-export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
+if [[ ! -f ".env" ]]; then
+	echo "Settings file is missing"
 
-export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+	WD="$(dirname "$(realpath "$0")")" || true
+	export WD                                                                       # set working dir
+	export STACK_BASEPATH="${WD}"                                                   # set base path
+	export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
+	export UV_LINK_MODE=copy                                                        # set uv link mode
+	export OLLAMA="docker"                                                          # local, docker
+	export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
+	export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
+	export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
+	export CLEANUP="false"                                                          # false, true
+	export PRUNE="false"                                                            # false, true/normal, all
+	export BUILDING="false"                                                         # false, true, force_rebuild
+	export PULL_MODELS="true"                                                       # false, true
+	export START_OLLMVT="true"                                                      # false, true
+	export START_COMFYUI="true"                                                     # false, true
+	export START_CUSHYSTUDIO="true"                                                 # false, true
+	export START_BROWSER="true"                                                     # false, true
+	export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
+	export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
+
+	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+
+	# eval "$(resize)" || true
+	# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "S{STACK_BASEPATH}" --title "Basepath Dialog" 3>&1 1>&2 2>&3)
+	# exitstatus=$?
+	# if [[ "${exitstatus}" = 0 ]]; then
+	# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
+	# 	echo "export STACK_BASEPATH=S{STACK_BASEPATH}" >>.env
+	# else
+	# 	echo "User selected Cancel."
+	# 	exit 1
+	# fi
+
+else
+	# shellcheck source=.env
+	source ".env"
+	echo "Settings file is loaded"
+fi
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main
 chmod +x "install-stack.sh"
 
 function PULL_MODELS() {
-	if [[ ${PULL_MODELS} == "true" ]]; then
+	if [[ "${PULL_MODELS}" == "true" ]]; then
 		SCRIPTS/pull_models.sh
-	elif [[ ${PULL_MODELS} == "false" ]]; then
+	elif [[ "${PULL_MODELS}" == "false" ]]; then
 		echo "Skipping model pulling"
 	fi
 }
@@ -38,18 +58,18 @@ function PRUNING() {
 	echo ""
 	echo "Pruning is set to: ${PRUNE}"
 	echo ""
-	if [[ ${PRUNE} == "all" ]]; then
+	if [[ "${PRUNE}" == "all" ]]; then
 		docker system prune -af
-	elif [[ ${PRUNE} == "true" ]] || [[ ${PRUNE} == "normal" ]]; then
+	elif [[ "${PRUNE}" == "true" ]] || [[ "${PRUNE}" == "normal" ]]; then
 		docker system prune -f
-	elif [[ ${PRUNE} == "false" ]]; then
+	elif [[ "${PRUNE}" == "false" ]]; then
 		echo "Skipping docker system prune"
 	fi
 	sleep 3
 }
 
 function CLEANUP_DATA() {
-	if [[ ${CLEANUP} == "true" ]]; then
+	if [[ "${CLEANUP}" == "true" ]]; then
 		SCRIPTS/cleanup.sh
 	fi
 }
@@ -62,24 +82,24 @@ function INSTALL_DOCKER() {
 }
 
 function START_OLLMVT() {
-	if [[ ${START_OLLMVT} == "true" ]]; then
+	if [[ "${START_OLLMVT}" == "true" ]]; then
 		SCRIPTS/start_ollmvt.sh
 	fi
 }
 function START_COMFYUI() {
-	if [[ ${START_COMFYUI} == "true" ]]; then
+	if [[ "${START_COMFYUI}" == "true" ]]; then
 		SCRIPTS/start_comfyui.sh
 	fi
 }
 
 function START_CUSHYSTUDIO() {
-	if [[ ${START_CUSHYSTUDIO} == "true" ]]; then
+	if [[ "${START_CUSHYSTUDIO}" == "true" ]]; then
 		SCRIPTS/start_cushystudio.sh
 	fi
 }
 
 function START_BROWSER() {
-	if [[ ${START_BROWSER} == "true" ]]; then
+	if [[ "${START_BROWSER}" == "true" ]]; then
 		SCRIPTS/start_browser.sh
 	fi
 }

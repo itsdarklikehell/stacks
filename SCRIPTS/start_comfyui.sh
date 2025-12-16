@@ -5,7 +5,7 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export STACK_BASEPATH="/media/hans/4-T/stacks"
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"

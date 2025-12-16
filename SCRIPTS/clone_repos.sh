@@ -3,7 +3,7 @@ echo "Clone repos script started."
 SCRIPT_DIR="$(dirname "$(realpath "$0")")" || true
 export SCRIPT_DIR
 
-export STACK_BASEPATH="/media/hans/4-T/stacks"
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 export UV_LINK_MODE=copy
 
 echo "Building is set to: ${BUILDING}"
@@ -922,13 +922,13 @@ function CLONE_COMFYUI() {
 	export BACKGROUND=true
 	export COMFYUI_PORT=8188
 
-	export STACK_BASEPATH="/media/hans/4-T/stacks"
+	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 
 	export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 	export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 	export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
 
-	export COMFYUI_PATH="/media/hans/4-T/stacks/DATA/ai-stack/ComfyUI"
+	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
 	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
 	# 	echo "Install custom nodes enabled."
