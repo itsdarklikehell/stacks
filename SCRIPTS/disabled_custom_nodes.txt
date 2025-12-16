@@ -2,3 +2,4 @@
 simple-model-downloader
 civicomfy
 enhanced-civicomfy
+santodan-custom-nodes-comfyui
