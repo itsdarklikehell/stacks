@@ -10,8 +10,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="normal"                                                           # false, true/normal, all
-export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
+export PRUNE="false"                                                            # false, true/normal, all
+export BUILDING="false"                                                         # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -219,9 +219,9 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
 echo ""
 SETUP_AI_STACK
@@ -271,9 +271,9 @@ echo ""
 # START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_BROWSER >/dev/null 2>&1 &
+echo ""
 
 echo ""
 START_DEDUPER >/dev/null 2>&1 &
