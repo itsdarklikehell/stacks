@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Install Docker script started."
 
-export DOCKER_FILES="/media/hans/4-T/docker"
-eval $(resize)
+export DOCKER_FILES="/media/rizzo/RAIDSTATION/docker"
+eval "$(resize)"
 DOCKER_FILES=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_FILES}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 # A trick to swap stdout and stderr.
 # Again, you can pack this inside if, but it seems really long for some 80-col terminal users.

@@ -1,46 +1,46 @@
 #!/bin/bash
+WD="$(dirname "$(realpath "$0")")" || true
+export WD                                                                       # set working dir
+export STACK_BASEPATH="${WD}"                                                   # set base path
+export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
+export UV_LINK_MODE=copy                                                        # set uv link mode
+export OLLAMA="docker"                                                          # local, docker
+export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
+export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
+export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
+export CLEANUP="false"                                                          # false, true
+export PRUNE="false"                                                            # false, true/normal, all
+export BUILDING="false"                                                         # false, true, force_rebuild
+export PULL_MODELS="true"                                                       # false, true
+export START_OLLMVT="true"                                                      # false, true
+export START_COMFYUI="true"                                                     # false, true
+export START_CUSHYSTUDIO="true"                                                 # false, true
+export START_BROWSER="true"                                                     # false, true
+export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
+export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
+export IP_ADDRESS=$(hostname -I | awk '{print $1}')                             # get machine IP address
 
-if [[ ! -f ".env" ]]; then
-	echo "Settings file is missing"
+# eval "$(resize)" || true
+# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "S{STACK_BASEPATH}" --title "Basepath Dialog" 3>&1 1>&2 2>&3)
+# exitstatus=$?
+# if [[ "${exitstatus}" = 0 ]]; then
+# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
+# 	echo "export STACK_BASEPATH=S{STACK_BASEPATH}" >>.env
+# else
+# 	echo "User selected Cancel."
+# 	exit 1
+# fi
 
-	WD="$(dirname "$(realpath "$0")")" || true
-	export WD                                                                       # set working dir
-	export STACK_BASEPATH="${WD}"                                                   # set base path
-	export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
-	export UV_LINK_MODE=copy                                                        # set uv link mode
-	export OLLAMA="docker"                                                          # local, docker
-	export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
-	export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
-	export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
-	export CLEANUP="false"                                                          # false, true
-	export PRUNE="false"                                                            # false, true/normal, all
-	export BUILDING="false"                                                         # false, true, force_rebuild
-	export PULL_MODELS="true"                                                       # false, true
-	export START_OLLMVT="true"                                                      # false, true
-	export START_COMFYUI="true"                                                     # false, true
-	export START_CUSHYSTUDIO="true"                                                 # false, true
-	export START_BROWSER="true"                                                     # false, true
-	export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
-	export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
-
-	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
-
-	# eval "$(resize)" || true
-	# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "S{STACK_BASEPATH}" --title "Basepath Dialog" 3>&1 1>&2 2>&3)
-	# exitstatus=$?
-	# if [[ "${exitstatus}" = 0 ]]; then
-	# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
-	# 	echo "export STACK_BASEPATH=S{STACK_BASEPATH}" >>.env
-	# else
-	# 	echo "User selected Cancel."
-	# 	exit 1
-	# fi
-
-else
-	# shellcheck source=.env
-	source ".env"
-	echo "Settings file is loaded"
-fi
+# if [[ -f ".env" ]]; then
+# 	# shellcheck source=.env
+# 	source ".env"
+# 	echo "Settings file is loaded"
+# else
+# 	echo "Settings file is missing"
+# 	echo "Please copy .env.exaple to .env and edit it."
+# 	echo "Make sure the paths are correct then run this script again."
+# 	exit 1
+# fi
 
 cd "${STACK_BASEPATH}" || exit
 git pull origin main
