@@ -1,7 +1,9 @@
 #!/bin/bash
 WD="$(dirname "$(realpath "$0")")" || true
-export WD                                                                       # set working dir
-export STACK_BASEPATH="${WD}"                                                   # set base path
+export WD                     # set working dir
+export STACK_BASEPATH="${WD}" # set base path
+export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+
 export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
 export UV_LINK_MODE=copy                                                        # set uv link mode
 export OLLAMA="docker"                                                          # local, docker
@@ -20,16 +22,27 @@ export TWITCH_CLIENT_ID="your_client_id"                                        
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export IP_ADDRESS=$(hostname -I | awk '{print $1}')                             # get machine IP address
 
-# eval "$(resize)" || true
-# STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "S{STACK_BASEPATH}" --title "Basepath Dialog" 3>&1 1>&2 2>&3)
-# exitstatus=$?
-# if [[ "${exitstatus}" = 0 ]]; then
-# 	echo "User selected Ok and entered: S{STACK_BASEPATH}"
-# 	echo "export STACK_BASEPATH=S{STACK_BASEPATH}" >>.env
-# else
-# 	echo "User selected Cancel."
-# 	exit 1
-# fi
+eval "$(resize)"
+DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+	export DOCKER_BASEPATH
+else
+	echo "User selected Cancel."
+	exit 1
+fi
+
+eval "$(resize)" || true
+STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+exitstatus=$?
+if [[ "${exitstatus}" = 0 ]]; then
+	echo "User selected Ok and entered: S{STACK_BASEPATH}"
+	export STACK_BASEPATH
+else
+	echo "User selected Cancel."
+	exit 1
+fi
 
 # if [[ -f ".env" ]]; then
 # 	# shellcheck source=.env
