@@ -17,7 +17,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - NODE_ENV=production
+      # - NODE_ENV=production
       - PORT=${PORT:-2283}
       # - VUE_APP_ADMINPASSWORD=${VUE_APP_ADMINPASSWORD:-admin}
 
