@@ -117,6 +117,7 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	mkdri -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
 
 }
 
@@ -204,6 +205,19 @@ function LINK_FOLDERS() {
 				mv -f "${COMFYUI_PATH}/models/forge_models"/* "${STACK_BASEPATH}/DATA/ai-models/forge_models"
 				rm -rf "${COMFYUI_PATH}/models/forge_models"
 				ln -s "${STACK_BASEPATH}/DATA/ai-models/forge_models" "${COMFYUI_PATH}/models/forge_models"
+			fi
+
+		}
+		function LINK_COMFYUI_CUSTOM_NODES() {
+
+			if test -L "${COMFYUI_PATH}/custom_nodes"; then
+				echo "${COMFYUI_PATH}/custom_nodes is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/custom_nodes"
+			elif test -d "${COMFYUI_PATH}/custom_nodes"; then
+				echo "${COMFYUI_PATH}/custom_nodes is just a plain directory"
+				mv -f "${COMFYUI_PATH}/custom_nodes"/* "${STACK_BASEPATH}/DATA/ai-outputs"
+				rm -rf "${COMFYUI_PATH}/custom_nodes"
+				ln -s "${STACK_BASEPATH}/DATA/ai-custom_nodes" "${COMFYUI_PATH}/custom_nodes"
 			fi
 
 		}
@@ -336,6 +350,7 @@ function LINK_FOLDERS() {
 		LINK_COMFYUI_OUTPUTS
 		LINK_COMFYUI_WORKFLOWS
 		LINK_COMFYUI_VARIETY
+		LINK_COMFYUI_CUSTOM_NODES
 
 	}
 

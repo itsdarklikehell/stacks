@@ -58,6 +58,7 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	mkdri -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
 
 }
 
@@ -408,6 +409,19 @@ function LINK_FOLDERS() {
 			fi
 
 		}
+		function LINK_COMFYUI_CUSTOM_NODES() {
+
+			if test -L "${COMFYUI_PATH}/custom_nodes"; then
+				echo "${COMFYUI_PATH}/custom_nodes is a symlink to a directory"
+				# ls -la "${COMFYUI_PATH}/custom_nodes"
+			elif test -d "${COMFYUI_PATH}/custom_nodes"; then
+				echo "${COMFYUI_PATH}/custom_nodes is just a plain directory"
+				mv -f "${COMFYUI_PATH}/custom_nodes"/* "${STACK_BASEPATH}/DATA/ai-outputs"
+				rm -rf "${COMFYUI_PATH}/custom_nodes"
+				ln -s "${STACK_BASEPATH}/DATA/ai-custom_nodes" "${COMFYUI_PATH}/custom_nodes"
+			fi
+
+		}
 
 		function LINK_COMFYUI_OUTPUTS() {
 
@@ -576,14 +590,15 @@ function CLONE_COMFYUI() {
 	function CREATE_FOLDERS() {
 
 		mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
+		mkdir -p "${COMFYUI_PATH}/input"
 		mkdir -p "${COMFYUI_PATH}/models"
 		mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
 		mkdir -p "${COMFYUI_PATH}/models/forge_models"
 		mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
 		mkdir -p "${COMFYUI_PATH}/models/localai_models"
 		mkdir -p "${COMFYUI_PATH}/models/ollama_models"
+		mkdir -p "${COMFYUI_PATH}/output"
 		mkdir -p "${COMFYUI_PATH}/user/default/workflows"
-
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
@@ -611,9 +626,11 @@ function CLONE_COMFYUI() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+		mkdri -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
 
 	}
 
@@ -621,7 +638,6 @@ function CLONE_COMFYUI() {
 
 	"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 	"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
-
 	function LINK_FOLDERS() {
 
 		function LINK_COMFYUI_FOLDERS() {
@@ -637,6 +653,15 @@ function CLONE_COMFYUI() {
 					mv -f "${COMFYUI_PATH}/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 					rm -rf "${COMFYUI_PATH}/models"
 					ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/models"
+				fi
+				if test -L "${COMFYUI_PATH}/custom_nodes/models"; then
+					echo "${COMFYUI_PATH}/custom_nodes/models is a symlink to a directory"
+					# ls -la "${COMFYUI_PATH}/custom_nodes/models"
+				elif test -d "${COMFYUI_PATH}/custom_nodes/models"; then
+					echo "${COMFYUI_PATH}/custom_nodes/models is just a plain directory"
+					mv -f "${COMFYUI_PATH}/custom_nodes/models"/* "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+					rm -rf "${COMFYUI_PATH}/custom_nodes/models"
+					ln -s "${STACK_BASEPATH}/DATA/ai-models/comfyui_models" "${COMFYUI_PATH}/custom_nodes/models"
 				fi
 
 				## Anything-LLM
@@ -695,73 +720,16 @@ function CLONE_COMFYUI() {
 				fi
 
 			}
+			function LINK_COMFYUI_CUSTOM_NODES() {
 
-			function LINK_ANYTHINGLLM_MODELS() {
-
-				## ComfyUI
-				if test -L "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models is just a plain directory"
-					rm -rf "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-					ln -s "${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models" "${COMFYUI_PATH}/models"
-				fi
-
-			}
-
-			function LINK_FORGE_MODELS() {
-
-				## ComfyUI
-				if test -L "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models is just a plain directory"
-					rm -rf "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-					ln -s "${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models" "${COMFYUI_PATH}/models"
-				fi
-
-			}
-
-			function LINK_OLLAMA_MODELS() {
-
-				## ComfyUI
-				if test -L "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models is just a plain directory"
-					rm -rf "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-					ln -s "${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models" "${COMFYUI_PATH}/models"
-				fi
-
-			}
-
-			function LINK_INVOKEAI_MODELS() {
-
-				## ComfyUI
-				if test -L "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models is just a plain directory"
-					rm -rf "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-					ln -s "${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models" "${COMFYUI_PATH}/models"
-				fi
-
-			}
-
-			function LINK_LOCALAI_MODELS() {
-
-				## ComfyUI
-				if test -L "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"; then
-					echo "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models is just a plain directory"
-					rm -rf "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-					ln -s "${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models" "${COMFYUI_PATH}/models"
+				if test -L "${COMFYUI_PATH}/custom_nodes"; then
+					echo "${COMFYUI_PATH}/custom_nodes is a symlink to a directory"
+					# ls -la "${COMFYUI_PATH}/custom_nodes"
+				elif test -d "${COMFYUI_PATH}/custom_nodes"; then
+					echo "${COMFYUI_PATH}/custom_nodes is just a plain directory"
+					mv -f "${COMFYUI_PATH}/custom_nodes"/* "${STACK_BASEPATH}/DATA/ai-outputs"
+					rm -rf "${COMFYUI_PATH}/custom_nodes"
+					ln -s "${STACK_BASEPATH}/DATA/ai-custom_nodes" "${COMFYUI_PATH}/custom_nodes"
 				fi
 
 			}
@@ -813,17 +781,6 @@ function CLONE_COMFYUI() {
 					mv -f "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 					rm -rf "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 					ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-				fi
-
-				if test -L "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-					echo "$${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is a symlink to a directory"
-					# ls -la "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-				elif test -d "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"; then
-					echo "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows is just a plain directory"
-					mv -f "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
-
-					rm -rf "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
-					ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${STACK_BASEPATH}/DATA/ai-stack/models/workflows/workflows"
 				fi
 
 			}
@@ -899,21 +856,13 @@ function CLONE_COMFYUI() {
 				fi
 
 			}
+
 			LINK_COMFYUI_MODELS
-			LINK_INVOKEAI_MODELS
-			LINK_LOCALAI_MODELS
-			LINK_ANYTHINGLLM_MODELS
-			LINK_FORGE_MODELS
-			LINK_OLLAMA_MODELS
-
 			LINK_COMFYUI_INPUTS
-
 			LINK_COMFYUI_OUTPUTS
-			LINK_ANYTHINGLLM_OUTPUTS
-
 			LINK_COMFYUI_WORKFLOWS
-
 			LINK_COMFYUI_VARIETY
+			LINK_COMFYUI_CUSTOM_NODES
 
 		}
 
