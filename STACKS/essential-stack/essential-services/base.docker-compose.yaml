@@ -60,6 +60,28 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_letsencrypt
 
+  immich-server_uploads:
+    name: immich-serer_uploads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/immich-serer/immich-serer_uploads
+  immich-server_model-cache:
+    name: immich-server_model-cache
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/immich-serer/immich-server_model-cache
+  immich-server_db:
+    name: immich-server_db
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/immich-serer/immich-server_db
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

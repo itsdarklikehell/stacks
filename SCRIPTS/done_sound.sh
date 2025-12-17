@@ -11,4 +11,4 @@ DONE_SOUND() {
 	rm "${STACK_BASEPATH}/tadaa.wav"
 }
 
-DONE_SOUND
+DONE_SOUND >/dev/null 2>&1 &

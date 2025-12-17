@@ -8,6 +8,7 @@ COMPOSE_FILES=(
 	autopulse
 	dashy
 	homarr
+	immich-server
 	it-tools
 	nginx-proxy-manager
 	portainer
@@ -43,6 +44,14 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "immich-server" ]]; then
+		FOLDERS=(
+			"uploads"
+			"immich-server_model-cache"
+			"db"
 		)
 	fi
 

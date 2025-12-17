@@ -42,6 +42,7 @@ services:
       - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
       - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
       - PORT=${PORT:-8083}
+
       - STORAGE_DIR=/app/server/storage
       - LOCALAI_MODELS_PATH=/localai/models
       - MODELS_PATH=/localai/models
