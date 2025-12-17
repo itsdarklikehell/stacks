@@ -18,17 +18,17 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       # - NODE_ENV=production
       # - VUE_APP_ADMINPASSWORD=${VUE_APP_ADMINPASSWORD:-admin}
-      - DB_HOSTNAME=0.0.0.0
+      - DB_HOSTNAME=immich-server-genius-database
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - DB_DATABASE_NAME=immich-server-genius-db
-      - REDIS_HOSTNAME=0.0.0.0
+      - REDIS_HOSTNAME=immich-server-genius-redis
       - DB_PORT=5434
       - REDIS_PORT=6389
       - REDIS_PASSWORD=
       - SERVER_HOST=0.0.0.0
       - SERVER_PORT=8880
-      - MACHINE_LEARNING_HOST=0.0.0.0
+      - MACHINE_LEARNING_HOST=immich-server-genius-machine-learning
       - MACHINE_LEARNING_PORT=3004
       - MACHINE_LEARNING_WORKERS=1
       - MACHINE_LEARNING_WORKER_TIMEOUT=120
@@ -136,13 +136,17 @@ services:
 
     container_name: immich-server-genius-valkey
 
+    hostname: immich-server-genius-valkey
+
   # PostgreSQL 14:
-  postgres14:
+  immich-server-genius-database:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
-    container_name: postgres14
+    container_name: immich-server-genius-database
 
     ports:
       - 5434:5434
+
+    hostname: immich-server-genius-database
 
     environment:
       POSTGRES_USER: postgres

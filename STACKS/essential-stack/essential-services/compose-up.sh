@@ -8,8 +8,8 @@ COMPOSE_FILES=(
 	autopulse
 	dashy
 	homarr
-	immich-server
-	immich-server-genius
+	# immich-server
+	# immich-server-genius
 	it-tools
 	nginx-proxy-manager
 	portainer
