@@ -34,8 +34,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - InvokeAI_data:/invokeai
-      - InvokeAI_models:/invokeai/models
       - InvokeAI_output:/invokeai/outputs
+
+      - InvokeAI_models:/invokeai/models
+      - comfyui_models:/invokeai/models/comfyui_models
+      - anything-llm_models:/invokeai/models/anything-llm_models_models
+      - ollama_models:/invokeai/models/ollama_models_models
+      - localai_models:/invokeai/models/localai_models_models
 
     hostname: ${NAME:-InvokeAI}
 

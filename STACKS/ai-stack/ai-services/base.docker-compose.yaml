@@ -131,14 +131,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs/ai-dock-sd-webui_output
 
-  ComfyUI_common_storage:
-    name: ComfyUI_common_storage
+  comfyui_common_storage:
+    name: comfyui_common_storage
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/ComfyUI/ComfyUI_common_storage
+      device: ../../../DATA/ai-stack/ComfyUI/comfyui_common_storage
 
   stable-diffusion-webui_configdir:
     name: stable-diffusion-webui_configdir
@@ -231,6 +231,16 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-models/InvokeAI_models
+
+  models:
+    name: models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-models/models
+
   InvokeAI_output:
     name: InvokeAI_output
     driver: local
@@ -264,6 +274,15 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs/forge_output
+
+    comfyui_models:
+      name: comfyui_models
+      driver: local
+      # external: true
+      driver_opts:
+        type: none
+        o: bind
+        device: ../../../DATA/ai-models/comfyui_models
 
   homeassistant-config:
     name: homeassistant-config
@@ -363,23 +382,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/librechat/librechat_meili_data
-
-  lobe-chat_models:
-    name: lobe-chat_models
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-models/lobe-chat_models
-  lobe-chat_output:
-    name: lobe-chat_output
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-outputs/lobe-chat_output
 
   localai_cache:
     name: localai_cache
