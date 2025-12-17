@@ -9,6 +9,7 @@ COMPOSE_FILES=(
 	dashy
 	homarr
 	immich-server
+	immich-server-genius
 	it-tools
 	nginx-proxy-manager
 	portainer
@@ -52,6 +53,17 @@ function SETUP_FOLDERS() {
 			"uploads"
 			"model-cache"
 			"db"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "immich-server-genius" ]]; then
+		FOLDERS=(
+			"uploads"
+			"model-cache"
+			"db"
+			"appdata"
+			"photos"
+			"libraries"
 		)
 	fi
 

@@ -1,7 +1,7 @@
 services:
-  immich-server:
-    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    container_name: ${NAME:-immich-server}
+  immich-server-genius:
+    image: ghcr.io/imagegenius/immich:latest
+    container_name: ${NAME:-immich-server-genius}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,25 +23,27 @@ services:
       - DB_PASSWORD=postgres
       - DB_DATABASE_NAME=immich-server-genius-db
       - REDIS_HOSTNAME=0.0.0.0
-      - DB_PORT=5433
-      - REDIS_PORT=6379
+      - DB_PORT=5434
+      - REDIS_PORT=6389
       - REDIS_PASSWORD=
       - SERVER_HOST=0.0.0.0
-      - SERVER_PORT=2283
+      - SERVER_PORT=8880
       - MACHINE_LEARNING_HOST=0.0.0.0
-      - MACHINE_LEARNING_PORT=3003
+      - MACHINE_LEARNING_PORT=3004
       - MACHINE_LEARNING_WORKERS=1
       - MACHINE_LEARNING_WORKER_TIMEOUT=120
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - immich-server_uploads:/data
-      # - ${UPLOAD_LOCATION}:/data
+      - immich-server-genius_uploads:/data
+      - immich-server-genius_appdata:/config
+      - immich-server-genius_photos:/photos
+      - immich-server-genius_libraries:/libraries
 
-    hostname: ${NAME:-immich-server}
+    hostname: ${NAME:-immich-server-genius}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -50,10 +52,10 @@ services:
       essential-services:
 
     ports:
-      - 2283:2283
+      - 8880:8880
 
     env_file:
-      - ./immich-server/.env
+      - ./immich-server-genius/.env
 
     deploy:
       replicas: 1
@@ -70,10 +72,6 @@ services:
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
-
-    depends_on:
-      - immich-server-redis
-      - immich-server-database
 
     logging:
       driver: json-file
@@ -81,18 +79,18 @@ services:
         max-size: 10m
         max-file: 3
 
-  immich-server-machine-learning:
+  immich-server-genius-machine-learning:
     # For hardware acceleration, add one of -[armnn, cuda, rocm, openvino, rknn] to the image tag.
     # Example tag: ${IMMICH_VERSION:-release}-cuda
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
-    container_name: immich-server-machine-learning
+    container_name: immich-server-genius-machine-learning
     restart: ${RESTART:-unless-stopped}
     # extends: # uncomment this section for hardware acceleration - see https://docs.immich.app/features/ml-hardware-acceleration
     # file: ./immich-server/hwaccel.ml.yml
     # service: cuda # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
 
     volumes:
-      - immich-server_model-cache:/cache
+      - immich-server-genius_model-cache:/cache
 
     env_file:
       - ./immich-server/.env
@@ -101,7 +99,7 @@ services:
       disable: false
 
     ports:
-      - 3003:3003
+      - 3004:3004
 
     devices:
       - /dev/nvidia0:/dev/nvidia0
@@ -116,8 +114,8 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
-  immich-server-redis:
-    container_name: immich-server-redis
+  immich-server-genius-redis:
+    container_name: immich-server-genius-redis
     image: docker.io/valkey/valkey:8@sha256:81db6d39e1bba3b3ff32bd3a1b19a6d69690f94a3954ec131277b9a26b95b3aa
 
     healthcheck:
@@ -125,38 +123,36 @@ services:
 
     restart: always
 
-    hostname: immich-server-redis
+    hostname: immich-server-genius-redis
 
   # This container requires an external application to be run separately.
   # By default, ports for the databases are opened, be careful when deploying it
   # Valkey:
-  immich-server-valkey:
+  immich-server-genius-valkey:
     image: valkey/valkey:8-bookworm
 
     ports:
-      - 6379:6379
+      - 6389:6389
 
-    container_name: immich-server-valkey
+    container_name: immich-server-genius-valkey
 
-  immich-server-database:
-    container_name: immich-server_postgres
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+  # PostgreSQL 14:
+  postgres14:
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    container_name: postgres14
 
     ports:
-      - 5433:5433
+      - 5434:5434
 
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_USER: ${DB_USERNAME:-postgres}
-      POSTGRES_DB: ${DB_DATABASE_NAME:-immich}
-      POSTGRES_INITDB_ARGS: --data-checksums
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: immich
       # Uncomment the DB_STORAGE_TYPE: 'HDD' var if your database isn't stored on SSDs
       DB_STORAGE_TYPE: HDD
 
     volumes:
-      # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
-      # - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
-      - immich-server_db:/var/lib/postgresql/data
+      - immich-server-genius_db:/var/lib/postgresql/data
 
     env_file:
       - ./immich-server/.env
