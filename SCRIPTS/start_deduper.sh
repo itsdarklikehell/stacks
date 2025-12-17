@@ -5,11 +5,6 @@ export WD                     # set working dir
 export STACK_BASEPATH="${WD}" # set base path
 export DO_REMOVE=true         #
 
-export AI_MODELS_PATH="${STACK_BASEPATH}/DATA/ai-models"
-export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
-export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputs"
-export AI_WORKFLOWS_PATH="${STACK_BASEPATH}/DATA/ai-workflows"
-
 sudo apt install -y rmlint rmlint-gui vlc >/dev/null 2>&1 &
 
 function SETUP_ENV() {
@@ -34,7 +29,7 @@ function SETUP_ENV() {
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
-		echo "User selected Ok and entered: S{STACK_BASEPATH}"
+		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
@@ -55,7 +50,12 @@ function SETUP_ENV() {
 }
 SETUP_ENV
 
-cd "${STACK_BASEPATH}/SCRIPTS" || exit 1
+export AI_MODELS_PATH="${STACK_BASEPATH}/DATA/ai-models"
+export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
+export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputs"
+export AI_WORKFLOWS_PATH="${STACK_BASEPATH}/DATA/ai-workflows"
+
+cd "${STACK_BASEPATH}" || exit 1
 
 folders=(
 	"${AI_MODELS_PATH}"
@@ -67,11 +67,14 @@ folders=(
 for folder in "${folders[@]}"; do
 	echo "Deduplicating ${folder}"
 
-	rmlint -gfV --is-reflink -o sh:rmlint.sh -c sh:symlink "${folder}" # >/dev/null 2>&1 &
+	rmlint -gfV -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
 
-	./rmlint.sh -dpxq # >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh" >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
+	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dpxq # >/dev/null 2>&1 &
+
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh"   # >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" # >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/rmlint.sh"           # >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/rmlint.json"         # >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
 done
