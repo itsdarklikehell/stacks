@@ -46,9 +46,19 @@ services:
 
     deploy:
       replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
 
     healthcheck:
       disable: false
+
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
 
     depends_on:
       - immich-server-redis
@@ -78,6 +88,10 @@ services:
 
     healthcheck:
       disable: false
+
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
 
     deploy:
       replicas: 1
