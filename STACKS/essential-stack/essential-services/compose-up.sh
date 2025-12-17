@@ -50,7 +50,7 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "immich-server" ]]; then
 		FOLDERS=(
 			"uploads"
-			"immich-server_model-cache"
+			"model-cache"
 			"db"
 		)
 	fi
