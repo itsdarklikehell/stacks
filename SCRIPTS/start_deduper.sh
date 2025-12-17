@@ -67,14 +67,14 @@ folders=(
 for folder in "${folders[@]}"; do
 	echo "Deduplicating ${folder}"
 
-	rmlint -gfV -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
+	rmlint -gfv -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
 
 	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dpxq # >/dev/null 2>&1 &
 
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh"   # >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" # >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/rmlint.sh"           # >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/rmlint.json"         # >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh" >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/rmlint.sh" >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/rmlint.json" >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
 done
