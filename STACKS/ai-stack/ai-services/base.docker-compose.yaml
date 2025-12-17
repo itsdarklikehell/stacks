@@ -31,6 +31,15 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs/ai-dock-comfyui_output
 
+  comfyui_output:
+    name: comfyui_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs/comfyui_output
+
   ai-dock-fooocus_data:
     name: ai-dock-fooocus_data
     driver: local
@@ -232,14 +241,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-models/InvokeAI_models
 
-  models:
-    name: models
+  comfyui_models:
+    name: comfyui_models
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models/models
+      device: ../../../DATA/ai-models/comfyui_models
 
   InvokeAI_output:
     name: InvokeAI_output
@@ -275,15 +284,6 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs/forge_output
 
-    comfyui_models:
-      name: comfyui_models
-      driver: local
-      # external: true
-      driver_opts:
-        type: none
-        o: bind
-        device: ../../../DATA/ai-models/comfyui_models
-
   homeassistant-config:
     name: homeassistant-config
     driver: local
@@ -317,71 +317,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/letta-server/letta-server_tool_execution_dir
-
-  librechat_vectordb_data:
-    name: librechat_vectordb_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_vectordb_data
-  librechat_mongo_data:
-    name: librechat_mongo_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_mongo_data
-  librechat_images:
-    name: librechat_images
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_images
-  librechat_uploads:
-    name: librechat_uploads
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_uploads
-  librechat_models:
-    name: librechat_models
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-models/librechat_models
-  librechat_logs:
-    name: librechat_logs
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_logs
-  librechat_output:
-    name: librechat_output
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-outputs/librechat_output
-  librechat_meili_data:
-    name: librechat_meili_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/librechat/librechat_meili_data
 
   localai_cache:
     name: localai_cache

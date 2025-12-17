@@ -65,6 +65,16 @@ services:
       - forge_models:/workspace/models
       - forge_output:/workspace/outputs
 
+      - comfyui_output:/workspace/output/comfyui_outputs
+      - anything-llm_output:/workspace/output/anything-llm_outputs
+      - localai_output:/workspace/output/localai_outputs
+
+      - InvokeAI_models:/workspace/models/invokeai_models
+      - anything-llm_models:/workspace/models/anything-llm_models
+      - ollama_models:/workspace/models/ollama_models
+      - localai_models:/workspace/models/localai_models
+      - comfyui_models:/workspace/models/comfyui_models
+
     hostname: ${NAME:-forge}
 
     # user: ${PUID:-1000}:${PGID:-1000}

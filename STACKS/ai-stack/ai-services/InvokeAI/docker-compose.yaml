@@ -35,12 +35,18 @@ services:
 
       - InvokeAI_data:/invokeai
       - InvokeAI_output:/invokeai/outputs
-
       - InvokeAI_models:/invokeai/models
+
+      - anything-llm_output:/invokeai/outputs/anything-llm_outputs
+      - localai_output:/invokeai/outputs/localai_outputs
+      - forge_output:/invokeai/outputs/forge_outputs
+      - comfyui_output:/invokeai/outputs/comfyui_outputs
+
+      - anything-llm_models:/invokeai/models/anything-llm_models
+      - ollama_models:/invokeai/models/ollama_models
+      - localai_models:/invokeai/models/localai_models
+      - forge_models:/invokeai/models/forge_models
       - comfyui_models:/invokeai/models/comfyui_models
-      - anything-llm_models:/invokeai/models/anything-llm_models_models
-      - ollama_models:/invokeai/models/ollama_models_models
-      - localai_models:/invokeai/models/localai_models_models
 
     hostname: ${NAME:-InvokeAI}
 

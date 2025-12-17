@@ -27,7 +27,19 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ComfyUI_common_storage:/root
+      - comfyui_common_storage:/root
+      - comfyui_output:/root/output/comfyui_outputs
+      - comfyui_models:/root/models/comfyui_models
+
+      - anything-llm_output:/root/output/anything-llm_outputs
+      - localai_output:/root/output/localai_outputs
+      - forge_output:/root/output/forge_outputs
+
+      - InvokeAI_models:/root/models/invokeai_models
+      - anything-llm_models:/root/models/anything-llm_models
+      - ollama_models:/root/models/ollama_models
+      - localai_models:/root/models/localai_models
+      - forge_models:/root/models/forge_models
 
     hostname: ${NAME:-ComfyUI}
 

@@ -17,8 +17,6 @@ COMPOSE_FILES=(
 	InvokeAI
 	letta-mcp-server
 	letta-server
-	# librechat
-	# lobe-chat
 	localai
 	# forge
 	# n8n
