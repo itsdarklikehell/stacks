@@ -11,8 +11,7 @@ URLS=(
 	"http://${IP_ADDRESS}:8123"  # home assistant
 	"http://${IP_ADDRESS}:9090"  # InvokeAI
 	"http://${IP_ADDRESS}:8283"  # letta-server
-	"http://${IP_ADDRESS}:3005"  # letta-mcp-server
-	"http://${IP_ADDRESS}:3083"  # localai
+	"http://${IP_ADDRESS}:8083"  # localai
 	"http://${IP_ADDRESS}:11434" # ollama
 	"http://${IP_ADDRESS}:8080"  # open-webui
 	"http://${IP_ADDRESS}:8081"  # searxng
@@ -20,11 +19,12 @@ URLS=(
 	"http://${IP_ADDRESS}:8088"  # it-tools
 	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
 	"http://${IP_ADDRESS}:9000"  # portainer
-	"https://${IP_ADDRESS}:9001" # portainer-agent
 	"http://${IP_ADDRESS}:4999"  # portracker
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
 	"http://${IP_ADDRESS}:3000"  # ComfyUIMini
-	"http://${IP_ADDRESS}:8688"  # cushy-studio
+	# "https://${IP_ADDRESS}:9001" # portainer-agent
+	# "http://${IP_ADDRESS}:3005" 		  # letta-mcp-server
+	# "http://${IP_ADDRESS}:8688"  		  # cushy-studio
 	# "http://${IP_ADDRESS}:3080"         # librechat
 	# "http://${IP_ADDRESS}:7578"         # homearr
 	# "http://${IP_ADDRESS}:7801/Install" # SwarmUI
