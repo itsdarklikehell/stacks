@@ -487,8 +487,6 @@ LINK_FOLDERS
 
 CLONE_WORKFLOWS
 
-exit 1
-
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 xdg-open "http://0.0.0.0:8188/"
 
