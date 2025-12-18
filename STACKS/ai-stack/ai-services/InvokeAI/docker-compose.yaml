@@ -38,22 +38,23 @@ services:
       # MODELS:
       - InvokeAI_models:/invokeai/models
 
-      # - anything-llm_models:/invokeai/models/anything-llm_models
-      # - ComfyUI_models:/invokeai/models/ComfyUI_models
-      # - forge_models:/invokeai/models/forge_models
-      # - localai_models:/invokeai/models/localai_models
-      # - ollama_models:/invokeai/models/ollama_models
+      - anything-llm_models:/invokeai/models/anything-llm_models
+      - localai_models:/invokeai/models/localai_models
+      - ollama_models:/invokeai/models/ollama_models
+
+      - comfyui_models:/invokeai/models/comfyui_models
+      - forge_models:/invokeai/models/forge_models
 
       # OUTPUTS
       - anything-llm_output:/invokeai/outputs/anything-llm_outputs
-      - ComfyUI_output:/invokeai/outputs/ComfyUI_output
+      - comfyui_output:/invokeai/outputs/comfyui_output
       - forge_output:/invokeai/outputs/forge_outputs
       - InvokeAI_output:/invokeai/outputs
       - localai_output:/invokeai/outputs/localai_outputs
 
       # # INPUTS
       # - anything-llm_input:invokeai/inputs/anything-llm_input
-      # - ComfyUI_input:invokeai/inputs/ComfyUI_input
+      # - comfyui_input:invokeai/inputs/comfyui_input
       # - forge_input:invokeai/inputs/forge_input
       # - InvokeAI_input:invokeai/inputs/InvokeAI_input
       # - localai_input:invokeai/inputs

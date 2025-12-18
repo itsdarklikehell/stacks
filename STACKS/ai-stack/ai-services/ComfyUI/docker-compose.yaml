@@ -28,11 +28,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - comfyui_common_storage:/root
-      - ComfyUI_output:/root/output/ComfyUI_output
+      - comfyui_output:/root/output/comfyui_output
 
       # MODELS:
       - anything-llm_models:/root/models/anything-llm_models
-      - ComfyUI_models:/root/models/ComfyUI_models
+      - comfyui_models:/root/models/comfyui_models
       - forge_models:/root/models/forge_models
       - InvokeAI_models:/root/models/invokeai_models
       - localai_models:/root/models/localai_models

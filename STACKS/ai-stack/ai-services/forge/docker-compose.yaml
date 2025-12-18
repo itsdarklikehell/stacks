@@ -67,21 +67,21 @@ services:
       - forge_models:/workspace/models
 
       # - anything-llm_models:/workspace/models/anything-llm_models
-      # - ComfyUI_models:/workspace/models/ComfyUI_models
+      # - comfyui_models:/workspace/models/comfyui_models
       # - InvokeAI_models:/workspace/models/invokeai_models
       # - localai_models:/workspace/models
       # - ollama_models:/workspace/models
 
       # OUTPUTS
       - anything-llm_output:/workspace/output/anything-llm_output
-      - ComfyUI_output:/workspace/output/ComfyUI_output
+      - comfyui_output:/workspace/output/comfyui_output
       - forge_output:/workspace/outputs
       - InvokeAI_output:/workspace/output/InvokeAI_output
       - localai_output:/workspace/output
 
       # # INPUTS
       # - anything-llm_input:/workspace/input/anything-llm_input
-      # - ComfyUI_input:/workspace/input/ComfyUI_input
+      # - comfyui_input:/workspace/input/comfyui_input
       # - forge_input:/workspace/input/forge_input
       # - InvokeAI_input:/workspace/input/InvokeAI_input
       # - localai_input:/workspace/input

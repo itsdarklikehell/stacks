@@ -56,12 +56,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ai-dock-comfyui_data:/opt/stable-diffusion-webui-comfyui
-      - ai-dock-ComfyUI_models:/opt/stable-diffusion-webui-comfyui/models
-      - ai-dock-ComfyUI_output:/opt/stable-diffusion-webui-comfyui/outputs
+      - ai-dock-comfyui_models:/opt/stable-diffusion-webui-comfyui/models
+      - ai-dock-comfyui_output:/opt/stable-diffusion-webui-comfyui/outputs
 
       - ai-dock-comfyui_data:/workspace
-      - ai-dock-ComfyUI_models:/workspace/models
-      - ai-dock-ComfyUI_output:/workspace/outputs
+      - ai-dock-comfyui_models:/workspace/models
+      - ai-dock-comfyui_output:/workspace/outputs
 
     hostname: ${NAME:-ai-dock-comfyui}
 
