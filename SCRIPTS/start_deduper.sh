@@ -8,12 +8,23 @@ export DO_REMOVE=true         #
 sudo apt install -y rmlint rmlint-gui vlc # >/dev/null 2>&1 &
 
 function SETUP_ENV() {
+
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	export DOCKER_BASEPATH="/media/hans/4-T/docker"
-	export STACK_BASEPATH="/media/hans/4-T/stacks"
-	export COMFYUI_PATH="/media/hans/4-T/stacks/DATA/ai-stack/ComfyUI"
+	if [[ "${USER}" == "hans" ]]; then
+		export STACK_BASEPATH="/media/hans/4-T/stacks"
+		export DOCKER_BASEPATH="/media/hans/4-T/docker"
+		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+	elif [[ "${USER}" == "rizzo" ]]; then
+		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+	else
+		export STACK_BASEPATH="/media/hans/4-T/stacks"
+		export DOCKER_BASEPATH="/media/hans/4-T/docker"
+		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+	fi
 
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
@@ -47,6 +58,14 @@ function SETUP_ENV() {
 		exit 1
 	fi
 	export IP_ADDRESS
+
+	cd "${STACK_BASEPATH}" || exit 1
+
+	echo ""
+	START_CUSHYSTUDIO >/dev/null 2>&1 &
+	echo "" || exit
+	git pull # origin main
+	chmod +x "install-stack.sh"
 
 }
 SETUP_ENV
