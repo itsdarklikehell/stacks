@@ -3,7 +3,7 @@ echo "Start ollmvt script started."
 
 export UV_LINK_MODE=copy
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+export STACK_BASEPATH="/media/hans/4-T/stacks"
 export OLLMVT_PATH="${STACK_BASEPATH}/DATA/ai-stack/openllm-vtuber-stack/Open-LLM-VTuber"
 
 function SETUP_ENV() {
@@ -11,9 +11,9 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
-	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
-	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
+	export DOCKER_BASEPATH="/media/hans/4-T/docker"
+	export STACK_BASEPATH="/media/hans/4-T/stacks"
+	export COMFYUI_PATH="/media/hans/4-T/stacks/DATA/ai-stack/ComfyUI"
 
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
