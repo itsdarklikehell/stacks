@@ -799,7 +799,7 @@ function CLONE_COMFYUI() {
 	CLONE_WORKFLOWS      # >/dev/null 2>&1 &
 
 	# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
-	# xdg-open http://0.0.0.0:8188/
+	# xdg-open "http://${IP_ADDRESS}:8188/"
 
 }
 

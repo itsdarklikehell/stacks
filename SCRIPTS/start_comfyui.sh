@@ -571,6 +571,6 @@ INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 CLONE_WORKFLOWS
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
-xdg-open "http://0.0.0.0:8188/"
+xdg-open "http://${IP_ADDRESS}:8188/"
 
 RUN_COMFYUI
