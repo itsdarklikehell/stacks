@@ -329,6 +329,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/homeassistant/homeassistant_media
+  homeassistant-recordings:
+    name: homeassistant-recordings
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/homeassistant/homeassistant_recordings
 
   letta-server_data:
     name: letta_data
