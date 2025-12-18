@@ -64,20 +64,18 @@ folders=(
 	"${AI_OUTPUTS_PATH}"
 	"${AI_INPUTS_PATH}"
 )
-# "${AI_INPUTS_PATH}"
-# "${AI_OUTPUTS_PATH}"
 
 for folder in "${folders[@]}"; do
-	echo "Deduplicating ${folder}"
+	echo "Removing Leftovers and deduplicating ${folder}"
 
-	rmlint -gfv -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
+	rmlint -gf -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
 
-	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dpxq # >/dev/null 2>&1 &
+	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq # >/dev/null 2>&1 &
 
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh"   # >/dev/null 2>&1 &
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" # >/dev/null 2>&1 &
 	# rm "${STACK_BASEPATH}/rmlint.sh"           # >/dev/null 2>&1 &
 	# rm "${STACK_BASEPATH}/rmlint.json"         # >/dev/null 2>&1 &
 
-	echo "Deduplicated ${folder}"
+	echo "Removed Leftovers and deduplicated  ${folder}"
 done
