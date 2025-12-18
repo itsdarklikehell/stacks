@@ -13,16 +13,40 @@ services:
       - homarr
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
-      - OLLAMA_BASE_URLS=${OLLAMA_BASE_URLS:-http://${IP_ADDRESS}:11434}
+      - IMAGE_EDIT_MODEL=
+      - IMAGE_GENERATION_MODEL=
+      - COMFYUI_API_KEY=
+      - COMFYUI_BASE_URL=http://0.0.0.0:8188
+      - COMFYUI_WORKFLOW=
+      - DEFAULT_MODELS=
+      - DEFAULT_USER_ROLE=pending
+      - DEVICE_TYPE=cuda
+      - DOCKER=true
+      - ENABLE_IMAGE_EDIT=true
       - ENABLE_RAG_WEB_SEARCH=True
+      - IMAGE_EDIT_ENGINE=comfyui
+      - IMAGE_EDIT_SIZE=1024x1024
+      - IMAGE_GENERATION_ENGINE=comfyui
+      - IMAGE_SIZE=1024x1024
+      - IMAGE_STEPS=30
+      - IMAGE=ghcr.io/open-webui/open-webui:latest
+      - IMAGES_EDIT_COMFYUI_API_KEY=
+      - IMAGES_EDIT_COMFYUI_BASE_URL=http://0.0.0.0:8188
+      - IMAGES_EDIT_COMFYUI_WORKFLOW=
+      - LIBRETRANSLATE_PORT=5000
+      - NAME=open-webui
+      - OLLAMA_BASE_URLS=${OLLAMA_BASE_URLS:-http://${IP_ADDRESS}:11434}
+      - PGID=${PGID:-1000}
+      - PORT=${PORT:-8080}
+      - PUID=${PUID:-1000}
+      - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
-      - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
       - SEARXNG_QUERY_URL=http://0.0.0.0:8081/search?q=<query>
-      - PORT=${PORT:-8080}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - USE_CUDA_DOCKER=true
+      - USE_CUDA=true
+      - VLLM_API_BASE=http://0.0.0.0:3339
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

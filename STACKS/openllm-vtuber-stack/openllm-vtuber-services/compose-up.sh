@@ -20,7 +20,7 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
+	if [[ "${SERVICE_NAME}" == "openllm-vtuber" ]]; then
 		FOLDERS=(
 			"config"
 			"data"
@@ -49,11 +49,11 @@ function BUILDING() {
 	echo ""
 	echo "Building is set to: ${BUILDING}"
 	echo ""
-	if [[ ${BUILDING} == "force_rebuild" ]]; then
+	if [[ "${BUILDING}" == "force_rebuild" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
-	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
+	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d
-	elif [[ ${BUILDING} == "false" ]]; then
+	elif [[ "${BUILDING}" == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 }

@@ -18,7 +18,7 @@ COMPOSE_FILES=(
 	letta-mcp-server
 	letta-server
 	localai
-	# forge
+	forge
 	# n8n
 	ollama
 	open-webui
@@ -40,7 +40,7 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-	if [[ ${SERVICE_NAME} == "anything-llm" ]]; then
+	if [[ "${SERVICE_NAME}" == "anything-llm" ]]; then
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
 			echo "Downloading example anything-llm .env file"
@@ -54,24 +54,26 @@ function SETUP_FOLDERS() {
 			"vectorstores"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 		CREATE_FOLDERS
 	fi
 
-	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
+	if [[ "${SERVICE_NAME}" == "stable-diffusion-webui" ]]; then
 		FOLDERS=(
 			"configdir"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
+	if [[ "${SERVICE_NAME}" == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ai-dock-comfyui" ]]; then
+	if [[ "${SERVICE_NAME}" == "ai-dock-comfyui" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
@@ -79,7 +81,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ai-dock-fooocus" ]]; then
+	if [[ "${SERVICE_NAME}" == "ai-dock-fooocus" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
@@ -87,18 +89,20 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ai-dock-forge" ]]; then
+	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
 			"output"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "ai-dock-kohya" ]]; then
+	if [[ "${SERVICE_NAME}" == "ai-dock-kohya" ]]; then
 		FOLDERS=(
 			"data"
 			"models"
@@ -106,16 +110,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ai-dock-forge" ]]; then
-		FOLDERS=(
-			"data"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "forge" ]]; then
+	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -124,13 +119,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
-		FOLDERS=(
-			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
+	if [[ "${SERVICE_NAME}" == "forge" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -139,7 +128,24 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
+	if [[ "${SERVICE_NAME}" == "automatic1111" ]]; then
+		FOLDERS=(
+			"data"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "InvokeAI" ]]; then
+		FOLDERS=(
+			"data"
+		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
+	fi
+
+	if [[ "${SERVICE_NAME}" == "basic-memory" ]]; then
 		FOLDERS=(
 			"config"
 			"knowledge"
@@ -148,21 +154,21 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
+	if [[ "${SERVICE_NAME}" == "homeassistant" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "letta-server" ]]; then
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "librechat" ]]; then
+	if [[ "${SERVICE_NAME}" == "librechat" ]]; then
 		FOLDERS=(
 			"vectordb_data"
 			"mongo_data"
@@ -173,46 +179,50 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "localai" ]]; then
+	if [[ "${SERVICE_NAME}" == "localai" ]]; then
 		FOLDERS=(
 			"cache"
 			"configuration"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "n8n" ]]; then
+	if [[ "${SERVICE_NAME}" == "n8n" ]]; then
 		FOLDERS=(
 			"data"
 			"local_files"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ollama" ]]; then
+	if [[ "${SERVICE_NAME}" == "ollama" ]]; then
 		FOLDERS=(
 			"data"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
+	if [[ "${SERVICE_NAME}" == "open-webui" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "searxng" ]]; then
+	if [[ "${SERVICE_NAME}" == "searxng" ]]; then
 		FOLDERS=(
 			"data"
 			"cache"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
+	if [[ "${SERVICE_NAME}" == "swarmui" ]]; then
 		FOLDERS=(
 			"backend"
 			"data"
@@ -246,11 +256,11 @@ function BUILDING() {
 	echo ""
 	echo "Building is set to: ${BUILDING}"
 	echo ""
-	if [[ ${BUILDING} == "force_rebuild" ]]; then
+	if [[ "${BUILDING}" == "force_rebuild" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
-	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
+	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d
-	elif [[ ${BUILDING} == "false" ]]; then
+	elif [[ "${BUILDING}" == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 }

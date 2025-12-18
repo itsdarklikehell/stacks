@@ -30,7 +30,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "dashy" ]]; then
+	if [[ "${SERVICE_NAME}" == "dashy" ]]; then
 		FOLDERS=(
 			"config"
 			"data"
@@ -42,13 +42,13 @@ function SETUP_FOLDERS() {
 		fi
 	fi
 
-	if [[ ${SERVICE_NAME} == "homarr" ]]; then
+	if [[ "${SERVICE_NAME}" == "homarr" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "immich-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "immich-server" ]]; then
 		FOLDERS=(
 			"uploads"
 			"model-cache"
@@ -56,7 +56,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "immich-server-genius" ]]; then
+	if [[ "${SERVICE_NAME}" == "immich-server-genius" ]]; then
 		FOLDERS=(
 			"uploads"
 			"model-cache"
@@ -67,20 +67,20 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "portainer" ]]; then
+	if [[ "${SERVICE_NAME}" == "portainer" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nginx-proxy-manager" ]]; then
+	if [[ "${SERVICE_NAME}" == "nginx-proxy-manager" ]]; then
 		FOLDERS=(
 			"data"
 			"letsencrypt"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "portracker" ]]; then
+	if [[ "${SERVICE_NAME}" == "portracker" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -109,11 +109,11 @@ function BUILDING() {
 	echo "Building is set to: ${BUILDING}"
 	echo ""
 
-	if [[ ${BUILDING} == "force_rebuild" ]]; then
+	if [[ "${BUILDING}" == "force_rebuild" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
-	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
+	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
 		docker compose -f base.docker-compose.yaml ${ARGS} up -d
-	elif [[ ${BUILDING} == "false" ]]; then
+	elif [[ "${BUILDING}" == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 
