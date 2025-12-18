@@ -78,6 +78,8 @@ function CLONE_ANYTHINGLLM() {
 function CLONE_PUPPETEER() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
+	curl -fsSL https://get.pnpm.io/install.sh | sh -
+
 	if [[ ! -d "puppeteer" ]]; then
 		echo "Cloning puppeteer"
 		echo ""
