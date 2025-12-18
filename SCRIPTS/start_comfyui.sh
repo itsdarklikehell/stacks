@@ -6,6 +6,8 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
@@ -13,7 +15,6 @@ export REMOVED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/removed_custom_nodes.t
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 function SETUP_ENV() {
 
 	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
