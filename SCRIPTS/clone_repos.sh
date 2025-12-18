@@ -383,7 +383,7 @@ function CLONE_COMFYUI() {
 
 			if test -L "${LINK}"; then
 				echo "${LINK} is allready a symlink."
-				echo ""
+
 			elif test -d "${LINK}"; then
 				echo "${LINK} is just a plain directory!"
 
