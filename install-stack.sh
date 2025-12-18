@@ -269,12 +269,12 @@ echo ""
 # echo ""
 
 echo ""
-START_BROWSER >/dev/null 2>&1 &
+sleep 5
+START_DEDUPER # >/dev/null 2>&1 &
 echo ""
 
 echo ""
-sleep 5
-START_DEDUPER # >/dev/null 2>&1 &
+START_BROWSER >/dev/null 2>&1 &
 echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
