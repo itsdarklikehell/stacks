@@ -143,7 +143,9 @@ function LINK_FOLDERS() {
 				mkdir -p "${ORIGIN}"
 			fi
 			echo "Trying to move files from ${LINK} to ${ORIGIN}"
-			mv -f "${LINK}"/* "${ORIGIN}"
+			rsync -aHAX "${LINK}" "${ORIGIN}"
+			# mv -f "${LINK}"/* "${ORIGIN}"
+			# cp -au "${LINK}" "${ORIGIN}"
 
 			echo "Removing ${LINK}"
 			rm -rf "${LINK}"
