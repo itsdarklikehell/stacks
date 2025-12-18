@@ -54,7 +54,7 @@ function SETUP_FOLDERS() {
 			"vectorstores"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -65,7 +65,7 @@ function SETUP_FOLDERS() {
 			"configdir"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -76,7 +76,7 @@ function SETUP_FOLDERS() {
 			"common_storage"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -89,7 +89,7 @@ function SETUP_FOLDERS() {
 			"output"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -102,7 +102,7 @@ function SETUP_FOLDERS() {
 			"output"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -115,7 +115,7 @@ function SETUP_FOLDERS() {
 			"output"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -128,7 +128,7 @@ function SETUP_FOLDERS() {
 			"output"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -139,7 +139,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -150,7 +150,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -167,7 +167,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -206,7 +206,7 @@ function SETUP_FOLDERS() {
 			"meili_data"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -218,7 +218,7 @@ function SETUP_FOLDERS() {
 			"configuration"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -236,7 +236,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
@@ -266,7 +266,7 @@ function SETUP_FOLDERS() {
 			"workflows"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-intputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 

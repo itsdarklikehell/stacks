@@ -66,7 +66,7 @@ services:
       # MODELS:
       - anything-llm_models:/app/server/storage/models
 
-      # - comfyui_models:/app/server/storage/models/comfyui_models
+      # - ComfyUI_models:/app/server/storage/models/ComfyUI_models
       # - forge_models:/app/server/storage/models/forge_models
       # - InvokeAI_models:/app/server/storage/models/invokeai_models
       # - localai_models:/app/server/storage/models/localai_models
@@ -74,14 +74,14 @@ services:
 
       # OUTPUTS
       - anything-llm_output:/app/server/storage/output
-      - comfyui_output:/app/server/storage/output/comfyui_outputs
+      - ComfyUI_output:/app/server/storage/output/ComfyUI_output
       - forge_output:/app/server/storage/output/forge_output
       - InvokeAI_output:/app/server/storage/output/InvokeAI_output
       - localai_output:/app/server/storage/output
 
       # # INPUTS
       # - anything-llm_input:/app/server/storage/input/anything-llm_input
-      # - comfyui_input:/app/server/storage/input/comfyui_inputs
+      # - ComfyUI_input:/app/server/storage/input/ComfyUI_input
       # - forge_input:/app/server/storage/input/forge_input
       # - InvokeAI_input:/app/server/storage/input/InvokeAI_input
       # - localai_input:/app/server/storage/input
