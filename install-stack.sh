@@ -94,28 +94,28 @@ function PRUNING() {
 
 function CLEANUP_DATA() {
 	if [[ "${CLEANUP}" == "true" ]]; then
-		SCRIPTS/cleanup.sh
+		"${STACK_BASEPATH}"/SCRIPTS/cleanup.sh
 	fi
 }
 
 function INSTALL_DRIVERS() {
-	SCRIPTS/install_drivers.sh
+	"${STACK_BASEPATH}"/SCRIPTS/install_drivers.sh
 }
 
 function INSTALL_DOCKER() {
-	SCRIPTS/install_docker.sh
+	"${STACK_BASEPATH}"/SCRIPTS/install_docker.sh
 }
 
 function CREATE_NETWORKS() {
-	SCRIPTS/create_networks.sh
+	"${STACK_BASEPATH}"/SCRIPTS/create_networks.sh
 }
 
 function CREATE_SECRETS() {
-	SCRIPTS/create_secrets.sh
+	"${STACK_BASEPATH}"/SCRIPTS/create_secrets.sh
 }
 
 function CLONE_REPOS() {
-	SCRIPTS/clone_repos.sh
+	"${STACK_BASEPATH}"/SCRIPTS/clone_repos.sh
 }
 
 function SETUP_AUTOSTART() {
@@ -173,7 +173,7 @@ function INSTALL_STACK() {
 
 function PULL_MODELS() {
 	if [[ "${PULL_MODELS}" == "true" ]]; then
-		SCRIPTS/pull_models.sh
+		"${STACK_BASEPATH}"/SCRIPTS/pull_models.sh
 	elif [[ "${PULL_MODELS}" == "false" ]]; then
 		echo "Skipping model pulling"
 	fi
@@ -181,30 +181,30 @@ function PULL_MODELS() {
 
 function START_OLLMVT() {
 	if [[ "${START_OLLMVT}" == "true" ]]; then
-		SCRIPTS/start_ollmvt.sh
+		"${STACK_BASEPATH}"/SCRIPTS/start_ollmvt.sh
 	fi
 }
 
 function START_COMFYUI() {
 	if [[ "${START_COMFYUI}" == "true" ]]; then
-		SCRIPTS/start_comfyui.sh
+		"${STACK_BASEPATH}"/SCRIPTS/start_comfyui.sh
 	fi
 }
 
 function START_CUSHYSTUDIO() {
 	if [[ "${START_CUSHYSTUDIO}" == "true" ]]; then
-		SCRIPTS/start_cushystudio.sh
+		"${STACK_BASEPATH}"/SCRIPTS/start_cushystudio.sh
 	fi
 }
 
 function START_BROWSER() {
 	if [[ "${START_BROWSER}" == "true" ]]; then
-		SCRIPTS/start_browser.sh
+		"${STACK_BASEPATH}"/SCRIPTS/start_browser.sh
 	fi
 }
 
 function START_DEDUPER() {
-	SCRIPTS/start_deduper.sh
+	"${STACK_BASEPATH}"/SCRIPTS/start_deduper.sh
 }
 
 function SETUP_ESSENTIALS_STACK() {
