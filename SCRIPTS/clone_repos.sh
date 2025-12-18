@@ -17,6 +17,7 @@ cd "${SCRIPT_DIR}" || exit 1
 
 "${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 "${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 function IMPORT_NLTK() {
 	echo "Importing NLTK averaged_perceptron_tagger_eng"
@@ -77,8 +78,6 @@ function CLONE_ANYTHINGLLM() {
 
 function CLONE_PUPPETEER() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 	if [[ ! -d "puppeteer" ]]; then
 		echo "Cloning puppeteer"

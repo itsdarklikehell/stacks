@@ -84,6 +84,7 @@ fi
 
 "${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 "${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 function CREATE_FOLDERS() {
 
