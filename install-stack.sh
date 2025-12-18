@@ -47,14 +47,14 @@ function SETUP_ENV() {
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
-		echo "User selected Ok and entered: S{STACK_BASEPATH}"
+		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 	export STACK_BASEPATH
 
-	eval "$(resize)"
+	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
