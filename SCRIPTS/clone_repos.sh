@@ -369,7 +369,6 @@ function CLONE_COMFYUI() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -556,10 +555,10 @@ function CLONE_COMFYUI() {
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 		LINKER
 
-		## ComfyUI workflows > ComfyUIMini
-		LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-		LINKER
+		# ## ComfyUI workflows > ComfyUIMini
+		# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+		# LINKER
 
 		# ## ComfyUI workflows > models/workflows
 		LINK="${COMFYUI_PATH}/models/workflows/workflows"
@@ -827,8 +826,8 @@ function CLONE_COMFYUIMINI() {
 
 		cp "config/default.example.json" "config/default.json"
 
-		chmod +x "scripts/install.sh"
-		yes | "scripts/install.sh" || true
+		chmod +x scripts/install.sh
+		yes | ./scripts/install.sh || true
 
 		# npm install
 		# npm run build
@@ -873,8 +872,8 @@ function CLONE_COMFYUIMINI() {
 }
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &
 CLONE_PUPPETEER   # >/dev/null 2>&1 &
 CLONE_SWARMUI     # >/dev/null 2>&1 &
@@ -902,7 +901,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -1089,10 +1087,10 @@ function LINK_FOLDERS() {
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
 
-	## ComfyUI workflows > ComfyUIMini
-	LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-	LINKER
+	# ## ComfyUI workflows > ComfyUIMini
+	# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+	# LINKER
 
 	# ## ComfyUI workflows > models/workflows
 	LINK="${COMFYUI_PATH}/models/workflows/workflows"

@@ -23,6 +23,7 @@ URLS=(
 	"https://${IP_ADDRESS}:9001" # portainer-agent
 	"http://${IP_ADDRESS}:4999"  # portracker
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
+	"http://${IP_ADDRESS}:3000"  # ComfyUIMini
 	"http://${IP_ADDRESS}:8688"  # cushy-studio
 	# "http://${IP_ADDRESS}:3080"         # librechat
 	# "http://${IP_ADDRESS}:7578"         # homearr

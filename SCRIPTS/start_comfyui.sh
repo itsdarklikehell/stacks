@@ -108,7 +108,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
@@ -295,10 +294,10 @@ function LINK_FOLDERS() {
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
 
-	## ComfyUI workflows > ComfyUIMini
-	LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-	LINKER
+	# ## ComfyUI workflows > ComfyUIMini
+	# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+	# LINKER
 
 	# ## ComfyUI workflows > models/workflows
 	LINK="${COMFYUI_PATH}/models/workflows/workflows"
