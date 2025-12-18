@@ -67,7 +67,9 @@ function SETUP_ENV() {
 	fi
 	export IP_ADDRESS
 
-	cd "${STACK_BASEPATH}" || exit
+	cd "${STACK_BASEPATH}"echo ""
+	START_CUSHYSTUDIO >/dev/null 2>&1 &
+	echo "" || exit
 	git pull # origin main
 	chmod +x "install-stack.sh"
 
@@ -253,24 +255,24 @@ SETUP_AI_STACK
 echo ""
 
 echo ""
-PULL_MODELS # >/dev/null 2>&1 &
+PULL_MODELS >/dev/null 2>&1 &
 echo ""
 
-# echo ""
-# START_COMFYUI # >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_COMFYUI >/dev/null 2>&1 &
+echo ""
 
-# echo ""
-# START_CUSHYSTUDIO >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_CUSHYSTUDIO >/dev/null 2>&1 &
+echo ""
 
-# echo ""
-# START_OLLMVT # >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_OLLMVT >/dev/null 2>&1 &
+echo ""
 
 echo ""
 sleep 3
-START_DEDUPER # >/dev/null 2>&1 &
+START_DEDUPER >/dev/null 2>&1 &
 echo ""
 
 echo ""
