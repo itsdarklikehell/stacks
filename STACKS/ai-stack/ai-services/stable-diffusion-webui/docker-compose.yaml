@@ -17,10 +17,31 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+
+      - IMAGE_MODEL=flux.1-dev-ggml
+      - LISTENING_ADDRESS=8501
+      - LLM_PROVIDER=ollama
+      - LOCAL_AI_API_KEY=sk-123abc
+      - LOCAL_AI_BASE_PATH=http://0.0.0.0:8083/v1
+      - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
+      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
+      - MODEL_NAME=gemma-3-12b-it
+      - MODELS_PATH=/models
+      - MULTIMODAL_MODEL=moondream2-20250414
+      - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
+      - OLLAMA_HOST=http://0.0.0.0:11434
+      - OLLAMA_MODEL_PREF=deepseek-r1:latest
+      - OLLAMA_MODEL_TOKEN_LIMIT=4096
       - PORT=${PORT:-8501}
+      - PROFILE=gpu-8g
       - STREAMLIT_SERVER_HEADLESS=true
-      - WEBUI_SCRIPT=webui_streamlit.py
+      - SERVER_PORT=3001
       - VALIDATE_MODELS=false
+      - WEBUI_SCRIPT=webui_streamlit.py
+      - STABLE_DIFFUSION_WEBUI_BUILD_TYPE=cublas
+      - STABLE_DIFFUSION_WEBUI_SINGLE_ACTIVE_BACKEND=true
+      - STORAGE_DIR=/app/server/storage
+      - USE_AIO=true
 
     cap_add:
       - SYS_NICE
