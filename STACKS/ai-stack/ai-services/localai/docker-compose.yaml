@@ -81,19 +81,29 @@ services:
       - localai_cache:/.cache
       - localai_configuration:/configuration
       - localai_backends:/localai/backends
-      - localai_models:/localai/models
-      - localai_output:/localai/output
       # - localai_content:/localai/content/images
 
-      - anything-llm_output:/localai/output/anything-llm_output
-      - forge_output:/localai/output/forge_output
-      - comfyui_output:/localai/output/comfyui_outputs
-
-      - InvokeAI_models:/localai/models/invokeai_models
+      # MODELS:
       - anything-llm_models:/localai/models/anything-llm_models
-      - ollama_models:/localai/models/ollama_models
       - comfyui_models:/localai/models/comfyui_models
       - forge_models:/localai/models/forge_models
+      - InvokeAI_models:/localai/models/invokeai_models
+      - localai_models:/localai/models
+      - ollama_models:/localai/models/ollama_models
+
+      # OUTPUTS
+      - anything-llm_output:/localai/output/anything-llm_output
+      - comfyui_output:/localai/output/comfyui_outputs
+      - forge_output:/localai/output/forge_output
+      - InvokeAI_output:/localai/output/InvokeAI_output
+      - localai_output:/localai/output
+
+      # # INPUTS
+      # - anything-llm_input:/localai/input/anything-llm_input
+      # - comfyui_input:/localai/input/comfyui_inputs
+      # - forge_input:/localai/input/forge_input
+      # - InvokeAI_input:/localai/input/InvokeAI_input
+      # - localai_input:/localai/input
 
     # user: ${PUID:-1000}:${PGID:-1000}
 

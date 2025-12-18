@@ -34,19 +34,28 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - InvokeAI_data:/invokeai
-      - InvokeAI_output:/invokeai/outputs
-      - InvokeAI_models:/invokeai/models
 
-      - anything-llm_output:/invokeai/outputs/anything-llm_outputs
-      - localai_output:/invokeai/outputs/localai_outputs
-      - forge_output:/invokeai/outputs/forge_outputs
-      - comfyui_output:/invokeai/outputs/comfyui_outputs
-
+      # MODELS:
       - anything-llm_models:/invokeai/models/anything-llm_models
-      - ollama_models:/invokeai/models/ollama_models
-      - localai_models:/invokeai/models/localai_models
-      - forge_models:/invokeai/models/forge_models
       - comfyui_models:/invokeai/models/comfyui_models
+      - forge_models:/invokeai/models/forge_models
+      - InvokeAI_models:/invokeai/models
+      - localai_models:/invokeai/models/localai_models
+      - ollama_models:/invokeai/models/ollama_models
+
+      # OUTPUTS
+      - anything-llm_output:/invokeai/outputs/anything-llm_outputs
+      - comfyui_output:/invokeai/outputs/comfyui_outputs
+      - forge_output:/invokeai/outputs/forge_outputs
+      - InvokeAI_output:/invokeai/outputs
+      - localai_output:/invokeai/outputs/localai_outputs
+
+      # # INPUTS
+      # - anything-llm_input:invokeai/inputs/anything-llm_input
+      # - comfyui_input:invokeai/inputs/comfyui_inputs
+      # - forge_input:invokeai/inputs/forge_input
+      # - InvokeAI_input:invokeai/inputs/InvokeAI_input
+      # - localai_input:invokeai/inputs
 
     hostname: ${NAME:-InvokeAI}
 

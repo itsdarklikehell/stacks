@@ -31,15 +31,6 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs/ai-dock-comfyui_output
 
-  comfyui_output:
-    name: comfyui_output
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-outputs/comfyui_output
-
   ai-dock-fooocus_data:
     name: ai-dock-fooocus_data
     driver: local
@@ -223,6 +214,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs/anything-llm_output
+  anything-llm_input:
+    name: anything-llm_input
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
 
   InvokeAI_data:
     name: InvokeAI_data
@@ -240,6 +239,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-models/InvokeAI_models
+  InvokeAI_output:
+    name: InvokeAI_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs/InvokeAI_output
+  InvokeAI_input:
+    name: InvokeAI_input
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
 
   comfyui_models:
     name: comfyui_models
@@ -249,15 +264,22 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-models/comfyui_models
-
-  InvokeAI_output:
-    name: InvokeAI_output
+  comfyui_input:
+    name: comfyui_input
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/InvokeAI_output
+      device: ../../../DATA/ai-inputs
+  comfyui_output:
+    name: comfyui_output
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs/comfyui_output
 
   forge_data:
     name: forge_data
@@ -283,6 +305,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs/forge_output
+  forge_input:
+    name: forge_input
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
 
   homeassistant-config:
     name: homeassistant-config
@@ -358,14 +388,15 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs/localai_output
-  # localai_content:
-  #   name: localai_content
-  #   driver: local
-  #   # external: true
-  #   driver_opts:
-  #     type: none
-  #     o: bind
-  #     device: ../../../DATA/ai-stack/localai/content
+  localai_input:
+    name: localai_input
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
+
   n8n_data:
     name: n8n_data
     driver: local

@@ -60,6 +60,8 @@ cd "${STACK_BASEPATH}" || exit 1
 folders=(
 	"${AI_MODELS_PATH}"
 	"${AI_WORKFLOWS_PATH}"
+	"${AI_OUTPUTS_PATH}"
+	"${AI_INPUTS_PATH}"
 )
 # "${AI_INPUTS_PATH}"
 # "${AI_OUTPUTS_PATH}"

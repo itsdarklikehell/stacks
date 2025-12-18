@@ -62,18 +62,28 @@ services:
       - forge_output:/opt/stable-diffusion-webui-forge/outputs
 
       - forge_data:/workspace
-      - forge_models:/workspace/models
-      - forge_output:/workspace/outputs
 
-      - comfyui_output:/workspace/output/comfyui_outputs
-      - anything-llm_output:/workspace/output/anything-llm_outputs
-      - localai_output:/workspace/output/localai_outputs
-
-      - InvokeAI_models:/workspace/models/invokeai_models
+      # MODELS:
       - anything-llm_models:/workspace/models/anything-llm_models
-      - ollama_models:/workspace/models/ollama_models
-      - localai_models:/workspace/models/localai_models
       - comfyui_models:/workspace/models/comfyui_models
+      - forge_models:/workspace/models
+      - InvokeAI_models:/workspace/models/invokeai_models
+      - localai_models:/workspace/models
+      - ollama_models:/workspace/models
+
+      # OUTPUTS
+      - anything-llm_output:/workspace/output/anything-llm_output
+      - comfyui_output:/workspace/output/comfyui_outputs
+      - forge_output:/workspace/outputs
+      - InvokeAI_output:/workspace/output/InvokeAI_output
+      - localai_output:/workspace/output
+
+      # # INPUTS
+      # - anything-llm_input:/workspace/input/anything-llm_input
+      # - comfyui_input:/workspace/input/comfyui_inputs
+      # - forge_input:/workspace/input/forge_input
+      # - InvokeAI_input:/workspace/input/InvokeAI_input
+      # - localai_input:/workspace/input
 
     hostname: ${NAME:-forge}
 
