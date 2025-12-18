@@ -234,11 +234,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_NETWORKS
@@ -248,40 +248,40 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
 echo ""
 SETUP_AI_STACK
 echo ""
 
-echo ""
-PULL_MODELS >/dev/null 2>&1 &
-echo ""
+# echo ""
+# PULL_MODELS >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_COMFYUI >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_COMFYUI >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_CUSHYSTUDIO >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_CUSHYSTUDIO >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_OLLMVT >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_OLLMVT >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-sleep 3
-START_DEDUPER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# sleep 3
+# START_DEDUPER >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
-"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
 echo "Installation complete.."
 
