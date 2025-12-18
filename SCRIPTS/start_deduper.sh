@@ -8,13 +8,13 @@ export DO_REMOVE=true         #
 sudo apt install -y rmlint rmlint-gui vlc >/dev/null 2>&1 &
 
 function SETUP_ENV() {
-
-	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+	declare IP_ADDRESS
 	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
-	eval "$(resize)"
+	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
@@ -36,7 +36,7 @@ function SETUP_ENV() {
 	fi
 	export STACK_BASEPATH
 
-	eval "$(resize)"
+	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
@@ -69,14 +69,14 @@ folders=(
 for folder in "${folders[@]}"; do
 	echo "Deduplicating ${folder}"
 
-	rmlint -gfv -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
+	rmlint -gfv -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}" # >/dev/null 2>&1 &
 
 	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dpxq # >/dev/null 2>&1 &
 
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh" >/dev/null 2>&1 &
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/rmlint.sh" >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/rmlint.json" >/dev/null 2>&1 &
+	# rm "${STACK_BASEPATH}/rmlint.sh" >/dev/null 2>&1 &
+	# rm "${STACK_BASEPATH}/rmlint.json" >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
 done

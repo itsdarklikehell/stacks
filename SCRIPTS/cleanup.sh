@@ -1,7 +1,52 @@
 #!/bin/bash
-
 echo "Cleanup script started."
 echo "CLEANUP is set to: ${CLEANUP}"
+
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+
+function SETUP_ENV() {
+
+	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+	declare IP_ADDRESS
+	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
+
+	eval "$(resize)" || true
+	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export DOCKER_BASEPATH
+
+	eval "$(resize)" || true
+	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered " "${STACK_BASEPATH}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export STACK_BASEPATH
+
+	eval "$(resize)" || true
+	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	if [[ "${exitstatus}" = 0 ]]; then
+		echo "User selected Ok and entered " "${IP_ADDRESS}"
+	else
+		echo "User selected Cancel."
+		exit 1
+	fi
+	export IP_ADDRESS
+
+}
+SETUP_ENV
 
 cd "${STACK_BASEPATH}" || exit
 
@@ -18,7 +63,7 @@ function CLEANUP_DATA() {
 		sudo rm -rf "${folder}"
 	done
 }
-if [[ ${CLEANUP} == "true" ]]; then
+if [[ "${CLEANUP}" == "true" ]]; then
 	export BUILDING="recreate" # false, true, recreate
 	CLEANUP_DATA
 fi

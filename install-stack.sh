@@ -27,12 +27,13 @@ export TWITCH_CLIENT_SECRET="your_client_secret"                                
 
 function SETUP_ENV() {
 
-	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+	declare IP_ADDRESS
 	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
-	eval "$(resize)"
+	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
@@ -242,17 +243,17 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
 echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
 # echo ""
 # START_COMFYUI # >/dev/null 2>&1 &
@@ -270,9 +271,9 @@ echo ""
 # START_BROWSER >/dev/null 2>&1 &
 # echo ""
 
-# echo ""
-# START_DEDUPER # >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_DEDUPER # >/dev/null 2>&1 &
+echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 

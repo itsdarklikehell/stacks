@@ -31,6 +31,12 @@ EOF
 	rm "${temp_file}"
 }
 
+if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+fi
+
+# cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+
 function CLONE_ANYTHINGLLM() {
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -328,8 +334,8 @@ function CLONE_COMFYUI() {
 	if [[ ! -d "${COMFYUI_PATH}" ]]; then
 		echo "Cloning ComfyUI"
 		echo ""
-		git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
-		cd "${COMFYUI_PATH}" || exit 1
+		git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ComfyUI
+		cd ComfyUI || exit 1
 	else
 		echo "Checking ComfyUI for updates"
 		cd "${COMFYUI_PATH}" || exit 1
@@ -707,13 +713,11 @@ function CLONE_COMFYUI() {
 	INSTALL_EXTRA_NODES=false
 	UPDATE=true
 
-	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
-
 	CREATE_FOLDERS
-
 	LINK_FOLDERS
 
-	CLONE_WORKFLOWS
+	INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
+	CLONE_WORKFLOWS      # >/dev/null 2>&1 &
 
 	# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 	# xdg-open http://0.0.0.0:8188/
@@ -790,6 +794,13 @@ function CLONE_COMFYUIMINI() {
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
+
+CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+CLONE_COMFYUI     # >/dev/null 2>&1 &
+CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+CLONE_OLLMVT      # >/dev/null 2>&1 &
+CLONE_PUPPETEER   # >/dev/null 2>&1 &
+CLONE_SWARMUI     # >/dev/null 2>&1 &
 
 function CREATE_FOLDERS() {
 
@@ -966,13 +977,6 @@ function LINK_FOLDERS() {
 	LINKER
 
 }
-
-CLONE_COMFYUI >/dev/null 2>&1 &
-CLONE_COMFYUIMINI >/dev/null 2>&1 &
-CLONE_PUPPETEER >/dev/null 2>&1 &
-CLONE_SWARMUI >/dev/null 2>&1 &
-CLONE_ANYTHINGLLM >/dev/null 2>&1 &
-CLONE_OLLMVT >/dev/null 2>&1 &
 
 CREATE_FOLDERS
 LINK_FOLDERS

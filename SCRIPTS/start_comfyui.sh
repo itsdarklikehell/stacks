@@ -12,12 +12,13 @@ export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
 function SETUP_ENV() {
 
-	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
+	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+	declare IP_ADDRESS
 	export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 	export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 	export COMFYUI_PATH="/media/rizzo/RAIDSTATION/stacks/DATA/ai-stack/ComfyUI"
 
-	eval "$(resize)"
+	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ "${exitstatus}" = 0 ]]; then
@@ -480,12 +481,10 @@ INSTALL_DEFAULT_NODES=true
 INSTALL_EXTRA_NODES=false
 UPDATE=true
 
-INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
-
 CREATE_FOLDERS
-
 LINK_FOLDERS
 
+INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
 CLONE_WORKFLOWS
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
