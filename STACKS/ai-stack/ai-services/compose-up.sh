@@ -58,19 +58,28 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
-		CREATE_FOLDERS
 	fi
 
 	if [[ "${SERVICE_NAME}" == "stable-diffusion-webui" ]]; then
 		FOLDERS=(
 			"configdir"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "ai-dock-comfyui" ]]; then
@@ -79,6 +88,11 @@ function SETUP_FOLDERS() {
 			"models"
 			"output"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "ai-dock-fooocus" ]]; then
@@ -87,6 +101,11 @@ function SETUP_FOLDERS() {
 			"models"
 			"output"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
@@ -108,6 +127,11 @@ function SETUP_FOLDERS() {
 			"models"
 			"output"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
@@ -181,6 +205,11 @@ function SETUP_FOLDERS() {
 			"logs"
 			"meili_data"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	if [[ "${SERVICE_NAME}" == "localai" ]]; then
@@ -236,6 +265,11 @@ function SETUP_FOLDERS() {
 			"embeddings"
 			"workflows"
 		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+
 	fi
 
 	CREATE_FOLDERS
