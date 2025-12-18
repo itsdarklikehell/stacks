@@ -36,12 +36,13 @@ services:
       - InvokeAI_data:/invokeai
 
       # MODELS:
-      - anything-llm_models:/invokeai/models/anything-llm_models
-      - comfyui_models:/invokeai/models/comfyui_models
-      - forge_models:/invokeai/models/forge_models
       - InvokeAI_models:/invokeai/models
-      - localai_models:/invokeai/models/localai_models
-      - ollama_models:/invokeai/models/ollama_models
+
+      # - anything-llm_models:/invokeai/models/anything-llm_models
+      # - comfyui_models:/invokeai/models/comfyui_models
+      # - forge_models:/invokeai/models/forge_models
+      # - localai_models:/invokeai/models/localai_models
+      # - ollama_models:/invokeai/models/ollama_models
 
       # OUTPUTS
       - anything-llm_output:/invokeai/outputs/anything-llm_outputs

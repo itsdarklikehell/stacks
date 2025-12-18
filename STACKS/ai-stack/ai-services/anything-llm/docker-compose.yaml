@@ -64,11 +64,12 @@ services:
 
       # MODELS:
       - anything-llm_models:/app/server/storage/models
-      - comfyui_models:/app/server/storage/models/comfyui_models
-      - forge_models:/app/server/storage/models/forge_models
-      - InvokeAI_models:/app/server/storage/models/invokeai_models
-      - localai_models:/app/server/storage/models/localai_models
-      - ollama_models:/app/server/storage/models/ollama_models
+
+      # - comfyui_models:/app/server/storage/models/comfyui_models
+      # - forge_models:/app/server/storage/models/forge_models
+      # - InvokeAI_models:/app/server/storage/models/invokeai_models
+      # - localai_models:/app/server/storage/models/localai_models
+      # - ollama_models:/app/server/storage/models/ollama_models
 
       # OUTPUTS
       - anything-llm_output:/app/server/storage/output

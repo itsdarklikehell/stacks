@@ -64,12 +64,13 @@ services:
       - forge_data:/workspace
 
       # MODELS:
-      - anything-llm_models:/workspace/models/anything-llm_models
-      - comfyui_models:/workspace/models/comfyui_models
       - forge_models:/workspace/models
-      - InvokeAI_models:/workspace/models/invokeai_models
-      - localai_models:/workspace/models
-      - ollama_models:/workspace/models
+
+      # - anything-llm_models:/workspace/models/anything-llm_models
+      # - comfyui_models:/workspace/models/comfyui_models
+      # - InvokeAI_models:/workspace/models/invokeai_models
+      # - localai_models:/workspace/models
+      # - ollama_models:/workspace/models
 
       # OUTPUTS
       - anything-llm_output:/workspace/output/anything-llm_output

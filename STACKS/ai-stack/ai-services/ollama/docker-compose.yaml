@@ -16,7 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-1h}
+      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-5m}
       - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
       - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
       - OLLAMA_MODELS=/root/.ollama/models
@@ -30,12 +30,13 @@ services:
       - ollama_data:/root/.ollama
 
       # MODELS:
-      - anything-llm_models:/root/.ollama/models/anything-llm_models
-      - comfyui_models:/root/.ollama/models/comfyui_models
-      - forge_models:/root/.ollama/models/forge_models
-      - InvokeAI_models:/root/.ollama/models/invokeai_models
-      - localai_models:/root/.ollama/models
       - ollama_models:/root/.ollama/models
+
+      # - anything-llm_models:/root/.ollama/models/anything-llm_models
+      # - comfyui_models:/root/.ollama/models/comfyui_models
+      # - forge_models:/root/.ollama/models/forge_models
+      # - InvokeAI_models:/root/.ollama/models/invokeai_models
+      # - localai_models:/root/.ollama/models
 
       # OUTPUTS
       - anything-llm_output:/root/.ollama/output/anything-llm_output

@@ -45,7 +45,7 @@ services:
       - AUTOLOAD_BACKEND_GALLERIES=true
       - LOCALAI_WATCHDOG_IDLE=true
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
-      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=1h
+      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=5m
       - THREADS=1
       - PROFILE=gpu-8g
       - DEBUG=true
@@ -86,12 +86,13 @@ services:
       # - localai_content:/localai/content/images
 
       # MODELS:
-      - anything-llm_models:/models/anything-llm_models
-      - comfyui_models:/models/comfyui_models
-      - forge_models:/models/forge_models
-      - InvokeAI_models:/models/invokeai_models
       - localai_models:/models
-      - ollama_models:/models/ollama_models
+
+      # - anything-llm_models:/models/anything-llm_models
+      # - comfyui_models:/models/comfyui_models
+      # - forge_models:/models/forge_models
+      # - InvokeAI_models:/models/invokeai_models
+      # - ollama_models:/models/ollama_models
 
       # OUTPUTS
       - anything-llm_output:/output/anything-llm_output
