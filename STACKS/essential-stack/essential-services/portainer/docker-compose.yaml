@@ -17,6 +17,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-9443}
+      # - ENDPOINT=local
+      # - DOCKER_ENDPOINT=local
+      # - PORTIANER_ENDPOINT=local
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
@@ -31,6 +34,8 @@ services:
     hostname: ${NAME:-portainer}
 
     # user: ${PUID:-1000}:${PGID:-1000}
+
+    command: -H unix:///var/run/docker.sock
 
     networks:
       host:
