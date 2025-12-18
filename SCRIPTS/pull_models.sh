@@ -25,7 +25,6 @@ models=(
 	'llama3.2:latest'
 	'mdq100/Gemma3-Instruct-Abliterated:12b'
 	'mdq100/Gemma3-Instruct-Abliterated:12b'
-	'MrTails/Tails-assistant-ai-v3.0.0:latest'
 	'mxbai-embed-large:latest'
 	'nomic-embed-text:latest'
 	'openchat:latest'
@@ -60,6 +59,7 @@ models=(
 # 'huihui_ai/qwq-abliterated:latest'
 # 'dolphin-mixtral:latest'
 # 'huihui_ai/tongyi-deepresearch-abliterated:latest'
+# 'MrTails/Tails-assistant-ai-v3.0.0:latest'
 
 # container_name to check if ollama docker service is running:
 container_name="ollama"
