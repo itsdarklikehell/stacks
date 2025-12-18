@@ -17,8 +17,8 @@ services:
       - INITIAL_ADMIN_PASSWORD
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
+      # - PUID=${PUID:-1000}
+      # - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-80}
     # INITIAL_ADMIN_EMAIL: {INITIAL_ADMIN_EMAIL:-admin@example.com}
@@ -63,11 +63,11 @@ services:
     deploy:
       replicas: 1
 
-    # healthcheck:
-    #   test: [CMD, /usr/bin/check-health]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
+    healthcheck:
+      test: [CMD, /usr/bin/check-health]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
     logging:
       driver: json-file

@@ -5,16 +5,16 @@ cd "$(dirname "$0")"
 
 COMPOSE_FILES=(
 	autoheal
-	autopulse
+	# autopulse
 	dashy
-	homarr
+	# homarr
 	# immich-server
 	# immich-server-genius
 	it-tools
 	nginx-proxy-manager
 	portainer
 	portracker
-	watchtower
+	# watchtower
 )
 
 function CREATE_FOLDERS() {
