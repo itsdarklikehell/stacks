@@ -139,27 +139,43 @@ function LINK_FOLDERS() {
 		elif test -d "${LINK}"; then
 			echo "${LINK} is just a plain directory!"
 
-			if [[ ! -d "${ORIGIN}" ]]; then
+			# echo "Checking if ${ORIGIN} exists"
+			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+				# echo "Creating ${ORIGIN}"
 				mkdir -p "${ORIGIN}"
 			fi
-			echo "Trying to move files from ${LINK} to ${ORIGIN}"
-			rsync -aHAX "${LINK}" "${ORIGIN}"
+
+			# echo "Trying to move files!"
+			# echo "from ${LINK} to ${ORIGIN}"
+
+			rsync -aHAX "${LINK}"/* "${ORIGIN}"
 			# mv -f "${LINK}"/* "${ORIGIN}"
 			# cp -au "${LINK}" "${ORIGIN}"
 
-			echo "Removing ${LINK}"
+			# echo "Removing ${LINK}"
 			rm -rf "${LINK}"
-
-			echo "Symlinking ${LINK} to ${ORIGIN}"
-			ln -s "${ORIGIN}" "${LINK}"
-		else
-			# echo "${LINK} is not a symlink nor a existing directory"
-			if [[ ! -d "${ORIGIN}" ]]; then
-				mkdir -p "${ORIGIN}"
-			fi
 
 			# echo "Symlinking ${LINK} to ${ORIGIN}"
 			ln -s "${ORIGIN}" "${LINK}"
+		else
+			# echo "${LINK} is not a symlink nor a existing directory"
+
+			# echo "Checking if folder ${ORIGIN} exists"
+			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+				echo "Creating ${ORIGIN}"
+				mkdir -p "${ORIGIN}"
+			fi
+
+			# echo "Checking if folder ${LINK} exists"
+			if [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
+				mkdir -p "${LINK}"
+				rm -rf "${LINK}"
+			fi
+
+			# echo "Symlinking ${LINK} to ${ORIGIN}"
+			if [[ -d "${ORIGIN}" ]]; then
+				ln -s "${ORIGIN}" "${LINK}"
+			fi
 		fi
 
 	}
