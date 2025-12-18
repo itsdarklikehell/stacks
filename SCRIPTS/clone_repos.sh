@@ -303,26 +303,30 @@ function CLONE_COMFYUI() {
 	# 	export INSTALL_CUSTOM_NODES=false
 	# fi
 
-	echo "Cloning ComfyUI"
-	echo ""
-	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
-	cd "${COMFYUI_PATH}" || exit 1
+	if [[ ! -d "${COMFYUI_PATH}" ]]; then
+		echo "Cloning ComfyUI"
+		echo ""
+		git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
+	fi
 
 	"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 	"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
 
+	cd "${COMFYUI_PATH}" || exit 1
+	git pull
+
 	function CREATE_FOLDERS() {
 
-		mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
-		mkdir -p "${COMFYUI_PATH}/input"
-		mkdir -p "${COMFYUI_PATH}/models"
-		mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
-		mkdir -p "${COMFYUI_PATH}/models/forge_models"
-		mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
-		mkdir -p "${COMFYUI_PATH}/models/localai_models"
-		mkdir -p "${COMFYUI_PATH}/models/ollama_models"
-		mkdir -p "${COMFYUI_PATH}/output"
-		mkdir -p "${COMFYUI_PATH}/user/default/workflows"
+		# mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
+		# mkdir -p "${COMFYUI_PATH}/input"
+		# mkdir -p "${COMFYUI_PATH}/models"
+		# mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
+		# mkdir -p "${COMFYUI_PATH}/models/forge_models"
+		# mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
+		# mkdir -p "${COMFYUI_PATH}/models/localai_models"
+		# mkdir -p "${COMFYUI_PATH}/models/ollama_models"
+		# mkdir -p "${COMFYUI_PATH}/output"
+		# mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
@@ -363,29 +367,40 @@ function CLONE_COMFYUI() {
 		function LINKER() {
 
 			if test -L "${LINK}"; then
-				echo "${LINK} is a symlink to a directory"
-				# ls -la "${COMFYUI_PATH}/models"
+				echo "${LINK} is allready a symlink."
+				echo ""
 			elif test -d "${LINK}"; then
-				echo "${LINK} is just a plain directory"
+				echo "${LINK} is just a plain directory!"
+
+				if [[ ! -d "${ORIGIN}" ]]; then
+					mkdir -p "${ORIGIN}"
+				fi
+				echo "Trying to move files from ${LINK} to ${ORIGIN}"
 				mv -f "${LINK}"/* "${ORIGIN}"
+
+				echo "Removing ${LINK}"
 				rm -rf "${LINK}"
+
+				echo "Symlinking ${LINK} to ${ORIGIN}"
 				ln -s "${ORIGIN}" "${LINK}"
-			elif [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
-				echo "${LINK} is NOT a directory"
-				echo "${LINK} is NOT a symlink"
-				exit 1
+			else
+				# echo "${LINK} is not a symlink nor a existing directory"
+
+				mkdir -p "${LINK}"
+
+				# echo "Symlinking ${LINK} to ${ORIGIN}"
+				ln -s "${ORIGIN}" "${LINK}"
 			fi
 
 		}
+		# ## InvokeAI models
+		# LINK="${COMFYUI_PATH}/models/InvokeAI_models"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+		# LINKER
 
 		## Anything-LLM models
 		LINK="${COMFYUI_PATH}/models/anything-llm_models"
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
-		LINKER
-
-		## InvokeAI models
-		LINK="${COMFYUI_PATH}/models/InvokeAI_models"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
 		LINKER
 
 		## LocalAI models
@@ -403,56 +418,67 @@ function CLONE_COMFYUI() {
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-models/forge_models"
 		LINKER
 
-		## ComfyUI models
-		LINK="${COMFYUI_PATH}/models"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		LINKER
-		LINK="${COMFYUI_PATH}/models"
-		ORIGIN="${COMFYUI_PATH}/custom_nodes/models"
-		LINKER
+		# ## ComfyUI models
+		# LINK="${COMFYUI_PATH}/models"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+		# LINKER
 
-		## ComfyUI custom_nodes
-		LINK="${COMFYUI_PATH}/custom_nodes"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-		LINKER
+		# ## ComfyUI models > custom_nodes
+		# LINK="${COMFYUI_PATH}/custom_nodes/models"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+		# LINKER
+
+		# ## ComfyUI custom_nodes
+		# LINK="${COMFYUI_PATH}/custom_nodes"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
+		# LINKER
+
 		## ComfyUI workflows
 		LINK="${COMFYUI_PATH}/user/default/workflows"
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+
+		# ## ComfyUI workflows > ComfyUIMini
+		# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+		# LINKER
+
+		# ## ComfyUI workflows > models/workflows
+		LINK="${COMFYUI_PATH}/models/workflows/workflows"
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-models/workflows/workflows"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-		LINKER
-		## ComfyUI output
-		LINK="${COMFYUI_PATH}/output"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
-		LINKER
-		## ComfyUI input
-		LINK="${COMFYUI_PATH}/input"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
-		LINKER
-		## Variety input
-		LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-		ORIGIN="/home/${USER}/.config/variety/Downloaded"
-		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-		ORIGIN="/home/${USER}/.config/variety/Fetched"
-		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-		ORIGIN="/home/${USER}/.config/variety/Favorites"
-		LINKER
-		## Variety output
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-		ORIGIN="/home/${USER}/.config/variety/Downloaded"
-		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-		ORIGIN="/home/${USER}/.config/variety/Fetched"
-		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-		ORIGIN="/home/${USER}/.config/variety/Favorites"
-		LINKER
+
+		# ## ComfyUI output
+		# LINK="${COMFYUI_PATH}/output"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
+		# LINKER
+
+		# ## ComfyUI input
+		# LINK="${COMFYUI_PATH}/input"
+		# ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
+		# LINKER
+
+		# ## Variety input
+		# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+		# ORIGIN="/home/${USER}/.config/variety/Downloaded"
+		# LINKER
+		# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+		# ORIGIN="/home/${USER}/.config/variety/Fetched"
+		# LINKER
+		# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+		# ORIGIN="/home/${USER}/.config/variety/Favorites"
+		# LINKER
+
+		# ## Variety output
+		# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+		# ORIGIN="/home/${USER}/.config/variety/Downloaded"
+		# LINKER
+		# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+		# ORIGIN="/home/${USER}/.config/variety/Fetched"
+		# LINKER
+		# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+		# ORIGIN="/home/${USER}/.config/variety/Favorites"
+		# LINKER
 
 	}
 
@@ -725,16 +751,16 @@ function CLONE_COMFYUIMINI() {
 
 function CREATE_FOLDERS() {
 
-	mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
-	mkdir -p "${COMFYUI_PATH}/input"
-	mkdir -p "${COMFYUI_PATH}/models"
-	mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
-	mkdir -p "${COMFYUI_PATH}/models/forge_models"
-	mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
-	mkdir -p "${COMFYUI_PATH}/models/localai_models"
-	mkdir -p "${COMFYUI_PATH}/models/ollama_models"
-	mkdir -p "${COMFYUI_PATH}/output"
-	mkdir -p "${COMFYUI_PATH}/user/default/workflows"
+	# mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
+	# mkdir -p "${COMFYUI_PATH}/input"
+	# mkdir -p "${COMFYUI_PATH}/models"
+	# mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
+	# mkdir -p "${COMFYUI_PATH}/models/forge_models"
+	# mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
+	# mkdir -p "${COMFYUI_PATH}/models/localai_models"
+	# mkdir -p "${COMFYUI_PATH}/models/ollama_models"
+	# mkdir -p "${COMFYUI_PATH}/output"
+	# mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
@@ -775,29 +801,40 @@ function LINK_FOLDERS() {
 	function LINKER() {
 
 		if test -L "${LINK}"; then
-			echo "${LINK} is a symlink to a directory"
-			# ls -la "${COMFYUI_PATH}/models"
+			echo "${LINK} is allready a symlink."
+			echo ""
 		elif test -d "${LINK}"; then
-			echo "${LINK} is just a plain directory"
+			echo "${LINK} is just a plain directory!"
+
+			if [[ ! -d "${ORIGIN}" ]]; then
+				mkdir -p "${ORIGIN}"
+			fi
+			echo "Trying to move files from ${LINK} to ${ORIGIN}"
 			mv -f "${LINK}"/* "${ORIGIN}"
+
+			echo "Removing ${LINK}"
 			rm -rf "${LINK}"
+
+			echo "Symlinking ${LINK} to ${ORIGIN}"
 			ln -s "${ORIGIN}" "${LINK}"
-		elif [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
-			echo "${LINK} is NOT a directory"
-			echo "${LINK} is NOT a symlink"
-			exit 1
+		else
+			# echo "${LINK} is not a symlink nor a existing directory"
+
+			mkdir -p "${LINK}"
+
+			# echo "Symlinking ${LINK} to ${ORIGIN}"
+			ln -s "${ORIGIN}" "${LINK}"
 		fi
 
 	}
+	# ## InvokeAI models
+	# LINK="${COMFYUI_PATH}/models/InvokeAI_models"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+	# LINKER
 
 	## Anything-LLM models
 	LINK="${COMFYUI_PATH}/models/anything-llm_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
-	LINKER
-
-	## InvokeAI models
-	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
 	LINKER
 
 	## LocalAI models
@@ -815,56 +852,67 @@ function LINK_FOLDERS() {
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/forge_models"
 	LINKER
 
-	## ComfyUI models
-	LINK="${COMFYUI_PATH}/models"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	LINKER
-	LINK="${COMFYUI_PATH}/models"
-	ORIGIN="${COMFYUI_PATH}/custom_nodes/models"
-	LINKER
+	# ## ComfyUI models
+	# LINK="${COMFYUI_PATH}/models"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# LINKER
 
-	## ComfyUI custom_nodes
-	LINK="${COMFYUI_PATH}/custom_nodes"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-	LINKER
+	# ## ComfyUI models > custom_nodes
+	# LINK="${COMFYUI_PATH}/custom_nodes/models"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# LINKER
+
+	# ## ComfyUI custom_nodes
+	# LINK="${COMFYUI_PATH}/custom_nodes"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
+	# LINKER
+
 	## ComfyUI workflows
 	LINK="${COMFYUI_PATH}/user/default/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+
+	# ## ComfyUI workflows > ComfyUIMini
+	# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+	# LINKER
+
+	# ## ComfyUI workflows > models/workflows
+	LINK="${COMFYUI_PATH}/models/workflows/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/workflows/workflows"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-	LINKER
-	## ComfyUI output
-	LINK="${COMFYUI_PATH}/output"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
-	LINKER
-	## ComfyUI input
-	LINK="${COMFYUI_PATH}/input"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
-	LINKER
-	## Variety input
-	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-	ORIGIN="/home/${USER}/.config/variety/Downloaded"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	ORIGIN="/home/${USER}/.config/variety/Fetched"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-	ORIGIN="/home/${USER}/.config/variety/Favorites"
-	LINKER
-	## Variety output
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	ORIGIN="/home/${USER}/.config/variety/Downloaded"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	ORIGIN="/home/${USER}/.config/variety/Fetched"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	ORIGIN="/home/${USER}/.config/variety/Favorites"
-	LINKER
+
+	# ## ComfyUI output
+	# LINK="${COMFYUI_PATH}/output"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
+	# LINKER
+
+	# ## ComfyUI input
+	# LINK="${COMFYUI_PATH}/input"
+	# ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
+	# LINKER
+
+	# ## Variety input
+	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+	# ORIGIN="/home/${USER}/.config/variety/Downloaded"
+	# LINKER
+	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+	# ORIGIN="/home/${USER}/.config/variety/Fetched"
+	# LINKER
+	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+	# ORIGIN="/home/${USER}/.config/variety/Favorites"
+	# LINKER
+
+	# ## Variety output
+	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+	# ORIGIN="/home/${USER}/.config/variety/Downloaded"
+	# LINKER
+	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	# ORIGIN="/home/${USER}/.config/variety/Fetched"
+	# LINKER
+	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+	# ORIGIN="/home/${USER}/.config/variety/Favorites"
+	# LINKER
 
 }
 
