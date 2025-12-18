@@ -55,7 +55,7 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 		CREATE_FOLDERS
@@ -97,7 +97,7 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
@@ -115,6 +115,8 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
@@ -124,6 +126,8 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
@@ -140,7 +144,7 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
@@ -186,7 +190,7 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi
@@ -204,7 +208,7 @@ function SETUP_FOLDERS() {
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-intput/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-output/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
 
 	fi

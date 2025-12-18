@@ -268,13 +268,13 @@ echo ""
 # START_OLLMVT # >/dev/null 2>&1 &
 # echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_DEDUPER # >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_DEDUPER # >/dev/null 2>&1 &
+# echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 

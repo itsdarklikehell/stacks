@@ -53,7 +53,7 @@ SETUP_ENV
 
 export AI_MODELS_PATH="${STACK_BASEPATH}/DATA/ai-models"
 export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
-export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputs"
+export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputss"
 export AI_WORKFLOWS_PATH="${STACK_BASEPATH}/DATA/ai-workflows"
 
 cd "${STACK_BASEPATH}" || exit 1

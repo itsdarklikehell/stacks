@@ -358,16 +358,16 @@ function CLONE_COMFYUI() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/anything-llm_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/forge_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/InvokeAI_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/localai_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/ollama_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/swarmui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Downloaded"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Favorites"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Fetched"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
@@ -568,7 +568,7 @@ function CLONE_COMFYUI() {
 
 		## ComfyUI output
 		LINK="${COMFYUI_PATH}/output"
-		ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
+		ORIGIN="${STACK_BASEPATH}/DATA/ai-outputss"
 		LINKER
 
 		## ComfyUI input
@@ -588,13 +588,13 @@ function CLONE_COMFYUI() {
 		LINKER
 
 		## Variety output
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+		LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Downloaded"
 		ORIGIN="/home/${USER}/.config/variety/Downloaded"
 		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+		LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Fetched"
 		ORIGIN="/home/${USER}/.config/variety/Fetched"
 		LINKER
-		LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+		LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Favorites"
 		ORIGIN="/home/${USER}/.config/variety/Favorites"
 		LINKER
 
@@ -893,16 +893,16 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/anything-llm_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/comfyui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/forge_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/InvokeAI_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/localai_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/ollama_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/swarmui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputss/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
@@ -1103,7 +1103,7 @@ function LINK_FOLDERS() {
 
 	## ComfyUI output
 	LINK="${COMFYUI_PATH}/output"
-	ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-outputss"
 	LINKER
 
 	## ComfyUI input
@@ -1123,13 +1123,13 @@ function LINK_FOLDERS() {
 	LINKER
 
 	## Variety output
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+	LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Downloaded"
 	ORIGIN="/home/${USER}/.config/variety/Downloaded"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Fetched"
 	ORIGIN="/home/${USER}/.config/variety/Fetched"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+	LINK="${STACK_BASEPATH}/DATA/ai-outputss/variety/Favorites"
 	ORIGIN="/home/${USER}/.config/variety/Favorites"
 	LINKER
 
