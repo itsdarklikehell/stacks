@@ -807,30 +807,28 @@ function CLONE_COMFYUIMINI() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	export COMFYUIMINI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
-
-	if [[ ! -d "${COMFYUIMINI_PATH}" ]]; then
+	if [[ ! -d "ComfyUIMini" ]]; then
 		echo "Cloning ComfyUIMini"
 		echo ""
-		git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git "${COMFYUIMINI_PATH}"
-		cd "${COMFYUIMINI_PATH}" || exit 1
+		git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git "ComfyUIMini"
+		cd "ComfyUIMini" || exit 1
 	else
 		echo "Checking ComfyUIMini for updates"
-		cd "${COMFYUIMINI_PATH}" || exit 1
+		cd "ComfyUIMini" || exit 1
 		git pull
 	fi
 
 	rm -rf "workflows"
-	ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "${COMFYUIMINI_PATH}/workflows"
+	ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "workflows"
 
 	function LOCAL_SETUP() {
 
 		echo "Using Local setup"
 
-		cp config/default.example.json config/default.json
+		cp "config/default.example.json" "config/default.json"
 
-		chmod +x scripts/install.sh
-		yes | ./scripts/install.sh
+		chmod +x "scripts/install.sh"
+		yes | "scripts/install.sh" || true
 
 		# npm install
 		# npm run build
