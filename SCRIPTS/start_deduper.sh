@@ -5,7 +5,7 @@ export WD                     # set working dir
 export STACK_BASEPATH="${WD}" # set base path
 export DO_REMOVE=true         #
 
-sudo apt install -y rmlint rmlint-gui vlc >/dev/null 2>&1 &
+sudo apt install -y rmlint rmlint-gui vlc # >/dev/null 2>&1 &
 
 function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
@@ -74,10 +74,10 @@ for folder in "${folders[@]}"; do
 
 	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dpxq # >/dev/null 2>&1 &
 
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh" >/dev/null 2>&1 &
-	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" >/dev/null 2>&1 &
-	# rm "${STACK_BASEPATH}/rmlint.sh" >/dev/null 2>&1 &
-	# rm "${STACK_BASEPATH}/rmlint.json" >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh"   # >/dev/null 2>&1 &
+	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" # >/dev/null 2>&1 &
+	# rm "${STACK_BASEPATH}/rmlint.sh"           # >/dev/null 2>&1 &
+	# rm "${STACK_BASEPATH}/rmlint.json"         # >/dev/null 2>&1 &
 
 	echo "Deduplicated ${folder}"
 done

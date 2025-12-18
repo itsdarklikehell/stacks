@@ -101,7 +101,7 @@ function CLONE_PUPPETEER() {
 
 		npx puppeteer install chrome
 
-		yes | npx npm-check-updates -u >/dev/null 2>&1 &
+		yes | npx npm-check-updates -u # >/dev/null 2>&1 &
 		bash docker/pack.sh
 
 		# npm init --yes
