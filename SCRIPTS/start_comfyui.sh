@@ -6,8 +6,6 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 
-export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
-
 export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
 export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
@@ -15,6 +13,7 @@ export REMOVED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/removed_custom_nodes.t
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
+export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 function SETUP_ENV() {
 
 	export IP_ADDRESS=$(hostname -I | awk '{print $1}') # get machine IP address
@@ -74,26 +73,18 @@ if [[ ! -d "${COMFYUI_PATH}" ]]; then
 	echo "Cloning ComfyUI"
 	echo ""
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
+	cd "${COMFYUI_PATH}" || exit 1
+else
+	echo "Checking ComfyUI for updates"
+	cd "${COMFYUI_PATH}" || exit 1
+	git pull
 fi
 
 "${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 "${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
 
-cd "${COMFYUI_PATH}" || exit 1
-git pull
-
 function CREATE_FOLDERS() {
 
-	# mkdir -p "${COMFYUI_PATH}/custom_nodes/models"
-	# mkdir -p "${COMFYUI_PATH}/input"
-	# mkdir -p "${COMFYUI_PATH}/models"
-	# mkdir -p "${COMFYUI_PATH}/models/anything-llm_models"
-	# mkdir -p "${COMFYUI_PATH}/models/forge_models"
-	# mkdir -p "${COMFYUI_PATH}/models/InvokeAI_models"
-	# mkdir -p "${COMFYUI_PATH}/models/localai_models"
-	# mkdir -p "${COMFYUI_PATH}/models/ollama_models"
-	# mkdir -p "${COMFYUI_PATH}/output"
-	# mkdir -p "${COMFYUI_PATH}/user/default/workflows"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
@@ -270,50 +261,46 @@ function LINK_FOLDERS() {
 
 function CLONE_WORKFLOWS() {
 
+	# export WORKFLOWDIR="${STACK_BASEPATH}/DATA/ai-workflows"
 	export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
+
+	if [[ ! -d "${WORKFLOWDIR}" ]]; then
+		mkdir -p "${WORKFLOWDIR}"
+	fi
+
 	cd "${WORKFLOWDIR}" || exit 1
 
-	git clone --recursive https://github.com/comfyanonymous/ComfyUI_examples.git "${WORKFLOWDIR}/comfyanonymous/ComfyUI_examples"
-
-	git clone --recursive https://github.com/cubiq/ComfyUI_Workflows.git "${WORKFLOWDIR}/cubiq/ComfyUI_Workflows"
-
-	git clone --recursive https://github.com/aimpowerment/comfyui-workflows.git "${WORKFLOWDIR}/aimpowerment/comfyui-workflows"
-
-	git clone --recursive https://github.com/wyrde/wyrde-comfyui-workflows.git "${WORKFLOWDIR}/wyrde/wyrde-comfyui-workflows"
-
-	git clone --recursive https://github.com/comfyui-wiki/workflows.git "${WORKFLOWDIR}/comfyui-wiki/workflows"
-
-	git clone --recursive https://github.com/loscrossos/comfy_workflows.git "${WORKFLOWDIR}/loscrossos/comfy_workflows"
-
-	git clone --recursive https://github.com/jhj0517/ComfyUI-workflows.git "${WORKFLOWDIR}/jhj0517/ComfyUI-workflows"
-
-	git clone --recursive https://github.com/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO.git "${WORKFLOWDIR}/ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO"
-
-	git clone --recursive https://github.com/yolain/ComfyUI-Yolain-Workflows.git "${WORKFLOWDIR}/yolain/ComfyUI-Yolain-Workflows"
-
-	git clone --recursive https://github.com/dseditor/ComfyuiWorkflows.git "${WORKFLOWDIR}/dseditor/ComfyuiWorkflows"
-
-	git clone --recursive https://github.com/Comfy-Org/workflow_templates.git "${WORKFLOWDIR}/Comfy-Org/workflow_templates"
-
-	git clone --recursive https://github.com/Comfy-Org/workflows.git "${WORKFLOWDIR}/Comfy-Org/workflows"
-
-	git clone --recursive https://github.com/xiwan/comfyUI-workflows.git "${WORKFLOWDIR}/xiwan/comfyUI-workflows"
-
-	git clone --recursive https://github.com/BoosterCore/ChaosFlow.git "${WORKFLOWDIR}/BoosterCore/ChaosFlow"
-
-	git clone --recursive https://github.com/yuyou-dev/workflow.git "${WORKFLOWDIR}/yuyou-dev/workflow"
-
-	git clone --recursive https://github.com/dci05049/Comfyui-workflows.git "${WORKFLOWDIR}/dci05049/Comfyui-workflows"
-
-	git clone --recursive https://github.com/ecjojo/ecjojo-comfyui-workflows.git "${WORKFLOWDIR}/ecjojo/ecjojo-comfyui-workflows"
-
-	git clone --recursive https://github.com/ttio2tech/ComfyUI_workflows_collection.git "${WORKFLOWDIR}/ttio2tech/ComfyUI_workflows_collection"
-
-	git clone --recursive https://github.com/pwillia7/Basic_ComfyUI_Workflows.git "${WORKFLOWDIR}/pwillia7/Basic_ComfyUI_Workflows"
-
-	git clone --recursive https://github.com/pwillia7/Basic_ComfyUI_Workflows.git "${WORKFLOWDIR}/pwillia7/Basic_ComfyUI_Workflows"
-
-	git clone --recursive https://github.com/nerdyrodent/AVeryComfyNerd.git "${WORKFLOWDIR}/nerdyrodent/AVeryComfyNerd"
+	sources=(
+		comfyanonymous/ComfyUI_examples
+		cubiq/ComfyUI_Workflows
+		aimpowerment/comfyui-workflows
+		wyrde/wyrde-comfyui-workflows
+		comfyui-wiki/workflows
+		loscrossos/comfy_workflows
+		jhj0517/ComfyUI-workflows
+		ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO
+		yolain/ComfyUI-Yolain-Workflows
+		dseditor/ComfyuiWorkflows
+		Comfy-Org/workflows
+		Comfy-Org/workflow_templates
+		xiwan/comfyUI-workflows
+		BoosterCore/ChaosFlow
+		yuyou-dev/workflow
+		dci05049/Comfyui-workflows
+		ecjojo/ecjojo-comfyui-workflows
+		ttio2tech/ComfyUI_workflows_collection
+		pwillia7/Basic_ComfyUI_Workflows
+		nerdyrodent/AVeryComfyNerd
+	)
+	for SOURCE in "${sources[@]}"; do
+		if [[ ! -d "${WORKFLOWDIR}/${SOURCE}" ]]; then
+			git clone --recursive https://github.com/"${SOURCE}".git "${WORKFLOWDIR}/${SOURCE}"
+		else
+			echo "Checking ${SOURCE} for updates"
+			cd "${WORKFLOWDIR}/${SOURCE}" || exit 1
+			git pull
+		fi
+	done
 
 }
 
@@ -436,6 +423,9 @@ function LOCAL_SETUP() {
 		uv pip install --upgrade pip
 		uv sync --all-extras
 
+		CREATE_FOLDERS
+		LINK_FOLDERS
+
 		uv pip install comfy-cli
 		yes | uv run comfy-cli install --nvidia --restore || true
 	fi
@@ -485,16 +475,19 @@ function RUN_COMFYUI() {
 LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
-INSTALL_DEFAULT_NODES=true
-INSTALL_EXTRA_NODES=true
-UPDATE=true
-
-CREATE_FOLDERS
-LINK_FOLDERS
-exit 1
-CLONE_WORKFLOWS
+INSTALL_DEFAULT_NODES=false
+INSTALL_EXTRA_NODES=false
+UPDATE=false
 
 INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
+
+CREATE_FOLDERS
+
+LINK_FOLDERS
+
+CLONE_WORKFLOWS
+
+exit 1
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 xdg-open "http://0.0.0.0:8188/"
