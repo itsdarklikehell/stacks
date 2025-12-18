@@ -269,7 +269,7 @@ echo ""
 # echo ""
 
 echo ""
-sleep 5
+sleep 3
 START_DEDUPER # >/dev/null 2>&1 &
 echo ""
 
