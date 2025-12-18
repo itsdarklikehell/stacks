@@ -1,8 +1,9 @@
 #!/bin/bash
 
-IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
-declare IP_ADDRESS
 echo "Start browser script started."
+
+IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+export IP_ADDRESS
 
 URLS=(
 	"http://${IP_ADDRESS}:8383"  # dashy
