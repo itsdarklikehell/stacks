@@ -208,6 +208,7 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "searxng" ]]; then
 		FOLDERS=(
 			"data"
+			"cache"
 		)
 	fi
 

@@ -440,14 +440,22 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/open-webui/open-webui_data
 
-  # searxng_data:
-  #   name: searxng_data
-  #   driver: local
-  #   # external: true
-  #   driver_opts:
-  #     type: none
-  #     o: bind
-  #     device: ../../../DATA/ai-stack/searxng/searxng_data
+  searxng_data:
+    name: searxng_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/searxng/searxng_data
+  searxng_cache:
+    name: searxng_cache
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/searxng/searxng_cache
 
   swarmui_backend:
     name: swarmui_backend

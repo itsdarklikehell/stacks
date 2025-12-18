@@ -19,10 +19,10 @@ services:
     #     - BUILD_TYPE=cublas
     #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
     #     - THREADS=1
-    #     - LOCALAI_IMAGE_PATH=/localai/output
-    #     - MODELS_PATH=/localai/models
+    #     - LOCALAI_IMAGE_PATH=/output
+    #     - MODELS_PATH=/models
     #     - BACKENDS_PATH=/localai/backends
-    #     - LOCALAI_IMAGE_PATH=/localai/output
+    #     - LOCALAI_IMAGE_PATH=/output
     #     - DEBUG=true
 
     labels:
@@ -37,33 +37,35 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - SERVER_PORT=${SERVER_PORT:-8083}
 
-      - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
-      - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
-      - PORT=${PORT:-8083}
-
-      - STORAGE_DIR=/app/server/storage
-      - LOCALAI_MODELS_PATH=/localai/models
-      - MODELS_PATH=/localai/models
-      - BACKENDS_PATH=/localai/backends
       - LOCALAI_AUTOLOAD_BACKEND_GALLERIES=true
       - LOCALAI_P2P=true
       - LOCALAI_FEDERATED=true
       - LOCALAI_AUTOLOAD_GALLERIES=true
       - AUTOLOAD_BACKEND_GALLERIES=true
       - LOCALAI_WATCHDOG_IDLE=true
-      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=1h
-      - LOCALAI_BACKENDS_PATH=/localai/backends
-      - LOCALAI_IMAGE_PATH=/localai/output
-      - LOCALAI_UPLOAD_PATH=/localai/uploads
-      - UPLOAD_PATH=/localai/uploads
-      - LOCALAI_GENERATED_CONTENT_PATH=/localai/output
-      - GENERATED_CONTENT_PATH=/localai/output
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
+      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=1h
       - THREADS=1
       - PROFILE=gpu-8g
       - DEBUG=true
+
+      - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
+      - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+      - PORT=${PORT:-8083}
+      - SERVER_PORT=${SERVER_PORT:-8083}
+
+      - BACKENDS_PATH=/backends
+      - GENERATED_CONTENT_PATH=/output
+      - IMAGE_PATH=/output
+      - LOCALAI_BACKENDS_PATH=/backends
+      - LOCALAI_GENERATED_CONTENT_PATH=/output
+      - LOCALAI_IMAGE_PATH=/output
+      - LOCALAI_MODELS_PATH=/models
+      - LOCALAI_UPLOAD_PATH=/uploads
+      - MODELS_PATH=/models
+      - STORAGE_DIR=/app/server/storage
+      - UPLOAD_PATH=/uploads
 
     cap_add:
       - SYS_NICE
@@ -76,34 +78,34 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
 
       - localai_cache:/.cache
       - localai_configuration:/configuration
-      - localai_backends:/localai/backends
+      - localai_backends:/backends
       # - localai_content:/localai/content/images
 
       # MODELS:
-      - anything-llm_models:/localai/models/anything-llm_models
-      - comfyui_models:/localai/models/comfyui_models
-      - forge_models:/localai/models/forge_models
-      - InvokeAI_models:/localai/models/invokeai_models
-      - localai_models:/localai/models
-      - ollama_models:/localai/models/ollama_models
+      - anything-llm_models:/models/anything-llm_models
+      - comfyui_models:/models/comfyui_models
+      - forge_models:/models/forge_models
+      - InvokeAI_models:/models/invokeai_models
+      - localai_models:/models
+      - ollama_models:/models/ollama_models
 
       # OUTPUTS
-      - anything-llm_output:/localai/output/anything-llm_output
-      - comfyui_output:/localai/output/comfyui_outputs
-      - forge_output:/localai/output/forge_output
-      - InvokeAI_output:/localai/output/InvokeAI_output
-      - localai_output:/localai/output
+      - anything-llm_output:/output/anything-llm_output
+      - comfyui_output:/output/comfyui_outputs
+      - forge_output:/output/forge_output
+      - InvokeAI_output:/output/InvokeAI_output
+      - localai_output:/output
 
       # # INPUTS
-      # - anything-llm_input:/localai/input/anything-llm_input
-      # - comfyui_input:/localai/input/comfyui_inputs
-      # - forge_input:/localai/input/forge_input
-      # - InvokeAI_input:/localai/input/InvokeAI_input
-      # - localai_input:/localai/input
+      # - anything-llm_input:/input/anything-llm_input
+      # - comfyui_input:/input/comfyui_inputs
+      # - forge_input:/input/forge_input
+      # - InvokeAI_input:/input/InvokeAI_input
+      # - localai_input:/input
 
     # user: ${PUID:-1000}:${PGID:-1000}
 

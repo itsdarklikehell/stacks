@@ -52,6 +52,10 @@ function SETUP_ENV() {
 	fi
 	export IP_ADDRESS
 
+	cd "${STACK_BASEPATH}" || exit
+	git pull # origin main
+	chmod +x "install-stack.sh"
+
 }
 SETUP_ENV
 
