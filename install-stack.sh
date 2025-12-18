@@ -67,7 +67,9 @@ function SETUP_ENV() {
 	fi
 	export IP_ADDRESS
 
-	cd "${STACK_BASEPATH}"echo ""
+	cd "${STACK_BASEPATH}" || exit 1
+
+	echo ""
 	START_CUSHYSTUDIO >/dev/null 2>&1 &
 	echo "" || exit
 	git pull # origin main
