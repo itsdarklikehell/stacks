@@ -163,10 +163,10 @@ function LINK_FOLDERS() {
 		fi
 
 	}
-	# ## InvokeAI models
-	# LINK="${COMFYUI_PATH}/models/InvokeAI_models"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
-	# LINKER
+	## InvokeAI models
+	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+	LINKER
 
 	## Anything-LLM models
 	LINK="${COMFYUI_PATH}/models/anything-llm_models"
@@ -188,67 +188,67 @@ function LINK_FOLDERS() {
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/forge_models"
 	LINKER
 
-	# ## ComfyUI models
-	# LINK="${COMFYUI_PATH}/models"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	# LINKER
+	## ComfyUI models
+	LINK="${COMFYUI_PATH}/models"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	LINKER
 
-	# ## ComfyUI models > custom_nodes
-	# LINK="${COMFYUI_PATH}/custom_nodes/models"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	# LINKER
+	## ComfyUI models > custom_nodes
+	LINK="${COMFYUI_PATH}/custom_nodes/models"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	LINKER
 
-	# ## ComfyUI custom_nodes
-	# LINK="${COMFYUI_PATH}/custom_nodes"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-	# LINKER
+	## ComfyUI custom_nodes
+	LINK="${COMFYUI_PATH}/custom_nodes"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
+	LINKER
 
 	## ComfyUI workflows
 	LINK="${COMFYUI_PATH}/user/default/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
 
-	# ## ComfyUI workflows > ComfyUIMini
-	# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-	# LINKER
+	## ComfyUI workflows > ComfyUIMini
+	LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+	LINKER
 
 	# ## ComfyUI workflows > models/workflows
 	LINK="${COMFYUI_PATH}/models/workflows/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
 
-	# ## ComfyUI output
-	# LINK="${COMFYUI_PATH}/output"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
-	# LINKER
+	## ComfyUI output
+	LINK="${COMFYUI_PATH}/output"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-outputs"
+	LINKER
 
-	# ## ComfyUI input
-	# LINK="${COMFYUI_PATH}/input"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
-	# LINKER
+	## ComfyUI input
+	LINK="${COMFYUI_PATH}/input"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-inputs"
+	LINKER
 
-	# ## Variety input
-	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-	# ORIGIN="/home/${USER}/.config/variety/Downloaded"
-	# LINKER
-	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	# ORIGIN="/home/${USER}/.config/variety/Fetched"
-	# LINKER
-	# LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-	# ORIGIN="/home/${USER}/.config/variety/Favorites"
-	# LINKER
+	## Variety input
+	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+	ORIGIN="/home/${USER}/.config/variety/Downloaded"
+	LINKER
+	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+	ORIGIN="/home/${USER}/.config/variety/Fetched"
+	LINKER
+	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+	ORIGIN="/home/${USER}/.config/variety/Favorites"
+	LINKER
 
-	# ## Variety output
-	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	# ORIGIN="/home/${USER}/.config/variety/Downloaded"
-	# LINKER
-	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	# ORIGIN="/home/${USER}/.config/variety/Fetched"
-	# LINKER
-	# LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	# ORIGIN="/home/${USER}/.config/variety/Favorites"
-	# LINKER
+	## Variety output
+	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+	ORIGIN="/home/${USER}/.config/variety/Downloaded"
+	LINKER
+	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	ORIGIN="/home/${USER}/.config/variety/Fetched"
+	LINKER
+	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+	ORIGIN="/home/${USER}/.config/variety/Favorites"
+	LINKER
 
 }
 
