@@ -68,7 +68,7 @@ folders=(
 for folder in "${folders[@]}"; do
 	echo "Removing Leftovers and deduplicating ${folder}"
 
-	rmlint -gf -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
+	rmlint -gfkm -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
 
 	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq # >/dev/null 2>&1 &
 
