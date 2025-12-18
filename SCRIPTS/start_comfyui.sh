@@ -416,10 +416,12 @@ function LOCAL_SETUP() {
 	# ./install.sh
 
 	if [[ -f .venv/bin/activate ]]; then
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 	else
 		export UV_LINK_MODE=copy
 		uv venv --clear --seed
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 
 		uv pip install --upgrade pip
@@ -449,10 +451,12 @@ function RUN_COMFYUI() {
 	cd "${COMFYUI_PATH}" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 	else
 		export UV_LINK_MODE=copy
 		uv venv --clear --seed
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 
 		uv pip install --upgrade pip

@@ -56,9 +56,11 @@ function RUN_OLLMVTUBER() {
 	cd "${OLLMVT_PATH}" || exit 1
 
 	if [[ -f .venv/bin/activate ]]; then
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 	else
 		uv venv --clear --seed
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 		uv pip install --upgrade pip
 		uv sync --all-extras
