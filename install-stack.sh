@@ -202,10 +202,6 @@ function START_BROWSER() {
 	fi
 }
 
-function START_DEDUPER() {
-	"${STACK_BASEPATH}"/SCRIPTS/start_deduper.sh
-}
-
 function SETUP_ESSENTIALS_STACK() {
 	export STACK_NAME="essential"
 	INSTALL_STACK
@@ -260,11 +256,6 @@ PULL_MODELS # >/dev/null 2>&1 &
 echo ""
 
 echo ""
-sleep 3
-START_DEDUPER >/dev/null 2>&1 &
-echo ""
-
-echo ""
 START_BROWSER >/dev/null 2>&1 &
 echo ""
 
@@ -273,7 +264,7 @@ echo ""
 echo "Installation complete.."
 echo ""
 echo "To start a browser opening tabs with all of the stacks services:"
-echo "run: start_browser.sh"
+echo "run: 'start_browser.sh'"
 echo ""
 echo "to start ComfyUI's service:"
 echo "run: 'start_comfyui.sh'"
@@ -287,13 +278,13 @@ echo ""
 echo "to start Openllm-Vtuber's service:"
 echo "run: 'start_ollmvt.sh'"
 echo ""
-echo "to pull a default set of models into ollama:"
+echo "to pull the default set of models () into ollama:"
 echo "run: 'pull_moldels.sh'"
 echo ""
 echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
 echo "run: 'start_deduper.sh'"
 echo ""
 echo ""
-echo "Have fun generating..."
+echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
 
 # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
