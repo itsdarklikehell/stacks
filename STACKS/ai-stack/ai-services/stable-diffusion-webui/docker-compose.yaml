@@ -24,14 +24,14 @@ services:
       - LOCAL_AI_API_KEY=sk-123abc
       - LOCAL_AI_BASE_PATH=http://0.0.0.0:8083/v1
       - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
-      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
+      - LOCAL_AI_MODEL_TOKEN_LIMIT=16000
       - MODEL_NAME=gemma-3-12b-it
       - MODELS_PATH=/models
       - MULTIMODAL_MODEL=moondream2-20250414
       - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
       - OLLAMA_HOST=http://0.0.0.0:11434
       - OLLAMA_MODEL_PREF=gemma3:latest
-      - OLLAMA_MODEL_TOKEN_LIMIT=4096
+      - OLLAMA_MODEL_TOKEN_LIMIT=16000
       - PORT=${PORT:-8501}
       - PROFILE=gpu-8g
       - STREAMLIT_SERVER_HEADLESS=true
