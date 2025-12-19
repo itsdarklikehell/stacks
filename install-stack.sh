@@ -19,6 +19,7 @@ export START_CUSHYSTUDIO="true"                                                 
 export START_BROWSER="true"                                                     # false, true
 export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
+export AUTOSTART="disabled"                                                     # disabled, enabled
 
 # if [[ "$1" == "-i" ]] || [[ "$1" == "--interactive" ]]; then
 # 	echo "Interactive mode enabled."
@@ -129,43 +130,54 @@ function CLONE_REPOS() {
 }
 
 function SETUP_AUTOSTART() {
-	scripts=(
+	bin_scripts=(
 		start_browser.sh
 		start_comfyui.sh
 		start_comfyui-mini.sh
 		start_cushystudio.sh
+		start_deduper.sh
 		start_ollmvt.sh
 		pull_models.sh
 		install-stack.sh
 	)
-	desktop_scripts=(
-		start_browser.desktop
+	autostart_desktop_scripts=(
 		start_comfyui.desktop
-		start_comfyui-mini.desktop
-		start_cushystudio.desktop
-		start_ollmvt.desktop
 	)
-	for SCRIPT in "${scripts[@]}"; do
+	# start_browser.desktop
+	# start_comfyui-mini.desktop
+	# start_cushystudio.desktop
+	# start_ollmvt.desktop
+	for SCRIPT in "${bin_scripts[@]}"; do
 		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
 			rm "/home/${USER}/bin/${SCRIPT}"
-			ln -s "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			ln -sf "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/${SCRIPT}"
 		else
 			rm "/home/${USER}/bin/${SCRIPT}"
-			ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
+			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		fi
 		chmod +x "/home/${USER}/bin/${SCRIPT}"
-
 	done
-	for SCRIPT in "${desktop_scripts[@]}"; do
-		rm "/home/${USER}/.config/autostart/${SCRIPT}"
-		ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
-		sudo ln -s "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
+	if [[ "${AUTOSTART}" == "enabled" ]]; then
+		echo "autostart: ${AUTOSTART}"
+		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
+			rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
+			sudo ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
 
-		chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
-		sudo chmod +x "/usr/share/applications/${SCRIPT}"
-	done
+			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
+			sudo chmod +x "/usr/share/applications/${SCRIPT}"
+		done
+	elif [[ "${AUTOSTART}" == "disabled" ]]; then
+		echo "autostart: ${AUTOSTART}"
+		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
+			sudo unlink "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			sudo rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+		done
+	else
+		echo "AUTOSTART=VAR NOT SET, skipping."
+	fi
 }
 
 function INSTALL_STACK() {
@@ -244,11 +256,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_NETWORKS

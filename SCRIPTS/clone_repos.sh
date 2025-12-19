@@ -404,7 +404,7 @@ function CLONE_COMFYUI() {
 				rm -rf "${LINK}"
 
 				# echo "Symlinking ${LINK} to ${ORIGIN}"
-				ln -s "${ORIGIN}" "${LINK}"
+				ln -sf "${ORIGIN}" "${LINK}"
 			else
 				# echo "${LINK} is not a symlink nor a existing directory"
 
@@ -422,7 +422,7 @@ function CLONE_COMFYUI() {
 
 				# echo "Symlinking ${LINK} to ${ORIGIN}"
 				if [[ -d "${ORIGIN}" ]]; then
-					ln -s "${ORIGIN}" "${LINK}"
+					ln -sf "${ORIGIN}" "${LINK}"
 				fi
 			fi
 
@@ -819,7 +819,7 @@ function CLONE_COMFYUIMINI() {
 	fi
 
 	rm -rf "workflows"
-	ln -s "${STACK_BASEPATH}/DATA/ai-workflows" "workflows"
+	ln -sf "${STACK_BASEPATH}/DATA/ai-workflows" "workflows"
 
 	function LOCAL_SETUP() {
 
@@ -936,7 +936,7 @@ function LINK_FOLDERS() {
 			rm -rf "${LINK}"
 
 			# echo "Symlinking ${LINK} to ${ORIGIN}"
-			ln -s "${ORIGIN}" "${LINK}"
+			ln -sf "${ORIGIN}" "${LINK}"
 		else
 			# echo "${LINK} is not a symlink nor a existing directory"
 
@@ -954,7 +954,7 @@ function LINK_FOLDERS() {
 
 			# echo "Symlinking ${LINK} to ${ORIGIN}"
 			if [[ -d "${ORIGIN}" ]]; then
-				ln -s "${ORIGIN}" "${LINK}"
+				ln -sf "${ORIGIN}" "${LINK}"
 			fi
 		fi
 

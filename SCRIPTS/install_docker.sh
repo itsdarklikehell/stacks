@@ -62,7 +62,7 @@ function INSTALL_DOCKER() {
 			echo "/var/lib/docker is just a plain directory"
 			# sudo mv /var/lib/docker/* "${DOCKER_BASEPATH}"
 			mkdir "${DOCKER_BASEPATH}"
-			sudo ln -s "${DOCKER_BASEPATH}" "/var/lib/docker"
+			sudo ln -sf "${DOCKER_BASEPATH}" "/var/lib/docker"
 			sudo ls -la "/var/lib/docker"
 		fi
 
