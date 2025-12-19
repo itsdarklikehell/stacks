@@ -3,12 +3,15 @@
 models=(
 	'embeddinggemma:latest'
 	'gemma3:latest'
+	'qwen3:latest'
+	'llama3.2:latest'
+	'deepseek-r1:latest'
+	'gpt-oss:latest'
 	'llava:latest'
 )
 
 # container_name to check if ollama docker service is running:
 container_name="ollama"
-
 PULL_MODELS() {
 	for model in "${models[@]}"; do
 		echo "Pulling model: ${model}"
