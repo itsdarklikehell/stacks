@@ -6,5 +6,5 @@ SECRETS/*
 .vscode
 node_modules
 DATA/*
-rmlint.json
-rmlint.sh
+SCRIPTS/rmlint.json
+SCRIPTS/rmlint.sh
