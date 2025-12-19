@@ -30,7 +30,7 @@ services:
       # - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
       # - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
       - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
-      - OLLAMA_MODEL_PREF=deepseek-r1:latest
+      - OLLAMA_MODEL_PREF=gemma3:latest
       - OLLAMA_MODEL_TOKEN_LIMIT=4096
       - OLLAMA_KEEP_ALIVE_TIMEOUT=5m
       - PASSWORDLOWERCASE=1
