@@ -267,20 +267,20 @@ SETUP_AI_STACK
 echo ""
 
 echo ""
-PULL_MODELS >/dev/null 2>&1 &
+PULL_MODELS # >/dev/null 2>&1 &
 echo ""
 
-echo ""
-START_COMFYUI >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_COMFYUI >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_CUSHYSTUDIO >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_CUSHYSTUDIO >/dev/null 2>&1 &
+# echo ""
 
-echo ""
-START_OLLMVT >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_OLLMVT >/dev/null 2>&1 &
+# echo ""
 
 echo ""
 sleep 3
