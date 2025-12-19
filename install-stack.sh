@@ -261,6 +261,8 @@ echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
+alias ollama='docker exec -it ollama ollama'
+
 echo "Installation should be complete now.."
 echo ""
 echo "To start a browser opening tabs with all of the stacks services:"
@@ -284,7 +286,7 @@ echo ""
 echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
 echo "run: 'start_deduper.sh'"
 echo ""
-echo "Finally, to be able to use the ollama cli as if its running locally you can add:"
+echo "Finally, you should be able to use the ollama cli as normal as if its running locally, to make this permanent you can add:"
 echo "alias ollama='docker exec -it ollama ollama'"
 echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
 echo ""
