@@ -21,11 +21,6 @@ export TWITCH_CLIENT_ID="your_client_id"                                        
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export AUTOSTART="disabled"                                                     # disabled, enabled
 
-# if [[ "$1" == "-i" ]] || [[ "$1" == "--interactive" ]]; then
-# 	echo "Interactive mode enabled."
-# 	export INTERACTIVE=true
-# fi
-
 function SETUP_ENV() {
 
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
@@ -256,11 +251,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 ### STACKS:
 CREATE_NETWORKS
