@@ -261,7 +261,7 @@ echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-echo "Installation complete.."
+echo "Installation should be complete now.."
 echo ""
 echo "To start a browser opening tabs with all of the stacks services:"
 echo "run: 'start_browser.sh'"
