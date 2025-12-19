@@ -196,24 +196,6 @@ function PULL_MODELS() {
 	fi
 }
 
-function START_OLLMVT() {
-	if [[ "${START_OLLMVT}" == "true" ]]; then
-		"${STACK_BASEPATH}"/SCRIPTS/start_ollmvt.sh
-	fi
-}
-
-function START_COMFYUI() {
-	if [[ "${START_COMFYUI}" == "true" ]]; then
-		"${STACK_BASEPATH}"/SCRIPTS/start_comfyui.sh
-	fi
-}
-
-function START_CUSHYSTUDIO() {
-	if [[ "${START_CUSHYSTUDIO}" == "true" ]]; then
-		"${STACK_BASEPATH}"/SCRIPTS/start_cushystudio.sh
-	fi
-}
-
 function START_BROWSER() {
 	if [[ "${START_BROWSER}" == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/start_browser.sh
@@ -277,18 +259,6 @@ echo ""
 PULL_MODELS # >/dev/null 2>&1 &
 echo ""
 
-# echo ""
-# START_COMFYUI >/dev/null 2>&1 &
-# echo ""
-
-# echo ""
-# START_CUSHYSTUDIO >/dev/null 2>&1 &
-# echo ""
-
-# echo ""
-# START_OLLMVT >/dev/null 2>&1 &
-# echo ""
-
 echo ""
 sleep 3
 START_DEDUPER >/dev/null 2>&1 &
@@ -301,5 +271,26 @@ echo ""
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
 echo "Installation complete.."
+echo ""
+echo "To start a browser opening tabs with all of the stacks services:"
+echo "type: start_browser.sh"
+echo ""
+echo "to start ComfyUI's service:"
+echo "type: 'start_comfyui.sh'"
+echo ""
+echo "to start ComfyUIMini's service:"
+echo "type: 'start_comfyui-mini.sh'"
+echo ""
+echo "to start CushyStudio's service:"
+echo "type: 'start_cushystudio.sh'"
+echo ""
+echo "to start Openllm-Vtuber's service:"
+echo "type: 'start_ollmvt.sh'"
+echo ""
+echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
+echo "type: 'start_deduper.sh'"
+echo ""
+echo ""
+echo "Have fun generating..."
 
 # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
