@@ -36,5 +36,31 @@ PULL_MODELS() {
 		fi
 	done
 }
+REMOVE_MODELS() {
+	for model in "${models[@]}"; do
+		echo "Removing model: ${model}"
+		if command -v ollama >/dev/null 2>&1; then
+			ollama rm "${model}" # >/dev/null 2>&1
+		elif docker inspect "${container_name}" >/dev/null 2>&1; then
+			echo "The container ${container_name} exists."
+			if docker inspect -f '{{.State.Status}}' "${container_name}" | grep -q "running" || true; then
+				docker exec -it "${container_name}" sh -c "ollama rm ${model}"
+			else
+				echo "The container ${container_name} is not running."
+				docker start "${container_name}"
+			fi
+		else
+			echo "The container ${container_name} does not exist."
+			# source ai-stack/ai-services/ollama/.env
+			# Create and start the container if it does not exist
+
+			# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
+			# docker compose -f ai-stack/ai-services/base.docker-compose.yaml -f ai-stack/ai-services/ollama/docker-compose.yaml
+		fi
+	done
+}
+
+# REMOVE_MODELS
 
 PULL_MODELS
