@@ -16,6 +16,7 @@ URLS=(
 	"http://${IP_ADDRESS}:11434" # ollama
 	"http://${IP_ADDRESS}:8080"  # open-webui
 	"http://${IP_ADDRESS}:8081"  # searxng
+	"http://${IP_ADDRESS}:8082"  # dozzle
 	"http://${IP_ADDRESS}:8383"  # dashy
 	"http://${IP_ADDRESS}:8088"  # it-tools
 	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
