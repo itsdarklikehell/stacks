@@ -186,6 +186,70 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/immich-server/immich-server_db
 
+  jellyfin_config:
+    name: jellyfin_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_config
+  jellyfin_tvseries:
+    name: jellyfin_tvseries
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_tvseries
+  jellyfin_movies:
+    name: jellyfin_movies
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_movies
+  jellyfin_music:
+    name: jellyfin_music
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_music
+  jellyfin_podcasts:
+    name: jellyfin_podcasts
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_podcasts
+  jellyfin_audiobooks:
+    name: jellyfin_audiobooks
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_audiobooks
+  jellyfin_recordings:
+    name: jellyfin_recordings
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_recordings
+  jellyfin_photos:
+    name: jellyfin_photos
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_photos
+  jellyfin_books:
+    name: jellyfin_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_books
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

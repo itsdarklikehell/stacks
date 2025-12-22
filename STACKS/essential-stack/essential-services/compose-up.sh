@@ -15,6 +15,7 @@ COMPOSE_FILES=(
 	immich-server
 	# immich-server-genius
 	it-tools
+	jellyfin
 	nginx-proxy-manager
 	portainer
 	portracker
@@ -58,6 +59,20 @@ function SETUP_FOLDERS() {
 			"server-data"
 			"daemon-config"
 			"postgress-data"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "jellyfin" ]]; then
+		FOLDERS=(
+			"audiobooks"
+			"books"
+			"config"
+			"movies"
+			"music"
+			"photos"
+			"podcasts"
+			"recordings"
+			"tvseries"
 		)
 	fi
 

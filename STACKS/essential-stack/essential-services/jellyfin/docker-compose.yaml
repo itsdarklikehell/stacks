@@ -1,0 +1,72 @@
+services:
+  jellyfin:
+    image: ${IMAGE:-lscr.io/linuxserver/jellyfin:latest}
+    container_name: ${NAME:-jellyfin}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8088}
+      - JELLYFIN_PublishedServerUrl=http://${IP_ADDRESS:-192.168.178.63}
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - jellyfin_audiobooks:/data/audiobooks
+      - jellyfin_books:/data/books
+      - jellyfin_config:/config
+      - jellyfin_movies:/data/movies
+      - jellyfin_music:/data/music
+      - jellyfin_photos:/data/photos
+      - jellyfin_podcasts:/data/podcasts
+      - jellyfin_recordings:/data/recordings
+      - jellyfin_tvseries:/data/tvshows
+
+    hostname: ${NAME:-jellyfin}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-8096}:8096
+      - 8920:8920
+      - 7359:7359/udp
+      - 1900:1900/udp
+
+    env_file:
+      - ./jellyfin/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test: CMD curl -f http://localhost:${PORT:-8088}/health
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
