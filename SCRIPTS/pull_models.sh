@@ -3,11 +3,23 @@
 models=(
 	'embeddinggemma:latest'
 	'gemma3:latest'
+	'huihui_ai/gemma3-abliterated:latest'
 	'qwen3:latest'
+	'huihui_ai/qwen3-abliterated:latest'
 	'llama3.2:latest'
 	'deepseek-r1:latest'
+	'huihui_ai/deepseek-r1-abliterated:latest'
 	'gpt-oss:latest'
+	'moondream:latest'
 	'llava:latest'
+	'smallthinker:latest'
+	'smollm2:latest'
+	'llava-phi3:latest'
+	'llama2-uncensored:latest'
+	'artifish/llama3.2-uncensored:latest'
+	'dolphin-phi:latest'
+	'dolphin-mistral:latest'
+	'dolphin-mixtral:latest'
 )
 
 # container_name to check if ollama docker service is running:
