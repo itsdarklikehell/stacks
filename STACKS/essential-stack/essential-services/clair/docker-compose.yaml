@@ -23,7 +23,7 @@ x-anchors:
 
     volumes:
       - ../../../DATA/essential-stack/clair/local-dev/clair:/etc/clair:ro
-      - ../../../DATA/essential-stack/clair:/src
+      - ../../../DATA/essential-stack/clair/:/src
     # Can't specify the config via environment because maps are not recursively
     # merged.
 
@@ -35,7 +35,8 @@ x-anchors:
       - /etc/clair/${CLAIR_CONFIG:-config.yaml}
 
     restart: unless-stopped
-    working_dir: ../../../DATA/essential-stack/clair/src/cmd/clair
+
+    working_dir: /src/cmd/clair
 
 services:
   clair-indexer:
@@ -59,7 +60,7 @@ services:
 
     volumes:
       - type: bind
-        source: ../../../DATA/essential-stack/clair/local-dev/clair/init.sql
+        source: ../../../DATA/essential-stack/clair//local-dev/clair/init.sql
         target: /docker-entrypoint-initdb.d/init.sql
 
     healthcheck:
@@ -273,7 +274,7 @@ services:
     container_name: quay-skopeo
     profiles:
       - quay
-      
+
     image: *skopeo-image
     entrypoint:
       - sleep
