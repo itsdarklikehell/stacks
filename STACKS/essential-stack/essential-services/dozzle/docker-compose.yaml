@@ -56,7 +56,7 @@ services:
     stdin_open: true
 
     healthcheck:
-      test: ["CMD", "/dozzle", "healthcheck"]
+      test: [CMD, /dozzle, healthcheck]
       interval: 3s
       timeout: 30s
       retries: 5
