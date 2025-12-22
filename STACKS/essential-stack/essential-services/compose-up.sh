@@ -50,6 +50,12 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ "${SERVICE_NAME}" == "dtop" ]]; then
+		FOLDERS=(
+			"data"
+		)
+	fi
+
 	if [[ "${SERVICE_NAME}" == "immich-server" ]]; then
 		FOLDERS=(
 			"uploads"
