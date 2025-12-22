@@ -19,6 +19,7 @@ URLS=(
 	"http://${IP_ADDRESS}:8082"  # dozzle
 	"http://${IP_ADDRESS}:8383"  # dashy
 	"http://${IP_ADDRESS}:8088"  # it-tools
+	"http://${IP_ADDRESS}:8090"  # beszel
 	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
 	"http://${IP_ADDRESS}:9000"  # portainer
 	"http://${IP_ADDRESS}:4999"  # portracker

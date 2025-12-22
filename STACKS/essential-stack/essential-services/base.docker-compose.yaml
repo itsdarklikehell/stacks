@@ -21,6 +21,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
+  scanopy-daemon_config:
+    name: scanopy-daemon_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/scanopy/scanopy-daemon_config
+
   dozzle_data:
     name: dozzle_data
     driver: local

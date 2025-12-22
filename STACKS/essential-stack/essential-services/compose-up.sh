@@ -9,6 +9,7 @@ COMPOSE_FILES=(
 	dozzle
 	dtop
 	dashy
+	scanopy
 	# homarr
 	# immich-server
 	# immich-server-genius
@@ -16,6 +17,7 @@ COMPOSE_FILES=(
 	nginx-proxy-manager
 	portainer
 	portracker
+	beszel
 	# watchtower
 )
 
@@ -50,7 +52,29 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ "${SERVICE_NAME}" == "scanopy" ]]; then
+		FOLDERS=(
+			"data"
+			"daemon-config"
+			"postgres-data"
+		)
+	fi
+
 	if [[ "${SERVICE_NAME}" == "dtop" ]]; then
+		FOLDERS=(
+			"data"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "beszel" ]]; then
+		FOLDERS=(
+			"data"
+			"socket"
+			"agent_data"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "beszel-agent" ]]; then
 		FOLDERS=(
 			"data"
 		)

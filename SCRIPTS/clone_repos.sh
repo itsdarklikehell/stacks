@@ -61,6 +61,23 @@ function CLONE_ANYTHINGLLM() {
 
 }
 
+function CLONE_SCANOPY() {
+
+	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+
+	if [[ ! -d "scanopy" ]]; then
+		echo "Cloning scanopy"
+		echo ""
+		git clone --recursive https://github.com/scanopy/scanopy.git scanopy
+		cd scanopy || exit 1
+	else
+		echo "Checking scanopy for updates"
+		cd scanopy || exit 1
+		git pull
+	fi
+
+}
+
 function CLONE_PUPPETEER() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
@@ -865,6 +882,7 @@ function CLONE_COMFYUIMINI() {
 }
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+CLONE_SCANOPY # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &

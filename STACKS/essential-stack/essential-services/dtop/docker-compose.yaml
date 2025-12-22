@@ -9,8 +9,8 @@ services:
       - com.ouroboros.enable=true
       - autoheal-app
       - autoheal-app=true
-      - dtop-app=true
-      - dtop
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
