@@ -100,7 +100,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"uploads"
 			"model-cache"
-			"db"
+			"database"
 		)
 	fi
 

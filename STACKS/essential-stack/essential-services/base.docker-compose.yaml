@@ -178,13 +178,13 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/immich-server/immich-server_model-cache
-  immich-server_db:
-    name: immich-server_db
+  immich-server_database:
+    name: immich-server_database
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/immich-server/immich-server_db
+      device: ../../../DATA/essential-stack/immich-server/immich-server_database
 
   jellyfin_config:
     name: jellyfin_config
@@ -207,13 +207,20 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/jellyfin/jellyfin_movies
+  jellyfin_concerts:
+    name: jellyfin_concerts
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /media/hans/beestation/Files/2_Concerten
   jellyfin_music:
     name: jellyfin_music
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_music
+      device: /media/hans/beestation/Files/1MUSIC
   jellyfin_podcasts:
     name: jellyfin_podcasts
     driver: local
@@ -241,14 +248,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_photos
+      device: /media/hans/beestation/Photos
   jellyfin_books:
     name: jellyfin_books
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_books
+      device: /media/hans/beestation/Files/Calibre
 
 secrets:
   INITIAL_ADMIN_EMAIL:
