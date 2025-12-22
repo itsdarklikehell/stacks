@@ -130,12 +130,6 @@ function INSTALL_DOCKER() {
 
 }
 
-function CREATE_NETWORKS() {
-
-	"${STACK_BASEPATH}"/SCRIPTS/create_networks.sh
-
-}
-
 function CREATE_SECRETS() {
 
 	"${STACK_BASEPATH}"/SCRIPTS/create_secrets.sh
@@ -279,7 +273,6 @@ CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ### STACKS:
-CREATE_NETWORKS
 CREATE_SECRETS
 
 echo ""
