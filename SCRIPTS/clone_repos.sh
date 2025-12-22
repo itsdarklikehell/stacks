@@ -761,6 +761,7 @@ function CLONE_COMFYUI() {
 			# shellcheck source=/dev/null
 			source .venv/bin/activate
 		else
+
 			export UV_LINK_MODE=copy
 			uv venv --clear --seed
 			# shellcheck source=/dev/null
@@ -771,6 +772,8 @@ function CLONE_COMFYUI() {
 
 			uv pip install comfy-cli
 			yes | uv run comfy-cli install --nvidia --restore || true
+			uv run comfy-cli --install-completion
+
 		fi
 
 	}
