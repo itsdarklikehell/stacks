@@ -86,6 +86,17 @@ function CLONE_PUPPETEER() {
 		yes | npx npm-check-updates -u || true # >/dev/null 2>&1 &
 		bash docker/pack.sh
 
+		# npm init --yes
+		# npm install puppeteer puppeteer-core @puppeteer/browsers
+
+		# ./install.sh
+		# uv venv --clear --seed
+		# shellcheck source=/dev/null
+		# source .venv/bin/activate
+		#
+		# uv sync --all-extras
+		# uv pip install -e .
+		# uv pip install -r requirements.txt
 	}
 
 	LOCAL_SETUP # >/dev/null 2>&1 &
@@ -798,6 +809,19 @@ function CLONE_COMFYUIMINI() {
 		chmod +x scripts/start.sh
 		./scripts/start.sh >/dev/null 2>&1 &
 		# npm start
+
+		# if [[ ! -f .venv/bin/activate ]]; then
+		# 	export UV_LINK_MODE=copy
+		# 	uv venv --clear --seed
+		#   shellcheck source=/dev/null
+		# 	source .venv/bin/activate
+
+		# 	uv pip install --upgrade pip
+		# 	uv sync --all-extras
+
+		# 	uv pip install comfy-cli
+		# 	yes | uv run comfy-cli install --nvidia --restore || true
+		# fi
 
 	}
 
