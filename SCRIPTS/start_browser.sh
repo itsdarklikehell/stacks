@@ -38,9 +38,11 @@ URLS=(
 )
 
 function RUN_BROWSER() {
+
 	for URL in "${URLS[@]}"; do
 		xdg-open "${URL}" >/dev/null 2>&1 &
 	done
+
 }
 
 RUN_BROWSER

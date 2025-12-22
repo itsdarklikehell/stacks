@@ -21,6 +21,7 @@ cd "${SCRIPT_DIR}" || exit 1
 curl -fsSL https://get.pnpm.io/install.sh | sh - || true
 
 function IMPORT_NLTK() {
+
 	echo "Importing NLTK averaged_perceptron_tagger_eng"
 	temp_file=$(mktemp /tmp/import_nltk.py)
 
@@ -31,6 +32,7 @@ EOF
 
 	python "${temp_file}"
 	rm "${temp_file}"
+
 }
 
 if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
@@ -40,6 +42,7 @@ fi
 # cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 function CLONE_ANYTHINGLLM() {
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "anything-llm" ]]; then
@@ -58,6 +61,7 @@ function CLONE_ANYTHINGLLM() {
 }
 
 function CLONE_PUPPETEER() {
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "puppeteer" ]]; then
@@ -72,6 +76,7 @@ function CLONE_PUPPETEER() {
 	fi
 
 	function LOCAL_SETUP() {
+
 		echo "Using Local setup"
 		ni # >/dev/null 2>&1 &
 
@@ -92,6 +97,7 @@ function CLONE_PUPPETEER() {
 	}
 
 	LOCAL_SETUP # >/dev/null 2>&1 &
+
 }
 
 function CLONE_OLLMVT() {
@@ -109,6 +115,7 @@ function CLONE_OLLMVT() {
 	fi
 
 	function LOCAL_SETUP() {
+
 		export INSTALL_WHISPER=true
 		export INSTALL_BARK=true
 		export UV_LINK_MODE=copy
@@ -152,53 +159,66 @@ function CLONE_OLLMVT() {
 			git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models n0099-TouhouCannonBall-Live2d-Models
 			# git clone --recursive https://github.com/Eikanya/Live2d-model Eikanya-Live2d-model
 			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d andatoshiki-toshiki-live2d
+
 		}
+
 		function CLONE_VOICE_MODELS() {
 
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
+
 			# if [[ ! -d "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17" ]]; then
 			#     git clone https://huggingface.co/csukuangfj/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17
 			# fi
+
 			if [[ ! -d "vits-melo-tts-zh_en" ]]; then
 				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-melo-tts-zh_en.tar.bz2
 				tar xvf vits-melo-tts-zh_en.tar.bz2
 				rm vits-melo-tts-zh_en.tar.bz2
 			fi
+
 			if [[ ! -d "vits-piper-en_US-glados" ]]; then
 				# wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-glados.tar.bz2
 				# tar xvf vits-piper-en_US-glados.tar.bz2
 				# rm vits-piper-en_US-glados.tar.bz2
 				git clone --recursive https://huggingface.co/csukuangfj/vits-piper-en_US-glados
 			fi
+
 			if [[ ! -d "vits-piper-en_US-libritts_r-medium" ]]; then
 				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-libritts_r-medium.tar.bz2
 				tar xvf vits-piper-en_US-libritts_r-medium.tar.bz2
 				rm vits-piper-en_US-libritts_r-medium.tar.bz22
 			fi
+
 			if [[ ! -d "vits-ljs" ]]; then
 				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-ljs.tar.bz2
 				tar xvf vits-ljs.tar.bz2
 				rm vits-ljs.tar.bz2
 			fi
+
 			if [[ ! -d "vits-vctk" ]]; then
 				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-vctk.tar.bz2
 				tar xvf vits-vctk.tar.bz2
 				rm vits-vctk.tar.bz2
 			fi
+
 			if [[ ! -d "vits-piper-en_US-lessac-medium" ]]; then
 				wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-medium.tar.bz2
 				tar xvf vits-piper-en_US-lessac-medium.tar.bz2
 				rm vits-piper-en_US-lessac-medium.tar.bz2
 			fi
+
 			if [[ ! -d "vits-piper-en_GB-cori-high " ]]; then
 				git clone https://huggingface.co/csukuangfj/vits-piper-en_GB-cori-high
 			fi
+
 			if [[ ! -d "vits-piper-nl_NL-miro-high " ]]; then
 				git clone https://huggingface.co/csukuangfj/vits-piper-nl_NL-miro-high
 			fi
+
 		}
+
 		function CLONE_TTS_BACKENDS() {
 
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
@@ -225,14 +245,19 @@ function CLONE_OLLMVT() {
 			# # If you encounter sox compatibility issues
 			# # ubuntu
 			sudo apt install -y sox libsox-dev
+
 		}
+
 		CLONE_TTS_BACKENDS >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
 		# uv run run_server.py >/dev/null 2>&1 &
 		CLONE_L2D_MODELS >/dev/null 2>&1 &
 		CLONE_VOICE_MODELS >/dev/null 2>&1 &
+
 	}
+
 	function DOCKER_SETUP() {
+
 		echo "Using Docker setup"
 		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
 		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
@@ -240,13 +265,16 @@ function CLONE_OLLMVT() {
 
 		# docker build -t open-llm-vtuber .
 		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
+
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
+
 }
 
 function CLONE_SWARMUI() {
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "swarmui" ]]; then
@@ -272,6 +300,7 @@ function CLONE_SWARMUI() {
 		chmod +x launch-linux.sh
 
 	}
+
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
 		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
@@ -282,10 +311,12 @@ function CLONE_SWARMUI() {
 		cp -f "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 		# docker build -t swarmui .
 		./launchtools/custom-launch-docker.sh
+
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
+
 }
 
 function CLONE_COMFYUI() {
@@ -391,6 +422,7 @@ function CLONE_COMFYUI() {
 			fi
 
 		}
+
 		## InvokeAI models
 		LINK="${COMFYUI_PATH}/models/InvokeAI_models"
 		ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
@@ -597,6 +629,7 @@ function CLONE_COMFYUI() {
 			pwillia7/Basic_ComfyUI_Workflows
 			nerdyrodent/AVeryComfyNerd
 		)
+
 		for SOURCE in "${sources[@]}"; do
 			if [[ ! -d "${WORKFLOWDIR}/${SOURCE}" ]]; then
 				git clone --recursive https://github.com/"${SOURCE}".git "${WORKFLOWDIR}/${SOURCE}"
@@ -699,6 +732,7 @@ function CLONE_COMFYUI() {
 			fi
 
 		}
+
 		ESSENTIAL
 		EXTRAS
 		DISABLED
@@ -910,9 +944,11 @@ function LINK_FOLDERS() {
 			if [[ -d "${ORIGIN}" ]]; then
 				ln -sf "${ORIGIN}" "${LINK}"
 			fi
+
 		fi
 
 	}
+
 	## InvokeAI models
 	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"

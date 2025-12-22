@@ -3,6 +3,7 @@ set -e
 echo "Install toolhive script started."
 
 function INSTALL_toolhive() {
+
 	if command -v toolhive &>/dev/null; then
 		echo "toolhive is already installed"
 	else
@@ -11,6 +12,7 @@ function INSTALL_toolhive() {
 		rm ./*.deb
 		echo "toolhive installation completed."
 	fi
+
 }
 
 INSTALL_toolhive >/dev/null 2>&1

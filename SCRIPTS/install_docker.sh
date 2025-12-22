@@ -3,6 +3,7 @@ set -e
 echo "Install Docker script started."
 
 function REMOVE_DOCKER() {
+
 	sudo systemctl stop docker
 	sudo systemctl disable docker
 
@@ -20,10 +21,12 @@ function REMOVE_DOCKER() {
 	sudo rm -rf /var/lib/containerd
 	sudo rm -r ~/.docker
 	sleep 1
+
 }
 
 # Install Docker and related tools on Ubuntu
 function INSTALL_DOCKER() {
+
 	# check if docker is installed and if not install it
 	if command -v docker &>/dev/null; then
 		echo "Docker is already installed"
@@ -61,10 +64,12 @@ function INSTALL_DOCKER() {
 		echo "Docker installation completed."
 
 	fi
+
 	sudo nvidia-ctk runtime configure --runtime=docker
 	sudo systemctl restart docker
 	docker rm nvidia-smi
 	docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
+
 }
 
 # REMOVE_DOCKER

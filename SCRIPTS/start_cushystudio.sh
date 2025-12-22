@@ -31,41 +31,49 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export DOCKER_BASEPATH
 
 	eval "$(resize)" || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export STACK_BASEPATH
 
 	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export IP_ADDRESS
 
 	cd "${STACK_BASEPATH}" || exit
+
 	git pull # origin main
 	chmod +x "install-stack.sh"
 
 }
+
 SETUP_ENV
 
 function RUN_CUSHYSTUDIO() {
@@ -73,6 +81,7 @@ function RUN_CUSHYSTUDIO() {
 	cd "${CUSHYSTUDIO_PATH}" || exit 1
 
 	./_mac-linux-start.sh
+
 }
 
 RUN_CUSHYSTUDIO
