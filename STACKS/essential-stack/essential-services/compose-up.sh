@@ -1,7 +1,7 @@
 #!/bin/bash
-set -e
+# set -e
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	autoheal
