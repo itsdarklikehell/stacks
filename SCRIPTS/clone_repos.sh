@@ -18,7 +18,7 @@ cd "${SCRIPT_DIR}" || exit 1
 
 "${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 "${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+curl -fsSL https://get.pnpm.io/install.sh | sh - || true
 
 function IMPORT_NLTK() {
 	echo "Importing NLTK averaged_perceptron_tagger_eng"
@@ -59,6 +59,7 @@ function CLONE_ANYTHINGLLM() {
 		echo "Using Local setup"
 		# ./install.sh
 		# uv venv --clear --seed
+		# shellcheck source=/dev/null
 		# source .venv/bin/activate
 		#
 		# uv sync --all-extras
@@ -96,14 +97,14 @@ function CLONE_PUPPETEER() {
 		ni # >/dev/null 2>&1 &
 
 		ni puppeteer # Downloads compatible Chrome during installation.
-		yes | pnpm add puppeteer
+		yes | pnpm add puppeteer || true
 
 		ni puppeteer-core # Alternatively, install as a library, without downloading Chrome.
-		yes | pnpm add puppeteer-core
+		yes | pnpm add puppeteer-core || true
 
 		npx puppeteer install chrome
 
-		yes | npx npm-check-updates -u # >/dev/null 2>&1 &
+		yes | npx npm-check-updates -u || true # >/dev/null 2>&1 &
 		bash docker/pack.sh
 
 		# npm init --yes
@@ -111,6 +112,7 @@ function CLONE_PUPPETEER() {
 
 		# ./install.sh
 		# uv venv --clear --seed
+		# shellcheck source=/dev/null
 		# source .venv/bin/activate
 		#
 		# uv sync --all-extras
@@ -141,6 +143,7 @@ function CLONE_OLLMVT() {
 		export UV_LINK_MODE=copy
 
 		uv venv --clear --seed
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 		uv pip install --upgrade pip
 		uv sync --all-extras
@@ -289,6 +292,7 @@ function CLONE_SWARMUI() {
 	function LOCAL_SETUP() {
 		# ./install.sh
 		uv venv --clear --seed
+		# shellcheck source=/dev/null
 		source .venv/bin/activate
 		#
 		# uv sync --all-extras
@@ -320,18 +324,6 @@ function CLONE_COMFYUI() {
 	export UV_LINK_MODE=copy
 	export BACKGROUND=true
 	export COMFYUI_PORT=8188
-
-	# if [[ "$1" == "-i" ]] || [[ "$1" == "--install" ]] || [[ "$1" == "--reinstall" ]]; then
-	# 	echo "Install custom nodes enabled."
-	# 	export INSTALL_CUSTOM_NODES=true
-	# elif [[ "$1" == "-fr" ]] || [[ "$1" == "--full-reinstall" ]] || [[ "$1" == "--factory-reset" ]] || [[ "$1" == "--full-reinstall" ]]; then
-	# 	echo "Full re-install custom nodes enabled."
-	# 	export INSTALL_CUSTOM_NODES=true
-	# 	rm -rf "${COMFYUI_PATH}/.venv"
-	# elif [[ -z "$1" ]] || [[ "$1" == "-nr" ]] || [[ "$1" == "--no-reinstall" ]]; then
-	# 	echo "Skipping reinstall custom nodes."
-	# 	export INSTALL_CUSTOM_NODES=false
-	# fi
 
 	if [[ ! -d "${COMFYUI_PATH}" ]]; then
 		echo "Cloning ComfyUI"
@@ -761,10 +753,12 @@ function CLONE_COMFYUI() {
 		# ./install.sh
 
 		if [[ -f .venv/bin/activate ]]; then
+			# shellcheck source=/dev/null
 			source .venv/bin/activate
 		else
 			export UV_LINK_MODE=copy
 			uv venv --clear --seed
+			# shellcheck source=/dev/null
 			source .venv/bin/activate
 
 			uv pip install --upgrade pip
@@ -840,6 +834,7 @@ function CLONE_COMFYUIMINI() {
 		# if [[ ! -f .venv/bin/activate ]]; then
 		# 	export UV_LINK_MODE=copy
 		# 	uv venv --clear --seed
+		#   shellcheck source=/dev/null
 		# 	source .venv/bin/activate
 
 		# 	uv pip install --upgrade pip

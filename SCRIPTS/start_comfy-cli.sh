@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Start ComfyUI script started."
+echo "Start Comfy-CLI script started."
 
 export UV_LINK_MODE=copy
 export BACKGROUND=false
