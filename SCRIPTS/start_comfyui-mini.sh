@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "Start ComfyUI script started."
 
 export UV_LINK_MODE=copy

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "Install drivers script started."
 
 # Install NVIDIA drivers on Ubuntu

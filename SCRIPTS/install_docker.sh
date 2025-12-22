@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "Install Docker script started."
 
 function REMOVE_DOCKER() {
@@ -35,15 +36,6 @@ function INSTALL_DOCKER() {
 			gnupg \
 			lsb-release
 
-		# # Add Docker’s official GPG key:
-		# sudo mkdir -p /etc/apt/keyrings
-		# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-		# # Set up the stable repository:
-		# echo \
-		#   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-		#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
 		curl -fsSL https://get.docker.com -o get-docker.sh
 		sh get-docker.sh
 		sudo apt modernize-sources -y
@@ -60,8 +52,8 @@ function INSTALL_DOCKER() {
 			sudo ls -la "/var/lib/docker"
 		elif test -d "/var/lib/docker"; then
 			echo "/var/lib/docker is just a plain directory"
-			# sudo mv /var/lib/docker/* "${DOCKER_BASEPATH}"
-			mkdir "${DOCKER_BASEPATH}"
+			sudo mv -f /var/lib/docker "${DOCKER_BASEPATH}"
+			# mkdir "${DOCKER_BASEPATH}"
 			sudo ln -sf "${DOCKER_BASEPATH}" "/var/lib/docker"
 			sudo ls -la "/var/lib/docker"
 		fi
@@ -69,10 +61,10 @@ function INSTALL_DOCKER() {
 		echo "Docker installation completed."
 
 	fi
-	# sudo nvidia-ctk runtime configure --runtime=docker
-	# sudo systemctl restart docker
-	# docker rm nvidia-smi
-	# docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
+	sudo nvidia-ctk runtime configure --runtime=docker
+	sudo systemctl restart docker
+	docker rm nvidia-smi
+	docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
 }
 
 # REMOVE_DOCKER

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "Start browser script started."
 

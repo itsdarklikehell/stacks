@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "Clone repos script started."
 SCRIPT_DIR="$(dirname "$(realpath "$0")")" || true
 export SCRIPT_DIR

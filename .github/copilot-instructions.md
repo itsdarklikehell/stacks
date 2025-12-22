@@ -2,40 +2,44 @@
 
 ## Project Architecture
 
-This project is a modular Docker-based stack system with four main components: AI Stack, Essentials Stack, Management Stack, and Media Stack. Understanding the interconnections is key.
+This project is a modular Docker-based stack system with three implemented stacks: AI Stack, Essentials Stack, and OpenLLM VTuber Stack. Management and Media stacks are planned but not yet implemented.
 
 ### Stack Overview
 
-1.  **AI Stack (`ai-stack/`)**: Orchestrates AI/ML services. Key services:
+1. **AI Stack (`STACKS/ai-stack/`)**: Orchestrates AI/ML services. Key services include AnythingLLM, Ollama, Faster-Whisper, Home Assistant, LibreTranslate, and various UI tools like Open WebUI, SwarmUI.
 
-    - `AnythingLLM`: Document processing & LLM integration.
-    - `Ollama`: Local LLM hosting.
-    - `Faster-Whisper`: GPU-accelerated speech recognition.
-    - `Home Assistant`: IoT automation.
-    - `LibreTranslate`: Self-hosted translation.
+2. **Essentials Stack (`STACKS/essential-stack/`)**: Provides foundational services and infrastructure.
 
-2.  **Essentials Stack (`essential-stack/`)**: Provides foundational services.
+3. **OpenLLM VTuber Stack (`STACKS/openllm-vtuber-stack/`)**: Integrates AI with VTuber/streaming applications.
 
-3.  **Management Stack**: Monitoring and control.
-
-4.  **Media Stack**: Handling media assets.
+Each stack contains a `*-services/` directory with individual service configurations and a `compose-up.sh` script that builds using `docker compose` with multiple YAML files.
 
 ### Key Developer Workflows
 
-- **Builds:** Use `docker-compose up --build` to build and start the stack.
-- **Testing:** The `ai-stack` directory contains integration tests. Run them with `docker-compose run --service ai-stack integration-tests`.
-- **Debugging:** Utilize Docker's logging capabilities. Logs are typically found in `/var/log/ai-stack/`.
-- **Service Communication:** Services primarily communicate via gRPC. Inspect service definitions in the `ai-stack/` directory.
+- **Builds:** Run `./install-stack.sh` from the root to build and start all stacks. Individual stacks can be built via `STACKS/<stack>/install-stack.sh`.
+
+- **Testing:** No centralized integration tests; service-specific testing varies.
+
+- **Debugging:** Use `docker compose logs -f <service>` in the respective stack's services directory (e.g., `STACKS/ai-stack/ai-services/`). Logs are not centralized in `/var/log/`.
+
+- **Service Communication:** Services communicate via Docker networks (e.g., `ai-services` network). Some expose REST APIs or web UIs on host ports.
 
 ### Project Conventions
 
-- **Docker Compose:** The `docker-compose.yml` file in the root directory defines the stack's services and their configurations.
-- **Naming Conventions:** Use snake_case for all service names and variable names.
-- **Configuration:** Configuration is primarily managed through environment variables.
-- **Data Storage:** Data is stored in PostgreSQL databases. Connection details are in the `docker-compose.yml` file.
+- **Docker Compose:** Each stack uses `docker compose` (v2 syntax) with a base YAML and service-specific overrides. No root-level `docker-compose.yml`.
+
+- **Naming Conventions:** Service names use kebab-case (e.g., `anything-llm`), variables in snake_case.
+
+- **Configuration:** Managed via environment variables and `.env` files in service directories. Secrets stored in `SECRETS/` folder.
+
+- **Data Storage:** Persistent data in `DATA/` subdirectories per stack/service. PostgreSQL used by services like Letta (connection via `letta_pg_password`).
 
 ### Integration Points
 
-- **AnythingLLM** integrates with external APIs for document processing. Refer to the `AnythingLLM` service definition for API keys and endpoints.
-- **Ollama** relies on a running Ollama instance. Ensure the Ollama server is accessible from the stack.
-- **gRPC:** Most services communicate via gRPC. Use `grpcurl` to inspect gRPC calls.
+- **AnythingLLM**: Integrates with external APIs; configure in `STACKS/ai-stack/ai-services/anything-llm/.env`.
+
+- **Ollama**: Local LLM hosting; ensure accessible from other services.
+
+- **APIs:** Many services expose REST APIs (e.g., Ollama on port 11434, Open WebUI on 3000).
+
+- **Volumes:** Data bound via Docker volumes to `../../../DATA/` relative paths.

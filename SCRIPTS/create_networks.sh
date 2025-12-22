@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "Create networks script started."
 
 DEVICE=$(ip -oneline -4 addr show scope global | tr -s ' ' | tr '/' ' ' | cut -f 2,4 -d ' ' | head -n 1 | awk '{ print $1 }' || true)

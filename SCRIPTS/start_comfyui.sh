@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "Start ComfyUI script started."
 
@@ -18,15 +19,15 @@ function SETUP_ENV() {
 	if [[ "${USER}" == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	elif [[ "${USER}" == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	else
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	fi
 
 	eval "$(resize)" || true
@@ -470,7 +471,7 @@ function INSTALL_CUSTOM_NODES() {
 				echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
 					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-						uv run comfy-cli node disable "${node_name}"
+						uv run comfy-cli node remove "${node_name}"
 					fi
 				done <"${REMOVED_CUSTOM_NODELIST}"
 				echo ""
