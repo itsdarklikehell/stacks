@@ -28,6 +28,7 @@ services:
       - jellyfin_books:/data/books
       - jellyfin_config:/config
       - jellyfin_movies:/data/movies
+      - jellyfin_concerts:/data/concerts
       - jellyfin_music:/data/music
       - jellyfin_photos:/data/photos
       - jellyfin_podcasts:/data/podcasts

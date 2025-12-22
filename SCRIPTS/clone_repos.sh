@@ -68,10 +68,10 @@ function CLONE_SCANOPY() {
 	if [[ ! -d "scanopy" ]]; then
 		echo "Cloning scanopy"
 		echo ""
-		git clone --recursive https://github.com/scanopy/scanopy.git clair
+		git clone --recursive https://github.com/scanopy/scanopy.git scanopy
 		cd scanopy || exit 1
 	else
-		echo "Checking clair for updates"
+		echo "Checking scanopy for updates"
 		cd scanopy || exit 1
 		git pull
 	fi
