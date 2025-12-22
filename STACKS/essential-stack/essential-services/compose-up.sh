@@ -10,6 +10,7 @@ COMPOSE_FILES=(
 	dtop
 	dashy
 	scanopy
+	clair
 	# homarr
 	# immich-server
 	# immich-server-genius
@@ -54,9 +55,9 @@ function SETUP_FOLDERS() {
 
 	if [[ "${SERVICE_NAME}" == "scanopy" ]]; then
 		FOLDERS=(
-			"data"
+			"server-data"
 			"daemon-config"
-			"postgres-data"
+			"postgress-data"
 		)
 	fi
 
@@ -70,13 +71,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 			"socket"
-			"agent_data"
-		)
-	fi
-
-	if [[ "${SERVICE_NAME}" == "beszel-agent" ]]; then
-		FOLDERS=(
-			"data"
+			"agent-data"
 		)
 	fi
 

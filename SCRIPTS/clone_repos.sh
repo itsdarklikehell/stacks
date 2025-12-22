@@ -68,11 +68,28 @@ function CLONE_SCANOPY() {
 	if [[ ! -d "scanopy" ]]; then
 		echo "Cloning scanopy"
 		echo ""
-		git clone --recursive https://github.com/scanopy/scanopy.git scanopy
+		git clone --recursive https://github.com/scanopy/scanopy.git clair
 		cd scanopy || exit 1
 	else
-		echo "Checking scanopy for updates"
+		echo "Checking clair for updates"
 		cd scanopy || exit 1
+		git pull
+	fi
+
+}
+
+function CLONE_CLAIR() {
+
+	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+
+	if [[ ! -d "clair" ]]; then
+		echo "Cloning clair"
+		echo ""
+		git clone --recursive https://github.com/quay/clair.git clair
+		cd clair || exit 1
+	else
+		echo "Checking clair for updates"
+		cd clair || exit 1
 		git pull
 	fi
 
@@ -883,6 +900,7 @@ function CLONE_COMFYUIMINI() {
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
 CLONE_SCANOPY # >/dev/null 2>&1 &
+CLONE_CLAIR # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &

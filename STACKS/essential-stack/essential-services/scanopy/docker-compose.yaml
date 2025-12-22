@@ -1,5 +1,3 @@
-name: scanopy
-
 x-scanopy-env: &scanopy-env
   SCANOPY_LOG_LEVEL: ${SCANOPY_LOG_LEVEL:-info}
   SCANOPY_SERVER_PORT: ${SCANOPY_SERVER_PORT:-60072}
@@ -90,7 +88,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
 
     volumes:
-      - scanopy_postgres-data:/var/lib/postgresql/data
+      - scanopy_postgress-data:/var/lib/postgresql/data
 
     hostname: scanopy-postgres
 
@@ -135,7 +133,7 @@ services:
       SCANOPY_INTEGRATED_DAEMON_URL: http://172.17.0.1:${SCANOPY_DAEMON_PORT:-60073}
 
     volumes:
-      - scanopy_data:/data
+      - scanopy_server-data:/data
 
     hostname: scanopy-server
 

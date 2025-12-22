@@ -18,6 +18,7 @@ models=(
 	'llava-phi3:latest'
 	'llava:latest'
 	'moondream:latest'
+	'qwen2.5:latest'
 	'qwen3:latest'
 	'smallthinker:latest'
 	'smollm2:latest'

@@ -6,6 +6,29 @@ networks:
     external: true
 
 volumes:
+
+  beszel_data:
+    name: beszel_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_data
+  beszel_socket:
+    name: beszel_socket
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_socket
+  beszel_agent-data:
+    name: beszel_agent-data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/beszel/beszel_agent-data
+
   dashy_data:
     name: dashy_data
     driver: local
@@ -21,13 +44,27 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
-  scanopy-daemon_config:
-    name: scanopy-daemon_config
+  scanopy_daemon-config:
+    name: scanopy_daemon-config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/scanopy/scanopy-daemon_config
+      device: ../../../DATA/essential-stack/scanopy/scanopy_daemon-config
+  scanopy_server-data:
+    name: scanopy_server-data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/scanopy/scanopy_server-data
+  scanopy_postgress-data:
+    name: scanopy_postgress-data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/scanopy/scanopy_postgress-data
 
   dozzle_data:
     name: dozzle_data
