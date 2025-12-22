@@ -771,7 +771,7 @@ function CLONE_COMFYUI() {
 			uv sync --all-extras
 
 			uv pip install comfy-cli
-			yes | uv run comfy-cli install --nvidia --restore || true
+			uv run comfy-cli --skip-prompt install --nvidia --restore
 			uv run comfy-cli --install-completion
 
 		fi
