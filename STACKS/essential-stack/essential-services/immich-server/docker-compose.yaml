@@ -21,7 +21,7 @@ services:
       - DB_HOSTNAME=immich-server-database
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
-      - DB_DATABASE_NAME=immich-server-db
+      - DB_DATABASE_NAME=immich-server-database
       - REDIS_HOSTNAME=immich-server-redis
       - DB_PORT=5433
       - REDIS_PORT=6379
@@ -100,9 +100,6 @@ services:
     healthcheck:
       disable: false
 
-    ports:
-      - 3003:3003
-
     hostname: immich-server-machine-learning
 
     devices:
@@ -143,18 +140,18 @@ services:
     hostname: immich-server-valkey
 
   immich-server-database:
-    container_name: immich-server_postgres
+    container_name: immich-server-database
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
 
-    ports:
-      - 5433:5433
+    # ports:
+    #   - 5433:5433
 
     hostname: immich-server-database
 
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
       POSTGRES_USER: ${DB_USERNAME:-postgres}
-      POSTGRES_DB: ${DB_DATABASE_NAME:-immich}
+      POSTGRES_DB: ${DB_DATABASE_NAME:-immich-server-database}
       POSTGRES_INITDB_ARGS: --data-checksums
       # Uncomment the DB_STORAGE_TYPE: 'HDD' var if your database isn't stored on SSDs
       DB_STORAGE_TYPE: HDD
