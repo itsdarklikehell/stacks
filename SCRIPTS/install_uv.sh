@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Install uv script started."
 
 function INSTALL_UV() {

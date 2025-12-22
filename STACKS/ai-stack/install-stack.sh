@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# set -e
 
 WD="$(dirname "$(realpath "$0")")" || true
 

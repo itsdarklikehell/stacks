@@ -1,11 +1,11 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Install Docker script started."
 
 DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"
 CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
 DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
-
 
 function REMOVE_DOCKER() {
 

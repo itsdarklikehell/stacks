@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# set -e
 
 # Note: This is an example file, do not edit `launch-standard-docker.sh`. Instead, duplicate the file and edit your duplicate.
 # `custom-launch-docker.sh` is reserved in gitignore for if you want to use that.

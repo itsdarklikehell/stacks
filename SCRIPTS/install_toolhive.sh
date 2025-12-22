@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Install toolhive script started."
 
 function INSTALL_toolhive() {

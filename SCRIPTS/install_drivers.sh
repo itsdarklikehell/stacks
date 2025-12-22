@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Install drivers script started."
 
 DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"

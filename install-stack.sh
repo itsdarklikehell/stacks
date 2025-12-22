@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 WD="$(dirname "$(realpath "$0")")" || true
 export WD                     # set working dir
 export STACK_BASEPATH="${WD}" # set base path

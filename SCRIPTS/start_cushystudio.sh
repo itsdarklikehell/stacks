@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Start CushyStudio script started."
 
 export UV_LINK_MODE=copy

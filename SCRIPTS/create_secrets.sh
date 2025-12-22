@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Create secrets script started."
 
 # Create Docker networks for the AI stack

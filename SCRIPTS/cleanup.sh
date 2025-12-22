@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# set -e
+
 echo "Cleanup script started."
 echo "CLEANUP is set to: ${CLEANUP}"
 

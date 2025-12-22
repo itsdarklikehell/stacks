@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# set -e
 
 models=(
 	'artifish/llama3.2-uncensored:latest'
