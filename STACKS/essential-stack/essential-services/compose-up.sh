@@ -12,8 +12,8 @@ COMPOSE_FILES=(
 	scanopy
 	clair
 	# homarr
-	# immich-server
-	# immich-server-genius
+	immich-server
+	immich-server-genius
 	it-tools
 	nginx-proxy-manager
 	portainer

@@ -899,8 +899,8 @@ function CLONE_COMFYUIMINI() {
 }
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-CLONE_SCANOPY # >/dev/null 2>&1 &
-CLONE_CLAIR # >/dev/null 2>&1 &
+CLONE_SCANOPY     # >/dev/null 2>&1 &
+CLONE_CLAIR       # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &
