@@ -300,18 +300,16 @@ function LINK_FOLDERS() {
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-custom_nodes"
 	LINKER
 
-	## ComfyUI workflows
+	## ComfyUI workflows default/workflows
 	LINK="${COMFYUI_PATH}/user/default/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
-
-	# ## ComfyUI workflows > ComfyUIMini
-	# LINK="${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini/workflows"
-	# ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
-	# LINKER
-
-	# ## ComfyUI workflows > models/workflows
+	## ComfyUI workflows models/workflows
 	LINK="${COMFYUI_PATH}/models/workflows/workflows"
+	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
+	LINKER
+	## ComfyUI workflows custom_nodes/workflows
+	LINK="${COMFYUI_PATH}/custom_nodes/workflows/workflows"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-workflows"
 	LINKER
 

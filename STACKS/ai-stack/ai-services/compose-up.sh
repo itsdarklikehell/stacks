@@ -208,34 +208,6 @@ function SETUP_FOLDERS() {
 			"media"
 			"recordings"
 		)
-
-		# ln -sf "$(xdg-user-dir MUSIC)" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/Music"
-
-		# ln -sf "$(xdg-user-dir DOCUMENTS)" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/Documents"
-
-		# ln -sf "$(xdg-user-dir VIDEOS)" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/Videos"
-
-		# ln -sf "$(xdg-user-dir PICTURES)" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/Pictures"
-
-		# ln -sf "$(xdg-user-dir DOWNLOADS)" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/Downloads"
-
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/localai_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/localai_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/InvokeAI_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/variety" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/variety"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/swarmui_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/ollama_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/ollama_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/forge_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/forge_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/comfyui_input"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/anything-llm_input"
-
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/localai_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/localai_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/InvokeAI_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/variety" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/variety"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/swarmui_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/ollama_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/forge_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/forge_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/comfyui_output"
-		# ln -sf "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output" "${STACK_BASEPATH}/DATA/ai-stack/homeassistant/homeassistant_media/anything-llm_output"
 	fi
 
 	if [[ "${SERVICE_NAME}" == "letta-server" ]]; then
