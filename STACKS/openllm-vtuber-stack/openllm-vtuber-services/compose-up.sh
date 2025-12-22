@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-set -e
 cd "$(dirname "$0")"
 
 COMPOSE_FILES=(

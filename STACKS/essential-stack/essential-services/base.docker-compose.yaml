@@ -134,3 +134,5 @@ secrets:
     file: ../../../SECRETS/code_server_password
   CODE_SERVER_SUDO_PASSWORD:
     file: ../../../SECRETS/code_server_sudo_password
+  DOZZLE_USERS:
+    file: ../../../SECRETS/dozzle_users.yml
