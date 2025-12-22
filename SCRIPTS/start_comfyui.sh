@@ -165,6 +165,7 @@ function LINK_FOLDERS() {
 		fi
 
 	}
+
 	## InvokeAI models
 	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"

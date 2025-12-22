@@ -6,7 +6,6 @@ echo "Start Comfy-CLI script started."
 export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
-
 export STACK_BASEPATH="/media/hans/4-T/stacks"
 
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
@@ -33,34 +32,40 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export DOCKER_BASEPATH
 
 	eval "$(resize)" || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export STACK_BASEPATH
 
 	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export IP_ADDRESS
 
 	cd "${STACK_BASEPATH}" || exit
@@ -68,6 +73,7 @@ function SETUP_ENV() {
 	chmod +x "install-stack.sh"
 
 }
+
 SETUP_ENV
 
 if [[ ! -d "${COMFYUI_PATH}" ]]; then
@@ -165,6 +171,7 @@ function LINK_FOLDERS() {
 		fi
 
 	}
+
 	## InvokeAI models
 	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
@@ -369,6 +376,7 @@ function CLONE_WORKFLOWS() {
 		pwillia7/Basic_ComfyUI_Workflows
 		nerdyrodent/AVeryComfyNerd
 	)
+
 	for SOURCE in "${sources[@]}"; do
 		if [[ ! -d "${WORKFLOWDIR}/${SOURCE}" ]]; then
 			git clone --recursive https://github.com/"${SOURCE}".git "${WORKFLOWDIR}/${SOURCE}"
@@ -471,6 +479,7 @@ function INSTALL_CUSTOM_NODES() {
 		fi
 
 	}
+
 	ESSENTIAL
 	EXTRAS
 	DISABLED

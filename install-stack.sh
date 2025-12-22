@@ -44,34 +44,40 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export DOCKER_BASEPATH
 
 	eval "$(resize)" || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export STACK_BASEPATH
 
 	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+
 	if [[ "${exitstatus}" = 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
+
 	export IP_ADDRESS
 
 	cd "${STACK_BASEPATH}" || exit 1
@@ -79,6 +85,7 @@ function SETUP_ENV() {
 	echo ""
 	START_CUSHYSTUDIO >/dev/null 2>&1 &
 	echo "" || exit
+
 	git pull # origin main
 	chmod +x "install-stack.sh"
 
@@ -86,9 +93,11 @@ function SETUP_ENV() {
 SETUP_ENV
 
 function PRUNING() {
+
 	echo ""
 	echo "Pruning is set to: ${PRUNE}"
 	echo ""
+
 	if [[ "${PRUNE}" == "all" ]]; then
 		docker system prune -af
 	elif [[ "${PRUNE}" == "true" ]] || [[ "${PRUNE}" == "normal" ]]; then
@@ -96,36 +105,51 @@ function PRUNING() {
 	elif [[ "${PRUNE}" == "false" ]]; then
 		echo "Skipping docker system prune"
 	fi
+
 	sleep 3
+
 }
 
 function CLEANUP_DATA() {
+
 	if [[ "${CLEANUP}" == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/cleanup.sh
 	fi
+
 }
 
 function INSTALL_DRIVERS() {
+
 	"${STACK_BASEPATH}"/SCRIPTS/install_drivers.sh
+
 }
 
 function INSTALL_DOCKER() {
+
 	"${STACK_BASEPATH}"/SCRIPTS/install_docker.sh
+
 }
 
 function CREATE_NETWORKS() {
+
 	"${STACK_BASEPATH}"/SCRIPTS/create_networks.sh
+
 }
 
 function CREATE_SECRETS() {
+
 	"${STACK_BASEPATH}"/SCRIPTS/create_secrets.sh
+
 }
 
 function CLONE_REPOS() {
+
 	"${STACK_BASEPATH}"/SCRIPTS/clone_repos.sh
+
 }
 
 function SETUP_AUTOSTART() {
+
 	bin_scripts=(
 		start_browser.sh
 		start_comfyui.sh
@@ -136,13 +160,16 @@ function SETUP_AUTOSTART() {
 		pull_models.sh
 		install-stack.sh
 	)
+
 	autostart_desktop_scripts=(
 		start_comfyui.desktop
 	)
+
 	# start_browser.desktop
 	# start_comfyui-mini.desktop
 	# start_cushystudio.desktop
 	# start_ollmvt.desktop
+
 	for SCRIPT in "${bin_scripts[@]}"; do
 		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
 			rm "/home/${USER}/bin/${SCRIPT}"
@@ -155,6 +182,7 @@ function SETUP_AUTOSTART() {
 		fi
 		chmod +x "/home/${USER}/bin/${SCRIPT}"
 	done
+
 	if [[ "${AUTOSTART}" == "enabled" ]]; then
 		echo "autostart: ${AUTOSTART}"
 		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
@@ -174,9 +202,11 @@ function SETUP_AUTOSTART() {
 	else
 		echo "AUTOSTART=VAR NOT SET, skipping."
 	fi
+
 }
 
 function INSTALL_STACK() {
+
 	export STACK_DIR="${CONFIGS_DIR}/${STACK_NAME}-stack"
 
 	echo "Building is set to: ${BUILDING}"
@@ -187,41 +217,53 @@ function INSTALL_STACK() {
 	echo "Stacks directory is set to ${STACK_DIR}"
 
 	"${STACK_DIR}"/install-stack.sh
+
 }
 
 function PULL_MODELS() {
+
 	if [[ "${PULL_MODELS}" == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/pull_models.sh
 	elif [[ "${PULL_MODELS}" == "false" ]]; then
 		echo "Skipping model pulling"
 	fi
+
 }
 
 function START_BROWSER() {
+
 	if [[ "${START_BROWSER}" == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/start_browser.sh
 	fi
+
 }
 
 function SETUP_ESSENTIALS_STACK() {
+
 	export STACK_NAME="essential"
 	INSTALL_STACK
+
 }
 
 function SETUP_AI_STACK() {
+
 	export STACK_NAME="ai"
 	INSTALL_STACK
+
 }
 
 function SETUP_OPENLLM_VTUBER_STACK() {
+
 	export STACK_NAME="openllm-vtuber"
 	"${STACK_NAME}"-vtuber-stack/install-stack.sh
+
 }
 
 echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
 INSTALL_DRIVERS
+
 echo ""
 echo "Installing Docker"
 echo ""
@@ -261,9 +303,9 @@ START_BROWSER >/dev/null 2>&1 &
 echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+clear
 
 alias ollama='docker exec -it ollama ollama'
-
 echo "Installation should be complete now.."
 echo ""
 echo "To start a browser opening tabs with all of the stacks services:"
