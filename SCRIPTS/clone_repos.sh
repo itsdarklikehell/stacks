@@ -55,27 +55,6 @@ function CLONE_ANYTHINGLLM() {
 
 	mkdir -p anything-llm_storage anything-llm_skills
 
-	function LOCAL_SETUP() {
-		echo "Using Local setup"
-		# ./install.sh
-		# uv venv --clear --seed
-		# shellcheck source=/dev/null
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
-	}
-	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-uv" CustomDockerfile-anything-llm-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-conda" CustomDockerfile-anything-llm-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-anything-llm-venv" CustomDockerfile-anything-llm-venv
-		# docker build -t anything-llm .
-	}
-
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
 }
 
 function CLONE_PUPPETEER() {
@@ -107,17 +86,6 @@ function CLONE_PUPPETEER() {
 		yes | npx npm-check-updates -u || true # >/dev/null 2>&1 &
 		bash docker/pack.sh
 
-		# npm init --yes
-		# npm install puppeteer puppeteer-core @puppeteer/browsers
-
-		# ./install.sh
-		# uv venv --clear --seed
-		# shellcheck source=/dev/null
-		# source .venv/bin/activate
-		#
-		# uv sync --all-extras
-		# uv pip install -e .
-		# uv pip install -r requirements.txt
 	}
 
 	LOCAL_SETUP # >/dev/null 2>&1 &
@@ -830,19 +798,6 @@ function CLONE_COMFYUIMINI() {
 		chmod +x scripts/start.sh
 		./scripts/start.sh >/dev/null 2>&1 &
 		# npm start
-
-		# if [[ ! -f .venv/bin/activate ]]; then
-		# 	export UV_LINK_MODE=copy
-		# 	uv venv --clear --seed
-		#   shellcheck source=/dev/null
-		# 	source .venv/bin/activate
-
-		# 	uv pip install --upgrade pip
-		# 	uv sync --all-extras
-
-		# 	uv pip install comfy-cli
-		# 	yes | uv run comfy-cli install --nvidia --restore || true
-		# fi
 
 	}
 
