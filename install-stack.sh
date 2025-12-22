@@ -160,18 +160,17 @@ function SETUP_AUTOSTART() {
 		start_comfyui.desktop
 	)
 
-	# start_browser.desktop
-	# start_comfyui-mini.desktop
-	# start_cushystudio.desktop
-	# start_ollmvt.desktop
-
 	for SCRIPT in "${bin_scripts[@]}"; do
 		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
-			rm "/home/${USER}/bin/${SCRIPT}"
+			if [[ -f "/home/${USER}/bin/${SCRIPT}" ]]; then
+				rm "/home/${USER}/bin/${SCRIPT}" >/dev/null 2>&1 &
+			fi
 			ln -sf "${STACK_BASEPATH}/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/${SCRIPT}"
 		else
-			rm "/home/${USER}/bin/${SCRIPT}"
+			if [[ -f "/home/${USER}/bin/${SCRIPT}" ]]; then
+				rm "/home/${USER}/bin/${SCRIPT}" >/dev/null 2>&1 &
+			fi
 			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/bin/${SCRIPT}"
 			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 		fi
@@ -181,7 +180,9 @@ function SETUP_AUTOSTART() {
 	if [[ "${AUTOSTART}" == "enabled" ]]; then
 		echo "autostart: ${AUTOSTART}"
 		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
-			rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			if [[ -f "/home/${USER}/.config/autostart/${SCRIPT}" ]]; then
+				rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			fi
 			ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/home/${USER}/.config/autostart/${SCRIPT}"
 			sudo ln -sf "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}" "/usr/share/applications/${SCRIPT}"
 
@@ -191,8 +192,10 @@ function SETUP_AUTOSTART() {
 	elif [[ "${AUTOSTART}" == "disabled" ]]; then
 		echo "autostart: ${AUTOSTART}"
 		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
-			sudo unlink "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
-			sudo rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			if [[ -f "/home/${USER}/.config/autostart/${SCRIPT}" ]]; then
+				sudo unlink "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+				sudo rm "/home/${USER}/.config/autostart/${SCRIPT}" >/dev/null 2>&1 &
+			fi
 		done
 	else
 		echo "AUTOSTART=VAR NOT SET, skipping."
@@ -333,9 +336,9 @@ echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
 echo ""
 echo ""
 echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bash_aliasses"
+echo "source ~/.bash_aliasses"
 echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bashrc"
 echo "source ~/.basrc"
-echo "source ~/.bash_aliasses"
 echo ""
 echo ""
 echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
