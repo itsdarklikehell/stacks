@@ -9,11 +9,11 @@ COMPOSE_FILES=(
 	dozzle
 	dtop
 	dashy
-	scanopy
-	clair
+	# scanopy
+	# clair
 	# homarr
-	immich-server
-	immich-server-genius
+	# immich-server
+	# immich-server-genius
 	it-tools
 	nginx-proxy-manager
 	portainer
