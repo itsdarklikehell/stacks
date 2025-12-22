@@ -1,0 +1,33 @@
+services:
+  calibre:
+    container_name: calibre
+    image: lscr.io/linuxserver/calibre:latest
+
+    security_opt:
+      - seccomp:unconfined
+
+    volumes:
+      # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
+      # - ${UPLOAD_LOCATION}:/data
+      - calibre_config:/config
+      - calibre_books:/calibre_books
+      - jellyfin_books:/jellyfin_books
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - PASSWORD=
+      # - CLI_ARGS=
+
+    env_file:
+      - ./calibre/.env
+
+    ports:
+      - ${PORT:-8080}:8080
+      - ${PORT2:-8181}:8181
+      - ${PORT3:-8081}:8081
+
+    shm_size: "1gb"
+
+    restart: unless-stopped

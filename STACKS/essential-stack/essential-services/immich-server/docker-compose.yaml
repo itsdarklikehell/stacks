@@ -176,25 +176,42 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    # extends:
-    #   file: hwaccel.transcoding.yml
-    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
+    extends:
+      file: ./immich-server/hwaccel.transcoding.yml
+      service: cuda # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
+
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       # - ${UPLOAD_LOCATION}:/data
       - immich-server_uploads:/data
+      - jellyfin_photos:/jellyfin_photos
       - /etc/localtime:/etc/localtime:ro
-      
+      - /dev/bus/usb:/dev/bus/usb
+      - /usr/lib/wsl:/usr/lib/wsl    
+
     env_file:
       - ./immich-server/.env
+
     ports:
       - '2283:2283'
+
     depends_on:
       - redis
       - database
+
     restart: always
+
     healthcheck:
       disable: false
+
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/dxg:/dev/dxg
+    # group_add:
+      # - 44 # Replace this number with the number you found with getent group video
+      # - 992 # Replace this number with the number you found with getent group render
+
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -205,12 +222,27 @@ services:
       file: ./immich-server/hwaccel.ml.yml
       service: cuda # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
-      - immich-server_model-cachehe:/cache
+      - immich-server_model-cache:/cache
     env_file:
       - ./immich-server/.env
     restart: always
     healthcheck:
       disable: false
+    runtime: nvidia
+
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/dxg:/dev/dxg
+
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
 
   redis:
     container_name: immich_redis

@@ -121,49 +121,6 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/nginx-proxy-manager/nginx-proxy-manager_letsencrypt
 
-  immich-server-genius_uploads:
-    name: immich-server-genius_uploads
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_uploads
-  immich-server-genius_db:
-    name: immich-server-genius_db
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_db
-  immich-server-genius_appdata:
-    name: immich-server-genius_appdata
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_appdata
-  immich-server-genius_photos:
-    name: immich-server-genius_photos
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_photos
-  immich-server-genius_libraries:
-    name: immich-server-genius_libraries
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_libraries
-  immich-server-genius_model-cache:
-    name: immich-server-genius_model-cache
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/immich-server-genius/immich-server-genius_model-cache
-
   immich-server_uploads:
     name: immich-server_uploads
     driver: local
@@ -256,6 +213,21 @@ volumes:
       type: none
       o: bind
       device: /media/hans/beestation/Files/Calibre
+  
+  calibre_config:
+    name: calibre_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/calibre/calibre_config
+  calibre_books:
+    name: calibre_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/calibre/calibre_books
 
 secrets:
   INITIAL_ADMIN_EMAIL:

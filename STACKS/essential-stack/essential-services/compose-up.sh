@@ -12,8 +12,8 @@ COMPOSE_FILES=(
 	# scanopy
 	# clair
 	# homarr
+	calibre
 	immich-server
-	# immich-server-genius
 	it-tools
 	jellyfin
 	nginx-proxy-manager
@@ -51,6 +51,13 @@ function SETUP_FOLDERS() {
 	if [[ "${SERVICE_NAME}" == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "calibre" ]]; then
+		FOLDERS=(
+			"config"
+			"books"
 		)
 	fi
 
@@ -101,17 +108,6 @@ function SETUP_FOLDERS() {
 			"uploads"
 			"model-cache"
 			"database"
-		)
-	fi
-
-	if [[ "${SERVICE_NAME}" == "immich-server-genius" ]]; then
-		FOLDERS=(
-			"uploads"
-			"model-cache"
-			"db"
-			"appdata"
-			"photos"
-			"libraries"
 		)
 	fi
 
