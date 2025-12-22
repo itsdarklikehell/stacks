@@ -3,5 +3,11 @@
     {
       "path": "."
     }
-  ]
+  ],
+  "settings": {
+    "gitmind.ollama.model": "smollm2",
+    "ollama-autocoder.model": "smollm2:latest",
+    "ollama-participant.model": "smollm2-coder",
+    "tabmania.model": "smollm2"
+  }
 }
