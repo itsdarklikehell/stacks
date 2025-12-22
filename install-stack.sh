@@ -145,14 +145,15 @@ function CLONE_REPOS() {
 function SETUP_AUTOSTART() {
 
 	bin_scripts=(
+		install-stack.sh
+		pull_models.sh
 		start_browser.sh
-		start_comfyui.sh
+		start_comfy-cli.sh
 		start_comfyui-mini.sh
+		start_comfyui.sh
 		start_cushystudio.sh
 		start_deduper.sh
 		start_ollmvt.sh
-		pull_models.sh
-		install-stack.sh
 	)
 
 	autostart_desktop_scripts=(

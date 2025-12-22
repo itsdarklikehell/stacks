@@ -7,7 +7,6 @@ export UV_LINK_MODE=copy
 export BACKGROUND=false
 export COMFYUI_PORT=8188
 export STACK_BASEPATH="/media/hans/4-T/stacks"
-
 export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 
 function SETUP_ENV() {
@@ -535,7 +534,7 @@ function DOCKER_SETUP() {
 
 }
 
-function RUN_COMFYUI() {
+function RUN_COMFY_CLI() {
 
 	cd "${COMFYUI_PATH}" || exit 1
 
@@ -552,18 +551,12 @@ function RUN_COMFYUI() {
 		uv sync --all-extras
 
 		uv pip install comfy-cli
-		yes | uv run comfy-cli install --nvidia --restore || true
+		# yes | uv run comfy-cli install --nvidia --restore || true
 
 		echo "ComfyUI virtual environment created and dependencies installed."
 	fi
 
-	if [[ "${BACKGROUND}" == "true" ]]; then
-		echo "Starting ComfyUI in background mode..."
-		uv run comfy-cli launch --background -- --preview-method auto --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-	else
-		echo "Starting ComfyUI in foreground mode..."
-		uv run comfy-cli launch --no-background -- --preview-method auto --listen "0.0.0.0" --port "${COMFYUI_PORT}"
-	fi
+	uv run comfy-cli "${1}"
 
 }
 
@@ -577,10 +570,7 @@ UPDATE=true
 CREATE_FOLDERS
 LINK_FOLDERS
 
-INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
-CLONE_WORKFLOWS
+# INSTALL_CUSTOM_NODES # >/dev/null 2>&1 &
+# CLONE_WORKFLOWS
 
-"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
-xdg-open "http://${IP_ADDRESS}:8188/"
-
-RUN_COMFYUI
+RUN_COMFY_CLI "$@"

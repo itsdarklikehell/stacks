@@ -460,7 +460,7 @@ function INSTALL_CUSTOM_NODES() {
 				echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
 					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
-						uv run comfy-cli node remove "${node_name}"
+						uv run comfy-cli node disable "${node_name}"
 					fi
 				done <"${REMOVED_CUSTOM_NODELIST}"
 				echo ""
