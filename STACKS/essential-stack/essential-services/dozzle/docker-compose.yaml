@@ -22,16 +22,12 @@ services:
       - DOZZLE_ENABLE_SHELL=true
       - DOZZLE_AUTH_PROVIDER=simple
 
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
       - dozzle_data:/data
-
-    secrets:
-      - DOZZLE_USERS:/data/users.yml
 
     hostname: ${NAME:-dozzle}
 
