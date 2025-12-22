@@ -2,6 +2,11 @@
 set -e
 echo "Install Docker script started."
 
+DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"
+CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
+DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
+
+
 function REMOVE_DOCKER() {
 
 	sudo systemctl stop docker
@@ -32,6 +37,78 @@ function INSTALL_DOCKER() {
 		echo "Docker is already installed"
 	else
 		echo "Installing Docker..."
+
+		function SETUP_ENV() {
+
+			IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+			export IP_ADDRESS
+
+			if [[ "${USER}" == "hans" ]]; then
+				export STACK_BASEPATH="/media/hans/4-T/stacks"
+				export DOCKER_BASEPATH="/media/hans/4-T/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			elif [[ "${USER}" == "rizzo" ]]; then
+				export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+				export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			else
+				export STACK_BASEPATH="/media/hans/4-T/stacks"
+				export DOCKER_BASEPATH="/media/hans/4-T/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			fi
+
+			eval "$(resize)" || true
+			DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ "${exitstatus}" = 0 ]]; then
+				echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export DOCKER_BASEPATH
+
+			eval "$(resize)" || true
+			STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ "${exitstatus}" = 0 ]]; then
+				echo "User selected Ok and entered " "${STACK_BASEPATH}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export STACK_BASEPATH
+
+			eval "$(resize)" || true
+			IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ "${exitstatus}" = 0 ]]; then
+				echo "User selected Ok and entered " "${IP_ADDRESS}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export IP_ADDRESS
+
+			cd "${STACK_BASEPATH}" || exit 1
+
+			echo ""
+			START_CUSHYSTUDIO >/dev/null 2>&1 &
+			echo "" || exit
+
+			git pull # origin main
+			chmod +x "install-stack.sh"
+
+		}
+
+		SETUP_ENV
+
 		sudo apt update
 		sudo apt install -y \
 			ca-certificates \
@@ -65,10 +142,15 @@ function INSTALL_DOCKER() {
 
 	fi
 
-	sudo nvidia-ctk runtime configure --runtime=docker
-	sudo systemctl restart docker
-	docker rm nvidia-smi
-	docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
+	if [[ "${DOCKER_RUNTIME}" != "nvidia-container-runtime" ]]; then
+
+		sudo nvidia-ctk runtime configure --runtime=docker
+		sudo systemctl restart docker
+		sleep 1
+		docker rm nvidia-smi
+		docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
+
+	fi
 
 }
 

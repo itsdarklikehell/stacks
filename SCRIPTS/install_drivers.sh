@@ -2,12 +2,11 @@
 set -e
 echo "Install drivers script started."
 
+DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"
+CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
+DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
 # Install NVIDIA drivers on Ubuntu
 function INSTALL_DRIVERS() {
-
-	DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .path' || true)"
-	CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
-	DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
 
 	if [[ ! -f "/usr/local/cuda/version.json" ]]; then
 
@@ -53,6 +52,7 @@ function INSTALL_DRIVERS() {
 
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker
+		sleep 1
 		docker rm nvidia-smi
 		docker run --name=nvidia-smi --runtime=nvidia --gpus all ubuntu nvidia-smi
 
