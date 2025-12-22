@@ -16,7 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-5m}
+      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-1h}
       - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
       - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
       - OLLAMA_MODELS=/root/.ollama/models
