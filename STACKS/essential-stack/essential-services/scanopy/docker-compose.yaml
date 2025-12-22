@@ -71,7 +71,6 @@ services:
         max-size: 10m
         max-file: 3
 
-
   scanopy-postgres:
     image: postgres:17-alpine
     container_name: scanopy-postgres
@@ -112,7 +111,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
 
   scanopy-server:
     image: ghcr.io/scanopy/scanopy/server:latest
@@ -156,4 +154,3 @@ services:
         condition: service_healthy
       scanopy-daemon:
         condition: service_healthy
-
