@@ -30,7 +30,7 @@ services:
       - MULTIMODAL_MODEL=moondream2-20250414
       - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
       - OLLAMA_HOST=http://0.0.0.0:11434
-      - OLLAMA_MODEL_PREF=gemma3:latest
+      - OLLAMA_MODEL_PREF=smallthinker:latest
       - OLLAMA_MODEL_TOKEN_LIMIT=16000
       - PORT=${PORT:-8501}
       - PROFILE=gpu-8g
