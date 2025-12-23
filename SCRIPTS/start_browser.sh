@@ -31,18 +31,10 @@ URLS=(
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
 	"http://${IP_ADDRESS}:3000"  # ComfyUIMini
 	"http://${IP_ADDRESS}:8765"  # MotionEye
-	# "http://${IP_ADDRESS}:12393" # open-llm-vtuber
-	# "https://${IP_ADDRESS}:9001" # portainer-agent
-	# "http://${IP_ADDRESS}:3005" 		  # letta-mcp-server
-	# "http://${IP_ADDRESS}:8688"  		  # cushy-studio
-	# "http://${IP_ADDRESS}:3080"         # librechat
-	# "http://${IP_ADDRESS}:7578"         # homearr
-	# "http://${IP_ADDRESS}:7801/Install" # SwarmUI
-	# "http://${IP_ADDRESS}:7861"         # sd-automatic1111
-	# "http://${IP_ADDRESS}:7862"         # sd-ComfyUI-webui
-	# "http://${IP_ADDRESS}:7863"         # sd-fast-stable-diffusion-webui
-	# "http://${IP_ADDRESS}:7864"         # sd-stable-diffusion-webui
-	# "http://${IP_ADDRESS}:8501"         # stable-diffusion-webui
+	"https://${IP_ADDRESS}:8483" # calibre-web
+	"https://${IP_ADDRESS}:5000" # kavita
+	"https://${IP_ADDRESS}:8765" # lazylibrarian
+	"https://${IP_ADDRESS}:2202" # ubooquity
 )
 
 function RUN_BROWSER() {
