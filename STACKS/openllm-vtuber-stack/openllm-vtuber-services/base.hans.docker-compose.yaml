@@ -1,0 +1,6 @@
+name: openllm-vtuber-services
+
+networks:
+  host:
+  openllm-vtuber-services:
+    external: true

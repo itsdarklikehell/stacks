@@ -6,6 +6,7 @@ networks:
     external: true
 
 volumes:
+
   beszel_data:
     name: beszel_data
     driver: local
@@ -169,14 +170,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_concerts
+      device: /media/hans/beestation/Files/2_Concerten
   jellyfin_music:
     name: jellyfin_music
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_music
+      device: /media/hans/beestation/Files/1MUSIC
   jellyfin_podcasts:
     name: jellyfin_podcasts
     driver: local
@@ -204,14 +205,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_photos
+      device: /media/hans/beestation/Photos
   jellyfin_books:
     name: jellyfin_books
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/jellyfin/jellyfin_books
+      device: /media/hans/beestation/Files/Calibre
 
   calibre_config:
     name: calibre_config

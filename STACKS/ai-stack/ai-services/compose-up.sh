@@ -40,6 +40,7 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
+
 	if [[ "${SERVICE_NAME}" == "anything-llm" ]]; then
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
@@ -302,6 +303,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	CREATE_FOLDERS
+
 }
 
 ARGS=""
@@ -316,19 +318,33 @@ for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	# 	echo ""
 	# 	echo "Folder already exists: ${FOLDER}, skipping creation"
 	fi
+
 	SETUP_FOLDERS
+
 done
 
 function BUILDING() {
+
 	echo ""
 	echo "Building is set to: ${BUILDING}"
 	echo ""
+
 	if [[ "${BUILDING}" == "force_rebuild" ]]; then
-		docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+		if [[ "${USER}" == "hans" ]]; then
+			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+		else
+			docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
+		fi
 	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
-		docker compose -f base.docker-compose.yaml ${ARGS} up -d
+		if [[ "${USER}" == "hans" ]]; then
+			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d
+		else
+			docker compose -f base.docker-compose.yaml ${ARGS} up -d
+		fi
 	elif [[ "${BUILDING}" == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
+
 }
+
 BUILDING
