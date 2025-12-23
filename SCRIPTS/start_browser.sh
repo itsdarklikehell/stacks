@@ -35,6 +35,8 @@ URLS=(
 	"https://${IP_ADDRESS}:5000" # kavita
 	"https://${IP_ADDRESS}:8765" # lazylibrarian
 	"https://${IP_ADDRESS}:2202" # ubooquity
+	"https://${IP_ADDRESS}:4433" # nextcloud
+
 )
 
 function RUN_BROWSER() {
