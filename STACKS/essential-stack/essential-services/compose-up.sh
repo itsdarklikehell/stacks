@@ -70,6 +70,9 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ "${SERVICE_NAME}" == "jellyfin" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
+
 		FOLDERS=(
 			"audiobooks"
 			"books"
@@ -105,6 +108,9 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ "${SERVICE_NAME}" == "immich-server" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
+
 		FOLDERS=(
 			"uploads"
 			"model-cache"

@@ -21,6 +21,9 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ "${SERVICE_NAME}" == "motioneye" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
+
 		FOLDERS=(
 			"shared"
 			"etc"
