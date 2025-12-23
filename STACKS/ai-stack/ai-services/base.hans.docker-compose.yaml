@@ -523,16 +523,16 @@ volumes:
 
   ai_outputs:
     name: ai_outputs
-    driver: local
-    # external: true
+    # driver: local
+    external: true
     driver_opts:
       type: none
       o: bind
       device: ../../../DATA/ai-outputs
   ai_inputs:
     name: ai_inputs
-    driver: local
-    # external: true
+    # driver: local
+    external: true
     driver_opts:
       type: none
       o: bind

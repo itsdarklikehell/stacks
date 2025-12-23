@@ -17,7 +17,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-inputs
-      
+
 networks:
   host:
   openllm-vtuber-services:
