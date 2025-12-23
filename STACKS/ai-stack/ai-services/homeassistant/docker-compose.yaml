@@ -25,6 +25,8 @@ services:
       - homeassistant-config:/config
       - homeassistant-media:/media
       - homeassistant-recordings:/mnt/recordings
+      - ai_outputs:/media/ai_images/ai_outputs
+      - ai_inputs:/media/ai_images/ai_inputs
 
     hostname: ${NAME:-homeassistant}
 

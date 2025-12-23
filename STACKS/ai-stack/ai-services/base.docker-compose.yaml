@@ -521,6 +521,23 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/swarmui/swarmui_workflows
 
+  ai_outputs:
+    name: ai_outputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs
+  ai_inputs:
+    name: ai_inputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
+
 secrets:
   GF_SECURITY_ADMIN_USER:
     file: ../../../SECRETS/grafana_username

@@ -229,6 +229,23 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/calibre/calibre_books
 
+  ai_outputs:
+    name: ai_outputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs
+  ai_inputs:
+    name: ai_inputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
+      
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

@@ -34,6 +34,8 @@ services:
       - jellyfin_podcasts:/data/podcasts
       - jellyfin_recordings:/data/recordings
       - jellyfin_tvseries:/data/tvshows
+      - ai_outputs:/data/ai_images/ai_outputs
+      - ai_inputs:/data/ai_images/ai_inputs
 
     hostname: ${NAME:-jellyfin}
 
