@@ -1,7 +1,7 @@
 services:
   nextcloud:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-ccrisan/nextcloud:master-amd64}
+    image: ${IMAGE:-lscr.io/linuxserver/nextcloud:latest}
     container_name: ${NAME:-nextcloud}
     restart: ${RESTART:-unless-stopped}
 

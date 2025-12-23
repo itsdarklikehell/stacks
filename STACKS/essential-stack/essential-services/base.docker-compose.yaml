@@ -73,14 +73,6 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dozzle/dozzle_data
 
-  dtop_data:
-    name: dtop_data
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/dtop/dtop_data
-
   homarr_data:
     name: homarr_data
     driver: local

@@ -7,7 +7,6 @@ COMPOSE_FILES=(
 	autoheal
 	# autopulse
 	dozzle
-	dtop
 	dashy
 	# scanopy
 	# clair
@@ -84,12 +83,6 @@ function SETUP_FOLDERS() {
 			"recordings"
 			"concerts"
 			"tvseries"
-		)
-	fi
-
-	if [[ "${SERVICE_NAME}" == "dtop" ]]; then
-		FOLDERS=(
-			"data"
 		)
 	fi
 
