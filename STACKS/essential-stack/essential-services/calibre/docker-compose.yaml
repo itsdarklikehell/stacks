@@ -24,9 +24,9 @@ services:
       - ./calibre/.env
 
     ports:
-      - ${PORT:-8080}:8080
+      - ${PORT:-8180}:8080
       - ${PORT2:-8181}:8181
-      - ${PORT3:-8081}:8081
+      - ${PORT3:-8085}:8081
 
     shm_size: "1gb"
 

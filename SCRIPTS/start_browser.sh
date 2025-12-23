@@ -22,6 +22,9 @@ URLS=(
 	"http://${IP_ADDRESS}:8090"  # beszel
 	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
 	"http://${IP_ADDRESS}:9000"  # portainer
+	"http://${IP_ADDRESS}:8096"  # jellyfin
+	"http://${IP_ADDRESS}:2283"  # immich
+	"http://${IP_ADDRESS}:8180"  # calibre
 	"http://${IP_ADDRESS}:4999"  # portracker
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
 	"http://${IP_ADDRESS}:3000"  # ComfyUIMini

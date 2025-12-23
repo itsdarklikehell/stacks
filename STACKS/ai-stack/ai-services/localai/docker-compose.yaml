@@ -14,8 +14,8 @@ services:
     #   args:
     #     - IMAGE_TYPE=aio
     #     - BASE_IMAGE=ubuntu:22.04
-    #     - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
-    #     - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+    #     - LOCALAI_ADDRESS=${IP_ADDRESS}:${PORT:-8083}
+    #     - LISTENING_ADDRESS=${IP_ADDRESS}:${PORT:-8083}
     #     - BUILD_TYPE=cublas
     #     - LOCALAI_SINGLE_ACTIVE_BACKEND=true
     #     - THREADS=1
@@ -50,8 +50,8 @@ services:
       - PROFILE=gpu-8g
       - DEBUG=true
 
-      - LOCALAI_ADDRESS=0.0.0.0:${PORT:-8083}
-      - LISTENING_ADDRESS=0.0.0.0:${PORT:-8083}
+      - LOCALAI_ADDRESS=${IP_ADDRESS}:${PORT:-8083}
+      - LISTENING_ADDRESS=${IP_ADDRESS}:${PORT:-8083}
       - PORT=${PORT:-8083}
       - SERVER_PORT=${SERVER_PORT:-8083}
 
