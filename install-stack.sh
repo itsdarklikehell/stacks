@@ -271,11 +271,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -302,7 +302,7 @@ echo ""
 
 "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-# clear
+clear
 
 alias ollama='docker exec -it ollama ollama'
 echo "Installation should be complete now.."

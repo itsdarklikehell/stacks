@@ -17,7 +17,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8088}
-      - JELLYFIN_PublishedServerUrl=http://${IP_ADDRESS:-192.168.178.63}
+      - JELLYFIN_PublishedServerUrl=http://${IP_ADDRESS:-192.168.1.2}
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

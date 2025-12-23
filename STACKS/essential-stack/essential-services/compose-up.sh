@@ -79,6 +79,7 @@ function SETUP_FOLDERS() {
 			"photos"
 			"podcasts"
 			"recordings"
+			"concerts"
 			"tvseries"
 		)
 	fi
