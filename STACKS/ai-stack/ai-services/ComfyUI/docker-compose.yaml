@@ -42,6 +42,8 @@ services:
       - localai_output:/root/output/localai_outputs
       - forge_output:/root/output/forge_outputs
 
+      - motioneye_shared:/root/output/motioneye_shared
+
     hostname: ${NAME:-ComfyUI}
 
     # user: ${PUID:-1000}:${PGID:-1000}

@@ -251,10 +251,17 @@ function SETUP_AI_STACK() {
 
 }
 
+function SETUP_TESTING_STACK() {
+
+	export STACK_NAME="testing"
+	INSTALL_STACK
+
+}
+
 function SETUP_OPENLLM_VTUBER_STACK() {
 
 	export STACK_NAME="openllm-vtuber"
-	"${STACK_NAME}"-vtuber-stack/install-stack.sh
+	INSTALL_STACK
 
 }
 

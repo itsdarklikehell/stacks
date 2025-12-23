@@ -17,7 +17,8 @@ services:
       - jellyfin_photos:/jellyfin_photos
       - ai_outputs:/ai_images/ai_outputs
       - ai_inputs:/ai_images/ai_inputs
-      
+      - motioneye_shared:/motioneye_shared
+
     env_file:
       - ./immich-server/.env
 

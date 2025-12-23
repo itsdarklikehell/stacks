@@ -538,6 +538,15 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
+  motioneye_shared:
+    name: motioneye_shared
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/motioneye/motioneye_shared
+
 secrets:
   GF_SECURITY_ADMIN_USER:
     file: ../../../SECRETS/grafana_username

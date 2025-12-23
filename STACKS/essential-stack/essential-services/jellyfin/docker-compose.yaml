@@ -36,6 +36,7 @@ services:
       - jellyfin_tvseries:/data/tvshows
       - ai_outputs:/data/ai_images/ai_outputs
       - ai_inputs:/data/ai_images/ai_inputs
+      - motioneye_shared:/data/motioneye_shared
 
     hostname: ${NAME:-jellyfin}
 

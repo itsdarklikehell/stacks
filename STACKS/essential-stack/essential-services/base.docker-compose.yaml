@@ -245,6 +245,15 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
+  motioneye_shared:
+    name: motioneye_shared
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/motioneye/motioneye_shared
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username
