@@ -5,6 +5,10 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	motioneye
+	calibre-web
+	lazylibrarian
+	kavita
+	ubooquity
 )
 
 function CREATE_FOLDERS() {
@@ -30,6 +34,47 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ "${SERVICE_NAME}" == "calibre-web" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+
+		FOLDERS=(
+			"data"
+			"library"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "ubooquity" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+
+		FOLDERS=(
+			"data"
+			"library"
+			"comics"
+			"rawfiles"
+		)
+	fi
+
+
+	if [[ "${SERVICE_NAME}" == "kavita" ]]; then
+
+		FOLDERS=(
+			"data"
+			"library"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "lazylibrarian" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+
+		FOLDERS=(
+			"data"
+			"library"
+			"downloads"
+		)
+	fi
 	CREATE_FOLDERS
 
 }

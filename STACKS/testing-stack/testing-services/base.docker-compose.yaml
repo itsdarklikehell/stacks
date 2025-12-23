@@ -36,6 +36,105 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
+  calibre-web_data:
+    name: calibre-web_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/calibre-web/calibre-web_data
+  calibre-web_library:
+    name: calibre-web_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/calibre-web/calibre-web_library
+  calibre_books:
+    name: calibre_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/calibre/calibre_books
+      
+  lazylibrarian_data:
+    name: lazylibrarian_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_data
+  lazylibrarian_downloads:
+    name: lazylibrarian_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_downloads
+  lazylibrarian_library:
+    name: lazylibrarian_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_library
+
+  kavita_data:
+    name: kavita_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/kavita/kavita_data
+  kavita_library:
+    name: kavita_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/kavita/kavita_library
+
+  ubooquity_data:
+    name: ubooquity_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/ubooquity/ubooquity_data
+  ubooquity_library:
+    name: ubooquity_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/ubooquity/ubooquity_library
+  ubooquity_comics:
+    name: ubooquity_comics
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/ubooquity/ubooquity_comics
+  ubooquity_rawfiles:
+    name: ubooquity_rawfiles
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/ubooquity/ubooquity_rawfiles
+
 networks:
   host:
   testing-services:
