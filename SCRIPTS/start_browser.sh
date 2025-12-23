@@ -6,6 +6,8 @@ echo "Start browser script started."
 IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 export IP_ADDRESS
 
+export IP_ADDRESS=0.0.0.0
+
 URLS=(
 	"http://${IP_ADDRESS}:3002"  # anythingllm
 	"http://${IP_ADDRESS}:1111"  # forge
@@ -19,16 +21,16 @@ URLS=(
 	"http://${IP_ADDRESS}:8082"  # dozzle
 	"http://${IP_ADDRESS}:8383"  # dashy
 	"http://${IP_ADDRESS}:8088"  # it-tools
-	"http://${IP_ADDRESS}:8090"  # beszel
+	"http://${IP_ADDRESS}:8094"  # beszel
 	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
 	"http://${IP_ADDRESS}:9000"  # portainer
 	"http://${IP_ADDRESS}:8096"  # jellyfin
 	"http://${IP_ADDRESS}:2283"  # immich
-	"http://${IP_ADDRESS}:8180"  # calibre
+	"https://${IP_ADDRESS}:8181"  # calibre
 	"http://${IP_ADDRESS}:4999"  # portracker
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
 	"http://${IP_ADDRESS}:3000"  # ComfyUIMini
-	"http://${IP_ADDRESS}:12393" # open-llm-vtuber
+	# "http://${IP_ADDRESS}:12393" # open-llm-vtuber
 	# "https://${IP_ADDRESS}:9001" # portainer-agent
 	# "http://${IP_ADDRESS}:3005" 		  # letta-mcp-server
 	# "http://${IP_ADDRESS}:8688"  		  # cushy-studio
