@@ -9,6 +9,7 @@ COMPOSE_FILES=(
 	lazylibrarian
 	kavita
 	ubooquity
+	nextcloud
 )
 
 function CREATE_FOLDERS() {
@@ -56,6 +57,13 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ "${SERVICE_NAME}" == "nextcloud" ]]; then
+
+		FOLDERS=(
+			"data"
+			"config"
+		)
+	fi
 
 	if [[ "${SERVICE_NAME}" == "kavita" ]]; then
 
