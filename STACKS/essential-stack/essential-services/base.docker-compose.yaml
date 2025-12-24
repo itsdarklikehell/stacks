@@ -246,6 +246,15 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/motioneye/motioneye_shared
 
+  heimdall_config:
+    name: heimdall_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/heimdall/heimdall_config
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

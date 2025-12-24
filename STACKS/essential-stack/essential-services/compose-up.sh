@@ -19,6 +19,7 @@ COMPOSE_FILES=(
 	portainer
 	portracker
 	beszel
+	heimdall
 	# watchtower
 )
 
@@ -35,7 +36,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ "${SERVICE_NAME}" == "dashy" ]]; then
+	if [[ ${SERVICE_NAME} == "dashy" ]]; then
 		FOLDERS=(
 			"config"
 			"data"
@@ -47,20 +48,26 @@ function SETUP_FOLDERS() {
 		fi
 	fi
 
-	if [[ "${SERVICE_NAME}" == "homarr" ]]; then
+	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "calibre" ]]; then
+	if [[ ${SERVICE_NAME} == "calibre" ]]; then
 		FOLDERS=(
 			"config"
 			"books"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "scanopy" ]]; then
+	if [[ ${SERVICE_NAME} == "heimdall" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "scanopy" ]]; then
 		FOLDERS=(
 			"server-data"
 			"daemon-config"
@@ -68,7 +75,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "jellyfin" ]]; then
+	if [[ ${SERVICE_NAME} == "jellyfin" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
 
@@ -86,7 +93,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "beszel" ]]; then
+	if [[ ${SERVICE_NAME} == "beszel" ]]; then
 		FOLDERS=(
 			"data"
 			"socket"
@@ -94,13 +101,13 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "dozzle" ]]; then
+	if [[ ${SERVICE_NAME} == "dozzle" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "immich-server" ]]; then
+	if [[ ${SERVICE_NAME} == "immich-server" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
 
@@ -111,20 +118,20 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "portainer" ]]; then
+	if [[ ${SERVICE_NAME} == "portainer" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "nginx-proxy-manager" ]]; then
+	if [[ ${SERVICE_NAME} == "nginx-proxy-manager" ]]; then
 		FOLDERS=(
 			"data"
 			"letsencrypt"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "portracker" ]]; then
+	if [[ ${SERVICE_NAME} == "portracker" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -157,19 +164,19 @@ function BUILDING() {
 	echo "Building is set to: ${BUILDING}"
 	echo ""
 
-	if [[ "${BUILDING}" == "force_rebuild" ]]; then
-		if [[ "${USER}" == "hans" ]]; then
+	if [[ ${BUILDING} == "force_rebuild" ]]; then
+		if [[ ${USER} == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		fi
-	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
-		if [[ "${USER}" == "hans" ]]; then
+	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
+		if [[ ${USER} == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d
 		fi
-	elif [[ "${BUILDING}" == "false" ]]; then
+	elif [[ ${BUILDING} == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 

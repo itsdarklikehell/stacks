@@ -1,0 +1,61 @@
+services:
+  heimdall:
+    image: ${IMAGE:-lscr.io/linuxserver/heimdall:latest}
+    container_name: ${NAME:-heimdall}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8383}
+
+      # OPTIONAL
+      - ALLOW_INTERNAL_REQUESTS=false
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # - heimdall_config:/app/user-data/conf.yml
+      - heimdall_config:/config
+
+    hostname: ${NAME:-heimdall}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-85}:80
+      - ${PORT2:-444}:443
+
+    env_file:
+      - ./heimdall/.env
+
+    deploy:
+      replicas: 1
+
+    # healthcheck:
+    #   test: CMD curl -f http://localhost{PORT:-8383}/health
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
