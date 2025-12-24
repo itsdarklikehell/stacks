@@ -64,17 +64,11 @@ function CLONE_ANYTHINGLLM() {
 function CLONE_MYPMD() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-sudo apt install mpd
+	
+	sudo apt install mpd
 
-	if [[ ! -d "anything-llm" ]]; then
-		echo "Cloning anything-llm"
-		echo ""
-		git clone --recursive https://github.com/Mintplex-Labs/anything-llm.git anything-llm
-		cd anything-llm || exit 1
-	else
-		echo "Checking anything-llm for updates"
-		cd anything-llm || exit 1
-		git pull
+	if [[ ! -f "/etc/mympd.conf" ]]; then
+		cp $"{STACK_BASEPATH}/SCRIPTS/mympd.conf" /etc/mympd.conf
 	fi
 
 	mkdir -p anything-llm_storage anything-llm_skills
