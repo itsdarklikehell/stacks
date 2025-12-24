@@ -1,7 +1,6 @@
 name: testing-services
 
 volumes:
-
   motioneye_shared:
     name: motioneye_shared
     driver: local

@@ -1,7 +1,6 @@
 name: testing-services
 
 volumes:
-
   motioneye_shared:
     name: motioneye_shared
     driver: local
@@ -151,7 +150,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/testing-stack/nextcloud/nextcloud_config
-
 
 networks:
   host:

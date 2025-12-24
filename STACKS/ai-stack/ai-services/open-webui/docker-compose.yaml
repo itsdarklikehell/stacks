@@ -42,7 +42,7 @@ services:
       - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
       - RAG_WEB_SEARCH_ENGINE=searxng
       - RAG_WEB_SEARCH_RESULT_COUNT=3
-      - SEARXNG_QUERY_URL=http://0.0.0.0:8081/search?q=<query>
+      - SEARXNG_QUERY_URL="http://0.0.0.0:8081/search?q=<query>"
       - TZ=${TZ:-Europe/Amsterdam}
       - USE_CUDA_DOCKER=true
       - USE_CUDA=true
