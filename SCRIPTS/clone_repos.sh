@@ -65,13 +65,11 @@ function CLONE_MYPMD() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 	
-	sudo apt install mpd
+	sudo apt install -y mpd
 
 	if [[ ! -f "/etc/mympd.conf" ]]; then
-		cp $"{STACK_BASEPATH}/SCRIPTS/mympd.conf" /etc/mympd.conf
+		cp "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
 	fi
-
-	mkdir -p anything-llm_storage anything-llm_skills
 
 }
 
