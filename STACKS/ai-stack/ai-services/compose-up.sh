@@ -148,25 +148,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "librechat" ]]; then
-		FOLDERS=(
-			"vectordb_data"
-			"mongo_data"
-			"images"
-			"uploads"
-			"logs"
-			"meili_data"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
 	if [[ "${SERVICE_NAME}" == "localai" ]]; then
 		FOLDERS=(
 			"cache"
