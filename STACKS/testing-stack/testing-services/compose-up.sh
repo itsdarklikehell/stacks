@@ -8,6 +8,7 @@ COMPOSE_FILES=(
 	calibre-web
 	lazylibrarian
 	kavita
+	mympd
 	ubooquity
 	nextcloud
 )
@@ -33,6 +34,17 @@ function SETUP_FOLDERS() {
 			"shared"
 			"etc"
 		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "mympd" ]]; then
+
+		FOLDERS=(
+			"workdir"
+			"cachedir"
+			"music"
+			"playlists"
+		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
