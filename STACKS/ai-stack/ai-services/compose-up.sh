@@ -4,11 +4,6 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	# ai-dock-comfyui
-	# ai-dock-fooocus
-	# ai-dock-forge
-	# ai-dock-kohya
-	# ai-dock-sd-webui
 	anything-llm
 	# automatic1111
 	# big-agi
@@ -81,84 +76,6 @@ function SETUP_FOLDERS() {
 	if [[ "${SERVICE_NAME}" == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ "${SERVICE_NAME}" == "ai-dock-comfyui" ]]; then
-		FOLDERS=(
-			"data"
-			"models"
-			"output"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ "${SERVICE_NAME}" == "ai-dock-fooocus" ]]; then
-		FOLDERS=(
-			"data"
-			"models"
-			"output"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
-		FOLDERS=(
-			"data"
-			"models"
-			"output"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ "${SERVICE_NAME}" == "ai-dock-kohya" ]]; then
-		FOLDERS=(
-			"data"
-			"models"
-			"output"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ "${SERVICE_NAME}" == "ai-dock-forge" ]]; then
-		FOLDERS=(
-			"data"
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
