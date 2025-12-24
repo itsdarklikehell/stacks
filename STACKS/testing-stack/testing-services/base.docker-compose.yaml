@@ -59,7 +59,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/calibre/calibre_books
-      
+
   lazylibrarian_data:
     name: lazylibrarian_data
     driver: local

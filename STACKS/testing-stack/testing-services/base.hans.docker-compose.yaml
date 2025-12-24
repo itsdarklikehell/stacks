@@ -151,7 +151,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/testing-stack/nextcloud/nextcloud_config
-      
+
 networks:
   host:
   testing-services:
