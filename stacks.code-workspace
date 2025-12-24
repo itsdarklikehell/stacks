@@ -1,13 +1,13 @@
 {
   "folders": [
     {
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "settings": {
-    "gitmind.ollama.model": "smollm2",
-    "ollama-autocoder.model": "smollm2:latest",
-    "ollama-participant.model": "smollm2-coder",
-    "tabmania.model": "smollm2"
-  }
+    "gitmind.ollama.model": "gemma3:latest",
+    "ollama-autocoder.model": "gemma3:latest",
+    "ollama-participant.model": "gemma3:latest",
+    "tabmania.model": "smollm2",
+  },
 }
