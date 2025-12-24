@@ -73,6 +73,7 @@ function CLONE_MYPMD() {
 	mkdir -p  "/home/${USER}/.mpd/playlists"
 	mkdir -p "/home/${USER}/music"
 	touch "/home/${USER}/.mpd/log"
+	touch "/home/${USER}/.mpd/database"
 	# mkdir -p "/home/${USER}/.mpd/log"
 	# mkdir -p "/home/${USER}/.mpd/pid"
 	# mkdir -p "/home/${USER}/.mpd/state"
