@@ -67,9 +67,16 @@ function CLONE_MYPMD() {
 	
 	sudo apt install -y mpd
 
-	if [[ ! -f "/etc/mympd.conf" ]]; then
-		cp "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
-	fi
+	cp "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
+	sudo chown -R "/etc/mympd.conf"
+	
+	mkdir -p  "/home/${USER}/.mpd/playlists"
+	mkdir -p "/home/${USER}/music"
+	touch "/home/${USER}/.mpd/log"
+	# mkdir -p "/home/${USER}/.mpd/log"
+	# mkdir -p "/home/${USER}/.mpd/pid"
+	# mkdir -p "/home/${USER}/.mpd/state"
+	# mkdir -p "/home/${USER}/.mpd/sticker.sql"
 
 }
 
