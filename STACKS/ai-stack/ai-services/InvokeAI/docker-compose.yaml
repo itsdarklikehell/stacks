@@ -13,20 +13,21 @@ services:
       - homarr
 
     environment:
-      - PUID=${PUID:-1000}
-      - PGID=${PGID:-1000}
-      - TZ=${TZ:-Europe/Amsterdam}
-      - NVIDIA_VISIBLE_DEVICES=all
       - ALLOW_UNKNOWN_MODELS=true
       - INVOKEAI_ALLOW_UNKNOWN_MODELS=true
-      # - SCAN_MODELS_ON_STARTUP=true
-      # - INVOKEAI_SCAN_MODELS_ON_STARTUP=true
-      - INVOKEAI_ENABLE_PARTIAL_LOADING=true
+      - DEVICE_WORKING_MEM_GB=4
+      - INVOKEAI_DEVICE_WORKING_MEM_GB=4
       - ENABLE_PARTIAL_LOADING=true
-      # - DEVICE_WORKING_MEM_GB=4
-      # - INVOKEAI_DEVICE_WORKING_MEM_GB=4
-      # - INVOKEAI_KEEP_RAM_COPY_OF_WEIGHTS=false
-      # - KEEP_RAM_COPY_OF_WEIGHTS=false
+      - INVOKEAI_ENABLE_PARTIAL_LOADING=true
+      - KEEP_RAM_COPY_OF_WEIGHTS=f alse
+      - INVOKEAI_KEEP_RAM_COPY_OF_WEIGHTS=false
+      - PYTORCH_CUDA_ALLOC_CONF="backend:cudaMallocAsync"
+      - INVOKEAI_PYTORCH_CUDA_ALLOC_CONF="backend:cudaMallocAsync"
+      - NVIDIA_VISIBLE_DEVICES=all
+      - INVOKEAI_VISIBLE_DEVICES=all
+      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
@@ -53,7 +54,6 @@ services:
       - localai_output:/invokeai/outputs/localai_outputs
 
       - motioneye_shared:/invokeai/outputs/motioneye_shared
-
 
       # # INPUTS
       # - anything-llm_input:invokeai/inputs/anything-llm_input
