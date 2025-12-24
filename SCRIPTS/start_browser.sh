@@ -37,7 +37,7 @@ URLS=(
 	"http://${IP_ADDRESS}:2202"  # ubooquity
 	"https://${IP_ADDRESS}:4433" # nextcloud
 	"http://${IP_ADDRESS}:85" # heimdall
-	"https://${IP_ADDRESS}:444 # heimdall
+	"https://${IP_ADDRESS}:444" # heimdall
 )
 
 function RUN_BROWSER() {
