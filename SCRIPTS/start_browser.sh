@@ -31,10 +31,10 @@ URLS=(
 	"http://${IP_ADDRESS}:8188"  # ComfyUI
 	"http://${IP_ADDRESS}:3000"  # ComfyUIMini
 	"http://${IP_ADDRESS}:8765"  # MotionEye
-	"http://${IP_ADDRESS}:8483" # calibre-web
-	"http://${IP_ADDRESS}:5000" # kavita
-	"http://${IP_ADDRESS}:5299" # lazylibrarian
-	"http://${IP_ADDRESS}:2202" # ubooquity
+	"http://${IP_ADDRESS}:8483"  # calibre-web
+	"http://${IP_ADDRESS}:5000"  # kavita
+	"http://${IP_ADDRESS}:5299"  # lazylibrarian
+	"http://${IP_ADDRESS}:2202"  # ubooquity
 	"https://${IP_ADDRESS}:4433" # nextcloud
 
 )

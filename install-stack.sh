@@ -28,11 +28,11 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	if [[ "${USER}" == "hans" ]]; then
+	if [[ ${USER} == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
 		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
-	elif [[ "${USER}" == "rizzo" ]]; then
+	elif [[ ${USER} == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
@@ -46,7 +46,7 @@ function SETUP_ENV() {
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -59,7 +59,7 @@ function SETUP_ENV() {
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -72,7 +72,7 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
@@ -99,11 +99,11 @@ function PRUNING() {
 	echo "Pruning is set to: ${PRUNE}"
 	echo ""
 
-	if [[ "${PRUNE}" == "all" ]]; then
+	if [[ ${PRUNE} == "all" ]]; then
 		docker system prune -af
-	elif [[ "${PRUNE}" == "true" ]] || [[ "${PRUNE}" == "normal" ]]; then
+	elif [[ ${PRUNE} == "true" ]] || [[ ${PRUNE} == "normal" ]]; then
 		docker system prune -f
-	elif [[ "${PRUNE}" == "false" ]]; then
+	elif [[ ${PRUNE} == "false" ]]; then
 		echo "Skipping docker system prune"
 	fi
 
@@ -113,7 +113,7 @@ function PRUNING() {
 
 function CLEANUP_DATA() {
 
-	if [[ "${CLEANUP}" == "true" ]]; then
+	if [[ ${CLEANUP} == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/cleanup.sh
 	fi
 
@@ -162,7 +162,7 @@ function SETUP_AUTOSTART() {
 	)
 
 	for SCRIPT in "${bin_scripts[@]}"; do
-		if [[ "${SCRIPT}" == "install-stack.sh" ]]; then
+		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
 			if [[ -f "/home/${USER}/bin/${SCRIPT}" ]]; then
 				rm "/home/${USER}/bin/${SCRIPT}" >/dev/null 2>&1 &
 			fi
@@ -178,7 +178,7 @@ function SETUP_AUTOSTART() {
 		chmod +x "/home/${USER}/bin/${SCRIPT}"
 	done
 
-	if [[ "${AUTOSTART}" == "enabled" ]]; then
+	if [[ ${AUTOSTART} == "enabled" ]]; then
 		echo "autostart: ${AUTOSTART}"
 		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
 			if [[ -f "/home/${USER}/.config/autostart/${SCRIPT}" ]]; then
@@ -190,7 +190,7 @@ function SETUP_AUTOSTART() {
 			chmod +x "${STACK_BASEPATH}/SCRIPTS/${SCRIPT}"
 			sudo chmod +x "/usr/share/applications/${SCRIPT}"
 		done
-	elif [[ "${AUTOSTART}" == "disabled" ]]; then
+	elif [[ ${AUTOSTART} == "disabled" ]]; then
 		echo "autostart: ${AUTOSTART}"
 		for SCRIPT in "${autostart_desktop_scripts[@]}"; do
 			if [[ -f "/home/${USER}/.config/autostart/${SCRIPT}" ]]; then
@@ -221,9 +221,9 @@ function INSTALL_STACK() {
 
 function PULL_MODELS() {
 
-	if [[ "${PULL_MODELS}" == "true" ]]; then
+	if [[ ${PULL_MODELS} == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/pull_models.sh
-	elif [[ "${PULL_MODELS}" == "false" ]]; then
+	elif [[ ${PULL_MODELS} == "false" ]]; then
 		echo "Skipping model pulling"
 	fi
 
@@ -231,7 +231,7 @@ function PULL_MODELS() {
 
 function START_BROWSER() {
 
-	if [[ "${START_BROWSER}" == "true" ]]; then
+	if [[ ${START_BROWSER} == "true" ]]; then
 		"${STACK_BASEPATH}"/SCRIPTS/start_browser.sh
 	fi
 

@@ -13,11 +13,11 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	if [[ "${USER}" == "hans" ]]; then
+	if [[ ${USER} == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
 		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
-	elif [[ "${USER}" == "rizzo" ]]; then
+	elif [[ ${USER} == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
@@ -31,7 +31,7 @@ function SETUP_ENV() {
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -44,7 +44,7 @@ function SETUP_ENV() {
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -57,7 +57,7 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."

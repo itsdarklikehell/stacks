@@ -36,7 +36,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ "${SERVICE_NAME}" == "anything-llm" ]]; then
+	if [[ ${SERVICE_NAME} == "anything-llm" ]]; then
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
 			echo "Downloading example anything-llm .env file"
@@ -59,7 +59,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "stable-diffusion-webui" ]]; then
+	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
 		FOLDERS=(
 			"configdir"
 		)
@@ -73,7 +73,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "ComfyUI" ]]; then
+	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
 		FOLDERS=(
 			"common_storage"
 		)
@@ -87,7 +87,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "forge" ]]; then
+	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -101,13 +101,13 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "automatic1111" ]]; then
+	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "InvokeAI" ]]; then
+	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -122,7 +122,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "basic-memory" ]]; then
+	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
 		FOLDERS=(
 			"config"
 			"knowledge"
@@ -131,7 +131,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "homeassistant" ]]; then
+	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
 		FOLDERS=(
 			"config"
 			"media"
@@ -141,14 +141,14 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
 	fi
 
-	if [[ "${SERVICE_NAME}" == "letta-server" ]]; then
+	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "localai" ]]; then
+	if [[ ${SERVICE_NAME} == "localai" ]]; then
 		FOLDERS=(
 			"cache"
 			"configuration"
@@ -163,14 +163,14 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "n8n" ]]; then
+	if [[ ${SERVICE_NAME} == "n8n" ]]; then
 		FOLDERS=(
 			"data"
 			"local_files"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "ollama" ]]; then
+	if [[ ${SERVICE_NAME} == "ollama" ]]; then
 		FOLDERS=(
 			"data"
 		)
@@ -184,20 +184,20 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "open-webui" ]]; then
+	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "searxng" ]]; then
+	if [[ ${SERVICE_NAME} == "searxng" ]]; then
 		FOLDERS=(
 			"data"
 			"cache"
 		)
 	fi
 
-	if [[ "${SERVICE_NAME}" == "swarmui" ]]; then
+	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
 		FOLDERS=(
 			"backend"
 			"data"
@@ -244,19 +244,19 @@ function BUILDING() {
 	echo "Building is set to: ${BUILDING}"
 	echo ""
 
-	if [[ "${BUILDING}" == "force_rebuild" ]]; then
-		if [[ "${USER}" == "hans" ]]; then
+	if [[ ${BUILDING} == "force_rebuild" ]]; then
+		if [[ ${USER} == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		fi
-	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
-		if [[ "${USER}" == "hans" ]]; then
+	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
+		if [[ ${USER} == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d
 		fi
-	elif [[ "${BUILDING}" == "false" ]]; then
+	elif [[ ${BUILDING} == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 

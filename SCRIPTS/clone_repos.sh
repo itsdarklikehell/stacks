@@ -362,7 +362,7 @@ function CLONE_COMFYUI() {
 	export BACKGROUND=true
 	export COMFYUI_PORT=8188
 
-	if [[ ! -d "${COMFYUI_PATH}" ]]; then
+	if [[ ! -d ${COMFYUI_PATH} ]]; then
 		echo "Cloning ComfyUI"
 		echo ""
 		git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ComfyUI
@@ -418,7 +418,7 @@ function CLONE_COMFYUI() {
 				echo "${LINK} is just a plain directory!"
 
 				# echo "Checking if ${ORIGIN} exists"
-				if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+				if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 					# echo "Creating ${ORIGIN}"
 					mkdir -p "${ORIGIN}"
 				fi
@@ -439,19 +439,19 @@ function CLONE_COMFYUI() {
 				# echo "${LINK} is not a symlink nor a existing directory"
 
 				# echo "Checking if folder ${ORIGIN} exists"
-				if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+				if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 					echo "Creating ${ORIGIN}"
 					mkdir -p "${ORIGIN}"
 				fi
 
 				# echo "Checking if folder ${LINK} exists"
-				if [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
+				if [[ ! -d ${LINK} ]] && [[ ! -L ${LINK} ]]; then
 					mkdir -p "${LINK}"
 					rm -rf "${LINK}"
 				fi
 
 				# echo "Symlinking ${LINK} to ${ORIGIN}"
-				if [[ -d "${ORIGIN}" ]]; then
+				if [[ -d ${ORIGIN} ]]; then
 					ln -sf "${ORIGIN}" "${LINK}"
 				fi
 			fi
@@ -636,7 +636,7 @@ function CLONE_COMFYUI() {
 		# export WORKFLOWDIR="${STACK_BASEPATH}/DATA/ai-workflows"
 		export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
 
-		if [[ ! -d "${WORKFLOWDIR}" ]]; then
+		if [[ ! -d ${WORKFLOWDIR} ]]; then
 			mkdir -p "${WORKFLOWDIR}"
 		fi
 
@@ -686,12 +686,12 @@ function CLONE_COMFYUI() {
 
 		function ESSENTIAL() {
 
-			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 				echo "Installing ComfyUI custom nodes..."
-				if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
+				if [[ -f ${ESSENTIAL_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 							uv run comfy-cli node install "${node_name}"
 						fi
 					done <"${ESSENTIAL_CUSTOM_NODELIST}"
@@ -707,12 +707,12 @@ function CLONE_COMFYUI() {
 
 		function EXTRAS() {
 
-			if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
+			if [[ ${INSTALL_EXTRA_NODES} == "true" ]]; then
 				echo "Installing ComfyUI extra nodes..."
-				if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
+				if [[ -f ${EXTRA_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 							uv run comfy-cli node install "${node_name}"
 						fi
 					done <"${EXTRA_CUSTOM_NODELIST}"
@@ -728,12 +728,12 @@ function CLONE_COMFYUI() {
 
 		function DISABLED() {
 
-			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 				echo "Disableing some ComfyUI custom nodes..."
-				if [[ -f "${DISABLED_CUSTOM_NODELIST}" ]]; then
+				if [[ -f ${DISABLED_CUSTOM_NODELIST} ]]; then
 					echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 							uv run comfy-cli node disable "${node_name}"
 						fi
 					done <"${DISABLED_CUSTOM_NODELIST}"
@@ -749,12 +749,12 @@ function CLONE_COMFYUI() {
 
 		function REMOVED() {
 
-			if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 				echo "Removing some ComfyUI custom nodes..."
-				if [[ -f "${REMOVED_CUSTOM_NODELIST}" ]]; then
+				if [[ -f ${REMOVED_CUSTOM_NODELIST} ]]; then
 					echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 							uv run comfy-cli node disable "${node_name}"
 						fi
 					done <"${REMOVED_CUSTOM_NODELIST}"
@@ -778,7 +778,7 @@ function CLONE_COMFYUI() {
 
 	function UPDATE_CUSTOM_NODES() {
 
-		if [[ "${UPDATE}" == "true" ]]; then
+		if [[ ${UPDATE} == "true" ]]; then
 			echo "Updating all ComfyUI custom nodes..."
 			uv run comfy-cli update all
 		else
@@ -948,7 +948,7 @@ function LINK_FOLDERS() {
 			echo "${LINK} is just a plain directory!"
 
 			# echo "Checking if ${ORIGIN} exists"
-			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+			if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 				# echo "Creating ${ORIGIN}"
 				mkdir -p "${ORIGIN}"
 			fi
@@ -969,19 +969,19 @@ function LINK_FOLDERS() {
 			# echo "${LINK} is not a symlink nor a existing directory"
 
 			# echo "Checking if folder ${ORIGIN} exists"
-			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+			if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 				echo "Creating ${ORIGIN}"
 				mkdir -p "${ORIGIN}"
 			fi
 
 			# echo "Checking if folder ${LINK} exists"
-			if [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
+			if [[ ! -d ${LINK} ]] && [[ ! -L ${LINK} ]]; then
 				mkdir -p "${LINK}"
 				rm -rf "${LINK}"
 			fi
 
 			# echo "Symlinking ${LINK} to ${ORIGIN}"
-			if [[ -d "${ORIGIN}" ]]; then
+			if [[ -d ${ORIGIN} ]]; then
 				ln -sf "${ORIGIN}" "${LINK}"
 			fi
 
