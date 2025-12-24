@@ -15,6 +15,8 @@ echo "Configs directory is set to ${CONFIGS_DIR}"
 echo "Data directory is set to ${PERM_DATA}"
 echo "Secrets directory is set to ${SECRETS_DIR}"
 
+sudo apt install mpd
+
 cd "${SCRIPT_DIR}" || exit 1
 
 "${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
