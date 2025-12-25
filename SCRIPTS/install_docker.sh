@@ -99,7 +99,7 @@ function REMOVE_DOCKER() {
 	sudo rm -rf /var/lib/docker
 	sudo rm -rf /var/lib/containerd
 	
-	sudo rm -rf "${DOCKER_BASEPATH}"
+	# sudo rm -rf "${DOCKER_BASEPATH}"
 	sudo groupdel docker
 	sleep 1
 
