@@ -9,3 +9,5 @@ DATA/*
 DATA/ai-custom_nodes/*
 SCRIPTS/rmlint.json
 SCRIPTS/rmlint.sh
+
+.fake
