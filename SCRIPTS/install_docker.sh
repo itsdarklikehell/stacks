@@ -9,6 +9,77 @@ DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .ve
 
 function REMOVE_DOCKER() {
 
+		function SETUP_ENV() {
+
+			IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
+			export IP_ADDRESS
+
+			if [[ ${USER} == "hans" ]]; then
+				export STACK_BASEPATH="/media/hans/4-T/stacks"
+				export DOCKER_BASEPATH="/media/hans/4-T/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			elif [[ ${USER} == "rizzo" ]]; then
+				export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
+				export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			else
+				export STACK_BASEPATH="/media/hans/4-T/stacks"
+				export DOCKER_BASEPATH="/media/hans/4-T/docker"
+				export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+			fi
+
+			eval "$(resize)" || true
+			DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ ${exitstatus} == 0 ]]; then
+				echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export DOCKER_BASEPATH
+
+			eval "$(resize)" || true
+			STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ ${exitstatus} == 0 ]]; then
+				echo "User selected Ok and entered " "${STACK_BASEPATH}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export STACK_BASEPATH
+
+			eval "$(resize)" || true
+			IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+			exitstatus=$?
+
+			if [[ ${exitstatus} == 0 ]]; then
+				echo "User selected Ok and entered " "${IP_ADDRESS}"
+			else
+				echo "User selected Cancel."
+				exit 1
+			fi
+
+			export IP_ADDRESS
+
+			cd "${STACK_BASEPATH}" || exit 1
+
+			echo ""
+			START_CUSHYSTUDIO >/dev/null 2>&1 &
+			echo "" || exit
+
+			git pull # origin main
+			chmod +x "install-stack.sh"
+
+		}
+
+		SETUP_ENV
+
 	sudo systemctl stop docker
 	sudo systemctl disable docker
 
@@ -19,7 +90,9 @@ function REMOVE_DOCKER() {
 
 	sudo apt autoremove -y --purge docker-engine docker* docker.io docker-ce docker-ce-cli docker-compose-plugin docker-buildx-plugin docker-ce-rootless-extras docker-model-plugin containerd*
 
-	sudo rm -rf /var/lib/docker /etc/docker "${DOCKER_BASEPATH}"
+	sudo rm -rf /var/lib/docker
+	sudo rm -rf /etc/docker
+	sudo rm -rf "${DOCKER_BASEPATH}"
 	sudo rm /etc/apparmor.d/docker
 	sudo groupdel docker
 	sudo rm -rf /var/run/docker.sock
@@ -110,6 +183,7 @@ function INSTALL_DOCKER() {
 		SETUP_ENV
 
 		sudo apt update
+		sudo apt upgrade -y
 		sudo apt install -y \
 			ca-certificates \
 			curl \
