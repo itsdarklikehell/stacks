@@ -19,7 +19,7 @@ function REMOVE_DOCKER() {
 
 	sudo apt autoremove -y --purge docker-engine docker* docker.io docker-ce docker-ce-cli docker-compose-plugin docker-buildx-plugin docker-ce-rootless-extras docker-model-plugin containerd*
 
-	sudo rm -rf /var/lib/docker /etc/docker
+	sudo rm -rf /var/lib/docker /etc/docker "${DOCKER_BASEPATH}"
 	sudo rm /etc/apparmor.d/docker
 	sudo groupdel docker
 	sudo rm -rf /var/run/docker.sock
@@ -120,7 +120,8 @@ function INSTALL_DOCKER() {
 		sh get-docker.sh
 		sudo apt modernize-sources -y
 
-		sudo systemctl enable --now docker
+		sudo systemctl stop docker.socket
+		sudo systemctl stop docker
 
 		# Post-installation steps:
 		# sudo groupadd docker
@@ -136,11 +137,20 @@ function INSTALL_DOCKER() {
 			# mkdir "${DOCKER_BASEPATH}"
 			sudo ln -sf "${DOCKER_BASEPATH}" "/var/lib/docker"
 			sudo ls -la "/var/lib/docker"
+		else
+			# echo "/var/lib/docker is just a plain directory"
+			# sudo mv -f /var/lib/docker "${DOCKER_BASEPATH}"
+			# mkdir "${DOCKER_BASEPATH}"
+			sudo ln -sf "${DOCKER_BASEPATH}" "/var/lib/docker"
+			sudo ls -la "/var/lib/docker"
 		fi
 
 		echo "Docker installation completed."
 
 	fi
+
+	sudo systemctl enable --now docker
+	sudo systemctl enable --now docker.socket
 
 	if [[ ${DOCKER_RUNTIME} != "nvidia-container-runtime" ]]; then
 

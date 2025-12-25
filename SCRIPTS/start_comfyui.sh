@@ -16,11 +16,11 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	if [[ "${USER}" == "hans" ]]; then
+	if [[ ${USER} == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
-	elif [[ "${USER}" == "rizzo" ]]; then
+	elif [[ ${USER} == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
@@ -33,7 +33,7 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -44,7 +44,7 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -55,7 +55,7 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	if [[ "${exitstatus}" = 0 ]]; then
+	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
@@ -70,7 +70,7 @@ function SETUP_ENV() {
 }
 SETUP_ENV
 
-if [[ ! -d "${COMFYUI_PATH}" ]]; then
+if [[ ! -d ${COMFYUI_PATH} ]]; then
 	echo "Cloning ComfyUI"
 	echo ""
 	git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
@@ -126,7 +126,7 @@ function LINK_FOLDERS() {
 			echo "${LINK} is just a plain directory!"
 
 			# echo "Checking if ${ORIGIN} exists"
-			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+			if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 				# echo "Creating ${ORIGIN}"
 				mkdir -p "${ORIGIN}"
 			fi
@@ -147,19 +147,19 @@ function LINK_FOLDERS() {
 			# echo "${LINK} is not a symlink nor a existing directory"
 
 			# echo "Checking if folder ${ORIGIN} exists"
-			if [[ ! -d "${ORIGIN}" ]] && [[ ! -L "${ORIGIN}" ]]; then
+			if [[ ! -d ${ORIGIN} ]] && [[ ! -L ${ORIGIN} ]]; then
 				echo "Creating ${ORIGIN}"
 				mkdir -p "${ORIGIN}"
 			fi
 
 			# echo "Checking if folder ${LINK} exists"
-			if [[ ! -d "${LINK}" ]] && [[ ! -L "${LINK}" ]]; then
+			if [[ ! -d ${LINK} ]] && [[ ! -L ${LINK} ]]; then
 				mkdir -p "${LINK}"
 				rm -rf "${LINK}"
 			fi
 
 			# echo "Symlinking ${LINK} to ${ORIGIN}"
-			if [[ -d "${ORIGIN}" ]]; then
+			if [[ -d ${ORIGIN} ]]; then
 				ln -sf "${ORIGIN}" "${LINK}"
 			fi
 		fi
@@ -170,18 +170,25 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models/InvokeAI_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/InvokeAI_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/InvokeAI_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+	# LINKER
+
 	# # LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
 	# LINKER
 
@@ -189,18 +196,24 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models/anything-llm_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anything-llm_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/anything-llm_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anything-llm_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/anything-llm_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
-	LINKER
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/anything-llm_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anything-llm_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/anything-llm_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
+	# LINKER
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/anything-llm_models"
 	# LINKER
 
@@ -208,18 +221,25 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models/localai_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/localai_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/localai_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/localai_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-	LINKER
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
 	# LINKER
 
@@ -227,18 +247,25 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models/ollama_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/ollama_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/ollama_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/ollama_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
-	LINKER
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
 	# LINKER
 
@@ -246,18 +273,25 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models/forge_models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/forge_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/forge_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/forge_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
-	LINKER
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
 	# LINKER
 
@@ -265,18 +299,25 @@ function LINK_FOLDERS() {
 	LINK="${COMFYUI_PATH}/models"
 	ORIGIN="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
-	LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-	LINKER
-	LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-	LINKER
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+	# LINKER
+
+	# LINK="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
+	# LINKER
+
 	# LINK="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
 	# LINKER
 
@@ -317,9 +358,11 @@ function LINK_FOLDERS() {
 	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
 	ORIGIN="/home/${USER}/.config/variety/Downloaded"
 	LINKER
+
 	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
 	ORIGIN="/home/${USER}/.config/variety/Fetched"
 	LINKER
+
 	LINK="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 	ORIGIN="/home/${USER}/.config/variety/Favorites"
 	LINKER
@@ -328,9 +371,11 @@ function LINK_FOLDERS() {
 	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
 	ORIGIN="/home/${USER}/.config/variety/Downloaded"
 	LINKER
+
 	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
 	ORIGIN="/home/${USER}/.config/variety/Fetched"
 	LINKER
+
 	LINK="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 	ORIGIN="/home/${USER}/.config/variety/Favorites"
 	LINKER
@@ -342,7 +387,7 @@ function CLONE_WORKFLOWS() {
 	# export WORKFLOWDIR="${STACK_BASEPATH}/DATA/ai-workflows"
 	export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
 
-	if [[ ! -d "${WORKFLOWDIR}" ]]; then
+	if [[ ! -d ${WORKFLOWDIR} ]]; then
 		mkdir -p "${WORKFLOWDIR}"
 	fi
 
@@ -391,12 +436,12 @@ function INSTALL_CUSTOM_NODES() {
 
 	function ESSENTIAL() {
 
-		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+		if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 			echo "Installing ComfyUI custom nodes..."
-			if [[ -f "${ESSENTIAL_CUSTOM_NODELIST}" ]]; then
+			if [[ -f ${ESSENTIAL_CUSTOM_NODELIST} ]]; then
 				echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${ESSENTIAL_CUSTOM_NODELIST}"
@@ -412,12 +457,12 @@ function INSTALL_CUSTOM_NODES() {
 
 	function EXTRAS() {
 
-		if [[ "${INSTALL_EXTRA_NODES}" == "true" ]]; then
+		if [[ ${INSTALL_EXTRA_NODES} == "true" ]]; then
 			echo "Installing ComfyUI extra nodes..."
-			if [[ -f "${EXTRA_CUSTOM_NODELIST}" ]]; then
+			if [[ -f ${EXTRA_CUSTOM_NODELIST} ]]; then
 				echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${EXTRA_CUSTOM_NODELIST}"
@@ -433,12 +478,12 @@ function INSTALL_CUSTOM_NODES() {
 
 	function DISABLED() {
 
-		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+		if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 			echo "Disableing some ComfyUI custom nodes..."
-			if [[ -f "${DISABLED_CUSTOM_NODELIST}" ]]; then
+			if [[ -f ${DISABLED_CUSTOM_NODELIST} ]]; then
 				echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 						uv run comfy-cli node disable "${node_name}"
 					fi
 				done <"${DISABLED_CUSTOM_NODELIST}"
@@ -454,12 +499,12 @@ function INSTALL_CUSTOM_NODES() {
 
 	function REMOVED() {
 
-		if [[ "${INSTALL_DEFAULT_NODES}" == "true" ]]; then
+		if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
 			echo "Removing some ComfyUI custom nodes..."
-			if [[ -f "${REMOVED_CUSTOM_NODELIST}" ]]; then
+			if [[ -f ${REMOVED_CUSTOM_NODELIST} ]]; then
 				echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
+					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
 						uv run comfy-cli node disable "${node_name}"
 					fi
 				done <"${REMOVED_CUSTOM_NODELIST}"
@@ -483,7 +528,7 @@ function INSTALL_CUSTOM_NODES() {
 
 function UPDATE_CUSTOM_NODES() {
 
-	if [[ "${UPDATE}" == "true" ]]; then
+	if [[ ${UPDATE} == "true" ]]; then
 		echo "Updating all ComfyUI custom nodes..."
 		uv run comfy-cli update all
 	else
@@ -550,7 +595,7 @@ function RUN_COMFYUI() {
 		echo "ComfyUI virtual environment created and dependencies installed."
 	fi
 
-	if [[ "${BACKGROUND}" == "true" ]]; then
+	if [[ ${BACKGROUND} == "true" ]]; then
 		echo "Starting ComfyUI in background mode..."
 		uv run comfy-cli launch --background -- --preview-method auto --listen "0.0.0.0" --port "${COMFYUI_PORT}"
 	else
