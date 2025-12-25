@@ -117,7 +117,7 @@ function INSTALL_DOCKER() {
 			lsb-release
 
 		curl -fsSL https://get.docker.com -o get-docker.sh
-		sh get-docker.sh
+		sh get-docker.sh && rm get-docker.sh
 		sudo apt modernize-sources -y
 
 		sudo systemctl stop docker.socket
