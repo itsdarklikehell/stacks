@@ -238,7 +238,7 @@ function INSTALL_DOCKER() {
 
 }
 
-# REMOVE_DOCKER
+REMOVE_DOCKER
 
 # Call the function to install Docker
-INSTALL_DOCKER
+# INSTALL_DOCKER
