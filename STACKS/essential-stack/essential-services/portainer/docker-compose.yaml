@@ -69,8 +69,8 @@ services:
         max-size: 10m
         max-file: 3
 
-  portainer_agent:
-    container_name: ${NAME:-portainer_agent}
+  portainer-agent:
+    container_name: ${NAME:-portainer-agent}
     image: ${IMAGE:-portainer/agent:latest}
     # image: ${IMAGE:-portainer/agent:2.33.5}
     restart: ${RESTART:-unless-stopped}
@@ -99,7 +99,7 @@ services:
 
       - portainer_data:/data
 
-    hostname: ${NAME:-portainer_agent}
+    hostname: ${NAME:-portainer-agent}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
