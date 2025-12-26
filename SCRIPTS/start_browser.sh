@@ -22,7 +22,7 @@ URLS=(
 	"http://${IP_ADDRESS}:8383"  # dashy
 	"http://${IP_ADDRESS}:8088"  # it-tools
 	"http://${IP_ADDRESS}:8094"  # beszel
-	"http://${IP_ADDRESS}:81"    # nginx-proxy-mamager
+	"http://${IP_ADDRESS}:81"    # nginx-proxy-manager
 	"http://${IP_ADDRESS}:9000"  # portainer
 	"http://${IP_ADDRESS}:8096"  # jellyfin
 	"http://${IP_ADDRESS}:2283"  # immich
@@ -36,9 +36,9 @@ URLS=(
 	"http://${IP_ADDRESS}:5299"  # lazylibrarian
 	"http://${IP_ADDRESS}:2202"  # ubooquity
 	"https://${IP_ADDRESS}:4433" # nextcloud
-	"http://${IP_ADDRESS}:85" # heimdall
-	"https://${IP_ADDRESS}:444" # heimdall
-	"https://${IP_ADDRESS}:444" # mympd
+	"http://${IP_ADDRESS}:85"    # heimdall
+	"https://${IP_ADDRESS}:444"  # heimdall
+	"https://${IP_ADDRESS}:444"  # mympd
 )
 
 function RUN_BROWSER() {

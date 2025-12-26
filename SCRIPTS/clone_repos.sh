@@ -432,7 +432,7 @@ function CLONE_COMFYUI() {
 		function LINKER() {
 
 			if test -L "${LINK}"; then
-				echo "${LINK} is allready a symlink."
+				echo "${LINK} is already a symlink."
 				echo ""
 			elif test -d "${LINK}"; then
 				echo "${LINK} is just a plain directory!"
@@ -1006,7 +1006,7 @@ function LINK_FOLDERS() {
 	function LINKER() {
 
 		if test -L "${LINK}"; then
-			echo "${LINK} is allready a symlink."
+			echo "${LINK} is already a symlink."
 			echo ""
 		elif test -d "${LINK}"; then
 			echo "${LINK} is just a plain directory!"

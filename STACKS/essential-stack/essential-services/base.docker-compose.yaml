@@ -57,13 +57,13 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/scanopy/scanopy_server-data
-  scanopy_postgress-data:
-    name: scanopy_postgress-data
+  scanopy_postgres-data:
+    name: scanopy_postgres-data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/scanopy/scanopy_postgress-data
+      device: ../../../DATA/essential-stack/scanopy/scanopy_postgres-data
 
   dozzle_data:
     name: dozzle_data

@@ -8,7 +8,7 @@ export BACKGROUND=false
 export COMFYUIMINI_PORT=3000
 
 export STACK_BASEPATH="/media/hans/4-T/stacks"
-export COMFYMINI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
+export COMFYUIMINI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUIMini"
 
 function SETUP_ENV() {
 
@@ -79,7 +79,7 @@ SETUP_ENV
 
 function RUN_COMFYUIMINI() {
 
-	cd "${COMFYMINI_PATH}" || exit 1
+	cd "${COMFYUIMINI_PATH}" || exit 1
 	# ./scripts/install.sh
 	./scripts/start.sh &
 

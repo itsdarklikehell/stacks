@@ -6,7 +6,7 @@ x-scanopy-env: &scanopy-env
 services:
   scanopy-daemon:
     image: ghcr.io/scanopy/scanopy/daemon:latest
-    container_name: ${NAME:-scanopy-deamon}
+    container_name: ${NAME:-scanopy-daemon}
     restart: ${RESTART:-unless-stopped}
 
     privileged: true
@@ -35,7 +35,7 @@ services:
 
       - scanopy_daemon-config:/root/.config/daemon
 
-    hostname: ${NAME:-scanopy-deamon}
+    hostname: ${NAME:-scanopy-daemon}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -88,7 +88,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
 
     volumes:
-      - scanopy_postgress-data:/var/lib/postgresql/data
+      - scanopy_postgres-data:/var/lib/postgresql/data
 
     hostname: scanopy-postgres
 

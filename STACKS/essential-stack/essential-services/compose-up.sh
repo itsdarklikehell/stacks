@@ -71,7 +71,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"server-data"
 			"daemon-config"
-			"postgress-data"
+			"postgres-data"
 		)
 	fi
 

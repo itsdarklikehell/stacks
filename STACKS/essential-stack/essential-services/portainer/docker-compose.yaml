@@ -19,7 +19,7 @@ services:
       - PORT=${PORT:-9443}
       # - ENDPOINT=local
       # - DOCKER_ENDPOINT=local
-      # - PORTIANER_ENDPOINT=local
+      # - PORTAINER_ENDPOINT=local
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
