@@ -350,8 +350,8 @@ function LINK_FOLDERS() {
 
 function CLONE_WORKFLOWS() {
 
-	# export WORKFLOWDIR="${STACK_BASEPATH}/DATA/ai-workflows"
-	export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
+	export WORKFLOWDIR="${STACK_BASEPATH}/DATA/ai-workflows"
+	# export WORKFLOWDIR="${COMFYUI_PATH}/user/default/workflows"
 
 	if [[ ! -d ${WORKFLOWDIR} ]]; then
 		mkdir -p "${WORKFLOWDIR}"
@@ -381,6 +381,7 @@ function CLONE_WORKFLOWS() {
 		pwillia7/Basic_ComfyUI_Workflows
 		nerdyrodent/AVeryComfyNerd
 	)
+
 	for SOURCE in "${sources[@]}"; do
 		if [[ ! -d "${WORKFLOWDIR}/${SOURCE}" ]]; then
 			git clone --recursive https://github.com/"${SOURCE}".git "${WORKFLOWDIR}/${SOURCE}"
