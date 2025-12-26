@@ -42,6 +42,12 @@ fi
 
 # cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
+function LINK_FOLDERS() {
+
+	"${STACK_BASEPATH}"/SCRIPTS/folder_linker.sh
+
+}
+
 function CLONE_ANYTHINGLLM() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
@@ -374,6 +380,37 @@ function CLONE_SWARMUI() {
 
 }
 
+function CREATE_FOLDERS() {
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/forge_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
+	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
+
+}
+
 function CLONE_COMFYUI() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
@@ -395,185 +432,6 @@ function CLONE_COMFYUI() {
 
 	"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
 	"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
-
-	function CREATE_FOLDERS() {
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/forge_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
-
-	}
-
-	function LINK_FOLDERS() {
-
-		function LINKER() {
-
-			if test -L "${DEST}"; then
-				echo "${DEST} is already a symlink."
-				echo ""
-			elif test -d "${DEST}"; then
-				echo "${DEST} is just a plain directory!"
-
-				# echo "Checking if ${SOURCE} exists"
-				if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
-					# echo "Creating ${SOURCE}"
-					mkdir -p "${SOURCE}"
-				fi
-
-				# echo "Trying to move files!"
-				# echo "from ${DEST} to ${SOURCE}"
-				rsync -aHAX "${DEST}"/* "${SOURCE}"
-
-				# echo "Removing ${DEST}"
-				rm -rf "${DEST}"
-
-				# echo "symlinking ${DEST} to ${SOURCE}"
-				ln -sf "${SOURCE}" "${DEST}"
-			else
-				# echo "${DEST} is not a symlink nor a existing directory"
-
-				# echo "Checking if folder ${SOURCE} exists"
-				if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
-					echo "Creating ${SOURCE}"
-					mkdir -p "${SOURCE}"
-				fi
-
-				# echo "Checking if folder ${DEST} exists"
-				if [[ ! -d ${DEST} ]] && [[ ! -L ${DEST} ]]; then
-					mkdir -p "${DEST}"
-					rm -rf "${DEST}"
-				fi
-
-				# echo "symlinking ${DEST} to ${SOURCE}"
-				if [[ -d ${SOURCE} ]]; then
-					ln -sf "${SOURCE}" "${DEST}"
-				fi
-			fi
-
-		}
-
-		function COMFYUI_MODELS() {
-			# ### comfyui_models > ComfyUI/models
-			SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
-			LINKER
-
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-			LINKER
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-			# LINKER
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-			LINKER
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-			LINKER
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-			LINKER
-		}
-
-		function OTHER_MODELS() {
-			# ### comfyui_models > InvokeAI_models
-			SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-			LINKER
-
-			# # ### comfyui_models > anything-llm_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/anything-llm_models/comfyui_models"
-			# LINKER
-
-			# # ### comfyui_models > comfyui_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/comfyui_models/comfyui_models"
-			# LINKER
-
-			# # ### comfyui_models > forge_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/forge_models/comfyui_models"
-			# LINKER
-
-			# # ### comfyui_models > InvokeAI_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-			# LINKER
-
-			# # ### comfyui_models > localai_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/localai_models/comfyui_models"
-			# LINKER
-
-			# # ### comfyui_models > ollama_models
-			# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			# DEST="${STACK_BASEPATH}/DATA/ai-stack/ollama_models/comfyui_models"
-			# LINKER
-		}
-
-		function AI_INPUTS() {
-			## ai-outputs > ComfyUI/output
-			SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
-			DEST="${COMFYUI_PATH}/output"
-			LINKER
-			## variety/Downloaded > ai-outputs
-			SOURCE="/home/${USER}/.config/variety/Downloaded"
-			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-			LINKER
-			## variety/Fetched > ai-outputs
-			SOURCE="/home/${USER}/.config/variety/Fetched"
-			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-			LINKER
-			## variety/Favorites > ai-outputs
-			SOURCE="/home/${USER}/.config/variety/Favorites"
-			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-			LINKER
-		}
-
-		function AI_OUTPUTS() {
-			## ai-inputs > ComfyUI/input
-			SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
-			DEST="${COMFYUI_PATH}/input"
-			LINKER
-			## variety/Downloaded > ai-inputs
-			SOURCE="/home/${USER}/.config/variety/Downloaded"
-			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-			LINKER
-			## variety/Fetched > ai-inputs
-			SOURCE="/home/${USER}/.config/variety/Fetched"
-			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-			LINKER
-			## variety/Favorites > ai-inputs
-			SOURCE="/home/${USER}/.config/variety/Favorites"
-			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-			LINKER
-		}
-
-		COMFYUI_MODELS
-		OTHER_MODELS
-
-		AI_INPUTS
-		AI_OUTPUTS
-	}
 
 	function CLONE_WORKFLOWS() {
 
@@ -852,184 +710,6 @@ CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &
 CLONE_PUPPETEER   # >/dev/null 2>&1 &
 CLONE_SWARMUI     # >/dev/null 2>&1 &
-
-function CREATE_FOLDERS() {
-
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/forge_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
-
-}
-
-function LINK_FOLDERS() {
-
-	function LINKER() {
-
-		if test -L "${DEST}"; then
-			echo "${DEST} is already a symlink."
-			echo ""
-		elif test -d "${DEST}"; then
-			echo "${DEST} is just a plain directory!"
-
-			# echo "Checking if ${SOURCE} exists"
-			if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
-				# echo "Creating ${SOURCE}"
-				mkdir -p "${SOURCE}"
-			fi
-
-			# echo "Trying to move files!"
-			# echo "from ${DEST} to ${SOURCE}"
-			rsync -aHAX "${DEST}"/* "${SOURCE}"
-
-			# echo "Removing ${DEST}"
-			rm -rf "${DEST}"
-
-			# echo "symlinking ${DEST} to ${SOURCE}"
-			ln -sf "${SOURCE}" "${DEST}"
-		else
-			# echo "${DEST} is not a symlink nor a existing directory"
-
-			# echo "Checking if folder ${SOURCE} exists"
-			if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
-				echo "Creating ${SOURCE}"
-				mkdir -p "${SOURCE}"
-			fi
-
-			# echo "Checking if folder ${DEST} exists"
-			if [[ ! -d ${DEST} ]] && [[ ! -L ${DEST} ]]; then
-				mkdir -p "${DEST}"
-				rm -rf "${DEST}"
-			fi
-
-			# echo "symlinking ${DEST} to ${SOURCE}"
-			if [[ -d ${SOURCE} ]]; then
-				ln -sf "${SOURCE}" "${DEST}"
-			fi
-		fi
-
-	}
-
-	function COMFYUI_MODELS() {
-		# ### comfyui_models > ComfyUI/models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
-		LINKER
-
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-		LINKER
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-		# LINKER
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-		LINKER
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-		LINKER
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-		LINKER
-	}
-
-	function OTHER_MODELS() {
-		# ### comfyui_models > InvokeAI_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-		LINKER
-
-		# # ### comfyui_models > anything-llm_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/anything-llm_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > comfyui_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/comfyui_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > forge_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/forge_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > InvokeAI_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > localai_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/localai_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > ollama_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/ollama_models/comfyui_models"
-		# LINKER
-	}
-
-	function AI_INPUTS() {
-		## ai-outputs > ComfyUI/output
-		SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
-		DEST="${COMFYUI_PATH}/output"
-		LINKER
-		## variety/Downloaded > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Downloaded"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-		LINKER
-		## variety/Fetched > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Fetched"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-		LINKER
-		## variety/Favorites > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Favorites"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-		LINKER
-	}
-
-	function AI_OUTPUTS() {
-		## ai-inputs > ComfyUI/input
-		SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
-		DEST="${COMFYUI_PATH}/input"
-		LINKER
-		## variety/Downloaded > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Downloaded"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-		LINKER
-		## variety/Fetched > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Fetched"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-		LINKER
-		## variety/Favorites > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Favorites"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-		LINKER
-	}
-
-	COMFYUI_MODELS
-	OTHER_MODELS
-
-	AI_INPUTS
-	AI_OUTPUTS
-}
 
 CREATE_FOLDERS
 LINK_FOLDERS
