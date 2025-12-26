@@ -167,8 +167,18 @@ function LINK_FOLDERS() {
 
 	function ANYTHINGLLM_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models"
-		## anythingllm_models > comfyui_models
+
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/anythingllm_models"
+		# LINKER
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anythingllm_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/anythingllm_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anythingllm_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/anythingllm_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anythingllm_models"
 		LINKER
 	}
 
@@ -177,20 +187,56 @@ function LINK_FOLDERS() {
 		## comfyui_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
 		LINKER
+
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/comfyui_models"
+		LINKER
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
+		# LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+		LINKER
 	}
 
 	function FORGE_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
 		## forge_models > comfyui_models
+
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/forge_models"
+		LINKER
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
+		# LINKER
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
 		LINKER
-
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
+		LINKER
 	}
 
 	function INVOKEAI_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
 		## InvokeAI_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+		LINKER
+
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/InvokeAI_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+		LINKER
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
+		# LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
 		LINKER
 	}
 
@@ -199,6 +245,19 @@ function LINK_FOLDERS() {
 		# ## localai_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
 		LINKER
+
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/localai_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
+		LINKER
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
+		# LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
+		LINKER
 	}
 
 	function OLLAMA_MODELS() {
@@ -206,6 +265,19 @@ function LINK_FOLDERS() {
 		# ## ollama_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
 		LINKER
+
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/ollama_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
+		LINKER
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
+		LINKER
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
+		# LINKER
 	}
 
 	function AI_INPUTS() {
