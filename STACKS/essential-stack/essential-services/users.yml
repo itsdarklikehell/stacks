@@ -1,7 +1,0 @@
-users:
-    admin:
-        email: admin@example.net
-        name: John Doe
-        password: $2a$11$v6SL/sMiBg9rls32f99J8.XQdhst9.bYTBmB7GfAx0wJWLFeYTwzq
-        filter: name=foo
-        roles: shell
