@@ -68,7 +68,7 @@ function CLONE_MYPMD() {
 	sudo apt install -y mpd
 
 	cp "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
-	sudo chown -R "/etc/mympd.conf"
+	sudo chown -R "${USER}":"${USER}" "/etc/mympd.conf"
 
 	mkdir -p "/home/${USER}/.mpd/playlists"
 	mkdir -p "/home/${USER}/music"
