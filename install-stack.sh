@@ -278,11 +278,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -307,9 +307,9 @@ echo ""
 PULL_MODELS # >/dev/null 2>&1 &
 echo ""
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
 
 # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
