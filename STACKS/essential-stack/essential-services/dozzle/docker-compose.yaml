@@ -1,4 +1,40 @@
 services:
+  dozzle-agent:
+    image: amir20/dozzle:latest
+    command: agent
+    container_name: dozzle-agent
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    # environment:
+    #   - DOZZLE_HOSTNAME=my-special-name
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    networks:
+      host:
+      essential-services:
+
+    hostname: ${NAME:-dozzle-agent}
+
+    ports:
+      - 7007:7007
+
+    healthcheck:
+      test: [CMD, /dozzle, healthcheck]
+      interval: 5s
+      retries: 5
+      start_period: 5s
+      start_interval: 5s
+
   dozzle:
     image: ${IMAGE:-ghcr.io/amir20/dozzle:latest}
     container_name: ${NAME:-dozzle}
@@ -21,6 +57,7 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
       # - DOZZLE_AUTH_PROVIDER=simple
+      - DOZZLE_REMOTE_AGENT=agent:7007
       - DOZZLE_REMOTE_HOST=tcp://192.168.1.2:8082|SgtStroopwafel@SgtStroopwafel-Desktop,tcp://192.168.178.63:8082|hans@Desktop-hans
 
     volumes:
