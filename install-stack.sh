@@ -155,6 +155,7 @@ function SETUP_AUTOSTART() {
 		start_cushystudio.sh
 		start_deduper.sh
 		start_ollmvt.sh
+		folder_linker.sh
 	)
 
 	autostart_desktop_scripts=(
