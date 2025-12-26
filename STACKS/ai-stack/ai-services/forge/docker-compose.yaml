@@ -66,7 +66,7 @@ services:
       # MODELS:
       - forge_models:/workspace/models
 
-      # - anythingllm_models:/workspace/models/anythingllm_models
+      # - anything-llm_models:/workspace/models/anything-llm_models
       # - comfyui_models:/workspace/models/comfyui_models
       # - InvokeAI_models:/workspace/models/invokeai_models
       # - localai_models:/workspace/models

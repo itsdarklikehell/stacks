@@ -31,7 +31,7 @@ services:
       - comfyui_output:/root/output/comfyui_output
 
       # MODELS:
-      - anythingllm_models:/root/models/anythingllm_models
+      - anything-llm_models:/root/models/anything-llm_models
       - comfyui_models:/root/models/comfyui_models
       - forge_models:/root/models/forge_models
       - InvokeAI_models:/root/models/invokeai_models

@@ -40,7 +40,7 @@ services:
       # MODELS:
       - InvokeAI_models:/invokeai/models
 
-      - anythingllm_models:/invokeai/models/anythingllm_models
+      - anything-llm_models:/invokeai/models/anything-llm_models
       - localai_models:/invokeai/models/localai_models
       - ollama_models:/invokeai/models/ollama_models
 

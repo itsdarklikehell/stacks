@@ -64,7 +64,7 @@ services:
       - anything-llm_storage:/app/server/storage
 
       # MODELS:
-      - anythingllm_models:/app/server/storage/models
+      - anything-llm_models:/app/server/storage/models
 
       # - comfyui_models:/app/server/storage/models/comfyui_models
       # - forge_models:/app/server/storage/models/forge_models

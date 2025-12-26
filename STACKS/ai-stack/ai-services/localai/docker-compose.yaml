@@ -82,7 +82,7 @@ services:
       # MODELS:
       - localai_models:/models
 
-      # - anythingllm_models:/models/anythingllm_models
+      # - anything-llm_models:/models/anything-llm_models
       # - comfyui_models:/models/comfyui_models
       # - forge_models:/models/forge_models
       # - InvokeAI_models:/models/invokeai_models
