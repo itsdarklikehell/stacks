@@ -110,6 +110,17 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
 		FOLDERS=(
 			"data"
+			"models/anything-llm_models"
+			"models/localai_models"
+			"models/ollama_models"
+			"models/comfyui_models"
+			"models/forge_models"
+			"outputs/anything-llm_output"
+			"outputs/localai_output"
+			"outputs/ollama_output"
+			"outputs/comfyui_output"
+			"outputs/forge_output"
+			"outputs/motioneye_shared"
 		)
 
 		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"

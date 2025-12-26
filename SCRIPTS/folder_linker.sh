@@ -121,53 +121,18 @@ function LINK_FOLDERS() {
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
 		LINKER
 
+		# ### comfyui_models > anything-llm_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
 		LINKER
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-		# LINKER
+		# ### comfyui_models > forge_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
 		LINKER
+		# ### comfyui_models > localai_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
 		LINKER
+		# ### comfyui_models > ollama_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
 		LINKER
-	}
-
-	function OTHER_MODELS() {
-		# ### comfyui_models > InvokeAI_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-		LINKER
-
-		# # ### comfyui_models > anything-llm_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/anything-llm_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > comfyui_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/comfyui_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > forge_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/forge_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > InvokeAI_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/InvokeAI_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > localai_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/localai_models/comfyui_models"
-		# LINKER
-
-		# # ### comfyui_models > ollama_models
-		# SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		# DEST="${STACK_BASEPATH}/DATA/ai-stack/ollama_models/comfyui_models"
-		# LINKER
 	}
 
 	function AI_INPUTS() {
@@ -209,7 +174,6 @@ function LINK_FOLDERS() {
 	}
 
 	COMFYUI_MODELS
-	OTHER_MODELS
 
 	AI_INPUTS
 	AI_OUTPUTS

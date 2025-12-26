@@ -43,16 +43,15 @@ services:
       - anything-llm_models:/invokeai/models/anything-llm_models
       - localai_models:/invokeai/models/localai_models
       - ollama_models:/invokeai/models/ollama_models
-
       - comfyui_models:/invokeai/models/comfyui_models
       - forge_models:/invokeai/models/forge_models
 
       # OUTPUTS
-      - anything-llm_output:/invokeai/outputs/anything-llm_outputs
+      - anything-llm_output:/invokeai/outputs/anything-llm_output
       - comfyui_output:/invokeai/outputs/comfyui_output
-      - forge_output:/invokeai/outputs/forge_outputs
+      - forge_output:/invokeai/outputs/forge_output
       - InvokeAI_output:/invokeai/outputs
-      - localai_output:/invokeai/outputs/localai_outputs
+      - localai_output:/invokeai/outputs/localai_output
 
       - motioneye_shared:/invokeai/outputs/motioneye_shared
 
