@@ -91,15 +91,15 @@ function REMOVE_DOCKER() {
 	sudo apt autoremove -y --purge docker-engine docker* docker.io docker-ce docker-ce-cli docker-compose-plugin docker-buildx-plugin docker-ce-rootless-extras docker-model-plugin containerd*
 
 	sudo rm -rf ~/.docker
-	
+
 	sudo rm -rf /etc/docker
 	sudo rm -rf /etc/apparmor.d/docker
-	
+
 	sudo rm -rf /var/run/docker.sock
 	sudo rm -rf /var/lib/docker
 	sudo rm -rf /var/lib/containerd
-	
-	# sudo rm -rf "${DOCKER_BASEPATH}"
+
+	sudo rm -rf "${DOCKER_BASEPATH}"
 	sudo groupdel docker
 	sleep 1
 
@@ -241,7 +241,7 @@ function INSTALL_DOCKER() {
 
 }
 
-REMOVE_DOCKER
+# REMOVE_DOCKER
 
 # Call the function to install Docker
-# INSTALL_DOCKER
+INSTALL_DOCKER
