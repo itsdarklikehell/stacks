@@ -204,13 +204,13 @@ function INSTALL_DOCKER() {
 		# sudo groupadd docker
 		# sudo newgrp docker
 		sudo usermod -aG docker "${USER}"
-
 		if test -L "/var/lib/docker"; then
 			echo "/var/lib/docker is a symlink to a directory"
 			sudo ls -la "/var/lib/docker"
 		elif test -d "/var/lib/docker"; then
 			echo "/var/lib/docker is just a plain directory"
 			sudo mv -f /var/lib/docker "${DOCKER_BASEPATH}"
+			# rsync -aHAX "/var/lib/docker"/* "${DOCKER_BASEPATH}"
 			# mkdir "${DOCKER_BASEPATH}"
 			sudo ln -sf "${DOCKER_BASEPATH}" "/var/lib/docker"
 			sudo ls -la "/var/lib/docker"

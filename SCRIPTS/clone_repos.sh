@@ -446,8 +446,6 @@ function CLONE_COMFYUI() {
 				# echo "Trying to move files!"
 				# echo "from ${DEST} to ${SOURCE}"
 				rsync -aHAX "${DEST}"/* "${SOURCE}"
-				# mv -f "${DEST}"/* "${SOURCE}"
-				# cp -au "${DEST}" "${SOURCE}"
 
 				# echo "Removing ${DEST}"
 				rm -rf "${DEST}"
@@ -855,6 +853,7 @@ function CLONE_COMFYUIMINI() {
 		git pull
 	fi
 
+	rsync -aHAX "workflows"/* "${STACK_BASEPATH}/DATA/ai-workflows"
 	rm -rf "workflows"
 	ln -sf "${STACK_BASEPATH}/DATA/ai-workflows" "workflows"
 
@@ -956,8 +955,6 @@ function LINK_FOLDERS() {
 			# echo "Trying to move files!"
 			# echo "from ${DEST} to ${SOURCE}"
 			rsync -aHAX "${DEST}"/* "${SOURCE}"
-			# mv -f "${DEST}"/* "${SOURCE}"
-			# cp -au "${DEST}" "${SOURCE}"
 
 			# echo "Removing ${DEST}"
 			rm -rf "${DEST}"

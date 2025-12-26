@@ -139,8 +139,6 @@ function LINK_FOLDERS() {
 			# echo "Trying to move files!"
 			# echo "from ${DEST} to ${SOURCE}"
 			rsync -aHAX "${DEST}"/* "${SOURCE}"
-			# mv -f "${DEST}"/* "${SOURCE}"
-			# cp -au "${DEST}" "${SOURCE}"
 
 			# echo "Removing ${DEST}"
 			rm -rf "${DEST}"
