@@ -38,34 +38,28 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - LOCALAI_AUTOLOAD_BACKEND_GALLERIES=true
-      - LOCALAI_P2P=true
-      - LOCALAI_FEDERATED=true
-      - LOCALAI_AUTOLOAD_GALLERIES=true
-      - AUTOLOAD_BACKEND_GALLERIES=true
-      - LOCALAI_WATCHDOG_IDLE=true
-      - LOCALAI_SINGLE_ACTIVE_BACKEND=true
-      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=1h
-      - THREADS=1
       - PROFILE=gpu-8g
       - DEBUG=true
-
-      - LOCALAI_ADDRESS=${IP_ADDRESS}:${PORT:-8084}
-      - LISTENING_ADDRESS=${IP_ADDRESS}:${PORT:-8084}
-      - PORT=${PORT:-8084}
-      - SERVER_PORT=${SERVER_PORT:-8084}
 
       - BACKENDS_PATH=/backends
       - GENERATED_CONTENT_PATH=/output
       - IMAGE_PATH=/output
+
+      - LOCALAI_ADDRESS=${IP_ADDRESS}:${PORT:-8084}
+
+      - LOCALAI_AUTOLOAD_BACKEND_GALLERIES=true
+      - LOCALAI_AUTOLOAD_GALLERIES=true
       - LOCALAI_BACKENDS_PATH=/backends
+      - LOCALAI_FEDERATED=true
       - LOCALAI_GENERATED_CONTENT_PATH=/output
       - LOCALAI_IMAGE_PATH=/output
       - LOCALAI_MODELS_PATH=/models
-      - LOCALAI_UPLOAD_PATH=/uploads
-      - MODELS_PATH=/models
-      - STORAGE_DIR=/app/server/storage
-      - UPLOAD_PATH=/uploads
+      - LOCALAI_P2P=true
+      - LOCALAI_SINGLE_ACTIVE_BACKEND=true
+      - LOCALAI_WATCHDOG_BUSY_TIMEOUT=5m
+      - LOCALAI_WATCHDOG_BUSY=true
+      - LOCALAI_WATCHDOG_IDLE_TIMEOUT=1h
+      - LOCALAI_WATCHDOG_IDLE=true
 
     cap_add:
       - SYS_NICE
