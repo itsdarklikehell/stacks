@@ -104,6 +104,7 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "dozzle" ]]; then
 		FOLDERS=(
 			"data"
+			"certs"
 		)
 	fi
 
