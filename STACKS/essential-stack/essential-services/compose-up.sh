@@ -103,7 +103,8 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "dozzle" ]]; then
 
-		export REMOTE_HOSTNAME=$(hostname)
+		REMOTE_HOSTNAME=$(hostname)
+		export REMOTE_HOSTNAME
 
 		FOLDERS=(
 			"data"
