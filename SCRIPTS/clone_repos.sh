@@ -445,8 +445,9 @@ function CLONE_COMFYUI() {
 
 				# echo "Trying to move files!"
 				# echo "from ${DEST} to ${SOURCE}"
-
-				rsync -aHAX "${DEST}"/* "${SOURCE}"
+				if [[ ${SOURCE} == "" ]]; then
+					rsync -aHAX "${DEST}"/* "${SOURCE}"
+				fi
 				# mv -f "${DEST}"/* "${SOURCE}"
 				# cp -au "${DEST}" "${SOURCE}"
 
@@ -478,107 +479,185 @@ function CLONE_COMFYUI() {
 
 		}
 
-		## comfyui_models > InvokeAI_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-		LINKER
-		## InvokeAI_models > comfyui_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-		LINKER
+		function ANYTHINGLLM_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
+			# ## anything-llm_models > anything-llm_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/anything-llm_models"
+			# LINKER
+			## anything-llm_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
+			LINKER
+			## anything-llm_models > forge_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/anything-llm_models"
+			LINKER
+			## anything-llm_models > InvokeAI_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anything-llm_models"
+			LINKER
+			## anything-llm_models > localai_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/anything-llm_models"
+			LINKER
+			## anything-llm_models > ollama_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anything-llm_models"
+			LINKER
+		}
 
-		## comfyui_models > anything-llm_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-		LINKER
-		## anything-llm_models > comfyui_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
-		LINKER
+		function COMFYUI_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+			## comfyui_models > anything-llm_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
+			LINKER
+			# ## comfyui_models > comfyui_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
+			# LINKER
+			## comfyui_models > forge_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
+			LINKER
+			## comfyui_models > InvokeAI_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
+			LINKER
+			## comfyui_models > localai_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+			LINKER
+			## comfyui_models > ollama_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+			LINKER
+		}
 
-		## comfyui_models > localai
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai/comfyui_models"
-		LINKER
-		## localai_models > comfyui_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-		LINKER
+		function FORGE_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
+			## forge_models > anythingllm_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/forge_models"
+			LINKER
+			## forge_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
+			LINKER
+			# ## forge_models > forge_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
+			LINKER
+			## forge_models > InvokeAI_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
+			LINKER
+			## forge_models > localai_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
+			LINKER
+			## forge_models > ollama_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
+			LINKER
+		}
 
-		## comfyui_models > ollama_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-		LINKER
-		## ollama_models > comfyui_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/ollama_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-		LINKER
+		function INVOKEAI_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+			## InvokeAI_models > anythingllm_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/InvokeAI_models"
+			LINKER
+			## InvokeAI_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+			LINKER
+			## InvokeAI_models > forge_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
+			LINKER
+			# ## InvokeAI_models > InvokeAI_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
+			# LINKER
+			## InvokeAI_models > localai_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
+			LINKER
+			## InvokeAI_models > ollama_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
+			LINKER
+		}
 
-		## comfyui_models > forge_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-		LINKER
-		## forge_models > comfyui_models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
-		LINKER
+		function LOCALAI_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
+			## localai_models > anythingllm_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/localai_models"
+			LINKER
+			## localai_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
+			LINKER
+			## localai_models > forge_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
+			LINKER
+			## localai_models > InvokeAI_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
+			LINKER
+			# ## localai_models > localai_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
+			LINKER
+			## localai_models > ollama_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
+			LINKER
+		}
 
-		## comfyui_models > ai-custom_nodes
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		DEST="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-		LINKER
-		## ai-custom_nodes > ComfyUI/custom_nodes
-		SOURCE="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-		DEST="${COMFYUI_PATH}/custom_nodes"
-		LINKER
-		## ai-workflows > ComfyUI/user/default/workflows
-		SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-		DEST="${COMFYUI_PATH}/user/default/workflows"
-		LINKER
-		## ai-workflows > ComfyUI/models/workflows/workflows
-		SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-		DEST="${COMFYUI_PATH}/models/workflows/workflows"
-		LINKER
-		## ai-workflows > ComfyUI/custom_nodes/workflows/workflows
-		SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-		DEST="${COMFYUI_PATH}/custom_nodes/workflows/workflows"
-		LINKER
+		function OLLAMA_MODELS() {
+			SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
+			## ollama_models > anythingllm_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/ollama_models"
+			LINKER
+			## ollama_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
+			LINKER
+			## ollama_models > forge_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
+			LINKER
+			## ollama_models > InvokeAI_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
+			LINKER
+			## ollama_models > localai_models
+			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
+			LINKER
+			# ## ollama_models > ollama_models
+			# DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
+			LINKER
+		}
 
-		## ai-outputs > ComfyUI/output
-		SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
-		DEST="${COMFYUI_PATH}/output"
-		LINKER
-		## ai-inputs > ComfyUI/input
-		SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
-		DEST="${COMFYUI_PATH}/input"
-		LINKER
+		function AI_INPUTS() {
+			## ai-outputs > ComfyUI/output
+			SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
+			DEST="${COMFYUI_PATH}/output"
+			LINKER
+			## variety/Downloaded > ai-outputs
+			SOURCE="/home/${USER}/.config/variety/Downloaded"
+			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+			LINKER
+			## variety/Fetched > ai-outputs
+			SOURCE="/home/${USER}/.config/variety/Fetched"
+			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+			LINKER
+			## variety/Favorites > ai-outputs
+			SOURCE="/home/${USER}/.config/variety/Favorites"
+			DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+			LINKER
+		}
 
-		## variety/Downloaded > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Downloaded"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-		LINKER
-		## variety/Fetched > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Fetched"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-		LINKER
-		## variety/Favorites > ai-inputs
-		SOURCE="/home/${USER}/.config/variety/Favorites"
-		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-		LINKER
+		function AI_OUTPUTS() {
+			## ai-inputs > ComfyUI/input
+			SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
+			DEST="${COMFYUI_PATH}/input"
+			LINKER
+			## variety/Downloaded > ai-inputs
+			SOURCE="/home/${USER}/.config/variety/Downloaded"
+			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+			LINKER
+			## variety/Fetched > ai-inputs
+			SOURCE="/home/${USER}/.config/variety/Fetched"
+			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+			LINKER
+			## variety/Favorites > ai-inputs
+			SOURCE="/home/${USER}/.config/variety/Favorites"
+			DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+			LINKER
+		}
 
-		## variety/Downloaded > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Downloaded"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-		LINKER
-		## variety/Fetched > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Fetched"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-		LINKER
-		## variety/Favorites > ai-outputs
-		SOURCE="/home/${USER}/.config/variety/Favorites"
-		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-		LINKER
+		INVOKEAI_MODELS
+		COMFYUI_MODELS
+		ANYTHINGLLM_MODELS
+		FORGE_MODELS
+		LOCALAI_MODELS
+		OLLAMA_MODELS
 
+		AI_INPUTS
+		AI_OUTPUTS
 	}
 
 	function CLONE_WORKFLOWS() {
@@ -906,8 +985,9 @@ function LINK_FOLDERS() {
 
 			# echo "Trying to move files!"
 			# echo "from ${DEST} to ${SOURCE}"
-
-			rsync -aHAX "${DEST}"/* "${SOURCE}"
+			if [[ ${SOURCE} == "" ]]; then
+				rsync -aHAX "${DEST}"/* "${SOURCE}"
+			fi
 			# mv -f "${DEST}"/* "${SOURCE}"
 			# cp -au "${DEST}" "${SOURCE}"
 
@@ -939,107 +1019,185 @@ function LINK_FOLDERS() {
 
 	}
 
-	## comfyui_models > InvokeAI_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-	LINKER
-	## InvokeAI_models > comfyui_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-	LINKER
+	function ANYTHINGLLM_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
+		# ## anything-llm_models > anything-llm_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/anything-llm_models"
+		# LINKER
+		## anything-llm_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
+		LINKER
+		## anything-llm_models > forge_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/anything-llm_models"
+		LINKER
+		## anything-llm_models > InvokeAI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anything-llm_models"
+		LINKER
+		## anything-llm_models > localai_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/anything-llm_models"
+		LINKER
+		## anything-llm_models > ollama_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anything-llm_models"
+		LINKER
+	}
 
-	## comfyui_models > anything-llm_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
-	LINKER
-	## anything-llm_models > comfyui_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anything-llm_models"
-	LINKER
+	function COMFYUI_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+		## comfyui_models > anything-llm_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
+		LINKER
+		# ## comfyui_models > comfyui_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
+		# LINKER
+		## comfyui_models > forge_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
+		LINKER
+		## comfyui_models > InvokeAI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
+		LINKER
+		## comfyui_models > localai_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+		LINKER
+		## comfyui_models > ollama_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+		LINKER
+	}
 
-	## comfyui_models > localai
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/localai/comfyui_models"
-	LINKER
-	## localai_models > comfyui_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-	LINKER
+	function FORGE_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
+		## forge_models > anythingllm_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/forge_models"
+		LINKER
+		## forge_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
+		LINKER
+		# ## forge_models > forge_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
+		LINKER
+		## forge_models > InvokeAI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
+		LINKER
+		## forge_models > localai_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
+		LINKER
+		## forge_models > ollama_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
+		LINKER
+	}
 
-	## comfyui_models > ollama_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
-	LINKER
-	## ollama_models > comfyui_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/ollama_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-	LINKER
+	function INVOKEAI_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
+		## InvokeAI_models > anythingllm_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/InvokeAI_models"
+		LINKER
+		## InvokeAI_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
+		LINKER
+		## InvokeAI_models > forge_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
+		LINKER
+		# ## InvokeAI_models > InvokeAI_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
+		# LINKER
+		## InvokeAI_models > localai_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
+		LINKER
+		## InvokeAI_models > ollama_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
+		LINKER
+	}
 
-	## comfyui_models > forge_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-	LINKER
-	## forge_models > comfyui_models
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
-	LINKER
+	function LOCALAI_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
+		## localai_models > anythingllm_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/localai_models"
+		LINKER
+		## localai_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
+		LINKER
+		## localai_models > forge_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
+		LINKER
+		## localai_models > InvokeAI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
+		LINKER
+		# ## localai_models > localai_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
+		LINKER
+		## localai_models > ollama_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
+		LINKER
+	}
 
-	## comfyui_models > ai-custom_nodes
-	SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-	DEST="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-	LINKER
-	## ai-custom_nodes > ComfyUI/custom_nodes
-	SOURCE="${STACK_BASEPATH}/DATA/ai-custom_nodes"
-	DEST="${COMFYUI_PATH}/custom_nodes"
-	LINKER
-	## ai-workflows > ComfyUI/user/default/workflows
-	SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-	DEST="${COMFYUI_PATH}/user/default/workflows"
-	LINKER
-	## ai-workflows > ComfyUI/models/workflows/workflows
-	SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-	DEST="${COMFYUI_PATH}/models/workflows/workflows"
-	LINKER
-	## ai-workflows > ComfyUI/custom_nodes/workflows/workflows
-	SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
-	DEST="${COMFYUI_PATH}/custom_nodes/workflows/workflows"
-	LINKER
+	function OLLAMA_MODELS() {
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
+		## ollama_models > anythingllm_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/ollama_models"
+		LINKER
+		## ollama_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
+		LINKER
+		## ollama_models > forge_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
+		LINKER
+		## ollama_models > InvokeAI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
+		LINKER
+		## ollama_models > localai_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
+		LINKER
+		# ## ollama_models > ollama_models
+		# DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
+		LINKER
+	}
 
-	## ai-outputs > ComfyUI/output
-	SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
-	DEST="${COMFYUI_PATH}/output"
-	LINKER
-	## ai-inputs > ComfyUI/input
-	SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
-	DEST="${COMFYUI_PATH}/input"
-	LINKER
+	function AI_INPUTS() {
+		## ai-outputs > ComfyUI/output
+		SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
+		DEST="${COMFYUI_PATH}/output"
+		LINKER
+		## variety/Downloaded > ai-outputs
+		SOURCE="/home/${USER}/.config/variety/Downloaded"
+		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+		LINKER
+		## variety/Fetched > ai-outputs
+		SOURCE="/home/${USER}/.config/variety/Fetched"
+		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+		LINKER
+		## variety/Favorites > ai-outputs
+		SOURCE="/home/${USER}/.config/variety/Favorites"
+		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+		LINKER
+	}
 
-	## variety/Downloaded > ai-inputs
-	SOURCE="/home/${USER}/.config/variety/Downloaded"
-	DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-	LINKER
-	## variety/Fetched > ai-inputs
-	SOURCE="/home/${USER}/.config/variety/Fetched"
-	DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	LINKER
-	## variety/Favorites > ai-inputs
-	SOURCE="/home/${USER}/.config/variety/Favorites"
-	DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-	LINKER
+	function AI_OUTPUTS() {
+		## ai-inputs > ComfyUI/input
+		SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
+		DEST="${COMFYUI_PATH}/input"
+		LINKER
+		## variety/Downloaded > ai-inputs
+		SOURCE="/home/${USER}/.config/variety/Downloaded"
+		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+		LINKER
+		## variety/Fetched > ai-inputs
+		SOURCE="/home/${USER}/.config/variety/Fetched"
+		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+		LINKER
+		## variety/Favorites > ai-inputs
+		SOURCE="/home/${USER}/.config/variety/Favorites"
+		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+		LINKER
+	}
 
-	## variety/Downloaded > ai-outputs
-	SOURCE="/home/${USER}/.config/variety/Downloaded"
-	DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	LINKER
-	## variety/Fetched > ai-outputs
-	SOURCE="/home/${USER}/.config/variety/Fetched"
-	DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	LINKER
-	## variety/Favorites > ai-outputs
-	SOURCE="/home/${USER}/.config/variety/Favorites"
-	DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	LINKER
+	INVOKEAI_MODELS
+	COMFYUI_MODELS
+	ANYTHINGLLM_MODELS
+	FORGE_MODELS
+	LOCALAI_MODELS
+	OLLAMA_MODELS
 
+	AI_INPUTS
+	AI_OUTPUTS
 }
 
 CREATE_FOLDERS
