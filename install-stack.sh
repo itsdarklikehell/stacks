@@ -203,6 +203,14 @@ function SETUP_AUTOSTART() {
 		echo "AUTOSTART=VAR NOT SET, skipping."
 	fi
 
+	# #write out current crontab
+	# crontab -l >deduper
+	# #echo new cron into cron file
+	# echo "@daily /home/${USER}/bin/start_deduper.sh" >>deduper
+	# #install new cron file
+	# crontab deduper
+	# rm deduper
+
 }
 
 function INSTALL_STACK() {
