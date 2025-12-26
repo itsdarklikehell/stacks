@@ -67,7 +67,7 @@ function CLONE_MYPMD() {
 
 	sudo apt install -y mpd
 
-	cp "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
 	sudo chown -R "${USER}":"${USER}" "/etc/mympd.conf"
 
 	mkdir -p "/home/${USER}/.mpd/playlists"
@@ -314,9 +314,9 @@ function CLONE_OLLMVT() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
-		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
-		cp -f "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
+		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
+		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
+		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 
 		# docker build -t open-llm-vtuber .
 		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
@@ -358,12 +358,12 @@ function CLONE_SWARMUI() {
 
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
 
-		cp -f "${SCRIPT_DIR}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
-		cp -f "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
+		cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
+		cp -rf "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
 		# docker build -t swarmui .
 		./launchtools/custom-launch-docker.sh
 
@@ -879,9 +879,9 @@ function CLONE_COMFYUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 
 	}
@@ -942,9 +942,9 @@ function CLONE_COMFYUIMINI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -f "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
 		# docker build -t whisperx .
 
 	}
