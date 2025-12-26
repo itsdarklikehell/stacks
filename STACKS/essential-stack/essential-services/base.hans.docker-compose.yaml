@@ -72,6 +72,13 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/dozzle/dozzle_data
+  dozzle_certs:
+    name: dozzle_certs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/dozzle/dozzle_certs
 
   homarr_data:
     name: homarr_data
