@@ -21,7 +21,7 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
       # - DOZZLE_AUTH_PROVIDER=simple
-      - DOZZLE_REMOTE_HOST=tcp://192.168.1.2:2376|SgtStroopwafel@SgtStroopwafel-Desktop,tcp://192.168.178.63:2376|hans@Desktop-hans
+      - DOZZLE_REMOTE_HOST=tcp://192.168.1.2:8082|SgtStroopwafel@SgtStroopwafel-Desktop,tcp://192.168.178.63:8082|hans@Desktop-hans
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
