@@ -58,6 +58,7 @@ services:
       - DOZZLE_ENABLE_SHELL=true
       # - DOZZLE_AUTH_PROVIDER=simple
       - DOZZLE_REMOTE_AGENT=${REMOTE_HOSTNAME:-localhost}:7007
+      - DOZZLE_HOSTNAME=${REMOTE_HOSTNAME:-localhost}:7007
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
