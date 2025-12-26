@@ -445,9 +445,7 @@ function CLONE_COMFYUI() {
 
 				# echo "Trying to move files!"
 				# echo "from ${DEST} to ${SOURCE}"
-				if [[ ${SOURCE} == "" ]]; then
-					rsync -aHAX "${DEST}"/* "${SOURCE}"
-				fi
+				rsync -aHAX "${DEST}"/* "${SOURCE}"
 				# mv -f "${DEST}"/* "${SOURCE}"
 				# cp -au "${DEST}" "${SOURCE}"
 
@@ -481,133 +479,44 @@ function CLONE_COMFYUI() {
 
 		function ANYTHINGLLM_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models"
-			# ## anythingllm_models > anythingllm_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/anythingllm_models"
-			# LINKER
 			## anythingllm_models > comfyui_models
 			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anythingllm_models"
-			LINKER
-			## anythingllm_models > forge_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/anythingllm_models"
-			LINKER
-			## anythingllm_models > InvokeAI_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anythingllm_models"
-			LINKER
-			## anythingllm_models > localai_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/anythingllm_models"
-			LINKER
-			## anythingllm_models > ollama_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anythingllm_models"
 			LINKER
 		}
 
 		function COMFYUI_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-			## comfyui_models > anythingllm_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/comfyui_models"
-			LINKER
-			# ## comfyui_models > comfyui_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
-			# LINKER
-			## comfyui_models > forge_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-			LINKER
-			## comfyui_models > InvokeAI_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-			LINKER
-			## comfyui_models > localai_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-			LINKER
-			## comfyui_models > ollama_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+			## comfyui_models > comfyui_models
+			DEST="${STACK_BASEPATH}/DATA/ai-stack/Comfyui/models"
 			LINKER
 		}
 
 		function FORGE_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
-			## forge_models > anythingllm_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/forge_models"
-			LINKER
 			## forge_models > comfyui_models
 			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
 			LINKER
-			# ## forge_models > forge_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
-			LINKER
-			## forge_models > InvokeAI_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
-			LINKER
-			## forge_models > localai_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
-			LINKER
-			## forge_models > ollama_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
-			LINKER
+
 		}
 
 		function INVOKEAI_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
-			## InvokeAI_models > anythingllm_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/InvokeAI_models"
-			LINKER
 			## InvokeAI_models > comfyui_models
 			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-			LINKER
-			## InvokeAI_models > forge_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
-			LINKER
-			# ## InvokeAI_models > InvokeAI_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
-			# LINKER
-			## InvokeAI_models > localai_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
-			LINKER
-			## InvokeAI_models > ollama_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
 			LINKER
 		}
 
 		function LOCALAI_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-			## localai_models > anythingllm_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/localai_models"
-			LINKER
-			## localai_models > comfyui_models
+			# ## localai_models > comfyui_models
 			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-			LINKER
-			## localai_models > forge_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
-			LINKER
-			## localai_models > InvokeAI_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
-			LINKER
-			# ## localai_models > localai_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
-			LINKER
-			## localai_models > ollama_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
 			LINKER
 		}
 
 		function OLLAMA_MODELS() {
 			SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-			## ollama_models > anythingllm_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/ollama_models"
-			LINKER
-			## ollama_models > comfyui_models
+			# ## ollama_models > comfyui_models
 			DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-			LINKER
-			## ollama_models > forge_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
-			LINKER
-			## ollama_models > InvokeAI_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
-			LINKER
-			## ollama_models > localai_models
-			DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
-			LINKER
-			# ## ollama_models > ollama_models
-			# DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
 			LINKER
 		}
 
@@ -985,9 +894,7 @@ function LINK_FOLDERS() {
 
 			# echo "Trying to move files!"
 			# echo "from ${DEST} to ${SOURCE}"
-			if [[ ${SOURCE} == "" ]]; then
-				rsync -aHAX "${DEST}"/* "${SOURCE}"
-			fi
+			rsync -aHAX "${DEST}"/* "${SOURCE}"
 			# mv -f "${DEST}"/* "${SOURCE}"
 			# cp -au "${DEST}" "${SOURCE}"
 
@@ -1021,133 +928,44 @@ function LINK_FOLDERS() {
 
 	function ANYTHINGLLM_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models"
-		# ## anythingllm_models > anythingllm_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/anythingllm_models"
-		# LINKER
 		## anythingllm_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/anythingllm_models"
-		LINKER
-		## anythingllm_models > forge_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/anythingllm_models"
-		LINKER
-		## anythingllm_models > InvokeAI_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/anythingllm_models"
-		LINKER
-		## anythingllm_models > localai_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/anythingllm_models"
-		LINKER
-		## anythingllm_models > ollama_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/anythingllm_models"
 		LINKER
 	}
 
 	function COMFYUI_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
-		## comfyui_models > anythingllm_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/comfyui_models"
-		LINKER
-		# ## comfyui_models > comfyui_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/comfyui_models"
-		# LINKER
-		## comfyui_models > forge_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-		LINKER
-		## comfyui_models > InvokeAI_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/comfyui_models"
-		LINKER
-		## comfyui_models > localai_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
-		LINKER
-		## comfyui_models > ollama_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+		## comfyui_models > comfyui_models
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/Comfyui/models"
 		LINKER
 	}
 
 	function FORGE_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/forge_models"
-		## forge_models > anythingllm_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/forge_models"
-		LINKER
 		## forge_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/forge_models"
 		LINKER
-		# ## forge_models > forge_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/forge_models"
-		LINKER
-		## forge_models > InvokeAI_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/forge_models"
-		LINKER
-		## forge_models > localai_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/forge_models"
-		LINKER
-		## forge_models > ollama_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/forge_models"
-		LINKER
+
 	}
 
 	function INVOKEAI_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models"
-		## InvokeAI_models > anythingllm_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/InvokeAI_models"
-		LINKER
 		## InvokeAI_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/InvokeAI_models"
-		LINKER
-		## InvokeAI_models > forge_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/InvokeAI_models"
-		LINKER
-		# ## InvokeAI_models > InvokeAI_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/InvokeAI_models"
-		# LINKER
-		## InvokeAI_models > localai_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/InvokeAI_models"
-		LINKER
-		## InvokeAI_models > ollama_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/InvokeAI_models"
 		LINKER
 	}
 
 	function LOCALAI_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-		## localai_models > anythingllm_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/localai_models"
-		LINKER
-		## localai_models > comfyui_models
+		# ## localai_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/localai_models"
-		LINKER
-		## localai_models > forge_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/localai_models"
-		LINKER
-		## localai_models > InvokeAI_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/localai_models"
-		LINKER
-		# ## localai_models > localai_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/localai_models"
-		LINKER
-		## localai_models > ollama_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/localai_models"
 		LINKER
 	}
 
 	function OLLAMA_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/localai_models"
-		## ollama_models > anythingllm_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anythingllm_models/ollama_models"
-		LINKER
-		## ollama_models > comfyui_models
+		# ## ollama_models > comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/ollama_models"
-		LINKER
-		## ollama_models > forge_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/ollama_models"
-		LINKER
-		## ollama_models > InvokeAI_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/InvokeAI_models/ollama_models"
-		LINKER
-		## ollama_models > localai_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ollama_models"
-		LINKER
-		# ## ollama_models > ollama_models
-		# DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ollama_models"
 		LINKER
 	}
 
