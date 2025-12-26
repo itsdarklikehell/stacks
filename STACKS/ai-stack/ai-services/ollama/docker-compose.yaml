@@ -32,7 +32,7 @@ services:
       # MODELS:
       - ollama_models:/root/.ollama/models
 
-      # - anything-llm_models:/root/.ollama/models/anything-llm_models
+      # - anythingllm_models:/root/.ollama/models/anythingllm_models
       # - comfyui_models:/root/.ollama/models/comfyui_models
       # - forge_models:/root/.ollama/models/forge_models
       # - InvokeAI_models:/root/.ollama/models/invokeai_models

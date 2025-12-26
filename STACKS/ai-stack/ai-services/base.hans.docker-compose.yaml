@@ -73,14 +73,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/anything-llm/anything-llm_storage
-  anything-llm_models:
-    name: anything-llm_models
+  anythingllm_models:
+    name: anythingllm_models
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models/anything-llm_models
+      device: ../../../DATA/ai-models/anythingllm_models
   anything-llm_output:
     name: anything-llm_output
     driver: local
