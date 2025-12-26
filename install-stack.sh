@@ -69,7 +69,7 @@ function SETUP_ENV() {
 	export STACK_BASEPATH
 
 	eval "$(resize)" || true
-	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
 	if [[ ${exitstatus} == 0 ]]; then
@@ -335,7 +335,7 @@ echo "to start Openllm-Vtuber's service:"
 echo "run: 'start_ollmvt.sh'"
 echo ""
 echo "to pull the default set of models into ollama:"
-echo "run: 'pull_moldels.sh'"
+echo "run: 'pull_models.sh'"
 echo ""
 echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
 echo "run: 'start_deduper.sh'"

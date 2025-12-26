@@ -53,7 +53,7 @@ function SETUP_ENV() {
 	export STACK_BASEPATH
 
 	eval "$(resize)" || true
-	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip adress?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
