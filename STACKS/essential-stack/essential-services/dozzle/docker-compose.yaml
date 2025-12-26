@@ -35,9 +35,9 @@ services:
       start_period: 5s
       start_interval: 5s
 
-  dozzle:
+  dozzle-ui:
     image: ${IMAGE:-ghcr.io/amir20/dozzle:latest}
-    container_name: ${NAME:-dozzle}
+    container_name: ${NAME:-dozzle-ui}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -67,7 +67,7 @@ services:
       - dozzle_data:/data
       - dozzle_certs:/certs
 
-    hostname: ${NAME:-dozzle}
+    hostname: ${NAME:-dozzle-ui}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
