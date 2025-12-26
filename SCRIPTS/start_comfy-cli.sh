@@ -180,7 +180,7 @@ function LINK_FOLDERS() {
 	function COMFYUI_MODELS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 		## comfyui_models > comfyui_models
-		DEST="${STACK_BASEPATH}/DATA/ai-stack/Comfyui/models"
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
 		LINKER
 	}
 
