@@ -13,8 +13,8 @@ services:
       - homarr-app=true
       - homarr
 
-    # environment:
-    #   - DOZZLE_HOSTNAME=my-special-name
+    environment:
+      - DOZZLE_HOSTNAME=${HOSTNAME}
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -57,8 +57,8 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
       # - DOZZLE_AUTH_PROVIDER=simple
-      - DOZZLE_REMOTE_AGENT=agent:7007
-      - DOZZLE_REMOTE_HOST=tcp://192.168.1.2:8082|SgtStroopwafel@SgtStroopwafel-Desktop,tcp://192.168.178.63:8082|hans@Desktop-hans
+      - DOZZLE_REMOTE_AGENT=${HOSTNAME}:7007,SgtStroopwafel-Desktop:7007,Desktop-hans:7007
+      # - DOZZLE_REMOTE_HOST=tcp://192.168.1.2:8082|SgtStroopwafel@SgtStroopwafel-Desktop,tcp://192.168.178.63:8082|hans@Desktop-hans
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
@@ -68,10 +68,12 @@ services:
       - dozzle_data:/data
       - dozzle_certs:/certs
 
-
     hostname: ${NAME:-dozzle}
 
     # user: ${PUID:-1000}:${PGID:-1000}
+
+    depends_on:
+      - dozzle-agent
 
     networks:
       host:

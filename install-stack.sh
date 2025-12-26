@@ -295,17 +295,17 @@ echo ""
 SETUP_ESSENTIALS_STACK
 echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
-echo ""
-SETUP_TESTING_STACK
-echo ""
+# echo ""
+# SETUP_TESTING_STACK
+# echo ""
 
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
+# echo ""
+# PULL_MODELS # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_BROWSER >/dev/null 2>&1 &
@@ -316,6 +316,7 @@ echo ""
 # clear
 
 alias ollama='docker exec -it ollama ollama'
+
 echo "Installation should be complete now.."
 echo ""
 echo "To start a browser opening tabs with all of the stacks services:"
