@@ -115,7 +115,50 @@ function LINK_FOLDERS() {
 
 	}
 
+	function COMFYUI_WORKFLOWS() {
+
+		# ### ai-workflows > ComfyUI/workflows
+		SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/workflows"
+		LINKER
+		# ### ai-workflows > ai-models/comfyui_models/workflows
+		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/workflows"
+		LINKER
+		# ### ai-workflows > ComfyUI/user/default/workflows
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/user/default/workflows"
+		LINKER
+
+	}
+
+	function COMFYUI_NODES() {
+
+		# ### ai-custom_nodes > ComfyUI/custom_nodes
+		SOURCE="${STACK_BASEPATH}/DATA/ai-custom_nodes"
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/custom_nodes"
+		LINKER
+
+	}
+
+	function COMFYUI_STYLES() {
+
+		# ### ai-custom_nodes > ComfyUI/custom_nodes
+		SOURCE="${STACK_BASEPATH}/DATA/ai-styles"
+		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/styles"
+		LINKER
+
+		# ### ai-styles/*.csv > ComfyUI/*.csv
+		for FILE in "${STACK_BASEPATH}"/DATA/ai-styles/*.csv; do
+
+			SOURCE="${FILE}"
+			DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/${FILE}"
+			LINKER
+
+		done
+
+	}
+
 	function COMFYUI_MODELS() {
+
 		# ### comfyui_models > ComfyUI/models
 		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
@@ -133,9 +176,11 @@ function LINK_FOLDERS() {
 		# ### comfyui_models > ollama_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
 		LINKER
+
 	}
 
 	function AI_INPUTS() {
+
 		## ai-outputs > ComfyUI/output
 		SOURCE="${STACK_BASEPATH}/DATA/ai-outputs"
 		DEST="${COMFYUI_PATH}/output"
@@ -152,9 +197,11 @@ function LINK_FOLDERS() {
 		SOURCE="/home/${USER}/.config/variety/Favorites"
 		DEST="${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 		LINKER
+
 	}
 
 	function AI_OUTPUTS() {
+
 		## ai-inputs > ComfyUI/input
 		SOURCE="${STACK_BASEPATH}/DATA/ai-inputs"
 		DEST="${COMFYUI_PATH}/input"
@@ -171,9 +218,13 @@ function LINK_FOLDERS() {
 		SOURCE="/home/${USER}/.config/variety/Favorites"
 		DEST="${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 		LINKER
+
 	}
 
 	COMFYUI_MODELS
+	COMFYUI_NODES
+	COMFYUI_STYLES
+	COMFYUI_WORKFLOWS
 
 	AI_INPUTS
 	AI_OUTPUTS
