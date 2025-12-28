@@ -33,7 +33,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      books-services:
 
     ports:
       - ${PORT:-4433}:443

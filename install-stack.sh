@@ -260,9 +260,9 @@ function SETUP_AI_STACK() {
 
 }
 
-function SETUP_TESTING_STACK() {
+function SETUP_BOOKS_STACK() {
 
-	export STACK_NAME="testing"
+	export STACK_NAME="books"
 	INSTALL_STACK
 
 }
@@ -309,7 +309,7 @@ SETUP_AI_STACK
 echo ""
 
 echo ""
-SETUP_TESTING_STACK
+SETUP_BOOKS_STACK
 echo ""
 
 echo ""

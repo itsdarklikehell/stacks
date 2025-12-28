@@ -1,4 +1,4 @@
-name: testing-services
+name: books-services
 
 volumes:
   motioneye_shared:
@@ -8,7 +8,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/motioneye/motioneye_shared
+      device: ../../../DATA/books-stack/motioneye/motioneye_shared
   motioneye_etc:
     name: motioneye_etc
     driver: local
@@ -16,7 +16,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/motioneye/motioneye_etc
+      device: ../../../DATA/books-stack/motioneye/motioneye_etc
 
   ai_outputs:
     name: ai_outputs
@@ -42,7 +42,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/calibre-web/calibre-web_data
+      device: ../../../DATA/books-stack/calibre-web/calibre-web_data
   calibre-web_library:
     name: calibre-web_library
     driver: local
@@ -50,7 +50,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/calibre-web/calibre-web_library
+      device: ../../../DATA/books-stack/calibre-web/calibre-web_library
   calibre_books:
     name: calibre_books
     driver: local
@@ -66,7 +66,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_data
+      device: ../../../DATA/books-stack/lazylibrarian/lazylibrarian_data
   lazylibrarian_downloads:
     name: lazylibrarian_downloads
     driver: local
@@ -74,7 +74,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_downloads
+      device: ../../../DATA/books-stack/lazylibrarian/lazylibrarian_downloads
   lazylibrarian_library:
     name: lazylibrarian_library
     driver: local
@@ -82,7 +82,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/lazylibrarian/lazylibrarian_library
+      device: ../../../DATA/books-stack/lazylibrarian/lazylibrarian_library
 
   kavita_data:
     name: kavita_data
@@ -91,7 +91,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/kavita/kavita_data
+      device: ../../../DATA/books-stack/kavita/kavita_data
   kavita_library:
     name: kavita_library
     driver: local
@@ -99,7 +99,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/kavita/kavita_library
+      device: ../../../DATA/books-stack/kavita/kavita_library
 
   ubooquity_data:
     name: ubooquity_data
@@ -108,7 +108,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/ubooquity/ubooquity_data
+      device: ../../../DATA/books-stack/ubooquity/ubooquity_data
   ubooquity_library:
     name: ubooquity_library
     driver: local
@@ -116,7 +116,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/ubooquity/ubooquity_library
+      device: ../../../DATA/books-stack/ubooquity/ubooquity_library
   ubooquity_comics:
     name: ubooquity_comics
     driver: local
@@ -124,7 +124,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/ubooquity/ubooquity_comics
+      device: ../../../DATA/books-stack/ubooquity/ubooquity_comics
   ubooquity_rawfiles:
     name: ubooquity_rawfiles
     driver: local
@@ -132,7 +132,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/ubooquity/ubooquity_rawfiles
+      device: ../../../DATA/books-stack/ubooquity/ubooquity_rawfiles
 
   nextcloud_data:
     name: nextcloud_data
@@ -141,7 +141,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/nextcloud/nextcloud_data
+      device: ../../../DATA/books-stack/nextcloud/nextcloud_data
   nextcloud_config:
     name: nextcloud_config
     driver: local
@@ -149,9 +149,9 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/nextcloud/nextcloud_config
+      device: ../../../DATA/books-stack/nextcloud/nextcloud_config
 
 networks:
   host:
-  testing-services:
+  books-services:
     external: true

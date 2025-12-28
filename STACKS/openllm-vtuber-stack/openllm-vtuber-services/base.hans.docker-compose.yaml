@@ -24,7 +24,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/motioneye/motioneye_shared
+      device: ../../../DATA/books-stack/motioneye/motioneye_shared
 
 networks:
   host:

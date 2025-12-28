@@ -1,8 +1,8 @@
 services:
-  lazylibrarian:
+  calibre-web:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-lscr.io/linuxserver/lazylibrarian:latest}
-    container_name: ${NAME:-lazylibrarian}
+    image: ${IMAGE:-lscr.io/linuxserver/calibre-web:latest}
+    container_name: ${NAME:-calibre-web}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,33 +17,33 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-5299}
+      - PORT=${PORT:-8483}
       # optional
-      - DOCKER_MODS=linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - lazylibrarian_data:/config
-      - lazylibrarian_library:/books
-      - lazylibrarian_downloads:/downloads
+      - calibre-web_data:/config
+      - calibre-web_library:/books
       - calibre_books:/calibre_books
 
-    hostname: ${NAME:-lazylibrarian}
+    hostname: ${NAME:-calibre-web}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      testing-services:
+      books-services:
 
     ports:
-      - ${PORT:-5299}:5299
+      - ${PORT:-8483}:8083
 
     env_file:
-      - ./lazylibrarian/.env
+      - ./calibre-web/.env
 
     runtime: nvidia
     deploy:

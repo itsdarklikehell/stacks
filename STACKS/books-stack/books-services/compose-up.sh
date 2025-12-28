@@ -27,7 +27,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "motioneye" ]]; then
 
-		mkdir -p "${STACK_BASEPATH}/DATA/testing-stack/motioneye/motioneye_shared"
+		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 		FOLDERS=(
 			"shared"

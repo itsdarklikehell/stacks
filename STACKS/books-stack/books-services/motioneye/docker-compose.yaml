@@ -1,8 +1,8 @@
 services:
-  kavita:
+  motioneye:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-lscr.io/linuxserver/kavita:latest}
-    container_name: ${NAME:-kavita}
+    image: ${IMAGE:-ccrisan/motioneye:master-amd64}
+    container_name: ${NAME:-motioneye}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,30 +17,29 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-5000}
+      - PORT=${PORT:-8765}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - kavita_data:/config
-      - kavita_library:/book
-      - calibre_books:/calibre_books
+      - motioneye_shared:/shared
+      - motioneye_etc:/etc/motioneye
 
-    hostname: ${NAME:-kavita}
+    hostname: ${NAME:-motioneye}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      testing-services:
+      books-services:
 
     ports:
-      - ${PORT:-5000}:5000
+      - ${PORT:-8765}:8765
 
     env_file:
-      - ./kavita/.env
+      - ./motioneye/.env
 
     runtime: nvidia
     deploy:
