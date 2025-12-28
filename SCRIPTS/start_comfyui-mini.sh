@@ -40,8 +40,6 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	export DOCKER_BASEPATH
-
 	eval "$(resize)" || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
@@ -52,8 +50,6 @@ function SETUP_ENV() {
 		echo "User selected Cancel."
 		exit 1
 	fi
-
-	export STACK_BASEPATH
 
 	eval "$(resize)" || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
@@ -66,9 +62,16 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
+	export DOCKER_BASEPATH
+	export STACK_BASEPATH
 	export IP_ADDRESS
+	export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 
-	cd "${STACK_BASEPATH}" || exit
+	cd "${STACK_BASEPATH}" || exit 1
+
+	echo ""
+	START_CUSHYSTUDIO >/dev/null 2>&1 &
+	echo "" || exit
 
 	git pull # origin main
 	chmod +x "install-stack.sh"
