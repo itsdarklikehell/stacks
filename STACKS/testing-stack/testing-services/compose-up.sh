@@ -8,7 +8,6 @@ COMPOSE_FILES=(
 	calibre-web
 	lazylibrarian
 	kavita
-	mympd
 	ubooquity
 	nextcloud
 )
