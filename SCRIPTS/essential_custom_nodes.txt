@@ -1,13 +1,14 @@
-#### # #### # Essential nodes:
-
-### ComfyUI-Manager
+#### # #### # ComfyUI-Manager
 ComfyUI-Manager
-### droopy noodles
+
+#### # #### # droopy noodles
 comfyui-droopy-noodles
-### pc ding dong
+
+#### # #### # pc ding dong
 comfyui-pc-ding-dong
 comfyui-workflow-models-downloader
 comfyui-runpoddirect
+
 #### # #### # rgthree
 comfyui-gps-supplements
 multi-lora-stack
@@ -16,6 +17,7 @@ comfyui-vslinx-nodes
 comfyui_sillynodes
 efficiency-nodes-ED
 rgthree-comfy
+
 #### # #### # Favorite
 comfyui-impact-subpack
 comfy-mtb
@@ -36,6 +38,7 @@ comfyui-impact-pack
 comfyui-animatediff-evolved
 comfyui_controlnet_aux
 comfyui_ipadapter_plus
+
 #### # #### # A1111 nodes
 sd-webui-color-enhance
 nui-suite
@@ -70,32 +73,14 @@ ComfyUI-TiledDiffusion
 comfyui-inspire-pack
 comfyui-wd14-tagger
 comfyui_ultimatesdupscale
+
 #### # #### # More A1111 nodes
-Comfyui-XYZ-stitch
-comfyui_otacoo
-format-lora-stack
-Comfyui_Prompt_styler
 CLIPTextEncodeA1111-ComfyUI
 ComfyUI-z-a1111-sd-webui-DanTagGen
-comfyui-flux-prompt-saver
-comfyui-et_dynamicprompts
-comfyui_sageutils
-comfyui-clip-with-break
-webui-monaco-prompt
-lazy-pony-prompter
-ComfyUI_LoRA_Sidebar
-ComfyUI_JPS-Nodes
-Comfyui_MiniCPMv2_6-prompt-generator
-comfyui_model_installer
-comfyui-ollama
-comfyui-ollama-prompt-encode
-ComfyUI-OllamaPromptsGeneratorTlant
-ComfyUI-OnDemand-Loaders.git
-ComfyUI-telegram-bot-node
-EXO-Custom-ComfyUI-Nodes
-Factory-Prompts_comfyui
-flux-prompt-generator
-PromptCreatorNode
+
+#### # #### # Downloaders
+ComfyUI-TrashNodes-DownloadHuggingface
+comfyui-Lora-auto-downloader
 comfyui-preset-download-manager
 ComfyUI_HuggingFace_Downloader
 comfyui_hf_model_downloader
@@ -103,43 +88,60 @@ autodownloadmodels
 lora_downloader
 kiko-downloader
 hf-model-downloader
-enhanced-civicomfy
 comfyui-universal-asset-downloader
-ComfyUI-TrashNodes-DownloadHuggingface
-ComfyUI-TemporaryLoader
-comfyui_musev_evolved
-ComfyUI_Civitai_Gallery
-comfyui-consistency-decoder
-civitai-api-url-resolver
-comfyui-Lora-auto-downloader
-civicomfy
 ComfyUI_HFDownLoad
 comfy-asset-downloader
+comfyui-model-downloader
+comfyui_model_installer
+
+#### # #### # CivitAI
+enhanced-civicomfy
+civicomfy
+civitai-api-url-resolver
+ComfyUI_Civitai_Gallery
 civitai_comfy_nodes
 comfyui-easycivitai-xtnodes
-comfyui-n-sidebar
-ImageMetaHub-ComfyUI-Save
 ComfyUI-SaveImageCivitAI
-comfy-image-saver
-comfyui-image-saver
-SaveImageWithMetaDataUniversal
-donutnodes
-ComfyUI-CornmeisterNL-PowerPack
-comfyui-image-prompt-loader
-ComfyUI-JurdnsIterativeNoiseKsampler
 ComfyUI-Civitai-Recipe
-ComfyUI-DvD-LoraTriggerwordsManager
-lf-nodes
-kraken-discord-bot
-comfyui-model-downloader
-ez-dl
 civitai_prompt_stats
-mangonodepack
-ComfyUI-flux_fill_patcher
 civitai-discovery-hub
-checkpoint-discovery-hub
-loadlorawithtags
-comfyui_image_metadata_extension
-lora-info
-comfyui-lora-auto-trigger-words
-ComfyUI-APQNodes
+lf-nodes
+ez-dl
+comfyui-n-sidebar
+
+
+#### # #### # Bots
+ComfyUI-telegram-bot-node
+kraken-discord-bot
+
+#### # #### # Ollama / LLM
+comfyui-ollama
+comfyui-ollama-prompt-encode
+ComfyUI-OllamaPromptsGeneratorTlant
+
+#### # #### # Prompt Nodes
+# Comfyui_Prompt_styler
+# comfyui-flux-prompt-saver
+# comfyui-et_dynamicprompts
+# webui-monaco-prompt
+# lazy-pony-prompter
+# Comfyui_MiniCPMv2_6-prompt-generator
+# Factory-Prompts_comfyui
+# flux-prompt-generator
+# PromptCreatorNode
+# comfyui-image-prompt-loader
+
+#### # #### # Save Image with Metadata
+# ImageMetaHub-ComfyUI-Save
+# comfy-image-saver
+# comfyui-image-saver
+# SaveImageWithMetaDataUniversal
+# comfyui_image_metadata_extension
+
+#### # #### # LoRA Nodes
+# format-lora-stack
+# ComfyUI_LoRA_Sidebar
+# ComfyUI-DvD-LoraTriggerwordsManager
+# loadlorawithtags
+# lora-info
+# comfyui-lora-auto-trigger-words
