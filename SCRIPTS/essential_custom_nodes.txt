@@ -104,9 +104,9 @@ lf-nodes
 ComfyUI_Civitai_Gallery
 ComfyUI-Civitai-Recipe
 # civitai_comfy_nodes
-comfyui-easycivitai-xtnodes
-civitai-api-url-resolver
-civitai_prompt_stats
+# comfyui-easycivitai-xtnodes
+# civitai-api-url-resolver
+# civitai_prompt_stats
 
 #### # #### # Bots
 ComfyUI-telegram-bot-node
