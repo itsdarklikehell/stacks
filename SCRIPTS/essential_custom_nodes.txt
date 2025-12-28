@@ -120,28 +120,28 @@ comfyui-ollama-prompt-encode
 ComfyUI-OllamaPromptsGeneratorTlant
 
 #### # #### # Prompt Nodes
-# Comfyui_Prompt_styler
-# comfyui-flux-prompt-saver
-# comfyui-et_dynamicprompts
-# webui-monaco-prompt
-# lazy-pony-prompter
-# Comfyui_MiniCPMv2_6-prompt-generator
-# Factory-Prompts_comfyui
-# flux-prompt-generator
-# PromptCreatorNode
-# comfyui-image-prompt-loader
+Comfyui_Prompt_styler
+comfyui-flux-prompt-saver
+comfyui-et_dynamicprompts
+webui-monaco-prompt
+lazy-pony-prompter
+Comfyui_MiniCPMv2_6-prompt-generator
+Factory-Prompts_comfyui
+flux-prompt-generator
+PromptCreatorNode
+comfyui-image-prompt-loader
 
 #### # #### # Save Image with Metadata
-# ImageMetaHub-ComfyUI-Save
-# comfy-image-saver
-# comfyui-image-saver
-# SaveImageWithMetaDataUniversal
-# comfyui_image_metadata_extension
+ImageMetaHub-ComfyUI-Save
+comfy-image-saver
+comfyui-image-saver
+SaveImageWithMetaDataUniversal
+comfyui_image_metadata_extension
 
 #### # #### # LoRA Nodes
-# format-lora-stack
-# ComfyUI_LoRA_Sidebar
-# ComfyUI-DvD-LoraTriggerwordsManager
-# loadlorawithtags
-# lora-info
-# comfyui-lora-auto-trigger-words
+format-lora-stack
+ComfyUI_LoRA_Sidebar
+ComfyUI-DvD-LoraTriggerwordsManager
+loadlorawithtags
+lora-info
+comfyui-lora-auto-trigger-words
