@@ -144,3 +144,17 @@ ComfyUI-DvD-LoraTriggerwordsManager
 loadlorawithtags
 lora-info
 comfyui-lora-auto-trigger-words
+
+#### # #### # rembg
+kaytool
+wtq-rembg-comfyui-node
+comfyui-rembg
+comfyui_ben_ll
+comfyui-img2paintingassistant
+comfyui-levelpixel-advanced
+batchimg-rembg-comfyui-nodes
+ComfyUI-GeekyRemB
+rembg-comfyui-node-better
+rembg-comfyui-node
+comfyui_birefnet_ll
+comfyui-inspyrenet-rembg
