@@ -18,6 +18,7 @@ COMPOSE_FILES=(
 	nginx-proxy-manager
 	portainer
 	portracker
+	pulse
 	beszel
 	heimdall
 	# watchtower
@@ -49,6 +50,12 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
+		FOLDERS=(
+			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "pulse" ]]; then
 		FOLDERS=(
 			"data"
 		)

@@ -262,6 +262,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/heimdall/heimdall_config
 
+  pulse_data:
+    name: pulse_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pulse/pulse_data
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

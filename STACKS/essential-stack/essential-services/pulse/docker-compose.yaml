@@ -1,0 +1,54 @@
+x-pulse-env: &pulse-env
+  pulse_LOG_LEVEL: ${pulse_LOG_LEVEL:-info}
+  pulse_SERVER_PORT: ${pulse_SERVER_PORT:-60072}
+  pulse_DAEMON_PORT: ${pulse_DAEMON_PORT:-60073}
+
+services:
+  pulse:
+    image: rcourtman/pulse:latest
+    container_name: pulse
+    restart: unless-stopped
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-7655}
+
+    volumes:
+      - pulse_data:/data
+
+    hostname: pulse
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - "${PORT:-7655}:7655"
+
+    env_file:
+      - ./pulse/.env
+
+    healthcheck:
+      test:
+        [
+          CMD,
+          wget,
+          --quiet,
+          --tries=1,
+          --spider,
+          http://localhost:7655/api/health,
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
