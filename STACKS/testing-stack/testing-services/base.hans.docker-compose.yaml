@@ -151,39 +151,6 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/nextcloud/nextcloud_config
 
-  mympd_workdir:
-    name: mympd_workdir
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/mympd/mympd_workdir
-  mympd_cachedir:
-    name: mympd_cachedir
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/mympd/mympd_cachedir
-  mympd_music:
-    name: mympd_music
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/mympd/mympd_music
-  mympd_playlists:
-    name: mympd_playlists
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/mympd/mympd_music
-
 networks:
   host:
   testing-services:

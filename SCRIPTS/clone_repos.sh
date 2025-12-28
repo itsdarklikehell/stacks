@@ -67,26 +67,6 @@ function CLONE_ANYTHINGLLM() {
 
 }
 
-function CLONE_MYPMD() {
-
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	sudo apt install -y mpd
-
-	sudo cp -rf "${STACK_BASEPATH}/SCRIPTS/mympdconf.example" "/etc/mympd.conf"
-	sudo chown -R "${USER}":"${USER}" "/etc/mympd.conf"
-
-	mkdir -p "/home/${USER}/.mpd/playlists"
-	mkdir -p "/home/${USER}/music"
-	touch "/home/${USER}/.mpd/log"
-	touch "/home/${USER}/.mpd/database"
-	# mkdir -p "/home/${USER}/.mpd/log"
-	# mkdir -p "/home/${USER}/.mpd/pid"
-	# mkdir -p "/home/${USER}/.mpd/state"
-	# mkdir -p "/home/${USER}/.mpd/sticker.sql"
-
-}
-
 function CLONE_SCANOPY() {
 
 	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1

@@ -35,17 +35,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "mympd" ]]; then
-
-		FOLDERS=(
-			"workdir"
-			"cachedir"
-			"music"
-			"playlists"
-		)
-
-	fi
-
 	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
