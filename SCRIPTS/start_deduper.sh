@@ -120,12 +120,12 @@ for folder in "${folders[@]}"; do
 			fi
 			echo "Main Models Path: ${MAIN_MODELS_PATH}"
 			echo "Processing model folder ${model_folder} ..."
-			rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${MAIN_MODELS_PATH}" // "${model_folder}"
+			rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" // "${model_folder}"
 		done
 		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
 	else
 		echo "Processing folder ${folder} ..."
-		rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
+		rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${folder}"
 		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
 	fi
 
