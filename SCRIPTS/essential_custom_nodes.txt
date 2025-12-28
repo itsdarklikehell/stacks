@@ -127,7 +127,6 @@ donutnodes
 ComfyUI-CornmeisterNL-PowerPack
 comfyui-image-prompt-loader
 ComfyUI-JurdnsIterativeNoiseKsampler
-comfyui-civitai-workflow
 ComfyUI-Civitai-Recipe
 ComfyUI-DvD-LoraTriggerwordsManager
 lf-nodes
