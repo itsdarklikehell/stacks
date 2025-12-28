@@ -95,19 +95,18 @@ comfyui-model-downloader
 comfyui_model_installer
 
 #### # #### # CivitAI
-# enhanced-civicomfy
-# civicomfy
-# civitai-api-url-resolver
-# ComfyUI_Civitai_Gallery
+enhanced-civicomfy
+ez-dl
+civicomfy
+civitai-discovery-hub
+comfyui-n-sidebar
+lf-nodes
+ComfyUI_Civitai_Gallery
+ComfyUI-Civitai-Recipe
 # civitai_comfy_nodes
-# comfyui-easycivitai-xtnodes
-# ComfyUI-SaveImageCivitAI
-# ComfyUI-Civitai-Recipe
-# civitai_prompt_stats
-# civitai-discovery-hub
-# lf-nodes
-# ez-dl
-# comfyui-n-sidebar
+comfyui-easycivitai-xtnodes
+civitai-api-url-resolver
+civitai_prompt_stats
 
 #### # #### # Bots
 ComfyUI-telegram-bot-node
@@ -136,6 +135,7 @@ comfy-image-saver
 comfyui-image-saver
 SaveImageWithMetaDataUniversal
 comfyui_image_metadata_extension
+ComfyUI-SaveImageCivitAI
 
 #### # #### # LoRA Nodes
 format-lora-stack
