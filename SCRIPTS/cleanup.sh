@@ -14,15 +14,15 @@ function SETUP_ENV() {
 	if [[ ${USER} == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	elif [[ ${USER} == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	else
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
-		export COMFYUI_PATH="/${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	fi
 
 	eval "$(resize)" || true
