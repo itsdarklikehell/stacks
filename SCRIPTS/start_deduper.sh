@@ -84,6 +84,8 @@ export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
 export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputs"
 export AI_WORKFLOWS_PATH="${STACK_BASEPATH}/DATA/ai-workflows"
 
+export MAIN_MODELS_PATH="${AI_MODELS_PATH}/comfyui_models"
+
 cd "${STACK_BASEPATH}" || exit 1
 
 folders=(
@@ -92,19 +94,43 @@ folders=(
 	"${AI_OUTPUTS_PATH}"
 	"${AI_INPUTS_PATH}"
 )
+modelfolders=(
+	"${AI_MODELS_PATH}/anything-llm_models"
+	"${AI_MODELS_PATH}/comfyui_models"
+	"${AI_MODELS_PATH}/forge_models"
+	"${AI_MODELS_PATH}/InvokeAI_models"
+	"${AI_MODELS_PATH}/localai_models"
+	"${AI_MODELS_PATH}/ollama_models"
+)
 
 for folder in "${folders[@]}"; do
 
 	echo "Removing Leftovers and deduplicating ${folder}"
 
-	rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
+	if [[ ! -d ${folder} ]]; then
+		echo "Folder ${folder} does not exist. Skipping..."
+		continue
+	fi
 
-	"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq # >/dev/null 2>&1 &
+	if [[ ${folder} == "${AI_MODELS_PATH}" ]]; then
+		for model_folder in "${modelfolders[@]}"; do
+			if [[ ${model_folder} == "${MAIN_MODELS_PATH}" ]]; then
+				echo "Skipping main models folder ${model_folder} ..."
+				continue
+			fi
+			echo "Main Models Path: ${MAIN_MODELS_PATH}"
+			echo "Processing model folder ${model_folder} ..."
+			rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${MAIN_MODELS_PATH}" // "${model_folder}"
+		done
+		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
+	else
+		echo "Processing folder ${folder} ..."
+		rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink "${folder}"
+		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
+	fi
 
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.sh"   # >/dev/null 2>&1 &
 	rm "${STACK_BASEPATH}/SCRIPTS/rmlint.json" # >/dev/null 2>&1 &
-	# rm "${STACK_BASEPATH}/rmlint.sh"           # >/dev/null 2>&1 &
-	# rm "${STACK_BASEPATH}/rmlint.json"         # >/dev/null 2>&1 &
 
 	echo "Removed Leftovers and deduplicated  ${folder}"
 
