@@ -95,14 +95,14 @@ comfyui-model-downloader
 comfyui_model_installer
 
 #### # #### # CivitAI
-enhanced-civicomfy
-ez-dl
-civicomfy
-civitai-discovery-hub
-comfyui-n-sidebar
-lf-nodes
-ComfyUI_Civitai_Gallery
-ComfyUI-Civitai-Recipe
+# enhanced-civicomfy
+# ez-dl
+# civicomfy
+# civitai-discovery-hub
+# comfyui-n-sidebar
+# lf-nodes
+# ComfyUI_Civitai_Gallery
+# ComfyUI-Civitai-Recipe
 # civitai_comfy_nodes
 # comfyui-easycivitai-xtnodes
 # civitai-api-url-resolver
@@ -154,7 +154,7 @@ comfyui-img2paintingassistant
 comfyui-levelpixel-advanced
 batchimg-rembg-comfyui-nodes
 ComfyUI-GeekyRemB
-rembg-comfyui-node-better
 rembg-comfyui-node
+rembg-comfyui-node-better
 comfyui_birefnet_ll
 comfyui-inspyrenet-rembg
