@@ -9,7 +9,7 @@ export IP_ADDRESS
 export IP_ADDRESS=0.0.0.0
 
 URLS=(
-	"http://${IP_ADDRESS}:3002"  # anythingllm
+	"http://${IP_ADDRESS}:3001"  # anythingllm
 	"http://${IP_ADDRESS}:1111"  # forge
 	"http://${IP_ADDRESS}:8123"  # home assistant
 	"http://${IP_ADDRESS}:9090"  # InvokeAI

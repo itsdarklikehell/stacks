@@ -300,25 +300,25 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
 echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_BROWSER >/dev/null 2>&1 &
+echo ""
 
 # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
