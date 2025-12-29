@@ -16,6 +16,7 @@ COMPOSE_FILES=(
 	it-tools
 	jellyfin
 	nginx-proxy-manager
+	nextcloud
 	motioneye
 	portainer
 	portracker
