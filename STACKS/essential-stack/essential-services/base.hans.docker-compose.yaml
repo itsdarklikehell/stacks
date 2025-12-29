@@ -252,6 +252,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/motioneye/motioneye_shared
+  motioneye_etc:
+    name: motioneye_etc
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/motioneye/motioneye_etc
 
   heimdall_config:
     name: heimdall_config
