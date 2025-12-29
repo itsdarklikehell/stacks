@@ -270,6 +270,21 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/pulse/pulse_data
 
+  apprise-api_config:
+    name: apprise-api_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/apprise-api/apprise-api_config
+  apprise-api_attachments:
+    name: apprise-api_attachments
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/apprise-api/apprise-api_attachments
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username

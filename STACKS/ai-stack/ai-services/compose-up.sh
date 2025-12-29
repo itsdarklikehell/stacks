@@ -4,22 +4,18 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	anything-llm
-	# automatic1111
-	# big-agi
-	# ComfyUI
+	# anything-llm
 	homeassistant
-	InvokeAI
-	letta-mcp-server
-	letta-server
+	# InvokeAI
+	# letta-mcp-server
+	# letta-server
 	# localai
-	forge
+	# forge
 	# n8n
 	ollama
 	open-webui
 	# puppeteer
 	searxng
-	# stable-diffusion-webui
 	# swarmui
 )
 
@@ -59,34 +55,6 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "stable-diffusion-webui" ]]; then
-		FOLDERS=(
-			"configdir"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
-		FOLDERS=(
-			"common_storage"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
-	fi
-
 	if [[ ${SERVICE_NAME} == "forge" ]]; then
 		FOLDERS=(
 			"data"
@@ -99,12 +67,6 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
-	fi
-
-	if [[ ${SERVICE_NAME} == "automatic1111" ]]; then
-		FOLDERS=(
-			"data"
-		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
@@ -131,15 +93,6 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
-	fi
-
-	if [[ ${SERVICE_NAME} == "basic-memory" ]]; then
-		FOLDERS=(
-			"config"
-			"knowledge"
-			"personal-notes"
-			"work-notes"
-		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
