@@ -61,24 +61,24 @@ services:
         max-size: 10m
         max-file: 3
 
-  beszel-agent:
-    image: henrygd/beszel-agent:latest
-    container_name: beszel-agent
-    restart: unless-stopped
-    hostname: beszel-agent
+  # beszel-agent:
+  #   image: henrygd/beszel-agent:latest
+  #   container_name: beszel-agent
+  #   restart: unless-stopped
+  #   hostname: beszel-agent
 
-    network_mode: host
+  #   network_mode: host
 
-    volumes:
-      # - /etc/localtime:/etc/localtime:ro
-      # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+  #   volumes:
+  #     # - /etc/localtime:/etc/localtime:ro
+  #     # - /etc/timezone:/etc/timezone:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
-      - beszel_agent-data:/var/lib/beszel-agent
-      - beszel_socket:/beszel_socket
+  #     - beszel_agent-data:/var/lib/beszel-agent
+  #     - beszel_socket:/beszel_socket
 
-    environment:
-      LISTEN: /beszel_socket/beszel.sock
-      HUB_URL: http://localhost:8094
-      # TOKEN: <token>
-      # KEY: <key>
+  #   environment:
+  #     LISTEN: /beszel_socket/beszel.sock
+  #     HUB_URL: http://localhost:8094
+  #     # TOKEN: <token>
+  #     # KEY: <key>

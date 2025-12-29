@@ -12,7 +12,7 @@ COMPOSE_FILES=(
 	InvokeAI
 	letta-mcp-server
 	letta-server
-	localai
+	# localai
 	forge
 	# n8n
 	ollama

@@ -5,6 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	autoheal
+	apprise-api
 	# autopulse
 	dozzle
 	dashy
@@ -52,6 +53,13 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "apprise-api" ]]; then
+		FOLDERS=(
+			"config"
+			"attachments"
 		)
 	fi
 
