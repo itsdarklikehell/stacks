@@ -18,7 +18,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-1h}
       - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
-      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
+      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS:-192.168.1.2}:8188}
       - OLLAMA_MODELS=/root/.ollama/models
       - OLLAMA_VULKAN=1
 
@@ -81,7 +81,7 @@ services:
     stdin_open: true
 
     # healthcheck:
-    #   test: [CMD, curl, -f, http://${IP_ADDRESS}:11434/api/tags]
+    #   test: [CMD, curl, -f, http://${IP_ADDRESS:-192.168.1.2}:11434/api/tags]
     #   interval: 10s
     #   timeout: 5s
     #   retries: 5

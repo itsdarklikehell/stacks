@@ -47,8 +47,6 @@ services:
       - InvokeAI_output:/invokeai/outputs
       - localai_output:/invokeai/outputs/localai_output
 
-      - motioneye_shared:/invokeai/outputs/motioneye_shared
-
       # # INPUTS
       # - anything-llm_input:invokeai/inputs/anything-llm_input
       # - comfyui_input:invokeai/inputs/comfyui_input

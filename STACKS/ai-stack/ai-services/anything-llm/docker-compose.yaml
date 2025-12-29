@@ -16,20 +16,20 @@ services:
       - homarr
 
     environment:
-      - AGENT_SEARXNG_API_URL=http://${IP_ADDRESS}:8081/search?q=<query>
+      - AGENT_SEARXNG_API_URL=http://${IP_ADDRESS:-192.168.1.2}:8081/search?q=<query>
       - COLLECTOR_ALLOW_ANY_IP=true
       - COMMUNITY_HUB_BUNDLE_DOWNLOADS_ENABLED=1
-      - EMBEDDING_BASE_PATH=http://${IP_ADDRESS}:11434
+      - EMBEDDING_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:11434
       - EMBEDDING_ENGINE=ollama
       - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
       - EMBEDDING_MODEL_PREF=embeddinggemma:latest
       - JWT_SECRET=2cc18cd7-66e3-48b0-8975-75d4edda8fe5
       - LLM_PROVIDER=ollama
       # - LOCAL_AI_API_KEY=sk-123abc
-      - LOCAL_AI_BASE_PATH=http://${IP_ADDRESS}:8083/v1
+      - LOCAL_AI_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:8084/v1
       - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
       - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
-      - OLLAMA_BASE_PATH=http://${IP_ADDRESS}:11434
+      - OLLAMA_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:11434
       - OLLAMA_MODEL_PREF=smallthinker:latest
       - OLLAMA_MODEL_TOKEN_LIMIT=4096
       - OLLAMA_KEEP_ALIVE_TIMEOUT=1h
@@ -42,7 +42,7 @@ services:
       - PASSWORDUPPERCASE=1
       - PGID=${PGID:-1000}
       - PUID=${PUID:-1000}
-      - SERVER_PORT=3002
+      - SERVER_PORT=3001
       - STORAGE_DIR=/app/server/storage
       - STORAGE_LOCATION=/app/server/storage
       - TTS_PROVIDER=native
@@ -95,7 +95,7 @@ services:
       ai-services:
 
     ports:
-      - ${PORT:-3002}:3002
+      - ${PORT:-3001}:3001
 
     env_file:
       - ./anything-llm/.env
@@ -126,7 +126,7 @@ services:
           --no-verbose,
           --tries=3,
           --spider,
-          http://localhost:3002/api/health,
+          http://localhost:3001/api/health,
         ]
       interval: 30s
       timeout: 10s

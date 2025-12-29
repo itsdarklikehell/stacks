@@ -4,13 +4,13 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	# anything-llm
+	anything-llm
 	homeassistant
-	# InvokeAI
-	# letta-mcp-server
-	# letta-server
-	# localai
-	# forge
+	InvokeAI
+	letta-mcp-server
+	letta-server
+	localai
+	forge
 	n8n
 	ollama
 	open-webui
