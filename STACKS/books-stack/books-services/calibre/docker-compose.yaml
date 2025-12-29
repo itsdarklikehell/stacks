@@ -30,4 +30,8 @@ services:
 
     shm_size: 1gb
 
+    networks:
+      host:
+      books-services:
+
     restart: unless-stopped

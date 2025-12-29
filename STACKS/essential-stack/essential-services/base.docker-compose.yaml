@@ -228,6 +228,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-inputs
+
   motioneye_shared:
     name: motioneye_shared
     driver: local

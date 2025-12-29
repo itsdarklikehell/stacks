@@ -50,6 +50,14 @@ volumes:
       o: bind
       device: ../../../DATA/books-stack/calibre/calibre_config
 
+  jellyfin_books:
+    name: jellyfin_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_books
+
   lazylibrarian_data:
     name: lazylibrarian_data
     driver: local

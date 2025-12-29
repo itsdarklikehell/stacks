@@ -33,7 +33,7 @@ services:
 
     networks:
       host:
-      books-services:
+      essential-services:
 
     ports:
       - ${PORT:-4433}:443

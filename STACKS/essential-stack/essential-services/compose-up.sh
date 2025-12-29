@@ -16,6 +16,7 @@ COMPOSE_FILES=(
 	it-tools
 	jellyfin
 	nginx-proxy-manager
+	motioneye
 	portainer
 	portracker
 	pulse
@@ -120,8 +121,6 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "motioneye" ]]; then
-
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 		FOLDERS=(
 			"shared"
