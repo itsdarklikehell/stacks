@@ -97,6 +97,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-inputs
+      
   InvokeAI_data:
     name: InvokeAI_data
     driver: local

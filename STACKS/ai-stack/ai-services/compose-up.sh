@@ -41,7 +41,7 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
-			"data"
+			"storage"
 			"prompts"
 			"vectorstores"
 		)

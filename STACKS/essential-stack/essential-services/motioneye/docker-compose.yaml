@@ -23,6 +23,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/video0:/dev/video0
 
       - motioneye_shared:/shared
       - motioneye_etc:/etc/motioneye
