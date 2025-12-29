@@ -251,7 +251,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/motioneye/motioneye_shared
+      device: ../../../DATA/essential-stack/motioneye/motioneye_shared
 
   heimdall_config:
     name: heimdall_config
@@ -284,6 +284,23 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/apprise-api/apprise-api_attachments
+
+  nextcloud_data:
+    name: nextcloud_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_data
+  nextcloud_config:
+    name: nextcloud_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_config
 
 secrets:
   INITIAL_ADMIN_EMAIL:

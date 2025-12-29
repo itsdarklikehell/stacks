@@ -12,7 +12,6 @@ COMPOSE_FILES=(
 	# scanopy
 	# clair
 	# homarr
-	calibre
 	immich-server
 	it-tools
 	jellyfin
@@ -69,13 +68,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "calibre" ]]; then
-		FOLDERS=(
-			"config"
-			"books"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "heimdall" ]]; then
 		FOLDERS=(
 			"config"
@@ -124,6 +116,24 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 			"certs"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "motioneye" ]]; then
+
+		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
+
+		FOLDERS=(
+			"shared"
+			"etc"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
+
+		FOLDERS=(
+			"data"
+			"config"
 		)
 	fi
 

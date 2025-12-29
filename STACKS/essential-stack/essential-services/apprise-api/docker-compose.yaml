@@ -16,14 +16,14 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8000}
+      - PORT=${PORT:-8001}
       # optional:
       - APPRISE_ATTACH_SIZE=0
 
     volumes:
       - apprise-api_config:/config
       # optional:
-      - apprise-api_attachments:/attachments
+      - apprise-api_attachments:/attach
 
     hostname: apprise-api
 
@@ -32,22 +32,22 @@ services:
       essential-services:
 
     ports:
-      - "${PORT:-8000}:8000"
+      - "${PORT:-8001}:8000"
 
     env_file:
       - ./apprise-api/.env
 
-    healthcheck:
-      test:
-        [
-          CMD,
-          wget,
-          --quiet,
-          --tries=1,
-          --spider,
-          http://localhost:7655/api/health,
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --quiet,
+    #       --tries=1,
+    #       --spider,
+    #       http://localhost:8000/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s

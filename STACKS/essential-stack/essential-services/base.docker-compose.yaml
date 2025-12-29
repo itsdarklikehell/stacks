@@ -212,21 +212,6 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/jellyfin/jellyfin_books
 
-  calibre_config:
-    name: calibre_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/calibre/calibre_config
-  calibre_books:
-    name: calibre_books
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/calibre/calibre_books
-
   ai_outputs:
     name: ai_outputs
     driver: local
@@ -243,7 +228,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-inputs
-
   motioneye_shared:
     name: motioneye_shared
     driver: local
@@ -251,7 +235,15 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/motioneye/motioneye_shared
+      device: ../../../DATA/essential-stack/motioneye/motioneye_shared
+  motioneye_etc:
+    name: motioneye_etc
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/motioneye/motioneye_etc
 
   heimdall_config:
     name: heimdall_config
@@ -284,6 +276,23 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/apprise-api/apprise-api_attachments
+
+  nextcloud_data:
+    name: nextcloud_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_data
+  nextcloud_config:
+    name: nextcloud_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/nextcloud/nextcloud_config
 
 secrets:
   INITIAL_ADMIN_EMAIL:

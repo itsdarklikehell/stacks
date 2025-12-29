@@ -4,12 +4,11 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	motioneye
 	calibre-web
 	lazylibrarian
 	kavita
+	calibre
 	ubooquity
-	nextcloud
 )
 
 function CREATE_FOLDERS() {
@@ -24,16 +23,6 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
-
-	if [[ ${SERVICE_NAME} == "motioneye" ]]; then
-
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
-		FOLDERS=(
-			"shared"
-			"etc"
-		)
-	fi
 
 	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
 
@@ -57,11 +46,10 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
-
+	if [[ ${SERVICE_NAME} == "calibre" ]]; then
 		FOLDERS=(
-			"data"
 			"config"
+			"books"
 		)
 	fi
 

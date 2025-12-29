@@ -11,7 +11,7 @@ COMPOSE_FILES=(
 	# letta-server
 	# localai
 	# forge
-	# n8n
+	n8n
 	ollama
 	open-webui
 	# puppeteer
