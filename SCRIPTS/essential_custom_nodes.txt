@@ -95,18 +95,34 @@ comfyui-model-downloader
 comfyui_model_installer
 
 #### # #### # CivitAI
-# enhanced-civicomfy
-# ez-dl
+lf-nodes
+ez-dl
+ComfyUI-JurdnsIterativeNoiseKsampler
+donutnodes
+civitai_prompt_stats
+ComfyUI_Civitai_Gallery
+mangonodepack
+comfyui-easycivitai-xtnodes
+ComfyUI-Civitai-Recipe
+comfyui-easycivitai-xtnodes
+ComfyUI-OnDemand-Loaders.git
+civitai_comfy_nodes
+comfyui_sageutils
+ComfyUI-flux_fill_patcher
+
 # civicomfy
-# civitai-discovery-hub
-# comfyui-n-sidebar
-# lf-nodes
-# ComfyUI_Civitai_Gallery
-# ComfyUI-Civitai-Recipe
+# enhanced-civicomfy
 # civitai_comfy_nodes
-# comfyui-easycivitai-xtnodes
+# civitai-discovery-hub
 # civitai-api-url-resolver
-# civitai_prompt_stats
+# comfyui-civitai-workflow
+
+#### # #### # Sidebar
+comfyui-settings-sidebar-button
+comfyui-notes-sidebar
+lorainfo-sidebar
+comfyui_slider_sidebar
+comfyui-n-sidebar
 
 #### # #### # Bots
 ComfyUI-telegram-bot-node
