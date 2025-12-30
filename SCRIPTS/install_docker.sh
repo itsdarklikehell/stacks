@@ -240,6 +240,10 @@ function INSTALL_DOCKER() {
 
 }
 
+echo "Installed Docker Runtime: ${DOCKER_RUNTIME}"
+echo "Installed Driver Version: ${DRIVER_VERSION}"
+echo "Installed CUDA Version: ${CUDA_VERSION}"
+
 # REMOVE_DOCKER
 
 # Call the function to install Docker
