@@ -99,7 +99,7 @@ if ! command -v uv >/dev/null 2>&1; then
 	"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
 fi
 if ! command -v pnpm >/dev/null 2>&1; then
-	curl -fsSL https://get.pnpm.io/install.sh | sh - || true
+	"${STACK_BASEPATH}/SCRIPTS/install_pnpm.sh"
 fi
 
 function CREATE_FOLDERS() {
