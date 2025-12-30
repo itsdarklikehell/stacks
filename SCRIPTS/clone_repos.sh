@@ -17,9 +17,15 @@ echo "Secrets directory is set to ${SECRETS_DIR}"
 
 cd "${SCRIPT_DIR}" || exit 1
 
-"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
-"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
-curl -fsSL https://get.pnpm.io/install.sh | sh - || true
+if ! command -v uv >/dev/null 2>&1; then
+	"${STACK_BASEPATH}/SCRIPTS/install_uv.sh"
+fi
+if ! command -v uv >/dev/null 2>&1; then
+	"${STACK_BASEPATH}/SCRIPTS/install_toolhive.sh"
+fi
+if ! command -v pnpm >/dev/null 2>&1; then
+	curl -fsSL https://get.pnpm.io/install.sh | sh - || true
+fi
 
 function IMPORT_NLTK() {
 
