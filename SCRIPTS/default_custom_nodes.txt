@@ -30,7 +30,6 @@ kiko-downloader
 lf-nodes
 lora_downloader
 mangonodepack
-
 #### # #### # Favorite
 comfyui-impact-subpack
 comfy-mtb
@@ -51,7 +50,6 @@ comfyui-impact-pack
 comfyui-animatediff-evolved
 comfyui_controlnet_aux
 comfyui_ipadapter_plus
-
 #### # #### # A1111 nodes
 sd-webui-color-enhance
 nui-suite
@@ -86,11 +84,9 @@ ComfyUI-TiledDiffusion
 comfyui-inspire-pack
 comfyui-wd14-tagger
 comfyui_ultimatesdupscale
-
 #### # #### # More A1111 nodes
 CLIPTextEncodeA1111-ComfyUI
 ComfyUI-z-a1111-sd-webui-DanTagGen
-
 #### # #### # rgthree
 comfyui-gps-supplements
 multi-lora-stack
@@ -99,12 +95,10 @@ comfyui-vslinx-nodes
 comfyui_sillynodes
 efficiency-nodes-ED
 rgthree-comfy
-
 #### # #### # Ollama / LLM
 comfyui-ollama
 comfyui-ollama-prompt-encode
 ComfyUI-OllamaPromptsGeneratorTlant
-
 #### # #### # Prompt Nodes
 Comfyui_Prompt_styler
 comfyui-flux-prompt-saver
@@ -116,7 +110,6 @@ Factory-Prompts_comfyui
 flux-prompt-generator
 PromptCreatorNode
 comfyui-image-prompt-loader
-
 #### # #### # rembg
 kaytool
 wtq-rembg-comfyui-node

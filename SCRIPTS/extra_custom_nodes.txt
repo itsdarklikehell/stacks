@@ -6,11 +6,9 @@ comfyui-notes-sidebar
 lorainfo-sidebar
 comfyui_slider_sidebar
 comfyui-n-sidebar
-
 #### # #### # Bots
 ComfyUI-telegram-bot-node
 kraken-discord-bot
-
 #### # #### # Save Image with Metadata
 ImageMetaHub-ComfyUI-Save
 comfy-image-saver
@@ -18,7 +16,6 @@ comfyui-image-saver
 SaveImageWithMetaDataUniversal
 comfyui_image_metadata_extension
 ComfyUI-SaveImageCivitAI
-
 #### # #### # LoRA Nodes
 format-lora-stack
 ComfyUI_LoRA_Sidebar
