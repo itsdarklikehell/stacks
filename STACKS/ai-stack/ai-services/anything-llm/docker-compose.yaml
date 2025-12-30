@@ -50,6 +50,7 @@ services:
       - VECTOR_DB=lancedb
       - WHISPER_MODEL_PREF=Xenova/whisper-large
       - WHISPER_PROVIDER=local
+      - AGENT_TAVILY_API_KEY=
 
     cap_add:
       - SYS_NICE

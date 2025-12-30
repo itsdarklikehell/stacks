@@ -53,6 +53,7 @@ services:
       - LOCALAI_IMAGE_PATH=/output
       - LOCALAI_MODELS_PATH=/models
       - LOCALAI_P2P=true
+      - FEDERATED_SERVER=true
       - LOCALAI_SINGLE_ACTIVE_BACKEND=true
       - LOCALAI_WATCHDOG_BUSY_TIMEOUT=5m
       - LOCALAI_WATCHDOG_BUSY=true
@@ -100,7 +101,7 @@ services:
       # - InvokeAI_input:/input/InvokeAI_input
       # - localai_input:/input
 
-    user: ${PUID:-1000}:${PGID:-1000}
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:

@@ -290,7 +290,7 @@ PRUNING
 echo ""
 echo "Cloning repos"
 echo ""
-CLONE_REPOS # >/dev/null 2>&1
+# CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ### STACKS:
