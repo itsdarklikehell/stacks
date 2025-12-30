@@ -293,8 +293,6 @@ echo ""
 CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
-exit 1
-
 ### STACKS:
 CREATE_SECRETS
 
