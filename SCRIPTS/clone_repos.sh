@@ -50,6 +50,10 @@ function LINK_FOLDERS() {
 
 function CLONE_ANYTHINGLLM() {
 
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "anything-llm" ]]; then
@@ -69,6 +73,10 @@ function CLONE_ANYTHINGLLM() {
 
 function CLONE_SCANOPY() {
 
+	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
 
 	if [[ ! -d "scanopy" ]]; then
@@ -86,6 +94,10 @@ function CLONE_SCANOPY() {
 
 function CLONE_CLAIR() {
 
+	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
 
 	if [[ ! -d "clair" ]]; then
@@ -102,6 +114,10 @@ function CLONE_CLAIR() {
 }
 
 function CLONE_PUPPETEER() {
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -142,6 +158,11 @@ function CLONE_PUPPETEER() {
 }
 
 function CLONE_OLLMVT() {
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
 	if [[ ! -d "Open-LLM-VTuber" ]]; then
@@ -316,6 +337,10 @@ function CLONE_OLLMVT() {
 
 function CLONE_SWARMUI() {
 
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "swarmui" ]]; then
@@ -392,6 +417,10 @@ function CREATE_FOLDERS() {
 }
 
 function CLONE_COMFYUI() {
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
@@ -625,6 +654,10 @@ function CLONE_COMFYUI() {
 
 function CLONE_COMFYUIMINI() {
 
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
+
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
 	if [[ ! -d "ComfyUIMini" ]]; then
@@ -681,6 +714,8 @@ function CLONE_COMFYUIMINI() {
 
 }
 
+CREATE_FOLDERS
+
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
 CLONE_SCANOPY     # >/dev/null 2>&1 &
 CLONE_CLAIR       # >/dev/null 2>&1 &
@@ -690,5 +725,4 @@ CLONE_OLLMVT      # >/dev/null 2>&1 &
 CLONE_PUPPETEER   # >/dev/null 2>&1 &
 CLONE_SWARMUI     # >/dev/null 2>&1 &
 
-CREATE_FOLDERS
 LINK_FOLDERS
