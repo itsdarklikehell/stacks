@@ -461,7 +461,7 @@ function CLONE_COMFYUI() {
 
 	function INSTALL_CUSTOM_NODES() {
 
-		export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
+		export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/default_custom_nodes.txt"
 		export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 		export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
 		export REMOVED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/removed_custom_nodes.txt"

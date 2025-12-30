@@ -1,18 +1,167 @@
 #### # #### # Essential nodes:
-# Comfyui-XYZ-stitch
-# comfyui_otacoo
-# comfyui_sageutils
-# comfyui-clip-with-break
-# ComfyUI_JPS-Nodes
-# ComfyUI-OnDemand-Loaders.git
-# EXO-Custom-ComfyUI-Nodes
-# ComfyUI-TemporaryLoader
-# comfyui_musev_evolved
-# comfyui-consistency-decoder
-# donutnodes
-# ComfyUI-CornmeisterNL-PowerPack
-# ComfyUI-JurdnsIterativeNoiseKsampler
-# mangonodepack
-# ComfyUI-flux_fill_patcher
-# checkpoint-discovery-hub
-# ComfyUI-APQNodes
+
+#### # #### # rgthree
+comfyui-gps-supplements
+multi-lora-stack
+Comfyui-EasySettingPipes
+comfyui-vslinx-nodes
+comfyui_sillynodes
+efficiency-nodes-ED
+rgthree-comfy
+
+#### # #### # Favorite
+comfyui-impact-subpack
+comfy-mtb
+comfyui-advanced-controlnet
+comfyui-reactor
+comfyui_essentials
+sd-dynamic-thresholding
+comfyui-videohelpersuite
+comfyui-layerdiffuse
+comfyui_instantid
+comfyui-kjnodes
+comfyui-liveportraitkj
+aigodlike-comfyui-translation
+comfyui-advancedliveportrait
+comfyui_layerstyle
+comfyui-custom-scripts
+comfyui-impact-pack
+comfyui-animatediff-evolved
+comfyui_controlnet_aux
+comfyui_ipadapter_plus
+
+#### # #### # A1111 nodes
+sd-webui-color-enhance
+nui-suite
+comfyui-unprompted
+ambw_comfyui
+image_control
+cd-tuner_negpip-ComfyUI
+abg-comfyui
+ComfyUI-RVC
+comfyui-optical-flow
+ComfyUI_SeeCoder
+comfyui-cads
+ComfyUI-sonar
+Comfyui_Lama
+ComfyUI_node_Lilly
+ComfyUI_roop
+cgem156-ComfyUI
+ComfyUI_fabric
+comfyui-diffusion-cg
+images-grid-comfy-plugin
+ComfyUI_experiments
+comfyui-seamless-tiling
+comfyui_smznodes
+comfyui-prompt-control
+ComfyUI_Noise
+comfyui-dynamicprompts
+ComfyUI_Cutoff
+ComfyUI_ADV_CLIP_emb
+masquerade-nodes-comfyui
+comfyui_fizznodes
+ComfyUI-TiledDiffusion
+comfyui-inspire-pack
+comfyui-wd14-tagger
+comfyui_ultimatesdupscale
+
+#### # #### # More A1111 nodes
+CLIPTextEncodeA1111-ComfyUI
+ComfyUI-z-a1111-sd-webui-DanTagGen
+
+#### # #### # Downloaders
+ComfyUI-TrashNodes-DownloadHuggingface
+comfyui-Lora-auto-downloader
+comfyui-preset-download-manager
+ComfyUI_HuggingFace_Downloader
+comfyui_hf_model_downloader
+autodownloadmodels
+lora_downloader
+kiko-downloader
+hf-model-downloader
+comfyui-universal-asset-downloader
+ComfyUI_HFDownLoad
+comfy-asset-downloader
+comfyui-model-downloader
+comfyui_model_installer
+
+#### # #### # CivitAI
+lf-nodes
+ez-dl
+ComfyUI-JurdnsIterativeNoiseKsampler
+donutnodes
+civitai_prompt_stats
+ComfyUI_Civitai_Gallery
+mangonodepack
+comfyui-easycivitai-xtnodes
+ComfyUI-Civitai-Recipe
+comfyui-easycivitai-xtnodes
+ComfyUI-OnDemand-Loaders.git
+civitai_comfy_nodes
+comfyui_sageutils
+ComfyUI-flux_fill_patcher
+
+# civicomfy
+# enhanced-civicomfy
+# civitai_comfy_nodes
+# civitai-discovery-hub
+# civitai-api-url-resolver
+# comfyui-civitai-workflow
+
+#### # #### # Sidebar
+comfyui-settings-sidebar-button
+comfyui-notes-sidebar
+lorainfo-sidebar
+comfyui_slider_sidebar
+comfyui-n-sidebar
+
+#### # #### # Bots
+ComfyUI-telegram-bot-node
+kraken-discord-bot
+
+#### # #### # Ollama / LLM
+comfyui-ollama
+comfyui-ollama-prompt-encode
+ComfyUI-OllamaPromptsGeneratorTlant
+
+#### # #### # Prompt Nodes
+Comfyui_Prompt_styler
+comfyui-flux-prompt-saver
+comfyui-et_dynamicprompts
+webui-monaco-prompt
+lazy-pony-prompter
+Comfyui_MiniCPMv2_6-prompt-generator
+Factory-Prompts_comfyui
+flux-prompt-generator
+PromptCreatorNode
+comfyui-image-prompt-loader
+
+#### # #### # Save Image with Metadata
+ImageMetaHub-ComfyUI-Save
+comfy-image-saver
+comfyui-image-saver
+SaveImageWithMetaDataUniversal
+comfyui_image_metadata_extension
+ComfyUI-SaveImageCivitAI
+
+#### # #### # LoRA Nodes
+format-lora-stack
+ComfyUI_LoRA_Sidebar
+ComfyUI-DvD-LoraTriggerwordsManager
+loadlorawithtags
+lora-info
+comfyui-lora-auto-trigger-words
+
+#### # #### # rembg
+kaytool
+wtq-rembg-comfyui-node
+comfyui-rembg
+comfyui_ben_ll
+comfyui-img2paintingassistant
+comfyui-levelpixel-advanced
+batchimg-rembg-comfyui-nodes
+ComfyUI-GeekyRemB
+rembg-comfyui-node
+rembg-comfyui-node-better
+comfyui_birefnet_ll
+comfyui-inspyrenet-rembg

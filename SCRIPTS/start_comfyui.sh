@@ -180,7 +180,7 @@ function CLONE_WORKFLOWS() {
 
 function INSTALL_CUSTOM_NODES() {
 
-	export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/essential_custom_nodes.txt"
+	export ESSENTIAL_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/default_custom_nodes.txt"
 	export EXTRA_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/extra_custom_nodes.txt"
 	export DISABLED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/disabled_custom_nodes.txt"
 	export REMOVED_CUSTOM_NODELIST="${STACK_BASEPATH}/SCRIPTS/removed_custom_nodes.txt"
@@ -360,7 +360,7 @@ LOCAL_SETUP  # >/dev/null 2>&1 &
 DOCKER_SETUP # >/dev/null 2>&1 &
 
 INSTALL_DEFAULT_NODES=true
-INSTALL_EXTRA_NODES=true
+INSTALL_EXTRA_NODES=false
 UPDATE=true
 
 CREATE_FOLDERS
