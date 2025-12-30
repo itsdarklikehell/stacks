@@ -7,6 +7,10 @@ DOCKER_RUNTIME="$(cat /etc/docker/daemon.json | jq -r '.runtimes | .nvidia | .pa
 CUDA_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.cuda | .version' || true)"
 DRIVER_VERSION="$(cat /usr/local/cuda/version.json | jq -r '.nvidia_driver | .version' || true)"
 
+echo "Docker Runtime: ${DOCKER_RUNTIME}"
+echo "Driver Version: ${DRIVER_VERSION}"
+echo "CUDA Version: ${CUDA_VERSION}"
+
 function REMOVE_DOCKER() {
 
 	function SETUP_ENV() {
@@ -239,10 +243,6 @@ function INSTALL_DOCKER() {
 	fi
 
 }
-
-echo "Installed Docker Runtime: ${DOCKER_RUNTIME}"
-echo "Installed Driver Version: ${DRIVER_VERSION}"
-echo "Installed CUDA Version: ${CUDA_VERSION}"
 
 # REMOVE_DOCKER
 
