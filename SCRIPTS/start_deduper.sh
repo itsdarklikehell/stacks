@@ -93,13 +93,14 @@ folders=(
 	"${AI_OUTPUTS_PATH}"
 	"${AI_INPUTS_PATH}"
 )
+
 modelfolders=(
 	"${AI_MODELS_PATH}/anything-llm_models"
-	"${AI_MODELS_PATH}/comfyui_models"
 	"${AI_MODELS_PATH}/forge_models"
 	"${AI_MODELS_PATH}/InvokeAI_models"
 	"${AI_MODELS_PATH}/localai_models"
 	"${AI_MODELS_PATH}/ollama_models"
+	"${AI_MODELS_PATH}/comfyui_models"
 )
 
 for folder in "${folders[@]}"; do
@@ -114,8 +115,8 @@ for folder in "${folders[@]}"; do
 	if [[ ${folder} == "${AI_MODELS_PATH}" ]]; then
 		for model_folder in "${modelfolders[@]}"; do
 			if [[ ${model_folder} == "${MAIN_MODELS_PATH}" ]]; then
-				echo "Skipping main models folder ${model_folder} ..."
-				continue
+				echo "Processing model folder ${model_folder} ..."
+				rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" # // "${model_folder}"
 			fi
 			echo "Main Models Path: ${MAIN_MODELS_PATH}"
 			echo "Processing model folder ${model_folder} ..."
