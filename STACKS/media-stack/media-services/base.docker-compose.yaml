@@ -1,0 +1,16 @@
+name: media-services
+
+volumes:
+  ai_outputs:
+    name: ai_outputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs
+
+networks:
+  host:
+  media-services:
+    external: true
