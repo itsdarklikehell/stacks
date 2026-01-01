@@ -1,0 +1,222 @@
+name: testing-services
+
+volumes:
+  azahar_config:
+    name: azahar_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/azahar/azahar_config
+
+  citron_config:
+    name: citron_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/citron/citron_config
+
+  code-server_config:
+    name: code-server_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/code-server/code-server_config
+
+  dogwalk_config:
+    name: dogwalk_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dogwalk/dogwalk_config
+
+  dolphin_config:
+    name: dolphin_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dolphin/dolphin_config
+
+  dosbox-staging_config:
+    name: dosbox-staging_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dosbox-staging/dosbox-staging_config
+
+  duckstation_config:
+    name: duckstation_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/duckstation/duckstation_config
+
+  flycast_config:
+    name: flycast_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/flycast/flycast_config
+
+  gzdoom_config:
+    name: gzdoom_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gzdoom/gzdoom_config
+  gzdoom_wads:
+    name: gzdoom_wads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gzdoom/gzdoom_wads
+
+  healthchecks_config:
+    name: healthchecks_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/healthchecks/healthchecks_config
+
+  luanti_config:
+    name: luanti_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/luanti/luanti_config
+
+  mame_config:
+    name: mame_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mame/mame_config
+
+  melonds_config:
+    name: melonds_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/melonds/melonds_config
+
+  modmanager_modcache:
+    name: modmanager_modcache
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/modmanager/modmanager_modcache
+
+  modrinth_config:
+    name: modrinth_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/modrinth/modrinth_config
+
+  pcsx2_config:
+    name: pcsx2_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pcsx2/pcsx2_config
+
+  retroarch_config:
+    name: retroarch_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retroarch/retroarch_config
+
+  rpcs3_config:
+    name: rpcs3_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/rpcs3/rpcs3_config
+
+  steamos_config:
+    name: steamos_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/steamos/steamos_config
+
+  scummvm_config:
+    name: scummvm_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/scummvm/scummvm_config
+
+  vscodium_config:
+    name: vscodium_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/vscodium/vscodium_config
+
+  vscodium-web_config:
+    name: vscodium-web_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/vscodium-web/vscodium-web_config
+
+  xemu_config:
+    name: xemu_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/xemu/xemu_config
+
+networks:
+  host:
+  testing-services:
+    external: true

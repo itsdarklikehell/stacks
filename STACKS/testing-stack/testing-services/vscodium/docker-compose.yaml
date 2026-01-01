@@ -1,0 +1,88 @@
+services:
+  vscodium:
+    # image: ${IMAGE:-t41372/open-llm-vtuber}
+    image: ${IMAGE:-lscr.io/linuxserver/vscodium:latest}
+    container_name: ${NAME:-vscodium}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - PASSWORD=password #optional
+      # - HASHED_PASSWORD= #optional
+      # - SUDO_PASSWORD=password #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      # - PROXY_DOMAIN=vscodium.my.domain #optional
+      # - DEFAULT_WORKSPACE=/config/workspace #optional
+      # - PWA_APPNAME=vscodium #optional
+      - RESTART_APP=true
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - vscodium_config:/config
+
+    hostname: ${NAME:-vscodium}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      testing-services:
+
+    ports:
+      - ${PORT:-7040}:3000
+      - 7041:3001
+
+    env_file:
+      - ./vscodium/.env
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-3000}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
