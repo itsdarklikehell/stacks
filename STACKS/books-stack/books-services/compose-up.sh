@@ -55,6 +55,14 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "mylar3" ]]; then
+		FOLDERS=(
+			"config"
+			"comics"
+			"downloads"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "cops" ]]; then
 		FOLDERS=(
 			"config"
