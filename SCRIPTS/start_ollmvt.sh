@@ -87,9 +87,12 @@ function RUN_OLLMVTUBER() {
 	git pull origin main
 
 	if [[ -f .venv/bin/activate ]]; then
+
 		# shellcheck source=/dev/null
 		source .venv/bin/activate
+
 	else
+
 		uv venv --clear --seed
 		# shellcheck source=/dev/null
 		source .venv/bin/activate
