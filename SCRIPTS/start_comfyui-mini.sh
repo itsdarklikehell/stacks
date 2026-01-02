@@ -32,6 +32,16 @@ function SETUP_ENV() {
 	eval "$(resize)" || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
+	eval "$(resize)" || true
+	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	eval "$(resize)" || true
+	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+
+	export DOCKER_BASEPATH
+	export STACK_BASEPATH
+	export IP_ADDRESS
 
 	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
@@ -40,20 +50,12 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	eval "$(resize)" || true
-	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
-	exitstatus=$?
-
 	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
-
-	eval "$(resize)" || true
-	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
-	exitstatus=$?
 
 	if [[ ${exitstatus} == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
@@ -62,9 +64,6 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	export DOCKER_BASEPATH
-	export STACK_BASEPATH
-	export IP_ADDRESS
 	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
