@@ -216,6 +216,120 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/xemu/xemu_config
 
+  mpd_run:
+    name: mpd_run
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_run
+  mpd_configdir:
+    name: mpd_configdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_configdir
+  # mpd_configfile:
+  #   name: mpd_configfile
+  #   driver: local
+  #   # external: true
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/testing-stack/mpd/mpd_config/mpd.conf
+  mpd_music:
+    name: mpd_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_music
+  mpd_playlists:
+    name: mpd_playlists
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_playlists
+  mpd_workdir:
+    name: mpd_workdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_workdir
+  mpd_cachedir:
+    name: mpd_cachedir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_cachedir
+
+  mympd_run:
+    name: mympd_run
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_run
+  mympd_configdir:
+    name: mympd_configdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_configdir
+  # mympd_configfile:
+  #   name: mympd_configfile
+  #   driver: local
+  #   # external: true
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/testing-stack/mympd/mympd_configdir/mpd.conf
+  mympd_music:
+    name: mympd_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_music
+  mympd_playlists:
+    name: mympd_playlists
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_playlists
+  mympd_workdir:
+    name: mympd_workdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_workdir
+  mympd_cachedir:
+    name: mympd_cachedir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_cachedir
+
 networks:
   host:
   testing-services:

@@ -27,6 +27,8 @@ COMPOSE_FILES=(
 	vscodium
 	vscodium-web
 	xemu
+	mpd
+	mympd
 )
 
 function CREATE_FOLDERS() {
@@ -224,6 +226,40 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "mpd" ]]; then
+
+		FOLDERS=(
+			"run"
+			"configdir"
+			"music"
+			"playlists"
+			"workdir"
+			"cachedir"
+		)
+
+		if [[ ! -f "${FOLDER}/mpd_config/mpd.conf" ]]; then
+			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_configdir/mpd.conf" || echo "mpd.conf download failed, please check your internet connection."
+		fi
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "mympd" ]]; then
+
+		FOLDERS=(
+			"run"
+			"configdir"
+			"music"
+			"playlists"
+			"workdir"
+			"cachedir"
+		)
+
+		if [[ ! -f "${FOLDER}/mpd_config/mpd.conf" ]]; then
+			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_config/mpd.conf" || echo "mpd.conf download failed, please check your internet connection."
+		fi
 
 	fi
 

@@ -1,0 +1,99 @@
+services:
+  mympd:
+    # image: ${IMAGE:-t41372/open-llm-vtuber}
+    image: ${IMAGE:-ghcr.io/jcorporation/mympd/mympd:latest}
+    container_name: ${NAME:-mympd}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - MYMPD_SSL_SAN="DNS:<host fqdn>"
+      # - MYMPD_MYMPD_URI=http://<host fqdn>:8080
+      - MYMPD_MPD_HOST=${MYMPD_MPD_HOST:-192.168.1.2}
+      - MYMPD_MPD_PORT=${MYMPD_MPD_PORT:-6600}
+      - MYMPD_MPD_TIMEOUT=${MYMPD_MPD_TIMEOUT:-10}
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - mympd_run:/run/mpd
+      ## Optional for myGPIOd support
+      ## - /run/mygpiod:/run/mygpiod
+      - mympd_workdir:/var/lib/mympd
+      - mympd_cachedir:/var/cache/mympd
+      - mympd_music:/var/lib/mpd/music:ro
+      - mympd_playlists:/var/lib/mpd/playlists:ro
+
+    hostname: ${NAME:-mympd}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      testing-services:
+
+    ports:
+      - ${PORT:-6000}:8080
+      - 6443:8443
+
+    env_file:
+      - ./mympd/.env
+
+    depends_on:
+      - mpd
+
+    # command:
+    #   - -iwad /usr/share/mympd/doom2.wad -file /usr/share/mympd/DOOM_Infinite_098_PP2_H3.pk3
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    # depends_on:
+    #   - faster-whisper-gpu
+    #   - wyoming-piper
+
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-3000}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
