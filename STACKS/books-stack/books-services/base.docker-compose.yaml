@@ -50,6 +50,43 @@ volumes:
       o: bind
       device: ../../../DATA/books-stack/calibre/calibre_config
 
+  cops_config:
+    name: cops_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/cops/cops_books
+  cops_books:
+    name: cops_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/cops/cops_books
+
+  mylar3_config:
+    name: mylar3_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/mylar3/mylar3_config
+  mylar3_comics:
+    name: mylar3_comics
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/mylar3/mylar3_comics
+  mylar3_downloads:
+    name: mylar3_downloads
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/mylar3/mylar3_downloads
+
   lazylibrarian_data:
     name: lazylibrarian_data
     driver: local

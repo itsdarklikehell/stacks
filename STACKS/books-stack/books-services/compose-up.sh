@@ -8,6 +8,8 @@ COMPOSE_FILES=(
 	lazylibrarian
 	kavita
 	calibre
+	mylar3
+	cops
 	ubooquity
 )
 
@@ -47,6 +49,13 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "calibre" ]]; then
+		FOLDERS=(
+			"config"
+			"books"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "cops" ]]; then
 		FOLDERS=(
 			"config"
 			"books"
