@@ -221,12 +221,11 @@ function CLONE_OLLMVT() {
 			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
-			git clone --recursive https://github.com/ezshine/AwesomeLive2D ezshine-AwesomeLive2D
-			git clone --recursive https://github.com/Mnaisuka/Live2d-model Mnaisuka-Live2d-model
-			git clone --recursive https://github.com/xiaoski/live2d_models_collection xiaoski-live2d_models_collection
-			git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models n0099-TouhouCannonBall-Live2d-Models
-			# git clone --recursive https://github.com/Eikanya/Live2d-model Eikanya-Live2d-model
-			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d andatoshiki-toshiki-live2d
+			git clone --recursive https://github.com/Live2D/CubismWebSamples Live2D/CubismWebSamples
+			git clone --recursive https://github.com/xiaoski/live2d_models_collection xiaoski/live2d_models_collection
+			git clone --recursive https://github.com/n0099/TouhouCannonBall-Live2d-Models n0099/TouhouCannonBall-Live2d-Models
+			# git clone --recursive https://github.com/Eikanya/Live2d-model Eikanya/Live2d-model
+			# git clone --recursive https://github.com/andatoshiki/toshiki-live2d andatoshiki/toshiki-live2d
 
 		}
 
@@ -658,6 +657,57 @@ function CLONE_COMFYUI() {
 
 }
 
+function CLONE_COMFYUI_MCP() {
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
+
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+
+	if [[ ! -d "comfyui-mcp-server" ]]; then
+		echo "Cloning comfyui-mcp-server"
+		echo ""
+		git clone --recursive https://github.com/joenorton/comfyui-mcp-server.git "comfyui-mcp-server"
+		cd "comfyui-mcp-server" || exit 1
+	else
+		echo "Checking comfyui-mcp-server for updates"
+		cd "comfyui-mcp-server" || exit 1
+		git pull
+	fi
+
+	function LOCAL_SETUP() {
+
+		if [[ -f .venv/bin/activate ]]; then
+			# shellcheck source=/dev/null
+			source .venv/bin/activate
+		else
+
+			export UV_LINK_MODE=copy
+			uv venv --clear --seed
+			# shellcheck source=/dev/null
+			source .venv/bin/activate
+
+			uv pip install --upgrade pip
+			uv sync --all-extras
+
+			uv pip install requests websockets mcp
+
+		fi
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
 function CLONE_COMFYUIMINI() {
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
@@ -727,6 +777,7 @@ CLONE_SCANOPY     # >/dev/null 2>&1 &
 CLONE_CLAIR       # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COMFYUI     # >/dev/null 2>&1 &
+CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 CLONE_OLLMVT      # >/dev/null 2>&1 &
 CLONE_PUPPETEER   # >/dev/null 2>&1 &
 CLONE_SWARMUI     # >/dev/null 2>&1 &

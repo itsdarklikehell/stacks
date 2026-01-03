@@ -90,7 +90,6 @@ function RUN_OLLMVTUBER() {
 
 		# shellcheck source=/dev/null
 		source .venv/bin/activate
-
 	else
 
 		uv venv --clear --seed
@@ -120,6 +119,8 @@ PYCODE
 	fi
 
 	echo "Starting Open-LLM-VTuber..."
+
+	yes | uv run python upgrade.py || true
 	uv run run_server.py
 
 }
