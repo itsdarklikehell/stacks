@@ -25,6 +25,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/media-stack/tvs-server/tvs-server_content/config.tvs.yml:/home/static/config.tvs.yml
+      - ../../../DATA/media-stack/tvs-server/tvs-server_content/roms:/home/static/roms
       - ../../../DATA/media-stack/tvs-server/tvs-server_content:/home/static/content
 
     hostname: ${NAME:-tvs-server}
