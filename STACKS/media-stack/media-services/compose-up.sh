@@ -5,6 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	tvs-server
+	copyparty
 )
 
 function CREATE_FOLDERS() {
@@ -38,6 +39,30 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"content"
 		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "copyparty" ]]; then
+
+		mkdir -p "${FOLDER}/copyparty_configs"
+
+		if [[ ! -f ${FOLDER}/copyparty_configs/config.conf ]]; then
+			cp "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+		if [[ -f ${FOLDER}/copyparty_configs/config.conf ]]; then
+			cp "${FOLDER}/copyparty_configs/config.conf" "${FOLDER}/copyparty_configs/config.conf".bak
+		fi
+
+		if [[ -f ${FOLDER}/copyparty_configs/config.conf.bak ]]; then
+			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+		FOLDERS=(
+			"db"
+			"uploads"
+			"configs"
+		)
+
 	fi
 
 	CREATE_FOLDERS

@@ -303,7 +303,7 @@ PRUNING
 echo ""
 echo "Cloning repos"
 echo ""
-# CLONE_REPOS # >/dev/null 2>&1
+CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
 ### STACKS:
@@ -313,33 +313,33 @@ echo ""
 SETUP_AUTOSTART
 echo ""
 
-echo ""
-SETUP_ESSENTIALS_STACK
-echo ""
+# echo ""
+# SETUP_ESSENTIALS_STACK
+# echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
-echo ""
-SETUP_OPENLLM_VTUBER_STACK
-echo ""
+# echo ""
+# SETUP_OPENLLM_VTUBER_STACK
+# echo ""
 
 echo ""
 SETUP_MEDIA_STACK
 echo ""
 
-echo ""
-SETUP_BOOKS_STACK
-echo ""
+# echo ""
+# SETUP_BOOKS_STACK
+# echo ""
 
 # echo ""
 # SETUP_TESTING_STACK
 # echo ""
 
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
+# echo ""
+# PULL_MODELS # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_BROWSER >/dev/null 2>&1 &

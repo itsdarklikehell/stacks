@@ -770,16 +770,108 @@ function CLONE_COMFYUIMINI() {
 
 }
 
+function CLONE_COPYPARTY() {
+
+	cd "${STACK_BASEPATH}/DATA/media-stack" || exit 1
+
+	if [[ ! -d "copyparty" ]]; then
+		echo "Cloning copyparty"
+		echo ""
+		git clone --recursive https://github.com/9001/copyparty.git "copyparty"
+		cd "copyparty" || exit 1
+
+		mkdir -p "copyparty_configs"
+
+		if [[ ! -f copyparty_configs/config.conf ]]; then
+			cp "docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+		if [[ -f copyparty_configs/config.conf ]]; then
+			cp "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+		fi
+
+		if [[ -f copyparty_configs/config.conf.bak ]]; then
+			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+		cd "copyparty" || exit 1
+	else
+		echo "Checking copyparty for updates"
+		cd "copyparty" || exit 1
+
+		if [[ ! -f ${FOLDER}/copyparty_configs/config.conf ]]; then
+			cp "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+		if [[ -f copyparty_configs/config.conf ]]; then
+			cp "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+		fi
+
+		git pull
+
+		if [[ -f copyparty_configs/config.conf.bak ]]; then
+			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+		fi
+
+	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+		# if [[ -f .venv/bin/activate ]]; then
+		# 	# shellcheck source=/dev/null
+		# 	source .venv/bin/activate
+		# else
+
+		# 	export UV_LINK_MODE=copy
+		# 	uv venv --clear --seed
+		# 	# shellcheck source=/dev/null
+		# 	source .venv/bin/activate
+
+		# 	uv pip install --upgrade pip
+		# 	uv sync --all-extras
+		#   export PRTY_CONFIG=config.conf
+		# 	uv pip install .
+		# 	uv pip install --user -U copyparty
+
+		# fi
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+	# cd custom_nodes || exit 1
+	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	# cd ComfyUI-Manager || exit 1
+
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
 CREATE_FOLDERS
 
-CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-CLONE_SCANOPY     # >/dev/null 2>&1 &
-CLONE_CLAIR       # >/dev/null 2>&1 &
-CLONE_COMFYUIMINI # >/dev/null 2>&1 &
-CLONE_COMFYUI     # >/dev/null 2>&1 &
-CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
-CLONE_OLLMVT      # >/dev/null 2>&1 &
-CLONE_PUPPETEER   # >/dev/null 2>&1 &
-CLONE_SWARMUI     # >/dev/null 2>&1 &
+# CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+# CLONE_CLAIR       # >/dev/null 2>&1 &
+# CLONE_COMFYUI     # >/dev/null 2>&1 &
+# CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
+# CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+CLONE_COPYPARTY # >/dev/null 2>&1 &
+# CLONE_OLLMVT      # >/dev/null 2>&1 &
+# CLONE_PUPPETEER   # >/dev/null 2>&1 &
+# CLONE_SCANOPY     # >/dev/null 2>&1 &
+# CLONE_SWARMUI     # >/dev/null 2>&1 &
 
 LINK_FOLDERS
