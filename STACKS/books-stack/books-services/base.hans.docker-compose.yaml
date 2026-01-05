@@ -41,7 +41,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: ../../../DATA/books-stack/calibre/calibre_books
   calibre_config:
     name: calibre_config
     driver: local
@@ -49,14 +49,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/books-stack/calibre/calibre_config
-  calibre_library:
-    name: calibre_library
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/books-stack/calibre/calibre_library
 
   cops_config:
     name: cops_config
@@ -64,14 +56,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/cops/cops_books
+      device: ../../../DATA/books-stack/cops/cops_config
   cops_books:
     name: cops_books
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: ../../../DATA/books-stack/cops/cops_books
 
   mylar3_config:
     name: mylar3_config
@@ -86,7 +78,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: ../../../DATA/books-stack/mylar3/mylar3_comics
   mylar3_downloads:
     name: mylar3_downloads
     driver: local
@@ -118,7 +110,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: ../../../DATA/books-stack/lazylibrarian/lazylibrarian_library
 
   kavita_data:
     name: kavita_data
@@ -135,7 +127,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: ../../../DATA/books-stack/kavita/kavita_library
 
   ubooquity_data:
     name: ubooquity_data

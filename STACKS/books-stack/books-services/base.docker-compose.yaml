@@ -64,7 +64,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/cops/cops_books
+      device: ../../../DATA/books-stack/cops/cops_config
   cops_books:
     name: cops_books
     driver: local
