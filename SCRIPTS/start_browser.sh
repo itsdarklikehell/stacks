@@ -37,6 +37,7 @@ URLS=(
 	"https://${IP_ADDRESS}:4433" # nextcloud
 	"http://${IP_ADDRESS}:85"    # heimdall
 	"https://${IP_ADDRESS}:444"  # heimdall
+	"https://${IP_ADDRESS}:3923" # CopyParty
 )
 
 function RUN_BROWSER() {

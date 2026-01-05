@@ -12,7 +12,7 @@ COMPOSE_FILES=(
 	dosbox-staging
 	duckstation
 	flycast
-	gzdoom
+	# gzdoom
 	healthchecks
 	luanti
 	mame

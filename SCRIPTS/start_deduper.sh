@@ -115,16 +115,16 @@ for folder in "${folders[@]}"; do
 		for model_folder in "${modelfolders[@]}"; do
 			if [[ ${model_folder} == "${MAIN_MODELS_PATH}" ]]; then
 				echo "Processing model folder ${model_folder} ..."
-				rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" # // "${model_folder}"
+				rmlint -g -T minimal -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" # // "${model_folder}"
 			fi
 			echo "Main Models Path: ${MAIN_MODELS_PATH}"
 			echo "Processing model folder ${model_folder} ..."
-			rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" // "${model_folder}"
+			rmlint -g -T minimal -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${MAIN_MODELS_PATH}" // "${model_folder}"
 		done
 		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
 	else
 		echo "Processing folder ${folder} ..."
-		rmlint -g -T "df" -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${folder}"
+		rmlint -g -T minimal -o sh:"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -o json:"${STACK_BASEPATH}/SCRIPTS/rmlint.json" -c sh:symlink -k "${folder}"
 		"${STACK_BASEPATH}/SCRIPTS/rmlint.sh" -dxprcq
 	fi
 
