@@ -49,7 +49,15 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/books-stack/calibre/calibre_config
-
+  calibre_library:
+    name: calibre_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/calibre/calibre_library
+      
   cops_config:
     name: cops_config
     driver: local

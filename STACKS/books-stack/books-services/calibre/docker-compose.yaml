@@ -11,6 +11,7 @@ services:
       # - ${UPLOAD_LOCATION}:/data
       - calibre_config:/config
       - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
     environment:
       - PUID=${PUID:-1000}

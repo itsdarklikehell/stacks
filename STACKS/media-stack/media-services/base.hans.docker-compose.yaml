@@ -12,5 +12,5 @@ volumes:
 
 networks:
   host:
-  openllm-vtuber-services:
+  media-services:
     external: true

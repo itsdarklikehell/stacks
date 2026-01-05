@@ -28,8 +28,8 @@ function SETUP_FOLDERS() {
 		fi
 
 		mkdir -p "${FOLDER}/tvs-server_content"
-		wget -c https://github.com/zshall/program-guide/releases/download/v5.7.0-beta/tvs-5.7.0-beta.zip
-		unzip -o tvs-5.7.0-beta.zip -d "${FOLDER}/tvs-server_content"
+		wget -c https://github.com/zshall/program-guide/releases/download/v5.7.0-beta/tvs-5.7.0-beta.zip >/dev/null 2>&1
+		unzip -o tvs-5.7.0-beta.zip -d "${FOLDER}/tvs-server_content" >/dev/null 2>&1
 		rm tvs-5.7.0-beta.zip
 
 		if [[ -f "${FOLDER}/tvs-server_content/config.tvs.yml.bak" ]]; then
