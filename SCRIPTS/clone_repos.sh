@@ -865,7 +865,7 @@ CREATE_FOLDERS
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
 CLONE_CLAIR       # >/dev/null 2>&1 &
-CLONE_COMFYUI     # >/dev/null 2>&1 &
+# CLONE_COMFYUI     # >/dev/null 2>&1 &
 CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COPYPARTY   # >/dev/null 2>&1 &

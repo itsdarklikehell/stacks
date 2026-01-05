@@ -240,7 +240,7 @@ function SETUP_FOLDERS() {
 			"cachedir"
 		)
 
-		if [[ ! -f "${FOLDER}/mpd_config/mpd.conf" ]]; then
+		if [[ ! -f "${FOLDER}/mpd_confidir/mpd.conf" ]]; then
 			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_configdir/mpd.conf" || echo "mpd.conf download failed, please check your internet connection."
 		fi
 

@@ -19,7 +19,7 @@ services:
 
     volumes:
       # - mpd_configdir:/root/.config
-      - ../../../DATA/testing-stack/mpd/mpd_config/mpd.conf:/etc/mpd.conf
+      - ../../../DATA/testing-stack/mpd/mpd_configdir/mpd.conf:/etc/mpd.conf
       - mpd_music:/var/lib/mpd/music
       - mpd_playlists:/var/lib/mpd/playlists
 
