@@ -41,7 +41,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/calibre/calibre_books
+      device: /home/hans/Boeken
   calibre_config:
     name: calibre_config
     driver: local
@@ -63,7 +63,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/cops/cops_books
+      device: /home/hans/Boeken
 
   mylar3_config:
     name: mylar3_config
@@ -78,7 +78,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/mylar3/mylar3_comics
+      device: /home/hans/Boeken
   mylar3_downloads:
     name: mylar3_downloads
     driver: local
@@ -110,7 +110,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/lazylibrarian/lazylibrarian_library
+      device: /home/hans/Boeken
 
   kavita_data:
     name: kavita_data
@@ -127,7 +127,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/kavita/kavita_library
+      device: /home/hans/Boeken
 
   ubooquity_data:
     name: ubooquity_data
