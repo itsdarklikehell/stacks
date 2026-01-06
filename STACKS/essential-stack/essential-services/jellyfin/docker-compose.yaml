@@ -27,16 +27,16 @@ services:
       - jellyfin_config:/config
       - jellyfin_tvseries:/data/tvshows
       - jellyfin_movies:/data/movies
-      # - jellyfin_audiobooks:/data/audiobooks
-      # - jellyfin_books:/data/books
-      # - jellyfin_concerts:/data/concerts
-      # - jellyfin_music:/data/music
-      # - jellyfin_photos:/data/photos
-      # - jellyfin_podcasts:/data/podcasts
-      # - jellyfin_recordings:/data/recordings
-      # - ai_outputs:/data/ai_images/ai_outputs
-      # - ai_inputs:/data/ai_images/ai_inputs
-      # - motioneye_shared:/data/motioneye_shared
+      - jellyfin_audiobooks:/data/audiobooks
+      - jellyfin_books:/data/books
+      - jellyfin_concerts:/data/concerts
+      - jellyfin_music:/data/music
+      - jellyfin_photos:/data/photos
+      - jellyfin_podcasts:/data/podcasts
+      - jellyfin_recordings:/data/recordings
+      - ai_outputs:/data/ai_images/ai_outputs
+      - ai_inputs:/data/ai_images/ai_inputs
+      - motioneye_shared:/data/motioneye_shared
 
     hostname: ${NAME:-jellyfin}
 
