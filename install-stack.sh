@@ -12,7 +12,7 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="false"                                                            # false, true/normal, all
+export PRUNE="true"                                                             # false, true/normal, all
 export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
@@ -325,9 +325,9 @@ echo ""
 SETUP_MEDIA_STACK
 echo ""
 
-echo ""
-SETUP_BOOKS_STACK
-echo ""
+# echo ""
+# SETUP_BOOKS_STACK
+# echo ""
 
 # echo ""
 # SETUP_TESTING_STACK

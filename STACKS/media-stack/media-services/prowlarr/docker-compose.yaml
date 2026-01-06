@@ -34,7 +34,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-9696}:3579
+      - ${PORT:-9696}:9696
 
     env_file:
       - ./prowlarr/.env
