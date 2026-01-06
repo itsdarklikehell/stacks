@@ -16,6 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - PORT=${PORT:-8680}
 
     volumes:
       - owncast_data:/app/data
