@@ -16,7 +16,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8088}
+      - PORT=${PORT:-8096}
       - JELLYFIN_PublishedServerUrl=http://${IP_ADDRESS:-192.168.1.2}
 
     volumes:
@@ -24,19 +24,19 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - jellyfin_audiobooks:/data/audiobooks
-      - jellyfin_books:/data/books
       - jellyfin_config:/config
-      - jellyfin_movies:/data/movies
-      - jellyfin_concerts:/data/concerts
-      - jellyfin_music:/data/music
-      - jellyfin_photos:/data/photos
-      - jellyfin_podcasts:/data/podcasts
-      - jellyfin_recordings:/data/recordings
       - jellyfin_tvseries:/data/tvshows
-      - ai_outputs:/data/ai_images/ai_outputs
-      - ai_inputs:/data/ai_images/ai_inputs
-      - motioneye_shared:/data/motioneye_shared
+      - jellyfin_movies:/data/movies
+      # - jellyfin_audiobooks:/data/audiobooks
+      # - jellyfin_books:/data/books
+      # - jellyfin_concerts:/data/concerts
+      # - jellyfin_music:/data/music
+      # - jellyfin_photos:/data/photos
+      # - jellyfin_podcasts:/data/podcasts
+      # - jellyfin_recordings:/data/recordings
+      # - ai_outputs:/data/ai_images/ai_outputs
+      # - ai_inputs:/data/ai_images/ai_inputs
+      # - motioneye_shared:/data/motioneye_shared
 
     hostname: ${NAME:-jellyfin}
 

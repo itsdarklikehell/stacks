@@ -27,7 +27,7 @@ COMPOSE_FILES=(
 	vscodium
 	vscodium-web
 	xemu
-	mpd
+	# mpd
 	mympd
 )
 

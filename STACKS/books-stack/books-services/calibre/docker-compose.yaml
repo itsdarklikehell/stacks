@@ -22,8 +22,6 @@ services:
     env_file:
       - ./calibre/.env
 
-    user: ${PUID:-1000}:${PGID:-1000}
-
     ports:
       - ${PORT:-8180}:8080
       - ${PORT2:-8181}:8181
