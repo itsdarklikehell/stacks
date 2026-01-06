@@ -27,6 +27,7 @@ COMPOSE_FILES=(
 	vscodium
 	vscodium-web
 	xemu
+	synctube
 	# mpd
 	mympd
 )
@@ -48,6 +49,14 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+		if [[ ${SERVICE_NAME} == "azahar" ]]; then
+
+		FOLDERS=(
+			"user"
 		)
 
 	fi

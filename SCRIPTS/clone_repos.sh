@@ -820,7 +820,6 @@ function CLONE_COPYPARTY() {
 		if [[ -f copyparty_configs/config.conf.bak ]]; then
 			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
 		fi
-
 	fi
 
 	function LOCAL_SETUP() {
@@ -842,6 +841,67 @@ function CLONE_COPYPARTY() {
 		#   export PRTY_CONFIG=config.conf
 		# 	uv pip install .
 		# 	uv pip install --user -U copyparty
+
+		# fi
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
+		# docker build -t whisperx .
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+	# cd custom_nodes || exit 1
+	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	# cd ComfyUI-Manager || exit 1
+
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
+function CLONE_SYNCTUBE() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+
+	if [[ ! -d "synctube" ]]; then
+		echo "Cloning synctube"
+		echo ""
+		git clone --recursive https://github.com/9001/synctube.git "synctube"
+		cd "synctube" || exit 1
+	else
+		echo "Checking synctube for updates"
+		cd "synctube" || exit 1
+		git pull
+	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+		# if [[ -f .venv/bin/activate ]]; then
+		# 	# shellcheck source=/dev/null
+		# 	source .venv/bin/activate
+		# else
+
+		# 	export UV_LINK_MODE=copy
+		# 	uv venv --clear --seed
+		# 	# shellcheck source=/dev/null
+		# 	source .venv/bin/activate
+
+		# 	uv pip install --upgrade pip
+		# 	uv sync --all-extras
+		#   export PRTY_CONFIG=config.conf
+		# 	uv pip install .
+		# 	uv pip install --user -U synctube
 
 		# fi
 
