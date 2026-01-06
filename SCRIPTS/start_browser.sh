@@ -9,7 +9,7 @@ if [[ ${USER} == "hans" ]]; then
 	export IP_ADDRESS
 elif [[ ${USER} == "rizzo" ]]; then
 	export IP_ADDRESS
-	export IP_ADDRESS=192.168.178.63
+	# export IP_ADDRESS=192.168.178.63
 else
 	export IP_ADDRESS
 fi
