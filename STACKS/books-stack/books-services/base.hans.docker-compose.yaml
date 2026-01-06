@@ -42,6 +42,13 @@ volumes:
       type: none
       o: bind
       device: /home/hans/Boeken
+  calibre_autoadd:
+    name: calibre_autoadd
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/calibre/calibre_autoadd
   calibre_config:
     name: calibre_config
     driver: local

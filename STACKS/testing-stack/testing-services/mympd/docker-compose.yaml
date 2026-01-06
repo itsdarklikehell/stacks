@@ -29,13 +29,14 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - mympd_run:/run/mpd
-      ## Optional for myGPIOd support
-      ## - /run/mygpiod:/run/mygpiod
+      # - mympd_run:/run/mpd
+      - ../../../DATA/testing-stack/mpd/mpd_configdir/mpd.conf:/etc/mpd.conf
       - mympd_workdir:/var/lib/mympd
       - mympd_cachedir:/var/cache/mympd
       - mympd_music:/var/lib/mpd/music:ro
       - mympd_playlists:/var/lib/mpd/playlists:ro
+      ## Optional for myGPIOd support
+      ## - /run/mygpiod:/run/mygpiod
 
     hostname: ${NAME:-mympd}
 

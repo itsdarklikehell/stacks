@@ -53,6 +53,7 @@ function SETUP_FOLDERS() {
 			"config"
 			"books"
 			"library"
+			"autoadd"
 		)
 	fi
 
