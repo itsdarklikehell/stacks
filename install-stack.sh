@@ -148,6 +148,7 @@ function SETUP_AUTOSTART() {
 		install-stack.sh
 		pull_models.sh
 		start_browser.sh
+		start_browser_games.sh
 		start_comfy-cli.sh
 		start_comfyui-mini.sh
 		start_comfyui.sh
