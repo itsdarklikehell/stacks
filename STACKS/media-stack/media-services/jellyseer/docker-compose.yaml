@@ -26,6 +26,8 @@ services:
 
       - jellyseer_config:/app/config
 
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-jellyseer}
 
     # user: ${PUID:-1000}:${PGID:-1000}

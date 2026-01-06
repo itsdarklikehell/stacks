@@ -32,6 +32,8 @@ services:
       - mylar3_downloads:/downloads
       - calibre_books:/calibre_books
 
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-mylar3}
 
     # user: ${PUID:-1000}:${PGID:-1000}

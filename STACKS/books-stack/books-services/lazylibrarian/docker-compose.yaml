@@ -31,6 +31,8 @@ services:
       - lazylibrarian_downloads:/downloads
       - calibre_books:/calibre_books
 
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-lazylibrarian}
 
     # user: ${PUID:-1000}:${PGID:-1000}

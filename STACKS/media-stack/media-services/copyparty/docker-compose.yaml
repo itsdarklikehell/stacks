@@ -32,6 +32,7 @@ services:
       - ../../../DATA/media-stack/copyparty/copyparty_uploads:/uploads
       - ../../../DATA:/DATA
       - ../../../MEDIA:/MEDIA
+      - transmission_watchfolder:/transmission_watchfolder
 
     hostname: ${NAME:-copyparty}
 

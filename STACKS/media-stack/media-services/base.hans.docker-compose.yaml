@@ -36,6 +36,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/prowlarr/prowlarr_config
 
+  transmission_watchfolder:
+    name: transmission_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/transmission/transmission_watchfolder
+
 networks:
   host:
   media-services:
