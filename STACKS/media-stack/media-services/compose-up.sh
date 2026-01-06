@@ -6,6 +6,7 @@ cd "$(dirname "$0")" || exit 1
 COMPOSE_FILES=(
 	tvs-server
 	copyparty
+	jellyseer
 )
 
 function CREATE_FOLDERS() {
@@ -20,6 +21,13 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
+
+	if [[ ${SERVICE_NAME} == "jellyseer" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
 
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
 

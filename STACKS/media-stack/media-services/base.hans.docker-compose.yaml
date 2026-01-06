@@ -10,6 +10,15 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs
 
+  jellyseer_config:
+    name: jellyseer_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/jellyseer/jellyseer_config
+
 networks:
   host:
   media-services:
