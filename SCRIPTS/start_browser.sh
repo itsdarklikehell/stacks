@@ -9,35 +9,51 @@ export IP_ADDRESS
 export IP_ADDRESS=0.0.0.0
 
 URLS=(
-	"http://${IP_ADDRESS}:3001"  # anythingllm
-	"http://${IP_ADDRESS}:1111"  # forge
-	"http://${IP_ADDRESS}:8123"  # home assistant
-	"http://${IP_ADDRESS}:9090"  # InvokeAI
-	"http://${IP_ADDRESS}:8283"  # letta-server
-	"http://${IP_ADDRESS}:8083"  # localai
-	"http://${IP_ADDRESS}:11434" # ollama
-	"http://${IP_ADDRESS}:8080"  # open-webui
-	"http://${IP_ADDRESS}:8081"  # searxng
-	"http://${IP_ADDRESS}:8082"  # dozzle
-	"http://${IP_ADDRESS}:8383"  # dashy
-	"http://${IP_ADDRESS}:8088"  # it-tools
-	"http://${IP_ADDRESS}:8094"  # beszel
-	"http://${IP_ADDRESS}:81"    # nginx-proxy-manager
-	"http://${IP_ADDRESS}:9000"  # portainer
-	"http://${IP_ADDRESS}:8096"  # jellyfin
-	"http://${IP_ADDRESS}:2283"  # immich
-	"https://${IP_ADDRESS}:8181" # calibre
-	"http://${IP_ADDRESS}:4999"  # portracker
-	"http://${IP_ADDRESS}:8188"  # ComfyUI
-	"http://${IP_ADDRESS}:8765"  # MotionEye
-	"http://${IP_ADDRESS}:8483"  # calibre-web
-	"http://${IP_ADDRESS}:5000"  # kavita
-	"http://${IP_ADDRESS}:5299"  # lazylibrarian
-	"http://${IP_ADDRESS}:2202"  # ubooquity
-	"https://${IP_ADDRESS}:4433" # nextcloud
-	"http://${IP_ADDRESS}:85"    # heimdall
-	"https://${IP_ADDRESS}:444"  # heimdall
-	"https://${IP_ADDRESS}:3923" # CopyParty
+	"http://${IP_ADDRESS}:1111"        # forge
+	"http://${IP_ADDRESS}:11434"       # ollama
+	"http://${IP_ADDRESS}:2202"        # ubooquity
+	"http://${IP_ADDRESS}:2283"        # immich
+	"http://${IP_ADDRESS}:3001"        # anythingllm
+	"http://${IP_ADDRESS}:4999"        # portracker
+	"http://${IP_ADDRESS}:5000"        # kavita
+	"http://${IP_ADDRESS}:5299"        # lazylibrarian
+	"http://${IP_ADDRESS}:8080"        # open-webui
+	"http://${IP_ADDRESS}:8081"        # searxng
+	"http://${IP_ADDRESS}:8082"        # dozzle
+	"http://${IP_ADDRESS}:8083"        # localai
+	"http://${IP_ADDRESS}:8088"        # it-tools
+	"http://${IP_ADDRESS}:8094"        # beszel
+	"http://${IP_ADDRESS}:8096"        # jellyfin
+	"http://${IP_ADDRESS}:81"          # nginx-proxy-manager
+	"http://${IP_ADDRESS}:8123"        # home assistant
+	"http://${IP_ADDRESS}:8188"        # ComfyUI
+	"http://${IP_ADDRESS}:8283"        # letta-server
+	"http://${IP_ADDRESS}:8383"        # dashy
+	"http://${IP_ADDRESS}:8483"        # calibre-web
+	"http://${IP_ADDRESS}:85"          # heimdall
+	"http://${IP_ADDRESS}:8765"        # MotionEye
+	"http://${IP_ADDRESS}:9000"        # portainer
+	"http://${IP_ADDRESS}:9090"        # InvokeAI
+	"https://${IP_ADDRESS}:3003"       # Tv Simulator
+	"https://${IP_ADDRESS}:3579"       # Ombi
+	"https://${IP_ADDRESS}:3923"       # CopyParty
+	"https://${IP_ADDRESS}:4200"       # sycntube
+	"https://${IP_ADDRESS}:4433"       # nextcloud
+	"https://${IP_ADDRESS}:444"        # heimdall
+	"https://${IP_ADDRESS}:5055"       # jellyseer
+	"https://${IP_ADDRESS}:5299"       # LazyLibrarian
+	"https://${IP_ADDRESS}:5678"       # n8n
+	"https://${IP_ADDRESS}:7026"       # modmanger
+	"https://${IP_ADDRESS}:7027"       # also modmanger
+	"https://${IP_ADDRESS}:7655"       # Pulse
+	"https://${IP_ADDRESS}:8082"       # dozzle
+	"https://${IP_ADDRESS}:8091"       # mylar3
+	"https://${IP_ADDRESS}:8181"       # calibre
+	"https://${IP_ADDRESS}:8400"       # COPS
+	"https://${IP_ADDRESS}:8680"       # owncast
+	"https://${IP_ADDRESS}:8680/admin" # owncast admin panel
+	"https://${IP_ADDRESS}:9091"       # transmission
+	"https://${IP_ADDRESS}:9696"       # prowlarr
 )
 
 function RUN_BROWSER() {
