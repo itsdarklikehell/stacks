@@ -22,8 +22,10 @@ COMPOSE_FILES=(
 	pcsx2
 	retroarch
 	rpcs3
+	transmission
 	scummvm
 	owncast
+	flaresolverr
 	# steamos
 	# vscodium
 	# vscodium-web
@@ -50,6 +52,16 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "transmission" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watchfolder"
 		)
 
 	fi
