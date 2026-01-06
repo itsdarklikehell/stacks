@@ -19,6 +19,15 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
+  synctube_user:
+    name: synctube_user
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/synctube/synctube_user
+
   code-server_config:
     name: code-server_config
     driver: local
