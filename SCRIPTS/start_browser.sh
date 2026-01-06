@@ -5,14 +5,14 @@ echo "Start browser script started."
 
 IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 export IP_ADDRESS
-	if [[ ${USER} == "hans" ]]; then
-		export IP_ADDRESS
-	elif [[ ${USER} == "rizzo" ]]; then
-		export IP_ADDRESS
-		export IP_ADDRESS=192.168.178.63
-	else
-		export IP_ADDRESS
-	fi
+if [[ ${USER} == "hans" ]]; then
+	export IP_ADDRESS
+elif [[ ${USER} == "rizzo" ]]; then
+	export IP_ADDRESS
+	export IP_ADDRESS=192.168.178.63
+else
+	export IP_ADDRESS
+fi
 
 URLS=(
 	"http://${IP_ADDRESS}:1111"       # forge
@@ -49,10 +49,8 @@ URLS=(
 	"http://${IP_ADDRESS}:5055"       # jellyseer
 	"http://${IP_ADDRESS}:5299"       # LazyLibrarian
 	"http://${IP_ADDRESS}:5678"       # n8n
-	"https://${IP_ADDRESS}:7026"      # modmanger
-	"https://${IP_ADDRESS}:7027"      # also modmanger
 	"http://${IP_ADDRESS}:7655"       # Pulse
-	"http://${IP_ADDRESS}:8082"      # dozzle
+	"http://${IP_ADDRESS}:8082"       # dozzle
 	"http://${IP_ADDRESS}:8091"       # mylar3
 	"https://${IP_ADDRESS}:8181"      # calibre
 	"http://${IP_ADDRESS}:8400"       # COPS
