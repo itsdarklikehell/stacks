@@ -210,22 +210,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /media/hans/beestation/Files/Calibre
-
-  calibre_config:
-    name: calibre_config
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/calibre/calibre_config
-  calibre_books:
-    name: calibre_books
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/essential-stack/calibre/calibre_books
+      device: /home/hans/Boeken
 
   ai_outputs:
     name: ai_outputs

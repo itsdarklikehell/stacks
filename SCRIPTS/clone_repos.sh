@@ -622,7 +622,15 @@ function CLONE_COMFYUI() {
 			uv sync --all-extras
 
 			uv pip install comfy-cli
-			uv run comfy-cli --skip-prompt install --nvidia --restore
+
+			if [[ ${USER} == "hans" ]]; then
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			elif [[ ${USER} == "rizzo" ]]; then
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			else
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			fi
+
 			uv run comfy-cli --install-completion
 
 		fi
@@ -863,15 +871,15 @@ function CLONE_COPYPARTY() {
 
 CREATE_FOLDERS
 
-CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-CLONE_CLAIR       # >/dev/null 2>&1 &
-CLONE_COMFYUI     # >/dev/null 2>&1 &
-CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
-CLONE_COMFYUIMINI # >/dev/null 2>&1 &
-CLONE_COPYPARTY   # >/dev/null 2>&1 &
-CLONE_OLLMVT      # >/dev/null 2>&1 &
-CLONE_PUPPETEER   # >/dev/null 2>&1 &
-CLONE_SCANOPY     # >/dev/null 2>&1 &
-CLONE_SWARMUI     # >/dev/null 2>&1 &
+# CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+# CLONE_CLAIR       # >/dev/null 2>&1 &
+CLONE_COMFYUI # >/dev/null 2>&1 &
+# CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
+# CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+# CLONE_COPYPARTY   # >/dev/null 2>&1 &
+# CLONE_OLLMVT      # >/dev/null 2>&1 &
+# CLONE_PUPPETEER   # >/dev/null 2>&1 &
+# CLONE_SCANOPY     # >/dev/null 2>&1 &
+# CLONE_SWARMUI     # >/dev/null 2>&1 &
 
 LINK_FOLDERS

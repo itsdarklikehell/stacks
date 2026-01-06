@@ -52,6 +52,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"books"
+			"library"
 		)
 	fi
 

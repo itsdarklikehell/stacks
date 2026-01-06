@@ -18,7 +18,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-1h}
       - ENABLE_IMAGE_GENERATION=${ENABLE_IMAGE_GENERATION:-True}
-      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS:-192.168.1.2}:8188}
+      - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
       - OLLAMA_MODELS=/root/.ollama/models
       - OLLAMA_VULKAN=1
 

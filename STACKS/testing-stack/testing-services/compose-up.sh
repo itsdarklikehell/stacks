@@ -27,7 +27,7 @@ COMPOSE_FILES=(
 	vscodium
 	vscodium-web
 	xemu
-	mpd
+	# mpd
 	mympd
 )
 
@@ -240,8 +240,8 @@ function SETUP_FOLDERS() {
 			"cachedir"
 		)
 
-		if [[ ! -f "${FOLDER}/mpd_config/mpd.conf" ]]; then
-			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_configdir/mpd.conf" || echo "mpd.conf download failed, please check your internet connection."
+		if [[ ! -f "${FOLDER}/mpd_confidir/mpd.conf" ]]; then
+			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_configdir/mpd.conf"
 		fi
 
 	fi
@@ -257,8 +257,8 @@ function SETUP_FOLDERS() {
 			"cachedir"
 		)
 
-		if [[ ! -f "${FOLDER}/mpd_config/mpd.conf" ]]; then
-			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mpd_config/mpd.conf" || echo "mpd.conf download failed, please check your internet connection."
+		if [[ ! -f "${FOLDER}/mympd_configdir/mpd.conf" ]]; then
+			wget -c https://raw.githubusercontent.com/andrewrk/mpd/refs/heads/master/doc/mpdconf.example -O "${FOLDER}/mympd_configdir/mpd.conf"
 		fi
 
 	fi

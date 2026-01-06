@@ -239,7 +239,7 @@ volumes:
   #   driver_opts:
   #     type: none
   #     o: bind
-  #     device: ../../../DATA/testing-stack/mpd/mpd_config/mpd.conf
+  #     device: ../../../DATA/testing-stack/mpd/mpd_configdir/mpd.conf
   mpd_music:
     name: mpd_music
     driver: local

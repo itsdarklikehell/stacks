@@ -1,4 +1,5 @@
 services:
+
   mympd:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
     image: ${IMAGE:-ghcr.io/jcorporation/mympd/mympd:latest}
@@ -19,7 +20,8 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       # - MYMPD_SSL_SAN="DNS:<host fqdn>"
       # - MYMPD_MYMPD_URI=http://<host fqdn>:8080
-      - MYMPD_MPD_HOST=${MYMPD_MPD_HOST:-192.168.1.2}
+      - MYMPD_MPD_HOST=${IP_ADDRESS:-192.168.1.2}
+      - MPD_HOST=${IP_ADDRESS:-192.168.1.2}
       - MYMPD_MPD_PORT=${MYMPD_MPD_PORT:-6600}
       - MYMPD_MPD_TIMEOUT=${MYMPD_MPD_TIMEOUT:-10}
 
