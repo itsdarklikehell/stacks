@@ -624,11 +624,11 @@ function CLONE_COMFYUI() {
 			uv pip install comfy-cli
 
 			if [[ ${USER} == "hans" ]]; then
-				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 			elif [[ ${USER} == "rizzo" ]]; then
-				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 			else
-				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+				yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 			fi
 
 			uv run comfy-cli --install-completion
@@ -799,7 +799,7 @@ function CLONE_COPYPARTY() {
 		fi
 
 		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+			cp "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
 		fi
 
 		cd "copyparty" || exit 1
@@ -807,7 +807,7 @@ function CLONE_COPYPARTY() {
 		echo "Checking copyparty for updates"
 		cd "copyparty" || exit 1
 
-		if [[ ! -f ${FOLDER}/copyparty_configs/config.conf ]]; then
+		if [[ ! -f copyparty_configs/config.conf ]]; then
 			cp "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
 		fi
 
@@ -818,7 +818,7 @@ function CLONE_COPYPARTY() {
 		git pull
 
 		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+			cp "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
 		fi
 	fi
 
@@ -859,7 +859,6 @@ function CLONE_COPYPARTY() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 
@@ -883,7 +882,7 @@ function CLONE_SYNCTUBE() {
 	if [[ ! -d "octosubs" ]]; then
 		echo "Cloning octosubs"
 		echo ""
-		git clone --recursive  https://github.com/RblSb/SyncTube-octosubs.git "octosubs"
+		git clone --recursive https://github.com/RblSb/SyncTube-octosubs.git "octosubs"
 		# cd "synctube" || exit 1
 	else
 		echo "Checking octosubs for updates"
@@ -894,7 +893,7 @@ function CLONE_SYNCTUBE() {
 	if [[ ! -d "qswitcher" ]]; then
 		echo "Cloning qswitcher"
 		echo ""
-		git clone --recursive  https://github.com/aNNiMON/SyncTube-QSwitcher.git "qswitcher"
+		git clone --recursive https://github.com/aNNiMON/SyncTube-QSwitcher.git "qswitcher"
 		# cd "synctube" || exit 1
 	else
 		echo "Checking qswitcher for updates"
@@ -948,8 +947,8 @@ CREATE_FOLDERS
 
 CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
 CLONE_CLAIR       # >/dev/null 2>&1 &
-CLONE_COMFYUI # >/dev/null 2>&1 &
-CLONE_SYNCTUBE # >/dev/null 2>&1 &
+CLONE_COMFYUI     # >/dev/null 2>&1 &
+CLONE_SYNCTUBE    # >/dev/null 2>&1 &
 CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 CLONE_COPYPARTY   # >/dev/null 2>&1 &
