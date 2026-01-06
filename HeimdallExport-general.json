@@ -262,5 +262,109 @@
     "description": null,
     "appid": "null",
     "appdescription": null
+  },
+  {
+    "title": "Forge",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:1111",
+    "description": null,
+    "appid": null,
+    "appdescription": null
+  },
+  {
+    "title": "Ollama",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:11434",
+    "description": null,
+    "appid": null,
+    "appdescription": "Local LLM hosting and inference server (Ollama API)."
+  },
+  {
+    "title": "Ubooquity",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:2202",
+    "description": null,
+    "appid": null,
+    "appdescription": "Lightweight home server for comics and ebooks."
+  },
+  {
+    "title": "Dozzle",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8082",
+    "description": null,
+    "appid": null,
+    "appdescription": "Simple docker log viewer."
+  },
+  {
+    "title": "LocalAI",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8084",
+    "description": null,
+    "appid": null,
+    "appdescription": "Local inference server for a variety of LLMs."
+  },
+  {
+    "title": "Nginx Proxy Manager",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:81",
+    "description": null,
+    "appid": null,
+    "appdescription": "Manage reverse proxy hosts with a simple GUI."
+  },
+  {
+    "title": "ComfyUI",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8188",
+    "description": null,
+    "appid": null,
+    "appdescription": "Node-based UI for image generation workflows."
+  },
+  {
+    "title": "Heimdall",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:85",
+    "description": null,
+    "appid": null,
+    "appdescription": "Application dashboard and launcher."
+  },
+  {
+    "title": "SyncTube",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:4200",
+    "description": null,
+    "appid": null,
+    "appdescription": "Synchronized video watching room server."
+  },
+  {
+    "title": "Nextcloud",
+    "colour": "#161b1f",
+    "url": "https://0.0.0.0:4433",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted file sharing and collaboration platform."
+  },
+  {
+    "title": "n8n",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:5678",
+    "description": null,
+    "appid": null,
+    "appdescription": "Workflow automation and integration tool."
+  },
+  {
+    "title": "Mylar3",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8091",
+    "description": null,
+    "appid": null,
+    "appdescription": "Automated comic downloading and management (Mylar3)."
+  },
+  {
+    "title": "Owncast",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8680",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
   }
 ]
