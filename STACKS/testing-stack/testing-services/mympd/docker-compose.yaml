@@ -1,5 +1,4 @@
 services:
-
   mympd:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
     image: ${IMAGE:-ghcr.io/jcorporation/mympd/mympd:latest}
@@ -53,8 +52,8 @@ services:
     env_file:
       - ./mympd/.env
 
-    depends_on:
-      - mpd
+    # depends_on:
+    #   - mpd
 
     # command:
     #   - -iwad /usr/share/mympd/doom2.wad -file /usr/share/mympd/DOOM_Infinite_098_PP2_H3.pk3
