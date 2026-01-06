@@ -6,7 +6,7 @@ cd "$(dirname "$0")" || exit 1
 COMPOSE_FILES=(
 	azahar
 	citron
-	code-server
+	# code-server
 	dogwalk
 	dolphin
 	dosbox-staging
@@ -25,8 +25,8 @@ COMPOSE_FILES=(
 	scummvm
 	owncast
 	# steamos
-	vscodium
-	vscodium-web
+	# vscodium
+	# vscodium-web
 	xemu
 	synctube
 	# mpd
