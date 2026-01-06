@@ -19,6 +19,24 @@ volumes:
       o: bind
       device: ../../../DATA/jellyseer/jellyseer_config
 
+  ombi_config:
+    name: ombi_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ombi/ombi_config
+
+  prowlarr_config:
+    name: prowlarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/prowlarr/prowlarr_config
+
 networks:
   host:
   media-services:

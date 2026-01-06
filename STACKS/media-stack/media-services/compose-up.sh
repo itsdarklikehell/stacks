@@ -7,6 +7,8 @@ COMPOSE_FILES=(
 	tvs-server
 	copyparty
 	jellyseer
+	ombi
+	prowlarr
 )
 
 function CREATE_FOLDERS() {
@@ -23,6 +25,20 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "jellyseer" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "prowlarr" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ombi" ]]; then
 
 		FOLDERS=(
 			"config"

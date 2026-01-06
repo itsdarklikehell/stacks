@@ -321,9 +321,9 @@ CREATE_SECRETS
 # SETUP_AI_STACK
 # echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
 echo ""
 SETUP_BOOKS_STACK
