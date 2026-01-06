@@ -859,9 +859,6 @@ function CLONE_COPYPARTY() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	# cd custom_nodes || exit 1
-	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
-	# cd ComfyUI-Manager || exit 1
 
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	# DOCKER_SETUP # >/dev/null 2>&1 &
@@ -875,7 +872,7 @@ function CLONE_SYNCTUBE() {
 	if [[ ! -d "synctube" ]]; then
 		echo "Cloning synctube"
 		echo ""
-		git clone --recursive https://github.com/9001/synctube.git "synctube"
+		git clone --recursive https://github.com/RblSb/SyncTube.git "synctube"
 		cd "synctube" || exit 1
 	else
 		echo "Checking synctube for updates"
@@ -942,10 +939,6 @@ function CLONE_SYNCTUBE() {
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	# cd custom_nodes || exit 1
-	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
-	# cd ComfyUI-Manager || exit 1
-
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	# DOCKER_SETUP # >/dev/null 2>&1 &
 
@@ -953,15 +946,16 @@ function CLONE_SYNCTUBE() {
 
 CREATE_FOLDERS
 
-# CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-# CLONE_CLAIR       # >/dev/null 2>&1 &
+CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+CLONE_CLAIR       # >/dev/null 2>&1 &
 CLONE_COMFYUI # >/dev/null 2>&1 &
-# CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
-# CLONE_COMFYUIMINI # >/dev/null 2>&1 &
-# CLONE_COPYPARTY   # >/dev/null 2>&1 &
-# CLONE_OLLMVT      # >/dev/null 2>&1 &
-# CLONE_PUPPETEER   # >/dev/null 2>&1 &
-# CLONE_SCANOPY     # >/dev/null 2>&1 &
-# CLONE_SWARMUI     # >/dev/null 2>&1 &
+CLONE_SYNCTUBE # >/dev/null 2>&1 &
+CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
+CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+CLONE_COPYPARTY   # >/dev/null 2>&1 &
+CLONE_OLLMVT      # >/dev/null 2>&1 &
+CLONE_PUPPETEER   # >/dev/null 2>&1 &
+CLONE_SCANOPY     # >/dev/null 2>&1 &
+CLONE_SWARMUI     # >/dev/null 2>&1 &
 
 LINK_FOLDERS

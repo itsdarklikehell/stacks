@@ -28,6 +28,15 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/synctube/synctube_user
 
+  owncast_data:
+    name: owncast_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/owncast/owncast_data
+
   code-server_config:
     name: code-server_config
     driver: local

@@ -1,15 +1,8 @@
 services:
-  synctube:
-    # image: ${IMAGE:-vimagick/synctube:latest}
-    container_name: ${NAME:-synctube}
+  owncast:
+    image: ${IMAGE:-owncast/owncast:latest}
+    container_name: ${NAME:-owncast}
     restart: ${RESTART:-unless-stopped}
-
-    build:
-      context: ../../../DATA/testing-stack/synctube
-      dockerfile: Dockerfile
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -25,19 +18,20 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     volumes:
-      - synctube_user:/usr/src/app/user
+      - owncast_data:/app/data
 
-    hostname: ${NAME:-synctube}
+    hostname: ${NAME:-owncast}
 
     networks:
       host:
       testing-services:
 
     ports:
-      - ${PORT:-4200}:4200
+      - ${PORT:-8680}:8080
+      - 1935:1935
 
     env_file:
-      - ./synctube/.env
+      - ./owncast/.env
 
     runtime: nvidia
     deploy:

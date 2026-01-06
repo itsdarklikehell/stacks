@@ -23,6 +23,7 @@ COMPOSE_FILES=(
 	retroarch
 	rpcs3
 	scummvm
+	owncast
 	# steamos
 	vscodium
 	vscodium-web
@@ -53,10 +54,18 @@ function SETUP_FOLDERS() {
 
 	fi
 
-		if [[ ${SERVICE_NAME} == "azahar" ]]; then
+	if [[ ${SERVICE_NAME} == "synctube" ]]; then
 
 		FOLDERS=(
 			"user"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "owncast" ]]; then
+
+		FOLDERS=(
+			"data"
 		)
 
 	fi
