@@ -12,8 +12,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="true"                                                             # false, true/normal, all
-export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
+export PRUNE="all"                                                             # false, true/normal, all
+export BUILDING="true"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -301,30 +301,30 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
-# ### STACKS:
-# CREATE_SECRETS
+### STACKS:
+CREATE_SECRETS
 
-# echo ""
-# SETUP_AUTOSTART
-# echo ""
+echo ""
+SETUP_AUTOSTART
+echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
 echo ""
 SETUP_BOOKS_STACK
@@ -334,62 +334,60 @@ echo ""
 SETUP_TESTING_STACK
 echo ""
 
-# echo ""
-# SETUP_OPENLLM_VTUBER_STACK
-# echo ""
+echo ""
+SETUP_OPENLLM_VTUBER_STACK
+echo ""
 
-# echo ""
-# PULL_MODELS # >/dev/null 2>&1 &
-# echo ""
+echo ""
+PULL_MODELS # >/dev/null 2>&1 &
+echo ""
 
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
+echo ""
+START_BROWSER >/dev/null 2>&1 &
+echo ""
 
-# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-# clear
+alias ollama='docker exec -it ollama ollama'
 
-# alias ollama='docker exec -it ollama ollama'
+echo "Installation should be complete now.."
+echo ""
+echo "To start a browser opening tabs with all of the stacks services:"
+echo "run: 'start_browser.sh'"
+echo ""
+echo "to start ComfyUI's service:"
+echo "run: 'start_comfyui.sh'"
+echo ""
+echo "to start ComfyUIMini's service:"
+echo "run: 'start_comfyui-mini.sh'"
+echo ""
+echo "to start CushyStudio's service:"
+echo "run: 'start_cushystudio.sh'"
+echo ""
+echo "to start Openllm-Vtuber's service:"
+echo "run: 'start_ollmvt.sh'"
+echo ""
+echo "to pull the default set of models into ollama:"
+echo "run: 'pull_models.sh'"
+echo ""
+echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
+echo "run: 'start_deduper.sh'"
+echo ""
+echo "Alternatively, you should now be able to use the ollama cli run/pull your own models as normal i.e."
+echo "run: 'ollama pull llama3.2:latest'"
+echo "or: 'ollama run llama3.2:latest --verbose' etc."
+echo ""
+echo "To make this alias permanent you can add:"
+echo "alias ollama='docker exec -it ollama ollama'"
+echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
+echo ""
+echo ""
+echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bash_aliases"
+echo "source ~/.bash_aliases"
+echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bashrc"
+echo "source ~/.bashrc"
+echo ""
+echo ""
+echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
 
-# echo "Installation should be complete now.."
-# echo ""
-# echo "To start a browser opening tabs with all of the stacks services:"
-# echo "run: 'start_browser.sh'"
-# echo ""
-# echo "to start ComfyUI's service:"
-# echo "run: 'start_comfyui.sh'"
-# echo ""
-# echo "to start ComfyUIMini's service:"
-# echo "run: 'start_comfyui-mini.sh'"
-# echo ""
-# echo "to start CushyStudio's service:"
-# echo "run: 'start_cushystudio.sh'"
-# echo ""
-# echo "to start Openllm-Vtuber's service:"
-# echo "run: 'start_ollmvt.sh'"
-# echo ""
-# echo "to pull the default set of models into ollama:"
-# echo "run: 'pull_models.sh'"
-# echo ""
-# echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
-# echo "run: 'start_deduper.sh'"
-# echo ""
-# echo "Alternatively, you should now be able to use the ollama cli run/pull your own models as normal i.e."
-# echo "run: 'ollama pull llama3.2:latest'"
-# echo "or: 'ollama run llama3.2:latest --verbose' etc."
-# echo ""
-# echo "To make this alias permanent you can add:"
-# echo "alias ollama='docker exec -it ollama ollama'"
-# echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
-# echo ""
-# echo ""
-# echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bash_aliases"
-# echo "source ~/.bash_aliases"
-# echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bashrc"
-# echo "source ~/.bashrc"
-# echo ""
-# echo ""
-# echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
-
-# # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
+# sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
