@@ -18,7 +18,6 @@ URLS=(
 	"http://${IP_ADDRESS}:7022"  # luanti
 	"https://${IP_ADDRESS}:7023"  # mame
 	"https://${IP_ADDRESS}:7025"  # melonds
-	"http://${IP_ADDRESS}:7028"  # modmanager
 	"https://${IP_ADDRESS}:7029"  # modrinth
 	"https://${IP_ADDRESS}:7031"  # pcsx2
 	"https://${IP_ADDRESS}:7033"  # retroarch
