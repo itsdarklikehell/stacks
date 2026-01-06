@@ -300,11 +300,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -329,13 +329,13 @@ CREATE_SECRETS
 # SETUP_MEDIA_STACK
 # echo ""
 
-echo ""
-SETUP_BOOKS_STACK
-echo ""
+# echo ""
+# SETUP_BOOKS_STACK
+# echo ""
 
-# echo ""
-# SETUP_TESTING_STACK
-# echo ""
+echo ""
+SETUP_TESTING_STACK
+echo ""
 
 # echo ""
 # PULL_MODELS # >/dev/null 2>&1 &

@@ -883,6 +883,28 @@ function CLONE_SYNCTUBE() {
 		git pull
 	fi
 
+	if [[ ! -d "octosubs" ]]; then
+		echo "Cloning octosubs"
+		echo ""
+		git clone --recursive  https://github.com/RblSb/SyncTube-octosubs.git "octosubs"
+		# cd "synctube" || exit 1
+	else
+		echo "Checking octosubs for updates"
+		# cd "synctube" || exit 1
+		git pull
+	fi
+
+	if [[ ! -d "qswitcher" ]]; then
+		echo "Cloning qswitcher"
+		echo ""
+		git clone --recursive  https://github.com/aNNiMON/SyncTube-QSwitcher.git "qswitcher"
+		# cd "synctube" || exit 1
+	else
+		echo "Checking qswitcher for updates"
+		# cd "synctube" || exit 1
+		git pull
+	fi
+
 	function LOCAL_SETUP() {
 
 		echo "Using Local setup"
