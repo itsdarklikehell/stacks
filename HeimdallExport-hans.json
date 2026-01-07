@@ -366,5 +366,29 @@
     "description": null,
     "appid": null,
     "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Lidarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8686",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Radarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:7878",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Sonarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8989",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
   }
 ]
