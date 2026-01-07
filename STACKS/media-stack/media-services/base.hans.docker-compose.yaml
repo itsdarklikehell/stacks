@@ -87,6 +87,56 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/radarr/radarr_movies
 
+  readarr_config:
+    name: readarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/readarr/readarr_config
+  readarr_downwloads:
+    name: readarr_downwloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/readarr/readarr_downwloads
+  readarr_books:
+    name: readarr_books
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/readarr/readarr_books
+
+  sonarr_config:
+    name: sonarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sonarr/sonarr_config
+  sonarr_downwloads:
+    name: sonarr_downwloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sonarr/sonarr_downwloads
+  sonarr_tvseries:
+    name: sonarr_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sonarr/sonarr_tvseries
+
   transmission_watchfolder:
     name: transmission_watchfolder
     driver: local

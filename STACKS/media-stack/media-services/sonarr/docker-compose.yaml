@@ -1,7 +1,7 @@
 services:
-  readarr:
-    image: ${IMAGE:-lscr.io/linuxserver/readarr:latest}
-    container_name: ${NAME:-readarr}
+  sonarr:
+    image: ${IMAGE:-lscr.io/linuxserver/sonarr:latest}
+    container_name: ${NAME:-sonarr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,14 +23,14 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - readarr_config:/config
+      - sonarr_config:/config
       - transmission_watchfolder:/transmission_watchfolder
 
       # optional:
-      - readarr_books:/books
-      - readarr_downloads:/downloads
+      - sonarr_tvseries:/tvseries
+      - sonarr_downloads:/downloads
 
-    hostname: ${NAME:-readarr}
+    hostname: ${NAME:-sonarr}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -39,10 +39,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-8787}:8787
+      - ${PORT:-8989}:8989
 
     env_file:
-      - ./readarr/.env
+      - ./sonarr/.env
 
     runtime: nvidia
     deploy:
