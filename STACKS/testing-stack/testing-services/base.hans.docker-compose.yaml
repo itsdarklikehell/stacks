@@ -19,6 +19,23 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
+  openttd_config:
+    name: openttd_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/openttd/openttd_config
+  openttd_save:
+    name: openttd_save
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/openttd/openttd_save
+
   synctube_user:
     name: synctube_user
     driver: local

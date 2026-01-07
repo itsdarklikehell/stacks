@@ -15,6 +15,7 @@ COMPOSE_FILES=(
 	# gzdoom
 	healthchecks
 	luanti
+	openttd
 	mame
 	melonds
 	modmanager
@@ -52,6 +53,15 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "openttd" ]]; then
+
+		FOLDERS=(
+			"config"
+			"save"
 		)
 
 	fi
