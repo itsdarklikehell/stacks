@@ -15,7 +15,6 @@ else
 fi
 
 URLS=(
-	"http://${IP_ADDRESS}:1111"       # forge
 	"http://${IP_ADDRESS}:11434"      # ollama
 	"http://${IP_ADDRESS}:2202"       # ubooquity
 	"http://${IP_ADDRESS}:2283"       # immich

@@ -21,11 +21,15 @@ COMPOSE_FILES=(
 	modmanager
 	modrinth
 	pcsx2
+	# linux-gsm-cs2
 	retroarch
 	rpcs3
 	transmission
+	flexget
 	scummvm
+	emulatorjs
 	owncast
+	pygotchi
 	flaresolverr
 	# steamos
 	# vscodium
@@ -66,7 +70,26 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "emulatorjs" ]]; then
+
+		FOLDERS=(
+			"config"
+			"data"
+		)
+
+	fi
+
 	if [[ ${SERVICE_NAME} == "transmission" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watchfolder"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "flexget" ]]; then
 
 		FOLDERS=(
 			"config"
@@ -80,6 +103,22 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"user"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "linux-gsm-cs2" ]]; then
+
+		FOLDERS=(
+			"data"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "wolf" ]]; then
+
+		FOLDERS=(
+			"etc"
 		)
 
 	fi

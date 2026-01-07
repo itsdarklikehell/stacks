@@ -155,39 +155,6 @@ volumes:
       o: bind
       device: ../../../DATA/ai-outputs/comfyui_output
 
-  forge_data:
-    name: forge_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/forge/forge_data
-  forge_models:
-    name: forge_models
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-models/forge_models
-  forge_output:
-    name: forge_output
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-outputs/forge_output
-  forge_input:
-    name: forge_input
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-inputs
-
   homeassistant-config:
     name: homeassistant-config
     driver: local

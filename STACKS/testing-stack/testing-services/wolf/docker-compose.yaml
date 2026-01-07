@@ -1,0 +1,97 @@
+services:
+  wolf:
+    image: ${IMAGE:-ghcr.io/games-on-whales/wolf:stable}
+    container_name: ${NAME:-wolf}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/:/dev/:rw
+      - /run/udev:/run/udev:rw
+
+      - wolf_etc:/etc/wolf:rw
+
+    device_cgroup_rules:
+      - c 13:* rmw
+
+    hostname: ${NAME:-wolf}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      testing-services:
+
+    ports:
+      - 47984:47984/tcp
+      - 47989:47989/tcp
+      - 47999:47999/udp
+      - 48010:48010/tcp
+      - 48100:48100/udp
+      - 48200:48200/udp
+
+    env_file:
+      - ./wolf/.env
+
+    # command:
+    #   - -iwad /usr/share/wolf/doom2.wad -file /usr/share/wolf/DOOM_Infinite_098_PP2_H3.pk3
+
+    devices:
+      - /dev/dri
+      - /dev/uinput
+      - /dev/uhid
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

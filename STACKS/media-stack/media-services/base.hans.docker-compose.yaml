@@ -19,6 +19,24 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/jellyseer/jellyseer_config
 
+  audacity_config:
+    name: audacity_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/audacity/audacity_config
+
+  ardour_config:
+    name: ardour_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/ardour/ardour_config
+
   ombi_config:
     name: ombi_config
     driver: local
@@ -86,31 +104,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/radarr/radarr_movies
-
-  readarr_config:
-    name: readarr_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/media-stack/readarr/readarr_config
-  readarr_downloads:
-    name: readarr_downloads
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/media-stack/readarr/readarr_downloads
-  readarr_books:
-    name: readarr_books
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/media-stack/readarr/readarr_books
 
   sonarr_config:
     name: sonarr_config

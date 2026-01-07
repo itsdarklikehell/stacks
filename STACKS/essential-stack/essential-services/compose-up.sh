@@ -18,6 +18,7 @@ COMPOSE_FILES=(
 	nginx-proxy-manager
 	nextcloud
 	motioneye
+	hishtory-server
 	portainer
 	portracker
 	pulse
@@ -57,10 +58,25 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "hishtory-server" ]]; then
+		FOLDERS=(
+			"data"
+		)
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_data/history.db" ]]; then
+			touch "${FOLDER}/${SERVICE_NAME}_data/history.db"
+		fi
+	fi
+
 	if [[ ${SERVICE_NAME} == "apprise-api" ]]; then
 		FOLDERS=(
 			"config"
 			"attachments"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "habridge" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 

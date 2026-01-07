@@ -4,13 +4,14 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
+	ardour
+	audacity
 	tvs-server
 	copyparty
 	jellyseer
 	ombi
 	prowlarr
 	lidarr
-	# readarr
 	radarr
 	sonarr
 )
@@ -27,6 +28,20 @@ function CREATE_FOLDERS() {
 }
 
 function SETUP_FOLDERS() {
+
+	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "audacity" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
 
 	if [[ ${SERVICE_NAME} == "jellyseer" ]]; then
 
@@ -57,15 +72,6 @@ function SETUP_FOLDERS() {
 			"config"
 			"downloads"
 			"movies"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "readarr" ]]; then
-
-		FOLDERS=(
-			"config"
-			"downloads"
-			"books"
 		)
 	fi
 

@@ -395,7 +395,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/forge_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
@@ -405,7 +404,6 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/forge_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
@@ -943,17 +941,62 @@ function CLONE_SYNCTUBE() {
 
 }
 
+function CLONE_PYGOTCHI() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+
+	if [[ ! -d "pygotchi" ]]; then
+		echo "Cloning pygotchi"
+		echo ""
+		git clone --recursive https://github.com/almarch/pygotchi.git "pygotchi"
+		cd "pygotchi" || exit 1
+	else
+		echo "Checking pygotchi for updates"
+		cd "pygotchi" || exit 1
+		git pull
+	fi
+
+	# function LOCAL_SETUP() {
+
+	# 	echo "Using Local setup"
+
+	# }
+
+	# function DOCKER_SETUP() {
+
+	# 	echo "Using Docker setup"
+
+	# }
+
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
+function CLONE_KASMWORKSPACES() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+
+	cd /tmp || exit
+	curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.17.0.7f020d.tar.gz
+	tar -xf kasm_release_1.17.0.7f020d.tar.gz
+	yes | sudo bash kasm_release/install.sh -L 8443 || true
+
+}
+
 CREATE_FOLDERS
 
-CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-CLONE_CLAIR       # >/dev/null 2>&1 &
-CLONE_COMFYUI     # >/dev/null 2>&1 &
-CLONE_SYNCTUBE    # >/dev/null 2>&1 &
-CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
-CLONE_COMFYUIMINI # >/dev/null 2>&1 &
-CLONE_COPYPARTY   # >/dev/null 2>&1 &
-CLONE_OLLMVT      # >/dev/null 2>&1 &
-CLONE_PUPPETEER   # >/dev/null 2>&1 &
-CLONE_SCANOPY     # >/dev/null 2>&1 &
-CLONE_SWARMUI     # >/dev/null 2>&1 &
+CLONE_ANYTHINGLLM    # >/dev/null 2>&1 &
+CLONE_CLAIR          # >/dev/null 2>&1 &
+CLONE_COMFYUI        # >/dev/null 2>&1 &
+CLONE_SYNCTUBE       # >/dev/null 2>&1 &
+CLONE_COMFYUI_MCP    # >/dev/null 2>&1 &
+CLONE_COMFYUIMINI    # >/dev/null 2>&1 &
+CLONE_COPYPARTY      # >/dev/null 2>&1 &
+CLONE_OLLMVT         # >/dev/null 2>&1 &
+CLONE_PUPPETEER      # >/dev/null 2>&1 &
+CLONE_SCANOPY        # >/dev/null 2>&1 &
+CLONE_SWARMUI        # >/dev/null 2>&1 &
+CLONE_PYGOTCHI       # >/dev/null 2>&1 &
+CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS

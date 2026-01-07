@@ -28,6 +28,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/beszel/beszel_agent-data
 
+  habridge_config:
+    name: habridge_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/habridge/habridge_config
+
   dashy_data:
     name: dashy_data
     driver: local

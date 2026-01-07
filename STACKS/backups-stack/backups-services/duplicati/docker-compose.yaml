@@ -1,0 +1,32 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+
+    volumes:
+      - duplicati_config:/config
+      - duplicati_backups:/backups
+      - duplicati_source:/source
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - SETTINGS_ENCRYPTION_KEY=
+      #optional
+      # - CLI_ARGS=
+      # - DUPLICATI__WEBSERVICE_PASSWORD=
+
+    env_file:
+      - ./duplicati/.env
+
+    ports:
+      - ${PORT:-8200}:8200
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      backups-services:
+
+    restart: unless-stopped

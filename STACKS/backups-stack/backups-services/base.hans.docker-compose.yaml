@@ -1,0 +1,91 @@
+name: backups-services
+
+volumes:
+  ai_outputs:
+    name: ai_outputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-outputs
+  ai_inputs:
+    name: ai_inputs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-inputs
+
+  duplicati_data:
+    name: duplicati_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/duplicati/duplicati_data
+  duplicati_backups:
+    name: duplicati_backups
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/duplicati/duplicati_backups
+  duplicati_source:
+    name: duplicati_source
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/duplicati/duplicati_source
+
+  rsnapshot_config:
+    name: rsnapshot_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/rsnapshot/rsnapshot_config
+  rsnapshot_snapshots:
+    name: rsnapshot_snapshots
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/rsnapshot/rsnapshot_snapshots
+  rsnapshot_data:
+    name: rsnapshot_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/rsnapshot/rsnapshot_data
+
+  syncthing_config:
+    name: syncthing_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/syncthing/syncthing_config
+  syncthing_data:
+    name: syncthing_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/syncthing/syncthing_data
+
+networks:
+  host:
+  backups-services:
+    external: true

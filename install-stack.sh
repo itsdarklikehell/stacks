@@ -281,6 +281,13 @@ function SETUP_TESTING_STACK() {
 
 }
 
+function SETUP_BACKUPS_STACK() {
+
+	export STACK_NAME="backups"
+	INSTALL_STACK
+
+}
+
 function SETUP_OPENLLM_VTUBER_STACK() {
 
 	export STACK_NAME="openllm-vtuber"
@@ -301,11 +308,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 # ### STACKS:
 # CREATE_SECRETS
@@ -314,21 +321,25 @@ PRUNING
 # SETUP_AUTOSTART
 # echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
+
+echo ""
+SETUP_AI_STACK
+echo ""
 
 echo ""
 SETUP_MEDIA_STACK
 echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
 echo ""
 SETUP_TESTING_STACK
@@ -349,6 +360,8 @@ echo ""
 # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
 # alias ollama='docker exec -it ollama ollama'
+
+export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
 # echo "Installation should be complete now.."
 # echo ""

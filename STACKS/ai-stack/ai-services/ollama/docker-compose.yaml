@@ -34,21 +34,18 @@ services:
 
       # - anything-llm_models:/root/.ollama/models/anything-llm_models
       # - comfyui_models:/root/.ollama/models/comfyui_models
-      # - forge_models:/root/.ollama/models/forge_models
       # - InvokeAI_models:/root/.ollama/models/invokeai_models
       # - localai_models:/root/.ollama/models
 
       # OUTPUTS
       - anything-llm_output:/root/.ollama/output/anything-llm_output
       - comfyui_output:/root/.ollama/output/comfyui_output
-      - forge_output:/root/.ollama/output/forge_output
       - InvokeAI_output:/root/.ollama/output/InvokeAI_output
       - localai_output:/root/.ollama/output
 
       # # INPUTS
       # - anything-llm_input:/root/.ollama/input/anything-llm_input
       # - comfyui_input:/root/.ollama/input/comfyui_input
-      # - forge_input:/root/.ollama/input/forge_input
       # - InvokeAI_input:/root/.ollama/input/InvokeAI_input
       # - localai_input:/root/.ollama/input
 

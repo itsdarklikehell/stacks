@@ -177,9 +177,6 @@ function LINK_FOLDERS() {
 		# ### comfyui_models > anything-llm_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
 		LINKER
-		# ### comfyui_models > forge_models/comfyui_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/forge_models/comfyui_models"
-		LINKER
 		# ### comfyui_models > localai_models/comfyui_models
 		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
 		LINKER

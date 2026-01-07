@@ -19,6 +19,42 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
+  emulatorjs_data:
+    name: emulatorjs_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/emulatorjs/emulatorjs_data
+
+  emulatorjs_config:
+    name: emulatorjs_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/emulatorjs/emulatorjs_config
+
+  wolf_etc:
+    name: wolf_etc
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/wolf/wolf_etc
+
+  linux-gsm-cs2_data:
+    name: linux-gsm-cs2_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/linux-gsm-cs2/linux-gsm-cs2_data
+
   openttd_config:
     name: openttd_config
     driver: local

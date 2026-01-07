@@ -95,7 +95,6 @@ folders=(
 
 modelfolders=(
 	"${AI_MODELS_PATH}/anything-llm_models"
-	"${AI_MODELS_PATH}/forge_models"
 	"${AI_MODELS_PATH}/InvokeAI_models"
 	"${AI_MODELS_PATH}/localai_models"
 	"${AI_MODELS_PATH}/ollama_models"

@@ -1,0 +1,30 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+
+    volumes:
+      - syncthing_config:/config
+      - syncthing_data:/data
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+    env_file:
+      - ./syncthing/.env
+
+    ports:
+      - ${PORT:-8384}:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      backups-services:
+
+    restart: unless-stopped

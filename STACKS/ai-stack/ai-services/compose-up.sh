@@ -10,7 +10,6 @@ COMPOSE_FILES=(
 	letta-mcp-server
 	letta-server
 	localai
-	forge
 	n8n
 	ollama
 	open-webui
@@ -55,20 +54,6 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "forge" ]]; then
-		FOLDERS=(
-			"data"
-		)
-
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
-	fi
-
 	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
 		FOLDERS=(
 			"data"
@@ -76,12 +61,10 @@ function SETUP_FOLDERS() {
 			"models/localai_models"
 			"models/ollama_models"
 			"models/comfyui_models"
-			"models/forge_models"
 			"outputs/anything-llm_output"
 			"outputs/localai_output"
 			"outputs/ollama_output"
 			"outputs/comfyui_output"
-			"outputs/forge_output"
 			"outputs/motioneye_shared"
 		)
 

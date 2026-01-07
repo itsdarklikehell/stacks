@@ -1,0 +1,32 @@
+services:
+  rsnapshot:
+    image: lscr.io/linuxserver/rsnapshot:latest
+    container_name: rsnapshot
+
+    volumes:
+      - rsnapshot_config:/config
+      - rsnapshot_snapshots:/.snapshots
+      - rsnapshot_data:/data
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - SETTINGS_ENCRYPTION_KEY=
+      #optional
+      # - CLI_ARGS=
+      # - rsnapshot__WEBSERVICE_PASSWORD=
+
+    env_file:
+      - ./rsnapshot/.env
+
+    # ports:
+    #   - ${PORT:-8200}:8200
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      backups-services:
+
+    restart: unless-stopped

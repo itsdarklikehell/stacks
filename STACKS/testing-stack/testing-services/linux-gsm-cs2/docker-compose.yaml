@@ -1,7 +1,7 @@
 services:
-  readarr:
-    image: ${IMAGE:-lscr.io/linuxserver/readarr:latest}
-    container_name: ${NAME:-readarr}
+  linux-gsm-cs2:
+    image: ${IMAGE:-ghcr.io/gameservermanagers/gameserver:cs2}
+    container_name: ${NAME:-linux-gsm-cs2}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,33 +16,36 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - PORT=${PORT:-9696}
+      # - PASSWORD=password #optional
+      # - HASHED_PASSWORD= #optional
+      # - SUDO_PASSWORD=password #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      # - PROXY_DOMAIN=linux-gsm-cs2.my.domain #optional
+      # - DEFAULT_WORKSPACE=/config/workspace #optional
+      # - PWA_APPNAME=linux-gsm-cs2 #optional
+      - RESTART_APP=true
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - readarr_config:/config
-      - transmission_watchfolder:/transmission_watchfolder
+      - linux-gsm-cs2_data:/data
 
-      # optional:
-      - readarr_books:/books
-      - readarr_downloads:/downloads
-
-    hostname: ${NAME:-readarr}
+    hostname: ${NAME:-linux-gsm-cs2}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      media-services:
+      testing-services:
 
     ports:
-      - ${PORT:-8787}:8787
+      - ${PORT:-7040}:3000
+      - 7041:3001
 
     env_file:
-      - ./readarr/.env
+      - ./linux-gsm-cs2/.env
 
     runtime: nvidia
     deploy:
@@ -70,7 +73,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-12393}/api/health,
+    #       http://localhost:${PORT:-3000}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

@@ -264,14 +264,6 @@
     "appdescription": null
   },
   {
-    "title": "Forge",
-    "colour": "#161b1f",
-    "url": "http://192.168.178.63:1111",
-    "description": null,
-    "appid": null,
-    "appdescription": null
-  },
-  {
     "title": "Ollama",
     "colour": "#161b1f",
     "url": "http://192.168.178.63:11434",
