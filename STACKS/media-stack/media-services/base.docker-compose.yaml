@@ -45,14 +45,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/lidarr/lidarr_config
-  lidarr_downwloads:
-    name: lidarr_downwloads
+  lidarr_downloads:
+    name: lidarr_downloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/lidarr/lidarr_downwloads
+      device: ../../../DATA/media-stack/lidarr/lidarr_downloads
   lidarr_music:
     name: lidarr_music
     driver: local
