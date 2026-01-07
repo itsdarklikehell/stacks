@@ -57,6 +57,15 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "readarr" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"books"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "ombi" ]]; then
 
 		FOLDERS=(
