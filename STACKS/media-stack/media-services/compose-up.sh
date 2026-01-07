@@ -10,7 +10,7 @@ COMPOSE_FILES=(
 	ombi
 	prowlarr
 	lidarr
-	readarr
+	# readarr
 	radarr
 	sonarr
 )
