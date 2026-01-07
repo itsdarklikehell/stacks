@@ -25,7 +25,7 @@ services:
       # exit: try to load autosave/exit.sav, otherwise default to a new game
       # (savename): full name of a save file in config/saves
       # - loadgame=false
-      - loadgame=last-autosave
+      # - loadgame=last-autosave
       # - loadgame=exit
       # - loadgame=savegame.save
 
