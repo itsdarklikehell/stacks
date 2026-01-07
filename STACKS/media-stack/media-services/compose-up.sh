@@ -9,6 +9,7 @@ COMPOSE_FILES=(
 	jellyseer
 	ombi
 	prowlarr
+	lidarr
 )
 
 function CREATE_FOLDERS() {
@@ -35,6 +36,15 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "lidarr" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"music"
 		)
 	fi
 

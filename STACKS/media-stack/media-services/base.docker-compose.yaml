@@ -37,6 +37,31 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/prowlarr/prowlarr_config
 
+  lidarr_config:
+    name: lidarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lidarr/lidarr_config
+  lidarr_donwloads:
+    name: lidarr_donwloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lidarr/lidarr_donwloads
+  lidarr_music:
+    name: lidarr_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lidarr/lidarr_music
+
   transmission_watchfolder:
     name: transmission_watchfolder
     driver: local
