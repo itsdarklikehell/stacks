@@ -13,6 +13,7 @@ volumes:
   jellyseer_config:
     name: jellyseer_config
     driver: local
+    # external: true
     driver_opts:
       type: none
       o: bind
@@ -44,14 +45,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/lidarr/lidarr_config
-  lidarr_donwloads:
-    name: lidarr_donwloads
+  lidarr_downwloads:
+    name: lidarr_downwloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/lidarr/lidarr_donwloads
+      device: ../../../DATA/media-stack/lidarr/lidarr_downwloads
   lidarr_music:
     name: lidarr_music
     driver: local
