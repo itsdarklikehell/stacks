@@ -48,6 +48,15 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "radarr" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"movies"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "ombi" ]]; then
 
 		FOLDERS=(

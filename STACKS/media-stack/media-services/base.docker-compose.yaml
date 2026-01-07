@@ -62,6 +62,31 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/lidarr/lidarr_music
 
+  radarr_config:
+    name: radarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/radarr/radarr_config
+  radarr_downwloads:
+    name: radarr_downwloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/radarr/radarr_downwloads
+  radarr_movies:
+    name: radarr_movies
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/radarr/radarr_movies
+
   transmission_watchfolder:
     name: transmission_watchfolder
     driver: local
