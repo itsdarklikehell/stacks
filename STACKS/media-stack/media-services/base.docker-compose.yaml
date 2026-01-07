@@ -70,14 +70,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/radarr/radarr_config
-  radarr_downwloads:
-    name: radarr_downwloads
+  radarr_downloads:
+    name: radarr_downloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/radarr/radarr_downwloads
+      device: ../../../DATA/media-stack/radarr/radarr_downloads
   radarr_movies:
     name: radarr_movies
     driver: local
@@ -95,14 +95,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/readarr/readarr_config
-  readarr_downwloads:
-    name: readarr_downwloads
+  readarr_downloads:
+    name: readarr_downloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/readarr/readarr_downwloads
+      device: ../../../DATA/media-stack/readarr/readarr_downloads
   readarr_books:
     name: readarr_books
     driver: local
@@ -120,14 +120,14 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/sonarr/sonarr_config
-  sonarr_downwloads:
-    name: sonarr_downwloads
+  sonarr_downloads:
+    name: sonarr_downloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/sonarr/sonarr_downwloads
+      device: ../../../DATA/media-stack/sonarr/sonarr_downloads
   sonarr_tvseries:
     name: sonarr_tvseries
     driver: local
