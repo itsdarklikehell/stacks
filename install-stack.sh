@@ -314,8 +314,8 @@ echo ""
 CLONE_REPOS # >/dev/null 2>&1
 echo ""
 
-# ### STACKS:
-# CREATE_SECRETS
+### STACKS:
+CREATE_SECRETS
 
 # echo ""
 # SETUP_AUTOSTART
