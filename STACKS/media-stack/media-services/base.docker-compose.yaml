@@ -46,6 +46,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/ombi/ombi_config
 
+  doplarr_config:
+    name: doplarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/doplarr/doplarr_config
+
   prowlarr_config:
     name: prowlarr_config
     driver: local

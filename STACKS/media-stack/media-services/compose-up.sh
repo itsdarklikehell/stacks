@@ -10,10 +10,12 @@ COMPOSE_FILES=(
 	copyparty
 	jellyseer
 	ombi
+	doplarr
 	prowlarr
 	lidarr
 	radarr
 	sonarr
+	bazarr
 )
 
 function CREATE_FOLDERS() {
@@ -50,6 +52,13 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
+	if [[ ${SERVICE_NAME} == "doplarr" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
 	if [[ ${SERVICE_NAME} == "prowlarr" ]]; then
 
 		FOLDERS=(
@@ -63,6 +72,15 @@ function SETUP_FOLDERS() {
 			"config"
 			"downloads"
 			"music"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "bazarr" ]]; then
+
+		FOLDERS=(
+			"config"
+			"tvseries"
+			"movies"
 		)
 	fi
 

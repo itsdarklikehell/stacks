@@ -28,6 +28,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/audacity/audacity_config
 
+  doplarr_config:
+    name: doplarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/doplarr/doplarr_config
+
   ardour_config:
     name: ardour_config
     driver: local
