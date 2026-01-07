@@ -12,7 +12,6 @@ COMPOSE_FILES=(
 	lidarr
 	# readarr
 	radarr
-	birdcage
 	sonarr
 )
 
@@ -42,13 +41,6 @@ function SETUP_FOLDERS() {
 			"config"
 		)
 	fi
-
-	# if [[ ${SERVICE_NAME} == "birdcage" ]]; then
-
-	# 	FOLDERS=(
-	# 		"data?"
-	# 	)
-	# fi
 
 	if [[ ${SERVICE_NAME} == "lidarr" ]]; then
 

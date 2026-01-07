@@ -12,8 +12,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="all"                                                              # false, true/normal, all
-export BUILDING="true"                                                          # false, true, force_rebuild
+export PRUNE="true"                                                             # false, true/normal, all
+export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -301,11 +301,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 # ### STACKS:
 # CREATE_SECRETS
@@ -322,17 +322,17 @@ PRUNING
 # SETUP_AI_STACK
 # echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
 # echo ""
 # SETUP_BOOKS_STACK
 # echo ""
 
-echo ""
-SETUP_TESTING_STACK
-echo ""
+# echo ""
+# SETUP_TESTING_STACK
+# echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK
