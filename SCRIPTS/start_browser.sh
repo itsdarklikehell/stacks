@@ -52,6 +52,9 @@ URLS=(
 	"http://${IP_ADDRESS}:7655"       # Pulse
 	"http://${IP_ADDRESS}:8082"       # dozzle
 	"http://${IP_ADDRESS}:8091"       # mylar3
+	"http://${IP_ADDRESS}:7878"       # radarr
+	"http://${IP_ADDRESS}:8989"       # sonarr
+	"http://${IP_ADDRESS}:8686"       # lidarr
 	"https://${IP_ADDRESS}:8181"      # calibre
 	"http://${IP_ADDRESS}:8400"       # COPS
 	"http://${IP_ADDRESS}:8680"       # owncast
