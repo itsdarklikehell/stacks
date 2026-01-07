@@ -10,6 +10,9 @@ COMPOSE_FILES=(
 	ombi
 	prowlarr
 	lidarr
+	readarr
+	radarr
+	sonarr
 )
 
 function CREATE_FOLDERS() {
@@ -66,7 +69,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "readarr" ]]; then
+	if [[ ${SERVICE_NAME} == "sonarr" ]]; then
 
 		FOLDERS=(
 			"config"
