@@ -68,6 +68,31 @@ volumes:
       o: bind
       device: ../../../DATA/backups-stack/rsnapshot/rsnapshot_data
 
+  resilio-sync_config:
+    name: resilio-sync_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_config
+  resilio-sync_downloads:
+    name: resilio-sync_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_downloads
+  resilio-sync_data:
+    name: resilio-sync_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_data
+
   syncthing_config:
     name: syncthing_config
     driver: local

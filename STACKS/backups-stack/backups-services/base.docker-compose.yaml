@@ -42,6 +42,31 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/backups-stack/duplicati/duplicati_source
+  resilio-sync_config:
+    name: resilio-sync_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_config
+
+  resilio-sync_downloads:
+    name: resilio-sync_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_downloads
+  resilio-sync_data:
+    name: resilio-sync_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/backups-stack/resilio-sync/resilio-sync_data
 
   rsnapshot_config:
     name: rsnapshot_config

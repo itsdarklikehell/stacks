@@ -64,7 +64,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/essential-stack/doublecommander/doublecommander_config/conf.yml
+      device: ../../../DATA/essential-stack/doublecommander/doublecommander_config
 
   scanopy_daemon-config:
     name: scanopy_daemon-config

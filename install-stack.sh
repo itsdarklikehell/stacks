@@ -332,9 +332,9 @@ CREATE_SECRETS
 # SETUP_ESSENTIALS_STACK
 # echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
 # echo ""
 # SETUP_AI_STACK
@@ -348,9 +348,9 @@ CREATE_SECRETS
 # SETUP_SDR_STACK
 # echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
 # echo ""
 # SETUP_TESTING_STACK

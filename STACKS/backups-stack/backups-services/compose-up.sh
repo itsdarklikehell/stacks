@@ -5,6 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	duplicati
+	resilio-sync
 	rsnapshot
 	syncthing
 )
@@ -38,6 +39,15 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"snapshots"
+			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "resilio-sync" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
 			"data"
 		)
 	fi

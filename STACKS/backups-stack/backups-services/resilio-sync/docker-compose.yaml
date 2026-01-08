@@ -1,0 +1,29 @@
+services:
+  resilio-sync:
+    image: lscr.io/linuxserver/resilio-sync:latest
+    container_name: resilio-sync
+
+    volumes:
+      - resilio-sync_config:/config
+      - resilio-sync_downloads:/downloads
+      - resilio-sync_data:/sync
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+    env_file:
+      - ./resilio-sync/.env
+
+    ports:
+      - ${PORT:-4075}:8888
+      - 55555:55555
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      backups-services:
+
+    restart: unless-stopped
