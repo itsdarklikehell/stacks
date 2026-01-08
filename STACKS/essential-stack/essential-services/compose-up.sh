@@ -4,27 +4,28 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	autoheal
-	apprise-api
 	# autopulse
-	dozzle
-	dashy
-	# scanopy
 	# clair
 	# homarr
+	# scanopy
+	# watchtower
+	apprise-api
+	autoheal
+	beszel
+	dashy
+	doublecommander
+	dozzle
+	heimdall
+	hishtory-server
 	immich-server
 	it-tools
 	jellyfin
-	nginx-proxy-manager
-	nextcloud
 	motioneye
-	hishtory-server
+	nextcloud
+	nginx-proxy-manager
 	portainer
 	portracker
 	pulse
-	beszel
-	heimdall
-	# watchtower
 )
 
 function CREATE_FOLDERS() {
@@ -71,6 +72,13 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"attachments"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "doublecommander" ]]; then
+		FOLDERS=(
+			"config"
+			"data"
 		)
 	fi
 

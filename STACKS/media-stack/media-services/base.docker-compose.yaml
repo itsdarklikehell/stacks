@@ -28,6 +28,24 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/kdenlive/kdenlive_config
 
+  openshot_config:
+    name: openshot_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/openshot/openshot_config
+
+  shotcut_config:
+    name: shotcut_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/shotcut/shotcut_config
+
   lychee_config:
     name: lychee_config
     driver: local

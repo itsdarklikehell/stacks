@@ -51,6 +51,21 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dashy/dashy_config/conf.yml
 
+  doublecommander_data:
+    name: doublecommander_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/doublecommander/doublecommander_data
+  doublecommander_config:
+    name: doublecommander_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/doublecommander/doublecommander_config/conf.yml
+
   scanopy_daemon-config:
     name: scanopy_daemon-config
     driver: local

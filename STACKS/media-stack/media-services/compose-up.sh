@@ -8,41 +8,43 @@ COMPOSE_FILES=(
 	ardour
 	audacity
 	bazarr
+	beets
 	copyparty
+	darktable
+	digikam
 	doplarr
 	emby
-	darktable
 	handbrake
 	htpcmanager
 	jellyseer
+	kdenlive
 	kometa
 	lidarr
+	lollypop
+	lychee
 	mediaelch
 	medusa
 	minisatip
 	mstream
 	ombi
+	openshot
 	oscam
 	overseerr
-	spotube
-	plex
-	digikam
-	your_spotify
-	prowlarr
-	beets
 	piwigo
-	lychee
-	kdenlive
-	lollypop
+	plex
+	prowlarr
 	radarr
+	shotcut
 	sickgear
 	sonarr
+	spotube
 	synclounge
 	tautulli
 	tvheadend
 	tvs-server
 	vlc
 	webgrabplus
+	your_spotify
 )
 
 function CREATE_FOLDERS() {
@@ -75,6 +77,22 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "kdenlive" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "openshot" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "shotcut" ]]; then
 
 		FOLDERS=(
 			"config"
