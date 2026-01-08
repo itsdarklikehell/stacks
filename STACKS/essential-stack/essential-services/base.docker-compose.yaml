@@ -28,6 +28,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/beszel/beszel_agent-data
 
+  dock-dploy_config:
+    name: dock-dploy_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/dock-dploy/dock-dploy_config
+
   habridge_config:
     name: habridge_config
     driver: local

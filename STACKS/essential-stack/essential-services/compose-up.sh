@@ -13,6 +13,7 @@ COMPOSE_FILES=(
 	autoheal
 	beszel
 	dashy
+	dock-dploy
 	doublecommander
 	dozzle
 	habridge
@@ -59,6 +60,12 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "dock-dploy" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 
