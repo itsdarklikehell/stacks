@@ -24,8 +24,7 @@ COMPOSE_FILES=(
 	# linux-gsm-cs2
 	retroarch
 	rpcs3
-	transmission
-	flexget
+		flexget
 	scummvm
 	emulatorjs
 	owncast
@@ -79,25 +78,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "transmission" ]]; then
 
-		FOLDERS=(
-			"config"
-			"downloads"
-			"watchfolder"
-		)
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "flexget" ]]; then
-
-		FOLDERS=(
-			"config"
-			"downloads"
-			"watchfolder"
-		)
-
-	fi
 
 	if [[ ${SERVICE_NAME} == "synctube" ]]; then
 

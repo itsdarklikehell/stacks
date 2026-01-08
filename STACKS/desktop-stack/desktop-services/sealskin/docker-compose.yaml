@@ -1,0 +1,31 @@
+services:
+  sealskin:
+    image: lscr.io/linuxserver/sealskin:latest
+    container_name: sealskin
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - sealskin_config:/config
+      - sealskin_storage:/storage
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - HOST_URL=IP|subdomain.doman.com #optional
+
+    env_file:
+      - ./sealskin/.env
+
+    ports:
+      - ${PORT:-5571}:3000
+      - 4824:4398
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      desktop-services:
+
+    restart: unless-stopped

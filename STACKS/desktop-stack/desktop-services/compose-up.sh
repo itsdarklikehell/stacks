@@ -8,6 +8,8 @@ COMPOSE_FILES=(
 	webtop
 	remmina
 	rustdesk
+	kali-linux
+	sealskin
 )
 
 function CREATE_FOLDERS() {
@@ -33,6 +35,22 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "webtop" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+	if [[ ${SERVICE_NAME} == "sealskin" ]]; then
+
+		FOLDERS=(
+			"config"
+			"storage"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
 
 		FOLDERS=(
 			"config"
