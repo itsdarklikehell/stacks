@@ -10,6 +10,7 @@ COMPOSE_FILES=(
 	telegram
 	weixin
 	ferdium
+	mastodon
 )
 
 function CREATE_FOLDERS() {
@@ -33,6 +34,13 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "signal" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "mastodon" ]]; then
 
 		FOLDERS=(
 			"config"

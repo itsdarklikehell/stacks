@@ -19,6 +19,15 @@ volumes:
       o: bind
       device: ../../../DATA/chat-stack/signal/signal_config
 
+  mastodon_config:
+    name: mastodon_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/mastodon/mastodon_config
+
   telegram_config:
     name: telegram_config
     driver: local
