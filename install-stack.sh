@@ -353,29 +353,29 @@ echo ""
 SETUP_DOWNLOADER_STACK
 echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_CHAT_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_CHAT_STACK
+echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
-# echo ""
-# SETUP_SDR_STACK
-# echo ""
+echo ""
+SETUP_SDR_STACK
+echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
@@ -393,19 +393,26 @@ echo ""
 # SETUP_OPENLLM_VTUBER_STACK
 # echo ""
 
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
-
-# echo ""
-# START_BROWSER >/dev/null 2>&1 &
-# echo ""
-
-# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
-
-alias ollama='docker exec -it ollama ollama'
-
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
+
+export ollama_container_name="ollama"
+
+# alias ollama='docker exec -it ollama ollama'
+alias ollama='docker exec -it ${ollama_container_name} ollama'
+
+# if command -v ollama >/dev/null 2>&1; then
+# 	echo ""
+# 	PULL_MODELS # >/dev/null 2>&1 &
+# 	echo ""
+# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+# 		echo ""
+# 		PULL_MODELS # >/dev/null 2>&1 &
+# 		echo ""
+# 	fi
+# else
+# 	echo "Neither command ollama nor the container for ollama exists."
+# fi
 
 # echo "Installation should be complete now.."
 # echo ""
@@ -447,4 +454,8 @@ export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 # echo ""
 # echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
 
-# # sudo chown -R "${USER}":"${USER}" "${STACK_BASEPATH}/DATA"
+# echo ""
+# START_BROWSER >/dev/null 2>&1 &
+# echo ""
+
+# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh

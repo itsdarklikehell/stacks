@@ -24,8 +24,8 @@ models=(
 	'smollm2:latest'
 )
 
-# container_name to check if ollama docker service is running:
-container_name="ollama"
+# ollama_container_name to check if ollama docker service is running:
+ollama_container_name="ollama"
 PULL_MODELS() {
 
 	for model in "${models[@]}"; do
@@ -33,18 +33,18 @@ PULL_MODELS() {
 
 		if command -v ollama >/dev/null 2>&1; then
 			ollama pull "${model}" # >/dev/null 2>&1
-		elif docker inspect "${container_name}" >/dev/null 2>&1; then
-			echo "The container ${container_name} exists."
+		elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+			echo "The container ${ollama_container_name} exists."
 
-			if docker inspect -f '{{.State.Status}}' "${container_name}" | grep -q "running" || true; then
-				docker exec -i "${container_name}" sh -c "ollama pull ${model}"
+			if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+				docker exec -i "${ollama_container_name}" sh -c "ollama pull ${model}"
 			else
-				echo "The container ${container_name} is not running."
-				docker start "${container_name}"
+				echo "The container ${ollama_container_name} is not running."
+				docker start "${ollama_container_name}"
 			fi
 
 		else
-			echo "The container ${container_name} does not exist."
+			echo "Neither command ollama nor the container for ollama exists."
 		fi
 
 	done
@@ -58,18 +58,18 @@ REMOVE_MODELS() {
 
 		if command -v ollama >/dev/null 2>&1; then
 			ollama rm "${model}" # >/dev/null 2>&1
-		elif docker inspect "${container_name}" >/dev/null 2>&1; then
-			echo "The container ${container_name} exists."
+		elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+			echo "The container ${ollama_container_name} exists."
 
-			if docker inspect -f '{{.State.Status}}' "${container_name}" | grep -q "running" || true; then
-				docker exec -i "${container_name}" sh -c "ollama rm ${model}"
+			if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+				docker exec -i "${ollama_container_name}" sh -c "ollama rm ${model}"
 			else
-				echo "The container ${container_name} is not running."
-				docker start "${container_name}"
+				echo "The container ${ollama_container_name} is not running."
+				docker start "${ollama_container_name}"
 			fi
 
 		else
-			echo "The container ${container_name} does not exist."
+			echo "The container ${ollama_container_name} does not exist."
 		fi
 
 	done
