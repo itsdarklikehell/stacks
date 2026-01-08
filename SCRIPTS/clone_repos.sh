@@ -984,19 +984,38 @@ function CLONE_KASMWORKSPACES() {
 
 }
 
+function CLONE_STRUDEL() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	if [[ ! -d strudel-cli ]]; then
+		echo "Cloning strudel-cli"
+		echo ""
+		git clone --recursive https://codeberg.org/uzu/strudel.git strudel
+		cd strudel || exit 1
+		pnpm i
+		# pnpm dev	
+		npm install -g strudel-cli
+	else
+		echo "Checking strudel for updates"
+		cd strudel || exit 1
+		git pull
+	fi
+
+}
 CREATE_FOLDERS
 
-CLONE_ANYTHINGLLM    # >/dev/null 2>&1 &
-CLONE_CLAIR          # >/dev/null 2>&1 &
-CLONE_COMFYUI        # >/dev/null 2>&1 &
-CLONE_SYNCTUBE       # >/dev/null 2>&1 &
-CLONE_COMFYUI_MCP    # >/dev/null 2>&1 &
-CLONE_COMFYUIMINI    # >/dev/null 2>&1 &
-CLONE_COPYPARTY      # >/dev/null 2>&1 &
-CLONE_OLLMVT         # >/dev/null 2>&1 &
-CLONE_PUPPETEER      # >/dev/null 2>&1 &
-CLONE_SCANOPY        # >/dev/null 2>&1 &
-CLONE_SWARMUI        # >/dev/null 2>&1 &
-CLONE_PYGOTCHI       # >/dev/null 2>&1 &
+# CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+# CLONE_CLAIR       # >/dev/null 2>&1 &
+# CLONE_COMFYUI     # >/dev/null 2>&1 &
+# CLONE_SYNCTUBE    # >/dev/null 2>&1 &
+# CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
+# CLONE_COMFYUIMINI # >/dev/null 2>&1 &
+# CLONE_COPYPARTY   # >/dev/null 2>&1 &
+# CLONE_OLLMVT      # >/dev/null 2>&1 &
+# CLONE_PUPPETEER   # >/dev/null 2>&1 &
+# CLONE_SCANOPY     # >/dev/null 2>&1 &
+# CLONE_SWARMUI     # >/dev/null 2>&1 &
+# CLONE_PYGOTCHI    # >/dev/null 2>&1 &
+CLONE_STRUDEL # >/dev/null 2>&1 &
 # CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
