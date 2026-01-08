@@ -316,6 +316,13 @@ function SETUP_DOWNLOADER_STACK() {
 
 }
 
+function SETUP_DESKTOP_STACK() {
+
+	export STACK_NAME="desktop"
+	INSTALL_STACK
+
+}
+
 echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
@@ -373,6 +380,10 @@ echo ""
 echo ""
 SETUP_MEDIA_STACK
 echo ""
+
+# echo ""
+# SETUP_DESKTOP_STACK
+# echo ""
 
 echo ""
 SETUP_TESTING_STACK

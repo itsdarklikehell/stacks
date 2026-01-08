@@ -1,0 +1,24 @@
+name: desktop-services
+
+volumes:
+  kasm_config:
+    name: kasm_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/desktop-stack/kasm/kasm_config
+  kasm_profiles:
+    name: kasm_profiles
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/desktop-stack/kasm/kasm_profiles
+
+networks:
+  host:
+  desktop-services:
+    external: true

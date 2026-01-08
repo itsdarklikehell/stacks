@@ -1,0 +1,42 @@
+services:
+  kasm:
+    image: lscr.io/linuxserver/kasm:latest
+    container_name: kasm
+
+    privileged: true
+
+    #optional
+    security_opt:
+      - apparmor:rootlesskit
+
+    volumes:
+      - kasm_config:/opt
+
+      # optional
+      - kasm_profiles:/profiles
+      - /dev/input:/dev/input
+      - /run/udev/data:/run/udev/data
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      - KASM_PORT=4398
+      # optional
+      # - DOCKER_HUB_USERNAME=USER
+      # - DOCKER_HUB_PASSWORD=PASS
+      # - DOCKER_MTU=1500
+    env_file:
+      - ./kasm/.env
+
+    ports:
+      - ${PORT:-5947}:3000
+      - 4398:4398
+
+    shm_size: 1gb
+
+    networks:
+      host:
+      desktop-services:
+
+    restart: unless-stopped
