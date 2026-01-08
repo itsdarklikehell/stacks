@@ -20,13 +20,13 @@ volumes:
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
   lychee_config:
-    name: digikam_config
+    name: lychee_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digikam/digikam_config
+      device: ../../../DATA/media-stack/lychee/lychee_config
   lychee_pictures:
     name: lychee_pictures
     driver: local
@@ -34,16 +34,16 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digikam/lychee_pictures
+      device: ../../../DATA/media-stack/lychee/lychee_pictures
 
   piwigo_config:
-    name: digikam_config
+    name: piwigo_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digikam/digikam_config
+      device: ../../../DATA/media-stack/piwigo/piwigo_config
   piwigo_pictures:
     name: piwigo_pictures
     driver: local
@@ -51,7 +51,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digikam/piwigo_pictures
+      device: ../../../DATA/media-stack/piwigo/piwigo_pictures
 
   digikam_config:
     name: digikam_config
