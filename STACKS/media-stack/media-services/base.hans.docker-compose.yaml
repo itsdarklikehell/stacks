@@ -19,6 +19,82 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/jellyseer/jellyseer_config
 
+  htpcmanager_config:
+    name: htpcmanager_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/htpcmanager/htpcmanager_config
+
+  mstream_config:
+    name: mstream_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/mstream/mstream_config
+  mstream_music:
+    name: mstream_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/mstream/mstream_music
+
+  emby_config:
+    name: emby_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/emby/emby_config
+  emby_tvseries:
+    name: emby_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/emby/emby_tvseries
+  emby_movies:
+    name: emby_movies
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/emby/emby_movies
+
+  plex_config:
+    name: plex_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/plex/plex_config
+  plex_tvseries:
+    name: plex_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/plex/plex_tvseries
+  plex_movies:
+    name: plex_movies
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/plex/plex_movies
+
   airsonic-advanced_config:
     name: airsonic-advanced_config
     driver: local

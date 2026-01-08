@@ -4,27 +4,31 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
+	airsonic-advanced
 	ardour
 	audacity
-	tvs-server
-	copyparty
-	jellyseer
-	ombi
-	handbrake
-	doplarr
-	prowlarr
-	lidarr
-	radarr
-	sonarr
 	bazarr
-	sickgear
+	copyparty
+	doplarr
+	handbrake
+	jellyseer
+	plex
 	kometa
+	lidarr
 	mediaelch
 	medusa
-	sickgear
-	vlc
+	ombi
 	overseerr
-	airsonic-advanced
+	prowlarr
+	radarr
+	sickgear
+	sonarr
+	tvs-server
+	vlc
+	emby
+	htpcmanager
+	plex
+	mstream
 )
 
 function CREATE_FOLDERS() {
@@ -55,6 +59,43 @@ function SETUP_FOLDERS() {
 			"playlists"
 			"podcasts"
 			"music"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "mstream" ]]; then
+
+		FOLDERS=(
+			"config"
+			"music"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "htpcmanager" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "emby" ]]; then
+
+		FOLDERS=(
+			"config"
+			"movies"
+			"tvseries"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "plex" ]]; then
+
+		FOLDERS=(
+			"config"
+			"movies"
+			"tvseries"
 		)
 
 	fi
