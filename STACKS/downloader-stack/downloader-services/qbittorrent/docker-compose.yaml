@@ -1,7 +1,7 @@
 services:
-  qtbittorrent:
-    image: ${IMAGE:-lscr.io/linuxserver/qtbittorrent:latest}
-    container_name: ${NAME:-qtbittorrent}
+  qbittorrent:
+    image: ${IMAGE:-lscr.io/linuxserver/qbittorrent:latest}
+    container_name: ${NAME:-qbittorrent}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -25,11 +25,11 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - qtbittorrent_config:/config
-      - qtbittorrent_downloads:/downloads
-      - qtbittorrent_watchfolder:/watchfolder
+      - qbittorrent_config:/config
+      - qbittorrent_downloads:/downloads
+      - qbittorrent_watchfolder:/watchfolder
 
-    hostname: ${NAME:-qtbittorrent}
+    hostname: ${NAME:-qbittorrent}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -43,7 +43,7 @@ services:
       - 6881:6881/udp
 
     env_file:
-      - ./qtbittorrent/.env
+      - ./qbittorrent/.env
 
     runtime: nvidia
     deploy:
