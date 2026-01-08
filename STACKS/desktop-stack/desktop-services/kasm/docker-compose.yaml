@@ -5,9 +5,10 @@ services:
 
     privileged: true
 
-    #optional
-    security_opt:
-      - apparmor:rootlesskit
+    # optional
+    # security_opt:
+    #   #   - apparmor:rootlesskit
+    #   - apparmor:unconfirmed
 
     volumes:
       - kasm_config:/opt

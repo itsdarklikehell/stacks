@@ -72,7 +72,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../config/ai-stack/habridge/habridge_config
+      device: ../../../DATA/ai-stack/habridge/habridge_config
 
   anything-llm_storage:
     name: anything-llm_storage
