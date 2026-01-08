@@ -295,6 +295,13 @@ function SETUP_OPENLLM_VTUBER_STACK() {
 
 }
 
+function SETUP_SDR_STACK() {
+
+	export STACK_NAME="sdr"
+	INSTALL_STACK
+
+}
+
 echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
@@ -344,6 +351,10 @@ echo ""
 # echo ""
 # SETUP_TESTING_STACK
 # echo ""
+
+echo ""
+SETUP_SDR_STACK
+echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK

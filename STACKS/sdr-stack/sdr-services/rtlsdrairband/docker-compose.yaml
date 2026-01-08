@@ -1,8 +1,7 @@
 services:
-  motioneye:
-    # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-ccrisan/motioneye:master-amd64}
-    container_name: ${NAME:-motioneye}
+  rtlsdrairband:
+    image: ${IMAGE:-ghcr.io/sdr-enthusiasts/docker-rtlsdrairband:latest}
+    container_name: ${NAME:-rtlsdrairband}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,33 +16,40 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8765}
+
+      - PORT=${PORT:-3322}
+      - RTLSDRAIRBAND_FREQS=${RTLSDRAIRBAND_FREQS:-123.9}
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - motioneye_shared:/shared
-      - motioneye_etc:/etc/motioneye
-      - /dev/video0:/dev/video0
       - /dev/bus/usb:/dev/bus/usb:ro
 
-    hostname: ${NAME:-motioneye}
+      - rtlsdrairband_config:/run/rtlsdir-airband
 
-    devices:
-      - /dev/bus/usb:/dev/bus/usb
+    tmpfs:
+      - /tmp:mode=1777
+
+    hostname: ${NAME:-rtlsdrairband}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      essential-services:
+      sdr-services:
 
     ports:
-      - ${PORT:-8765}:8765
+      - ${PORT:-3322}:3322
 
     env_file:
-      - ./motioneye/.env
+      - ./rtlsdrairband/.env
+
+    healthcheck:
+      disable: true
+
+    device_cgroup_rules:
+      - c 189:* rwm
 
     runtime: nvidia
     deploy:
@@ -54,10 +60,6 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
-
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
 
     tty: true
 

@@ -1,8 +1,7 @@
 services:
-  motioneye:
-    # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-ccrisan/motioneye:master-amd64}
-    container_name: ${NAME:-motioneye}
+  openwebrxplus:
+    image: ${IMAGE:-slechev/openwebrxplus-softmbe:latest}
+    container_name: ${NAME:-openwebrxplus}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,33 +16,49 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8765}
+
+      - PORT=${PORT:-8073}
+      - FORWARD_LOCALPORT_1234=5678
+      - OPENWEBRX_ADMIN_USER=user
+      - OPENWEBRX_ADMIN_PASSWORD=password
+      - HEALTHCHECK_USB_0BDA_2838=2
+      - HEALTHCHECK_USB_0BDA_2832=1
+      - HEALTHCHECK_USB_1DF7_3000=1
+      - HEALTHCHECK_SDR_DEVICES=4
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - motioneye_shared:/shared
-      - motioneye_etc:/etc/motioneye
-      - /dev/video0:/dev/video0
       - /dev/bus/usb:/dev/bus/usb:ro
 
-    hostname: ${NAME:-motioneye}
+      - openwebrxplus_config:/etc/openwebrx
+      - openwebrxplus_var:/var/lib/openwebrx
+      - openwebrxplus_plugins:/usr/lib/python3/dist-packag
 
-    devices:
-      - /dev/bus/usb:/dev/bus/usb
+    hostname: ${NAME:-openwebrxplus}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      essential-services:
+      sdr-services:
 
     ports:
-      - ${PORT:-8765}:8765
+      - ${PORT:-8073}:8073
+      - 4851:5678
 
     env_file:
-      - ./motioneye/.env
+      - ./openwebrxplus/.env
+
+    healthcheck:
+      disable: true
+
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+
+    # device_cgroup_rules:
+    #   - c 189:* rwm
 
     runtime: nvidia
     deploy:
@@ -54,10 +69,6 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
-
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
 
     tty: true
 

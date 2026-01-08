@@ -25,6 +25,7 @@ COMPOSE_FILES=(
 	sonarr
 	tvs-server
 	vlc
+	minisatip
 	emby
 	htpcmanager
 	plex
@@ -45,6 +46,14 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "minisatip" ]]; then
 
 		FOLDERS=(
 			"config"

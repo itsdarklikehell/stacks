@@ -48,6 +48,8 @@ services:
       # optional
       - /dev/dri:/dev/dri
       # - /dev/vchiq:/dev/vchiq
+      - /dev/video0:/dev/video0
+      - /dev/bus/usb:/dev/bus/usb:ro
       # - /dev/video10:/dev/video10
       # - /dev/video11:/dev/video11
       # - /dev/video12:/dev/video12

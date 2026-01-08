@@ -1,7 +1,7 @@
 services:
-  homeassistant:
-    image: ${IMAGE:-ghcr.io/home-assistant/home-assistant:stable}
-    container_name: ${NAME:-homeassistant}
+  minisatip:
+    image: ${IMAGE:-lscr.io/linuxserver/minisatip:latest}
+    container_name: ${NAME:-minisatip}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,34 +16,44 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      # - PORT=${PORT:-9696}
+      - RUN_OPTS=
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/bus/usb:/dev/bus/usb
-      - /dev/video0:/dev/video0
-      - /dev/bus/usb:/dev/bus/usb:ro
 
-      - homeassistant-config:/config
-      - homeassistant-media:/media
-      - homeassistant-recordings:/mnt/recordings
-      - ai_outputs:/media/ai_images/ai_outputs
-      - ai_inputs:/media/ai_images/ai_inputs
+      - minisatip_config:/config
 
-    hostname: ${NAME:-homeassistant}
+    hostname: ${NAME:-minisatip}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      ai-services:
-
-    env_file:
-      - ./homeassistant/.env
+      media-services:
 
     ports:
-      - ${PORT:-8123}:8123
+      - ${PORT:-8875}:8875
+      - 554:554
+      - 5144:1900/udp
+
+    # devices:
+    #   - /dev/dvb:/dev/dvb
+
+    env_file:
+      - ./minisatip/.env
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu
@@ -54,15 +64,15 @@ services:
     stdin_open: true
 
     # healthcheck:
-    # test:
-    #   [
-    #     CMD,
-    #     wget,
-    #     --no-verbose,
-    #     --tries=3,
-    #     --spider,
-    #     http://localhost:${PORT:-8123}/api/health,
-    #   ]
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
+    #     ]
     #   interval: 30s
     #   timeout: 10s
     #   start_period: 30s
