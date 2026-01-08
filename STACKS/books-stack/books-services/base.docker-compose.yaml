@@ -35,6 +35,14 @@ volumes:
       o: bind
       device: ../../../DATA/books-stack/calibre-web/calibre-web_library
 
+  rsspub_config:
+    name: rsspub_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/books-stack/rsspub/rsspub_config
+
   calibre_books:
     name: calibre_books
     driver: local

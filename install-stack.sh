@@ -369,9 +369,9 @@ echo ""
 # SETUP_AI_STACK
 # echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
 # echo ""
 # SETUP_SDR_STACK

@@ -14,6 +14,7 @@ COMPOSE_FILES=(
 	digikam
 	doplarr
 	emby
+	emby-wrapped
 	freshrss
 	gimp
 	handbrake
@@ -30,6 +31,7 @@ COMPOSE_FILES=(
 	minisatip
 	mstream
 	ombi
+	blockbusterr
 	openshot
 	oscam
 	overseerr
@@ -80,7 +82,23 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "blockbusterr" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
 	if [[ ${SERVICE_NAME} == "rawtherapee" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "emby-wrapped" ]]; then
 
 		FOLDERS=(
 			"config"

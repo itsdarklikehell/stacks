@@ -10,6 +10,7 @@ COMPOSE_FILES=(
 	calibre
 	mylar3
 	cops
+	rsspub
 	ubooquity
 )
 
@@ -62,6 +63,12 @@ function SETUP_FOLDERS() {
 			"config"
 			"comics"
 			"downloads"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "rsspub" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 
