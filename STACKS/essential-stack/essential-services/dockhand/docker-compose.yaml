@@ -1,0 +1,61 @@
+services:
+  dockhand:
+    image: ${IMAGE:-fnsys/dockhand:latest}
+    container_name: ${NAME:-dockhand}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - NODE_ENV=production
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - dockhand_config:/app/data
+
+    hostname: ${NAME:-dockhand}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-5311}:3000
+
+    env_file:
+      - ./dockhand/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test: [CMD, wget, --quiet, --tries=1, --spider, http://localhost:3000/]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

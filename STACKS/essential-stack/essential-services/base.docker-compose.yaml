@@ -36,6 +36,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dock-dploy/dock-dploy_config
 
+  dockhand_config:
+    name: dockhand_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/dockhand/dockhand_config
+
   habridge_config:
     name: habridge_config
     driver: local

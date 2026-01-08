@@ -44,6 +44,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/dock-dploy/dock-dploy_config
 
+  dockhand_config:
+    name: dockhand_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/dockhand/dockhand_config
+
   changedetection_config:
     name: changedetection_config
     driver: local

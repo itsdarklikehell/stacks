@@ -14,9 +14,10 @@ COMPOSE_FILES=(
 	beszel
 	dashy
 	dock-dploy
+	dockhand
 	doublecommander
 	dozzle
-	habridge
+	# habridge
 	heimdall
 	hishtory-server
 	immich-server
@@ -64,6 +65,12 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "dock-dploy" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "dockhand" ]]; then
 		FOLDERS=(
 			"config"
 		)
