@@ -36,6 +36,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/habridge/habridge_config
 
+  socket-proxy_config:
+    name: socket-proxy_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/socket-proxy/socket-proxy_config
+
   dashy_data:
     name: dashy_data
     driver: local

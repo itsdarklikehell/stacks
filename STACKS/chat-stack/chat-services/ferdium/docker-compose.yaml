@@ -15,7 +15,7 @@ services:
       - ./ferdium/.env
 
     ports:
-      - ${PORT:-4934}:3000
+      - ${PORT:-5636}:3000
       - 3678:3001
 
     shm_size: 1gb

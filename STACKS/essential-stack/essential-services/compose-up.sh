@@ -26,6 +26,7 @@ COMPOSE_FILES=(
 	portainer
 	portracker
 	pulse
+	socket-proxy
 )
 
 function CREATE_FOLDERS() {
@@ -56,6 +57,12 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "socket-proxy" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 

@@ -335,17 +335,17 @@ CREATE_SECRETS
 # SETUP_AUTOSTART
 # echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
 # echo ""
 # SETUP_BACKUPS_STACK
 # echo ""
 
-echo ""
-SETUP_CHAT_STACK
-echo ""
+# echo ""
+# SETUP_CHAT_STACK
+# echo ""
 
 # echo ""
 # SETUP_AI_STACK
