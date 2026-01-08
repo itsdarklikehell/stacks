@@ -17,7 +17,6 @@ COMPOSE_FILES=(
 	dockhand
 	doublecommander
 	dozzle
-	# habridge
 	heimdall
 	hishtory-server
 	immich-server
@@ -76,12 +75,6 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "habridge" ]]; then
-		FOLDERS=(
-			"config"
-		)
-	fi
-
 	if [[ ${SERVICE_NAME} == "changedetection" ]]; then
 		FOLDERS=(
 			"config"
@@ -114,12 +107,6 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"data"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "habridge" ]]; then
-		FOLDERS=(
-			"config"
 		)
 	fi
 

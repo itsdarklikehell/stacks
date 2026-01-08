@@ -11,7 +11,7 @@ COMPOSE_FILES=(
 	letta-server
 	localai
 	n8n
-	# habridge
+	habridge
 	ollama
 	open-webui
 	# puppeteer
