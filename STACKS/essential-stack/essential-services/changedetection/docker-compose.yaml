@@ -1,6 +1,6 @@
 services:
   changedetection:
-    image: ${IMAGE:-lscr.io/linuxserver/changedetection:latest}
+    image: ${IMAGE:-lscr.io/linuxserver/changedetection.io:latest}
     container_name: ${NAME:-changedetection}
     restart: ${RESTART:-unless-stopped}
 
