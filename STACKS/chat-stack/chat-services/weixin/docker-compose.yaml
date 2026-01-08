@@ -1,10 +1,10 @@
 services:
-  weikin:
-    image: lscr.io/linuxserver/weikin:latest
-    container_name: weikin
+  weixin:
+    image: lscr.io/linuxserver/weixin:latest
+    container_name: weixin
 
     volumes:
-      - weikin_config:/config
+      - weixin_config:/config
 
     environment:
       - PUID=${PUID:-1000}
@@ -12,7 +12,7 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
     env_file:
-      - ./weikin/.env
+      - ./weixin/.env
 
     ports:
       - ${PORT:-4248}:3000

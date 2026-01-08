@@ -8,7 +8,7 @@ COMPOSE_FILES=(
 	signal
 	webcord
 	telegram
-	weikin
+	weixin
 	ferdium
 )
 
@@ -53,7 +53,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "weikin" ]]; then
+	if [[ ${SERVICE_NAME} == "weixin" ]]; then
 
 		FOLDERS=(
 			"config"
