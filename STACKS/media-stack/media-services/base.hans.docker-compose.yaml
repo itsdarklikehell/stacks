@@ -43,7 +43,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digikam/lychee_pictures
+      device: ../../../DATA/media-stack/lychee/lychee_pictures
 
   piwigo_config:
     name: digikam_config
