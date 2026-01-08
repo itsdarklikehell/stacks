@@ -32,6 +32,7 @@ COMPOSE_FILES=(
 	beets
 	piwigo
 	lychee
+	kdenlive
 	lollypop
 	radarr
 	sickgear
@@ -66,6 +67,14 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "digikam" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "kdenlive" ]]; then
 
 		FOLDERS=(
 			"config"
