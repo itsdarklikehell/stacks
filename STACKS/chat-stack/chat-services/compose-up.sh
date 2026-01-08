@@ -4,10 +4,12 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	duplicati
-	resilio-sync
-	rsnapshot
-	syncthing
+	altus
+	signal
+	webcord
+	telegram
+	weikin
+	ferdium
 )
 
 function CREATE_FOLDERS() {
@@ -23,38 +25,45 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "duplicati" ]]; then
+	if [[ ${SERVICE_NAME} == "altus" ]]; then
 
 		FOLDERS=(
 			"config"
-			"backups"
-			"source"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "rsnapshot" ]]; then
+	if [[ ${SERVICE_NAME} == "signal" ]]; then
 
 		FOLDERS=(
 			"config"
-			"snapshots"
-			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "resilio-sync" ]]; then
+	if [[ ${SERVICE_NAME} == "telegram" ]]; then
 
 		FOLDERS=(
 			"config"
-			"downloads"
-			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "syncthing" ]]; then
+	if [[ ${SERVICE_NAME} == "webcord" ]]; then
 
 		FOLDERS=(
 			"config"
-			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "weikin" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "ferdium" ]]; then
+
+		FOLDERS=(
+			"config"
 		)
 	fi
 

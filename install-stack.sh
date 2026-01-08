@@ -288,6 +288,13 @@ function SETUP_BACKUPS_STACK() {
 
 }
 
+function SETUP_CHAT_STACK() {
+
+	export STACK_NAME="chat"
+	INSTALL_STACK
+
+}
+
 function SETUP_OPENLLM_VTUBER_STACK() {
 
 	export STACK_NAME="openllm-vtuber"
@@ -332,8 +339,12 @@ CREATE_SECRETS
 # SETUP_ESSENTIALS_STACK
 # echo ""
 
+# echo ""
+# SETUP_BACKUPS_STACK
+# echo ""
+
 echo ""
-SETUP_BACKUPS_STACK
+SETUP_CHAT_STACK
 echo ""
 
 # echo ""
