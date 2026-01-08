@@ -1,7 +1,7 @@
 services:
-  darktable:
-    image: ${IMAGE:-lscr.io/linuxserver/darktable:latest}
-    container_name: ${NAME:-darktable}
+  piwigo:
+    image: ${IMAGE:-lscr.io/linuxserver/piwigo:latest}
+    container_name: ${NAME:-piwigo}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,14 +18,27 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       # - PORT=${PORT:-9696}
 
+      - DB_CONNECTION=
+      - DB_HOST=
+      - DB_PORT=
+      - DB_USERNAME=
+      - DB_PASSWORD=
+      - DB_DATABASE=
+
+      # optional
+      - APP_NAME=Lychee
+      - APP_URL=
+      - TRUSTED_PROXIES=
+
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - darktable_config:/config
+      - piwigo_config:/config
+      - piwigo_pictures:/gallery
 
-    hostname: ${NAME:-darktable}
+    hostname: ${NAME:-piwigo}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +47,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4769}:3000
-      - 3384:3001
+      - ${PORT:-5686}:80
 
     env_file:
-      - ./darktable/.env
+      - ./piwigo/.env
 
     runtime: nvidia
     deploy:

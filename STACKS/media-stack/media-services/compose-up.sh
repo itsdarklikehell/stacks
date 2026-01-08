@@ -26,9 +26,13 @@ COMPOSE_FILES=(
 	overseerr
 	spotube
 	plex
+	digicam
 	your_spotify
 	prowlarr
 	beets
+	piwigo
+	lychee
+	lichee
 	lollypop
 	radarr
 	sickgear
@@ -58,6 +62,32 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "digicam" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "lychee" ]]; then
+
+		FOLDERS=(
+			"config"
+			"pictures"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "piwigo" ]]; then
+
+		FOLDERS=(
+			"config"
+			"pictures"
 		)
 
 	fi
