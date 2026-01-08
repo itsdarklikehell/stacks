@@ -54,7 +54,7 @@ services:
       - ./mastodon/.env
 
     ports:
-      - ${PORT:-4477}:80
+      - ${PORT:-5611}:80
       - 5320:443
 
       # optional

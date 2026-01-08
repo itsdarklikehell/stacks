@@ -365,29 +365,29 @@ echo ""
 SETUP_CHAT_STACK
 echo ""
 
-echo ""
-SETUP_AI_STACK
-echo ""
+# echo ""
+# SETUP_AI_STACK
+# echo ""
 
-echo ""
-SETUP_BOOKS_STACK
-echo ""
+# echo ""
+# SETUP_BOOKS_STACK
+# echo ""
 
-echo ""
-SETUP_SDR_STACK
-echo ""
+# echo ""
+# SETUP_SDR_STACK
+# echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
-echo ""
-SETUP_DESKTOP_STACK
-echo ""
+# echo ""
+# SETUP_DESKTOP_STACK
+# echo ""
 
-echo ""
-SETUP_TESTING_STACK
-echo ""
+# echo ""
+# SETUP_TESTING_STACK
+# echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK
