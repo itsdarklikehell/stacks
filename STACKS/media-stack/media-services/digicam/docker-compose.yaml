@@ -1,7 +1,7 @@
 services:
-  digicam:
-    image: ${IMAGE:-lscr.io/linuxserver/digicam:latest}
-    container_name: ${NAME:-digicam}
+  digikam:
+    image: ${IMAGE:-lscr.io/linuxserver/digikam:latest}
+    container_name: ${NAME:-digikam}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - digicam_config:/config
+      - digikam_config:/config
 
-    hostname: ${NAME:-digicam}
+    hostname: ${NAME:-digikam}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -38,7 +38,7 @@ services:
       - 5680:3001
 
     env_file:
-      - ./digicam/.env
+      - ./digikam/.env
 
     runtime: nvidia
     deploy:

@@ -19,23 +19,23 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
-  digicam_config:
-    name: digicam_config
+  digikam_config:
+    name: digikam_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digicam/digicam_config
+      device: ../../../DATA/media-stack/digikam/digikam_config
 
   lychee_config:
-    name: digicam_config
+    name: digikam_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digicam/digicam_config
+      device: ../../../DATA/media-stack/digikam/digikam_config
   lychee_pictures:
     name: lychee_pictures
     driver: local
@@ -43,16 +43,16 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digicam/lychee_pictures
+      device: ../../../DATA/media-stack/digikam/lychee_pictures
 
   piwigo_config:
-    name: digicam_config
+    name: digikam_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digicam/digicam_config
+      device: ../../../DATA/media-stack/digikam/digikam_config
   piwigo_pictures:
     name: piwigo_pictures
     driver: local
@@ -60,7 +60,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/digicam/piwigo_pictures
+      device: ../../../DATA/media-stack/digikam/piwigo_pictures
 
   beets_config:
     name: beets_config

@@ -26,7 +26,7 @@ COMPOSE_FILES=(
 	overseerr
 	spotube
 	plex
-	digicam
+	digikam
 	your_spotify
 	prowlarr
 	beets
@@ -65,7 +65,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "digicam" ]]; then
+	if [[ ${SERVICE_NAME} == "digikam" ]]; then
 
 		FOLDERS=(
 			"config"
