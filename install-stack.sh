@@ -344,16 +344,16 @@ echo ""
 SETUP_MEDIA_STACK
 echo ""
 
+echo ""
+SETUP_BOOKS_STACK
+echo ""
+
 # echo ""
-# SETUP_BOOKS_STACK
+# SETUP_SDR_STACK
 # echo ""
 
 # echo ""
 # SETUP_TESTING_STACK
-# echo ""
-
-# echo ""
-# SETUP_SDR_STACK
 # echo ""
 
 # echo ""
