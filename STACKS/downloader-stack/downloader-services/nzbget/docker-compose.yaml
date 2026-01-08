@@ -1,7 +1,8 @@
 services:
-  deluge:
-    image: ${IMAGE:-lscr.io/linuxserver/deluge:latest}
-    container_name: ${NAME:-deluge}
+  nzbget:
+    # image: ${IMAGE:-t41372/open-llm-vtuber}
+    image: ${IMAGE:-lscr.io/linuxserver/nzbget:latest}
+    container_name: ${NAME:-nzbget}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,35 +17,37 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - RESTART_APP=true
       # optional
-      - DELUGE_LOGLEVEL=error
+      - NZBGET_USER=nzbget
+      - NZBGET_PASS=tegbzn6789
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - deluge_config:/config
-      - deluge_downloads:/downloads
-      - deluge_watchfolder:/watchfolder
+      - nzbget_config:/config
+      # optional:
+      - nzbget_downloads:/downloads
+      - nzbget_watchfolder:/watchfolder
 
-    hostname: ${NAME:-deluge}
+    hostname: ${NAME:-nzbget}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      chat-services:
+      downloader-services:
 
     ports:
-      - ${PORT:-8112}:8112
-      - 6881:6881
-      - 6881:6881/udp
-      # optional
-      - 58846:58846
+      - ${PORT:-6789}:6789
 
     env_file:
-      - ./deluge/.env
+      - ./nzbget/.env
+
+    # command:
+    #   - -iwad /usr/share/nzbget/doom2.wad -file /usr/share/nzbget/DOOM_Infinite_098_PP2_H3.pk3
 
     runtime: nvidia
     deploy:
@@ -63,6 +66,8 @@ services:
     tty: true
 
     stdin_open: true
+
+    shm_size: 1gb
 
     # healthcheck:
     #   test:

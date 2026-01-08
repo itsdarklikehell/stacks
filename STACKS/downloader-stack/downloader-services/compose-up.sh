@@ -4,12 +4,10 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	altus
-	signal
-	webcord
-	telegram
-	weixin
-	ferdium
+	deluge
+	flexget
+	nzbget
+	transmission
 )
 
 function CREATE_FOLDERS() {
@@ -25,45 +23,39 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "altus" ]]; then
+	if [[ ${SERVICE_NAME} == "deluge" ]]; then
 
 		FOLDERS=(
 			"config"
+			"downloads"
+			"watchfolder"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "signal" ]]; then
+	if [[ ${SERVICE_NAME} == "flexget" ]]; then
 
 		FOLDERS=(
 			"config"
+			"downloads"
+			"watchfolder"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "telegram" ]]; then
+	if [[ ${SERVICE_NAME} == "nzbget" ]]; then
 
 		FOLDERS=(
 			"config"
+			"downloads"
+			"watchfolder"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "webcord" ]]; then
+	if [[ ${SERVICE_NAME} == "transmission" ]]; then
 
 		FOLDERS=(
 			"config"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "weixin" ]]; then
-
-		FOLDERS=(
-			"config"
-		)
-	fi
-
-	if [[ ${SERVICE_NAME} == "ferdium" ]]; then
-
-		FOLDERS=(
-			"config"
+			"downloads"
+			"watchfolder"
 		)
 	fi
 
