@@ -1,7 +1,7 @@
 services:
-  synclounge:
-    image: ${IMAGE:-lscr.io/linuxserver/synclounge:latest}
-    container_name: ${NAME:-synclounge}
+  beets:
+    image: ${IMAGE:-lscr.io/linuxserver/beets:latest}
+    container_name: ${NAME:-beets}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,17 +18,16 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       # - PORT=${PORT:-9696}
 
-      # optional
-      # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - synclounge_config:/config
+      - beets_config:/config
+      - beets_music:/music
+      - beets_downloads:/downloads
 
-    hostname: ${NAME:-synclounge}
+    hostname: ${NAME:-beets}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,13 +36,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4551}:8088
+      - ${PORT:-8337}:8337
 
     env_file:
-      - ./synclounge/.env
-
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - ./beets/.env
 
     runtime: nvidia
     deploy:

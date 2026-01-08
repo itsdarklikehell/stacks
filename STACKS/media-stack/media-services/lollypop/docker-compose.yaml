@@ -1,7 +1,7 @@
 services:
-  synclounge:
-    image: ${IMAGE:-lscr.io/linuxserver/synclounge:latest}
-    container_name: ${NAME:-synclounge}
+  lollypop:
+    image: ${IMAGE:-lscr.io/linuxserver/lollypop:latest}
+    container_name: ${NAME:-lollypop}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,17 +18,14 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       # - PORT=${PORT:-9696}
 
-      # optional
-      # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - synclounge_config:/config
+      - lollypop_config:/config
 
-    hostname: ${NAME:-synclounge}
+    hostname: ${NAME:-lollypop}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,13 +34,11 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4551}:8088
+      - ${PORT:-4486}:3000
+      - 3812:3001
 
     env_file:
-      - ./synclounge/.env
-
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - ./lollypop/.env
 
     runtime: nvidia
     deploy:

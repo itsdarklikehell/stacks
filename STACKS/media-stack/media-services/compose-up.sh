@@ -10,29 +10,34 @@ COMPOSE_FILES=(
 	bazarr
 	copyparty
 	doplarr
+	emby
 	handbrake
+	htpcmanager
 	jellyseer
-	plex
 	kometa
 	lidarr
 	mediaelch
 	medusa
+	minisatip
+	mstream
 	ombi
+	oscam
 	overseerr
+	spotube
+	plex
+	your_spotify
 	prowlarr
+	beets
+	lollypop
 	radarr
 	sickgear
 	sonarr
+	synclounge
+	tautulli
+	tvheadend
 	tvs-server
 	vlc
-	minisatip
-	emby
-	synclounge
-	oscam
-	tautulli
-	htpcmanager
-	plex
-	mstream
+	webgrabplus
 )
 
 function CREATE_FOLDERS() {
@@ -56,10 +61,52 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "lollypop" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "your_spotify" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "spotube" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "webgrabplus" ]]; then
+
+		FOLDERS=(
+			"config"
+			"data"
+		)
+
+	fi
+
 	if [[ ${SERVICE_NAME} == "tautulli" ]]; then
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "tvheadend" ]]; then
+
+		FOLDERS=(
+			"config"
+			"recordings"
 		)
 
 	fi
@@ -112,6 +159,16 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "beets" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"music"
 		)
 
 	fi

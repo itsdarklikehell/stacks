@@ -19,6 +19,58 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  beets_config:
+    name: beets_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/beets/beets_config
+  beets_music:
+    name: beets_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/beets/beets_music
+  beets_downloads:
+    name: beets_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/beets/beets_downloads
+
+  lollypop_config:
+    name: lollypop_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/lollypop/lollypop_config
+
+  spotube_config:
+    name: spotube_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/spotube/spotube_config
+
+  your_spotify_config:
+    name: your_spotify_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/your_spotify/your_spotify_config
+
   oscam_config:
     name: oscam_config
     driver: local
@@ -45,6 +97,40 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/media-stack/tautulli/tautulli_config
+
+  tvheadend_config:
+    name: tvheadend_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/tvheadend/tvheadend_config
+  tvheadend_recordings:
+    name: tvheadend_recordings
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/tvheadend/tvheadend_recordings
+
+  webgrabplus_config:
+    name: webgrabplus_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/webgrabplus/webgrabplus_config
+  webgrabplus_data:
+    name: webgrabplus_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/webgrabplus/webgrabplus_data
 
   jellyseer_config:
     name: jellyseer_config

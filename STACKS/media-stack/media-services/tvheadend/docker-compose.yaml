@@ -1,7 +1,7 @@
 services:
-  synclounge:
-    image: ${IMAGE:-lscr.io/linuxserver/synclounge:latest}
-    container_name: ${NAME:-synclounge}
+  tvheadend:
+    image: ${IMAGE:-lscr.io/linuxserver/tvheadend:latest}
+    container_name: ${NAME:-tvheadend}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -26,9 +26,10 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - synclounge_config:/config
+      - tvheadend_config:/config
+      - tvheadend_recordings:/recordings
 
-    hostname: ${NAME:-synclounge}
+    hostname: ${NAME:-tvheadend}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,13 +38,16 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4551}:8088
+      - ${PORT:-9981}:9981
+      - 9982:9982
 
     env_file:
-      - ./synclounge/.env
+      - ./tvheadend/.env
 
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      # optional
+      - /dev/dri:/dev/dri
+      # - /dev/dvb:/dev/dvb
 
     runtime: nvidia
     deploy:
