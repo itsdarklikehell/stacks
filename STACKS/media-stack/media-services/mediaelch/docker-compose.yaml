@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  mediaelch:
+    image: ${IMAGE:-lscr.io/linuxserver/mediaelch:latest}
+    container_name: ${NAME:-mediaelch}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - mediaelch_config:/config
 
-    hostname: ${NAME:-handbrake}
+    hostname: ${NAME:-mediaelch}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +34,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-5823}:3000
 
     env_file:
-      - ./handbrake/.env
+      - ./mediaelch/.env
 
     runtime: nvidia
     deploy:

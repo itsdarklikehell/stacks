@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  airsonic-advanced:
+    image: ${IMAGE:-lscr.io/linuxserver/airsonic-advanced:latest}
+    container_name: ${NAME:-airsonic-advanced}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,15 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - airsonic-advanced_config:/config
+      - airsonic-advanced_music:/music
+      - airsonic-advanced_playlists:/playlists
+      - airsonic-advanced_podcasts:/podcasts
 
-    hostname: ${NAME:-handbrake}
+      # optional
+      # - airsonic-advanced_other media:/media
+
+    hostname: ${NAME:-airsonic-advanced}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +40,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-4040}:4040
 
     env_file:
-      - ./handbrake/.env
+      - ./airsonic-advanced/.env
 
     runtime: nvidia
     deploy:

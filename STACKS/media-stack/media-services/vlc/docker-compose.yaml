@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  vlc:
+    image: ${IMAGE:-lscr.io/linuxserver/vlc:latest}
+    container_name: ${NAME:-vlc}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - vlc_config:/config
 
-    hostname: ${NAME:-handbrake}
+    hostname: ${NAME:-vlc}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +34,11 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-4259}:3000
+      - 6058:3001
 
     env_file:
-      - ./handbrake/.env
+      - ./vlc/.env
 
     runtime: nvidia
     deploy:

@@ -19,6 +19,150 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/jellyseer/jellyseer_config
 
+  airsonic-advanced_config:
+    name: airsonic-advanced_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_config
+  airsonic-advanced_playlists:
+    name: airsonic-advanced_playlists
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_playlists
+  airsonic-advanced_podcasts:
+    name: airsonic-advanced_podcasts
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_podcasts
+  airsonic-advanced_music:
+    name: airsonic-advanced_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/airsonic-advanced/airsonic-advanced_music
+
+  kometa_config:
+    name: kometa_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/kometa/kometa_config
+
+  mediaelch_config:
+    name: mediaelch_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/mediaelch/mediaelch_config
+
+  sickgear_config:
+    name: sickgear_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sickgear/sickgear_config
+  sickgear_downloads:
+    name: sickgear_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sickgear/sickgear_downloads
+  sickgear_tvseries:
+    name: sickgear_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sickgear/sickgear_tvseries
+
+  vlc_config:
+    name: vlc_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/vlc/vlc_config
+
+  overseerr_config:
+    name: overseerr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/overseerr/overseerr_config
+
+  medusa_config:
+    name: medusa_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/medusa/medusa_config
+  medusa_downloads:
+    name: medusa_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/medusa/medusa_downloads
+  medusa_tvseries:
+    name: medusa_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/medusa/medusa_tvseries
+
+  bazarr_config:
+    name: bazarr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/bazarr/bazarr_config
+  bazarr_movies:
+    name: bazarr_movies
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/bazarr/bazarr_movies
+  bazarr_tvseries:
+    name: bazarr_tvseries
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/bazarr/bazarr_tvseries
+
   audacity_config:
     name: audacity_config
     driver: local

@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  medusa:
+    image: ${IMAGE:-lscr.io/linuxserver/medusa:latest}
+    container_name: ${NAME:-medusa}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,11 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - medusa_config:/config
+      - medusa_downloads:/downloads
+      - medusa_tvseries:/tv
 
-    hostname: ${NAME:-handbrake}
+    hostname: ${NAME:-medusa}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +36,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-4579}:8081
 
     env_file:
-      - ./handbrake/.env
+      - ./medusa/.env
 
     runtime: nvidia
     deploy:

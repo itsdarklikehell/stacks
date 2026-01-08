@@ -25,7 +25,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - jellyfin_config:/config
-      - jellyfin_tvseries:/data/tvshows
+      - jellyfin_tvseries:/data/tvseries
       - jellyfin_movies:/data/movies
       - jellyfin_audiobooks:/data/audiobooks
       - jellyfin_books:/data/books

@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  overseerr:
+    image: ${IMAGE:-lscr.io/linuxserver/overseerr:latest}
+    container_name: ${NAME:-overseerr}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - overseerr_config:/config
 
-    hostname: ${NAME:-handbrake}
+    hostname: ${NAME:-overseerr}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +34,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-4028}:5055
 
     env_file:
-      - ./handbrake/.env
+      - ./overseerr/.env
 
     runtime: nvidia
     deploy:

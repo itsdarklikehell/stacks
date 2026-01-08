@@ -1,7 +1,7 @@
 services:
-  handbrake:
-    image: ${IMAGE:-lscr.io/linuxserver/handbrake:latest}
-    container_name: ${NAME:-handbrake}
+  sickgear:
+    image: ${IMAGE:-lscr.io/linuxserver/sickgear:latest}
+    container_name: ${NAME:-sickgear}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,9 +23,14 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - handbrake_config:/config
+      - sickgear_config:/config
+      - transmission_watchfolder:/transmission_watchfolder
 
-    hostname: ${NAME:-handbrake}
+      # optional:
+      - sickgear_tvseries:/tv
+      - sickgear_downloads:/downloads
+
+    hostname: ${NAME:-sickgear}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -34,11 +39,10 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-4934}:3000
-      - 3582:3001
+      - ${PORT:-5778}:7878
 
     env_file:
-      - ./handbrake/.env
+      - ./sickgear/.env
 
     runtime: nvidia
     deploy:

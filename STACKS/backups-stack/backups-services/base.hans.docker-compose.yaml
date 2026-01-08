@@ -18,14 +18,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
-  duplicati_data:
-    name: duplicati_data
+  duplicati_config:
+    name: duplicati_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/backups-stack/duplicati/duplicati_data
+      device: ../../../DATA/backups-stack/duplicati/duplicati_config
   duplicati_backups:
     name: duplicati_backups
     driver: local

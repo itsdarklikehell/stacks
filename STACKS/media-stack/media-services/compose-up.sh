@@ -17,6 +17,14 @@ COMPOSE_FILES=(
 	radarr
 	sonarr
 	bazarr
+	sickgear
+	kometa
+	mediaelch
+	medusa
+	sickgear
+	vlc
+	overseerr
+	airsonic-advanced
 )
 
 function CREATE_FOLDERS() {
@@ -37,6 +45,70 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "airsonic-advanced" ]]; then
+
+		FOLDERS=(
+			"config"
+			"playlists"
+			"podcasts"
+			"music"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "kometa" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "overseerr" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "vlc" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "medusa" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"tvseries"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "sickgear" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"tvseries"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "mediaelch" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "handbrake" ]]; then
@@ -44,6 +116,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "audacity" ]]; then
@@ -51,6 +124,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "jellyseer" ]]; then
@@ -58,6 +132,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "doplarr" ]]; then
@@ -65,6 +140,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "prowlarr" ]]; then
@@ -72,6 +148,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "lidarr" ]]; then
@@ -81,6 +158,7 @@ function SETUP_FOLDERS() {
 			"downloads"
 			"music"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "bazarr" ]]; then
@@ -90,6 +168,7 @@ function SETUP_FOLDERS() {
 			"tvseries"
 			"movies"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "radarr" ]]; then
@@ -99,6 +178,7 @@ function SETUP_FOLDERS() {
 			"downloads"
 			"movies"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "sonarr" ]]; then
@@ -108,6 +188,7 @@ function SETUP_FOLDERS() {
 			"downloads"
 			"tvseries"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "ombi" ]]; then
@@ -115,6 +196,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
@@ -135,6 +217,7 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"content"
 		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "copyparty" ]]; then
