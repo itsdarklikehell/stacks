@@ -35,7 +35,7 @@ services:
       downloader-services:
 
     ports:
-      - ${PORT:-3230}:8080
+      - ${PORT:-4525}:8080
 
     env_file:
       - ./sabnzbd/.env

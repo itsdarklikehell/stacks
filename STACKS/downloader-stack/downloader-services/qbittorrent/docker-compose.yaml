@@ -38,9 +38,9 @@ services:
       downloader-services:
 
     ports:
-      - ${PORT:-3230}:8080
-      - 6881:6881
-      - 6881:6881/udp
+      - ${PORT:-5156}:8080
+      - 5377:6881
+      - 5377:6881/udp
 
     env_file:
       - ./qbittorrent/.env
