@@ -401,56 +401,6 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/mympd/mympd_cachedir
 
-  transmission_config:
-    name: transmission_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_config
-  transmission_downloads:
-    name: transmission_downloads
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_downloads
-  transmission_watchfolder:
-    name: transmission_watchfolder
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_watchfolder
-
-  flexget_config:
-    name: flexget_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/flexget/flexget_config
-  flexget_downloads:
-    name: flexget_downloads
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/flexget/flexget_downloads
-  flexget_watchfolder:
-    name: flexget_watchfolder
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/flexget/flexget_watchfolder
-
 networks:
   host:
   testing-services:

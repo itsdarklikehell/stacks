@@ -576,7 +576,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_watchfolder
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
   transmission_downloads:
     name: transmission_downloads
     driver: local
@@ -584,7 +584,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_downloads
+      device: ../../../DATA/downloader-stack/transmission/transmission_downloads
 
 networks:
   host:

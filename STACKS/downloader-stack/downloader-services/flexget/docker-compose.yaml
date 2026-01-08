@@ -1,8 +1,8 @@
 services:
-  transmission:
+  flexget:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-lscr.io/linuxserver/transmission:latest}
-    container_name: ${NAME:-transmission}
+    image: ${IMAGE:-lscr.io/linuxserver/flexget:latest}
+    container_name: ${NAME:-flexget}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -18,7 +18,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       # optional:
-      # - TRANSMISSION_WEB_HOME=
+      # - flexget_WEB_HOME=
       # - USER=
       # - PASS=
       # - PEERPORT=
@@ -30,29 +30,27 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - transmission_config:/config
+      - flexget_config:/config
       # optional:
-      - transmission_downloads:/downloads
-      - transmission_watchfolder:/watch
+      - flexget_downloads:/downloads
+      - flexget_watchfolder:/watch
 
-    hostname: ${NAME:-transmission}
+    hostname: ${NAME:-flexget}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      testing-services:
+      downloader-services:
 
     ports:
-      - ${PORT:-9091}:9091
-      - 51413:51413
-      - 51413:51413/udp
+      - ${PORT:-5050}:5050
 
     env_file:
-      - ./transmission/.env
+      - ./flexget/.env
 
     # command:
-    #   - -iwad /usr/share/transmission/doom2.wad -file /usr/share/transmission/DOOM_Infinite_098_PP2_H3.pk3
+    #   - -iwad /usr/share/flexget/doom2.wad -file /usr/share/flexget/DOOM_Infinite_098_PP2_H3.pk3
 
     runtime: nvidia
     deploy:

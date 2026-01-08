@@ -63,10 +63,6 @@ services:
       host:
       essential-services:
 
-    ports:
-      - ${PORT:-85}:80
-      - ${PORT2:-444}:443
-
     env_file:
       - ./socket-proxy/.env
 

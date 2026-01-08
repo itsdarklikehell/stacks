@@ -1,0 +1,66 @@
+name: downloader-services
+
+volumes:
+  deluge_config:
+    name: deluge_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/deluge/deluge_config
+
+  transmission_config:
+    name: transmission_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_config
+  transmission_downloads:
+    name: transmission_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_downloads
+  transmission_watchfolder:
+    name: transmission_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
+
+  flexget_config:
+    name: flexget_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/flexget/flexget_config
+  flexget_downloads:
+    name: flexget_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/flexget/flexget_downloads
+  flexget_watchfolder:
+    name: flexget_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/flexget/flexget_watchfolder
+
+networks:
+  host:
+  downloader-services:
+    external: true

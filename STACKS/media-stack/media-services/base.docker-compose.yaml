@@ -576,7 +576,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/transmission/transmission_watchfolder
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
 
 networks:
   host:
