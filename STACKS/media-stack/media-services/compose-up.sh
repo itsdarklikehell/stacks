@@ -32,7 +32,6 @@ COMPOSE_FILES=(
 	beets
 	piwigo
 	lychee
-	lichee
 	lollypop
 	radarr
 	sickgear
