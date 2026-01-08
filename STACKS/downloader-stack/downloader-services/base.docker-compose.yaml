@@ -76,6 +76,31 @@ volumes:
       o: bind
       device: ../../../DATA/downloader-stack/flexget/flexget_watchfolder
 
+  pyload-ng_config:
+    name: pyload-ng_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/pyload-ng/pyload-ng_config
+  pyload-ng_downloads:
+    name: pyload-ng_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/pyload-ng/pyload-ng_downloads
+  pyload-ng_watchfolder:
+    name: pyload-ng_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/pyload-ng/pyload-ng_watchfolder
+
   nzbget_config:
     name: nzbget_config
     driver: local
@@ -100,6 +125,56 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/downloader-stack/nzbget/nzbget_watchfolder
+
+  qbittorrent_config:
+    name: qbittorrent_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/qbittorrent/qbittorrent_config
+  qbittorrent_downloads:
+    name: qbittorrent_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/qbittorrent/qbittorrent_downloads
+  qbittorrent_watchfolder:
+    name: qbittorrent_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/qbittorrent/qbittorrent_watchfolder
+
+  sabnzbd_config:
+    name: sabnzbd_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/sabnzbd/sabnzbd_config
+  sabnzbd_downloads:
+    name: sabnzbd_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/sabnzbd/sabnzbd_downloads
+  sabnzbd_watchfolder:
+    name: sabnzbd_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/sabnzbd/sabnzbd_watchfolder
 
 networks:
   host:

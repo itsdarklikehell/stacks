@@ -342,9 +342,9 @@ CREATE_SECRETS
 # SETUP_AUTOSTART
 # echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
 echo ""
 SETUP_DOWNLOADER_STACK

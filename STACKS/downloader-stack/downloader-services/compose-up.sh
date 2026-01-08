@@ -8,6 +8,9 @@ COMPOSE_FILES=(
 	flexget
 	nzbget
 	transmission
+	pyload-ng
+	qbittorrent
+	sabnzbd
 )
 
 function CREATE_FOLDERS() {
@@ -24,6 +27,33 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "deluge" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watchfolder"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "sabnzbd" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watchfolder"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "qbittorrent" ]]; then
+
+		FOLDERS=(
+			"config"
+			"downloads"
+			"watchfolder"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "pyload-ng" ]]; then
 
 		FOLDERS=(
 			"config"

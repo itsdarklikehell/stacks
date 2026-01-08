@@ -1,7 +1,7 @@
 services:
-  deluge:
-    image: ${IMAGE:-lscr.io/linuxserver/deluge:latest}
-    container_name: ${NAME:-deluge}
+  pyload-ng:
+    image: ${IMAGE:-lscr.io/linuxserver/pyload-ng:latest}
+    container_name: ${NAME:-pyload-ng}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -24,11 +24,11 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - deluge_config:/config
-      - deluge_downloads:/downloads
-      - deluge_watchfolder:/watchfolder
+      - pyload-ng_config:/config
+      - pyload-ng_downloads:/downloads
+      - pyload-ng_watchfolder:/watchfolder
 
-    hostname: ${NAME:-deluge}
+    hostname: ${NAME:-pyload-ng}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,14 +37,11 @@ services:
       downloader-services:
 
     ports:
-      - ${PORT:-8112}:8112
-      - 6881:6881
-      - 6881:6881/udp
-      # optional
-      - 58846:58846
+      - ${PORT:-3230}:8000
+      - 9666:9666
 
     env_file:
-      - ./deluge/.env
+      - ./pyload-ng/.env
 
     runtime: nvidia
     deploy:

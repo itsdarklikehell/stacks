@@ -1,7 +1,7 @@
 services:
-  deluge:
-    image: ${IMAGE:-lscr.io/linuxserver/deluge:latest}
-    container_name: ${NAME:-deluge}
+  qtbittorrent:
+    image: ${IMAGE:-lscr.io/linuxserver/qtbittorrent:latest}
+    container_name: ${NAME:-qtbittorrent}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,18 +17,19 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       # optional
-      - DELUGE_LOGLEVEL=error
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - deluge_config:/config
-      - deluge_downloads:/downloads
-      - deluge_watchfolder:/watchfolder
+      - qtbittorrent_config:/config
+      - qtbittorrent_downloads:/downloads
+      - qtbittorrent_watchfolder:/watchfolder
 
-    hostname: ${NAME:-deluge}
+    hostname: ${NAME:-qtbittorrent}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,14 +38,12 @@ services:
       downloader-services:
 
     ports:
-      - ${PORT:-8112}:8112
+      - ${PORT:-3230}:8080
       - 6881:6881
       - 6881:6881/udp
-      # optional
-      - 58846:58846
 
     env_file:
-      - ./deluge/.env
+      - ./qtbittorrent/.env
 
     runtime: nvidia
     deploy:

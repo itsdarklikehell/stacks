@@ -1,7 +1,7 @@
 services:
-  deluge:
-    image: ${IMAGE:-lscr.io/linuxserver/deluge:latest}
-    container_name: ${NAME:-deluge}
+  sabnzbd:
+    image: ${IMAGE:-lscr.io/linuxserver/sabnzbd:latest}
+    container_name: ${NAME:-sabnzbd}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -16,19 +16,17 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # optional
-      - DELUGE_LOGLEVEL=error
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - deluge_config:/config
-      - deluge_downloads:/downloads
-      - deluge_watchfolder:/watchfolder
+      - sabnzbd_config:/config
+      - sabnzbd_downloads:/downloads
+      - sabnzbd_watchfolder:/watchfolder
 
-    hostname: ${NAME:-deluge}
+    hostname: ${NAME:-sabnzbd}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -37,14 +35,10 @@ services:
       downloader-services:
 
     ports:
-      - ${PORT:-8112}:8112
-      - 6881:6881
-      - 6881:6881/udp
-      # optional
-      - 58846:58846
+      - ${PORT:-3230}:8080
 
     env_file:
-      - ./deluge/.env
+      - ./sabnzbd/.env
 
     runtime: nvidia
     deploy:
