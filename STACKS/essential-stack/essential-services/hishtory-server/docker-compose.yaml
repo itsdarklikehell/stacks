@@ -19,6 +19,8 @@ services:
       # optional
       - HISHTORY_POSTGRES_DB=postgresql://${HISHTORY_DB_USER}:${HISHTORY_DB_PASS}@hishtory-db:5432/hishtory?sslmode=disable
       - HISHTORY_SQLITE_DB=/config/hishtory.db
+      # - HISHTORY_DB_USER=
+      # - HISHTORY_DB_pass=
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro

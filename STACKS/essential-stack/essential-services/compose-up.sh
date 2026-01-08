@@ -63,7 +63,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_data/history.db" ]]; then
-			touch "${FOLDER}/${SERVICE_NAME}_data/history.db"
+			sudo touch "${FOLDER}/${SERVICE_NAME}_data/history.db"
 		fi
 	fi
 
