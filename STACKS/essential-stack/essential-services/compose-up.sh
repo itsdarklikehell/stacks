@@ -18,6 +18,7 @@ COMPOSE_FILES=(
 	heimdall
 	hishtory-server
 	immich-server
+	changedetection
 	it-tools
 	jellyfin
 	motioneye
@@ -57,6 +58,12 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "changedetection" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 

@@ -36,6 +36,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/habridge/habridge_config
 
+  changedetection_config:
+    name: changedetection_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/changedetection/changedetection_config
+
   socket-proxy_config:
     name: socket-proxy_config
     driver: local

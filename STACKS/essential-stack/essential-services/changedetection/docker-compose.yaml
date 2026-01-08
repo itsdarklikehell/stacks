@@ -1,0 +1,61 @@
+services:
+  changedetection:
+    image: ${IMAGE:-lscr.io/linuxserver/changedetection:latest}
+    container_name: ${NAME:-changedetection}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+      # - BASE_URL= #optional
+      # - PLAYWRIGHT_DRIVER_URL= #optional
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - changedetection_config:/config
+
+    hostname: ${NAME:-changedetection}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-3081}:5000
+
+    env_file:
+      - ./changedetection/.env
+
+    deploy:
+      replicas: 1
+
+    tty: true
+
+    stdin_open: true
+
+    # healthcheck:
+    #   test: CMD curl -f http://localhost:${PORT:-8088}/health
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
