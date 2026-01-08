@@ -97,7 +97,16 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-inputs
-      
+
+  habridge_config:
+    name: habridge_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../config/ai-stack/habridge/habridge_config
+
   InvokeAI_data:
     name: InvokeAI_data
     driver: local

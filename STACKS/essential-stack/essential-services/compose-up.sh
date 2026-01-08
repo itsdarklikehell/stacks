@@ -15,6 +15,7 @@ COMPOSE_FILES=(
 	dashy
 	doublecommander
 	dozzle
+	habridge
 	heimdall
 	hishtory-server
 	immich-server
@@ -58,6 +59,12 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "homarr" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "habridge" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 
