@@ -14,12 +14,14 @@ COMPOSE_FILES=(
 	digikam
 	doplarr
 	emby
+	freshrss
+	gimp
 	handbrake
 	htpcmanager
 	jellyseer
 	kdenlive
 	kometa
-	gimp
+	krita
 	lidarr
 	lollypop
 	lychee
@@ -35,17 +37,16 @@ COMPOSE_FILES=(
 	plex
 	prowlarr
 	radarr
+	rawtherapee
 	shotcut
 	sickgear
 	sonarr
 	spotube
 	synclounge
 	tautulli
-	krita
 	tvheadend
 	tvs-server
 	vlc
-	rawtherapee
 	webgrabplus
 	your_spotify
 )
@@ -64,6 +65,14 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "freshrss" ]]; then
 
 		FOLDERS=(
 			"config"

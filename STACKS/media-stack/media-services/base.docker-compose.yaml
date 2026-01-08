@@ -19,6 +19,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  freshrss_config:
+    name: freshrss_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/freshrss/freshrss_config
+
   krita_config:
     name: krita_config
     driver: local
