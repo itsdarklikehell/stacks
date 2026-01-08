@@ -11,6 +11,7 @@ COMPOSE_FILES=(
 	letta-server
 	localai
 	n8n
+	habridge
 	ollama
 	open-webui
 	# puppeteer
@@ -134,6 +135,12 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
 		FOLDERS=(
 			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "habridge" ]]; then
+		FOLDERS=(
+			"config"
 		)
 	fi
 
