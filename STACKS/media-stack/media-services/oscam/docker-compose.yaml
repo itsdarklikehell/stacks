@@ -39,9 +39,6 @@ services:
     env_file:
       - ./oscam/.env
 
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-
     runtime: nvidia
     deploy:
       replicas: 1

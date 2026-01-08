@@ -42,9 +42,6 @@ services:
     env_file:
       - ./synclounge/.env
 
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-
     runtime: nvidia
     deploy:
       replicas: 1
