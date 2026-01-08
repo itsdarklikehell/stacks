@@ -403,7 +403,7 @@ echo ""
 
 # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 
-# alias ollama='docker exec -it ollama ollama'
+alias ollama='docker exec -it ollama ollama'
 
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
