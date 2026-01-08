@@ -10,6 +10,7 @@ COMPOSE_FILES=(
 	copyparty
 	jellyseer
 	ombi
+	handbrake
 	doplarr
 	prowlarr
 	lidarr
@@ -32,6 +33,13 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "handbrake" ]]; then
 
 		FOLDERS=(
 			"config"

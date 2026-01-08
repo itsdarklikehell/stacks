@@ -37,6 +37,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/ardour/ardour_config
 
+  handbrake_config:
+    name: handbrake_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/handbrake/handbrake_config
+
   ombi_config:
     name: ombi_config
     driver: local
