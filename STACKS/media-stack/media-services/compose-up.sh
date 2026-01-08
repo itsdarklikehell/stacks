@@ -35,6 +35,7 @@ COMPOSE_FILES=(
 	openshot
 	oscam
 	overseerr
+	cinephage
 	piwigo
 	plex
 	prowlarr
@@ -78,6 +79,16 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "cinephage" ]]; then
+
+		FOLDERS=(
+			"data"
+			"logs"
+			"media"
 		)
 
 	fi

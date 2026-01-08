@@ -1,7 +1,7 @@
 services:
-  rsspub:
-    image: ${IMAGE:-harshit181/rsspub:latest}
-    container_name: ${NAME:-rsspub}
+  cinephage:
+    image: ${IMAGE:-ghcr.io/moldytaint/cinephage:latest}
+    container_name: ${NAME:-cinephage}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -17,30 +17,30 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - RUST_LOG=info,html5ever=error
-      - RPUB_USERNAME=admin
-      - RPUB_PASSWORD=admin
+      # - ORIGIN=http://10.99.0.242:3000
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - rsspub_config:/config
+      - cinephage_data:/app/data
+      - cinephage_logs:/app/data
+      - cinephage_media:/media
 
-    hostname: ${NAME:-rsspub}
+    hostname: ${NAME:-cinephage}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
-      books-services:
+      media-services:
 
     ports:
-      - ${PORT:-5000}:5000
+      - ${PORT:-9990}:9090
 
     env_file:
-      - ./rsspub/.env
+      - ./cinephage/.env
 
     runtime: nvidia
     deploy:
@@ -51,10 +51,6 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
-
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
 
     tty: true
 

@@ -55,6 +55,31 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/gimp/gimp_config
 
+  cinephage_data:
+    name: cinephage_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/cinephage/cinephage_data
+  cinephage_logs:
+    name: cinephage_logs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/cinephage/cinephage_logs
+  cinephage_media:
+    name: cinephage_media
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/cinephage/cinephage_media
+
   kdenlive_config:
     name: kdenlive_config
     driver: local

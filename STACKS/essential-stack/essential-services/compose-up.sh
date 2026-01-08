@@ -26,6 +26,7 @@ COMPOSE_FILES=(
 	motioneye
 	nextcloud
 	nginx-proxy-manager
+	pingora-proxy-manager
 	portainer
 	portracker
 	pulse
@@ -106,6 +107,13 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "doublecommander" ]]; then
 		FOLDERS=(
 			"config"
+			"data"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "pingora-proxy-manager" ]]; then
+		FOLDERS=(
+			"logs"
 			"data"
 		)
 	fi
