@@ -1,7 +1,7 @@
 services:
-  beets:
-    image: ${IMAGE:-lscr.io/linuxserver/beets:latest}
-    container_name: ${NAME:-beets}
+  darktable:
+    image: ${IMAGE:-lscr.io/linuxserver/darktable:latest}
+    container_name: ${NAME:-darktable}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,11 +23,11 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - beets_config:/config
-      - beets_music:/music
-      - beets_downloads:/downloads
+      - darktable_config:/config
+      - darktable_music:/music
+      - darktable_downloads:/downloads
 
-    hostname: ${NAME:-beets}
+    hostname: ${NAME:-darktable}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -39,7 +39,7 @@ services:
       - ${PORT:-8337}:8337
 
     env_file:
-      - ./beets/.env
+      - ./darktable/.env
 
     runtime: nvidia
     deploy:

@@ -62,6 +62,16 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/spotube/spotube_config
 
+  darktable_config:
+    name: darktable_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/darktable/darktable_config
+
+
   your_spotify_config:
     name: your_spotify_config
     driver: local

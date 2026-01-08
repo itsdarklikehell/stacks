@@ -53,6 +53,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/lollypop/lollypop_config
 
+  darktable_config:
+    name: darktable_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/darktable/darktable_config
+
   spotube_config:
     name: spotube_config
     driver: local

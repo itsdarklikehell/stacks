@@ -11,6 +11,7 @@ COMPOSE_FILES=(
 	copyparty
 	doplarr
 	emby
+	darktable
 	handbrake
 	htpcmanager
 	jellyseer
@@ -62,6 +63,14 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "lollypop" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "darktable" ]]; then
 
 		FOLDERS=(
 			"config"
