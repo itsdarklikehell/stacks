@@ -19,8 +19,8 @@ services:
       - ./sealskin/.env
 
     ports:
-      - ${PORT:-5571}:3000
-      - 4824:4398
+      - ${PORT:-4631}:3000
+      - 5893:4398
 
     shm_size: 1gb
 

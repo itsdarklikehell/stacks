@@ -393,9 +393,9 @@ echo ""
 # SETUP_OPENLLM_VTUBER_STACK
 # echo ""
 
-echo ""
-PULL_MODELS # >/dev/null 2>&1 &
-echo ""
+# echo ""
+# PULL_MODELS # >/dev/null 2>&1 &
+# echo ""
 
 # echo ""
 # START_BROWSER >/dev/null 2>&1 &
