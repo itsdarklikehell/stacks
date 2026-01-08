@@ -24,7 +24,6 @@ COMPOSE_FILES=(
 	# linux-gsm-cs2
 	retroarch
 	rpcs3
-		flexget
 	scummvm
 	emulatorjs
 	owncast
@@ -77,8 +76,6 @@ function SETUP_FOLDERS() {
 		)
 
 	fi
-
-
 
 	if [[ ${SERVICE_NAME} == "synctube" ]]; then
 
