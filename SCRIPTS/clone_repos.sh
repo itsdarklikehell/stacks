@@ -998,5 +998,5 @@ CLONE_PUPPETEER      # >/dev/null 2>&1 &
 CLONE_SCANOPY        # >/dev/null 2>&1 &
 CLONE_SWARMUI        # >/dev/null 2>&1 &
 CLONE_PYGOTCHI       # >/dev/null 2>&1 &
-CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
+# CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
