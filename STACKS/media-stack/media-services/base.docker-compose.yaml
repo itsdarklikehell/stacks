@@ -37,6 +37,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/synclounge/synclounge_config
 
+  tautulli_config:
+    name: tautulli_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/tautulli/tautulli_config
+
   jellyseer_config:
     name: jellyseer_config
     driver: local
