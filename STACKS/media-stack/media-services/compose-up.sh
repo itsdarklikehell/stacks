@@ -27,6 +27,9 @@ COMPOSE_FILES=(
 	vlc
 	minisatip
 	emby
+	synclounge
+	oscam
+	tautulli
 	htpcmanager
 	plex
 	mstream
@@ -46,6 +49,30 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "tautulli" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "oscam" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "synclounge" ]]; then
 
 		FOLDERS=(
 			"config"

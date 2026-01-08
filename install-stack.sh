@@ -352,9 +352,9 @@ echo ""
 # SETUP_TESTING_STACK
 # echo ""
 
-echo ""
-SETUP_SDR_STACK
-echo ""
+# echo ""
+# SETUP_SDR_STACK
+# echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK

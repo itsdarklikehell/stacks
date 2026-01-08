@@ -19,6 +19,24 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  oscam_config:
+    name: oscam_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/oscam/oscam_config
+
+  synclounge_config:
+    name: synclounge_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/synclounge/synclounge_config
+
   jellyseer_config:
     name: jellyseer_config
     driver: local
