@@ -19,6 +19,7 @@ COMPOSE_FILES=(
 	jellyseer
 	kdenlive
 	kometa
+	gimp
 	lidarr
 	lollypop
 	lychee
@@ -40,9 +41,11 @@ COMPOSE_FILES=(
 	spotube
 	synclounge
 	tautulli
+	krita
 	tvheadend
 	tvs-server
 	vlc
+	rawtherapee
 	webgrabplus
 	your_spotify
 )
@@ -61,6 +64,30 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "rawtherapee" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "gimp" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "krita" ]]; then
 
 		FOLDERS=(
 			"config"

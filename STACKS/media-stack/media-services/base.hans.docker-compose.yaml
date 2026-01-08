@@ -19,6 +19,33 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  krita_config:
+    name: krita_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/krita/krita_config
+
+  rawtherapee_config:
+    name: rawtherapee_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/rawtherapee/rawtherapee_config
+
+  gimp_config:
+    name: gimp_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/gimp/gimp_config
+
   digikam_config:
     name: digikam_config
     driver: local
