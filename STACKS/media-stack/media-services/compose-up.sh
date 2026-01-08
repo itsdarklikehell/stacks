@@ -15,7 +15,6 @@ COMPOSE_FILES=(
 	doplarr
 	emby
 	emby-wrapped
-	freshrss
 	gimp
 	handbrake
 	htpcmanager
@@ -68,14 +67,6 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
-
-		FOLDERS=(
-			"config"
-		)
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "freshrss" ]]; then
 
 		FOLDERS=(
 			"config"

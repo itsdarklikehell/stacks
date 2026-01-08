@@ -19,14 +19,23 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
-  freshrss_config:
-    name: freshrss_config
+  emby-wrapped_config:
+    name: emby-wrapped_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/freshrss/freshrss_config
+      device: ../../../DATA/media-stack/emby-wrapped/emby-wrapped_config
+
+  blockbusterr_config:
+    name: blockbusterr_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/blockbusterr/blockbusterr_config
 
   krita_config:
     name: krita_config

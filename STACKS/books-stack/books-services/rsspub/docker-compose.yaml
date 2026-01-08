@@ -37,7 +37,7 @@ services:
       books-services:
 
     ports:
-      - ${PORT:-5000}:5000
+      - ${PORT:-5885}:5000
 
     env_file:
       - ./rsspub/.env

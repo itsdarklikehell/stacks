@@ -10,6 +10,7 @@ COMPOSE_FILES=(
 	calibre
 	mylar3
 	cops
+	freshrss
 	rsspub
 	ubooquity
 )
@@ -35,6 +36,14 @@ function SETUP_FOLDERS() {
 			"data"
 			"library"
 		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "freshrss" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
 	fi
 
 	if [[ ${SERVICE_NAME} == "ubooquity" ]]; then

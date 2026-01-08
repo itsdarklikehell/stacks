@@ -12,16 +12,12 @@ services:
       - homarr-app=true
       - homarr
 
-    secrets:
-      - INITIAL_ADMIN_EMAIL
-      - INITIAL_ADMIN_PASSWORD
-
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - JWT_SECRET=changeme_in_production_please
+      - JWT_SECRET=2cc18cd7-66e3-48b0-8975-75d4edda8fe5
       - RUST_LOG=info
 
     volumes:
@@ -42,8 +38,8 @@ services:
 
     ports:
       # These ports are in format <host-port>:<container-port>
-      - 5885:81 # Admin Web Port
-      - ${PORT:-5223}:8080 # Public HTTP Port
+      - 3875:81 # Admin Web Port
+      - ${PORT:-5502}:8080 # Public HTTP Port
       - 5700:443 #  Public HTTPS Port
 
     env_file:

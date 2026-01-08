@@ -37,7 +37,7 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-9990}:9090
+      - ${PORT:-4328}:3000
 
     env_file:
       - ./cinephage/.env

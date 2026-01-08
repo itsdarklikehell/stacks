@@ -30,7 +30,7 @@ services:
 
     networks:
       host:
-      media-services:
+      books-services:
 
     ports:
       - ${PORT:-4400}:80

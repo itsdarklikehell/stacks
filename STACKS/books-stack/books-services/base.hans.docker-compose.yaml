@@ -35,6 +35,15 @@ volumes:
       o: bind
       device: /home/hans/Boeken
 
+  freshrss_config:
+    name: freshrss_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/freshrss/freshrss_config
+
   rsspub_config:
     name: rsspub_config
     driver: local

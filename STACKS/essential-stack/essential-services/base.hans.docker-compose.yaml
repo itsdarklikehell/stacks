@@ -28,6 +28,21 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/beszel/beszel_agent-data
 
+  pingora-proxy-manager_data:
+    name: pingora-proxy-manager_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pingora-proxy-manager/pingora-proxy-manager_data
+  pingora-proxy-manager_logs:
+    name: pingora-proxy-manager_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/pingora-proxy-manager/pingora-proxy-manager_logs
+
   habridge_config:
     name: habridge_config
     driver: local
