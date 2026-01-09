@@ -52,15 +52,11 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
-
     tty: true
 
-    # stdin_open: true
+    stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 1gb
 
     # healthcheck:
     #   test:

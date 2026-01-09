@@ -17,11 +17,11 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      # - DOCKER_MODS=linuxserver/mods:universal-package-install
-      # # - DOCKER_HOST=
-      # - INSTALL_PACKAGES=libfuse2|git|gdb
-      # - RESTART_APP=true
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
 
       - SETTINGS_ENCRYPTION_KEY=
 
@@ -40,19 +40,22 @@ services:
     hostname: ${NAME:-rsnapshot}
 
     # user: ${PUID:-1000}:${PGID:-1000}
+
     networks:
       host:
       backups-services:
 
-    env_file:
-      - ./rsnapshot/.env
-
     # ports:
     #   - ${PORT:-8200}:8200
 
-    # stdin_open: true
+    env_file:
+      - ./rsnapshot/.env
 
-    # shm_size: 1gb
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
 
     # healthcheck:
     # test:

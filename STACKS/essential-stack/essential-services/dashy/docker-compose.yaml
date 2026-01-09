@@ -17,11 +17,11 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      # - DOCKER_MODS=linuxserver/mods:universal-package-install
-      # # - DOCKER_HOST=
-      # - INSTALL_PACKAGES=libfuse2|git|gdb
-      # - RESTART_APP=true
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
 
       - NODE_ENV=production
       # - VUE_APP_ADMINPASSWORD=${VUE_APP_ADMINPASSWORD:-admin}
@@ -58,7 +58,7 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
-    tty: true
+    # tty: true
 
     # stdin_open: true
 

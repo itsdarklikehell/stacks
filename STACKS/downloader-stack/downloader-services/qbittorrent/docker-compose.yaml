@@ -20,11 +20,11 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
 
-      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      # - DOCKER_MODS=linuxserver/mods:universal-package-install
-      # # - DOCKER_HOST=
-      # - INSTALL_PACKAGES=libfuse2|git|gdb
-      # - RESTART_APP=true
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -67,9 +67,9 @@ services:
 
     tty: true
 
-    # stdin_open: true
+    stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 1gb
 
     # healthcheck:
     #   test:

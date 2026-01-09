@@ -55,9 +55,9 @@ services:
 
     tty: true
 
-    # stdin_open: true
+    stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 1gb
 
     # healthcheck:
     #   test: [CMD-SHELL, curl -f http://localhost:${SCANOPY_DAEMON_PORT:-60073}/api/health || exit 1,]

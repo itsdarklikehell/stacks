@@ -17,11 +17,11 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      # - DOCKER_MODS=linuxserver/mods:universal-package-install
-      # # - DOCKER_HOST=
-      # - INSTALL_PACKAGES=libfuse2|git|gdb
-      # - RESTART_APP=true
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
 
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_HOST=${SUBDOMAIN:-n8n}.${DOMAIN_NAME:-example.com}
@@ -61,9 +61,9 @@ services:
 
     tty: true
 
-    # stdin_open: true
+    stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 1gb
 
     # healthcheck:
     #   test:
