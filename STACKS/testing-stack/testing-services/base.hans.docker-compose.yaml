@@ -19,6 +19,164 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
+  retrom_data:
+    name: retrom_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_data
+  retrom_config:
+    name: retrom_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_config
+  retrom_roms:
+    name: retrom_roms
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_roms
+
+  gamevault_data:
+    name: gamevault_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_data
+  gamevault_files:
+    name: gamevault_files
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_files
+  gamevault_media:
+    name: gamevault_media
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_media
+
+  romm_resources:
+    name: romm_resources
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_resources
+  romm_redis_data:
+    name: romm_redis_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_redis_data
+  romm_library:
+    name: romm_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_library
+  romm_assets:
+    name: romm_assets
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_assets
+  romm_config:
+    name: romm_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_config
+
+  gameyfin_data:
+    name: gameyfin_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_data
+  gameyfin_database:
+    name: gameyfin_database
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_database
+  gameyfin_plugindata:
+    name: gameyfin_plugindata
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_plugindata
+  gameyfin_logs:
+    name: gameyfin_logs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_logs
+  gameyfin_games:
+    name: gameyfin_games
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_games
+
+  sunshine_config:
+    name: sunshine_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/sunshine/sunshine_config
+
+  gaseous-server_data:
+    name: gaseous-server_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gaseous-server/gaseous-server_data
+  gaseous-server_config:
+    name: gaseous-server_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gaseous-server/gaseous-server_config
+
   emulatorjs_data:
     name: emulatorjs_data
     driver: local
@@ -241,15 +399,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/testing-stack/rpcs3/rpcs3_config
-
-  steamos_config:
-    name: steamos_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/steamos/steamos_config
 
   scummvm_config:
     name: scummvm_config

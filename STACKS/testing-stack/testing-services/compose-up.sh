@@ -6,36 +6,41 @@ cd "$(dirname "$0")" || exit 1
 COMPOSE_FILES=(
 	azahar
 	citron
-	# code-server
+	code-server
 	dogwalk
 	dolphin
 	dosbox-staging
 	duckstation
+	emulatorjs
+	flaresolverr
 	flycast
+	gamevault
+	gameyfin
+	gaseous-server
 	# gzdoom
 	healthchecks
+	linux-gsm-cs2
 	luanti
-	openttd
 	mame
 	melonds
 	modmanager
 	modrinth
+	# mpd
+	# mympd
+	openttd
+	owncast
 	pcsx2
-	# linux-gsm-cs2
+	pygotchi
 	retroarch
+	retrom
+	sunshine
+	romm
 	rpcs3
 	scummvm
-	emulatorjs
-	owncast
-	pygotchi
-	flaresolverr
-	# steamos
-	# vscodium
-	# vscodium-web
-	xemu
 	synctube
-	# mpd
-	mympd
+	vscodium
+	vscodium-web
+	xemu
 )
 
 function CREATE_FOLDERS() {
@@ -59,6 +64,14 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "sunshine" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+	fi
+
 	if [[ ${SERVICE_NAME} == "openttd" ]]; then
 
 		FOLDERS=(
@@ -69,6 +82,60 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "emulatorjs" ]]; then
+
+		FOLDERS=(
+			"config"
+			"data"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "retrom" ]]; then
+
+		FOLDERS=(
+			"config"
+			"roms"
+			"data"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "gamevault" ]]; then
+
+		FOLDERS=(
+			"files"
+			"media"
+			"data"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "romm" ]]; then
+
+		FOLDERS=(
+			"config"
+			"resources"
+			"redis_data"
+			"library"
+			"assets"
+			"data"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "gameyfin" ]]; then
+
+		FOLDERS=(
+			"database"
+			"data"
+			"plugindata"
+			"logs"
+			"games"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "gaseous-server" ]]; then
 
 		FOLDERS=(
 			"config"
