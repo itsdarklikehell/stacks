@@ -44,7 +44,7 @@ services:
       - 7007:7007
 
     env_file:
-      - ./emby/.env
+      - ./dozzle/.env
 
     healthcheck:
       test: [CMD, /dozzle, healthcheck]

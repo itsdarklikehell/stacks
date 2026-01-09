@@ -361,9 +361,9 @@ echo ""
 SETUP_ESSENTIALS_STACK
 echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
 # echo ""
 # SETUP_CHAT_STACK
