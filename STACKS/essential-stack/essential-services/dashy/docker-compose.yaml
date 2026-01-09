@@ -17,10 +17,10 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
 
       - NODE_ENV=production
       # - VUE_APP_ADMINPASSWORD=${VUE_APP_ADMINPASSWORD:-admin}

@@ -21,10 +21,10 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
 
       # CORE CONFIGURATION (Required)
       - DATABASE_PATH=${DATABASE_PATH:-/data/portracker.db}
@@ -164,10 +164,10 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
 
       # Only allow read operations Portracker needs
       - CONTAINERS=1

@@ -52,10 +52,10 @@ services:
       - WHISPER_PROVIDER=local
       - AGENT_TAVILY_API_KEY=
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
 
     cap_add:
       - SYS_NICE
