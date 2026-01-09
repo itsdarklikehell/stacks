@@ -19,10 +19,11 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-calibre
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
+
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

@@ -16,9 +16,15 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
       - AUTOPULSE__APP__DATABASE_URL=postgres://postgres:autopulse@postgresql/autopulse
       - PORT=${PORT:-2885}
-      - DEFAULT_SERVER_URL=http://0.0.0.0:2885
+      - DEFAULT_SERVER_URL=http://${IP_ADDRESS:-192.168.1.2}:2885
       # - FORCE_AUTH=true
       # - FORCE_DEFAULT_SERVER_URL=true
       # - FORCE_PASSWORD=true
@@ -51,6 +57,8 @@ services:
     tty: true
 
     stdin_open: true
+
+    shm_size: 1gb
 
     healthcheck:
       test: CMD curl -f http://localhost:${PORT:-2885}/health

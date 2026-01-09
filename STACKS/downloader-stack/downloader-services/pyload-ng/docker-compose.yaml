@@ -19,10 +19,10 @@ services:
       # optional
       - DELUGE_LOGLEVEL=error
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
 
     volumes:
       # - /etc/localtime:/etc/localtime:ro
