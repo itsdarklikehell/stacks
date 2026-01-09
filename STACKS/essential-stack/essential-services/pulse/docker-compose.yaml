@@ -38,6 +38,12 @@ services:
     env_file:
       - ./pulse/.env
 
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
     healthcheck:
       test:
         [

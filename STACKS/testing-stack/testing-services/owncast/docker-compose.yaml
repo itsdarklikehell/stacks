@@ -22,7 +22,6 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro

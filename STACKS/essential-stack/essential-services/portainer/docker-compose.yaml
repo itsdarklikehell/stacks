@@ -59,6 +59,8 @@ services:
 
     stdin_open: true
 
+    shm_size: 1gb
+
     deploy:
       replicas: 1
 

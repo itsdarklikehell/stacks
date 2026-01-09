@@ -17,7 +17,12 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      # - PORT=${PORT:-12393}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
       # - PRTY_CONFIG=/cfg/config.conf
       - LD_PRELOAD=/usr/lib/libmimalloc-secure.so.NOPE
       - PYTHONUNBUFFERED=1
@@ -65,6 +70,8 @@ services:
     tty: true
 
     stdin_open: true
+
+    shm_size: 1gb
 
     stop_grace_period: 15s # thumbnailer is allowed to continue finishing up for 10s after the shutdown signal
 

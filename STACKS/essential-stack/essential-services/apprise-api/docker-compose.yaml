@@ -26,6 +26,10 @@ services:
       - APPRISE_ATTACH_SIZE=0
 
     volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - apprise-api_config:/config
       # optional:
       - apprise-api_attachments:/attach
@@ -41,6 +45,22 @@ services:
 
     env_file:
       - ./apprise-api/.env
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
 
     # healthcheck:
     #   test:

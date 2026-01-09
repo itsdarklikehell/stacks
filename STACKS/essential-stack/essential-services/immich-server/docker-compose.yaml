@@ -25,7 +25,10 @@ services:
       - RESTART_APP=true
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
       - /dev/bus/usb:/dev/bus/usb
       - /usr/lib/wsl:/usr/lib/wsl
 
@@ -59,6 +62,7 @@ services:
     # - 44 # Replace this number with the number you found with getent group video
     # - 992 # Replace this number with the number you found with getent group render
 
+    runtime: nvidia
     deploy:
       replicas: 1
       resources:
@@ -67,6 +71,33 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
 
   immich-machine-learning:
     container_name: immich-machine-learning
@@ -106,12 +137,11 @@ services:
     healthcheck:
       disable: false
 
-    runtime: nvidia
-
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
 
+    runtime: nvidia
     deploy:
       replicas: 1
       resources:
@@ -121,9 +151,37 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
   redis:
     container_name: immich-redis
     image: docker.io/valkey/valkey:9@sha256:fb8d272e529ea567b9bf1302245796f21a2672b8368ca3fcb938ac334e613c8f
+
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
@@ -150,6 +208,7 @@ services:
   database:
     container_name: immich-postgres
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true

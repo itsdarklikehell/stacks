@@ -47,8 +47,19 @@ services:
     env_file:
       - ./dashy/.env
 
+    runtime: nvidia
     deploy:
       replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
 
     # healthcheck:
     #   test: CMD curl -f http://localhost{PORT:-8383}/health
