@@ -19,6 +19,11 @@ services:
       - PORT=${PORT:-8096}
       - JELLYFIN_PublishedServerUrl=http://${IP_ADDRESS:-192.168.1.2}
 
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
