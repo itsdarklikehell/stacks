@@ -69,6 +69,8 @@ services:
 
     stdin_open: true
 
+    shm_size: 1gb
+
     # healthcheck:
     #   test:
     #     [

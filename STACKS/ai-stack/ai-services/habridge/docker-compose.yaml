@@ -26,6 +26,7 @@ services:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
+
       - /dev/bus/usb:/dev/bus/usb
       - /dev/video0:/dev/video0
 
@@ -46,6 +47,16 @@ services:
       - ${PORT:-6013}:8080
       - 50000:50000
 
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
+
     # depends_on:
     #   - faster-whisper-gpu
     #   - wyoming-piper
@@ -53,6 +64,8 @@ services:
     tty: true
 
     stdin_open: true
+
+    shm_size: 1gb
 
     # healthcheck:
     # test:

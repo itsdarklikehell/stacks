@@ -77,6 +77,8 @@ services:
 
     stdin_open: true
 
+    shm_size: 1gb
+
     # healthcheck:
     #   test: [CMD, curl, -f, http://${IP_ADDRESS:-192.168.1.2}:11434/api/tags]
     #   interval: 10s

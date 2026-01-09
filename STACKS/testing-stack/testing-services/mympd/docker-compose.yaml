@@ -17,6 +17,7 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+
       # - MYMPD_SSL_SAN="DNS:<host fqdn>"
       # - MYMPD_MYMPD_URI=http://<host fqdn>:8080
       - MYMPD_MPD_HOST=${IP_ADDRESS:-192.168.1.2}

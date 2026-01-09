@@ -23,17 +23,6 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      # The container is set by default to start a fresh game every time you restart the container. You can, however, change this behaviour with the loadgame envvar:
-      # - loadgame={false|last-autosave|exit|(savename)}
-      # false: standard behaviour, just start a new game
-      # last-autosave: load the last chronological autosave
-      # exit: try to load autosave/exit.sav, otherwise default to a new game
-      # (savename): full name of a save file in config/saves
-      # - loadgame=false
-      # - loadgame=last-autosave
-      # - loadgame=exit
-      # - loadgame=savegame.save
-
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
@@ -56,15 +45,15 @@ services:
     # command:
     #   - -iwad /usr/share/pygotchi/doom2.wad -file /usr/share/pygotchi/DOOM_Infinite_098_PP2_H3.pk3
 
-    # runtime: nvidia
-    # deploy:
-    #   replicas: 1
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: all
-    #           capabilities: [gpu, compute, video, graphics, utility]
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
 
     # depends_on:
     #   - faster-whisper-gpu

@@ -48,6 +48,8 @@ services:
 
     stdin_open: true
 
+    shm_size: 1gb
+
     # healthcheck:
     #   test: [CMD, /beszel, healthcheck]
     #   interval: 3s
