@@ -18,7 +18,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - PORT=${PORT:-8483}
-      # optional
+
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       - DOCKER_MODS=linuxserver/mods:universal-calibre
       - DOCKER_MODS=linuxserver/mods:universal-package-install

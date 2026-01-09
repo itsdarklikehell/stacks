@@ -14,11 +14,11 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - SETTINGS_ENCRYPTION_KEY=
 
-      # optional
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       - DOCKER_MODS=linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
+
       # - CLI_ARGS=
       # - DUPLICATI__WEBSERVICE_PASSWORD=
 
