@@ -1,7 +1,6 @@
 services:
   dozzle-agent:
     image: amir20/dozzle:latest
-    command: agent
     container_name: dozzle-agent
     restart: ${RESTART:-unless-stopped}
 
@@ -14,19 +13,38 @@ services:
       - homarr
 
     environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
       - DOZZLE_HOSTNAME=${REMOTE_HOSTNAME:-localhost}
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    hostname: ${NAME:-dozzle-agent}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    command: agent
 
     networks:
       host:
       essential-services:
 
-    hostname: ${NAME:-dozzle-agent}
-
     ports:
       - 7007:7007
+
+    env_file:
+      - ./emby/.env
 
     healthcheck:
       test: [CMD, /dozzle, healthcheck]
@@ -34,6 +52,33 @@ services:
       retries: 5
       start_period: 5s
       start_interval: 5s
+
+    tty: true
+
+    stdin_open: true
+
+    shm_size: 1gb
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
 
   dozzle-ui:
     image: ${IMAGE:-ghcr.io/amir20/dozzle:latest}
@@ -52,7 +97,13 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - PORT=${PORT:-8082}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
       # - DOZZLE_MODE=swarm
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true

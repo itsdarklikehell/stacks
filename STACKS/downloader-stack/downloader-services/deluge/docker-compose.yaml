@@ -20,7 +20,7 @@ services:
       - DELUGE_LOGLEVEL=error
 
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
@@ -61,10 +61,6 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
-
-    # depends_on:
-    #   - faster-whisper-gpu
-    #   - wyoming-piper
 
     tty: true
 
