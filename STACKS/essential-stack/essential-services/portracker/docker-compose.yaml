@@ -23,6 +23,7 @@ services:
 
       # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # # - DOCKER_HOST=
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 
@@ -66,7 +67,7 @@ services:
       # - DEBUG=${DEBUG:-true}
 
     volumes:
-      # - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
 
       # Required: Docker socket access for container discovery
@@ -166,6 +167,7 @@ services:
 
       # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # # - DOCKER_HOST=
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 

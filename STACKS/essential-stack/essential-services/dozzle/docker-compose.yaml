@@ -61,7 +61,7 @@ services:
       - DOZZLE_HOSTNAME=${REMOTE_HOSTNAME:-localhost}:7007
 
     volumes:
-      # - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 

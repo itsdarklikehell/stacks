@@ -20,7 +20,7 @@ services:
       # - ORIGIN=http://10.99.0.242:3000
 
     volumes:
-      # - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
