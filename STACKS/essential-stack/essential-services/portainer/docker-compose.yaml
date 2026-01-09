@@ -57,7 +57,7 @@ services:
 
     tty: true
 
-    stdin_open: true
+    # stdin_open: true
 
     # shm_size: 1gb
 
@@ -123,7 +123,7 @@ services:
 
   #   tty: true
 
-  #   stdin_open: true
+  #   # stdin_open: true
 
   #   deploy:
   #     replicas: 1

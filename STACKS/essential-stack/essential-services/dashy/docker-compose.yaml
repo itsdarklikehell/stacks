@@ -59,7 +59,7 @@ services:
 
     tty: true
 
-    stdin_open: true
+    # stdin_open: true
 
     # healthcheck:
     #   test: CMD curl -f http://localhost{PORT:-8383}/health

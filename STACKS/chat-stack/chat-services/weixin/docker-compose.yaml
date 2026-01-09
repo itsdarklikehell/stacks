@@ -1,10 +1,16 @@
 services:
   weixin:
     image: lscr.io/linuxserver/weixin:latest
-    container_name: weixin
+    container_name: ${NAME:-weixin}
+    restart: ${RESTART:-unless-stopped}
 
-    volumes:
-      - weixin_config:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -16,6 +22,21 @@ services:
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - weixin_config:/config
+
+    hostname: ${NAME:-weixin}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      chat-services:
+
     env_file:
       - ./weixin/.env
 
@@ -23,10 +44,29 @@ services:
       - ${PORT:-4248}:3000
       - 4412:3001
 
+    tty: true
+
+    # stdin_open: true
+
     # shm_size: 1gb
 
-    networks:
-      host:
-      chat-services:
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
-    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

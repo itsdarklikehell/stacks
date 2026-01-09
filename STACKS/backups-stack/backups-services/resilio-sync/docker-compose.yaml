@@ -1,12 +1,16 @@
 services:
   resilio-sync:
     image: lscr.io/linuxserver/resilio-sync:latest
-    container_name: resilio-sync
+    container_name: ${NAME:-resilio-sync}
+    restart: ${RESTART:-unless-stopped}
 
-    volumes:
-      - resilio-sync_config:/config
-      - resilio-sync_downloads:/downloads
-      - resilio-sync_data:/sync
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -18,17 +22,53 @@ services:
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 
-    env_file:
-      - ./resilio-sync/.env
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
-    ports:
-      - ${PORT:-4075}:8888
-      - 55555:55555
+      - resilio-sync_config:/config
+      - resilio-sync_downloads:/downloads
+      - resilio-sync_data:/sync
 
-    # shm_size: 1gb
+    hostname: ${NAME:-resilio-sync}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
       backups-services:
 
-    restart: unless-stopped
+    ports:
+      - ${PORT:-4075}:8888
+      - 55555:55555
+
+    env_file:
+      - ./resilio-sync/.env
+
+    tty: true
+
+    # stdin_open: true
+
+    # shm_size: 1gb
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

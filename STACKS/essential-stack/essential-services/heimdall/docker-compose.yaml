@@ -64,7 +64,7 @@ services:
               capabilities: [gpu, compute, video, graphics, utility]
     tty: true
 
-    stdin_open: true
+    # stdin_open: true
 
     # shm_size: 1gb
 

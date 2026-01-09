@@ -1,15 +1,27 @@
 services:
   mastodon:
     image: lscr.io/linuxserver/mastodon:latest
-    container_name: mastodon
+    container_name: ${NAME:-mastodon}
+    restart: ${RESTART:-unless-stopped}
 
-    volumes:
-      - mastodon_config:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
       - LOCAL_DOMAIN=example.com
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -55,6 +67,21 @@ services:
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - mastodon_config:/config
+
+    hostname: ${NAME:-mastodon}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      chat-services:
+
     env_file:
       - ./mastodon/.env
 
@@ -65,10 +92,29 @@ services:
       # optional
       - 9394:9394
 
+    tty: true
+
+    # stdin_open: true
+
     # shm_size: 1gb
 
-    networks:
-      host:
-      chat-services:
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
-    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

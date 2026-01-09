@@ -1,22 +1,16 @@
 services:
   kasm:
     image: lscr.io/linuxserver/kasm:latest
-    container_name: kasm
+    container_name: ${NAME:-kasm}
+    restart: ${RESTART:-unless-stopped}
 
-    privileged: true
-
-    # optional
-    # security_opt:
-    #   #   - apparmor:rootlesskit
-    #   - apparmor:unconfirmed
-
-    volumes:
-      - kasm_config:/opt
-
-      # optional
-      - kasm_profiles:/profiles
-      - /dev/input:/dev/input
-      - /run/udev/data:/run/udev/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -33,6 +27,34 @@ services:
       # - DOCKER_HUB_USERNAME=USER
       # - DOCKER_HUB_PASSWORD=PASS
       # - DOCKER_MTU=1500
+
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - kasm_config:/opt
+
+      # optional
+      - kasm_profiles:/profiles
+      - /dev/input:/dev/input
+      - /run/udev/data:/run/udev/data
+
+    hostname: ${NAME:-kasm}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    privileged: true
+
+    # optional
+    # security_opt:
+    #   #   - apparmor:rootlesskits
+    #   - apparmor:unconfirmed
+
+    networks:
+      host:
+      desktop-services:
+
     env_file:
       - ./kasm/.env
 
@@ -40,10 +62,29 @@ services:
       - ${PORT:-5947}:3000
       - 4398:4398
 
+    tty: true
+
+    # stdin_open: true
+
     # shm_size: 1gb
 
-    networks:
-      host:
-      desktop-services:
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
-    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

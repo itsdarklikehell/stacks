@@ -2,9 +2,15 @@ services:
   rustdesk:
     image: lscr.io/linuxserver/rustdesk:latest
     container_name: rustdesk
+    restart: ${RESTART:-unless-stopped}
 
-    volumes:
-      - rustdesk_config:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
 
     environment:
       - PUID=${PUID:-1000}
@@ -16,6 +22,17 @@ services:
       # - INSTALL_PACKAGES=libfuse2|git|gdb
       # - RESTART_APP=true
 
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - rustdesk_config:/config
+
+    networks:
+      host:
+      desktop-services:
+
     env_file:
       - ./rustdesk/.env
 
@@ -23,10 +40,29 @@ services:
       - ${PORT:-5571}:3000
       - 4327:4398
 
+    tty: true
+
+    # stdin_open: true
+
     # shm_size: 1gb
 
-    networks:
-      host:
-      desktop-services:
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-8123}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
 
-    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
