@@ -23,7 +23,7 @@ services:
       - ${PORT:-3188}:3000
       - 3938:3001
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:

@@ -26,7 +26,7 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:

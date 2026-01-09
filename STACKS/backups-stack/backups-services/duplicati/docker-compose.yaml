@@ -28,7 +28,7 @@ services:
     ports:
       - ${PORT:-8200}:8200
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:

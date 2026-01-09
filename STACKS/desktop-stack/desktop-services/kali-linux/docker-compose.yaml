@@ -25,7 +25,7 @@ services:
       - ${PORT:-4824}:3000
       - 5839:301
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:

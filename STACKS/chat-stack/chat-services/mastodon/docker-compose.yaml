@@ -65,7 +65,7 @@ services:
       # optional
       - 9394:9394
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:

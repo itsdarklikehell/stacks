@@ -23,7 +23,7 @@ services:
       - ${PORT:-4248}:3000
       - 4412:3001
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     networks:
       host:
