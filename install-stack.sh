@@ -400,62 +400,62 @@ export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-if command -v ollama >/dev/null 2>&1; then
-	echo ""
-	PULL_MODELS # >/dev/null 2>&1 &
-	echo ""
-elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-		echo ""
-		PULL_MODELS # >/dev/null 2>&1 &
-		echo ""
-	fi
-else
-	echo "Neither command ollama nor the container for ollama exists."
-fi
+# if command -v ollama >/dev/null 2>&1; then
+# 	echo ""
+# 	PULL_MODELS # >/dev/null 2>&1 &
+# 	echo ""
+# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+# 		echo ""
+# 		PULL_MODELS # >/dev/null 2>&1 &
+# 		echo ""
+# 	fi
+# else
+# 	echo "Neither command ollama nor the container for ollama exists."
+# fi
 
-echo "Installation should be complete now.."
-echo ""
-echo "To start a browser opening tabs with all of the stacks services:"
-echo "run: 'start_browser.sh'"
-echo ""
-echo "to start ComfyUI's service:"
-echo "run: 'start_comfyui.sh'"
-echo ""
-echo "to start ComfyUIMini's service:"
-echo "run: 'start_comfyui-mini.sh'"
-echo ""
-echo "to start CushyStudio's service:"
-echo "run: 'start_cushystudio.sh'"
-echo ""
-echo "to start Openllm-Vtuber's service:"
-echo "run: 'start_ollmvt.sh'"
-echo ""
-echo "to pull the default set of models into ollama:"
-echo "run: 'pull_models.sh'"
-echo ""
-echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
-echo "run: 'start_deduper.sh'"
-echo ""
-echo "Alternatively, you should now be able to use the ollama cli run/pull your own models as normal i.e."
-echo "run: 'ollama pull llama3.2:latest'"
-echo "or: 'ollama run llama3.2:latest --verbose' etc."
-echo ""
-echo "To make this alias permanent you can add:"
-echo "alias ollama='docker exec -it ollama ollama'"
-echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
-echo ""
-echo ""
-echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bash_aliases"
-echo "source ~/.bash_aliases"
-echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bashrc"
-echo "source ~/.bashrc"
-echo ""
-echo ""
-echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
+# echo "Installation should be complete now.."
+# echo ""
+# echo "To start a browser opening tabs with all of the stacks services:"
+# echo "run: 'start_browser.sh'"
+# echo ""
+# echo "to start ComfyUI's service:"
+# echo "run: 'start_comfyui.sh'"
+# echo ""
+# echo "to start ComfyUIMini's service:"
+# echo "run: 'start_comfyui-mini.sh'"
+# echo ""
+# echo "to start CushyStudio's service:"
+# echo "run: 'start_cushystudio.sh'"
+# echo ""
+# echo "to start Openllm-Vtuber's service:"
+# echo "run: 'start_ollmvt.sh'"
+# echo ""
+# echo "to pull the default set of models into ollama:"
+# echo "run: 'pull_models.sh'"
+# echo ""
+# echo "If you have a lot of lint/old-files/duplicates and want to clean/deduplicate your DATA folders."
+# echo "run: 'start_deduper.sh'"
+# echo ""
+# echo "Alternatively, you should now be able to use the ollama cli run/pull your own models as normal i.e."
+# echo "run: 'ollama pull llama3.2:latest'"
+# echo "or: 'ollama run llama3.2:latest --verbose' etc."
+# echo ""
+# echo "To make this alias permanent you can add:"
+# echo "alias ollama='docker exec -it ollama ollama'"
+# echo "to your ~/.bashrc and/or ~/.bash_aliases and source those files like so:"
+# echo ""
+# echo ""
+# echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bash_aliases"
+# echo "source ~/.bash_aliases"
+# echo "echo \"alias ollama='docker exec -it ollama ollama'\" >> ~/.bashrc"
+# echo "source ~/.bashrc"
+# echo ""
+# echo ""
+# echo "Have fun (de)generating those lovely stories, chats, coding projects, images and (ahem) other media and such..."
 
-echo ""
-START_BROWSER >/dev/null 2>&1 &
-echo ""
+# # echo ""
+# # START_BROWSER >/dev/null 2>&1 &
+# # echo ""
 
-"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+# # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
