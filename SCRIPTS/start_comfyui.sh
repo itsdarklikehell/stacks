@@ -320,7 +320,7 @@ function LOCAL_SETUP() {
 		else
 			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
 		fi
-		
+
 		uv run comfy-cli --install-completion
 
 	fi

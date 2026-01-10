@@ -993,7 +993,7 @@ function CLONE_STRUDEL() {
 		git clone --recursive https://codeberg.org/uzu/strudel.git strudel
 		cd strudel || exit 1
 		pnpm i
-		# pnpm dev	
+		# pnpm dev
 		npm install -g strudel-cli
 	else
 		echo "Checking strudel for updates"
