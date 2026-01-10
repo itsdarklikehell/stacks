@@ -13,6 +13,7 @@ function INSTALL_DRIVERS() {
 
 		wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
 		sudo dpkg -i cuda-keyring_1.1-1_all.deb
+		rm cuda-keyring_1.1-1_all.deb
 
 		# check if curl is installed, if not install it
 		if ! command -v curl &>/dev/null; then
