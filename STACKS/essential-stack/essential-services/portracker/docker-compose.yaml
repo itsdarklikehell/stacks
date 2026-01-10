@@ -206,7 +206,7 @@ services:
 
     stdin_open: true
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     ports:
       - 2375:2375

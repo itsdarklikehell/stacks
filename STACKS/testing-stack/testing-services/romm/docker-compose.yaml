@@ -77,7 +77,7 @@ services:
 
     stdin_open: true
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     # healthcheck:
     #   test:
@@ -176,7 +176,7 @@ services:
 
     stdin_open: true
 
-    shm_size: 1gb
+    # shm_size: 1gb
 
     healthcheck:
       test: [CMD, healthcheck.sh, --connect, --innodb_initialized]

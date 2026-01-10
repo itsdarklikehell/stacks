@@ -12,7 +12,7 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="true"                                                            # false, true/normal, all
+export PRUNE="true"                                                             # false, true/normal, all
 export BUILDING="true"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
@@ -357,37 +357,37 @@ echo ""
 SETUP_AI_STACK
 echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
-# echo ""
-# SETUP_CHAT_STACK
-# echo ""
+echo ""
+SETUP_CHAT_STACK
+echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
-# echo ""
-# SETUP_SDR_STACK
-# echo ""
+echo ""
+SETUP_SDR_STACK
+echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
-# echo ""
-# SETUP_DESKTOP_STACK
-# echo ""
+echo ""
+SETUP_DESKTOP_STACK
+echo ""
 
-# echo ""
-# SETUP_TESTING_STACK
-# echo ""
+echo ""
+SETUP_TESTING_STACK
+echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK
@@ -400,19 +400,19 @@ export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-# if command -v ollama >/dev/null 2>&1; then
-# 	echo ""
-# 	PULL_MODELS # >/dev/null 2>&1 &
-# 	echo ""
-# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-# 		echo ""
-# 		PULL_MODELS # >/dev/null 2>&1 &
-# 		echo ""
-# 	fi
-# else
-# 	echo "Neither command ollama nor the container for ollama exists."
-# fi
+if command -v ollama >/dev/null 2>&1; then
+	echo ""
+	PULL_MODELS # >/dev/null 2>&1 &
+	echo ""
+elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+		echo ""
+		PULL_MODELS # >/dev/null 2>&1 &
+		echo ""
+	fi
+else
+	echo "Neither command ollama nor the container for ollama exists."
+fi
 
 # echo "Installation should be complete now.."
 # echo ""
