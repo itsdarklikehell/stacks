@@ -47,8 +47,8 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-7040}:3000
-      - 7041:3001
+      - ${PORT:-4903}:3000
+      - 4903:3001
 
     env_file:
       - ./linux-gsm-cs2/.env

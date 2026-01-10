@@ -27,9 +27,9 @@ services:
       - DB_HOST=romm-database
       - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
       - DB_USER=romm-user # Should match MARIADB_USER in mariadb
-      - DB_PASSWD= # Should match MARIADB_PASSWORD in mariadb
+      - DB_PASSWD=romm # Should match MARIADB_PASSWORD in mariadb
       - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
-      - SCREENSCRAPER_USER= # These are the recommended metadata providers
+      - SCREENSCRAPER_USER=SgtStroopwafel # These are the recommended metadata providers
       - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
       - RETROACHIEVEMENTS_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
       - STEAMGRIDDB_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
@@ -55,7 +55,7 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-5198}:8080
+      - ${PORT:-4372}:8080
 
     env_file:
       - ./romm/.env
@@ -129,10 +129,10 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - MARIADB_ROOT_PASSWORD= # Use a unique, secure password
+      - MARIADB_ROOT_PASSWORD=romm # Use a unique, secure password
       - MARIADB_DATABASE=romm
       - MARIADB_USER=romm-user
-      - MARIADB_PASSWORD=
+      - MARIADB_PASSWORD=romm
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

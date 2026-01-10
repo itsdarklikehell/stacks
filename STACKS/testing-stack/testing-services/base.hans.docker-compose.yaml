@@ -19,6 +19,15 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
+  veloren-server_userdata:
+    name: veloren-server_userdata
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/veloren-server/veloren-server_userdata
+
   retrom_data:
     name: retrom_data
     driver: local

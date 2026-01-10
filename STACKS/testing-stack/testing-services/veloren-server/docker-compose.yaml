@@ -24,7 +24,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - RUST_LOG=debug,common::net=info
+      # - RUST_LOG=debug,common::net=info
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

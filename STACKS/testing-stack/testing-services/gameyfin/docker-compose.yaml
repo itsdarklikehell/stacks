@@ -47,7 +47,7 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-5198}:8080
+      - ${PORT:-3326}:8080
 
     env_file:
       - ./gameyfin/.env
