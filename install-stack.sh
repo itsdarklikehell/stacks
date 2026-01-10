@@ -23,8 +23,6 @@ export TWITCH_CLIENT_ID="your_client_id"                                        
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export AUTOSTART="disabled"                                                     # disabled, enabled
 
-
-
 function SETUP_ENV() {
 
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
