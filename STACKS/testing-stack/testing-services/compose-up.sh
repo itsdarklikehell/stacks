@@ -23,6 +23,7 @@ COMPOSE_FILES=(
 	linux-gsm-cs2
 	luanti
 	mame
+	pterodactyl
 	melonds
 	modmanager
 	modrinth
@@ -69,6 +70,18 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
+
+		FOLDERS=(
+			"database"
+			"var"
+      		"nginx"
+      		"certs"
+      		"logs"
 		)
 
 	fi
@@ -442,3 +455,4 @@ function BUILDING() {
 }
 
 BUILDING
+

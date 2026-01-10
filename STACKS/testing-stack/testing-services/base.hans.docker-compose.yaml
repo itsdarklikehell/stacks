@@ -53,6 +53,47 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/retrom/retrom_roms
 
+  pterodactyl_database:
+    name: pterodactyl_database
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_database
+  pterodactyl_var:
+    name: pterodactyl_var
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_var
+  pterodactyl_nginx:
+    name: pterodactyl_nginx
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_nginx
+  pterodactyl_certs:
+    name: pterodactyl_certs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_certs
+  pterodactyl_logs:
+    name: pterodactyl_logs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_logs
+
   gamevault_data:
     name: gamevault_data
     driver: local
