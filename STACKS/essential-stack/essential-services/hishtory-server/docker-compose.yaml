@@ -31,7 +31,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       # optional
       - ../../../DATA/essential-stack/hishtory-server/hishtory-server_data/history.db:/config/hishtory.db

@@ -34,7 +34,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       # - mympd_run:/run/mpd
       - ../../../DATA/testing-stack/mpd/mpd_configdir/mpd.conf:/etc/mpd.conf

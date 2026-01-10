@@ -20,7 +20,7 @@ services:
   #     - POST=0
 
   #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
   #   tmpfs:
   #     - /run
@@ -64,7 +64,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - modmanager_modcache:/modcache
 

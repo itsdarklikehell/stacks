@@ -32,7 +32,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - gamevault_files:/files # Path where config.yml is stored
       - gamevault_media:/media # Resources fetched from IGDB (covers, screenshots, etc.)
@@ -122,7 +122,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - gamevault_data:/var/lib/postgresql/data
 

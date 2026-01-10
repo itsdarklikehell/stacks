@@ -1,8 +1,8 @@
 services:
-  rpcs3:
+  veloren-server:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-lscr.io/linuxserver/rpcs3:latest}
-    container_name: ${NAME:-rpcs3}
+    image: ${IMAGE:-registry.gitlab.com/veloren/veloren/server-cli:weekly}
+    container_name: ${NAME:-veloren-server}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -24,14 +24,16 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
+      - RUST_LOG=debug,common::net=info
+
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - rpcs3_config:/config
+      - veloren-server_userdata:/userdata
 
-    hostname: ${NAME:-rpcs3}
+    hostname: ${NAME:-veloren-server}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -40,24 +42,25 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-7034}:3000
-      - 7035:3001
+      - 14004:14004
+      - 14005:14005
+      - 14006:14006/udp
 
     env_file:
-      - ./rpcs3/.env
+      - ./veloren-server/.env
 
     # command:
-    #   - -iwad /usr/share/rpcs3/doom2.wad -file /usr/share/rpcs3/DOOM_Infinite_098_PP2_H3.pk3
+    #   - -iwad /usr/share/veloren-server/doom2.wad -file /usr/share/veloren-server/DOOM_Infinite_098_PP2_H3.pk3
 
-    runtime: nvidia
-    deploy:
-      replicas: 1
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+    # runtime: nvidia
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -73,7 +76,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-3000}/api/health,
+    #       http://localhost:${PORT:-12393}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s
@@ -85,3 +88,21 @@ services:
       options:
         max-size: 10m
         max-file: 3
+
+  veloren-watchtower:
+    image: containrrr/watchtower
+    container_name: veloren-watchtower
+    hostname: veloren-watchtower
+    restart: ${RESTART:-unless-stopped}
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    command: --interval 30 --stop-timeout 130s --cleanup veloren-game-server-master
+
+
+
+    networks:
+      host:
+      testing-services:
+

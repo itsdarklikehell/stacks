@@ -38,7 +38,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/conf.yaml:/app/conf.yaml
       - ../../../DATA/openllm-vtuber-stack/Open-LLM-VTuber/avatars:/app/avatars

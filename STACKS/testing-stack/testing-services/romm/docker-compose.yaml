@@ -38,7 +38,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - romm_config:/romm/config # Path where config.yml is stored
       - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
@@ -137,7 +137,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
       - romm_resources:/romm/resources
       - romm_redis_data:/redis/data

@@ -186,7 +186,7 @@ services:
       - VOLUMES=0
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
 
     hostname: ${NAME:-portracker-docker-proxy}
 
