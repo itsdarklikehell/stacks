@@ -206,7 +206,9 @@ function INSTALL_DOCKER() {
 		# Post-installation steps:
 		# sudo groupadd docker
 		# sudo newgrp docker
+
 		sudo usermod -aG docker "${USER}"
+
 		if test -L "/var/lib/docker"; then
 			echo "/var/lib/docker is a symlink to a directory"
 			sudo ls -la "/var/lib/docker"

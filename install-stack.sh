@@ -12,8 +12,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="false"                                                            # false, true/normal, all
-export BUILDING="true"                                                          # false, true, force_rebuild
+export PRUNE="all"                                                            # false, true/normal, all
+export BUILDING="force_rebuild"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -22,6 +22,7 @@ export START_BROWSER="true"                                                     
 export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
 export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
 export AUTOSTART="disabled"                                                     # disabled, enabled
+
 
 function SETUP_ENV() {
 
@@ -336,11 +337,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-# echo ""
-# echo "Cloning repos"
-# echo ""
-# CLONE_REPOS # >/dev/null 2>&1
-# echo ""
+echo ""
+echo "Cloning repos"
+echo ""
+CLONE_REPOS # >/dev/null 2>&1
+echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -349,41 +350,41 @@ CREATE_SECRETS
 # SETUP_AUTOSTART
 # echo ""
 
-# echo ""
-# SETUP_DOWNLOADER_STACK
-# echo ""
+echo ""
+SETUP_DOWNLOADER_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
-# echo ""
-# SETUP_CHAT_STACK
-# echo ""
+echo ""
+SETUP_CHAT_STACK
+echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
-# echo ""
-# SETUP_SDR_STACK
-# echo ""
+echo ""
+SETUP_SDR_STACK
+echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
-# echo ""
-# SETUP_DESKTOP_STACK
-# echo ""
+echo ""
+SETUP_DESKTOP_STACK
+echo ""
 
 echo ""
 SETUP_TESTING_STACK

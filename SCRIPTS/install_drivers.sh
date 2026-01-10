@@ -11,6 +11,9 @@ function INSTALL_DRIVERS() {
 
 	if [[ ! -f "/usr/local/cuda/version.json" ]]; then
 
+		wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+		sudo dpkg -i cuda-keyring_1.1-1_all.deb
+
 		# check if curl is installed, if not install it
 		if ! command -v curl &>/dev/null; then
 			echo "curl could not be found, installing it..."
@@ -30,11 +33,17 @@ function INSTALL_DRIVERS() {
 			sudo apt modernize-sources -y
 		fi
 
-		# check if nvidia-cuda toolkit is installed, if not install it
-		if ! dpkg -l | grep -q cuda-drivers; then
-			echo "Installing cuda-drivers"
-			sudo apt update && sudo apt install -y cuda-drivers
+		# check if cuda is installed, if not install it
+		if ! dpkg -l | grep -q cuda; then
+			echo "Installing cuda"
+			sudo apt update && sudo apt install -y cuda
 		fi
+
+		# # check if nvidia-cuda toolkit is installed, if not install it
+		# if ! dpkg -l | grep -q cuda-drivers; then
+		# 	echo "Installing cuda-drivers"
+		# 	sudo apt update && sudo apt install -y cuda-drivers
+		# fi
 
 		# check if nvidia-container-toolkit is installed, if not install it
 		if ! dpkg -l | grep -q nvidia-container-toolkit; then
@@ -44,6 +53,7 @@ function INSTALL_DRIVERS() {
 
 		# check if nvidia-cuda-toolkit is installed, if not install it
 		if ! dpkg -l | grep -q nvidia-cuda-toolkit; then
+			echo "Installing nvidia-cuda-toolkit"
 			sudo apt update && sudo apt install -y nvidia-cuda-toolkit
 		fi
 
