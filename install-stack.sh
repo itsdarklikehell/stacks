@@ -24,6 +24,7 @@ export TWITCH_CLIENT_SECRET="your_client_secret"                                
 export AUTOSTART="disabled"                                                     # disabled, enabled
 
 
+
 function SETUP_ENV() {
 
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
