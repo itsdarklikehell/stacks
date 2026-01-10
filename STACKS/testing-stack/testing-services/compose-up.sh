@@ -14,6 +14,7 @@ COMPOSE_FILES=(
 	emulatorjs
 	flaresolverr
 	flycast
+	veloren-server
 	gamevault
 	gameyfin
 	gaseous-server
@@ -68,6 +69,14 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "veloren-server" ]]; then
+
+		FOLDERS=(
+			"userdata"
 		)
 
 	fi

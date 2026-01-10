@@ -100,8 +100,6 @@ services:
 
     command: --interval 30 --stop-timeout 130s --cleanup veloren-game-server-master
 
-
-
     networks:
       host:
       testing-services:
