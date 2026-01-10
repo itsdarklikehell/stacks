@@ -31,7 +31,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - veloren-server_userdata:/userdata
+      - veloren-server_userdata:/opt/userdata
 
     hostname: ${NAME:-veloren-server}
 
