@@ -142,10 +142,10 @@ services:
       - pterodactyl-cache
 
     volumes:
-      - pterodactyl_var/:/app/var/
-      - pterodactyl_nginx/:/etc/nginx/http.d/
-      - pterodactyl_certs/:/etc/letsencrypt/
-      - pterodactyl_logs/:/app/storage/logs
+      - pterodactyl_var:/app/var/
+      - pterodactyl_nginx:/etc/nginx/http.d/
+      - pterodactyl_certs:/etc/letsencrypt/
+      - pterodactyl_logs:/app/storage/logs
 
     environment:
       <<: [*panel-environment, *mail-environment]
