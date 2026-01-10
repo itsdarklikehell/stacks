@@ -134,8 +134,8 @@ services:
     restart: always
 
     ports:
-      - 80:80
-      - 443:443
+      - 3949:80
+      - 4340:443
 
     links:
       - pterodactyl-database
