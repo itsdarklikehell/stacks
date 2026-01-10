@@ -40,6 +40,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - 7007:7007
 
@@ -47,7 +48,7 @@ services:
       - ./dozzle/.env
 
     healthcheck:
-      test: [CMD, /dozzle, healthcheck]
+      test: [ CMD, /dozzle, healthcheck ]
       interval: 5s
       retries: 5
       start_period: 5s
@@ -130,6 +131,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-8082}:8080
 
@@ -147,7 +149,7 @@ services:
     # shm_size: 1gb
 
     healthcheck:
-      test: [CMD, /dozzle, healthcheck]
+      test: [ CMD, /dozzle, healthcheck ]
       interval: 3s
       timeout: 30s
       retries: 5

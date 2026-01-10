@@ -42,6 +42,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - ${PORT:-5039}:80
 
@@ -59,7 +60,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

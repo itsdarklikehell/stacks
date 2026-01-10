@@ -42,6 +42,7 @@ services:
       host:
       downloader-services:
 
+
     ports:
       - ${PORT:-8112}:8112
       - 6881:6881
@@ -60,7 +61,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

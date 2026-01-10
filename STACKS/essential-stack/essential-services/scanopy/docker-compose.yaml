@@ -49,6 +49,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${SCANOPY_DAEMON_PORT:-60073}:${SCANOPY_DAEMON_PORT:-60073}
 
@@ -116,14 +117,14 @@ services:
       host:
       essential-services:
 
-    # ports:
-    #   - ${SCANOPY_DAEMON_PORT:-60073}:${SCANOPY_DAEMON_PORT:-60073}
+        # ports:
+        #   - ${SCANOPY_DAEMON_PORT:-60073}:${SCANOPY_DAEMON_PORT:-60073}
 
     env_file:
       - ./scanopy/.env
 
     healthcheck:
-      test: [CMD-SHELL, pg_isready -U postgres]
+      test: [ CMD-SHELL, pg_isready -U postgres ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -197,6 +198,7 @@ services:
     networks:
       host:
       essential-services:
+
 
     ports:
       - "${SCANOPY_SERVER_PORT:-60072}:${SCANOPY_SERVER_PORT:-60072}"

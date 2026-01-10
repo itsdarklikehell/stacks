@@ -47,6 +47,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-7575}:7575
 

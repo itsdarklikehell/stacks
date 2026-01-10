@@ -42,6 +42,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-85}:80
       - ${PORT2:-444}:443
@@ -57,7 +58,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
     tty: true
 
     stdin_open: true

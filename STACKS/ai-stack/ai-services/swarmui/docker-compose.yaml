@@ -51,6 +51,7 @@ services:
       host:
       ai-services:
 
+
     ports:
       - ${PORT:-7801}:7801
 
@@ -68,7 +69,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

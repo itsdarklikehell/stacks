@@ -78,6 +78,7 @@ services:
       host:
       chat-services:
 
+
     env_file:
       - ./mastodon/.env
 

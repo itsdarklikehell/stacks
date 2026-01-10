@@ -76,6 +76,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - ${PORT:-7004}:8443
       - 7005:3001
@@ -91,7 +92,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

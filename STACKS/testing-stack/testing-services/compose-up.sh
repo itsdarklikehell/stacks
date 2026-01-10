@@ -79,9 +79,9 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"database"
 			"var"
-      		"nginx"
-      		"certs"
-      		"logs"
+			"nginx"
+			"certs"
+			"logs"
 		)
 
 	fi
@@ -455,4 +455,3 @@ function BUILDING() {
 }
 
 BUILDING
-

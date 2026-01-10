@@ -314,11 +314,11 @@ function LOCAL_SETUP() {
 		uv pip install comfy-cli
 
 		if [[ ${USER} == "hans" ]]; then
-			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 		elif [[ ${USER} == "rizzo" ]]; then
-			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 		else
-			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore  || true
+			yes | uv run comfy-cli --workspace "${COMFYUI_PATH}" --skip-prompt install --nvidia --restore || true
 		fi
 
 		uv run comfy-cli --install-completion

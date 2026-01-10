@@ -69,6 +69,7 @@ services:
       host:
       essential-services:
 
+
     env_file:
       - ./socket-proxy/.env
 

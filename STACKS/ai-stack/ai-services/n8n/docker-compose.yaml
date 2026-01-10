@@ -50,6 +50,7 @@ services:
       host:
       ai-services:
 
+
     ports:
       - ${PORT:-5678}:5678
 

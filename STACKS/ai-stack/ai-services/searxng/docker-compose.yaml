@@ -39,6 +39,7 @@ services:
       host:
       ai-services:
 
+
     ports:
       - ${PORT:-8081}:8080
 

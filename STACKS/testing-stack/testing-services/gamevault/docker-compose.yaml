@@ -45,6 +45,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - ${PORT:-3253}:8080
 
@@ -134,8 +135,8 @@ services:
       host:
       testing-services:
 
-    # ports:
-    #   - ${PORT:-5101}:5101
+        # ports:
+        #   - ${PORT:-5101}:5101
 
     env_file:
       - ./gamevault/.env

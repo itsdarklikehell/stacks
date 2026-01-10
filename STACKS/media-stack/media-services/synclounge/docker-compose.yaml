@@ -22,7 +22,6 @@ services:
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
-
       # optional
       # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1
 
@@ -41,6 +40,7 @@ services:
       host:
       media-services:
 
+
     ports:
       - ${PORT:-4551}:8088
 
@@ -55,7 +55,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

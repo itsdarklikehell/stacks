@@ -32,7 +32,6 @@ services:
       - airsonic-advanced_music:/music
       - airsonic-advanced_playlists:/playlists
       - airsonic-advanced_podcasts:/podcasts
-
       # optional
       # - airsonic-advanced_other media:/media
 
@@ -43,6 +42,7 @@ services:
     networks:
       host:
       media-services:
+
 
     ports:
       - ${PORT:-4040}:4040
@@ -58,7 +58,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

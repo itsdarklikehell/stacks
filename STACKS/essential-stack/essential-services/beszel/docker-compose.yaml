@@ -39,6 +39,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-8094}:8090
 
@@ -67,7 +68,6 @@ services:
       options:
         max-size: 10m
         max-file: 3
-
   # beszel-agent:
   #   image: henrygd/beszel-agent:latest
   #   container_name: beszel-agent

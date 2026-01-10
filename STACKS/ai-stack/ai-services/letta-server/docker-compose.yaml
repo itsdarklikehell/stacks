@@ -65,6 +65,7 @@ services:
       host:
       ai-services:
 
+
     ports:
       - ${PORT:-8283}:8283
       - 5432:5432

@@ -51,6 +51,7 @@ services:
       host:
       media-services:
 
+
     ports:
       - ${PORT:-5686}:80
 
@@ -65,7 +66,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

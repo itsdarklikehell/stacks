@@ -23,7 +23,6 @@ services:
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
-
       # - RUST_LOG=debug,common::net=info
 
     volumes:
@@ -40,6 +39,7 @@ services:
     networks:
       host:
       testing-services:
+
 
     ports:
       - 14004:14004
@@ -103,4 +103,5 @@ services:
     networks:
       host:
       testing-services:
+
 

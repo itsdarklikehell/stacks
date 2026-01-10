@@ -41,6 +41,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-3081}:5000
 

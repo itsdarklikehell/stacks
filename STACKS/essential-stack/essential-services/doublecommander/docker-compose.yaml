@@ -39,6 +39,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-5576}:3000
       - 4752:3001

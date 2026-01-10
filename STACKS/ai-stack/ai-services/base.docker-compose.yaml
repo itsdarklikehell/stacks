@@ -397,6 +397,7 @@ secrets:
     file: ../../../SECRETS/grafana_password
   GF_AUTH_GOOGLE_CLIENT_SECRET:
     file: ../../../SECRETS/grafana_google_client_secret
+
 #   mariadb_root_password:
 #     file: ../../../SECRETS/mariadb_root_password
 #   mariadb_password:

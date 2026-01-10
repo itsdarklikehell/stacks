@@ -42,6 +42,7 @@ services:
       host:
       books-services:
 
+
     ports:
       - ${PORT:-5885}:5000
 
@@ -56,7 +57,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

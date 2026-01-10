@@ -22,7 +22,6 @@ services:
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
-
       # - HOST_URL=IP|subdomain.doman.com #optional
 
     volumes:
@@ -40,6 +39,7 @@ services:
     networks:
       host:
       desktop-services:
+
 
     env_file:
       - ./sealskin/.env

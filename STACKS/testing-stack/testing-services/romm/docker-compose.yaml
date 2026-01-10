@@ -54,6 +54,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - ${PORT:-4372}:8080
 
@@ -153,8 +154,8 @@ services:
       host:
       testing-services:
 
-    # ports:
-    #   - ${PORT:-5101}:5101
+        # ports:
+        #   - ${PORT:-5101}:5101
 
     env_file:
       - ./romm/.env
@@ -179,7 +180,7 @@ services:
     # shm_size: 1gb
 
     healthcheck:
-      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      test: [ CMD, healthcheck.sh, --connect, --innodb_initialized ]
       start_period: 30s
       start_interval: 10s
       interval: 10s

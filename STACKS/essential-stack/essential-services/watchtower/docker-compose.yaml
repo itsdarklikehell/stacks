@@ -38,6 +38,7 @@ services:
       host:
       essential-services:
 
+
     env_file:
       - ./watchtower/.env
 

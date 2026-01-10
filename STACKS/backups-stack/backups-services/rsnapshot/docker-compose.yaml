@@ -24,7 +24,6 @@ services:
       - RESTART_APP=true
 
       - SETTINGS_ENCRYPTION_KEY=
-
       # - CLI_ARGS=
       # - rsnapshot__WEBSERVICE_PASSWORD=
 
@@ -45,8 +44,8 @@ services:
       host:
       backups-services:
 
-    # ports:
-    #   - ${PORT:-8200}:8200
+        # ports:
+        #   - ${PORT:-8200}:8200
 
     env_file:
       - ./rsnapshot/.env

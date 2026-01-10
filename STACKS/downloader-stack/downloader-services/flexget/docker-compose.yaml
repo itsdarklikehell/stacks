@@ -48,6 +48,7 @@ services:
       host:
       downloader-services:
 
+
     ports:
       - ${PORT:-5050}:5050
 
@@ -65,7 +66,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

@@ -39,6 +39,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - 47984-47990:47984-47990/tcp
       - 48010:48010

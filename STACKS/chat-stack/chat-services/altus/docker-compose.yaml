@@ -38,6 +38,7 @@ services:
       host:
       chat-services:
 
+
     env_file:
       - ./altus/.env
 

@@ -52,6 +52,7 @@ services:
       host:
       essential-services:
 
+
     ports:
       - ${PORT:-8096}:8096
       - 8920:8920

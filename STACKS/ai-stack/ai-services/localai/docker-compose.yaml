@@ -97,18 +97,18 @@ services:
       - comfyui_output:/output/comfyui_output
       - InvokeAI_output:/output/InvokeAI_output
       - localai_output:/output
-
       # # INPUTS
       # - anything-llm_input:/input/anything-llm_input
       # - comfyui_input:/input/comfyui_input
       # - InvokeAI_input:/input/InvokeAI_input
       # - localai_input:/input
 
-    # user: ${PUID:-1000}:${PGID:-1000}
+      # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
       host:
       ai-services:
+
 
     ports:
       - ${PORT:-8084}:8080
@@ -124,7 +124,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

@@ -31,7 +31,6 @@ services:
       - emby_config:/config
       - emby_tvseries:/data/tvshows
       - emby_movies:/data/movies
-
       # optional
       # - /opt/vc/lib:/opt/vc/lib
 
@@ -42,6 +41,7 @@ services:
     networks:
       host:
       media-services:
+
 
     ports:
       - ${PORT:-3184}:8096
@@ -70,7 +70,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

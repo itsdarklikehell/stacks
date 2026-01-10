@@ -50,7 +50,6 @@ services:
       - comfyui_output:/invokeai/outputs/comfyui_output
       - InvokeAI_output:/invokeai/outputs
       - localai_output:/invokeai/outputs/localai_output
-
       # # INPUTS
       # - anything-llm_input:invokeai/inputs/anything-llm_input
       # - comfyui_input:invokeai/inputs/comfyui_input
@@ -64,6 +63,7 @@ services:
     networks:
       host:
       ai-services:
+
 
     ports:
       - ${PORT:-9090}:9090
@@ -85,7 +85,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

@@ -46,6 +46,7 @@ services:
       host:
       ai-services:
 
+
     env_file:
       - ./homeassistant/.env
 

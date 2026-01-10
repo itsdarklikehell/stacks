@@ -36,6 +36,7 @@ services:
       host:
       testing-services:
 
+
     ports:
       - ${PORT:-8680}:8080
       - 1935:1935
@@ -51,12 +52,12 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     devices:
       - /dev/snd
 
-    command: [--enableVerboseLogging]
+    command: [ --enableVerboseLogging ]
 
     cap_add:
       - SYS_NICE

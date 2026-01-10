@@ -16,7 +16,6 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-
       # - ORIGIN=http://10.99.0.242:3000
 
     volumes:
@@ -36,6 +35,7 @@ services:
       host:
       media-services:
 
+
     ports:
       - ${PORT:-4328}:3000
 
@@ -50,7 +50,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 
