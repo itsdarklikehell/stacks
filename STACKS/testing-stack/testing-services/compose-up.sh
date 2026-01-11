@@ -15,7 +15,7 @@ COMPOSE_FILES=(
 	flaresolverr
 	flycast
 	veloren-server
-	gamevault
+	# gamevault
 	gameyfin
 	gaseous-server
 	# gzdoom
@@ -36,7 +36,7 @@ COMPOSE_FILES=(
 	retroarch
 	retrom
 	sunshine
-	romm
+	# romm
 	rpcs3
 	scummvm
 	synctube

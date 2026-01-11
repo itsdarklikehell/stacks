@@ -132,6 +132,7 @@ services:
   pterodactyl-panel:
     image: ghcr.io/pterodactyl/panel:latest
     restart: always
+    container_name: pterodactyl-panel
 
     ports:
       - 3949:80
