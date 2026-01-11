@@ -388,9 +388,9 @@ echo ""
 SETUP_GAMESERVER_STACK
 echo ""
 
-# echo ""
-# SETUP_MEDIA_STACK
-# echo ""
+echo ""
+SETUP_MEDIA_STACK
+echo ""
 
 # echo ""
 # SETUP_DESKTOP_STACK
