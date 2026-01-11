@@ -396,9 +396,9 @@ echo ""
 # SETUP_DESKTOP_STACK
 # echo ""
 
-# echo ""
-# SETUP_TESTING_STACK
-# echo ""
+echo ""
+SETUP_TESTING_STACK
+echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK
