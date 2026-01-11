@@ -19,56 +19,6 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/citron/citron_config
 
-  veloren-server_userdata:
-    name: veloren-server_userdata
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/veloren-server/veloren-server_userdata
-
-  pterodactyl_database:
-    name: pterodactyl_database
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_database
-  pterodactyl_var:
-    name: pterodactyl_var
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_var
-  pterodactyl_nginx:
-    name: pterodactyl_nginx
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_nginx
-  pterodactyl_certs:
-    name: pterodactyl_certs
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_certs
-  pterodactyl_logs:
-    name: pterodactyl_logs
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/pterodactyl/pterodactyl_logs
-
   emulatorjs_data:
     name: emulatorjs_data
     driver: local
@@ -252,15 +202,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/testing-stack/wolf/wolf_etc
-
-  linux-gsm-cs2_data:
-    name: linux-gsm-cs2_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/testing-stack/linux-gsm-cs2/linux-gsm-cs2_data
 
   openttd_config:
     name: openttd_config

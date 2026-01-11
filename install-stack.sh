@@ -323,6 +323,13 @@ function SETUP_DESKTOP_STACK() {
 
 }
 
+function SETUP_GAMESERVER_STACK() {
+
+	export STACK_NAME="gameserver"
+	INSTALL_STACK
+
+}
+
 echo "" # Install essential dependencies
 echo "Installing Drivers"
 echo ""
@@ -345,37 +352,41 @@ echo ""
 ### STACKS:
 CREATE_SECRETS
 
-# echo ""
-# SETUP_AUTOSTART
-# echo ""
+echo ""
+SETUP_AUTOSTART
+echo ""
 
-# echo ""
-# SETUP_DOWNLOADER_STACK
-# echo ""
+echo ""
+SETUP_DOWNLOADER_STACK
+echo ""
 
-# echo ""
-# SETUP_AI_STACK
-# echo ""
+echo ""
+SETUP_AI_STACK
+echo ""
 
-# echo ""
-# SETUP_ESSENTIALS_STACK
-# echo ""
+echo ""
+SETUP_ESSENTIALS_STACK
+echo ""
 
-# echo ""
-# SETUP_BACKUPS_STACK
-# echo ""
+echo ""
+SETUP_BACKUPS_STACK
+echo ""
 
-# echo ""
-# SETUP_CHAT_STACK
-# echo ""
+echo ""
+SETUP_CHAT_STACK
+echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
-# echo ""
-# SETUP_SDR_STACK
-# echo ""
+echo ""
+SETUP_SDR_STACK
+echo ""
+
+echo ""
+SETUP_GAMESERVER_STACK
+echo ""
 
 # echo ""
 # SETUP_MEDIA_STACK
@@ -385,9 +396,9 @@ CREATE_SECRETS
 # SETUP_DESKTOP_STACK
 # echo ""
 
-echo ""
-SETUP_TESTING_STACK
-echo ""
+# echo ""
+# SETUP_TESTING_STACK
+# echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK

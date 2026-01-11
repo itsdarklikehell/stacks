@@ -14,16 +14,13 @@ COMPOSE_FILES=(
 	emulatorjs
 	flaresolverr
 	flycast
-	veloren-server
 	# gamevault
 	gameyfin
 	gaseous-server
 	# gzdoom
 	healthchecks
-	linux-gsm-cs2
 	luanti
 	mame
-	pterodactyl
 	melonds
 	modmanager
 	modrinth
@@ -70,26 +67,6 @@ function SETUP_FOLDERS() {
 
 		FOLDERS=(
 			"config"
-		)
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
-
-		FOLDERS=(
-			"database"
-			"var"
-			"nginx"
-			"certs"
-			"logs"
-		)
-
-	fi
-
-	if [[ ${SERVICE_NAME} == "veloren-server" ]]; then
-
-		FOLDERS=(
-			"userdata"
 		)
 
 	fi
@@ -174,13 +151,6 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "linux-gsm-cs2" ]]; then
-
-		FOLDERS=(
-			"data"
-		)
-
-	fi
 
 	if [[ ${SERVICE_NAME} == "wolf" ]]; then
 
