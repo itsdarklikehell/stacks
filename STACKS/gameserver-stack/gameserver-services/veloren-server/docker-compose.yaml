@@ -38,7 +38,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 
     ports:
@@ -102,6 +102,6 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 

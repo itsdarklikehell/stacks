@@ -12,7 +12,7 @@ x-common:
     APP_SERVICE_AUTHOR: noreply@example.com
     # Uncomment the line below and set to a non-empty value if you want to use Let's Encrypt
     # to generate an SSL certificate for the Panel.
-    # LE_EMAIL: 
+    # LE_EMAIL:
   pterodactyl-mail: &mail-environment
     MAIL_FROM: noreply@example.com
     MAIL_DRIVER: smtp
@@ -56,7 +56,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 
     env_file:
@@ -96,7 +96,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 
     env_file:
@@ -162,7 +162,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 
     env_file:

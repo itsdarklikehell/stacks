@@ -44,7 +44,7 @@ services:
 
     networks:
       host:
-      testing-services:
+      gameserver-services:
 
 
     ports:
