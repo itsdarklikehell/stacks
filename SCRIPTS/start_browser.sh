@@ -14,7 +14,16 @@ else
 	export IP_ADDRESS
 fi
 
-AI_URLS=(
+function RUN_BROWSER() {
+
+	for URL in "${URLS[@]}"; do
+		xdg-open "${URL}" >/dev/null 2>&1 &
+	done
+
+}
+
+# # #### AI URLS
+URLS=(
 	"http://${IP_ADDRESS}:3001"       # anythingllm
 	"http://${IP_ADDRESS}:6013"       # habridge
 	"http://${IP_ADDRESS}:8123"       # home assistant
@@ -26,15 +35,19 @@ AI_URLS=(
 	"http://${IP_ADDRESS}:8080"       # open-webui
 	"http://${IP_ADDRESS}:8081"       # searxng
 )
+RUN_BROWSER
 
-BACKUP_URLS=(
+# # #### BACKUPS URLS
+URLS=(
 	"http://${IP_ADDRESS}:8200"       # duplicati
 	"http://${IP_ADDRESS}:4275"       # resili-sync
 	"http://${IP_ADDRESS}:4275"       # rsnapshot
 	"http://${IP_ADDRESS}:8384"       # syncthing
 )
+RUN_BROWSER
 
-BOOKS_URLS=(
+# # #### BOOKS URLS
+URLS=(
 	"http://${IP_ADDRESS}:8181"       # calibre
 	"http://${IP_ADDRESS}:8483"       # calibre-web
 	"http://${IP_ADDRESS}:8400"       # cop
@@ -45,8 +58,10 @@ BOOKS_URLS=(
 	"http://${IP_ADDRESS}:5885"       # rsspub
 	"http://${IP_ADDRESS}:2202"       # ubooquity
 )
+RUN_BROWSER
 
-CHAT_URLS=(
+# # #### CHAT URLS
+URLS=(
 	"http://${IP_ADDRESS}:4221"       # altus
 	"https://${IP_ADDRESS}:5636"       # ferdium
 	"http://${IP_ADDRESS}:5611"       # mastodon
@@ -55,25 +70,61 @@ CHAT_URLS=(
 	"http://${IP_ADDRESS}:3188"       # webcord
 	"http://${IP_ADDRESS}:4248"       # weixin
 )
+RUN_BROWSER
 
-function RUN_BROWSER() {
+# # #### DOWNLOADER URLS
+URLS=(
+	"http://${IP_ADDRESS}:8112"       # deluge
+	"https://${IP_ADDRESS}:5050"       # flexget
+	"http://${IP_ADDRESS}:6789"       # nzbget
+	"http://${IP_ADDRESS}:3230"       # pyload
+	"http://${IP_ADDRESS}:5156"       # qbittorrent
+	"http://${IP_ADDRESS}:4525"       # sabnzb
+	"http://${IP_ADDRESS}:9091"       # transmission
+)
+RUN_BROWSER
 
-	for URL in "${AI_URLS[@]}"; do
-		xdg-open "${URL}" >/dev/null 2>&1 &
-	done
+# # #### ESSENTIAL URLS
+URLS=(
+	"http://${IP_ADDRESS}:8001"       # apprise-api
+	"https://${IP_ADDRESS}:5050"       # autoheal
+	"http://${IP_ADDRESS}:8094"       # beszel
+	"http://${IP_ADDRESS}:4919"       # cadvisor
+	"http://${IP_ADDRESS}:3081"       # changedetection
+	"http://${IP_ADDRESS}:8383"       # dashy
+	"http://${IP_ADDRESS}:5310"       # dock-dploy
+	"http://${IP_ADDRESS}:5311"       # dockhand
+	"http://${IP_ADDRESS}:5310"       # dock-dploy
+	"http://${IP_ADDRESS}:5576"       # doublecommander
+	"http://${IP_ADDRESS}:7007"       # dozzle-agent
+	"http://${IP_ADDRESS}:8082"       # dozzle-ui
+	"http://${IP_ADDRESS}:85"       # heimdall
+	"http://${IP_ADDRESS}:5632"       # hishtory-server
+	"http://${IP_ADDRESS}:2283"       # immich-server
+	"http://${IP_ADDRESS}:8088"       # it-tools
+	"http://${IP_ADDRESS}:8096"       # jellyfin
+	"http://${IP_ADDRESS}:8765"       # motioneye
+	"http://${IP_ADDRESS}:4433"       # nextcloud
+	"http://${IP_ADDRESS}:81"       # nginx-proxy-manager
+	"http://${IP_ADDRESS}:"       # pingora-proxy-manager
+	"http://${IP_ADDRESS}:9000"       # portainer
+	"http://${IP_ADDRESS}:4999"       # portracker
+	"http://${IP_ADDRESS}:4999"       # portracker-docker-proxy
+	"http://${IP_ADDRESS}:7655"       # pulse
+	# "http://${IP_ADDRESS}:"       # socket proxy
+)
+RUN_BROWSER
 
-	for URL in "${BACKUP_URLS[@]}"; do
-		xdg-open "${URL}" >/dev/null 2>&1 &
-	done
+# # #### GAMESERVER URLS
+URLS=(
+	"http://${IP_ADDRESS}:4903"       # linus-gms-cs2
+	"http://${IP_ADDRESS}:3949"       # pterodactyl-panel
+)
+RUN_BROWSER
 
-	for URL in "${BOOKS_URLS[@]}"; do
-		xdg-open "${URL}" >/dev/null 2>&1 &
-	done
-
-	for URL in "${CHAT_URLS[@]}"; do
-		xdg-open "${URL}" >/dev/null 2>&1 &
-	done
-
-}
-
+# # #### SDR URLS
+URLS=(
+	"http://${IP_ADDRESS}:8073"       # openwebrxplus
+	"http://${IP_ADDRESS}:3322"       # pterodactyl-panel
+)
 RUN_BROWSER
