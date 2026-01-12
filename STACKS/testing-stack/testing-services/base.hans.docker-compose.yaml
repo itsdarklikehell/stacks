@@ -540,6 +540,23 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/mympd/mympd_cachedir
 
+  transmission_watchfolder:
+    name: transmission_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
+  transmission_downloads:
+    name: transmission_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_downloads
+
 networks:
   host:
   testing-services:

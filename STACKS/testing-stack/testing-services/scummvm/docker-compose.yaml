@@ -31,6 +31,9 @@ services:
 
       - scummvm_config:/config
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+      
     hostname: ${NAME:-scummvm}
 
     # user: ${PUID:-1000}:${PGID:-1000}

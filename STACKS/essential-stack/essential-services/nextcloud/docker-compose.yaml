@@ -32,6 +32,9 @@ services:
       - nextcloud_config:/config
       - nextcloud_data:/data
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+      
     hostname: ${NAME:-nextcloud}
 
     # user: ${PUID:-1000}:${PGID:-1000}

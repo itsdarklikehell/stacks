@@ -35,6 +35,9 @@ services:
       - ubooquity_rawfiles:/files
       - calibre_books:/calibre_books
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-ubooquity}
 
     # user: ${PUID:-1000}:${PGID:-1000}

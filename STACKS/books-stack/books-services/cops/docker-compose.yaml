@@ -36,6 +36,9 @@ services:
       - cops_books:/books
       - calibre_books:/calibre_books
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+      
     hostname: ${NAME:-cops}
 
     # user: ${PUID:-1000}:${PGID:-1000}

@@ -34,6 +34,9 @@ services:
       - /dev/video0:/dev/video0
       - /dev/bus/usb:/dev/bus/usb:ro
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+      
     hostname: ${NAME:-motioneye}
 
     devices:

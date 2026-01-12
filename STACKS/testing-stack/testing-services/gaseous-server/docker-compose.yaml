@@ -37,6 +37,9 @@ services:
 
       - gaseous-server_config:/home/gaseous/.gaseous-server
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-gaseous-server}
 
     # user: ${PUID:-1000}:${PGID:-1000}

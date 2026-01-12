@@ -44,6 +44,9 @@ services:
       - ai_inputs:/data/ai_images/ai_inputs
       - motioneye_shared:/data/motioneye_shared
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-jellyfin}
 
     # user: ${PUID:-1000}:${PGID:-1000}

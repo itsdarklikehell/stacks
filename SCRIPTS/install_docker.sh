@@ -73,13 +73,6 @@ function REMOVE_DOCKER() {
 
 		cd "${STACK_BASEPATH}" || exit 1
 
-		echo ""
-		START_CUSHYSTUDIO >/dev/null 2>&1 &
-		echo "" || exit
-
-		git pull # origin main
-		chmod +x "install-stack.sh"
-
 	}
 
 	SETUP_ENV

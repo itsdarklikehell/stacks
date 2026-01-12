@@ -34,6 +34,9 @@ services:
       - kavita_library:/book
       - calibre_books:/calibre_books
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-kavita}
 
     # user: ${PUID:-1000}:${PGID:-1000}

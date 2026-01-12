@@ -161,7 +161,11 @@ function SETUP_AUTOSTART() {
 	autostart_desktop_scripts=(
 		start_comfyui.desktop
 	)
-
+	
+	if [[ ! -d "/home/${USER}/bin" ]]; then
+		mkdir /home/${USER}/bin
+	fi
+	
 	for SCRIPT in "${bin_scripts[@]}"; do
 		if [[ ${SCRIPT} == "install-stack.sh" ]]; then
 			if [[ -f "/home/${USER}/bin/${SCRIPT}" ]]; then
@@ -388,17 +392,17 @@ echo ""
 SETUP_GAMESERVER_STACK
 echo ""
 
-echo ""
-SETUP_MEDIA_STACK
-echo ""
+# echo ""
+# SETUP_MEDIA_STACK
+# echo ""
 
 # echo ""
 # SETUP_DESKTOP_STACK
 # echo ""
 
-echo ""
-SETUP_TESTING_STACK
-echo ""
+# echo ""
+# SETUP_TESTING_STACK
+# echo ""
 
 # echo ""
 # SETUP_OPENLLM_VTUBER_STACK

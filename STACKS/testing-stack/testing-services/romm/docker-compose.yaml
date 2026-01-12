@@ -46,6 +46,9 @@ services:
       - romm_library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
       - romm_assets:/romm/assets # Uploaded saves, states, etc.
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-romm}
 
     # user: ${PUID:-1000}:${PGID:-1000}

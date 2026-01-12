@@ -37,6 +37,9 @@ services:
       - gamevault_files:/files # Path where config.yml is stored
       - gamevault_media:/media # Resources fetched from IGDB (covers, screenshots, etc.)
 
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
+
     hostname: ${NAME:-gamevault}
 
     # user: ${PUID:-1000}:${PGID:-1000}
