@@ -11,6 +11,7 @@ COMPOSE_FILES=(
 	# watchtower
 	apprise-api
 	autoheal
+  	cadvisor
 	beszel
 	dashy
 	dock-dploy
