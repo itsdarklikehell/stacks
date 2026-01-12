@@ -122,4 +122,3 @@ URLS=(
 	"http://${IP_ADDRESS}:3322"       # pterodactyl-panel
 )
 RUN_BROWSER
-
