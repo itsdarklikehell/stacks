@@ -40,7 +40,7 @@ RUN_BROWSER
 # # #### BACKUPS URLS
 URLS=(
 	"http://${IP_ADDRESS}:8200"       # duplicati
-	"http://${IP_ADDRESS}:4275"       # resili-sync
+	"http://${IP_ADDRESS}:4075"       # resilio-sync
 	"http://${IP_ADDRESS}:4275"       # rsnapshot
 	"http://${IP_ADDRESS}:8384"       # syncthing
 )
@@ -48,14 +48,13 @@ RUN_BROWSER
 
 # # #### BOOKS URLS
 URLS=(
-	"http://${IP_ADDRESS}:8181"       # calibre
+	"https://${IP_ADDRESS}:8181"       # calibre
 	"http://${IP_ADDRESS}:8483"       # calibre-web
 	"http://${IP_ADDRESS}:8400"       # cop
 	"http://${IP_ADDRESS}:4400"       # freshrss
 	"http://${IP_ADDRESS}:5000"       # kavita
 	"http://${IP_ADDRESS}:5299"       # lazylibrarian
 	"http://${IP_ADDRESS}:8091"       # mylar3
-	"http://${IP_ADDRESS}:5885"       # rsspub
 	"http://${IP_ADDRESS}:2202"       # ubooquity
 )
 RUN_BROWSER
@@ -63,10 +62,9 @@ RUN_BROWSER
 # # #### CHAT URLS
 URLS=(
 	"http://${IP_ADDRESS}:4221"       # altus
-	"https://${IP_ADDRESS}:5636"       # ferdium
+	"http://${IP_ADDRESS}:5636"       # ferdium
 	"http://${IP_ADDRESS}:5611"       # mastodon
 	"http://${IP_ADDRESS}:4400"       # signal
-	"http://${IP_ADDRESS}:3372"       # telegram
 	"http://${IP_ADDRESS}:3188"       # webcord
 	"http://${IP_ADDRESS}:4248"       # weixin
 )
@@ -75,7 +73,7 @@ RUN_BROWSER
 # # #### DOWNLOADER URLS
 URLS=(
 	"http://${IP_ADDRESS}:8112"       # deluge
-	"https://${IP_ADDRESS}:5050"       # flexget
+	"http://${IP_ADDRESS}:5050"       # flexget
 	"http://${IP_ADDRESS}:6789"       # nzbget
 	"http://${IP_ADDRESS}:3230"       # pyload
 	"http://${IP_ADDRESS}:5156"       # qbittorrent
@@ -96,15 +94,13 @@ URLS=(
 	"http://${IP_ADDRESS}:5311"       # dockhand
 	"http://${IP_ADDRESS}:5310"       # dock-dploy
 	"http://${IP_ADDRESS}:5576"       # doublecommander
-	"http://${IP_ADDRESS}:7007"       # dozzle-agent
 	"http://${IP_ADDRESS}:8082"       # dozzle-ui
 	"http://${IP_ADDRESS}:85"       # heimdall
-	"http://${IP_ADDRESS}:5632"       # hishtory-server
 	"http://${IP_ADDRESS}:2283"       # immich-server
 	"http://${IP_ADDRESS}:8088"       # it-tools
 	"http://${IP_ADDRESS}:8096"       # jellyfin
 	"http://${IP_ADDRESS}:8765"       # motioneye
-	"http://${IP_ADDRESS}:4433"       # nextcloud
+	"https://${IP_ADDRESS}:4433"       # nextcloud
 	"http://${IP_ADDRESS}:81"       # nginx-proxy-manager
 	"http://${IP_ADDRESS}:"       # pingora-proxy-manager
 	"http://${IP_ADDRESS}:9000"       # portainer
