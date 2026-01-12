@@ -376,9 +376,9 @@ echo ""
 # SETUP_CHAT_STACK
 # echo ""
 
-# echo ""
-# SETUP_BOOKS_STACK
-# echo ""
+echo ""
+SETUP_BOOKS_STACK
+echo ""
 
 # echo ""
 # SETUP_SDR_STACK
