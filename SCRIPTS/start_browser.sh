@@ -50,7 +50,7 @@ RUN_BROWSER
 URLS=(
 	"https://${IP_ADDRESS}:8181"       # calibre
 	"http://${IP_ADDRESS}:8483"       # calibre-web
-	"http://${IP_ADDRESS}:8400"       # cop
+	"http://${IP_ADDRESS}:8400"       # cops
 	"http://${IP_ADDRESS}:4400"       # freshrss
 	"http://${IP_ADDRESS}:5000"       # kavita
 	"http://${IP_ADDRESS}:5299"       # lazylibrarian
@@ -102,12 +102,10 @@ URLS=(
 	"http://${IP_ADDRESS}:8765"       # motioneye
 	"https://${IP_ADDRESS}:4433"       # nextcloud
 	"http://${IP_ADDRESS}:81"       # nginx-proxy-manager
-	"http://${IP_ADDRESS}:"       # pingora-proxy-manager
 	"http://${IP_ADDRESS}:9000"       # portainer
 	"http://${IP_ADDRESS}:4999"       # portracker
 	"http://${IP_ADDRESS}:4999"       # portracker-docker-proxy
 	"http://${IP_ADDRESS}:7655"       # pulse
-	# "http://${IP_ADDRESS}:"       # socket proxy
 )
 RUN_BROWSER
 
@@ -124,3 +122,4 @@ URLS=(
 	"http://${IP_ADDRESS}:3322"       # pterodactyl-panel
 )
 RUN_BROWSER
+
