@@ -39,7 +39,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - ${PORT:-5576}:3000
       - 4752:3001
@@ -68,3 +67,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

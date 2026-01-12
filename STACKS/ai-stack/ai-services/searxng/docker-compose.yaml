@@ -39,7 +39,6 @@ services:
       host:
       ai-services:
 
-
     ports:
       - ${PORT:-8081}:8080
 
@@ -75,3 +74,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

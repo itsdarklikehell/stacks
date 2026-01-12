@@ -68,3 +68,4 @@ networks:
   host:
   chat-services:
     external: true
+

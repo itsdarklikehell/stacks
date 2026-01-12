@@ -42,7 +42,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - ${PORT:-85}:80
       - ${PORT2:-444}:443
@@ -77,3 +76,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

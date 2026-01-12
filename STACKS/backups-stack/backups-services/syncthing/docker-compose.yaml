@@ -39,7 +39,6 @@ services:
       host:
       backups-services:
 
-
     env_file:
       - ./syncthing/.env
 
@@ -75,3 +74,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

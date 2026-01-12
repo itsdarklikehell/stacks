@@ -83,3 +83,4 @@ faf: '<~@62 [0,1]@8 >/4'
 $: s('<hh*2>').bank('RolandMT32').gain(0.05).room(0.2);
 $: s('<bd ~ ~ <bd ~>>*2').bank('RolandMT32').gain('<0.4 0.2>').room(0.2);
 $: s('<[[~ ~ rim]!5]@15 ~>*2').bank('RolandMT32').gain(0.2).room(0.2);
+

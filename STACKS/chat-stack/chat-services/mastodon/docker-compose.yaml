@@ -78,7 +78,6 @@ services:
       host:
       chat-services:
 
-
     env_file:
       - ./mastodon/.env
 
@@ -115,3 +114,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

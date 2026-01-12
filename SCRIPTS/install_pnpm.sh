@@ -15,3 +15,4 @@ function INSTALL_PNPM() {
 }
 
 INSTALL_PNPM >/dev/null 2>&1
+

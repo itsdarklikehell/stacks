@@ -16,3 +16,4 @@ function INSTALL_UV() {
 }
 
 INSTALL_UV >/dev/null 2>&1
+

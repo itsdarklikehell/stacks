@@ -43,7 +43,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - "${PORT:-7655}:7655"
 
@@ -68,3 +67,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

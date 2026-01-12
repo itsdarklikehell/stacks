@@ -93,7 +93,6 @@ services:
       host:
       ai-services:
 
-
     ports:
       - ${PORT:-3001}:3001
 
@@ -132,3 +131,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

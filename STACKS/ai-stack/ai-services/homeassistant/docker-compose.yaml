@@ -46,7 +46,6 @@ services:
       host:
       ai-services:
 
-
     env_file:
       - ./homeassistant/.env
 
@@ -79,3 +78,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

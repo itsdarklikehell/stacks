@@ -40,7 +40,6 @@ services:
       host:
       backups-services:
 
-
     ports:
       - ${PORT:-4075}:8888
       - 55555:55555
@@ -74,3 +73,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

@@ -44,7 +44,6 @@ services:
       host:
       books-services:
 
-
     ports:
       - ${PORT:-8400}:80
       - ${PORT:-8444}:443
@@ -88,3 +87,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

@@ -43,7 +43,6 @@ services:
       host:
       downloader-services:
 
-
     ports:
       - ${PORT:-5156}:8080
       - 5377:6881
@@ -88,3 +87,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

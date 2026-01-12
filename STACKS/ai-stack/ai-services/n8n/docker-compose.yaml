@@ -50,7 +50,6 @@ services:
       host:
       ai-services:
 
-
     ports:
       - ${PORT:-5678}:5678
 
@@ -86,3 +85,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

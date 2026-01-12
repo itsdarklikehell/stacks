@@ -43,7 +43,6 @@ services:
       host:
       books-services:
 
-
     ports:
       - ${PORT:-2202}:2202
       - ${PORT2:-2203}:2203
@@ -87,3 +86,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

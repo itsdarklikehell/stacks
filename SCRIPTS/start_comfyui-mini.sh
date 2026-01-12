@@ -90,3 +90,4 @@ function RUN_COMFYUIMINI() {
 }
 
 RUN_COMFYUIMINI
+

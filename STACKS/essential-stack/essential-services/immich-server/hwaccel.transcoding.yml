@@ -56,3 +56,4 @@ services:
       - /usr/lib/wsl:/usr/lib/wsl
     environment:
       - LIBVA_DRIVER_NAME=d3d12
+

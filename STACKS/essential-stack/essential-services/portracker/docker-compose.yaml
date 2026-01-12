@@ -83,7 +83,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - ${PORT:-4999}:4999
 
@@ -188,7 +187,6 @@ services:
       host:
       essential-services:
 
-
     env_file:
       - ./portracker/.env
 
@@ -219,3 +217,4 @@ services:
 # volumes:
 #   portracker-data:
 #     driver: local
+

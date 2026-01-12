@@ -40,7 +40,6 @@ services:
       host:
       desktop-services:
 
-
     env_file:
       - ./sealskin/.env
 
@@ -74,3 +73,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

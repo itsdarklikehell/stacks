@@ -42,7 +42,6 @@ services:
       host:
       downloader-services:
 
-
     ports:
       - ${PORT:-3230}:8000
       - 9666:9666
@@ -86,3 +85,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

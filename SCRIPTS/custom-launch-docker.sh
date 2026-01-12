@@ -26,3 +26,4 @@ docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t 
 # if [[ $? == 42 ]]; then
 # 	exec "${SCRIPT_DIR}/custom-launch-docker.sh" "$@"
 # fi
+

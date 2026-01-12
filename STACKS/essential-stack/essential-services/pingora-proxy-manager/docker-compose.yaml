@@ -42,7 +42,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       # These ports are in format <host-port>:<container-port>
       - 3875:81 # Admin Web Port
@@ -72,3 +71,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

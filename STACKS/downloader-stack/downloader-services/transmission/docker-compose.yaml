@@ -48,7 +48,6 @@ services:
       host:
       downloader-services:
 
-
     ports:
       - ${PORT:-9091}:9091
       - 51413:51413
@@ -96,3 +95,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

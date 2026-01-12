@@ -40,7 +40,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - 7007:7007
 
@@ -131,7 +130,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - ${PORT:-8082}:8080
 
@@ -160,3 +158,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

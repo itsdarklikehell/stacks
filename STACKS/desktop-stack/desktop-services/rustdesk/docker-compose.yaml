@@ -34,7 +34,6 @@ services:
       host:
       desktop-services:
 
-
     env_file:
       - ./rustdesk/.env
 
@@ -68,3 +67,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

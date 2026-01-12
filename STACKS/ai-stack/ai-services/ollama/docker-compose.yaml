@@ -63,7 +63,6 @@ services:
       host:
       ai-services:
 
-
     ports:
       - ${PORT:-11434}:11434
 
@@ -97,3 +96,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

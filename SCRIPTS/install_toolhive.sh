@@ -17,3 +17,4 @@ function INSTALL_toolhive() {
 }
 
 INSTALL_toolhive >/dev/null 2>&1
+

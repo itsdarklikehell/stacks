@@ -87,3 +87,4 @@ comfyui_ultimatesdupscale
 #### # #### # More A1111 nodes
 CLIPTextEncodeA1111-ComfyUI
 ComfyUI-z-a1111-sd-webui-DanTagGen
+

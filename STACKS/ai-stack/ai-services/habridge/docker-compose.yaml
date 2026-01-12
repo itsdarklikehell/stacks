@@ -41,7 +41,6 @@ services:
       host:
       ai-services:
 
-
     env_file:
       - ./habridge/.env
 
@@ -85,3 +84,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

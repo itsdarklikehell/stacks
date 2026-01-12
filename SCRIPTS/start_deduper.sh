@@ -133,3 +133,4 @@ for folder in "${folders[@]}"; do
 	echo "Removed Leftovers and deduplicated  ${folder}"
 
 done
+

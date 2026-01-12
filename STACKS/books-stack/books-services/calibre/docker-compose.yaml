@@ -47,7 +47,6 @@ services:
       host:
       books-services:
 
-
     env_file:
       - ./calibre/.env
 
@@ -83,3 +82,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

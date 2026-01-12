@@ -56,7 +56,6 @@ services:
       host:
       desktop-services:
 
-
     env_file:
       - ./kasm/.env
 
@@ -90,3 +89,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

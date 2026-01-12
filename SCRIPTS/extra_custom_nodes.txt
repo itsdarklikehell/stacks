@@ -42,3 +42,4 @@ comfyui-clip-with-break
 comfyui_sageutils
 ComfyUI_LoRA_Sidebar
 efficiency-nodes-comfyui
+

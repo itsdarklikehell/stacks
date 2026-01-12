@@ -51,7 +51,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       # These ports are in format <host-port>:<container-port>
       - ${PORT:-80}:80 # Public HTTP Port
@@ -83,3 +82,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

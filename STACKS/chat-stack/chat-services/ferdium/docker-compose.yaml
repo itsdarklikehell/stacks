@@ -36,7 +36,6 @@ services:
       host:
       chat-services:
 
-
     env_file:
       - ./ferdium/.env
 
@@ -70,3 +69,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

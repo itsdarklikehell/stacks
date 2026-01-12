@@ -48,7 +48,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - 8000:8000
       - ${PORT:-9000}:9000
@@ -141,3 +140,4 @@ services:
   #     options:
   #       max-size: 10m
   #       max-file: 3
+

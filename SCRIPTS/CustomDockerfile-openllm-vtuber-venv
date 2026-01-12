@@ -15,7 +15,6 @@ RUN apt-get update && \
 COPY . /openllm-vtuber
 WORKDIR /openllm-vtuber
 
-
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN curl -sSL https://astral.sh/uv/install.sh -o install-uv.sh
 # RUN python3 get-pip.py
@@ -62,3 +61,4 @@ WORKDIR /openllm-vtuber
 EXPOSE 12393
 
 CMD ["python3", "run_server.py"]
+

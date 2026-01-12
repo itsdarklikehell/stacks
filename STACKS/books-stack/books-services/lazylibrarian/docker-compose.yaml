@@ -46,7 +46,6 @@ services:
       host:
       books-services:
 
-
     ports:
       - ${PORT:-5299}:5299
 
@@ -89,3 +88,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+
