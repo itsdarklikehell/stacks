@@ -365,6 +365,23 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/nextcloud/nextcloud_config
 
+  transmission_watchfolder:
+    name: transmission_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
+  transmission_downloads:
+    name: transmission_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_downloads
+
 secrets:
   INITIAL_ADMIN_EMAIL:
     file: ../../../SECRETS/nginx-proxy-manager_username
