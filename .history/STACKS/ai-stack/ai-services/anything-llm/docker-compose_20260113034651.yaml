@@ -1,0 +1,134 @@
+services:
+  anything-llm:
+    image: ${IMAGE:-mintplexlabs/anythingllm:latest}
+    # image: ${IMAGE:-mintplexlabs/anythingllm:render}
+    # image: ${IMAGE:-mintplexlabs/anythingllm:railway}
+    # image: ${IMAGE:-mintplexlabs/anythingllm:pg}
+    container_name: ${NAME:-anythingllm}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - AGENT_SEARXNG_API_URL=http://${IP_ADDRESS:-192.168.1.2}:8081/search?q=<query>
+      - COLLECTOR_ALLOW_ANY_IP=true
+      - COMMUNITY_HUB_BUNDLE_DOWNLOADS_ENABLED=1
+      - EMBEDDING_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:11434
+      - EMBEDDING_ENGINE=ollama
+      - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
+      - EMBEDDING_MODEL_PREF=embeddinggemma:latest
+      - JWT_SECRET=2cc18cd7-66e3-48b0-8975-75d4edda8fe5
+      - LLM_PROVIDER=ollama
+      # - LOCAL_AI_API_KEY=sk-123abc
+      - LOCAL_AI_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:8084/v1
+      - LOCAL_AI_MODEL_PREF=huggingfacetb_smollm3-3b
+      - LOCAL_AI_MODEL_TOKEN_LIMIT=4096
+      - OLLAMA_BASE_PATH=http://${IP_ADDRESS:-192.168.1.2}:11434
+      - OLLAMA_MODEL_PREF=smallthinker:latest
+      - OLLAMA_MODEL_TOKEN_LIMIT=4096
+      - OLLAMA_KEEP_ALIVE_TIMEOUT=1h
+      - PASSWORDLOWERCASE=1
+      - PASSWORDMAXCHAR=250
+      - PASSWORDMINCHAR=8
+      - PASSWORDNUMERIC=1
+      - PASSWORDREQUIREMENTS=4
+      - PASSWORDSYMBOL=1
+      - PASSWORDUPPERCASE=1
+      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}
+      - SERVER_PORT=3001
+      - STORAGE_DIR=/app/server/storage
+      - STORAGE_LOCATION=/app/server/storage
+      - TTS_PROVIDER=native
+      - TZ=${TZ:-Europe/Amsterdam}
+      - VECTOR_DB=lancedb
+      - WHISPER_MODEL_PREF=Xenova/whisper-large
+      - WHISPER_PROVIDER=local
+      - AGENT_TAVILY_API_KEY=
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+      - IPC_LOCK
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - anything-llm_storage:/app/server/storage
+
+      # MODELS:
+      - anything-llm_models:/app/server/storage/models
+
+      # OUTPUTS
+      - anything-llm_output:/app/server/storage/output
+      - comfyui_output:/app/server/storage/output/comfyui_output
+      - InvokeAI_output:/app/server/storage/output/InvokeAI_output
+      - localai_output:/app/server/storage/output
+
+      # # INPUTS
+      - anything-llm_input:/app/server/storage/input/anything-llm_input
+      - comfyui_input:/app/server/storage/input/comfyui_input
+      - InvokeAI_input:/app/server/storage/input/InvokeAI_input
+      - localai_input:/app/server/storage/input
+
+    hostname: ${NAME:-anything-llm}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      ai-services:
+
+    ports:
+      - ${PORT:-3001}:3001
+
+    env_file:
+      - ./anything-llm/.env
+
+    # depends_on:
+    #   ollama:
+    #     condition: service_healthy
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu, compute, video, graphics, utility ]
+
+    tty: true
+
+    stdin_open: true
+
+    # shm_size: 1gb
+
+    healthcheck:
+      test: [ CMD, wget, --no-verbose, --tries=3, --spider, http://localhost:3001/api/health ]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+

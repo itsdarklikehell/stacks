@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=gnome-terminal -- start_comfyui.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[nl_NL]=start_comfyui.sh
+Name=start_comfyui.sh
+Comment[nl_NL]=
+Comment=start comfyui
+

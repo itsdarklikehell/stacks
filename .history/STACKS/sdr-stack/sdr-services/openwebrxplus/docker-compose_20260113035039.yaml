@@ -1,0 +1,105 @@
+services:
+  openwebrxplus:
+    image: ${IMAGE:-slechev/openwebrxplus-softmbe:latest}
+    container_name: ${NAME:-openwebrxplus}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
+      - FORWARD_LOCALPORT_1234=5678
+      - OPENWEBRX_ADMIN_USER=user
+      - OPENWEBRX_ADMIN_PASSWORD=password
+      - HEALTHCHECK_USB_0BDA_2838=2
+      - HEALTHCHECK_USB_0BDA_2832=1
+      - HEALTHCHECK_USB_1DF7_3000=1
+      - HEALTHCHECK_SDR_DEVICES=4
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - /dev/bus/usb:/dev/bus/usb:ro
+
+      - openwebrxplus_config:/etc/openwebrx
+      - openwebrxplus_var:/var/lib/openwebrx
+      - openwebrxplus_plugins:/usr/lib/python3/dist-packag
+
+    hostname: ${NAME:-openwebrxplus}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      sdr-services:
+
+
+    ports:
+      - ${PORT:-8073}:8073
+      - 4851:5678
+
+    env_file:
+      - ./openwebrxplus/.env
+
+    healthcheck:
+      disable: true
+
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+
+    # device_cgroup_rules:
+    #   - c 189:* rwm
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu, compute, video, graphics, utility ]
+
+    tty: true
+
+    stdin_open: true
+
+    # shm_size: 1gb
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3

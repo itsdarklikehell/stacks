@@ -1,0 +1,71 @@
+name: chat-services
+
+volumes:
+  altus_config:
+    name: altus_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/altus/altus_config
+
+  signal_config:
+    name: signal_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/signal/signal_config
+
+  mastodon_config:
+    name: mastodon_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/mastodon/mastodon_config
+
+  telegram_config:
+    name: telegram_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/telegram/telegram_config
+
+  webcord_config:
+    name: webcord_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/webcord/webcord_config
+
+  weixin_config:
+    name: weixin_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/weixin/weixin_config
+
+  ferdium_config:
+    name: ferdium_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/chat-stack/ferdium/ferdium_config
+
+networks:
+  host:
+  chat-services:
+    external: true
+

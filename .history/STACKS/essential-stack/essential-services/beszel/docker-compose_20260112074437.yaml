@@ -1,0 +1,91 @@
+services:
+  beszel:
+    image: ${IMAGE:-henrygd/beszel:latest}
+    container_name: ${NAME:-beszel}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - beszel-app=true
+      - beszel
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - beszel_data:/beszel_data
+      - beszel_socket:/beszel_socket
+
+    hostname: ${NAME:-beszel}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-8094}:8090
+
+    env_file:
+      - ./beszel/.env
+
+    deploy:
+      replicas: 1
+      mode: global
+
+    tty: true
+
+    stdin_open: true
+
+    # shm_size: 1gb
+
+    # healthcheck:
+    #   test: [CMD, /beszel, healthcheck]
+    #   interval: 3s
+    #   timeout: 30s
+    #   retries: 5
+    #   start_period: 30s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+  # beszel-agent:
+  #   image: henrygd/beszel-agent:latest
+  #   container_name: beszel-agent
+  #   restart: unless-stopped
+  #   hostname: beszel-agent
+
+  #   network_mode: host
+
+  #   volumes:
+  #      - /etc/localtime:/etc/localtime:ro
+  #     # - /etc/timezone:/etc/timezone:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+  #     - beszel_agent-data:/var/lib/beszel-agent
+  #     - beszel_socket:/beszel_socket
+
+  #   environment:
+  #     LISTEN: /beszel_socket/beszel.sock
+  #     HUB_URL: http://localhost:8094
+  #     # TOKEN: <token>
+  #     # KEY: <key>
+

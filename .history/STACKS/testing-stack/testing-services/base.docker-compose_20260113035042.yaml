@@ -1,0 +1,563 @@
+name: testing-services
+
+volumes:
+  azahar_config:
+    name: azahar_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/azahar/azahar_config
+
+  citron_config:
+    name: citron_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/citron/citron_config
+
+  emulatorjs_data:
+    name: emulatorjs_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/emulatorjs/emulatorjs_data
+  emulatorjs_config:
+    name: emulatorjs_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/emulatorjs/emulatorjs_config
+
+  gamevault_data:
+    name: gamevault_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_data
+  gamevault_files:
+    name: gamevault_files
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_files
+  gamevault_media:
+    name: gamevault_media
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gamevault/gamevault_media
+
+  gaseous-server_data:
+    name: gaseous-server_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gaseous-server/gaseous-server_data
+  gaseous-server_config:
+    name: gaseous-server_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gaseous-server/gaseous-server_config
+
+  romm_resources:
+    name: romm_resources
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_resources
+  romm_redis_data:
+    name: romm_redis_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_redis_data
+  romm_library:
+    name: romm_library
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_library
+  romm_assets:
+    name: romm_assets
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_assets
+  romm_config:
+    name: romm_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/romm/romm_config
+
+  retrom_data:
+    name: retrom_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_data
+  retrom_config:
+    name: retrom_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_config
+  retrom_roms:
+    name: retrom_roms
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retrom/retrom_roms
+
+  sunshine_config:
+    name: sunshine_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/sunshine/sunshine_config
+
+  gameyfin_data:
+    name: gameyfin_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_data
+  gameyfin_database:
+    name: gameyfin_database
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_database
+  gameyfin_plugindata:
+    name: gameyfin_plugindata
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_plugindata
+  gameyfin_logs:
+    name: gameyfin_logs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_logs
+  gameyfin_games:
+    name: gameyfin_games
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gameyfin/gameyfin_games
+
+  wolf_etc:
+    name: wolf_etc
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/wolf/wolf_etc
+
+  openttd_config:
+    name: openttd_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/openttd/openttd_config
+  openttd_save:
+    name: openttd_save
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/openttd/openttd_save
+
+  synctube_user:
+    name: synctube_user
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/synctube/synctube_user
+
+  owncast_data:
+    name: owncast_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/owncast/owncast_data
+
+  code-server_config:
+    name: code-server_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/code-server/code-server_config
+
+  dogwalk_config:
+    name: dogwalk_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dogwalk/dogwalk_config
+
+  dolphin_config:
+    name: dolphin_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dolphin/dolphin_config
+
+  dosbox-staging_config:
+    name: dosbox-staging_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/dosbox-staging/dosbox-staging_config
+
+  duckstation_config:
+    name: duckstation_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/duckstation/duckstation_config
+
+  flycast_config:
+    name: flycast_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/flycast/flycast_config
+
+  gzdoom_config:
+    name: gzdoom_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gzdoom/gzdoom_config
+  gzdoom_wads:
+    name: gzdoom_wads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/gzdoom/gzdoom_wads
+
+  healthchecks_config:
+    name: healthchecks_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/healthchecks/healthchecks_config
+
+  luanti_config:
+    name: luanti_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/luanti/luanti_config
+
+  mame_config:
+    name: mame_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mame/mame_config
+
+  melonds_config:
+    name: melonds_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/melonds/melonds_config
+
+  modmanager_modcache:
+    name: modmanager_modcache
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/modmanager/modmanager_modcache
+
+  modrinth_config:
+    name: modrinth_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/modrinth/modrinth_config
+
+  pcsx2_config:
+    name: pcsx2_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/pcsx2/pcsx2_config
+
+  retroarch_config:
+    name: retroarch_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/retroarch/retroarch_config
+
+  rpcs3_config:
+    name: rpcs3_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/rpcs3/rpcs3_config
+
+  scummvm_config:
+    name: scummvm_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/scummvm/scummvm_config
+
+  vscodium_config:
+    name: vscodium_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/vscodium/vscodium_config
+
+  vscodium-web_config:
+    name: vscodium-web_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/vscodium-web/vscodium-web_config
+
+  xemu_config:
+    name: xemu_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/xemu/xemu_config
+
+  mpd_run:
+    name: mpd_run
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_run
+  mpd_configdir:
+    name: mpd_configdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_configdir
+  # mpd_configfile:
+  #   name: mpd_configfile
+  #   driver: local
+  #   # external: true
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/testing-stack/mpd/mpd_configdir/mpd.conf
+  mpd_music:
+    name: mpd_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_music
+  mpd_playlists:
+    name: mpd_playlists
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_playlists
+  mpd_workdir:
+    name: mpd_workdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_workdir
+  mpd_cachedir:
+    name: mpd_cachedir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mpd/mpd_cachedir
+
+  mympd_run:
+    name: mympd_run
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_run
+  mympd_configdir:
+    name: mympd_configdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_configdir
+  # mympd_configfile:
+  #   name: mympd_configfile
+  #   driver: local
+  #   # external: true
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/testing-stack/mympd/mympd_configdir/mpd.conf
+  mympd_music:
+    name: mympd_music
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_music
+  mympd_playlists:
+    name: mympd_playlists
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_playlists
+  mympd_workdir:
+    name: mympd_workdir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_workdir
+  mympd_cachedir:
+    name: mympd_cachedir
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/mympd/mympd_cachedir
+
+  transmission_watchfolder:
+    name: transmission_watchfolder
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_watchfolder
+  transmission_downloads:
+    name: transmission_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/downloader-stack/transmission/transmission_downloads
+
+networks:
+  host:
+  testing-services:
+    external: true

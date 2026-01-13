@@ -1,0 +1,386 @@
+[
+  {
+    "title": "AnythingLLM",
+    "colour": "#00F",
+    "url": "http://192.168.178.63:3001/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Appirse",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8001/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Beszel",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8094",
+    "description": null,
+    "appid": "14641c955e3750a6405faa911be80402a9bf0e31",
+    "appdescription": "A lightweight server resource monitoring hub with historical data, docker stats, and alerts."
+  },
+  {
+    "title": "Calibre",
+    "colour": "#161b1f",
+    "url": "https://192.168.178.63:8181/",
+    "description": null,
+    "appid": null,
+    "appdescription": "Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database."
+  },
+  {
+    "title": "CalibreWeb",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8483",
+    "description": null,
+    "appid": "d0404064982ed19f24e76ca261e1fbb4d821c2a6",
+    "appdescription": "Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database."
+  },
+  {
+    "title": "Dashy",
+    "colour": "#0FF",
+    "url": "http://192.168.178.63:8383/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "HomeAssistant",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8123/",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"token\":null,\"first_stat_label\":null,\"first_stat_template\":null,\"second_stat_label\":null,\"second_stat_template\":null}",
+    "appid": "5c81a4f5ee23ebffa0724a22a040c54e6cb9d7c5",
+    "appdescription": "Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts."
+  },
+  {
+    "title": "Immich",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:2283/",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"api_key\":null}",
+    "appid": "101e12b916274de5d628fad717f09c5ca302b5c2",
+    "appdescription": "High performance self-hosted photo and video backup solution directly from your mobile phone"
+  },
+  {
+    "title": "IT-Tools",
+    "colour": "#fafbfc",
+    "url": "http://192.168.178.63:8088/",
+    "description": null,
+    "appid": "b5f16344632fdfe68391a2dc3816ee0edbb1813c",
+    "appdescription": "Useful tools for developer and people working in IT."
+  },
+  {
+    "title": "Jellyfin",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8096/",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"password\":null}",
+    "appid": "3e0a7f109bd760b9474c78cb652e8c3e82669226",
+    "appdescription": "Jellyfin is the Free Software Media System that puts you in control of managing and streaming your media. There are no strings attached, no premium licenses or features, and no hidden agendas."
+  },
+  {
+    "title": "Kavita",
+    "colour": "#CC8",
+    "url": "http://192.168.178.63:5000/home",
+    "description": null,
+    "appid": "deebb60d4aafd710c8f6a4cfd917b570748f2c0c",
+    "appdescription": "Kavita is a fast, feature rich, cross platform reading server. Built with a focus for manga and the goal of being a full solution for all your reading needs. Setup your own server and share your reading collection with your friends and family."
+  },
+  {
+    "title": "LazyLibrarian",
+    "colour": "#DD2",
+    "url": "http://192.168.178.63:5299/authors",
+    "description": null,
+    "appid": "49eac3c78f71626d0364c2691336b2113daedf4c",
+    "appdescription": "LazyLibrarian is a program to follow authors and grab metadata for all your digital reading needs."
+  },
+  {
+    "title": "Letta",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8283/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "InvokeIA",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:9090",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "MotionEye",
+    "colour": "#fafbfc",
+    "url": "http://192.168.178.63:8765",
+    "description": null,
+    "appid": "19bd1c6a4f62ecc721b771b42e71d2eaff67824e",
+    "appdescription": "motionEye is a web-based frontend for motion."
+  },
+  {
+    "title": "Porttracker",
+    "colour": "#F80",
+    "url": "http://192.168.178.63:4999",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Portainer",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:9000",
+    "description": "{\"enabled\":\"0\",\"dataonly\":\"1\",\"override_url\":null,\"username\":null,\"password\":null,\"ignore_tls\":\"0\"}",
+    "appid": "07b796b3a10eaa8b6f485ed2379187a39400b459",
+    "appdescription": "Portainer is a simple management solution for Docker. Easily manage your Docker hosts and Docker Swarm clusters via Portainer web user interface."
+  },
+  {
+    "title": "pulse",
+    "colour": "#FFF",
+    "url": "http://192.168.178.63:7655",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Open WebUI",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8080",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Searx Metasearch Engine",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8081",
+    "description": null,
+    "appid": "d3f896182b5c10b07918e295fce8c5aef054d266",
+    "appdescription": "A privacy-respecting, hackable metasearch engine."
+  },
+  {
+    "title": "cops",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8400/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "copyparty",
+    "colour": "#F08",
+    "url": "http://192.168.178.63:3923/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Jellyseerr",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:5055/",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"apikey\":null,\"requests\":\"pending\",\"issues\":\"open\"}",
+    "appid": "0628c8d1a4868d6e6b994ae43a091f4e142ce642",
+    "appdescription": "Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!"
+  },
+  {
+    "title": "LazyLibrarian",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:5299/authors",
+    "description": null,
+    "appid": "49eac3c78f71626d0364c2691336b2113daedf4c",
+    "appdescription": "LazyLibrarian is a program to follow authors and grab metadata for all your digital reading needs."
+  },
+  {
+    "title": "Mame",
+    "colour": "#161b1f",
+    "url": "https://192.168.178.63:7023/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Modrinth",
+    "colour": "#161b1f",
+    "url": "https://192.168.178.63:7029/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "MyMPD",
+    "colour": "#161b1f",
+    "url": "https://192.168.178.63:6443/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Ombi",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:3579/landingpage",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"apikey\":null}",
+    "appid": "57b25ceb94bd4c9ba9038ce17656f5ede9007e4c",
+    "appdescription": "Ombi is a self-hosted web application that automatically gives your shared Plex or Emby users the ability to request content by themselves! Ombi can be linked to multiple TV Show and Movie DVR tools to create a seamless end-to-end experience for your users."
+  },
+  {
+    "title": "Porttracker",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:4999/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Prowlarr",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:9696/",
+    "description": "{\"enabled\":\"0\",\"override_url\":null,\"apikey\":null}",
+    "appid": "de6ff49c94538e6e13a77f75991141a4fe9af8bf",
+    "appdescription": "Prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and Readarr offering complete management of your indexers with no per app Indexer setup required (we do it all)."
+  },
+  {
+    "title": "pulse",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:7655",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Transmission",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:9091/",
+    "description": "{\"enabled\":\"0\",\"dataonly\":\"1\",\"override_url\":null,\"username\":null,\"password\":null}",
+    "appid": "34899a33e3d7e33e1966b921ea250350fc71591a",
+    "appdescription": "Transmission is a BitTorrent client which features a variety of user interfaces on top of a cross-platform back-end."
+  },
+  {
+    "title": "Television simulator",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:3003/",
+    "description": null,
+    "appid": "null",
+    "appdescription": null
+  },
+  {
+    "title": "Ollama",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:11434",
+    "description": null,
+    "appid": null,
+    "appdescription": "Local LLM hosting and inference server (Ollama API)."
+  },
+  {
+    "title": "Ubooquity",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:2202",
+    "description": null,
+    "appid": null,
+    "appdescription": "Lightweight home server for comics and ebooks."
+  },
+  {
+    "title": "Dozzle",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8082",
+    "description": null,
+    "appid": null,
+    "appdescription": "Simple docker log viewer."
+  },
+  {
+    "title": "LocalAI",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8084",
+    "description": null,
+    "appid": null,
+    "appdescription": "Local inference server for a variety of LLMs."
+  },
+  {
+    "title": "Nginx Proxy Manager",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:81",
+    "description": null,
+    "appid": null,
+    "appdescription": "Manage reverse proxy hosts with a simple GUI."
+  },
+  {
+    "title": "ComfyUI",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8188",
+    "description": null,
+    "appid": null,
+    "appdescription": "Node-based UI for image generation workflows."
+  },
+  {
+    "title": "Heimdall",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:85",
+    "description": null,
+    "appid": null,
+    "appdescription": "Application dashboard and launcher."
+  },
+  {
+    "title": "SyncTube",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:4200",
+    "description": null,
+    "appid": null,
+    "appdescription": "Synchronized video watching room server."
+  },
+  {
+    "title": "Nextcloud",
+    "colour": "#161b1f",
+    "url": "https://192.168.178.63:4433",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted file sharing and collaboration platform."
+  },
+  {
+    "title": "n8n",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:5678",
+    "description": null,
+    "appid": null,
+    "appdescription": "Workflow automation and integration tool."
+  },
+  {
+    "title": "Mylar3",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8091",
+    "description": null,
+    "appid": null,
+    "appdescription": "Automated comic downloading and management (Mylar3)."
+  },
+  {
+    "title": "Owncast",
+    "colour": "#161b1f",
+    "url": "http://192.168.178.63:8680",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Lidarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8686",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Radarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:7878",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  },
+  {
+    "title": "Sonarr",
+    "colour": "#161b1f",
+    "url": "http://0.0.0.0:8989",
+    "description": null,
+    "appid": null,
+    "appdescription": "Self-hosted live streaming server."
+  }
+]

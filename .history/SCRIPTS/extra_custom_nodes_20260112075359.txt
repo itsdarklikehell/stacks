@@ -1,0 +1,45 @@
+#### # #### # rgthree
+comfyui-gps-supplements
+multi-lora-stack
+Comfyui-EasySettingPipes
+comfyui-vslinx-nodes
+comfyui_sillynodes
+efficiency-nodes-ED
+rgthree-comfy
+#### # #### # Ollama / LLM
+comfyui-ollama
+comfyui-ollama-prompt-encode
+ComfyUI-OllamaPromptsGeneratorTlant
+#### # #### # Prompt Nodes
+Comfyui_Prompt_styler
+comfyui-flux-prompt-saver
+comfyui-et_dynamicprompts
+webui-monaco-prompt
+lazy-pony-prompter
+Comfyui_MiniCPMv2_6-prompt-generator
+Factory-Prompts_comfyui
+flux-prompt-generator
+PromptCreatorNode
+comfyui-image-prompt-loader
+#### # #### # rembg
+kaytool
+wtq-rembg-comfyui-node
+comfyui-rembg
+comfyui_ben_ll
+comfyui-img2paintingassistant
+comfyui-levelpixel-advanced
+batchimg-rembg-comfyui-nodes
+ComfyUI-GeekyRemB
+rembg-comfyui-node
+rembg-comfyui-node-better
+comfyui_birefnet_ll
+comfyui-inspyrenet-rembg
+Comfyui-XYZ-stitch
+ImageMetaHub-ComfyUI-Save
+comfyui_otacoo
+format-lora-stack
+comfyui-clip-with-break
+comfyui_sageutils
+ComfyUI_LoRA_Sidebar
+efficiency-nodes-comfyui
+

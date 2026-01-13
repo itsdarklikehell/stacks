@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "gitmind.ollama.model": "gemma3:latest",
+    "ollama-autocoder.model": "gemma3:latest",
+    "ollama-participant.model": "gemma3:latest",
+    "tabmania.model": "smollm2",
+    "workbench.colorCustomizations": {
+      "minimap.background": "#00000000",
+      "scrollbar.shadow": "#00000000"
+    },
+    "DockerRun.DisableAutoGenerateConfig": true
+  }
+}

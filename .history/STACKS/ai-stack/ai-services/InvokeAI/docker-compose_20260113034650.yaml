@@ -1,0 +1,115 @@
+services:
+  InvokeAI:
+    image: ${IMAGE:-ghcr.io/invoke-ai/invokeai:latest}
+    container_name: ${NAME:-InvokeAI}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - TZ=${TZ:-Europe/Amsterdam}
+      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}
+
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # - DOCKER_HOST=
+      - INSTALL_PACKAGES=libfuse2|git|gdb
+      - RESTART_APP=true
+
+      - INVOKEAI_ALLOW_UNKNOWN_MODELS=${INVOKEAI_ALLOW_UNKNOWN_MODELS:-true}
+      # - INVOKEAI_DEVICE_WORKING_MEM_GB=${INVOKEAI_DEVICE_WORKING_MEM_GB:-4}
+      - INVOKEAI_ENABLE_PARTIAL_LOADING=${INVOKEAI_ENABLE_PARTIAL_LOADING:-true}
+      # - INVOKEAI_KEEP_RAM_COPY_OF_WEIGHTS=${INVOKEAI_KEEP_RAM_COPY_OF_WEIGHTS:-false}
+      # - INVOKEAI_PYTORCH_CUDA_ALLOC_CONF=${INVOKEAI_PYTORCH_CUDA_ALLOC_CONF:-"backend:cudaMallocAsync"}
+      - INVOKEAI_SCAN_MODELS_ON_STARTUP=${INVOKEAI_SCAN_MODELS_ON_STARTUP:-false}
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - InvokeAI_data:/invokeai
+
+      # MODELS:
+      - InvokeAI_models:/invokeai/models
+
+      - anything-llm_models:/invokeai/models/anything-llm_models
+      - localai_models:/invokeai/models/localai_models
+      - ollama_models:/invokeai/models/ollama_models
+      - comfyui_models:/invokeai/models/comfyui_models
+
+      # OUTPUTS
+      - anything-llm_output:/invokeai/outputs/anything-llm_output
+      - comfyui_output:/invokeai/outputs/comfyui_output
+      - InvokeAI_output:/invokeai/outputs
+      - localai_output:/invokeai/outputs/localai_output
+      # # INPUTS
+      # - anything-llm_input:invokeai/inputs/anything-llm_input
+      # - comfyui_input:invokeai/inputs/comfyui_input
+      # - InvokeAI_input:invokeai/inputs/InvokeAI_input
+      # - localai_input:invokeai/inputs
+
+    hostname: ${NAME:-InvokeAI}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      ai-services:
+
+
+    ports:
+      - ${PORT:-9090}:9090
+
+    env_file:
+      - ./InvokeAI/.env
+
+    stop_signal: SIGKILL
+
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu, compute, video, graphics, utility ]
+
+    tty: true
+
+    stdin_open: true
+
+    # shm_size: 1gb
+
+    # healthcheck:
+    # test:
+    #   [
+    #     CMD,
+    #     wget,
+    #     --no-verbose,
+    #     --tries=3,
+    #     --spider,
+    #     http://localhost:${PORT:-9090}/api/health,
+    #   ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
