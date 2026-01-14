@@ -557,6 +557,23 @@ volumes:
       o: bind
       device: ../../../DATA/downloader-stack/transmission/transmission_downloads
 
+  obs-studio_config:
+    name: obs-studio_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/obs-studio/obs-studio_config
+  obs-studio_recordings:
+    name: obs-studio_recordings
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/obs-studio/obs-studio_recordings
+
 networks:
   host:
   testing-services:

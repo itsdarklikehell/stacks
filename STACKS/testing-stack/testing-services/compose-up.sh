@@ -28,6 +28,7 @@ COMPOSE_FILES=(
 	# mympd
 	openttd
 	owncast
+	obs-studio
 	pcsx2
 	pygotchi
 	retroarch
@@ -76,6 +77,15 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"save"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "obs-studio" ]]; then
+
+		FOLDERS=(
+			"config"
+			"recordings"
 		)
 
 	fi
