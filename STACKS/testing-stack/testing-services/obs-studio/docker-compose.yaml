@@ -1,6 +1,6 @@
 services:
   obs-studio:
-    image: ${IMAGE:-kasmweb/obs:latest}
+    image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-xfce}
     container_name: ${NAME:-obs-studio}
     restart: ${RESTART:-unless-stopped}
 
@@ -20,25 +20,20 @@ services:
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
       # - DOCKER_HOST=
-      - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      - INSTALL_PACKAGES=obs-studio
       - RESTART_APP=true
 
       - VNC_PW=password
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
-      - PULSE_SERVER=unix:/run/user/1000/pulse/native
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - obs-studio_config:/home/kasm_user/.config/obs-studio
-      - obs-studio_recordings:/home/kasm_user/Videos
-
-      # PulseAudio socket voor audio integratie
-      - /run/user/1000/pulse:/run/user/1000/pulse
-      - ~/.config/pulse/cookie:/home/kasm_user/.config/pulse/cookie
+      - obs-studio_config:/config
 
     hostname: ${NAME:-obs-studio}
 
@@ -46,13 +41,18 @@ services:
       host:
       testing-services:
 
+    security_opt:
+      - seccomp:unconfined
+
     ports:
-      - ${PORT:-6901}:6901
+      - ${PORT:-6901}:3000
+      - 6902:3001
 
     env_file:
       - ./obs-studio/.env
 
     runtime: nvidia
+
     deploy:
       replicas: 1
       resources:
@@ -65,9 +65,6 @@ services:
     devices:
       - /dev/snd
       - /dev/dri:/dev/dri
-      - /dev/video0:/dev/video0
-
-    command: [ --enableVerboseLogging ]
 
     cap_add:
       - SYS_NICE

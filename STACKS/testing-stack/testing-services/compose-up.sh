@@ -4,43 +4,43 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	azahar
-	citron
-	code-server
-	dogwalk
-	dolphin
-	dosbox-staging
-	duckstation
-	emulatorjs
-	flaresolverr
-	flycast
-	# gamevault
-	gameyfin
-	gaseous-server
-	# gzdoom
-	healthchecks
-	luanti
-	mame
-	melonds
-	modmanager
-	modrinth
-	# mpd
-	# mympd
-	openttd
+	# azahar
+	# citron
+	# code-server
+	# dogwalk
+	# dolphin
+	# dosbox-staging
+	# duckstation
+	# emulatorjs
+	# flaresolverr
+	# flycast
+	# # gamevault
+	# gameyfin
+	# gaseous-server
+	# # gzdoom
+	# healthchecks
+	# luanti
+	# mame
+	# melonds
+	# modmanager
+	# modrinth
+	# # mpd
+	# # mympd
+	# openttd
 	owncast
 	obs-studio
-	pcsx2
-	pygotchi
-	retroarch
-	retrom
-	sunshine
-	# romm
-	rpcs3
-	scummvm
-	synctube
-	vscodium
-	vscodium-web
-	xemu
+	# pcsx2
+	# pygotchi
+	# retroarch
+	# retrom
+	# sunshine
+	# # romm
+	# rpcs3
+	# scummvm
+	# synctube
+	# vscodium
+	# vscodium-web
+	# xemu
 )
 
 function CREATE_FOLDERS() {
