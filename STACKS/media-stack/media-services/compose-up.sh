@@ -272,6 +272,12 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"music"
+			"tvseries"
+			"movies"
+			"audiobooks"
+			"concerts"
+			"podcasts"
+			"recordings"
 		)
 
 	fi
