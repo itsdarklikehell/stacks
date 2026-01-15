@@ -36,7 +36,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-8680}:8080
       - 1935:1935
@@ -90,3 +89,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

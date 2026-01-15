@@ -35,7 +35,7 @@ services:
       - calibre_config:/config
       - calibre_books:/calibre_books
       - calibre_autoadd:/calibre_autoadd
-      
+
       - transmission_downloads:/downloads
 
     hostname: ${NAME:-calibre}

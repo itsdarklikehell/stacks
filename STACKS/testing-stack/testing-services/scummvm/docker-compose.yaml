@@ -33,7 +33,7 @@ services:
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
-      
+
     hostname: ${NAME:-scummvm}
 
     # user: ${PUID:-1000}:${PGID:-1000}
@@ -41,7 +41,6 @@ services:
     networks:
       host:
       testing-services:
-
 
     ports:
       - ${PORT:-7036}:3000
@@ -89,3 +88,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

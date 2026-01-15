@@ -39,7 +39,6 @@ services:
       host:
       media-services:
 
-
     ports:
       - ${PORT:-5055}:5055
 
@@ -82,3 +81,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

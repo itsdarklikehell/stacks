@@ -46,10 +46,10 @@ services:
       host:
       gameserver-services:
 
-
     ports:
-      - ${PORT:-4903}:3000
-      - 4904:3001
+      - ${PORT:-27015}:27015
+      - 27020:27020/udp
+      - 27005:27005/udp
 
     env_file:
       - ./linux-gsm-cs2/.env
@@ -90,3 +90,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

@@ -1,7 +1,7 @@
 services:
-  bazarr:
-    image: ${IMAGE:-lscr.io/linuxserver/bazarr:latest}
-    container_name: ${NAME:-bazarr}
+  obs-studio:
+    image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-xfce}
+    container_name: ${NAME:-obs-studio}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -20,36 +20,39 @@ services:
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1
       - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
       # - DOCKER_HOST=
-      - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      - INSTALL_PACKAGES=obs-studio
       - RESTART_APP=true
+
+      - VNC_PW=password
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - bazarr_config:/config
-      - transmission_watchfolder:/transmission_watchfolder
+      - obs-studio_config:/config
 
-      # optional:
-      - bazarr_movies:/movies
-      - bazarr_tvseries:/tv
-
-    hostname: ${NAME:-bazarr}
-
-    # user: ${PUID:-1000}:${PGID:-1000}
+    hostname: ${NAME:-obs-studio}
 
     networks:
       host:
-      media-services:
+      testing-services:
+
+    security_opt:
+      - seccomp:unconfined
 
     ports:
-      - ${PORT:-6767}:6767
+      - ${PORT:-6901}:3000
+      - 6902:3001
 
     env_file:
-      - ./bazarr/.env
+      - ./obs-studio/.env
 
     runtime: nvidia
+
     deploy:
       replicas: 1
       resources:
@@ -59,11 +62,20 @@ services:
               count: all
               capabilities: [ gpu, compute, video, graphics, utility ]
 
+    devices:
+      - /dev/snd
+      - /dev/dri:/dev/dri
+
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+      - IPC_LOCK
+
     tty: true
 
     stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 1gb
 
     # healthcheck:
     #   test:
@@ -73,7 +85,7 @@ services:
     #       --no-verbose,
     #       --tries=3,
     #       --spider,
-    #       http://localhost:${PORT:-12393}/api/health,
+    #       http://localhost:${PORT:-3000}/api/health,
     #     ]
     #   interval: 30s
     #   timeout: 10s

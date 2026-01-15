@@ -69,7 +69,6 @@ services:
       host:
       essential-services:
 
-
     env_file:
       - ./socket-proxy/.env
 
@@ -99,3 +98,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

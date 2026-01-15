@@ -4,9 +4,9 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	linux-gsm-cs2
-	pterodactyl
 	veloren-server
+	# linux-gsm-cs2
+	# pterodactyl
 )
 
 function CREATE_FOLDERS() {
@@ -96,3 +96,4 @@ function BUILDING() {
 }
 
 BUILDING
+

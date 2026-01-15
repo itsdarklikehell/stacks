@@ -75,7 +75,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-7026}:3000
       - 7027:3001
@@ -119,3 +118,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

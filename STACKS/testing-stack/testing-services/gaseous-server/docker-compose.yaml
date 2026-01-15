@@ -48,7 +48,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-5198}:80
 
@@ -183,3 +182,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

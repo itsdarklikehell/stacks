@@ -48,7 +48,6 @@ services:
       host:
       media-services:
 
-
     ports:
       - ${PORT:-3923}:3923
 
@@ -86,3 +85,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

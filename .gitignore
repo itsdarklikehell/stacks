@@ -4,11 +4,11 @@ SECRETS/*
 .trunk
 .continue
 .vscode
+.history
+.hist
 node_modules
 DATA/*
 DATA/ai-custom_nodes/*
 SCRIPTS/rmlint.json
 SCRIPTS/rmlint.sh
-MEDIA/.hist
-.fake
-*.hist
+MEDIA/

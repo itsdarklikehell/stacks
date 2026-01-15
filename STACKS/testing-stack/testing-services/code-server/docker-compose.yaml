@@ -76,7 +76,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-7004}:8443
       - 7005:3001
@@ -120,3 +119,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

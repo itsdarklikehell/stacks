@@ -53,7 +53,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-6000}:8080
       - 6443:8443
@@ -103,3 +102,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

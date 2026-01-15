@@ -4,53 +4,53 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	airsonic-advanced
-	ardour
-	audacity
-	bazarr
-	beets
-	copyparty
-	darktable
-	digikam
-	doplarr
-	emby
-	emby-wrapped
-	gimp
-	handbrake
-	htpcmanager
-	jellyseer
-	kdenlive
-	kometa
-	krita
-	lidarr
-	lollypop
-	lychee
-	mediaelch
-	medusa
-	minisatip
-	mstream
-	ombi
-	blockbusterr
-	openshot
-	oscam
-	overseerr
-	cinephage
-	piwigo
-	plex
-	prowlarr
-	radarr
-	rawtherapee
-	shotcut
-	sickgear
-	sonarr
-	spotube
-	synclounge
-	tautulli
-	tvheadend
+	# airsonic-advanced
+	# ardour
+	# audacity
+	# bazarr
+	# beets
+	# copyparty
+	# darktable
+	# digikam
+	# doplarr
+	# emby
+	# emby-wrapped
+	# gimp
+	# handbrake
+	# htpcmanager
+	# jellyseer
+	# kdenlive
+	# kometa
+	# krita
+	# lidarr
+	# lollypop
+	# lychee
+	# mediaelch
+	# medusa
+	# minisatip
+	# mstream
+	# ombi
+	# blockbusterr
+	# openshot
+	# oscam
+	# overseerr
+	# cinephage
+	# piwigo
+	# plex
+	# prowlarr
+	# radarr
+	# rawtherapee
+	# shotcut
+	# sickgear
+	# sonarr
+	# spotube
+	# synclounge
+	# tautulli
+	# tvheadend
 	tvs-server
-	vlc
-	webgrabplus
-	your_spotify
+	# vlc
+	# webgrabplus
+	# your_spotify
 )
 
 function CREATE_FOLDERS() {
@@ -551,3 +551,4 @@ function BUILDING() {
 }
 
 BUILDING
+

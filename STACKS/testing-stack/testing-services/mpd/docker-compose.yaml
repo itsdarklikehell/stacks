@@ -39,7 +39,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-6600}:6600
       - ${PORT2:-8800}:8800
@@ -91,3 +90,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

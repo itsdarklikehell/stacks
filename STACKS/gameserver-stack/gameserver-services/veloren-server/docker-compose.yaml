@@ -40,7 +40,6 @@ services:
       host:
       gameserver-services:
 
-
     ports:
       - 14004:14004
       - 14005:14005
@@ -103,5 +102,4 @@ services:
     networks:
       host:
       gameserver-services:
-
 

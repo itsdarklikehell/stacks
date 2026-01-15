@@ -4,42 +4,43 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	# azahar
-	# citron
-	# code-server
-	# dogwalk
-	# dolphin
-	# dosbox-staging
-	# duckstation
-	# emulatorjs
-	# flaresolverr
-	# flycast
-	# gamevault
-	# gameyfin
-	# gaseous-server
-	# gzdoom
-	# healthchecks
-	# luanti
-	# mame
-	# melonds
-	# modmanager
-	# modrinth
-	# mpd
-	# mympd
-	# openttd
+	azahar
+	citron
+	code-server
+	dogwalk
+	dolphin
+	dosbox-staging
+	duckstation
+	emulatorjs
+	flaresolverr
+	flycast
+	# # gamevault
+	gameyfin
+	gaseous-server
+	# # gzdoom
+	healthchecks
+	luanti
+	mame
+	melonds
+	modmanager
+	modrinth
+	# # mpd
+	# # mympd
+	openttd
 	owncast
-	# pcsx2
-	# pygotchi
-	# retroarch
-	# retrom
-	# sunshine
-	# romm
-	# rpcs3
-	# scummvm
-	# synctube
-	# vscodium
-	# vscodium-web
-	# xemu
+	obs-studio
+	pcsx2
+	pygotchi
+	retroarch
+	retrom
+	sunshine
+	# # romm
+	rpcs3
+	scummvm
+	synctube
+	vscodium
+	vscodium-web
+	xemu
 )
 
 function CREATE_FOLDERS() {
@@ -76,6 +77,15 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 			"save"
+		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "obs-studio" ]]; then
+
+		FOLDERS=(
+			"config"
+			"recordings"
 		)
 
 	fi
@@ -150,7 +160,6 @@ function SETUP_FOLDERS() {
 		)
 
 	fi
-
 
 	if [[ ${SERVICE_NAME} == "wolf" ]]; then
 
@@ -425,3 +434,4 @@ function BUILDING() {
 }
 
 BUILDING
+

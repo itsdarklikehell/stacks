@@ -35,7 +35,6 @@ services:
       host:
       media-services:
 
-
     ports:
       - ${PORT:-4328}:3000
 
@@ -78,3 +77,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

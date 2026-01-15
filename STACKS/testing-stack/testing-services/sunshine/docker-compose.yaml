@@ -42,7 +42,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - 47984-47990:47984-47990/tcp
       - 48010:48010
@@ -90,3 +89,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

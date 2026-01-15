@@ -50,7 +50,6 @@ services:
       host:
       sdr-services:
 
-
     ports:
       - ${PORT:-8073}:8073
       - 4851:5678
@@ -103,3 +102,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

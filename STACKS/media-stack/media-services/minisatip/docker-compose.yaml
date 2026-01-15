@@ -40,7 +40,6 @@ services:
       host:
       media-services:
 
-
     ports:
       - ${PORT:-8875}:8875
       - 554:554
@@ -88,3 +87,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

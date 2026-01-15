@@ -50,7 +50,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-3979}:3979/tcp
       - ${PORT:-3979}:3979/udp
@@ -97,3 +96,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

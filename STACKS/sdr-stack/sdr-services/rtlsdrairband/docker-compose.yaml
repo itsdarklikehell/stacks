@@ -44,7 +44,6 @@ services:
       host:
       sdr-services:
 
-
     ports:
       - ${PORT:-3322}:3322
 
@@ -93,3 +92,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

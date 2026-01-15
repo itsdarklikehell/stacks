@@ -46,7 +46,6 @@ services:
       host:
       testing-services:
 
-
     ports:
       - ${PORT:-3326}:8080
 
@@ -92,3 +91,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

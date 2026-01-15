@@ -15,6 +15,7 @@ models=(
 	'huihui_ai/qwen3-abliterated:latest'
 	'llama2-uncensored:latest'
 	'llama3.2:latest'
+	'gemma3:latest'
 	'llava-phi3:latest'
 	'llava:latest'
 	'moondream:latest'

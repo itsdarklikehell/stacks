@@ -46,7 +46,6 @@ services:
       host:
       media-services:
 
-
     ports:
       - 3637:1900/udp
       - 32400:32400
@@ -97,3 +96,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

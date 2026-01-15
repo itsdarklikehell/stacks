@@ -49,7 +49,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - ${SCANOPY_DAEMON_PORT:-60073}:${SCANOPY_DAEMON_PORT:-60073}
 
@@ -199,7 +198,6 @@ services:
       host:
       essential-services:
 
-
     ports:
       - "${SCANOPY_SERVER_PORT:-60072}:${SCANOPY_SERVER_PORT:-60072}"
 
@@ -238,3 +236,4 @@ services:
         condition: service_healthy
       scanopy-daemon:
         condition: service_healthy
+

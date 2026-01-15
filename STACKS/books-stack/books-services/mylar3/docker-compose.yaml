@@ -38,7 +38,7 @@ services:
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
-      
+
     hostname: ${NAME:-mylar3}
 
     # user: ${PUID:-1000}:${PGID:-1000}
