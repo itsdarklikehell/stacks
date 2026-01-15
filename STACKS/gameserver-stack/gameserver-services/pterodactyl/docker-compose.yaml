@@ -4,7 +4,11 @@ x-common:
     # for Panel functionality.
     &db-environment
     MYSQL_PASSWORD: &db-password pterodactyl
-    MYSQL_ROOT_PASSWORD: pterodactyl
+    MYSQL_DATABASE: ${DB_DATABASE:-pterodactyl}
+    MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-pterodactyl}
+    MYSQL_USER: ${DB_USERNAME:-pterodactyl}
+    SERVICE_TAGS: dev
+    SERVICE_NAME: mysql
   pterodactyl-panel: &panel-environment
     APP_URL: http://example.com
     # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
@@ -49,10 +53,12 @@ services:
 
     environment:
       <<: *db-environment
-      MYSQL_DATABASE: pterodactyl
-      MYSQL_USER: pterodactyl
 
     command: --default-authentication-plugin=mysql_native_password
+    # command: --innodb_buffer_pool_size=5M --innodb_log_buffer_size=256K --max_connections=10 --key_buffer_size=8 --thread_cache_size=0 --host_cache_size=0
+    # command: --innodb_ft_cache_size=1600000 --innodb_ft_total_cache_size=32000000 --thread_stack=131072 --sort_buffer_size=32K --read_buffer_size=8200
+    # command: --read_rnd_buffer_size=8200 --max_heap_table_size=16K --tmp_table_size=1K --bulk_insert_buffer_size=0 --join_buffer_size=128
+    # command: --net_buffer_length=1K --innodb_sort_buffer_size=64K --binlog_cache_size=4K --binlog_stmt_cache_size=4K --performance_schema=off
 
     networks:
       host:
@@ -87,6 +93,15 @@ services:
       options:
         max-size: 10m
         max-file: 3
+
+  pterodactyl-redis:
+    image: redis:latest
+    container_name: pterodactyl-redis
+    ports:
+      - 6379:6379
+    networks:
+      - pterry
+    restart: always
 
   pterodactyl-cache:
     image: redis:alpine
@@ -192,3 +207,43 @@ services:
         max-size: 10m
         max-file: 3
 
+
+
+  wings:
+    image: ghcr.io/pterodactyl/wings:latest
+    container_name: wings
+    restart: always
+
+    env_file:
+      - ./pterodactyl/.env
+
+    networks:
+      host:
+      gameserver-services:
+
+    ports:
+      - 2022:2022
+
+    tty: true
+
+    environment:
+      TZ: "UTC"
+      WINGS_UID: 988
+      WINGS_GID: 988
+      WINGS_USERNAME: pterodactyl
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/
+
+      # - /tmp/pterodactyl/:/tmp/pterodactyl/
+      # - /var/lib/pterodactyl/:/var/lib/pterodactyl/
+
+      # - ./system/certbot/conf/live/good-spiders.com/fullchain.pem:/etc/letsencrypt/live/wings.good-spiders.com/fullchain.pem:ro
+      # - ./system/certbot/conf/live/good-spiders.com/privkey.pem:/etc/letsencrypt/live/wings.good-spiders.com/privkey.pem:ro
+      # - ./game-servers/wings/data/wings/etc/:/etc/pterodactyl/
+      # - ./game-servers/wings/logs:/var/log/pterodactyl/
+      # - ./game-servers/wings/data:/data
+
+    depends_on:
+      - pterodactyl-panel
