@@ -30,6 +30,12 @@ services:
 
       - mstream_config:/config
       - mstream_music:/music
+      # - mstream_tvseries:/tvseries
+      # - mstream_movies:/movies
+      # - mstream_audiobooks:/audiobooks
+      # - mstream_concerts:/concerts
+      # - mstream_podcasts:/podcasts
+      # - mstream_recordings:/recordings
 
     hostname: ${NAME:-mstream}
 

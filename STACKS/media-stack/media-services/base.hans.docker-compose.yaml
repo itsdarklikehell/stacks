@@ -299,23 +299,6 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/htpcmanager/htpcmanager_config
 
-  mstream_config:
-    name: mstream_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/media-stack/mstream/mstream_config
-  mstream_music:
-    name: mstream_music
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/media-stack/mstream/mstream_music
-
   emby_config:
     name: emby_config
     driver: local
@@ -655,6 +638,81 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/downloader-stack/transmission/transmission_downloads
+
+
+
+  mstream_config:
+    name: mstream_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/mstream/mstream_config
+  mstream_music:
+    name: mstream_music
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /media/hans/beestation/Files/1MUSIC
+  mstream_tvseries:
+    name: mstream_tvseries
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_tvseries
+  mstream_movies:
+    name: mstream_movies
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_movies
+  mstream_concerts:
+    name: mstream_concerts
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_concerts
+  mstream_podcasts:
+    name: mstream_podcasts
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_podcasts
+  mstream_audiobooks:
+    name: mstream_audiobooks
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_audiobooks
+  mstream_recordings:
+    name: mstream_recordings
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_recordings
+  mstream_photos:
+    name: mstream_photos
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_photos
+  mstream_books:
+    name: mstream_books
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/mstream/mstream_books
+
 
 networks:
   host:

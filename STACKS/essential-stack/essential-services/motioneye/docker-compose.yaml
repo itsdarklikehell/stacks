@@ -31,15 +31,17 @@ services:
 
       - motioneye_shared:/shared
       - motioneye_etc:/etc/motioneye
-      - /dev/video0:/dev/video0
+      
       - /dev/bus/usb:/dev/bus/usb:ro
-
+      - /dev/video0:/dev/video0:ro
+      
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
-      
+
     hostname: ${NAME:-motioneye}
 
     devices:
+      - /dev/video0:/dev/video0
       - /dev/bus/usb:/dev/bus/usb
 
     # user: ${PUID:-1000}:${PGID:-1000}
