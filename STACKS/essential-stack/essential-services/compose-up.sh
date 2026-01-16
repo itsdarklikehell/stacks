@@ -31,6 +31,7 @@ COMPOSE_FILES=(
 	portainer
 	portracker
 	pulse
+	xpipe-webtop
 	socket-proxy
 )
 
@@ -84,6 +85,12 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "socket-proxy" ]]; then
+		FOLDERS=(
+			"config"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "xpipe-webtop" ]]; then
 		FOLDERS=(
 			"config"
 		)

@@ -51,6 +51,14 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/habridge/habridge_config
 
+  xpipe-webtop_config:
+    name: xpipe-webtop_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/xpipe-webtop/xpipe-webtop_config
+
   dock-dploy_config:
     name: dock-dploy_config
     driver: local
