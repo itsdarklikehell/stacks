@@ -39,6 +39,8 @@ RUN apt-get update && apt-get install -y \
 #         cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
 #         make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # LibDAB
 # RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline && \
 #                 cd /opt/build/dab-cmdline/library && \
@@ -46,6 +48,8 @@ RUN apt-get update && apt-get install -y \
 #                 mkdir -p /opt/build/dab-cmdline/build && cd /opt/build/cmdab-cmdline/build && \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
 #                 make -j$(nproc) install
+
+# WORKDIR /opt/build
 
 # # MBElib
 # RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib && \
@@ -55,6 +59,8 @@ RUN apt-get update && apt-get install -y \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && \
 #                 make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # SerialDV
 # RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV && \
 #                 cd /opt/build/serialDV && \
@@ -62,6 +68,8 @@ RUN apt-get update && apt-get install -y \
 #                 mkdir -p /opt/build/serialDV/build && cd /opt/build/serialDV/build && \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
 #                 make -j$(nproc) install
+
+# WORKDIR /opt/build
 
 # # DSDcc
 # RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
@@ -71,6 +79,8 @@ RUN apt-get update && apt-get install -y \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
 #                 make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # Codec2/FreeDV
 # RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2 && \
 #                 cd /opt/build/codec2 && \
@@ -79,12 +89,16 @@ RUN apt-get update && apt-get install -y \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && \
 #                 make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # SGP4
 # RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4 && \
 #                 cd /opt/build/sgp4 && \
 #                 mkdir -p /opt/build/sgp4/build && cd /opt/build/sgp4/build && \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && \
 #                 make -j$(nproc) install
+
+# WORKDIR /opt/build
 
 # # LibSigMF
 # RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
@@ -94,6 +108,8 @@ RUN apt-get update && apt-get install -y \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
 #                 make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # GGMorse
 # RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse && \
 #                 cd /opt/build/ggmorse && \
@@ -101,12 +117,16 @@ RUN apt-get update && apt-get install -y \
 #                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && \
 #                 make -j$(nproc) install
 
+# WORKDIR /opt/build
+
 # # RNnoise
 # RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise && \
 #                 cd /opt/build/rnnoise && \
 #                 mkdir -p /opt/build/rnnoise/build && cd /opt/build/rnnoise/build && \
 #                 cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && \
 #                 make -j$(nproc) install
+
+# WORKDIR /opt/build
 
 # # InmarsatC
 # RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
