@@ -438,9 +438,9 @@ elif [[ ${USER} == "rizzo" ]]; then
 	SETUP_BOOKS_STACK
 	echo ""
 
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
 
 	echo ""
 	SETUP_GAMESERVER_STACK
@@ -491,9 +491,9 @@ else
 	SETUP_BOOKS_STACK
 	echo ""
 
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
 
 	echo ""
 	SETUP_GAMESERVER_STACK
