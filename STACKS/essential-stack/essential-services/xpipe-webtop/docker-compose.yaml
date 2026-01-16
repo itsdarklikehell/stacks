@@ -1,6 +1,6 @@
 services:
   xpipe-webtop:
-    image: ${IMAGE:-lscr.io/linuxserver/xpipe-webtop.io:latest}
+    image: ${IMAGE:-ghcr.io/xpipe-io/xpipe-webtop:latest}
     container_name: ${NAME:-xpipe-webtop}
     restart: ${RESTART:-unless-stopped}
 

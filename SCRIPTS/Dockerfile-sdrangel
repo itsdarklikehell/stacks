@@ -78,4 +78,9 @@ RUN make -j $(nproc) install
 # Zorg dat de USB-permissies goed staan voor de RTL-SDR
 # RUN echo "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0bda\", ATTRS{idProduct}==\"2838\", MODE=\"0666\"" > /etc/udev/rules.d/20-rtlsdr.rules
 
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
+
+WORKDIR /tmp
+
 EXPOSE 3000 3001
