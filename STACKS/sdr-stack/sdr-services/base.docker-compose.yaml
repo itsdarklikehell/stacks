@@ -35,6 +35,15 @@ volumes:
       o: bind
       device: ../../../DATA/sdr-stack/openwebrxplus/openwebrxplus_var
 
+  webtop-sdrangel_config:
+    name: webtop-sdrangel_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/sdr-stack/webtop-sdrangel/webtop-sdrangel_config
+
 networks:
   host:
   sdr-services:

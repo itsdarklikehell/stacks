@@ -385,13 +385,13 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_SDR_STACK
-	# echo ""
+	echo ""
+	SETUP_SDR_STACK
+	echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_MEDIA_STACK

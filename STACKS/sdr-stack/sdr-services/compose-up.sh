@@ -6,6 +6,7 @@ cd "$(dirname "$0")" || exit 1
 COMPOSE_FILES=(
 	rtlsdrairband
 	openwebrxplus
+	webtop-sdrangel
 )
 
 function CREATE_FOLDERS() {
@@ -36,6 +37,20 @@ function SETUP_FOLDERS() {
 			"plugins"
 			"var"
 		)
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "webtop-sdrangel" ]]; then
+		
+		FOLDERS=(
+			"config"
+		)
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-sdrangel" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-sdrangel" "${FOLDER}/Dockerfile"
+		fi
 
 	fi
 
