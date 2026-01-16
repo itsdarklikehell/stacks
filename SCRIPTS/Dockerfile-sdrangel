@@ -128,13 +128,13 @@ RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise && \
 
 WORKDIR /opt/build
 
-# InmarsatC
-RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
-    cd /opt/build/inmarsatc && \
-    git switch msvc \
-    mkdir -p /opt/build/inmarsatc/build && cd /opt/build/inmarsatc/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
-    make -j$(nproc) install
+# # InmarsatC
+# RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
+#     cd /opt/build/inmarsatc && \
+#     git switch msvc \
+#     mkdir -p /opt/build/inmarsatc/build && cd /opt/build/inmarsatc/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
+#     make -j$(nproc) install
 
 # # --- Hardware Libraries Bouwen ---
 
