@@ -6,65 +6,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update en installeer SDR-libraries en SDRAngel dependencies
 RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    rtl-sdr \
-    libusb-1.0-0-dev \
-    wget \
-    gnupg2 \
-    git \
-    cmake \
-    g++ \
-    pkg-config \
-    autoconf \
-    automake \
-    libtool \
-    libfftw3-dev \
-    libusb-1.0-0-dev \
-    libusb-dev \
-    libhidapi-dev \
-    libopengl-dev \
-    qtbase5-dev \
-    qtchooser \
-    libqt5multimedia5-plugins \
-    qtmultimedia5-dev \
-    libqt5websockets5-dev \
-    qttools5-dev \
-    qttools5-dev-tools \
-    libqt5opengl5-dev \
-    libqt5quick5 \
-    libqt5charts5-dev \
-    qml-module-qtlocation \
-    qml-module-qtpositioning \
-    qml-module-qtquick-window2 \
-    qml-module-qtquick-dialogs \
-    qml-module-qtquick-controls \
-    qml-module-qtquick-controls2 \
-    qml-module-qtquick-layouts \
-    libqt5serialport5-dev \
-    qtdeclarative5-dev \
-    qtpositioning5-dev \
-    qtlocation5-dev \
-    libqt5texttospeech5-dev \
-    qtwebengine5-dev \
-    qtbase5-private-dev \
-    libqt5gamepad5-dev \
-    libqt5svg5-dev \
-    libfaad-dev \
-    libflac-dev \
-    zlib1g-dev \
-    libboost-all-dev \
-    libasound2-dev \
-    pulseaudio \
-    libopencv-dev \
-    libxml2-dev \
-    bison \
-    flex \
-    ffmpeg \
-    libavcodec-dev \
-    libavformat-dev \
-    libopus-dev \
-    doxygen \
-    graphviz \
+    git cmake g++ pkg-config autoconf automake libtool libfftw3-dev libusb-1.0-0-dev libusb-dev libhidapi-dev libopengl-dev \
+    qtbase5-dev qtchooser libqt5multimedia5-plugins qtmultimedia5-dev libqt5websockets5-dev \
+    qttools5-dev qttools5-dev-tools libqt5opengl5-dev libqt5quick5 libqt5charts5-dev \
+    qml-module-qtlocation  qml-module-qtpositioning qml-module-qtquick-window2 \
+    qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-layouts \
+    libqt5serialport5-dev qtdeclarative5-dev qtpositioning5-dev qtlocation5-dev libqt5texttospeech5-dev \
+    qtwebengine5-dev qtbase5-private-dev libqt5gamepad5-dev libqt5svg5-dev \
+    libfaad-dev libflac-dev zlib1g-dev libboost-all-dev libasound2-dev pulseaudio libopencv-dev libxml2-dev bison flex \
+    ffmpeg libavcodec-dev libavformat-dev libopus-dev doxygen graphviz \
     && \
     # Schoon de cache op om de image klein te houden
     apt-get clean && \
@@ -72,7 +22,8 @@ RUN apt-get update && apt-get install -y \
 
 
 # build RTL-SDR
-RUN mkdir /opt/build
+RUN mkdir /opt/build; chown $USER:users /opt/build
+RUN mkdir /opt/install; chown $USER:users /opt/install
 
 # WORKDIR /opt/build
 RUN cd /opt/build
@@ -89,7 +40,8 @@ RUN cmake -Wno-dev -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install
 RUN make -j $(nproc) install
 
 # build SDRANGEL
-RUN mkdir /opt/build
+RUN mkdir /opt/build; chown $USER:users /opt/build
+RUN mkdir /opt/install; chown $USER:users /opt/install
 
 # WORKDIR /opt/build
 RUN cd /opt/build
