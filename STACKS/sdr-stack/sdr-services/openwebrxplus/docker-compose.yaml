@@ -64,10 +64,10 @@ services:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
-      - /dev/uinput
-      - /dev/uhid
-      - /dev/snd
-      - /dev/kmsg
+      # - /dev/uinput
+      # - /dev/uhid
+      # - /dev/snd
+      # - /dev/kmsg
 
 
 
