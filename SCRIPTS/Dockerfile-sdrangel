@@ -2,9 +2,9 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Combineer installatie en opschonen voor een kleinere image
+# 1. Installeer alle benodigde build-dependencies
 RUN apt-get update && apt-get install -y \
-    git cmake g++ pkg-config autoconf automake libtool libfftw3-dev libusb-1.0-0-dev libusb-dev libhidapi-dev libopengl-dev \
+    git cmake build-essential pkg-config autoconf automake libtool libfftw3-dev libusb-1.0-0-dev libusb-dev libhidapi-dev libopengl-dev \
     qtbase5-dev qtchooser libqt5multimedia5-plugins qtmultimedia5-dev libqt5websockets5-dev \
     qttools5-dev qttools5-dev-tools libqt5opengl5-dev libqt5quick5 libqt5charts5-dev \
     qml-module-qtlocation qml-module-qtpositioning qml-module-qtquick-window2 \
@@ -13,26 +13,79 @@ RUN apt-get update && apt-get install -y \
     qtwebengine5-dev qtbase5-private-dev libqt5gamepad5-dev libqt5svg5-dev \
     libfaad-dev libflac-dev zlib1g-dev libboost-all-dev libasound2-dev pulseaudio libopencv-dev libxml2-dev bison flex \
     ffmpeg libavcodec-dev libavformat-dev libopus-dev doxygen graphviz \
+    libsqlite3-dev libiio-dev libad9361-dev libsoapysdr-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Bouw RTL-SDR (gefixte paden)
-WORKDIR /opt/build/librtlsdr/build
-RUN git clone https://github.com/osmocom/rtl-sdr.git .. && \
-    git checkout 420086af84d7eaaf98ff948cd11fea2cae71734a && \
-    cmake -Wno-dev -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
+# --- Hardware Libraries Bouwen ---
+
+WORKDIR /opt/build
+
+# RTL-SDR
+RUN git clone https://github.com /opt/build/rtlsdr && \
+    mkdir /opt/build/rtlsdr/build && cd /opt/build/rtlsdr/build && \
+    cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
     make -j$(nproc) install
 
-# Bouw SDRANGEL (alleen met RTLSDR geactiveerd, rest weggelaten voor build-succes)
-WORKDIR /opt/build/sdrangel/build
-RUN git clone https://github.com/f4exb/sdrangel.git .. && \
-    cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+# Airspy & AirspyHF
+RUN git clone https://github.com /opt/build/airspy && \
+    mkdir /opt/build/airspy/build && cd /opt/build/airspy/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. && make -j$(nproc) install && \
+    git clone https://github.com /opt/build/airspyhf && \
+    mkdir /opt/build/airspyhf/build && cd /opt/build/airspyhf/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. && make -j$(nproc) install
+
+# HackRF
+RUN git clone https://github.com /opt/build/hackrf && \
+    mkdir /opt/build/hackrf/build && cd /opt/build/hackrf/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf ../host && make -j$(nproc) install
+
+# LimeSuite (LimeSDR)
+RUN git clone https://github.com /opt/build/limesuite && \
+    mkdir /opt/build/limesuite/build && cd /opt/build/limesuite/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. && make -j$(nproc) install
+
+# BladeRF
+RUN git clone https://github.com /opt/build/bladerf && \
+    mkdir /opt/build/bladerf/build && cd /opt/build/bladerf/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF ../host && make -j$(nproc) install
+
+# libmirisdr (SDRplay)
+RUN git clone https://github.com /opt/build/mirisdr && \
+    mkdir /opt/build/mirisdr/build && cd /opt/build/mirisdr/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. && make -j$(nproc) install
+
+# --- Digitale Modes (DSDcc & dependencies) ---
+
+RUN git clone https://github.com /opt/build/mbelib && \
+    mkdir /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && make -j$(nproc) install && \
+    git clone https://github.com /opt/build/serialdv && \
+    mkdir /opt/build/serialdv/build && cd /opt/build/serialdv/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. && make -j$(nproc) install && \
+    git clone https://github.com /opt/build/dsdcc && \
+    mkdir /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DMBELIB_DIR=/opt/install/mbelib -DSERIALDV_DIR=/opt/install/serialdv .. && make -j$(nproc) install
+
+# --- SDRANGEL MAIN BUILD ---
+
+RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel && \
+    mkdir /opt/build/sdrangel/build && cd /opt/build/sdrangel/build && \
+    cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DRTLSDR_DIR=/opt/install/librtlsdr \
+    -DAIRSPY_DIR=/opt/install/libairspy \
+    -DAIRSPYHF_DIR=/opt/install/libairspyhf \
+    -DHACKRF_DIR=/opt/install/libhackrf \
+    -DLIMESUITE_DIR=/opt/install/LimeSuite \
+    -DBLADERF_DIR=/opt/install/libbladeRF \
+    -DMIRISDR_DIR=/opt/install/libmirisdr \
+    -DMBE_DIR=/opt/install/mbelib \
+    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DDSDCC_DIR=/opt/install/dsdcc \
     -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. && \
     make -j$(nproc) install
 
 # Omgevingsvariabelen
-ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialdv/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
 ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 WORKDIR /config
