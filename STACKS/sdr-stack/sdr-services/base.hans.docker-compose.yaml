@@ -44,6 +44,15 @@ volumes:
       o: bind
       device: ../../../DATA/sdr-stack/webtop-sdrangel/webtop-sdrangel_config
 
+  rtl-tcp_config:
+    name: rtl-tcp_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/sdr-stack/rtl-tcp/rtl-tcp_config
+
 networks:
   host:
   sdr-services:
