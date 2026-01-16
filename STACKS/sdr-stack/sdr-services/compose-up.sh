@@ -60,14 +60,9 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"config"
 		)
-		
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-rtl-sdr" "${FOLDER}/Dockerfile"
-
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-rtl-sdr" "${FOLDER}/Dockerfile"
-		fi
 
 	fi
+	
 	CREATE_FOLDERS
 
 }
