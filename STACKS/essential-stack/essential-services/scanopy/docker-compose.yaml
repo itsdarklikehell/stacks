@@ -27,7 +27,7 @@ services:
       SCANOPY_MODE: ${SCANOPY_MODE:-Push}
 
       OAUTHLIB_RELAX_TOKEN_SCOPE: 1
-      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-cron|lscr.io/linuxserver/mods:universal-unrar6
       # DOCKER_HOST:
       INSTALL_PACKAGES: libfuse2|git|gdb
       RESTART_APP: true
@@ -96,7 +96,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
 
       OAUTHLIB_RELAX_TOKEN_SCOPE: 1
-      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-cron|lscr.io/l
       # DOCKER_HOST:
       INSTALL_PACKAGES: libfuse2|git|gdb
       RESTART_APP: true
@@ -178,7 +178,7 @@ services:
       SCANOPY_INTEGRATED_DAEMON_URL: http://172.17.0.1:${SCANOPY_DAEMON_PORT:-60073}
 
       OAUTHLIB_RELAX_TOKEN_SCOPE: 1
-      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      DOCKER_MODS: linuxserver/mods:universal-package-install|linuxserver/mods:universal-cron|lscr.io/l
       # DOCKER_HOST:
       INSTALL_PACKAGES: libfuse2|git|gdb
       RESTART_APP: true

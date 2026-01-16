@@ -20,122 +20,123 @@ RUN apt-get update && apt-get install -y \
 
 # WORKDIR /opt/build
 
-# # APT
-# RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec && \
-#         cd /opt/build/aptdec && \
-#         git checkout libaptdec && \
-#         git submodule update --init --recursive && \
-#         mkdir -p /opt/build/aptdec/build && cd /opt/build/aptdec/build && \
-#         cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
-#         make -j$(nproc) install
+# APT
+RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec && \
+        cd /opt/build/aptdec && \
+        git checkout libaptdec && \
+        git submodule update --init --recursive && \
+        mkdir -p /opt/build/aptdec/build && cd /opt/build/aptdec/build && \
+        cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
+        make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # CM265cc
-# RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc && \
-#         cd /opt/build/cm256cc && \
-#         git reset --hard 6f4a51802f5f302577d6d270a9fc0cb7a1ee28ef && \
-#         mkdir -p /opt/build/cm256cc/build && cd /opt/build/cm256cc/build && \
-#         cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
-#         make -j$(nproc) install
+# CM265cc
+RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc && \
+        cd /opt/build/cm256cc && \
+        git reset --hard 6f4a51802f5f302577d6d270a9fc0cb7a1ee28ef && \
+        mkdir -p /opt/build/cm256cc/build && cd /opt/build/cm256cc/build && \
+        cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
+        make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # LibDAB
-# RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline && \
-#                 cd /opt/build/dab-cmdline/library && \
-#                 git checkout msvc && \
-#                 mkdir -p /opt/build/dab-cmdline/build && cd /opt/build/cmdab-cmdline/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
-#                 make -j$(nproc) install
+# LibDAB
+RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline && \
+                cd /opt/build/dab-cmdline/library && \
+                git checkout msvc && \
+                mkdir -p /opt/build/dab-cmdline/build && cd /opt/build/cmdab-cmdline/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # MBElib
-# RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib && \
-#                 cd /opt/build/mbelib && \
-#                 git reset --hard 9a04ed5c78176a9965f3d43f7aa1b1f5330e771f && \
-#                 mkdir -p /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && \
-#                 make -j$(nproc) install
+# MBElib
+RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib && \
+                cd /opt/build/mbelib && \
+                git reset --hard 9a04ed5c78176a9965f3d43f7aa1b1f5330e771f && \
+                mkdir -p /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # SerialDV
-# RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV && \
-#                 cd /opt/build/serialDV && \
-#                 git reset --hard "v1.1.4" && \
-#                 mkdir -p /opt/build/serialDV/build && cd /opt/build/serialDV/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
-#                 make -j$(nproc) install
+# SerialDV
+RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV && \
+                cd /opt/build/serialDV && \
+                git reset --hard "v1.1.4" && \
+                mkdir -p /opt/build/serialDV/build && cd /opt/build/serialDV/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # DSDcc
-# RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
-#                 cd /opt/build/dsdcc && \
-#                 git reset --hard "v1.9.5" && \
-#                 mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
-#                 make -j$(nproc) install
+# DSDcc
+RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
+                cd /opt/build/dsdcc && \
+                git reset --hard "v1.9.5" && \
+                mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # Codec2/FreeDV
-# RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2 && \
-#                 cd /opt/build/codec2 && \
-#                 git reset --hard "v1.0.3" && \
-#                 mkdir -p /opt/build/codec2/build && cd /opt/build/codec2/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && \
-#                 make -j$(nproc) install
+# Codec2/FreeDV
+RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2 && \
+                cd /opt/build/codec2 && \
+                git reset --hard "v1.0.3" && \
+                mkdir -p /opt/build/codec2/build && cd /opt/build/codec2/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # SGP4
-# RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4 && \
-#                 cd /opt/build/sgp4 && \
-#                 mkdir -p /opt/build/sgp4/build && cd /opt/build/sgp4/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && \
-#                 make -j$(nproc) install
+# SGP4
+RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4 && \
+                cd /opt/build/sgp4 && \
+                mkdir -p /opt/build/sgp4/build && cd /opt/build/sgp4/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # LibSigMF
-# RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
-#                 cd /opt/build/libsigmf && \
-#                 git checkout "new-namespaces" \
-#                 mkdir -p /opt/build/libsigmf/build && cd /opt/build/libsigmf/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
-#                 make -j$(nproc) install
+# LibSigMF
+RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
+                cd /opt/build/libsigmf && \
+                git checkout "new-namespaces" \
+                mkdir -p /opt/build/libsigmf/build && cd /opt/build/libsigmf/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # GGMorse
-# RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse && \
-#                 cd /opt/build/ggmorse && \
-#                 mkdir -p /opt/build/ggmorse/build && cd /opt/build/ggmorse/build && \
-#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && \
-#                 make -j$(nproc) install
+# GGMorse
+RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse && \
+                cd /opt/build/ggmorse && \
+                mkdir -p /opt/build/ggmorse/build && cd /opt/build/ggmorse/build && \
+                cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # RNnoise
-# RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise && \
-#                 cd /opt/build/rnnoise && \
-#                 mkdir -p /opt/build/rnnoise/build && cd /opt/build/rnnoise/build && \
-#                 cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && \
-#                 make -j$(nproc) install
+# RNnoise
+RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise && \
+                cd /opt/build/rnnoise && \
+                mkdir -p /opt/build/rnnoise/build && cd /opt/build/rnnoise/build && \
+                cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && \
+                make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# # InmarsatC
-# RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
-#                 cd /opt/build/inmarsatc && \
-#                 git switch msvc \
-#                 mkdir -p /opt/build/inmarsatc/build && cd /opt/build/inmarsatc/build && \
-#                 cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
-#                 make -j$(nproc) install
-# --- Hardware Libraries Bouwen ---
+# InmarsatC
+RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
+                cd /opt/build/inmarsatc && \
+                git switch msvc \
+                mkdir -p /opt/build/inmarsatc/build && cd /opt/build/inmarsatc/build && \
+                cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
+                make -j$(nproc) install
+
+# # --- Hardware Libraries Bouwen ---
 
 WORKDIR /opt/build
 
@@ -185,31 +186,30 @@ ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # --- Snelkoppelingen configureren ---
 
-# # 1. Maak het .desktop bestand aan
-# RUN printf "[Desktop Entry]\n\
-#     Version=1.0\n\
-#     Type=Application\n\
-#     Name=SDRangel\n\
-#     Comment=SDR Software Defined Radio\n\
-#     Exec=/opt/install/sdrangel/bin/sdrangel\n\
-#     Icon=/opt/build/sdrangel/sdrgui/resources/appicon.png\n\
-#     Terminal=false\n\
-#     Categories=Development;Engineering;\n" > /usr/share/applications/sdrangel.desktop
+RUN mkdir -p /config/.config/autostart
 
-# # 2. Kopieer naar het bureaublad voor de standaard 'abc' gebruiker
-# RUN mkdir -p /config/Desktop && \
-#         cp /usr/share/applications/sdrangel.desktop /config/Desktop/sdrangel.desktop && \
-#         chmod +x /config/Desktop/sdrangel.desktop
+# 1. Maak het .desktop bestand aan
 
-# # 3. Voeg toe aan de KDE Taakbalk (Favorites)
-# # We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
-# RUN mkdir -p /config/.config && \
-#         echo "[Favorites]\n\
-#     favoriteApps=sdrangel.desktop" >> /config/.config/kdeglobals
+RUN printf "[Desktop Entry]\n\
+    Version=1.0\n\
+    Type=Application\n\
+    Name=SDRangel\n\
+    Comment=SDR Software Defined Radio\n\
+    Exec=/opt/install/sdrangel/bin/sdrangel\n\
+    Icon=/opt/build/sdrangel/sdrgui/resources/appicon.png\n\
+    Terminal=false\n\
+    Categories=Development;Engineering;\n" > /usr/share/applications/sdrangel.desktop
 
-# # Voeg dit toe aan het bestaande printf block in je Dockerfile:
-# RUN mkdir -p /config/.config/autostart
-# RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
+# 2. Kopieer naar het bureaublad voor de standaard 'abc' gebruiker
+RUN cp /usr/share/applications/sdrangel.desktop /config/Desktop/sdrangel.desktop && chmod +x /config/Desktop/sdrangel.desktop
+
+# 3. Voeg toe aan de KDE Taakbalk (Favorites)
+# We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
+RUN echo "[Favorites]\n\
+    favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
+
+# Voeg dit toe aan het bestaande printf block in je Dockerfile:
+RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
 
 WORKDIR /config
 
