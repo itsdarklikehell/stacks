@@ -200,16 +200,16 @@ RUN printf "[Desktop Entry]\n\
     Terminal=false\n\
     Categories=Development;Engineering;\n" > /usr/share/applications/sdrangel.desktop
 
-# 2. Kopieer naar het bureaublad voor de standaard 'abc' gebruiker
-RUN cp /usr/share/applications/sdrangel.desktop /config/Desktop/sdrangel.desktop && chmod +x /config/Desktop/sdrangel.desktop
+# # 2. Kopieer naar het bureaublad voor de standaard 'abc' gebruiker
+# RUN cp /usr/share/applications/sdrangel.desktop /config/Desktop/sdrangel.desktop && chmod +x /config/Desktop/sdrangel.desktop
 
-# 3. Voeg toe aan de KDE Taakbalk (Favorites)
-# We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
-RUN echo "[Favorites]\n\
-    favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
+# # 3. Voeg toe aan de KDE Taakbalk (Favorites)
+# # We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
+# RUN echo "[Favorites]\n\
+#     favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
 
-# Voeg dit toe aan het bestaande printf block in je Dockerfile:
-RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
+# # Voeg dit toe aan het bestaande printf block in je Dockerfile:
+# RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
 
 WORKDIR /config
 
