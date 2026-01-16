@@ -4,7 +4,7 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	rtl-sdr
+	rtl-tcp
 	# rtlsdrairband
 	# openwebrxplus
 	webtop-sdrangel
@@ -55,7 +55,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "rtl-sdr" ]]; then
+	if [[ ${SERVICE_NAME} == "rtl-tcp" ]]; then
 		
 		FOLDERS=(
 			"config"
