@@ -163,5 +163,36 @@ RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel && \
 ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialdv/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
 ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
+# --- Snelkoppelingen configureren ---
+
+# # 1. Maak het .desktop bestand aan
+# RUN printf "[Desktop Entry]\n\
+#     Version=1.0\n\
+#     Type=Application\n\
+#     Name=SDRangel\n\
+#     Comment=SDR Software Defined Radio\n\
+#     Exec=/opt/install/sdrangel/bin/sdrangel\n\
+#     Icon=/opt/build/sdrangel/sdrgui/resources/appicon.png\n\
+#     Terminal=false\n\
+#     Categories=Development;Engineering;\n" > /usr/share/applications/sdrangel.desktop
+
+# 2. Kopieer naar het bureaublad voor de standaard 'abc' gebruiker
+RUN mkdir -p /config/Desktop && \
+        cp /usr/share/applications/sdrangel.desktop /config/Desktop/sdrangel.desktop && \
+        chmod +x /config/Desktop/sdrangel.desktop
+
+# 3. Voeg toe aan de KDE Taakbalk (Favorites)
+# We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
+RUN mkdir -p /config/.config && \
+        echo "[Favorites]\n\
+    favoriteApps=sdrangel.desktop" >> /config/.config/kdeglobals
+
+# Voeg dit toe aan het bestaande printf block in je Dockerfile:
+RUN mkdir -p /config/.config/autostart
+RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
+
 WORKDIR /config
+
+# CMD sdrangel
+
 EXPOSE 3000 3001

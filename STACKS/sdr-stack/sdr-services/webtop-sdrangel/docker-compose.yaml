@@ -80,6 +80,7 @@ services:
       host:
       sdr-services:
 
+    # command: [ sdrangel ]
 
     privileged: true
 
