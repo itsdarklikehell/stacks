@@ -4,8 +4,9 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	rtlsdrairband
-	openwebrxplus
+	rtl-sdr
+	# rtlsdrairband
+	# openwebrxplus
 	webtop-sdrangel
 )
 
@@ -54,6 +55,19 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "rtl-sdr" ]]; then
+		
+		FOLDERS=(
+			"config"
+		)
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-rtl-sdr" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-rtl-sdr" "${FOLDER}/Dockerfile"
+		fi
+
+	fi
 	CREATE_FOLDERS
 
 }

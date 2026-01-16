@@ -1002,6 +1002,24 @@ function CLONE_STRUDEL() {
 	fi
 
 }
+
+function CLONE_SDR_TCP() {
+
+	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
+	if [[ ! -d strudel-cli ]]; then
+		echo "Cloning rtl-tcp"
+		echo ""
+		git clone --recursive https://github.com/LizenzFass78851/docker-rtl-tcp.git rtl-tcp
+		cd rtl-tcp || exit 1
+		echo -e 'blacklist dvb_usb_rtl28xxu\nblacklist rtl2832\nblacklist rtl2830' | sudo tee /lib/modprobe.d/blacklist-rtl.conf
+	else
+		echo "Checking rtl-tcp for updates"
+		cd rtl-tcp || exit 1
+		git pull
+	fi
+
+}
+
 CREATE_FOLDERS
 
 # CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
@@ -1017,6 +1035,7 @@ CREATE_FOLDERS
 # CLONE_SWARMUI     # >/dev/null 2>&1 &
 # CLONE_PYGOTCHI    # >/dev/null 2>&1 &
 CLONE_STRUDEL # >/dev/null 2>&1 &
+CLONE_SDR_TCP # >/dev/null 2>&1 &
 # CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
 
