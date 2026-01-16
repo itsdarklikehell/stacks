@@ -86,7 +86,7 @@ services:
     ports:
       - ${PORT:-4448}:3000  # HTTP interface (KDE Desktop)
       - 3143:3001 # HTTPS interface
-      - 8091:8091 # SDRangel REST API (voor externe apps)
+      - 3164:8091 # SDRangel REST API (voor externe apps)
 
     env_file:
       - ./webtop-sdrangel/.env
