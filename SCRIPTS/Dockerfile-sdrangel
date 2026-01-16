@@ -26,45 +26,45 @@ RUN git clone https://github.com /opt/build/rtlsdr && \
     cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
     make -j$(nproc) install
 
-# Airspy & AirspyHF
-RUN git clone https://github.com /opt/build/airspy && \
-    mkdir /opt/build/airspy/build && cd /opt/build/airspy/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. && make -j$(nproc) install && \
-    git clone https://github.com /opt/build/airspyhf && \
-    mkdir /opt/build/airspyhf/build && cd /opt/build/airspyhf/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. && make -j$(nproc) install
+# # Airspy & AirspyHF
+# RUN git clone https://github.com /opt/build/airspy && \
+#     mkdir /opt/build/airspy/build && cd /opt/build/airspy/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. && make -j$(nproc) install && \
+#     git clone https://github.com /opt/build/airspyhf && \
+#     mkdir /opt/build/airspyhf/build && cd /opt/build/airspyhf/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. && make -j$(nproc) install
 
-# HackRF
-RUN git clone https://github.com /opt/build/hackrf && \
-    mkdir /opt/build/hackrf/build && cd /opt/build/hackrf/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf ../host && make -j$(nproc) install
+# # HackRF
+# RUN git clone https://github.com /opt/build/hackrf && \
+#     mkdir /opt/build/hackrf/build && cd /opt/build/hackrf/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf ../host && make -j$(nproc) install
 
-# LimeSuite (LimeSDR)
-RUN git clone https://github.com /opt/build/limesuite && \
-    mkdir /opt/build/limesuite/build && cd /opt/build/limesuite/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. && make -j$(nproc) install
+# # LimeSuite (LimeSDR)
+# RUN git clone https://github.com /opt/build/limesuite && \
+#     mkdir /opt/build/limesuite/build && cd /opt/build/limesuite/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. && make -j$(nproc) install
 
-# BladeRF
-RUN git clone https://github.com /opt/build/bladerf && \
-    mkdir /opt/build/bladerf/build && cd /opt/build/bladerf/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF ../host && make -j$(nproc) install
+# # BladeRF
+# RUN git clone https://github.com /opt/build/bladerf && \
+#     mkdir /opt/build/bladerf/build && cd /opt/build/bladerf/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF ../host && make -j$(nproc) install
 
-# libmirisdr (SDRplay)
-RUN git clone https://github.com /opt/build/mirisdr && \
-    mkdir /opt/build/mirisdr/build && cd /opt/build/mirisdr/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. && make -j$(nproc) install
+# # libmirisdr (SDRplay)
+# RUN git clone https://github.com /opt/build/mirisdr && \
+#     mkdir /opt/build/mirisdr/build && cd /opt/build/mirisdr/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. && make -j$(nproc) install
 
-# --- Digitale Modes (DSDcc & dependencies) ---
+# # --- Digitale Modes (DSDcc & dependencies) ---
 
-RUN git clone https://github.com /opt/build/mbelib && \
-    mkdir /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && make -j$(nproc) install && \
-    git clone https://github.com /opt/build/serialdv && \
-    mkdir /opt/build/serialdv/build && cd /opt/build/serialdv/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. && make -j$(nproc) install && \
-    git clone https://github.com /opt/build/dsdcc && \
-    mkdir /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DMBELIB_DIR=/opt/install/mbelib -DSERIALDV_DIR=/opt/install/serialdv .. && make -j$(nproc) install
+# RUN git clone https://github.com /opt/build/mbelib && \
+#     mkdir /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && make -j$(nproc) install && \
+#     git clone https://github.com /opt/build/serialdv && \
+#     mkdir /opt/build/serialdv/build && cd /opt/build/serialdv/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. && make -j$(nproc) install && \
+#     git clone https://github.com /opt/build/dsdcc && \
+#     mkdir /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
+#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DMBELIB_DIR=/opt/install/mbelib -DSERIALDV_DIR=/opt/install/serialdv .. && make -j$(nproc) install
 
 # --- SDRANGEL MAIN BUILD ---
 

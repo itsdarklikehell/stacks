@@ -20,11 +20,11 @@ services:
       # - BASE_URL= #optional
       # - PLAYWRIGHT_DRIVER_URL= #optional
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
-      # - DOCKER_HOST=
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-apprise|linuxserver/mods:universal-cron|linuxserver/mods:universal-internationalization|linuxserver/mods:universal-stdout-logs|lscr.io/linuxserver/mods:universal-unrar6
+      # # - DOCKER_HOST=
+      # - INSTALL_PACKAGES=libfuse2|git|gdb
+      # - RESTART_APP=true
       # - SUBFOLDER=/ #optional, to run in a subfolder reverse proxy
 
     volumes:
@@ -43,10 +43,10 @@ services:
       essential-services:
 
 
-    privileged: true # optional, to enable tailscale
+    # privileged: true # optional, to enable tailscale
 
-    cap_add:
-      - NET_ADMIN # optional, to enable tailscale
+    # cap_add:
+    #   - NET_ADMIN # optional, to enable tailscale
 
     ports:
       - ${PORT:-3593}:3000
