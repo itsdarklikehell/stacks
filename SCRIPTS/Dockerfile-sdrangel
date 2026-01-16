@@ -13,59 +13,49 @@ RUN apt-get update && apt-get install -y \
     qtwebengine5-dev qtbase5-private-dev libqt5gamepad5-dev libqt5svg5-dev \
     libfaad-dev libflac-dev zlib1g-dev libboost-all-dev libasound2-dev pulseaudio libopencv-dev libxml2-dev bison flex \
     ffmpeg libavcodec-dev libavformat-dev libopus-dev doxygen graphviz \
-    libsqlite3-dev libiio-dev libad9361-dev libsoapysdr-dev \
+    libsqlite3-dev libiio-dev libad9361-dev libsoapysdr-dev libsndfile-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# # --- Non-Hardware Libraries Bouwen ---
+
+# WORKDIR /opt/build
+
+# # APT
+# RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec && \
+#         cd /opt/build/aptdec && \
+#         git checkout libaptdec && \
+#         git submodule update --init --recursive && \
+#         mkdir -p /opt/build/aptdec/build && cd /opt/build/aptdec/build && \
+#         cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
+#         make -j$(nproc) install
+
+# WORKDIR /opt/build
+
+# # CM265cc
+# RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc && \
+#         cd /opt/build/cm256cc && \
+#         git reset --hard 6f4a51802f5f302577d6d270a9fc0cb7a1ee28ef && \
+#         mkdir -p /opt/build/cm256cc/build && cd /opt/build/cm256cc/build && \
+#         cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
+#         make -j$(nproc) install
+
+# # LibDAB
+# RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline && \
+#                 cd /opt/build/dab-cmdline/library && \
+#                 git checkout msvc && \
+#                 mkdir -p /opt/build/dab-cmdline/build && cd /opt/build/cmdab-cmdline256cc/build && \
+#                 cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
+#                 make -j$(nproc) install
 
 # --- Hardware Libraries Bouwen ---
 
-RUN mkdir -p /opt/build
 WORKDIR /opt/build
 
 # RTL-SDR
-RUN git clone https://github.com /opt/build/rtlsdr && \
+RUN git clone https://github.com/osmocom/rtl-sdr.git /opt/build/rtlsdr && \
     mkdir -p /opt/build/rtlsdr/build && cd /opt/build/rtlsdr/build && \
     cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
     make -j$(nproc) install
-
-# # Airspy & AirspyHF
-# RUN git clone https://github.com /opt/build/airspy && \
-#     mkdir -p /opt/build/airspy/build && cd /opt/build/airspy/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. && make -j$(nproc) install && \
-#     git clone https://github.com /opt/build/airspyhf && \
-#     mkdir -p /opt/build/airspyhf/build && cd /opt/build/airspyhf/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. && make -j$(nproc) install
-
-# # HackRF
-# RUN git clone https://github.com /opt/build/hackrf && \
-#     mkdir -p /opt/build/hackrf/build && cd /opt/build/hackrf/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf ../host && make -j$(nproc) install
-
-# # LimeSuite (LimeSDR)
-# RUN git clone https://github.com /opt/build/limesuite && \
-#     mkdir -p /opt/build/limesuite/build && cd /opt/build/limesuite/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. && make -j$(nproc) install
-
-# # BladeRF
-# RUN git clone https://github.com /opt/build/bladerf && \
-#     mkdir -p /opt/build/bladerf/build && cd /opt/build/bladerf/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF ../host && make -j$(nproc) install
-
-# # libmirisdr (SDRplay)
-# RUN git clone https://github.com /opt/build/mirisdr && \
-#     mkdir -p /opt/build/mirisdr/build && cd /opt/build/mirisdr/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. && make -j$(nproc) install
-
-# # --- Digitale Modes (DSDcc & dependencies) ---
-
-# RUN git clone https://github.com /opt/build/mbelib && \
-#     mkdir -p /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && make -j$(nproc) install && \
-#     git clone https://github.com /opt/build/serialdv && \
-#     mkdir -p /opt/build/serialdv/build && cd /opt/build/serialdv/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. && make -j$(nproc) install && \
-#     git clone https://github.com /opt/build/dsdcc && \
-#     mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DMBELIB_DIR=/opt/install/mbelib -DSERIALDV_DIR=/opt/install/serialdv .. && make -j$(nproc) install
 
 # --- SDRANGEL MAIN BUILD ---
 
