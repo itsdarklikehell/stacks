@@ -13,12 +13,12 @@ RUN apt-get update && apt-get install -y \
     qtwebengine5-dev qtbase5-private-dev libqt5gamepad5-dev libqt5svg5-dev \
     libfaad-dev libflac-dev zlib1g-dev libboost-all-dev libasound2-dev pulseaudio libopencv-dev libxml2-dev bison flex \
     ffmpeg libavcodec-dev libavformat-dev libopus-dev doxygen graphviz \
-    libsqlite3-dev libiio-dev libad9361-dev libsoapysdr-dev libsndfile-dev libspeexdsp-dev libsamplerate0-dev \
+    libsqlite3-dev libavahi-client-dev libiio-dev libad9361-dev libsoapysdr-dev libsndfile-dev libspeexdsp-dev libsamplerate0-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # # --- Non-Hardware Libraries Bouwen ---
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
 # APT
 RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec && \
@@ -49,7 +49,7 @@ WORKDIR /opt/build
 #     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
 #     make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
 # MBElib
 RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib && \
@@ -69,15 +69,15 @@ WORKDIR /opt/build
 #     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
 #     make -j$(nproc) install
 
-# WORKDIR /opt/build
+WORKDIR /opt/build
 
-# DSDcc
-RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
-    cd /opt/build/dsdcc && \
-    git reset --hard "v1.9.5" && \
-    mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
-    make -j$(nproc) install
+# # DSDcc
+# RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
+#     cd /opt/build/dsdcc && \
+#     git reset --hard "v1.9.5" && \
+#     mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
+#     ccmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
+#     make -j$(nproc) install
 
 WORKDIR /opt/build
 
@@ -100,13 +100,13 @@ RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4 && \
 
 WORKDIR /opt/build
 
-# LibSigMF
-RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
-    cd /opt/build/libsigmf && \
-    git checkout "new-namespaces" \
-    mkdir -p /opt/build/libsigmf/build && cd /opt/build/libsigmf/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
-    make -j$(nproc) install
+# # LibSigMF
+# RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
+#     cd /opt/build/libsigmf && \
+#     git checkout "new-namespaces" \
+#     mkdir -p /opt/build/libsigmf/build && cd /opt/build/libsigmf/build && \
+#     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
+#     make -j$(nproc) install
 
 WORKDIR /opt/build
 
