@@ -4,7 +4,7 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 # Voorkom interactieve vragen tijdens installatie
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update en installeer SDR-libraries en SDRAngel dependencies
+# Update en installeer SDRAngel dependencies
 RUN apt-get update && apt-get install -y \
     git cmake g++ pkg-config autoconf automake libtool libfftw3-dev libusb-1.0-0-dev libusb-dev libhidapi-dev libopengl-dev \
     qtbase5-dev qtchooser libqt5multimedia5-plugins qtmultimedia5-dev libqt5websockets5-dev \
@@ -24,17 +24,14 @@ RUN apt-get update && apt-get install -y \
 # build RTL-SDR
 RUN mkdir /opt/build; chown $USER:users /opt/build
 RUN mkdir /opt/install; chown $USER:users /opt/install
-
 # WORKDIR /opt/build
 RUN cd /opt/build
 RUN git clone https://github.com/osmocom/rtl-sdr.git librtlsdr
-
 # WORKDIR /opt/build/librtlsdr
 RUN cd /opt/build/librtlsdr
 RUN git reset --hard 420086af84d7eaaf98ff948cd11fea2cae71734a 
 RUN mkdir /opt/build/librtlsdr/build
 RUN cd /opt/build/librtlsdr/build
-
 # WORKDIR /opt/build/librtlsdr/build
 RUN cmake -Wno-dev -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr ..
 RUN make -j $(nproc) install
@@ -42,16 +39,13 @@ RUN make -j $(nproc) install
 # build SDRANGEL
 RUN mkdir /opt/build; chown $USER:users /opt/build
 RUN mkdir /opt/install; chown $USER:users /opt/install
-
 # WORKDIR /opt/build
 RUN cd /opt/build
 RUN git clone https://github.com/f4exb/sdrangel.git sdrangel
-
 # WORKDIR /opt/build/sdrangel
 RUN cd /opt/build/sdrangel
 RUN mkdir /opt/build/sdrangel/build
 RUN cd /opt/build/sdrangel/build
-
 # WORKDIR /opt/build/sdrangel/build
 RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
