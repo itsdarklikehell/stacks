@@ -47,7 +47,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - /dev/bus/usb:/dev/bus/usb
+      # - /dev/bus/usb:/dev/bus/usb
 
       - vesselalert_data:/data
 

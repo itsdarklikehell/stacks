@@ -1,11 +1,11 @@
 services:
-  rtl-sdr:
+  rtl-tcp:
     image: ${IMAGE:-gghcr.io/lizenzfass78851/docker-rtl-tcp:latest}
-    container_name: ${NAME:-rtl-sdr}
+    container_name: ${NAME:-rtl-tcp}
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../../DATA/sdr-stack/rtl-sdr
+      context: ../../../DATA/sdr-stack/rtl-tcp
       dockerfile: Dockerfile
       args:
         UID: ${PUID:-1000}
@@ -30,7 +30,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - rtl-sdr_FREQS=${rtl-sdr_FREQS:-123.9}
+      - rtl-tcp_FREQS=${rtl-tcp_FREQS:-123.9}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -38,12 +38,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /dev/bus/usb:/dev/bus/usb:ro
 
-      - rtl-sdr_config:/run/rtlsdir-airband
+      - rtl-tcp_config:/run/rtlsdir-airband
 
     tmpfs:
       - /tmp:mode=1777
 
-    hostname: ${NAME:-rtl-sdr}
+    hostname: ${NAME:-rtl-tcp}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -55,7 +55,7 @@ services:
       - ${PORT:-1234}:1234
 
     env_file:
-      - ./rtl-sdr/.env
+      - ./rtl-tcp/.env
 
     healthcheck:
       disable: true
