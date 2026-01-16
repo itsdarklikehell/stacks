@@ -130,6 +130,6 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
 RUN make -j $(nproc) install
 
 # Zorg dat de USB-permissies goed staan voor de RTL-SDR
-RUN echo "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0bda\", ATTRS{idProduct}==\"2838\", MODE=\"0666\"" > /etc/udev/rules.d/20-rtlsdr.rules
+# RUN echo "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0bda\", ATTRS{idProduct}==\"2838\", MODE=\"0666\"" > /etc/udev/rules.d/20-rtlsdr.rules
 
 EXPOSE 3000 3001
