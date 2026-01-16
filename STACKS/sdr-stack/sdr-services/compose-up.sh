@@ -7,7 +7,7 @@ COMPOSE_FILES=(
 	rtl-tcp
 	# rtlsdrairband
 	# openwebrxplus
-	webtop-sdrangel
+	sdrangel-webtop
 )
 
 function CREATE_FOLDERS() {
@@ -41,7 +41,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "webtop-sdrangel" ]]; then
+	if [[ ${SERVICE_NAME} == "sdrangel-webtop" ]]; then
 		
 		FOLDERS=(
 			"config"
