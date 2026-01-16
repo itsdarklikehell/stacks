@@ -63,17 +63,31 @@ WORKDIR /opt/build
 
 RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel && \
     mkdir -p /opt/build/sdrangel/build && cd /opt/build/sdrangel/build && \
-    cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DRTLSDR_DIR=/opt/install/librtlsdr \
+    cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DMIRISDR_DIR=/opt/install/libmirisdr \
     -DAIRSPY_DIR=/opt/install/libairspy \
     -DAIRSPYHF_DIR=/opt/install/libairspyhf \
-    -DHACKRF_DIR=/opt/install/libhackrf \
-    -DLIMESUITE_DIR=/opt/install/LimeSuite \
     -DBLADERF_DIR=/opt/install/libbladeRF \
-    -DMIRISDR_DIR=/opt/install/libmirisdr \
-    -DMBE_DIR=/opt/install/mbelib \
-    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DHACKRF_DIR=/opt/install/libhackrf \
+    -DRTLSDR_DIR=/opt/install/librtlsdr \
+    -DLIMESUITE_DIR=/opt/install/LimeSuite \
+    -DIIO_DIR=/opt/install/libiio \
+    -DPERSEUS_DIR=/opt/install/libperseus \
+    -DXTRX_DIR=/opt/install/xtrx-images \
+    -DSOAPYSDR_DIR=/opt/install/SoapySDR \
+    -DUHD_DIR=/opt/install/uhd \
+    -DAPT_DIR=/opt/install/aptdec \
+    -DCM256CC_DIR=/opt/install/cm256cc \
     -DDSDCC_DIR=/opt/install/dsdcc \
+    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DMBE_DIR=/opt/install/mbelib \
+    -DCODEC2_DIR=/opt/install/codec2 \
+    -DSGP4_DIR=/opt/install/sgp4 \
+    -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DDAB_DIR=/opt/install/libdab \
+    -DGGMORSE_DIR=/opt/install/ggmorse \
+    -DINMARSATC_DIR=/opt/install/inmarsatc \
     -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. && \
     make -j$(nproc) install
 
