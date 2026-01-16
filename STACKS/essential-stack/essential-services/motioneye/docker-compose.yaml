@@ -41,8 +41,15 @@ services:
     hostname: ${NAME:-motioneye}
 
     devices:
-      - /dev/video0:/dev/video0
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput
+      - /dev/uhid
+      - /dev/snd
+      - /dev/kmsg
+
+
 
     # user: ${PUID:-1000}:${PGID:-1000}
 

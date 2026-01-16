@@ -54,7 +54,15 @@ services:
               capabilities: [ gpu, compute, video, graphics, utility ]
 
     devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput
+      - /dev/uhid
       - /dev/snd
+      - /dev/kmsg
+
+
 
     command: [ --enableVerboseLogging ]
 

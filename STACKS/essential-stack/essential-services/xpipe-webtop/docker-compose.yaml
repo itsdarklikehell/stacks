@@ -49,14 +49,21 @@ services:
       - NET_ADMIN # optional, to enable tailscale
 
     ports:
-      - ${PORT:-3000}:3000
-      - 3001:3001
+      - ${PORT:-3593}:3000
+      - 4633:3001
 
     env_file:
       - ./xpipe-webtop/.env
 
+    runtime: nvidia
     deploy:
       replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu, compute, video, graphics, utility ]
 
     tty: true
 

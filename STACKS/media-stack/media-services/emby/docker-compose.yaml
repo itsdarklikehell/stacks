@@ -50,10 +50,11 @@ services:
 
     devices:
       # optional
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
       # - /dev/vchiq:/dev/vchiq
       # - /dev/video0:/dev/video0
-      - /dev/bus/usb:/dev/bus/usb:ro
       # - /dev/video10:/dev/video10
       # - /dev/video11:/dev/video11
       # - /dev/video12:/dev/video12

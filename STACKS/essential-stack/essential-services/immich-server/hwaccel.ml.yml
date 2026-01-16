@@ -20,6 +20,7 @@ services:
       - apparmor=unconfined
 
     devices:
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
 
   cpu: {}

@@ -63,6 +63,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
 
@@ -90,7 +91,15 @@ services:
       disable: true
 
     devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput
+      - /dev/uhid
+      - /dev/snd
+      - /dev/kmsg
+
+
 
     # device_cgroup_rules:
     #   - c 189:* rwm

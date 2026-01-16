@@ -19,6 +19,7 @@ services:
       - systempaths=unconfined
       - apparmor=unconfined
     devices:
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
 
   cpu: {}
@@ -37,6 +38,8 @@ services:
     group_add:
       - video
     devices:
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/kfd:/dev/kfd
 
@@ -44,12 +47,14 @@ services:
     device_cgroup_rules:
       - c 189:* rmw
     devices:
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
     volumes:
       - /dev/bus/usb:/dev/bus/usb
 
   openvino-wsl:
     devices:
+      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/dxg:/dev/dxg
     volumes:

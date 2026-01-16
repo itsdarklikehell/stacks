@@ -369,9 +369,9 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_AI_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_ESSENTIALS_STACK
-	# echo ""
+	echo ""
+	SETUP_ESSENTIALS_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_BACKUPS_STACK

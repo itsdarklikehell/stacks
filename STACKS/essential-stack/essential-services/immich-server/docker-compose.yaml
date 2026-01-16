@@ -58,6 +58,12 @@ services:
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput
+      - /dev/uhid
+      - /dev/snd
+      - /dev/kmsg
+
 
     # group_add:
     # - 44 # Replace this number with the number you found with getent group video
@@ -142,6 +148,13 @@ services:
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput
+      - /dev/uhid
+      - /dev/snd
+      - /dev/kmsg
+
+
 
     runtime: nvidia
     deploy:

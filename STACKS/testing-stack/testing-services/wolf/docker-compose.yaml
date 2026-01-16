@@ -61,9 +61,13 @@ services:
     #   - -iwad /usr/share/wolf/doom2.wad -file /usr/share/wolf/DOOM_Infinite_098_PP2_H3.pk3
 
     devices:
-      - /dev/dri
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
       - /dev/uinput
       - /dev/uhid
+      - /dev/snd
+      - /dev/kmsg
 
     runtime: nvidia
     deploy:
