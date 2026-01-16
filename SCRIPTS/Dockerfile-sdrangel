@@ -124,4 +124,13 @@ RUN make -j $(nproc) install
 # Zorg dat de USB-permissies goed staan voor de RTL-SDR
 RUN echo "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0bda\", ATTRS{idProduct}==\"2838\", MODE=\"0666\"" > /etc/udev/rules.d/20-rtlsdr.rules
 
-EXPOSE 3000 3001
+# REST API
+EXPOSE 8091/tcp
+# Web Client UI
+EXPOSE 8080/tcp
+# WebSpectrum
+EXPOSE 8887/tcp
+# Remote Data (UDP)
+EXPOSE 9090/udp
+
+EXPOSE 3000 3001 9998 8080 8000 8888
