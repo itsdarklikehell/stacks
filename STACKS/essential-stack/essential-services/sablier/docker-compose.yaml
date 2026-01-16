@@ -43,6 +43,7 @@ services:
       essential-services:
 
     devices:
+      - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
@@ -50,6 +51,7 @@ services:
       - /dev/uhid
       - /dev/snd
       - /dev/kmsg
+
 
     ports:
       - 4919:8080

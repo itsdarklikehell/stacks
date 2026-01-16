@@ -63,6 +63,7 @@ services:
               capabilities: [ gpu, compute, video, graphics, utility ]
 
     devices:
+      - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
