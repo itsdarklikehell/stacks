@@ -207,10 +207,10 @@ function CLONE_OLLMVT() {
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
 	fi
 
-	cp -rf "model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
 
 	if [[ ! -f "model_dict-${SERVICE_NAME}.json" ]]; then
-		cp -rf "model_dict-${SERVICE_NAME}.json" "model_dict.json"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "model_dict.json"
 	fi
 
 	function LOCAL_SETUP() {
