@@ -6,6 +6,8 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. Installeer CUDA 12.1 + Build Tools (Nodig voor sommige Python packages)
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 RUN apt-get update && apt-get install -y wget gnupg2 curl && \
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
