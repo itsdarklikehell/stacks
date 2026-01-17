@@ -5,17 +5,16 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 # Voorkom interactieve prompts tijdens installatie
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 1. Installeer Systeem-dependencies & CUDA 12.4
-# Let op: De URL is specifiek gemaakt voor Ubuntu 22.04 om pakketfouten te voorkomen
-RUN apt-get update && apt-get install -y gnupg2 curl && \
-    curl -fsSL https://developer.download.nvidia.com | apt-key add - && \
-    echo "deb https://developer.download.nvidia.com /" > /etc/apt/sources.list.d/cuda.list && \
+# 1. Installeer CUDA 12.1 via de officiële keyring methode
+RUN apt-get update && apt-get install -y wget gnupg2 curl && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && apt-get install -y \
-    cuda-nvrtc-12-4 \
-    cuda-cudart-12-4 \
+    cuda-nvrtc-12-1 \
+    cuda-cudart-12-1 \
     libcudnn8 \
     python3-pip python3-dev ffmpeg git libportaudio2 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 2. Installeer 'uv' via de officiële installer
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
