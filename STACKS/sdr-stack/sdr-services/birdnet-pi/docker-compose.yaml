@@ -65,7 +65,7 @@ services:
       - birdnet-pi_ssl:/ssl  # SSL certificates
       - /dev/shm:/dev/shm  # Shared memory
       - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
-      - /tmp/pulseaudio.client.conf:/etc/pulse/client.conf
+      # - /tmp/pulseaudio.client.conf:/etc/pulse/client.conf
 
     hostname: ${NAME:-birdnet-pi}
 
@@ -80,8 +80,8 @@ services:
     privileged: true
 
     ports:
-      - ${PORT:-8001}:8001 # Used to access WebUI
-      - 80:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
+      - ${PORT:-5869}:8001 # Used to access WebUI
+      # - 4838:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
 
     env_file:
       - ./birdnet-pi/.env
