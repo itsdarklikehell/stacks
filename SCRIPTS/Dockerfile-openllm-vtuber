@@ -27,7 +27,10 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 WORKDIR /app
 
 # 3. Clone de repo
-RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git .
+RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git /app/openllm-vtuber
+
+WORKDIR /app/openllm-vtuber
+
 # RUN uv sync
 RUN uv sync --frozen --no-dev
 
