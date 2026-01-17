@@ -405,9 +405,9 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_TESTING_STACK
 	# echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
 elif [[ ${USER} == "rizzo" ]]; then
 	# echo ""
