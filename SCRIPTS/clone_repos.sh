@@ -182,6 +182,36 @@ function CLONE_OLLMVT() {
 		git pull
 	fi
 
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
+
+	if [[ ! -f "Dockerfile" ]]; then
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
+	fi
+
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
+
+	if [[ ! -f "autostart.sh" ]]; then
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
+	fi
+
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
+
+	if [[ ! -f "conf.yaml" ]]; then
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
+	fi
+
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
+
+	if [[ ! -f "mcp_servers.json" ]]; then
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
+	fi
+
+	cp -rf "model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
+
+	if [[ ! -f "model_dict-${SERVICE_NAME}.json" ]]; then
+		cp -rf "model_dict-${SERVICE_NAME}.json" "model_dict.json"
+	fi
+
 	function LOCAL_SETUP() {
 
 		export INSTALL_WHISPER=true
@@ -209,36 +239,6 @@ function CLONE_OLLMVT() {
 		# python -m unidic download >/dev/null 2>&1 &
 
 		# IMPORT_NLTK >/dev/null 2>&1 &
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
-
-		if [[ ! -f "Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
-		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
-
-		if [[ ! -f "autostart.sh" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
-		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
-
-		if [[ ! -f "conf.yaml" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
-		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
-
-		if [[ ! -f "mcp_servers.json" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
-		fi
-
-		cp -rf "model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
-
-		if [[ ! -f "model_dict-${SERVICE_NAME}.json" ]]; then
-			cp -rf "model_dict-${SERVICE_NAME}.json" "model_dict.json"
-		fi
 
 		function CLONE_L2D_MODELS() {
 
@@ -762,7 +762,7 @@ function CLONE_COMFYUIMINI() {
 
 		echo "Using Local setup"
 
-		cp "config/default.example.json" "config/default.json"
+		cp -rf "config/default.example.json" "config/default.json"
 
 		chmod +x scripts/install.sh
 		yes | ./scripts/install.sh || true
@@ -810,15 +810,15 @@ function CLONE_COPYPARTY() {
 		mkdir -p "copyparty_configs"
 
 		if [[ ! -f copyparty_configs/config.conf ]]; then
-			cp "docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
 		fi
 
 		if [[ -f copyparty_configs/config.conf ]]; then
-			cp "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+			cp -rf "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
 		fi
 
 		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
+			cp -rf "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
 		fi
 
 		cd "copyparty" || exit 1
@@ -827,17 +827,17 @@ function CLONE_COPYPARTY() {
 		cd "copyparty" || exit 1
 
 		if [[ ! -f copyparty_configs/config.conf ]]; then
-			cp "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+			cp -rf "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
 		fi
 
 		if [[ -f copyparty_configs/config.conf ]]; then
-			cp "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+			cp -rf "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
 		fi
 
 		git pull
 
 		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
+			cp -rf "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
 		fi
 	fi
 

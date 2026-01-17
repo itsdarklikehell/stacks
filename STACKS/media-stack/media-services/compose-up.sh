@@ -483,7 +483,7 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
 
 		if [[ -f "${FOLDER}/tvs-server_content/config.tvs.yml" ]]; then
-			cp "${FOLDER}/tvs-server_content/config.tvs.yml" "${FOLDER}/tvs-server_content/config.tvs.yml".bak
+			cp -rf "${FOLDER}/tvs-server_content/config.tvs.yml" "${FOLDER}/tvs-server_content/config.tvs.yml".bak
 		fi
 
 		mkdir -p "${FOLDER}/tvs-server_content"
@@ -506,15 +506,15 @@ function SETUP_FOLDERS() {
 		mkdir -p "${FOLDER}/copyparty_configs"
 
 		if [[ ! -f ${FOLDER}/copyparty_configs/config.conf ]]; then
-			cp "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+			cp -rf "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
 		fi
 
 		if [[ -f ${FOLDER}/copyparty_configs/config.conf ]]; then
-			cp "${FOLDER}/copyparty_configs/config.conf" "${FOLDER}/copyparty_configs/config.conf".bak
+			cp -rf "${FOLDER}/copyparty_configs/config.conf" "${FOLDER}/copyparty_configs/config.conf".bak
 		fi
 
 		if [[ -f ${FOLDER}/copyparty_configs/config.conf.bak ]]; then
-			cp "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+			cp -rf "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
 		fi
 
 		FOLDERS=(
