@@ -164,6 +164,7 @@ function CLONE_PUPPETEER() {
 }
 
 function CLONE_OLLMVT() {
+	SERVICE_NAME="openllm-vtuber"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
