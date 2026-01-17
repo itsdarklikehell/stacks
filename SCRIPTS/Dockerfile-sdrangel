@@ -42,8 +42,8 @@ WORKDIR /opt/build
 # # LibDAB
 RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline
 WORKDIR /opt/build/dab-cmdline/library
-RUN git checkout msvc && mkdir -p /opt/build/dab-cmdline/build
-WORKDIR /opt/build/dab-cmdline/build
+RUN git checkout msvc && mkdir -p /opt/build/dab-cmdline/library/build
+WORKDIR /opt/build/dab-cmdline/library/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && make -j$(nproc) install
 
 WORKDIR /opt/build
