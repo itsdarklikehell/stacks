@@ -19,6 +19,9 @@ RUN apt-get update && apt-get install -y \
 # # --- Non-Hardware Libraries Bouwen ---
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # APT
 RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec
@@ -29,6 +32,9 @@ WORKDIR /opt/build/aptdec/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # CM265cc
 RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc
@@ -38,8 +44,11 @@ WORKDIR /opt/build/cm256cc/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
-# # LibDAB
+# LibDAB
 RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline
 WORKDIR /opt/build/dab-cmdline/library
 RUN git checkout msvc && mkdir -p /opt/build/dab-cmdline/library/build
@@ -47,6 +56,9 @@ WORKDIR /opt/build/dab-cmdline/library/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # MBElib
 RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib
@@ -56,8 +68,11 @@ WORKDIR /opt/build/mbelib/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
-# # SerialDV
+# SerialDV
 RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV
 WORKDIR /opt/build/serialDV
 RUN git reset --hard v1.1.4 && mkdir -p /opt/build/serialDV/build
@@ -65,15 +80,21 @@ WORKDIR /opt/build/serialDV/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # # DSDcc
 RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc
 WORKDIR /opt/build/dsdcc
 RUN git reset --hard v1.9.5 && mkdir -p /opt/build/dsdcc/build
 WORKDIR /opt/build/dsdcc/build
-RUN ccmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && make -j$(nproc) install
+RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialDV/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialDV/lib/libserialdv.so .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # Codec2/FreeDV
 RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2
@@ -83,6 +104,9 @@ WORKDIR /opt/build/codec2/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # SGP4
 RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4
@@ -92,6 +116,9 @@ WORKDIR /opt/build/sgp4/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # # LibSigMF
 RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf
@@ -101,6 +128,9 @@ WORKDIR /opt/build/libsigmf/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # GGMorse
 RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse
@@ -110,6 +140,9 @@ WORKDIR /opt/build/ggmorse/build
 RUN cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # RNnoise
 RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise
@@ -119,6 +152,9 @@ WORKDIR /opt/build/rnnoise/build
 RUN cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && make -j$(nproc) install
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # # InmarsatC
 RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc
@@ -130,6 +166,9 @@ RUN cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && make -j$(nproc) in
 # # --- Hardware Libraries Bouwen ---
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # RTL-SDR
 RUN git clone https://github.com/osmocom/rtl-sdr.git /opt/build/rtlsdr
@@ -141,6 +180,9 @@ RUN cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsd
 # --- SDRANGEL MAIN BUILD ---
 
 WORKDIR /opt/build
+# Omgevingsvariabelen
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel
@@ -163,7 +205,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
     -DAPT_DIR=/opt/install/aptdec \
     -DCM256CC_DIR=/opt/install/cm256cc \
     -DDSDCC_DIR=/opt/install/dsdcc \
-    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DSERIALDV_DIR=/opt/install/serialDV \
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
     -DSGP4_DIR=/opt/install/sgp4 \
@@ -174,7 +216,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
     -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. && make -j$(nproc) install
 
 # Omgevingsvariabelen
-ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialdv/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialDV/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
 ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # --- Snelkoppelingen configureren ---
