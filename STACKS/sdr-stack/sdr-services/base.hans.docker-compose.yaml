@@ -44,14 +44,14 @@ volumes:
       o: bind
       device: ../../../DATA/sdr-stack/sdrangel-webtop/sdrangel-webtop_config
 
-  webtop-birdnet_config:
-    name: webtop-birdnet_config
+  birdnet-pi_config:
+    name: birdnet-pi_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/sdr-stack/webtop-birdnet/webtop-birdnet_config
+      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_config
 
   rtl-tcp_config:
     name: rtl-tcp_config

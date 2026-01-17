@@ -1,11 +1,11 @@
 services:
-  webtop-birdnet:
+  birdnet-pi:
     image: ${IMAGE:-ghcr.io/alexbelgium/birdnet-pi-amd64:latest}  # or ghcr.io/alexbelgium/birdnet-pi-aarch64:latest depending on your system
-    container_name: ${NAME:-webtop-birdnet}
+    container_name: ${NAME:-birdnet-pi}
     restart: ${RESTART:-unless-stopped}
 
     # build:
-    #   context: ../../../DATA/sdr-stack/webtop-birdnet
+    #   context: ../../../DATA/sdr-stack/birdnet-pi
     #   dockerfile: Dockerfile
     #   args:
     #     UID: ${PUID:-1000}
@@ -31,7 +31,7 @@ services:
       # - RESTART_APP=true
 
       - SUBFOLDER=/ # Optioneel
-      - TITLE=webtop-birdnet
+      - TITLE=birdnet-pi
 
       - BIRDSONGS_FOLDER=/config/BirdSongs  # Folder to store bird songs, be sure to use a path that is mapped to a volume (such as /config)
       - LIVESTREAM_BOOT_ENABLED=false  # Enable/disable livestream on boot
@@ -56,13 +56,13 @@ services:
       - /dev/dri:/dev/dri
       # - /dev/bus/usb:/dev/bus/usb
 
-      - webtop-birdnet_config:/config  # All your configuration files - and location of the default Birdsongs folder
-      - webtop-birdnet_ssl:/ssl  # SSL certificates
+      - birdnet-pi_config:/config  # All your configuration files - and location of the default Birdsongs folder
+      - birdnet-pi_ssl:/ssl  # SSL certificates
       - /dev/shm:/dev/shm  # Shared memory
       - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
       - /tmp/pulseaudio.client.conf:/etc/pulse/client.conf
 
-    hostname: ${NAME:-webtop-birdnet}
+    hostname: ${NAME:-birdnet-pi}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -79,7 +79,7 @@ services:
       - 80:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
 
     env_file:
-      - ./webtop-birdnet/.env
+      - ./birdnet-pi/.env
 
     healthcheck:
       disable: true

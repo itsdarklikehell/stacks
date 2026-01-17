@@ -8,7 +8,7 @@ COMPOSE_FILES=(
 	# rtlsdrairband
 	# openwebrxplus
 	sdrangel-webtop
-	webtop-birdnet
+	birdnet-pi
 )
 
 function CREATE_FOLDERS() {
@@ -64,16 +64,16 @@ function SETUP_FOLDERS() {
 
 	fi
 	
-		if [[ ${SERVICE_NAME} == "webtop-birdnet" ]]; then
+		if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
 		
 		FOLDERS=(
 			"config"
 		)
 		
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet" "${FOLDER}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet" "${FOLDER}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
 		fi
 
 	fi

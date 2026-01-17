@@ -1023,14 +1023,14 @@ function CLONE_SDR_TCP() {
 function CLONE_SDR_TCP() {
 
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
-	if [[ ! -d webtop-birdnet ]]; then
-		echo "Cloning webtop-birdnet"
+	if [[ ! -d birdnet-pi ]]; then
+		echo "Cloning birdnet-pi"
 		echo ""
-		git clone --recursive https://github.com/Nachtzuster/BirdNET-Pi.git webtop-birdnet
-		cd webtop-birdnet || exit 1
+		git clone --recursive https://github.com/Nachtzuster/BirdNET-Pi.git birdnet-pi
+		cd birdnet-pi || exit 1
 	else
-		echo "Checking webtop-birdnet for updates"
-		cd webtop-birdnet || exit 1
+		echo "Checking birdnet-pi for updates"
+		cd birdnet-pi || exit 1
 		git pull
 	fi
 
