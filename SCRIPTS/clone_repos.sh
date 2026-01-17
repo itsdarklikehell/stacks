@@ -171,14 +171,14 @@ function CLONE_OLLMVT() {
 
 	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
-	if [[ ! -d "Open-LLM-VTuber" ]]; then
+	if [[ ! -d "openllm-vtuber" ]]; then
 		echo "Cloning Open-LLM-VTuber"
 		echo ""
-		git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git Open-LLM-VTuber
-		cd Open-LLM-VTuber || exit
+		git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git openllm-vtuber
+		cd openllm-vtuber || exit
 	else
 		echo "Checking Open-LLM-VTuber for updates"
-		cd Open-LLM-VTuber || exit 1
+		cd openllm-vtuber || exit 1
 		git pull
 	fi
 

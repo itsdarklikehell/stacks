@@ -48,10 +48,10 @@ function SETUP_FOLDERS() {
 			"config"
 		)
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-sdrangel" "${FOLDER}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-sdrangel" "${FOLDER}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 		fi
 
 	fi
@@ -71,10 +71,10 @@ function SETUP_FOLDERS() {
 			"ssl"
 		)
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 		fi
 
 	fi

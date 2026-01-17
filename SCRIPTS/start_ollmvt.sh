@@ -76,11 +76,11 @@ function SETUP_ENV() {
 
 SETUP_ENV
 
-export OLLMVT_PATH="${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber"
+export OLLMVT_PATH="${STACK_BASEPATH}/DATA/openllm-vtuber-stack/openllm-vtuber"
 
 function RUN_OLLMVTUBER() {
 
-	# sudo chown -R ${USER}:${USER} ${BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber
+	# sudo chown -R ${USER}:${USER} ${BASEPATH}/DATA/openllm-vtuber-stack/openllm-vtuber
 
 	cd "${OLLMVT_PATH}" || exit 1
 
@@ -118,7 +118,7 @@ PYCODE
 
 	fi
 
-	echo "Starting Open-LLM-VTuber..."
+	echo "Starting openllm-vtuber..."
 
 	yes | uv run python upgrade.py || true
 	uv run run_server.py

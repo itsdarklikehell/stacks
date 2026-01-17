@@ -21,14 +21,24 @@ function CREATE_FOLDERS() {
 function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
-
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
+		
 		FOLDERS=(
 			"config"
 			"data"
 			"logs"
 		)
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+		fi
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
+		
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
+		fi
 	fi
 
 	CREATE_FOLDERS
