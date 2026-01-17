@@ -243,4 +243,3 @@ function INSTALL_DOCKER() {
 
 # Call the function to install Docker
 INSTALL_DOCKER
-

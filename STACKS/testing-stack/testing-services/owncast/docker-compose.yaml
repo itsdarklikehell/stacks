@@ -51,7 +51,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     devices:
       - /dev/video0:/dev/video0
@@ -63,9 +63,7 @@ services:
       - /dev/snd
       - /dev/kmsg
 
-
-
-    command: [ --enableVerboseLogging ]
+    command: [--enableVerboseLogging]
 
     cap_add:
       - SYS_NICE
@@ -98,4 +96,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

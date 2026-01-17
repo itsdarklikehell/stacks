@@ -65,7 +65,6 @@ services:
       - /dev/snd
       - /dev/kmsg
 
-
     # group_add:
     # - 44 # Replace this number with the number you found with getent group video
     # - 992 # Replace this number with the number you found with getent group render
@@ -78,7 +77,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -156,8 +155,6 @@ services:
       - /dev/snd
       - /dev/kmsg
 
-
-
     runtime: nvidia
     deploy:
       replicas: 1
@@ -166,7 +163,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -261,4 +258,3 @@ services:
     shm_size: 128mb
 
     restart: always
-

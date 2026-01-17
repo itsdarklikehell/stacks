@@ -111,7 +111,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -120,7 +120,15 @@ services:
     # shm_size: 1gb
 
     healthcheck:
-      test: [ CMD, wget, --no-verbose, --tries=3, --spider, http://localhost:3001/api/health ]
+      test:
+        [
+          CMD,
+          wget,
+          --no-verbose,
+          --tries=3,
+          --spider,
+          http://localhost:3001/api/health,
+        ]
       interval: 30s
       timeout: 10s
       start_period: 30s
@@ -131,4 +139,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

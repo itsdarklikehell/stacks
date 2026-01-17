@@ -30,4 +30,3 @@ networks:
   host:
   openllm-vtuber-services:
     external: true
-

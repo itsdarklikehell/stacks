@@ -69,7 +69,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/sdr-stack/rtl-tcp/rtl-tcp_config
-      
+
 networks:
   host:
   sdr-services:

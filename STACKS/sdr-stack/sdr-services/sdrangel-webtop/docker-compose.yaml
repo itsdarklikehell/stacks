@@ -85,7 +85,7 @@ services:
     privileged: true
 
     ports:
-      - ${PORT:-4448}:3000  # HTTP interface (KDE Desktop)
+      - ${PORT:-4448}:3000 # HTTP interface (KDE Desktop)
       - 3143:3001 # HTTPS interface
       - 3164:8091 # SDRangel REST API (voor externe apps)
 
@@ -104,8 +104,6 @@ services:
       - /dev/snd
       - /dev/kmsg
 
-
-
     # device_cgroup_rules:
     #   - c 189:* rwm
 
@@ -117,7 +115,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 

@@ -43,11 +43,11 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "sdrangel-webtop" ]]; then
-		
+
 		FOLDERS=(
 			"config"
 		)
-		
+
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-sdrangel" "${FOLDER}/Dockerfile"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
@@ -57,20 +57,20 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "rtl-tcp" ]]; then
-		
+
 		FOLDERS=(
 			"config"
 		)
 
 	fi
-	
-		if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
-		
+
+	if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
+
 		FOLDERS=(
 			"config"
 			"ssl"
 		)
-		
+
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
@@ -125,4 +125,3 @@ function BUILDING() {
 }
 
 BUILDING
-

@@ -42,7 +42,6 @@ services:
       host:
       essential-services:
 
-
     # privileged: true # optional, to enable tailscale
 
     # cap_add:
@@ -63,7 +62,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 

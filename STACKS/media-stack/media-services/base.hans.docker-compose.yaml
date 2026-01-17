@@ -639,8 +639,6 @@ volumes:
       o: bind
       device: ../../../DATA/downloader-stack/transmission/transmission_downloads
 
-
-
   mstream_config:
     name: mstream_config
     driver: local
@@ -713,9 +711,7 @@ volumes:
       o: bind
       device: ../../../DATA/essential-stack/mstream/mstream_books
 
-
 networks:
   host:
   media-services:
     external: true
-

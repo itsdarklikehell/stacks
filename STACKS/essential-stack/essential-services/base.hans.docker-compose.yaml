@@ -50,7 +50,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/habridge/habridge_config
- 
 
   frigate_config:
     name: frigate_config
@@ -66,7 +65,7 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/frigate/frigate_storage
-      
+
   viseron_config:
     name: viseron_config
     driver: local
@@ -109,7 +108,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/viseron/viseron_timelapse
-
 
   xpipe-webtop_config:
     name: xpipe-webtop_config
@@ -455,4 +453,3 @@ secrets:
     file: ../../../SECRETS/nginx-proxy-manager_username
   INITIAL_ADMIN_PASSWORD:
     file: ../../../SECRETS/nginx-proxy-manager_password
-

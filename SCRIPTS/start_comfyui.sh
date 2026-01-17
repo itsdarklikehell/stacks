@@ -386,4 +386,3 @@ CLONE_WORKFLOWS
 # xdg-open "http://${IP_ADDRESS}:8188/"
 
 RUN_COMFYUI
-

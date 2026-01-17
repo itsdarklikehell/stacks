@@ -182,7 +182,7 @@ services:
     # shm_size: 1gb
 
     healthcheck:
-      test: [ CMD, healthcheck.sh, --connect, --innodb_initialized ]
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
       start_period: 30s
       start_interval: 10s
       interval: 10s
@@ -194,4 +194,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

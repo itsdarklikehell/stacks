@@ -52,8 +52,6 @@ services:
       - /dev/snd
       - /dev/kmsg
 
-
-
     ports:
       - 4919:8080
 
@@ -82,4 +80,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

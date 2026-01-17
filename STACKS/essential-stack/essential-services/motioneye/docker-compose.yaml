@@ -31,10 +31,10 @@ services:
 
       - motioneye_shared:/shared
       - motioneye_etc:/etc/motioneye
-      
+
       - /dev/bus/usb:/dev/bus/usb:ro
       - /dev/video0:/dev/video0:ro
-      
+
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
 
@@ -49,8 +49,6 @@ services:
       - /dev/uhid
       - /dev/snd
       - /dev/kmsg
-
-
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -73,7 +71,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 
@@ -101,4 +99,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

@@ -207,4 +207,3 @@ networks:
   host:
   books-services:
     external: true
-

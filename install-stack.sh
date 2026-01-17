@@ -13,7 +13,7 @@ export PERM_DATA="${STACK_BASEPATH}/DATA"                                       
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
 export PRUNE="true"                                                             # false, true/normal, all
-export BUILDING="force_rebuild"															# false, true, force_rebuild
+export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -583,4 +583,3 @@ alias ollama='docker exec -it ${ollama_container_name} ollama'
 # # echo ""
 
 # # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
-

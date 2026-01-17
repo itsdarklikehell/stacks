@@ -578,4 +578,3 @@ networks:
   host:
   testing-services:
     external: true
-

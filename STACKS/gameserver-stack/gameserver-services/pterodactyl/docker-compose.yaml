@@ -34,7 +34,6 @@ x-common:
 # below if you understand what you are doing.
 #
 services:
-
   pterodactyl-database:
     image: mariadb:10.5
     container_name: pterodactyl-database
@@ -162,7 +161,7 @@ services:
       - pterodactyl_logs:/app/storage/logs
 
     environment:
-      <<: [ *panel-environment, *mail-environment ]
+      <<: [*panel-environment, *mail-environment]
       DB_PASSWORD: *db-password
       APP_ENV: production
       APP_ENVIRONMENT_ONLY: false
@@ -206,8 +205,6 @@ services:
       options:
         max-size: 10m
         max-file: 3
-
-
 
   wings:
     image: ghcr.io/pterodactyl/wings:latest

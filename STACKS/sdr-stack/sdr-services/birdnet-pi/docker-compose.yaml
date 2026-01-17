@@ -1,6 +1,6 @@
 services:
   birdnet-pi:
-    image: ${IMAGE:-ghcr.io/alexbelgium/birdnet-pi-amd64:latest}  # or ghcr.io/alexbelgium/birdnet-pi-aarch64:latest depending on your system
+    image: ${IMAGE:-ghcr.io/alexbelgium/birdnet-pi-amd64:latest} # or ghcr.io/alexbelgium/birdnet-pi-aarch64:latest depending on your system
     container_name: ${NAME:-birdnet-pi}
     restart: ${RESTART:-unless-stopped}
 
@@ -33,17 +33,17 @@ services:
       - SUBFOLDER=/ # Optioneel
       - TITLE=birdnet-pi
 
-      - BIRDSONGS_FOLDER=/config/BirdSongs  # Folder to store bird songs, be sure to use a path that is mapped to a volume (such as /config)
-      - LIVESTREAM_BOOT_ENABLED=false  # Enable/disable livestream on boot
-      - Use_tphakala_model_v2=false  # Switch to BirdNET-Go classifier files
-      - ssl=false  # Enable/disable SSL
-      - certfile=fullchain.pem  # SSL certificate file (located in /ssl/)
-      - keyfile=privkey.pem  # SSL key file (located in /ssl/)
-      - pi_password=${pi_password:-}  # Optional: Set web terminal password for user `pi`
-      - MQTT_HOST_manual=  # Optional: Manual MQTT host
-      - MQTT_PASSWORD_manual=  # Optional: Manual MQTT password
-      - MQTT_PORT_manual=  # Optional: Manual MQTT port
-      - MQTT_USER_manual=  # Optional: Manual MQTT user
+      - BIRDSONGS_FOLDER=/config/BirdSongs # Folder to store bird songs, be sure to use a path that is mapped to a volume (such as /config)
+      - LIVESTREAM_BOOT_ENABLED=false # Enable/disable livestream on boot
+      - Use_tphakala_model_v2=false # Switch to BirdNET-Go classifier files
+      - ssl=false # Enable/disable SSL
+      - certfile=fullchain.pem # SSL certificate file (located in /ssl/)
+      - keyfile=privkey.pem # SSL key file (located in /ssl/)
+      - pi_password=${pi_password:-} # Optional: Set web terminal password for user `pi`
+      - MQTT_HOST_manual= # Optional: Manual MQTT host
+      - MQTT_PASSWORD_manual= # Optional: Manual MQTT password
+      - MQTT_PORT_manual= # Optional: Manual MQTT port
+      - MQTT_USER_manual= # Optional: Manual MQTT user
       - PULSE_SERVER=unix:/tmp/pulseaudio.socket
       - PULSE_COOKIE=/tmp/pulseaudio.cookie
       # - localdisks: sda1 #put the hardware name of your drive to mount separated by commas, or its label. ex. sda1, sdb1, MYNAS...
@@ -61,9 +61,9 @@ services:
       - /dev/dri:/dev/dri
       # - /dev/bus/usb:/dev/bus/usb
 
-      - birdnet-pi_config:/config  # All your configuration files - and location of the default Birdsongs folder
-      - birdnet-pi_ssl:/ssl  # SSL certificates
-      - /dev/shm:/dev/shm  # Shared memory
+      - birdnet-pi_config:/config # All your configuration files - and location of the default Birdsongs folder
+      - birdnet-pi_ssl:/ssl # SSL certificates
+      - /dev/shm:/dev/shm # Shared memory
       - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
       # - /tmp/pulseaudio.client.conf:/etc/pulse/client.conf
 
@@ -118,7 +118,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu, compute, video, graphics, utility ]
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 

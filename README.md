@@ -76,4 +76,3 @@ docker-compose run --service ai-stack integration-tests
 **Dutch Version**
 
 For documentation in Dutch, see [LEESMIJ.md](LEESMIJ.md).
-

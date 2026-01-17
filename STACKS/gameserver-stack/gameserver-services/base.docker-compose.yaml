@@ -64,4 +64,3 @@ networks:
   host:
   gameserver-services:
     external: true
-

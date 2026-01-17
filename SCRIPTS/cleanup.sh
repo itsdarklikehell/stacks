@@ -100,4 +100,3 @@ if [[ ${CLEANUP} == "true" ]]; then
 	CLEANUP_DATA
 
 fi
-

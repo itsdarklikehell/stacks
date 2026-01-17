@@ -22,4 +22,3 @@ DOCKER_COMPOSE_STACK
 echo ""
 echo "*** FINISHED COMPOSING: ${STACK_NAME}-stack ****"
 echo ""
-

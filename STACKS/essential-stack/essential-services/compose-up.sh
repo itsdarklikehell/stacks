@@ -11,7 +11,7 @@ COMPOSE_FILES=(
 	# watchtower
 	apprise-api
 	autoheal
-  	cadvisor
+	cadvisor
 	beszel
 	frigate
 	dashy
@@ -91,7 +91,6 @@ function SETUP_FOLDERS() {
 			"config"
 		)
 	fi
-
 
 	if [[ ${SERVICE_NAME} == "viseron" ]]; then
 		FOLDERS=(
@@ -296,4 +295,3 @@ function BUILDING() {
 }
 
 BUILDING
-

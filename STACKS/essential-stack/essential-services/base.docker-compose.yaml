@@ -453,4 +453,3 @@ secrets:
     file: ../../../SECRETS/nginx-proxy-manager_username
   INITIAL_ADMIN_PASSWORD:
     file: ../../../SECRETS/nginx-proxy-manager_password
-

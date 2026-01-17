@@ -47,7 +47,7 @@ services:
       - ./dozzle/.env
 
     healthcheck:
-      test: [ CMD, /dozzle, healthcheck ]
+      test: [CMD, /dozzle, healthcheck]
       interval: 5s
       retries: 5
       start_period: 5s
@@ -147,7 +147,7 @@ services:
     # shm_size: 1gb
 
     healthcheck:
-      test: [ CMD, /dozzle, healthcheck ]
+      test: [CMD, /dozzle, healthcheck]
       interval: 3s
       timeout: 30s
       retries: 5
@@ -158,4 +158,3 @@ services:
       options:
         max-size: 10m
         max-file: 3
-

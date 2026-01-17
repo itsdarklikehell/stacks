@@ -11,4 +11,4 @@ RUN curl -s https://raw.githubusercontent.com/Nachtzuster/BirdNET-Pi/main/newins
 
 WORKDIR /config
 
-EXPOSE 80 
+EXPOSE 80
