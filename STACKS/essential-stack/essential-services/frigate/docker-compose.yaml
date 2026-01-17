@@ -36,7 +36,7 @@ services:
       - frigate_storage:/media/frigate
 
       - /dev/bus/usb:/dev/bus/usb:ro
-      - /dev/video0:/dev/video0:ro
+      # - /dev/video0:/dev/video0:ro
       # - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
       #   target: /tmp/cache
       #   tmpfs:

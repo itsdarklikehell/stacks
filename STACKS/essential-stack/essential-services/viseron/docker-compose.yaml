@@ -37,7 +37,7 @@ services:
       - viseron_timelapse:/timelapse
 
       - /dev/bus/usb:/dev/bus/usb:ro
-      - /dev/video0:/dev/video0:ro
+      # - /dev/video0:/dev/video0:ro
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
