@@ -45,7 +45,7 @@ services:
     hostname: ${NAME:-viseron}
 
     devices:
-      - /dev/video0:/dev/video0
+      # - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
@@ -102,3 +102,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+
