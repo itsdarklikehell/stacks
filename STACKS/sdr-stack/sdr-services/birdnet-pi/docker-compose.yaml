@@ -46,6 +46,11 @@ services:
       - MQTT_USER_manual=  # Optional: Manual MQTT user
       - PULSE_SERVER=unix:/tmp/pulseaudio.socket
       - PULSE_COOKIE=/tmp/pulseaudio.cookie
+      # - localdisks: sda1 #put the hardware name of your drive to mount separated by commas, or its label. ex. sda1, sdb1, MYNAS...
+      # - networkdisks: "//SERVER/SHARE" # optional, list of smb servers to mount, separated by commas
+      # - cifsusername: "username" # optional, smb username, same for all smb shares
+      # - cifspassword: "password" # optional, smb password
+      # - cifsdomain: "domain" # optional, allow setting the domain for the smb share
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
