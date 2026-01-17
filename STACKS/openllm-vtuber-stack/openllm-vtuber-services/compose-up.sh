@@ -30,36 +30,36 @@ function SETUP_FOLDERS() {
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+		if [[ ! -f "${FOLDER}/Dockerfile" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 		fi
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
 
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
+		if [[ ! -f "${FOLDER}/autostart.sh" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
 		fi
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
 
-		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" ]]; then
+		if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
 		fi
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
 
-		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" ]]; then
+		if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
 		fi
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
 
-		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" ]]; then
+		if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
 		fi
 
 	fi
-
+	exit 1
 	CREATE_FOLDERS
 
 }
