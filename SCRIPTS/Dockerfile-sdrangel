@@ -21,138 +21,144 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /opt/build
 
 # APT
-RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec && \
-        cd /opt/build/aptdec && \
-        git checkout libaptdec && \
-        git submodule update --init --recursive && \
-        mkdir -p /opt/build/aptdec/build && cd /opt/build/aptdec/build && \
-        cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
-        make -j$(nproc) install
+RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec
+WORKDIR /opt/build/aptdec
+RUN git checkout libaptdec && git submodule update --init --recursive
+RUN mkdir -p /opt/build/aptdec/build
+WORKDIR /opt/build/aptdec/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. &&  make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # CM265cc
-RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc && \
-    cd /opt/build/cm256cc && \
-    git reset --hard 6f4a51802f5f302577d6d270a9fc0cb7a1ee28ef && \
-    mkdir -p /opt/build/cm256cc/build && cd /opt/build/cm256cc/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/f4exb/cm256cc.git /opt/build/cm256cc
+WORKDIR /opt/build/cm256cc
+RUN git reset --hard 6f4a51802f5f302577d6d270a9fc0cb7a1ee28ef && mkdir -p /opt/build/cm256cc/build
+WORKDIR /opt/build/cm256cc/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # # LibDAB
-# RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline && \
-#     cd /opt/build/dab-cmdline/library && \
-#     git checkout msvc && \
-#     mkdir -p /opt/build/dab-cmdline/build && cd /opt/build/dab-cmdline/build && \
-#     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
-#     make -j$(nproc) install
+RUN git clone https://github.com/srcejon/dab-cmdline.git /opt/build/dab-cmdline
+WORKDIR /opt/build/dab-cmdline/library
+RUN git checkout msvc && mkdir -p /opt/build/dab-cmdline/build
+WORKDIR /opt/build/dab-cmdline/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # MBElib
-RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib && \
-    cd /opt/build/mbelib && \
-    git reset --hard 9a04ed5c78176a9965f3d43f7aa1b1f5330e771f && \
-    mkdir -p /opt/build/mbelib/build && cd /opt/build/mbelib/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/szechyjs/mbelib.git /opt/build/mbelib
+WORKDIR /opt/build/mbelib
+RUN git reset --hard 9a04ed5c78176a9965f3d43f7aa1b1f5330e771f && mkdir -p /opt/build/mbelib/build
+WORKDIR /opt/build/mbelib/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # # SerialDV
-# RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV && \
-#     cd /opt/build/serialDV && \
-#     git reset --hard "v1.1.4" && \
-#     mkdir -p /opt/build/serialDV/build && cd /opt/build/serialDV/build && \
-#     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
-#     make -j$(nproc) install
+RUN git clone https://github.com/f4exb/serialDV.git /opt/build/serialDV
+WORKDIR /opt/build/serialDV
+RUN git reset --hard "v1.1.4" && mkdir -p /opt/build/serialDV/build
+WORKDIR /opt/build/serialDV/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialDV .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # # DSDcc
-# RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc && \
-#     cd /opt/build/dsdcc && \
-#     git reset --hard "v1.9.5" && \
-#     mkdir -p /opt/build/dsdcc/build && cd /opt/build/dsdcc/build && \
-#     ccmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
-#     make -j$(nproc) install
+RUN git clone https://github.com/f4exb/dsdcc.git /opt/build/dsdcc
+WORKDIR /opt/build/dsdcc
+RUN git reset --hard "v1.9.5" && mkdir -p /opt/build/dsdcc/build
+WORKDIR /opt/build/dsdcc/build
+RUN "ccmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # Codec2/FreeDV
-RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2 && \
-    cd /opt/build/codec2 && \
-    git reset --hard "v1.0.3" && \
-    mkdir -p /opt/build/codec2/build && cd /opt/build/codec2/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/drowe67/codec2-dev.git /opt/build/codec2
+WORKDIR /opt/build/codec2
+RUN git reset --hard "v1.0.3" && mkdir -p /opt/build/codec2/build
+WORKDIR /opt/build/codec2/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # SGP4
-RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4 && \
-    cd /opt/build/sgp4 && \
-    mkdir -p /opt/build/sgp4/build && cd /opt/build/sgp4/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/dnwrnr/sgp4.git /opt/build/sgp4
+WORKDIR /opt/build/sgp4
+RUN mkdir -p /opt/build/sgp4/build
+WORKDIR /opt/build/sgp4/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # # LibSigMF
-# RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf && \
-#     cd /opt/build/libsigmf && \
-#     git checkout "new-namespaces" \
-#     mkdir -p /opt/build/libsigmf/build && cd /opt/build/libsigmf/build && \
-#     cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
-#     make -j$(nproc) install
+RUN git clone https://github.com/f4exb/libsigmf.git /opt/build/libsigmf
+WORKDIR /opt/build/libsigmf
+RUN git checkout "new-namespaces" && mkdir -p /opt/build/libsigmf/build
+WORKDIR /opt/build/libsigmf/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # GGMorse
-RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse && \
-    cd /opt/build/ggmorse && \
-    mkdir -p /opt/build/ggmorse/build && cd /opt/build/ggmorse/build && \
-    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/ggerganov/ggmorse.git /opt/build/ggmorse
+WORKDIR /opt/build/ggmorse
+RUN mkdir -p /opt/build/ggmorse/build
+WORKDIR /opt/build/ggmorse/build
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # RNnoise
-RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise && \
-    cd /opt/build/rnnoise && \
-    mkdir -p /opt/build/rnnoise/build && cd /opt/build/rnnoise/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/f4exb/rnnoise.git /opt/build/rnnoise
+WORKDIR /opt/build/rnnoise
+RUN mkdir -p /opt/build/rnnoise/build
+WORKDIR /opt/build/rnnoise/build
+RUN "cmake -DCMAKE_INSTALL_PREFIX=/opt/install/rnnoise -DRNN_ENABLE_X86_RTCD=ON .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
 # # InmarsatC
-# RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc && \
-#     cd /opt/build/inmarsatc && \
-#     git switch msvc \
-#     mkdir -p /opt/build/inmarsatc/build && cd /opt/build/inmarsatc/build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
-#     make -j$(nproc) install
+RUN git clone https://github.com/srcejon/inmarsatc.git /opt/build/inmarsatc
+WORKDIR /opt/build/inmarsatc
+RUN git switch msvc && mkdir -p /opt/build/inmarsatc/build
+WORKDIR /opt/build/inmarsatc/build
+RUN "cmake -DCMAKE_INSTALL_PREFIX=/opt/install/inmarsatc .. && \
+    make -j$(nproc) install"
 
 # # --- Hardware Libraries Bouwen ---
 
 WORKDIR /opt/build
 
 # RTL-SDR
-RUN git clone https://github.com/osmocom/rtl-sdr.git /opt/build/rtlsdr && \
-    mkdir -p /opt/build/rtlsdr/build && cd /opt/build/rtlsdr/build && \
-    cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
-    make -j$(nproc) install
+RUN git clone https://github.com/osmocom/rtl-sdr.git /opt/build/rtlsdr
+WORKDIR /opt/build/rtlsdr
+RUN mkdir -p /opt/build/rtlsdr/build
+WORKDIR /opt/build/rtlsdr/build
+RUN "cmake -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. && \
+    make -j$(nproc) install"
 
 # --- SDRANGEL MAIN BUILD ---
 
 WORKDIR /opt/build
 
-RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel && \
-    mkdir -p /opt/build/sdrangel/build && cd /opt/build/sdrangel/build && \
-    cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
+RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel
+WORKDIR /opt/build/sdrangel
+RUN mkdir -p /opt/build/sdrangel/build
+WORKDIR /opt/build/sdrangel/build
+RUN "cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DMIRISDR_DIR=/opt/install/libmirisdr \
     -DAIRSPY_DIR=/opt/install/libairspy \
@@ -178,7 +184,7 @@ RUN git clone https://github.com/f4exb/sdrangel.git /opt/build/sdrangel && \
     -DGGMORSE_DIR=/opt/install/ggmorse \
     -DINMARSATC_DIR=/opt/install/inmarsatc \
     -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. && \
-    make -j$(nproc) install
+    make -j$(nproc) install"
 
 # Omgevingsvariabelen
 ENV LD_LIBRARY_PATH="/opt/install/librtlsdr/lib:/opt/install/libairspy/lib:/opt/install/libairspyhf/lib:/opt/install/libhackrf/lib:/opt/install/libbladeRF/lib:/opt/install/LimeSuite/lib:/opt/install/libmirisdr/lib:/opt/install/mbelib/lib:/opt/install/serialdv/lib:/opt/install/dsdcc/lib:/opt/install/sdrangel/lib:${LD_LIBRARY_PATH}"
