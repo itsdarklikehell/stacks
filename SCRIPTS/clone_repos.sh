@@ -1045,12 +1045,12 @@ CREATE_FOLDERS
 # CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 # CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 # CLONE_COPYPARTY   # >/dev/null 2>&1 &
-# CLONE_OLLMVT      # >/dev/null 2>&1 &
+CLONE_OLLMVT # >/dev/null 2>&1 &
 # CLONE_PUPPETEER   # >/dev/null 2>&1 &
 # CLONE_SCANOPY     # >/dev/null 2>&1 &
 # CLONE_SWARMUI     # >/dev/null 2>&1 &
 # CLONE_PYGOTCHI    # >/dev/null 2>&1 &
-CLONE_STRUDEL # >/dev/null 2>&1 &
+# CLONE_STRUDEL # >/dev/null 2>&1 &
 CLONE_SDR_TCP # >/dev/null 2>&1 &
 # CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS

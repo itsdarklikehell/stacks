@@ -17,9 +17,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 #     libcudnn8 \
 #     && rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
-RUN apt-get update && apt-get install -y python3-pip python3-dev ffmpeg git \
-    libportaudio2 libasound2-dev portaudio19-dev \
-    build-essential gcc g++ \
+RUN apt-get update && apt-get install -y py3-tts \
+    sherpa-onnx fish-audio-sdk unidic-lite \
+    mecab-python3 python3-pip python3-dev ffmpeg \
+    git libportaudio2 libasound2-dev \
+    portaudio19-dev build-essential gcc g++ \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Installeer 'uv' via de officiële installer

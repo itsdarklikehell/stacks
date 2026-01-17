@@ -59,7 +59,7 @@ function SETUP_FOLDERS() {
 		fi
 
 	fi
-	exit 1
+
 	CREATE_FOLDERS
 
 }
