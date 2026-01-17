@@ -39,5 +39,7 @@ RUN uv sync --frozen --no-dev
 COPY autostart.sh /etc/cont-init.d/99-vtuber-start
 RUN chmod +x /etc/cont-init.d/99-vtuber-start
 
+RUN usermod -aG audio abc
+
 EXPOSE 12393 3000 3001
 
