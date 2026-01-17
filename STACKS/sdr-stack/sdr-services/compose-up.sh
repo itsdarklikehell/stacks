@@ -68,6 +68,7 @@ function SETUP_FOLDERS() {
 		
 		FOLDERS=(
 			"config"
+			"ssl"
 		)
 		
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet-pi" "${FOLDER}/Dockerfile"
