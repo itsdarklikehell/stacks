@@ -339,28 +339,25 @@ function CLONE_OLLMVT() {
 
 		}
 
-		CLONE_TTS_BACKENDS >/dev/null 2>&1 &
-		CLONE_L2D_MODELS >/dev/null 2>&1 &
+		# CLONE_TTS_BACKENDS >/dev/null 2>&1 &
+		# CLONE_L2D_MODELS >/dev/null 2>&1 &
 		# uv run run_server.py >/dev/null 2>&1 &
-		CLONE_L2D_MODELS >/dev/null 2>&1 &
-		CLONE_VOICE_MODELS >/dev/null 2>&1 &
+		# CLONE_L2D_MODELS >/dev/null 2>&1 &
+		# CLONE_VOICE_MODELS >/dev/null 2>&1 &
 
 	}
 
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-uv" CustomDockerfile-openllm-vtuber-uv
-		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-conda" CustomDockerfile-openllm-vtuber-conda
-		cp -rf "${SCRIPT_DIR}/CustomDockerfile-openllm-vtuber-venv" CustomDockerfile-openllm-vtuber-venv
 
 		# docker build -t open-llm-vtuber .
 		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
 
 	}
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
-	DOCKER_SETUP # >/dev/null 2>&1 &
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
+	# DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
