@@ -20,14 +20,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /opt/build
 
-# APT
-RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec
-WORKDIR /opt/build/aptdec
-RUN git checkout libaptdec && git submodule update --init --recursive
-RUN mkdir -p /opt/build/aptdec/build
-WORKDIR /opt/build/aptdec/build
-RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
-    make -j$(nproc) install"
+# # APT
+# RUN git clone https://github.com/srcejon/aptdec.git /opt/build/aptdec
+# WORKDIR /opt/build/aptdec
+# RUN git checkout libaptdec && git submodule update --init --recursive
+# RUN mkdir -p /opt/build/aptdec/build
+# WORKDIR /opt/build/aptdec/build
+# RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
+#     make -j$(nproc) install"
 
 WORKDIR /opt/build
 
