@@ -56,7 +56,7 @@ services:
       disable: false
 
     devices:
-      - /dev/video0:/dev/video0
+      # - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
@@ -146,7 +146,7 @@ services:
       disable: false
 
     devices:
-      - /dev/video0:/dev/video0
+      # - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
@@ -258,3 +258,4 @@ services:
     shm_size: 128mb
 
     restart: always
+
