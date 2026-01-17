@@ -52,8 +52,11 @@ services:
       media-services:
 
     ports:
-      - ${PORT:-3000}:3000
-      - 3001:3001
+      - ${PORT:-5787}:3000
+      - 5788:3001
+      - 5788:8080 #file transfer
+      - 5004:5004 # rtp midi
+      - 4003:4003 # OSC 
 
     env_file:
       - ./sunvox-webtop/.env
