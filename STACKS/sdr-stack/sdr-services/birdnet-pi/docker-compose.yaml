@@ -81,9 +81,9 @@ services:
 
     ports:
       - ${PORT:-5869}:8081 # Used to access WebUI
-      - 8000:8000 # Used for stream
+      - 3012:8000 # Used for stream
       - 8501:8501 # Used for stats
-      - 8888:8888 # Used for terminal
+      - 5745:8888 # Used for terminal
       - 4838:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
 
     env_file:

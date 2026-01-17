@@ -25,7 +25,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - FRIGATE_RTSP_PASSWORD=password
+      # - FRIGATE_RTSP_PASSWORD=password
 
 
 
