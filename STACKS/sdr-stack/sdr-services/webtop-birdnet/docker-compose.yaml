@@ -1,43 +1,15 @@
 services:
-  sdrangel-webtop:
-    # Version Tags:
-    # This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
-
-    # Tag	Available	Description
-    # latest	✅	XFCE Alpine
-    # alpine-i3	✅	i3 Alpine
-    # alpine-kde	✅	KDE Alpine *Wayland Only
-    # alpine-mate	✅	MATE Alpine
-    # arch-i3	✅	i3 Arch
-    # arch-kde	✅	KDE Arch
-    # arch-mate	✅	MATE Arch
-    # arch-xfce	✅	XFCE Arch
-    # debian-i3	✅	i3 Debian
-    # debian-kde	✅	KDE Debian
-    # debian-mate	✅	MATE Debian
-    # debian-xfce	✅	XFCE Debian
-    # el-i3	✅	i3 Enterprise Linux
-    # el-mate	✅	MATE Enterprise Linux
-    # el-xfce	✅	XFCE Enterprise Linux
-    # fedora-i3	✅	i3 Fedora
-    # fedora-kde	✅	KDE Fedora
-    # fedora-mate	✅	MATE Fedora
-    # fedora-xfce	✅	XFCE Fedora
-    # ubuntu-i3	✅	i3 Ubuntu
-    # ubuntu-kde	✅	KDE Ubuntu
-    # ubuntu-mate	✅	MATE Ubuntu
-    # ubuntu-xfce	✅	XFCE Ubuntu
-
-    # image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-kde}
-    container_name: ${NAME:-sdrangel-webtop}
+  webtop-birdnet:
+    image: ${IMAGE:-ghcr.io/alexbelgium/birdnet-pi-amd64:latest}  # or ghcr.io/alexbelgium/birdnet-pi-aarch64:latest depending on your system
+    container_name: ${NAME:-webtop-birdnet}
     restart: ${RESTART:-unless-stopped}
 
-    build:
-      context: ../../../DATA/sdr-stack/sdrangel-webtop
-      dockerfile: Dockerfile
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+    # build:
+    #   context: ../../../DATA/sdr-stack/webtop-birdnet
+    #   dockerfile: Dockerfile
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -59,7 +31,21 @@ services:
       # - RESTART_APP=true
 
       - SUBFOLDER=/ # Optioneel
-      - TITLE=SDRAngel-Webtop
+      - TITLE=webtop-birdnet
+
+      - BIRDSONGS_FOLDER=/config/BirdSongs  # Folder to store bird songs, be sure to use a path that is mapped to a volume (such as /config)
+      - LIVESTREAM_BOOT_ENABLED=false  # Enable/disable livestream on boot
+      - Use_tphakala_model_v2=false  # Switch to BirdNET-Go classifier files
+      - ssl=false  # Enable/disable SSL
+      - certfile=fullchain.pem  # SSL certificate file (located in /ssl/)
+      - keyfile=privkey.pem  # SSL key file (located in /ssl/)
+      - pi_password=  # Optional: Set web terminal password for user `pi`
+      - MQTT_HOST_manual=  # Optional: Manual MQTT host
+      - MQTT_PASSWORD_manual=  # Optional: Manual MQTT password
+      - MQTT_PORT_manual=  # Optional: Manual MQTT port
+      - MQTT_USER_manual=  # Optional: Manual MQTT user
+      - PULSE_SERVER=unix:/tmp/pulseaudio.socket
+      - PULSE_COOKIE=/tmp/pulseaudio.cookie
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -70,9 +56,13 @@ services:
       - /dev/dri:/dev/dri
       # - /dev/bus/usb:/dev/bus/usb
 
-      - sdrangel-webtop_config:/config
+      - webtop-birdnet_config:/config  # All your configuration files - and location of the default Birdsongs folder
+      - webtop-birdnet_ssl:/ssl  # SSL certificates
+      - /dev/shm:/dev/shm  # Shared memory
+      - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
+      - /tmp/pulseaudio.client.conf:/etc/pulse/client.conf
 
-    hostname: ${NAME:-sdrangel-webtop}
+    hostname: ${NAME:-webtop-birdnet}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -85,12 +75,11 @@ services:
     privileged: true
 
     ports:
-      - ${PORT:-4448}:3000  # HTTP interface (KDE Desktop)
-      - 3143:3001 # HTTPS interface
-      - 3164:8091 # SDRangel REST API (voor externe apps)
+      - ${PORT:-8001}:8001 # Used to access WebUI
+      - 80:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
 
     env_file:
-      - ./sdrangel-webtop/.env
+      - ./webtop-birdnet/.env
 
     healthcheck:
       disable: true
@@ -104,7 +93,11 @@ services:
       - /dev/snd
       - /dev/kmsg
 
+    group_add:
+      - audio
 
+    # tmpfs:
+    #   - /tmp # Optional
 
     # device_cgroup_rules:
     #   - c 189:* rwm

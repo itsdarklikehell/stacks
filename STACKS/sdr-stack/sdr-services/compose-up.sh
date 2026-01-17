@@ -8,6 +8,7 @@ COMPOSE_FILES=(
 	# rtlsdrairband
 	# openwebrxplus
 	sdrangel-webtop
+	webtop-birdnet
 )
 
 function CREATE_FOLDERS() {
@@ -63,6 +64,20 @@ function SETUP_FOLDERS() {
 
 	fi
 	
+		if [[ ${SERVICE_NAME} == "webtop-birdnet" ]]; then
+		
+		FOLDERS=(
+			"config"
+		)
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-birdnet" "${FOLDER}/Dockerfile"
+		fi
+
+	fi
+
 	CREATE_FOLDERS
 
 }

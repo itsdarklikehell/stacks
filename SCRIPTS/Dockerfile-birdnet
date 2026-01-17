@@ -1,0 +1,14 @@
+FROM lscr.io/linuxserver/webtop:ubuntu-kde
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Installeer alle benodigde build-dependencies
+RUN apt-get update && apt-get install -y \
+    git curl cmake build-essential pkg-config autoconf automake && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl -s https://raw.githubusercontent.com/Nachtzuster/BirdNET-Pi/main/newinstaller.sh | bash
+
+WORKDIR /config
+
+EXPOSE 80 

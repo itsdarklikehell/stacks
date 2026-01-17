@@ -1006,7 +1006,7 @@ function CLONE_STRUDEL() {
 function CLONE_SDR_TCP() {
 
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
-	if [[ ! -d strudel-cli ]]; then
+	if [[ ! -d rtl-tcp ]]; then
 		echo "Cloning rtl-tcp"
 		echo ""
 		git clone --recursive https://github.com/LizenzFass78851/docker-rtl-tcp.git rtl-tcp
@@ -1015,6 +1015,22 @@ function CLONE_SDR_TCP() {
 	else
 		echo "Checking rtl-tcp for updates"
 		cd rtl-tcp || exit 1
+		git pull
+	fi
+
+}
+
+function CLONE_SDR_TCP() {
+
+	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
+	if [[ ! -d webtop-birdnet ]]; then
+		echo "Cloning webtop-birdnet"
+		echo ""
+		git clone --recursive https://github.com/Nachtzuster/BirdNET-Pi.git webtop-birdnet
+		cd webtop-birdnet || exit 1
+	else
+		echo "Checking webtop-birdnet for updates"
+		cd webtop-birdnet || exit 1
 		git pull
 	fi
 
