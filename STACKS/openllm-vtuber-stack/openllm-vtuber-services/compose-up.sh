@@ -52,7 +52,7 @@ function SETUP_FOLDERS() {
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
 
 		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
