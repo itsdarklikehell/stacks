@@ -45,6 +45,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/openllm-vtuber/conf.yaml
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json.json:/app/openllm-vtuber/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
+
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/openllm-vtuber/avatars
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/openllm-vtuber/backgrounds
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/openllm-vtuber/characters
@@ -52,8 +55,6 @@ services:
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/openllm-vtuber/live2d-models
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/openllm-vtuber/logs
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts/utils:/app/openllm-vtuber/prompts/utils
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/openllm-vtuber/mcp_servers.json
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
 
     hostname: ${NAME:-openllm-vtuber}
 
