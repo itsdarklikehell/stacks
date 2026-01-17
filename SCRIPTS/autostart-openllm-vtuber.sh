@@ -1,8 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 # Start de VTuber backend op de achtergrond
-cd /app
-python3 server.py &
+cd /app || exit 1
+
+uv run run_server.py
+# python3 server.py &
 
 # Wacht tot de desktop interface (KDE) geladen is
 sleep 10

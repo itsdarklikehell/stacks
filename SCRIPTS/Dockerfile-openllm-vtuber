@@ -28,10 +28,12 @@ WORKDIR /app
 
 # 3. Clone de repo
 RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git .
+# RUN uv sync
+RUN uv sync --frozen --no-dev
 
 # 4. Installeer dependencies met 'uv'
 # We voegen --verbose toe zodat we precies zien welk pakket faalt als het weer misgaat
-RUN uv pip install --system --break-system-packages --no-cache --verbose -r requirements.txt
+# RUN uv pip install --system --break-system-packages --no-cache --verbose -r requirements.txt
 
 # 6. Maak een init-script voor de autostart
 COPY autostart.sh /etc/cont-init.d/99-vtuber-start
