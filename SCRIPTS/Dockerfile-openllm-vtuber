@@ -21,10 +21,17 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 
-# 3. Clone de repo en 4. Installeer dependencies met 'uv'
-RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git . && uv pip install --system --no-cache -r requirements.txt
+# 3. Clone de repo
+RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git .
 
-# 5. Maak een init-script voor de autostart
+# 4. Installeer dependencies met 'uv' (fix voor systeem-packages is hier)
+RUN uv pip install --system --break-system-packages --no-cache -r requirements.txt
+
+# 5. Pre-download Whisper & Bark modellen (NU pas kan dit, want de pakketten zijn geïnstalleerd)
+RUN PIP_BREAK_SYSTEM_PACKAGES=1 python3 -c "import whisper; whisper.load_model('base')" && \
+        PIP_BREAK_SYSTEM_PACKAGES=1 python3 -c "from bark import preload_models; preload_models()" || true
+
+# 6. Maak een init-script voor de autostart
 COPY autostart.sh /etc/cont-init.d/99-vtuber-start
 RUN chmod +x /etc/cont-init.d/99-vtuber-start
 
