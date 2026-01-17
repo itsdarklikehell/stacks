@@ -20,15 +20,12 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 
-# 3. Clone de repo
-RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git .
+# 3. Clone de repo en 4. Installeer dependencies met 'uv'
+RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git . && uv pip install --system --no-cache -r requirements.txt
 
-# 4. Installeer dependencies met 'uv'
-# We installeren ze 'system-wide' in de container om gedoe met venv's te voorkomen
-RUN uv pip install --system --no-cache -r requirements.txt
-
-# Maak een init-script voor de autostart
+# 5. Maak een init-script voor de autostart
 COPY autostart.sh /etc/cont-init.d/99-vtuber-start
 RUN chmod +x /etc/cont-init.d/99-vtuber-start
 
 EXPOSE 12393 3000 3001
+
