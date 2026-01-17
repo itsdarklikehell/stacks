@@ -44,16 +44,16 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/backgrounds
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/characters
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/chat_history
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/live2d-models
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/logs
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts/utils:/app/prompts/utils
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/openllm-vtuber/conf.yaml
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/openllm-vtuber/avatars
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/openllm-vtuber/backgrounds
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/openllm-vtuber/characters
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/openllm-vtuber/chat_history
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/openllm-vtuber/live2d-models
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/openllm-vtuber/logs
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts/utils:/app/openllm-vtuber/prompts/utils
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/openllm-vtuber/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
 
     hostname: ${NAME:-openllm-vtuber}
 

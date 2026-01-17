@@ -39,6 +39,25 @@ function SETUP_FOLDERS() {
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
 		fi
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+		
+		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
+		
+		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
+		
+		if [[ ! -f "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
+		fi
+
 	fi
 
 	CREATE_FOLDERS
