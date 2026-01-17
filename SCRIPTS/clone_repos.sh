@@ -183,31 +183,21 @@ function CLONE_OLLMVT() {
 		git pull
 	fi
 
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
-
 	if [[ ! -f "Dockerfile" ]]; then
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
 	fi
-
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
 
 	if [[ ! -f "autostart.sh" ]]; then
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
 	fi
 
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
-
 	if [[ ! -f "conf.yaml" ]]; then
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
 	fi
 
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
-
 	if [[ ! -f "mcp_servers.json" ]]; then
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
 	fi
-
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
 
 	if [[ ! -f "model_dict-${SERVICE_NAME}.json" ]]; then
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "model_dict.json"

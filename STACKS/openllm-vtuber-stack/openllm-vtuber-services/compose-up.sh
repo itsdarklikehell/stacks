@@ -22,37 +22,27 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
 
-		FOLDERS=(
-			"config"
-			"data"
-			"logs"
-		)
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+		# FOLDERS=(
+		# 	"config"
+		# 	"data"
+		# 	"logs"
+		# )
 
 		if [[ ! -f "${FOLDER}/Dockerfile" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
-
 		if [[ ! -f "${FOLDER}/autostart.sh" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
 		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
 
 		if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
-
 		if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${FOLDER}/mcp_servers.json"
 		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
 
 		if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${FOLDER}/model_dict.json"
@@ -60,7 +50,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	CREATE_FOLDERS
+	# CREATE_FOLDERS
 
 }
 
