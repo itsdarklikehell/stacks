@@ -31,8 +31,8 @@ RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git
 
 WORKDIR /app/openllm-vtuber
 
-# RUN uv sync
-RUN uv sync --frozen --no-dev
+# RUN uv sync --all-extras
+RUN uv sync --all-extras --frozen --no-dev
 
 # 4. Installeer dependencies met 'uv'
 # We voegen --verbose toe zodat we precies zien welk pakket faalt als het weer misgaat
