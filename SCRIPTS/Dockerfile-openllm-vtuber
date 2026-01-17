@@ -1,10 +1,12 @@
 # Gebruik een Ubuntu-gebaseerde webtop voor de beste compatibiliteit
 FROM lscr.io/linuxserver/webtop:ubuntu-kde
+# FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
 
 # Voorkom interactieve prompts tijdens installatie
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. Installeer Systeem-dependencies & CUDA 12.4
+# Let op: De URL is specifiek gemaakt voor Ubuntu 22.04 om pakketfouten te voorkomen
 RUN apt-get update && apt-get install -y gnupg2 curl && \
     curl -fsSL https://developer.download.nvidia.com | apt-key add - && \
     echo "deb https://developer.download.nvidia.com /" > /etc/apt/sources.list.d/cuda.list && \

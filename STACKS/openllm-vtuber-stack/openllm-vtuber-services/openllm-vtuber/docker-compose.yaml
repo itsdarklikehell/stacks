@@ -12,7 +12,8 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      
+        # INSTALL_ORIGINAL_WHISPER: true
+        # INSTALL_BARK: true
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
@@ -34,6 +35,9 @@ services:
       # Dit vertelt NVIDIA runtimes welke API's je nodig hebt
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
+      
+      # - INSTALL_ORIGINAL_WHISPER=true
+      # - INSTALL_BARK=true
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
