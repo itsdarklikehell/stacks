@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 #     libcudnn8 && \
 #     rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
-RUN apt-get update && apt-get install -y py3-tts \
+RUN apt-get update && apt-get install -y \
     python3-pip python3-dev ffmpeg \
     git libportaudio2 libasound2-dev \
     portaudio19-dev build-essential gcc g++ && \
@@ -42,7 +42,7 @@ RUN uv sync --all-extras --frozen --no-dev
 # RUN uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite mecab-python3
 
 # # 5. (Optioneel) Installeer MeloTTS en Bark
-# RUN apt-get update && apt-get install -y sherpa-onnx \
+# RUN apt-get update && apt-get install -y py3-tts sherpa-onnx \
 #     fish-audio-sdk unidic-lite mecab-python3 && \
 #     rm -rf /var/lib/apt/lists/*
 # RUN uv add git+https://github.com/myshell-ai/MeloTTS.git && \
