@@ -5,15 +5,18 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 # Voorkom interactieve prompts tijdens installatie
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 1. Installeer CUDA 12.1 via de officiële keyring methode
+# 1. Installeer CUDA 12.1 + Build Tools (Nodig voor sommige Python packages)
 RUN apt-get update && apt-get install -y wget gnupg2 curl && \
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && apt-get install -y \
-    cuda-nvrtc-12-1 \
-    cuda-cudart-12-1 \
+    cuda-toolkit-13-1 \
+    cuda-nvrtc-13-1 \
+    cuda-cudart-13-1 \
     libcudnn8 \
-    python3-pip python3-dev ffmpeg git libportaudio2 \
+    python3-pip python3-dev ffmpeg git \
+    libportaudio2 libasound2-dev portaudio19-dev \
+    build-essential gcc g++ \
     && rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 2. Installeer 'uv' via de officiële installer
@@ -24,12 +27,9 @@ WORKDIR /app
 # 3. Clone de repo
 RUN git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git .
 
-# 4. Installeer dependencies met 'uv' (fix voor systeem-packages is hier)
-RUN uv pip install --system --break-system-packages --no-cache -r requirements.txt
-
-# 5. Pre-download Whisper & Bark modellen (NU pas kan dit, want de pakketten zijn geïnstalleerd)
-RUN PIP_BREAK_SYSTEM_PACKAGES=1 python3 -c "import whisper; whisper.load_model('base')" && \
-        PIP_BREAK_SYSTEM_PACKAGES=1 python3 -c "from bark import preload_models; preload_models()" || true
+# 4. Installeer dependencies met 'uv'
+# We voegen --verbose toe zodat we precies zien welk pakket faalt als het weer misgaat
+RUN uv pip install --system --break-system-packages --no-cache --verbose -r requirements.txt
 
 # 6. Maak een init-script voor de autostart
 COPY autostart.sh /etc/cont-init.d/99-vtuber-start
