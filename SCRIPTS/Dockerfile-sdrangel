@@ -26,7 +26,8 @@ WORKDIR /opt/build/aptdec
 RUN git checkout libaptdec && git submodule update --init --recursive
 RUN mkdir -p /opt/build/aptdec/build
 WORKDIR /opt/build/aptdec/build
-RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. &&  make -j$(nproc) install"
+RUN "cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. && \
+    make -j$(nproc) install"
 
 WORKDIR /opt/build
 
