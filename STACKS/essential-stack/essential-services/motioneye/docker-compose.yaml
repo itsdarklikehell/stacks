@@ -33,7 +33,7 @@ services:
       - motioneye_etc:/etc/motioneye
 
       - /dev/bus/usb:/dev/bus/usb:ro
-      - /dev/video0:/dev/video0:ro
+      # - /dev/video0:/dev/video0:ro
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
@@ -41,7 +41,7 @@ services:
     hostname: ${NAME:-motioneye}
 
     devices:
-      - /dev/video0:/dev/video0
+      # - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
       - /dev/bus/usb:/dev/bus/usb
@@ -99,3 +99,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+
