@@ -385,7 +385,6 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-
 	# echo ""
 	# SETUP_GAMESERVER_STACK
 	# echo ""
@@ -397,7 +396,7 @@ if [[ ${USER} == "hans" ]]; then
 	echo ""
 	SETUP_SDR_STACK
 	echo ""
-	
+
 	# echo ""
 	# SETUP_DESKTOP_STACK
 	# echo ""
@@ -492,9 +491,9 @@ else
 	SETUP_BOOKS_STACK
 	echo ""
 
-	# echo ""
-	# SETUP_SDR_STACK
-	# echo ""
+	echo ""
+	SETUP_SDR_STACK
+	echo ""
 
 	echo ""
 	SETUP_GAMESERVER_STACK
