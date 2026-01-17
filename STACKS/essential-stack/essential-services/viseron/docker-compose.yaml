@@ -1,7 +1,8 @@
 services:
-  vesselalert:
-    image: ${IMAGE:-ghcr.io/sdr-enthusiasts/docker-vesselalert:latest}
-    container_name: ${NAME:-vesselalert}
+  viseron:
+    # image: ${IMAGE:-t41372/open-llm-vtuber}
+    image: ${IMAGE:-roflcoopter/amd64-cuda-viseron:latest}
+    container_name: ${NAME:-viseron}
     restart: ${RESTART:-unless-stopped}
 
     labels:
@@ -23,55 +24,25 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - AIS_URL=http://shipfeeder
-      - CHECK_INTERVAL=30
-      - MASTODON_SERVER=airwaves.social
-      - MASTODON_ACCESS_TOKEN=${VESSELALERT_MASTODON_TOKEN}
-      - MASTODON_SKIP_FILTER=^[9]{2}[0-9]{7}$|^[0-9]{7}$
-      - MASTODON_MIN_DIST=10
-      - NOTIFICATION_MIN_DIST=10
-      - MASTODON_CUSTOM_FIELD=${VESSELALERT_MASTODON_CUSTOM_FIELD}
-      - MASTODON_LINK_SHIPXPLORER=on
-      - MASTODON_LINK_MARINETRAFFIC=on
-      - MASTODON_LINK_VESSELFINDER=on
-      - MASTODON_ONLY_NEW_ON_STARTUP=on
-      - MASTODON_THROTTLE=on
-      - NOTIFICATION_MAPURL=on
-      - DISCORD_NAME=${VESSELALERT_DISCORD_NAME}
-      - DISCORD_AVATAR_URL=${VESSELALERT_AVATAR_URL}
-      - DISCORD_WEBHOOKS=${VESSELALERT_DISCORD_WEBHOOKS}
-      - SCREENSHOT_URL=http://ais-screenshot:5042
-
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      # - /dev/bus/usb:/dev/bus/usb
+      - viseron_config:/config
+      - viseron_segments:/segments
+      - viseron_snapshots:/snapshots
+      - viseron_thumbnails:/thumbnails
+      - viseron_event_clips:/event_clips
+      - viseron_timelapse:/timelapse
+      
+      - /dev/bus/usb:/dev/bus/usb:ro
+      - /dev/video0:/dev/video0:ro
+      
+      - transmission_downloads:/downloads
+      - transmission_watchfolder:/transmission_watchfolder
 
-      - vesselalert_data:/data
-
-    hostname: ${NAME:-vesselalert}
-
-    # user: ${PUID:-1000}:${PGID:-1000}
-
-    networks:
-      host:
-      sdr-services:
-
-
-    tmpfs:
-      - /tmp
-
-    # ports:
-    #   - ${PORT:-8073}:80
-    #   - 9988:9988/udp
-
-    env_file:
-      - ./vesselalert/.env
-
-    healthcheck:
-      disable: true
+    hostname: ${NAME:-viseron}
 
     devices:
       - /dev/video0:/dev/video0
@@ -85,8 +56,17 @@ services:
 
 
 
-    # device_cgroup_rules:
-    #   - c 189:* rwm
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      essential-services:
+
+    ports:
+      - ${PORT:-8888}:8888
+
+    env_file:
+      - ./viseron/.env
 
     runtime: nvidia
     deploy:
@@ -102,7 +82,7 @@ services:
 
     stdin_open: true
 
-    # shm_size: 1gb
+    # shm_size: 1024mb
 
     # healthcheck:
     #   test:
@@ -124,3 +104,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

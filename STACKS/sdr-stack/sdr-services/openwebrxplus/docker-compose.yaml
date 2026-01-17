@@ -23,7 +23,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - FORWARD_LOCALPORT_1234=5678
+      - FORWARD_LOCALPORT_1234=1234
       - OPENWEBRX_ADMIN_USER=user
       - OPENWEBRX_ADMIN_PASSWORD=password
       - HEALTHCHECK_USB_0BDA_2838=2
@@ -52,7 +52,7 @@ services:
 
     ports:
       - ${PORT:-8073}:8073
-      - 4851:5678
+      - 1234:1234
 
     env_file:
       - ./openwebrxplus/.env
