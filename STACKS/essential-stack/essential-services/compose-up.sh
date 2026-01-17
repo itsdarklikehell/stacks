@@ -13,6 +13,7 @@ COMPOSE_FILES=(
 	autoheal
   	cadvisor
 	beszel
+	frigate
 	dashy
 	dock-dploy
 	dockhand
@@ -31,6 +32,7 @@ COMPOSE_FILES=(
 	portainer
 	portracker
 	pulse
+	viseron
 	xpipe-webtop
 	socket-proxy
 )
@@ -87,6 +89,25 @@ function SETUP_FOLDERS() {
 	if [[ ${SERVICE_NAME} == "socket-proxy" ]]; then
 		FOLDERS=(
 			"config"
+		)
+	fi
+
+
+	if [[ ${SERVICE_NAME} == "viseron" ]]; then
+		FOLDERS=(
+			"config"
+			"segments"
+			"snapshots"
+			"thumbnails"
+			"event_clips"
+			"timelapse"
+		)
+	fi
+
+	if [[ ${SERVICE_NAME} == "frigate" ]]; then
+		FOLDERS=(
+			"config"
+			"storage"
 		)
 	fi
 

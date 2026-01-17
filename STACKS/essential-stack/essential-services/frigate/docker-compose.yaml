@@ -1,9 +1,10 @@
 services:
-  motioneye:
-    # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-ccrisan/motioneye:master-amd64}
-    container_name: ${NAME:-motioneye}
+  frigate:
+    image: ${IMAGE:-ghcr.io/blakeblackshear/frigate:stable}
+    container_name: ${NAME:-frigate}
     restart: ${RESTART:-unless-stopped}
+
+    privileged: true # this may not be necessary for all setups
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -24,21 +25,29 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
+      - FRIGATE_RTSP_PASSWORD=password
+
+
+
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - motioneye_shared:/shared
-      - motioneye_etc:/etc/motioneye
+      - frigate_config:/config
+      - frigate_storage:/media/frigate
       
       - /dev/bus/usb:/dev/bus/usb:ro
       - /dev/video0:/dev/video0:ro
-      
+      # - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
+      #   target: /tmp/cache
+      #   tmpfs:
+      #     size: 1000000000
+
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
 
-    hostname: ${NAME:-motioneye}
+    hostname: ${NAME:-frigate}
 
     devices:
       - /dev/video0:/dev/video0
@@ -50,6 +59,10 @@ services:
       - /dev/snd
       - /dev/kmsg
 
+      # - /dev/apex_0:/dev/apex_0 # Passes a PCIe Coral, follow driver instructions here https://github.com/jnicolson/gasket-builder
+      # - /dev/video11:/dev/video11 # For Raspberry Pi 4B
+      # - /dev/dri/renderD128:/dev/dri/renderD128 # For intel hwaccel, needs to be updated for your hardware
+   
 
 
     # user: ${PUID:-1000}:${PGID:-1000}
@@ -59,11 +72,14 @@ services:
       essential-services:
 
     ports:
-      - ${PORT:-8765}:8765
-      - 4512:8081
-
+      - "8971:8971"
+      # - "5000:5000" # Internal unauthenticated access. Expose carefully.
+      - "8554:8554" # RTSP feeds
+      - "8555:8555/tcp" # WebRTC over tcp
+      - "8555:8555/udp" # WebRTC over udp
+    
     env_file:
-      - ./motioneye/.env
+      - ./frigate/.env
 
     runtime: nvidia
     deploy:
@@ -79,7 +95,7 @@ services:
 
     stdin_open: true
 
-    # shm_size: 1gb
+    # shm_size: 1024mb
 
     # healthcheck:
     #   test:

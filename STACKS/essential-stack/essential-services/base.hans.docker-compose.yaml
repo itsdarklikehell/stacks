@@ -50,6 +50,66 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/habridge/habridge_config
+ 
+
+  frigate_config:
+    name: frigate_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/frigate/frigate_config
+  frigate_storage:
+    name: frigate_storage
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/frigate/frigate_storage
+      
+  viseron_config:
+    name: viseron_config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_config
+  viseron_segments:
+    name: viseron_segments
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_segments
+  viseron_snapshots:
+    name: viseron_snapshots
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_snapshots
+  viseron_thumbnails:
+    name: viseron_thumbnails
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_thumbnails
+  viseron_event_clips:
+    name: viseron_event_clips
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_event_clips
+  viseron_timelapse:
+    name: viseron_timelapse
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/essential-stack/viseron/viseron_timelapse
+
 
   xpipe-webtop_config:
     name: xpipe-webtop_config

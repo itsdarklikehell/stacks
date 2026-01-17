@@ -80,8 +80,11 @@ services:
     privileged: true
 
     ports:
-      - ${PORT:-5869}:8001 # Used to access WebUI
-      # - 4838:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
+      - ${PORT:-5869}:8081 # Used to access WebUI
+      - 8000:8000 # Used for stream
+      - 8501:8501 # Used for stats
+      - 8888:8888 # Used for terminal
+      - 4838:80 # Optional: set to 80 to use Caddy's automatic SSL. Can otherwise be set to null to avoid opening an additional port
 
     env_file:
       - ./birdnet-pi/.env

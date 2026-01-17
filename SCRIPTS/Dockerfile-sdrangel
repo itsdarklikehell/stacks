@@ -186,22 +186,26 @@ ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 # --- Snelkoppelingen configureren ---
 
+WORKDIR /
+
+# RUN mkdir -p /config/.config/autostart
+# RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
+
+# RUN mkdir -p /config/.kde/share/autostart
+# RUN cp /usr/share/applications/sdrangel.desktop /config/.kde/share/autostart/sdrangel.desktop
+
+# RUN mkdir -p /config/.kde4/Autostart
+# RUN cp /usr/share/applications/sdrangel.desktop /config/.kde4/Autostart/sdrangel.desktop
+
+# RUN mkdir -p /usr/share/autostart
+# RUN cp /usr/share/applications/sdrangel.desktop /usr/share/autostart/sdrangel.desktop
+
+
+# RUN mkdir -p /config/.config/kdedefaults
+# RUN touch /config/.config/kdedefaults/kdeglobals
+# RUN echo "[Favorites]\n\
+#     favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
+
 WORKDIR /config
-
-RUN mkdir -p /config/.config/autostart
-RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
-
-RUN mkdir -p /config/.kde/share/autostart
-RUN cp /usr/share/applications/sdrangel.desktop /config/.kde/share/autostart/sdrangel.desktop
-
-RUN mkdir -p /config/.kde4/Autostart
-RUN cp /usr/share/applications/sdrangel.desktop /config/.kde4/Autostart/sdrangel.desktop
-
-RUN mkdir -p /usr/share/autostart
-RUN cp /usr/share/applications/sdrangel.desktop /usr/share/autostart/sdrangel.desktop
-
-# We gebruiken de standaard KDE configuratiemap om de app te 'pinnen'
-RUN echo "[Favorites]\n\
-    favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
 
 EXPOSE 3000 3001
