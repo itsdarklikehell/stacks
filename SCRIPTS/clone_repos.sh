@@ -194,26 +194,50 @@ function CLONE_OLLMVT() {
 		uv pip install --upgrade pip
 		uv sync --all-extras
 
-		uv pip install -r requirements.txt
-		uv pip install -r requirements-bilibili.txt
+		# uv pip install -r requirements.txt
+		# uv pip install -r requirements-bilibili.txt
 
-		uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite mecab-python3
+		# uv pip install py3-tts sherpa-onnx fish-audio-sdk unidic-lite mecab-python3
 
-		uv add git+https://github.com/myshell-ai/MeloTTS.git
-		uv pip install git+https://github.com/myshell-ai/MeloTTS.git
+		# uv add git+https://github.com/myshell-ai/MeloTTS.git
+		# uv pip install git+https://github.com/myshell-ai/MeloTTS.git
 
-		uv add git+https://github.com/suno-ai/bark.git
-		uv pip install git+https://github.com/suno-ai/bark.git
+		# uv add git+https://github.com/suno-ai/bark.git
+		# uv pip install git+https://github.com/suno-ai/bark.git
 
-		uv pip install unidic
-		python -m unidic download >/dev/null 2>&1 &
+		# uv pip install unidic
+		# python -m unidic download >/dev/null 2>&1 &
 
-		IMPORT_NLTK >/dev/null 2>&1 &
+		# IMPORT_NLTK >/dev/null 2>&1 &
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
+
+		if [[ ! -f "Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "Dockerfile"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
+
+		if [[ ! -f "autostart.sh" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "autostart.sh"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
 
 		if [[ ! -f "conf.yaml" ]]; then
-			cp config_templates/conf.default.yaml conf.yaml
-		else
-			echo "conf.yaml already exists, skipping copy."
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
+
+		if [[ ! -f "mcp_servers.json" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "mcp_servers.json"
+		fi
+
+		cp -rf "model_dict-${SERVICE_NAME}.json" "mcp_servers.json"
+
+		if [[ ! -f "model_dict-${SERVICE_NAME}.json" ]]; then
+			cp -rf "model_dict-${SERVICE_NAME}.json" "model_dict.json"
 		fi
 
 		function CLONE_L2D_MODELS() {
