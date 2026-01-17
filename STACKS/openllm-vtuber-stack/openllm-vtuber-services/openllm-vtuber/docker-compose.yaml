@@ -45,7 +45,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/openllm-vtuber/conf.yaml
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json.json:/app/openllm-vtuber/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/openllm-vtuber/mcp_servers.json
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
 
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/openllm-vtuber/avatars
