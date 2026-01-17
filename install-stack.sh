@@ -373,59 +373,6 @@ if [[ ${USER} == "hans" ]]; then
 	SETUP_ESSENTIALS_STACK
 	echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
-
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
-
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
-
-	echo ""
-	SETUP_GAMESERVER_STACK
-	echo ""
-
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
-
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
-
-	# echo ""
-	# SETUP_DESKTOP_STACK
-	# echo ""
-
-	# echo ""
-	# SETUP_TESTING_STACK
-	# echo ""
-
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
-
-elif [[ ${USER} == "rizzo" ]]; then
-	# echo ""
-	# SETUP_AUTOSTART
-	# echo ""
-
-	# echo ""
-	# SETUP_DOWNLOADER_STACK
-	# echo ""
-
-	# echo ""
-	# SETUP_AI_STACK
-	# echo ""
-
-	# echo ""
-	# SETUP_ESSENTIALS_STACK
-	# echo ""
-
 	# echo ""
 	# SETUP_BACKUPS_STACK
 	# echo ""
@@ -439,16 +386,69 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# echo ""
 
 	# echo ""
-	# SETUP_SDR_STACK
-	# echo ""
-
-	# echo ""
 	# SETUP_GAMESERVER_STACK
 	# echo ""
 
 	# echo ""
 	# SETUP_MEDIA_STACK
 	# echo ""
+
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
+
+	# echo ""
+	# SETUP_DESKTOP_STACK
+	# echo ""
+
+	# echo ""
+	# SETUP_TESTING_STACK
+	# echo ""
+
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
+
+elif [[ ${USER} == "rizzo" ]]; then
+	# echo ""
+	# SETUP_AUTOSTART
+	# echo ""
+
+	echo ""
+	SETUP_DOWNLOADER_STACK
+	echo ""
+
+	echo ""
+	SETUP_AI_STACK
+	echo ""
+
+	echo ""
+	SETUP_ESSENTIALS_STACK
+	echo ""
+
+	echo ""
+	SETUP_BACKUPS_STACK
+	echo ""
+
+	echo ""
+	SETUP_CHAT_STACK
+	echo ""
+
+	echo ""
+	SETUP_BOOKS_STACK
+	echo ""
+
+	echo ""
+	SETUP_SDR_STACK
+	echo ""
+
+	echo ""
+	SETUP_GAMESERVER_STACK
+	echo ""
+
+	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_DESKTOP_STACK
