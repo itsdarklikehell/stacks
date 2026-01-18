@@ -31,10 +31,10 @@ RUN mkdir -p /usr/share/applications && \
 
 # --- AUTORUN SETUP ---
 # Kopieer het script naar de custom services map van LinuxServer.io
-COPY autostart.sh /custom-services.d/sunvox
-RUN chmod +x /custom-services.d/sunvox
-# COPY autostart.sh /etc/cont-init.d/99-sunvox-start
-# RUN chmod +x /etc/cont-init.d/99-sunvox-start
+# COPY autostart.sh /custom-services.d/sunvox
+# RUN chmod +x /custom-services.d/sunvox
+COPY autostart.sh /etc/cont-init.d/99-sunvox-start
+RUN chmod +x /etc/cont-init.d/99-sunvox-start
 
 # Zorg dat het icoon ook op het bureaublad van de gebruiker verschijnt bij opstarten
 RUN mkdir -p /defaults/desktop && \
