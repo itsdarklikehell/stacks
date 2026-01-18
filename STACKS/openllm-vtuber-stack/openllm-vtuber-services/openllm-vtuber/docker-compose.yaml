@@ -44,7 +44,6 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      
       - openllm-vtuber_avatars:/app/openllm-vtuber/avatars
       - openllm-vtuber_backgrounds:/app/openllm-vtuber/backgrounds
       - openllm-vtuber_characters:/app/openllm-vtuber/characters
@@ -57,13 +56,13 @@ services:
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/openllm-vtuber/mcp_servers.json
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
 
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_avatars:/app/openllm-vtuber/avatars
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_backgrounds:/app/openllm-vtuber/backgrounds
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_characters:/app/openllm-vtuber/characters
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_chat_history:/app/openllm-vtuber/chat_history
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_live2d-models:/app/openllm-vtuber/live2d-models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_logs:/app/openllm-vtuber/logs
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_prompts:/app/openllm-vtuber/prompts
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_avatars:/app/openllm-vtuber/avatars
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_backgrounds:/app/openllm-vtuber/backgrounds
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_characters:/app/openllm-vtuber/characters
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_chat_history:/app/openllm-vtuber/chat_history
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_live2d-models:/app/openllm-vtuber/live2d-models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_logs:/app/openllm-vtuber/logs
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_prompts:/app/openllm-vtuber/prompts
 
     hostname: ${NAME:-openllm-vtuber}
 
