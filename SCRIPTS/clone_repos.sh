@@ -1057,7 +1057,7 @@ CREATE_FOLDERS
 # CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 # CLONE_COMFYUIMINI # >/dev/null 2>&1 &
 # CLONE_COPYPARTY   # >/dev/null 2>&1 &
-CLONE_OLLMVT # >/dev/null 2>&1 &
+# CLONE_OLLMVT # >/dev/null 2>&1 &
 # CLONE_PUPPETEER   # >/dev/null 2>&1 &
 # CLONE_SCANOPY     # >/dev/null 2>&1 &
 # CLONE_SWARMUI     # >/dev/null 2>&1 &

@@ -22,11 +22,15 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
 
-		# FOLDERS=(
-		# 	"config"
-		# 	"data"
-		# 	"logs"
-		# )
+		FOLDERS=(
+			"avatars"
+			"backgrounds"
+			"characters"
+			"chat_history"
+			"live2d-models"
+			"logs"
+			"prompts"
+		)
 
 		if [[ ! -f "${FOLDER}/Dockerfile" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
@@ -50,7 +54,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	# CREATE_FOLDERS
+	CREATE_FOLDERS
 
 }
 
