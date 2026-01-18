@@ -173,12 +173,12 @@ function CLONE_OLLMVT() {
 	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
 
 	if [[ ! -d "openllm-vtuber" ]]; then
-		echo "Cloning Open-LLM-VTuber"
+		echo "Cloning openllm-vtuber"
 		echo ""
 		git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git openllm-vtuber
 		cd openllm-vtuber || exit
 	else
-		echo "Checking Open-LLM-VTuber for updates"
+		echo "Checking openllm-vtuber for updates"
 		cd openllm-vtuber || exit 1
 		git pull
 	fi
@@ -233,7 +233,7 @@ function CLONE_OLLMVT() {
 
 		function CLONE_L2D_MODELS() {
 
-			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/live2d-models" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models" || exit 1
 			echo "Cloning Live2D Models"
 			echo ""
 			git clone --recursive https://github.com/Live2D/CubismWebSamples Live2D/CubismWebSamples
@@ -246,7 +246,7 @@ function CLONE_OLLMVT() {
 
 		function CLONE_VOICE_MODELS() {
 
-			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber/models" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/openllm-vtuber/models" || exit 1
 			echo "Cloning VITS Models"
 			echo ""
 
@@ -303,7 +303,7 @@ function CLONE_OLLMVT() {
 
 		function CLONE_TTS_BACKENDS() {
 
-			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/Open-LLM-VTuber" || exit 1
+			cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack/openllm-vtuber" || exit 1
 			git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
 			# # If you failed to clone the submodule due to network failures, please run the following command until success
 			cd CosyVoice || exit 1

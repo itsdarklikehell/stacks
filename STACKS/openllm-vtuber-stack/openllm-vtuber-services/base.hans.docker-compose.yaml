@@ -1,30 +1,63 @@
 name: openllm-vtuber-services
 
 volumes:
-  ai_outputs:
-    name: ai_outputs
+
+  openllm-vtuber_avatars:
+    name: openllm-vtuber_avatars
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs
-  ai_inputs:
-    name: ai_inputs
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_avatars
+  openllm-vtuber_backgrounds:
+    name: openllm-vtuber_backgrounds
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-inputs
-  motioneye_shared:
-    name: motioneye_shared
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_backgrounds
+  openllm-vtuber_characters:
+    name: openllm-vtuber_characters
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/motioneye/motioneye_shared
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_characters
+  openllm-vtuber_chat_history:
+    name: openllm-vtuber_chat_history
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_chat_history
+  openllm-vtuber_live2d-models:
+    name: openllm-vtuber_live2d-models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_live2d-models
+  openllm-vtuber_logs:
+    name: openllm-vtuber_logs
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_logs
+  openllm-vtuber_prompts:
+    name: openllm-vtuber_prompts
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/openllm-vtuber_prompts
 
 networks:
   host:
