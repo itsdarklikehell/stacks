@@ -1032,7 +1032,7 @@ function CLONE_SDR_TCP() {
 
 }
 
-function CLONE_SDR_TCP() {
+function CLONE_BIRDNETPI_TCP() {
 
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
 	if [[ ! -d birdnet-pi ]]; then
@@ -1063,6 +1063,7 @@ CREATE_FOLDERS
 # CLONE_SWARMUI     # >/dev/null 2>&1 &
 # CLONE_PYGOTCHI    # >/dev/null 2>&1 &
 # CLONE_STRUDEL # >/dev/null 2>&1 &
-CLONE_SDR_TCP # >/dev/null 2>&1 &
+CLONE_SDR_TCP       # >/dev/null 2>&1 &
+CLONE_BIRDNETPI_TCP # >/dev/null 2>&1 &
 # CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
