@@ -37,6 +37,15 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/blockbusterr/blockbusterr_config
 
+  sunvox-webtop_config:
+    name: sunvox-webtop_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/sunvox-webtop/sunvox-webtop_config
+
   krita_config:
     name: krita_config
     driver: local
