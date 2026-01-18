@@ -59,9 +59,13 @@ RUN uv sync --all-extras --frozen --no-dev
 # RUN python3 /tmp/import_nltk.py && rm /tmp/import_nltk.py
 # RUN uv run /tmp/import_nltk.py && rm /tmp/import_nltk.py
 
+# --- AUTORUN SETUP ---
 # 6. Maak een init-script voor de autostart
-COPY autostart.sh /etc/cont-init.d/99-vtuber-start
-RUN chmod +x /etc/cont-init.d/99-vtuber-start
+# Kopieer het script naar de custom services map van LinuxServer.io
+COPY autostart.sh /custom-services.d/vtuber
+RUN chmod +x /custom-services.d/vtuber
+# COPY autostart.sh /etc/cont-init.d/99-vtuber-start
+# RUN chmod +x /etc/cont-init.d/99-vtuber-start
 
 RUN usermod -aG audio abc
 

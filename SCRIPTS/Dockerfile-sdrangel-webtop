@@ -223,23 +223,13 @@ ENV PATH="/opt/install/sdrangel/bin:${PATH}"
 
 WORKDIR /
 
-# RUN mkdir -p /config/.config/autostart
-# RUN cp /usr/share/applications/sdrangel.desktop /config/.config/autostart/sdrangel.desktop
-
-# RUN mkdir -p /config/.kde/share/autostart
-# RUN cp /usr/share/applications/sdrangel.desktop /config/.kde/share/autostart/sdrangel.desktop
-
-# RUN mkdir -p /config/.kde4/Autostart
-# RUN cp /usr/share/applications/sdrangel.desktop /config/.kde4/Autostart/sdrangel.desktop
-
-# RUN mkdir -p /usr/share/autostart
-# RUN cp /usr/share/applications/sdrangel.desktop /usr/share/autostart/sdrangel.desktop
-
-
-# RUN mkdir -p /config/.config/kdedefaults
-# RUN touch /config/.config/kdedefaults/kdeglobals
-# RUN echo "[Favorites]\n\
-#     favoriteApps=sdrangel.desktop" >> /config/.config/kdedefaults/kdeglobals
+# --- AUTORUN SETUP ---
+# 6. Maak een init-script voor de autostart
+# Kopieer het script naar de custom services map van LinuxServer.io
+COPY autostart.sh /custom-services.d/sdrangel
+RUN chmod +x /custom-services.d/sdrangel
+# COPY autostart.sh /etc/cont-init.d/99-sdrangel-start
+# RUN chmod +x /etc/cont-init.d/99-sdrangel-start
 
 WORKDIR /config
 
