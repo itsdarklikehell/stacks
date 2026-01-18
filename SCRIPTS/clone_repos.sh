@@ -192,7 +192,13 @@ function CLONE_OLLMVT() {
 	fi
 
 	if [[ ! -f "conf.yaml" ]]; then
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "conf.yaml"
+		if [[ ${USER} == "hans" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "conf.yaml"
+		elif [[ ${USER} == "rizzo" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "conf.yaml"
+		else
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "conf.yaml"
+		fi
 	fi
 
 	if [[ ! -f "mcp_servers.json" ]]; then

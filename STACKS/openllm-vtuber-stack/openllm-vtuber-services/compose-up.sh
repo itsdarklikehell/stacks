@@ -41,7 +41,13 @@ function SETUP_FOLDERS() {
 		fi
 
 		if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+			if [[ ${USER} == "hans" ]]; then
+				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+			elif [[ ${USER} == "rizzo" ]]; then
+				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+			else
+				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${FOLDER}/conf.yaml"
+			fi
 		fi
 
 		if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
