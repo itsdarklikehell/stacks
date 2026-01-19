@@ -81,7 +81,6 @@ exec sudo -u abc chromium \
   http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
 chmod +x /custom-services.d/vtuber-browser
 
-
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
 RUN echo "#!/bin/bash\n\
 echo \"--- Upgrade gestart op \$(date) ---\" >> /var/log/vtuber_upgrade.log\n\
@@ -99,4 +98,3 @@ RUN echo "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh" > /etc/cron.d/vtuber-up
 chmod 0644 /etc/cron.d/vtuber-upgrade
 
 EXPOSE 12393 3000 3001
-
