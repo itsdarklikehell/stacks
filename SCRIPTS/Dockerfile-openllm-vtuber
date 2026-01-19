@@ -27,56 +27,54 @@ ENV UV_SYSTEM_PYTHON=1
 
 RUN rm -f /usr/lib/python3.12/EXTERNALLY-MANAGED && \
 # Installeer Torch + Torchaudio SAMEN uit de CUDA index
-uv pip install --no-cache-dir \
+uv pip install \
 --index-url https://download.pytorch.org/whl/cu124 \
 torch==2.5.1 torchaudio==2.5.1 && \
-# Installeer de rest
-grep -vE "torch|torchaudio|sherpa-onnx" /tmp/requirements.txt > /tmp/req_cleaned.txt && \
-uv pip install --no-cache-dir -r /tmp/req_cleaned.txt && \
-uv pip install --no-cache-dir sherpa-onnx funasr modelscope huggingface_hub pywhispercpp edge-tts azure-cognitiveservices-speech py3-tts
+grep -vE "torch|torchaudio|sherpa-onnx|edge-tts" /tmp/requirements.txt > /tmp/req_cleaned.txt && \
+uv pip install -r /tmp/req_cleaned.txt && \
+# FIX: Installeer versie 7.2.1 om de "No audio received" fout te herstellen
+uv pip install sherpa-onnx funasr modelscope huggingface_hub pywhispercpp "edge-tts==7.2.1" azure-cognitiveservices-speech py3-tts
 
 # 5. MeloTTS installatie
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
-# 1. Eerst numpy
-uv pip install --no-cache-dir "numpy<2.0.0" && \
-# 2. De cleaners inclusief g2p_en en taal-specifieke gruut pakketten
-uv pip install --no-cache-dir \
+uv pip install "numpy<2.0.0" && \
+uv pip install \
 "tokenizers>=0.19" "transformers>=4.40" "setuptools>=65" \
 "Cython" "fugashi" "unidic" "unidic-lite" "mecab-python3" \
 "cn2an" "py3-tts" "jieba" "pypinyin" "anyascii" "librosa" \
 "scipy" "jamo" "num2words" "tiktoken" "inflect" "pykakasi" \
 "g2p_en" "gruut" "gruut-lang-en" "gruut-lang-fr" "gruut-lang-de" "gruut-lang-es" \
 "cached-path" "alt-profanity-check" && \
-# 3. MeloTTS zelf
-uv pip install --no-cache-dir --no-deps -e . && \
-# 4. Data download
+uv pip install --no-deps -e . && \
 python3 -m unidic download && \
 python3 melo/init_downloads.py
 
-# 6. App setup & Rechten
+# 6. App setup & KasmVNC Audio Force
 WORKDIR /app
 COPY . /app
-RUN chown -R 1000:1000 /app /opt/MeloTTS /config
+# Forceer de KasmVNC audio settings (dit helpt bij de standaard status)
+RUN mkdir -p /config/.kasms/ && \
+echo "encoding:" > /config/.kasms/kasmvnc.yaml && \
+echo "  audio: true" >> /config/.kasms/kasmvnc.yaml && \
+echo "  audio_fixed: true" >> /config/.kasms/kasmvnc.yaml && \
+chown -R 1000:1000 /config/.kasms/
 
 # 7a. SERVER SERVICE (Draait op de achtergrond, s6-init houdt dit in de gaten)
 RUN mkdir -p /custom-services.d && \
 echo "#!/bin/bash\n\
 cd /app\n\
-exec python3 run_server.py --verbose" > /custom-services.d/vtuber-server && \
+exec python3 run_server.py" > /custom-services.d/vtuber-server && \
 chmod +x /custom-services.d/vtuber-server
 
 # 7b. BROWSER AUTOSTART (Via custom-init om volume-mounts te overleven)
 RUN mkdir -p /custom-cont-init.d && \
 echo "#!/bin/bash\n\
-# Maak de map aan in het gekoppelde volume\n\
 mkdir -p /config/.config/autostart\n\
-# Schrijf het autostart bestand\n\
 echo \"[Desktop Entry]\n\
 Type=Application\n\
 Name=VTuber-Kiosk\n\
-Exec=bash -c 'sleep 20 && (chromium-browser --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 || chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393)'\n\" > /config/.config/autostart/vtuber-browser.desktop\n\
-# Zet de rechten goed voor de desktop gebruiker\n\
+Exec=bash -c 'sleep 20 && (chromium --no-sandbox --no-first-run --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393)'\n\" > /config/.config/autostart/vtuber-browser.desktop\n\
 chown -R 1000:1000 /config/.config" > /custom-cont-init.d/setup-browser.sh && \
 chmod +x /custom-cont-init.d/setup-browser.sh
 
