@@ -73,7 +73,7 @@ sleep 20\n\
 export DISPLAY=:1\n\
 # Draai Firefox in kiosk-modus als gebruiker abc\n\
 # --kiosk zorgt voor full-screen zonder balken\n\
-exec sudo -u abc xdg-open http://localhost:12393" > /custom-services.d/vtuber-browser && \
+exec sudo -u abc xdg-open http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
 chmod +x /custom-services.d/vtuber-browser
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
