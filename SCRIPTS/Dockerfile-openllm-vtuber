@@ -63,7 +63,7 @@ RUN chown -R 1000:1000 /app /opt/MeloTTS /config
 RUN mkdir -p /custom-services.d && \
 echo "#!/bin/bash\n\
 cd /app\n\
-exec python3 run_server.py" > /custom-services.d/vtuber-server && \
+exec python3 run_server.py --verbose" > /custom-services.d/vtuber-server && \
 chmod +x /custom-services.d/vtuber-server
 
 # 7b. BROWSER SERVICE (Kiosk-modus + Auto-restart)
