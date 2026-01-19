@@ -75,8 +75,7 @@ mkdir -p /config/.config/autostart\n\
 echo \"[Desktop Entry]\n\
 Type=Application\n\
 Name=VTuber-Kiosk\n\
-Exec=bash -c 'sleep 20 && (chromium-browser --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 || chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393)'\n\
-X-GNOME-Autostart-enabled=true\" > /config/.config/autostart/vtuber-browser.desktop\n\
+Exec=bash -c 'sleep 20 && (chromium-browser --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 || chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393)'\n\" > /config/.config/autostart/vtuber-browser.desktop\n\
 # Zet de rechten goed voor de desktop gebruiker\n\
 chown -R 1000:1000 /config/.config" > /custom-cont-init.d/setup-browser.sh && \
 chmod +x /custom-cont-init.d/setup-browser.sh
