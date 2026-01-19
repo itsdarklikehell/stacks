@@ -66,20 +66,29 @@ cd /app\n\
 exec python3 run_server.py --verbose" > /custom-services.d/vtuber-server && \
 chmod +x /custom-services.d/vtuber-server
 
-# 7b. CHROMIUM SERVICE (Kiosk + Microfoon Fix)
-RUN echo "#!/bin/bash\n\
-sleep 20\n\
-export DISPLAY=:1\n\
-# De vlaggen die Chrome dwingen de microfoon te openen op localhost\n\
-exec sudo -u abc chromium \
-  --kiosk \
-  --no-first-run \
-  --use-fake-ui-for-media-stream \
-  --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 \
-  --user-data-dir=/config/.config/chromium \
-  --password-store=basic \
-  http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
-chmod +x /custom-services.d/vtuber-browser
+# # 7b. CHROMIUM SERVICE (Kiosk + Microfoon Fix)
+# RUN echo "#!/bin/bash\n\
+# sleep 20\n\
+# export DISPLAY=:1\n\
+# # De vlaggen die Chrome dwingen de microfoon te openen op localhost\n\
+# exec sudo -u abc chromium \
+#   --kiosk \
+#   --no-first-run \
+#   --use-fake-ui-for-media-stream \
+#   --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 \
+#   --user-data-dir=/config/.config/chromium \
+#   --password-store=basic \
+#   http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
+# chmod +x /custom-services.d/vtuber-browser
+
+# 7b. BROWSER AUTOSTART (Wordt pas gestart als de desktop klaar is)
+RUN mkdir -p /config/.config/autostart && \
+echo "[Desktop Entry]\n\
+Type=Application\n\
+Name=VTuber-Kiosk\n\
+Exec=bash -c 'sleep 20 && chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393'\n\
+X-GNOME-Autostart-enabled=true" > /config/.config/autostart/vtuber-browser.desktop && \
+chown -R 1000:1000 /config/.config
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
 RUN echo "#!/bin/bash\n\
@@ -98,3 +107,4 @@ RUN echo "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh" > /etc/cron.d/vtuber-up
 chmod 0644 /etc/cron.d/vtuber-upgrade
 
 EXPOSE 12393 3000 3001
+

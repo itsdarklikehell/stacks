@@ -31,6 +31,7 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-git|linuxserver/mods:universal-cron|lscr.io/linuxserver/mods:universal-unrar6
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
+      - GUIAUTOSTART=true
       - RESTART_APP=true
       # Dit vertelt NVIDIA runtimes welke API's je nodig hebt
       - NVIDIA_VISIBLE_DEVICES=all
