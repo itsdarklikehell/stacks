@@ -81,21 +81,29 @@ chmod +x /custom-services.d/vtuber-server
 #   http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
 # chmod +x /custom-services.d/vtuber-browser
 
-# 7b. BROWSER AUTOSTART (Wordt pas gestart als de desktop klaar is)
-RUN mkdir -p /config/.config/autostart && \
+# # 7b. BROWSER AUTOSTART (Wordt pas gestart als de desktop klaar is)
+# RUN mkdir -p /config/.config/autostart && \
+# echo "[Desktop Entry]\n\
+# Type=Application\n\
+# Name=VTuber-Kiosk\n\
+# Icon=chromium\n\
+# Categories=Network;WebBrowser;\n\
+# StartupWMClass=chromium\n\
+# StartupNotify=true\n\
+# Keywords=browser\n\
+# Exec=bash -c 'sleep 20 && chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393'\n\
+# X-GNOME-Autostart-enabled=true" > /config/.config/autostart/vtuber-browser.desktop && \
+# chown -R 1000:1000 /config/.config && \
+# cp /config/.config/autostart/vtuber-browser.desktop /config/Desktop/vtuber-browser.desktop && \
+# cp /config/.config/autostart/vtuber-browser.desktop /usr/share/applications/vtuber-browser.desktop
+
+# 7b. BROWSER AUTOSTART (Via /defaults om volume-overschrijving te omzeilen)
+RUN mkdir -p /defaults/autostart && \
 echo "[Desktop Entry]\n\
 Type=Application\n\
 Name=VTuber-Kiosk\n\
-Icon=chromium\n\
-Categories=Network;WebBrowser;\n\
-StartupWMClass=chromium\n\
-StartupNotify=true\n\
-Keywords=browser\n\
-Exec=bash -c 'sleep 20 && chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393'\n\
-X-GNOME-Autostart-enabled=true" > /config/.config/autostart/vtuber-browser.desktop && \
-chown -R 1000:1000 /config/.config && \
-cp /config/.config/autostart/vtuber-browser.desktop /config/Desktop/vtuber-browser.desktop && \
-cp /config/.config/autostart/vtuber-browser.desktop /usr/share/applications/vtuber-browser.desktop
+Exec=bash -c 'sleep 20 && (chromium-browser --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 || chromium --kiosk --no-first-run --use-fake-ui-for-media-stream --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393)'\n\
+X-GNOME-Autostart-enabled=true" > /defaults/autostart/vtuber-browser.desktop
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
 RUN echo "#!/bin/bash\n\
