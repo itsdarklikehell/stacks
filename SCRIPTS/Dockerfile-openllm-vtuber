@@ -59,35 +59,30 @@ WORKDIR /app
 COPY . /app
 RUN chown -R 1000:1000 /app /opt/MeloTTS /config
 
-# 7. AUTORUN SETUP (Server + Browser)
-RUN mkdir -p /custom-services.d && \
-echo "#!/bin/bash\n\
+# 7b. BROWSER AUTOSTART (Draait één keer bij het inloggen op de desktop)
+RUN mkdir -p /config/.config/autostart && \
+echo "[Desktop Entry]\n\
+Type=Application\n\
+Name=VTuber-WebUI\n\
+Exec=bash -c 'sleep 15 && xdg-open http://localhost:12393'\n\
+X-GNOME-Autostart-enabled=true" > /config/.config/autostart/vtuber-browser.desktop && \
+chown -R 1000:1000 /config/.config
+
+# 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
+RUN echo "#!/bin/bash\n\
+echo \"--- Upgrade gestart op \$(date) ---\" >> /var/log/vtuber_upgrade.log\n\
 cd /app\n\
-python3 run_server.py &\n\
-sleep 15\n\
-export DISPLAY=:1\n\
-sudo -u abc xdg-open http://localhost:12393 >/dev/null 2>&1 &" > /custom-services.d/vtuber-start.sh && \
-chmod +x /custom-services.d/vtuber-start.sh
+# 1. Update uitvoeren\n\
+yes | python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\n\
+\n\
+# 2. Server 'killen' - s6-init herstart hem daarna automatisch\n\
+echo \"Herstarten van server-service na upgrade...\" >> /var/log/vtuber_upgrade.log\n\
+pkill -f run_server.py" > /usr/local/bin/auto-upgrade.sh && \
+chmod +x /usr/local/bin/auto-upgrade.sh
 
-# # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + herstart)
-# RUN echo "#!/bin/bash\n\
-# echo \"--- Upgrade gestart op \$(date) ---\" >> /var/log/vtuber_upgrade.log\n\
-# cd /app\n\
-# # 1. Update uitvoeren (beantwoordt alle vragen met 'yes')\n\
-# yes | python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\n\
-# \n\
-# # 2. Server herstarten\n\
-# echo \"Herstarten van server...\" >> /var/log/vtuber_upgrade.log\n\
-# # Zoek het proces-id van de oude server en sluit deze af\n\
-# pkill -f run_server.py\n\
-# sleep 5\n\
-# # Start de server opnieuw op (Display is nodig voor Firefox integratie)\n\
-# export DISPLAY=:1\n\
-# python3 run_server.py --verbose >> /var/log/vtuber_server.log 2>&1 &" > /usr/local/bin/auto-upgrade.sh && \
-# chmod +x /usr/local/bin/auto-upgrade.sh
-
-# # Voeg de cronjob toe (Elke zondag om 04:00)
-# RUN echo "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh" > /etc/cron.d/vtuber-upgrade && \
-# chmod 0644 /etc/cron.d/vtuber-upgrade
+# Voeg de cronjob toe (Elke zondag om 04:00)
+RUN echo "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh" > /etc/cron.d/vtuber-upgrade && \
+chmod 0644 /etc/cron.d/vtuber-upgrade
 
 EXPOSE 12393 3000 3001
+
