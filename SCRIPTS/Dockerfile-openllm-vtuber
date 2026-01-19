@@ -59,14 +59,22 @@ WORKDIR /app
 COPY . /app
 RUN chown -R 1000:1000 /app /opt/MeloTTS /config
 
-# 7b. BROWSER AUTOSTART (Draait één keer bij het inloggen op de desktop)
-RUN mkdir -p /config/.config/autostart && \
-echo "[Desktop Entry]\n\
-Type=Application\n\
-Name=VTuber-WebUI\n\
-Exec=bash -c 'sleep 15 && xdg-open http://localhost:12393'\n\
-X-GNOME-Autostart-enabled=true" > /config/.config/autostart/vtuber-browser.desktop && \
-chown -R 1000:1000 /config/.config
+# 7a. SERVER SERVICE (Draait op de achtergrond, s6-init houdt dit in de gaten)
+RUN mkdir -p /custom-services.d && \
+echo "#!/bin/bash\n\
+cd /app\n\
+exec python3 run_server.py" > /custom-services.d/vtuber-server && \
+chmod +x /custom-services.d/vtuber-server
+
+# 7b. BROWSER SERVICE (Kiosk-modus + Auto-restart)
+RUN echo "#!/bin/bash\n\
+# Wacht even tot de X-server en de server echt klaarstaan\n\
+sleep 20\n\
+export DISPLAY=:1\n\
+# Draai Firefox in kiosk-modus als gebruiker abc\n\
+# --kiosk zorgt voor full-screen zonder balken\n\
+exec sudo -u abc firefox --kiosk http://localhost:12393" > /custom-services.d/vtuber-browser && \
+chmod +x /custom-services.d/vtuber-browser
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
 RUN echo "#!/bin/bash\n\
