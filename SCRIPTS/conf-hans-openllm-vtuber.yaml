@@ -289,7 +289,16 @@ character_config:
     edge_tts:
       # Check out doc at https://github.com/rany2/edge-tts
       # Use `edge-tts --list-voices` to list all available voices
-      voice: 'en-US-AvaMultilingualNeural' # 'en-US-AvaMultilingualNeural' #'zh-CN-XiaoxiaoNeural' # 'ja-JP-NanamiNeural'
+      # 'en-US-AvaMultilingualNeural'
+      # 'en-US-EmmaMultilingualNeural'
+      # 'en-US-JennyNeural'
+      # 'en-US-MichelleNeural'
+      # 'en-US-en-US-AnaNeural'
+      # 'en-US-AriaNeural'
+      # 'en-ZA-LeahNeural'
+      #'zh-CN-XiaoxiaoNeural'
+      # 'ja-JP-NanamiNeural'
+      voice: 'en-US-en-US-AnaNeural'
 
     # pyttsx3_tts doesn't have any config.
 
@@ -469,7 +478,7 @@ character_config:
     remove_special_char: True # remove special characters like emoji from audio generation
     ignore_brackets: True # ignore everything inside brackets
     ignore_parentheses: True # ignore everything inside parentheses
-    ignore_asterisks: True # ignore everything wrapped inside asterisks
+    ignore_asterisks: False # ignore everything wrapped inside asterisks
     ignore_angle_brackets: True # ignore everything wrapped inside <text>
 
     translator_config:
