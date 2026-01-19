@@ -15,7 +15,7 @@ cuda-cudart-12-1 \
 libcudnn8 \
 python3-pip python3-dev cmake \
 git libportaudio2 libasound2-dev \
-portaudio19-dev build-essential gcc g++ ffmpeg libmecab-dev cron xdg-utils firefox && \
+portaudio19-dev build-essential gcc g++ ffmpeg libmecab-dev cron && \
 rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 3. Installeer 'uv' via de officiële binary
@@ -68,12 +68,18 @@ chmod +x /custom-services.d/vtuber-server
 
 # 7b. BROWSER SERVICE (Kiosk-modus + Auto-restart)
 RUN echo "#!/bin/bash\n\
-# Wacht even tot de X-server en de server echt klaarstaan\n\
 sleep 20\n\
 export DISPLAY=:1\n\
-# Draai Firefox in kiosk-modus als gebruiker abc\n\
-# --kiosk zorgt voor full-screen zonder balken\n\
-exec sudo -u abc xdg-open http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
+# De cruciale vlaggen voor Chrome/Chromium:\n\
+# --unsafely-treat-insecure-origin-as-secure vertelt Chrome dat deze HTTP site veilig is\n\
+# --use-fake-ui-for-media-stream omzeilt de popup voor microfoontoestemming\n\
+exec sudo -u abc chromium-browser \
+  --kiosk \
+  --no-first-run \
+  --use-fake-ui-for-media-stream \
+  --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 \
+  --user-data-dir=/config/.config/chromium \
+  http://localhost:12393" > /custom-services.d/vtuber-browser && \
 chmod +x /custom-services.d/vtuber-browser
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
