@@ -15,7 +15,6 @@ export CLEANUP="false"                                                          
 export PRUNE="true"                                                             # false, true/normal, all
 export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
-export START_OLLMVT="true"                                                      # false, true
 export START_COMFYUI="true"                                                     # false, true
 export START_CUSHYSTUDIO="true"                                                 # false, true
 export START_BROWSER="true"                                                     # false, true
@@ -154,7 +153,6 @@ function SETUP_AUTOSTART() {
 		start_comfyui.sh
 		start_cushystudio.sh
 		start_deduper.sh
-		start_ollmvt.sh
 		folder_linker.sh
 	)
 
@@ -552,9 +550,6 @@ alias ollama='docker exec -it ${ollama_container_name} ollama'
 # echo ""
 # echo "to start CushyStudio's service:"
 # echo "run: 'start_cushystudio.sh'"
-# echo ""
-# echo "to start Openllm-Vtuber's service:"
-# echo "run: 'start_ollmvt.sh'"
 # echo ""
 # echo "to pull the default set of models into ollama:"
 # echo "run: 'pull_models.sh'"
