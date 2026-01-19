@@ -79,7 +79,7 @@ exec sudo -u abc chromium-browser \
   --use-fake-ui-for-media-stream \
   --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 \
   --user-data-dir=/config/.config/chromium \
-  http://localhost:12393" > /custom-services.d/vtuber-browser && \
+  http://localhost:12393 >/dev/null 2>&1" > /custom-services.d/vtuber-browser && \
 chmod +x /custom-services.d/vtuber-browser
 
 # 8. AUTO-UPGRADE SETUP (Wekelijkse cron + automatische herstart via s6)
