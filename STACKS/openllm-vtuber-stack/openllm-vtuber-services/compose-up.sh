@@ -8,6 +8,7 @@ COMPOSE_FILES=(
 )
 
 function CREATE_FOLDERS() {
+
 	for FOLDERNAME in "${FOLDERS[@]}"; do
 		if [[ ! -d "${FOLDER}/${FOLDERNAME}" ]]; then
 			echo "Creating folder: ${FOLDER}/${FOLDERNAME}"
@@ -16,6 +17,7 @@ function CREATE_FOLDERS() {
 		# 	echo "Folder already exists: ${FOLDER}/${FOLDERNAME}, skipping creation"
 		fi
 	done
+
 }
 
 function SETUP_FOLDERS() {
