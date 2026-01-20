@@ -35,10 +35,10 @@ function SETUP_FOLDERS() {
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
 
 		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
@@ -130,4 +130,3 @@ function BUILDING() {
 }
 
 BUILDING
-
