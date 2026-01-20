@@ -64,10 +64,6 @@ function SETUP_FOLDERS() {
 			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		fi
 
-		if [[ ! -f "${FOLDER}/autostart.sh" ]]; then
-			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
-		fi
-
 		if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 			if [[ ${USER} == "hans" ]]; then
 				rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
