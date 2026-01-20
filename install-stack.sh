@@ -275,6 +275,8 @@ function SETUP_AI_STACK() {
 		fi
 	else
 		echo "Neither command ollama nor the container for ollama exists."
+		sleep 20
+		PULL_MODELS # >/dev/null 2>&1 &
 	fi
 }
 
