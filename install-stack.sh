@@ -276,7 +276,7 @@ function SETUP_AI_STACK() {
 	else
 		# alias ollama='docker exec -it ollama ollama'
 		alias ollama='docker exec -it ${ollama_container_name} ollama'
-		echo "Neither command ollama nor the container for ollama exists."
+		echo "Neither command ollama nor the container for ollama exists, waiting 20s for container/service to start then trying once more."
 		sleep 20
 		PULL_MODELS # >/dev/null 2>&1 &
 	fi
@@ -565,7 +565,7 @@ elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
 else
 	# alias ollama='docker exec -it ollama ollama'
 	alias ollama='docker exec -it ${ollama_container_name} ollama'
-	echo "Neither command ollama nor the container for ollama exists."
+	echo "Neither command ollama nor the container for ollama exists, waiting 20s for container/service to start then trying once more."
 	sleep 20
 	PULL_MODELS # >/dev/null 2>&1 &
 fi
