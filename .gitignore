@@ -18,5 +18,5 @@ MEDIA/
 # SCRIPTS/chat_history-openllm-vtuber/*
 # SCRIPTS/live2d-models-openllm-vtuber/*
 # SCRIPTS/logs-openllm-vtuber/*
-# SCRIPTS/models-openllm-vtuber/*
+SCRIPTS/models-openllm-vtuber/*
 # SCRIPTS/prompts-openllm-vtuber/*
