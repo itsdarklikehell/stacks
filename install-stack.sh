@@ -548,7 +548,6 @@ fi
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
 export ollama_container_name="ollama"
-
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
@@ -570,8 +569,9 @@ alias ollama='docker exec -it ${ollama_container_name} ollama'
 # 	PULL_MODELS # >/dev/null 2>&1 &
 # fi
 
-# if docker inspect -f '{{.State.Status}}' "pterodactyl-panel" | grep -q "running" || true; then
-# 	docker compose exec pterodactyl-panel php artisan p:user:make
+# export pterodactyl_container_name="pterodactyl-panel"
+# if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
+# 	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
 # fi
 
 # echo "Installation should be complete now.."
