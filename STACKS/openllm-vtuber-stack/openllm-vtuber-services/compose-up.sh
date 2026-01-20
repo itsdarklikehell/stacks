@@ -43,32 +43,32 @@ function SETUP_FOLDERS() {
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 
-		if [[ -f "${FOLDER}/conf.yaml" ]]; then
+		# if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 
-			if [[ ${USER} == "hans" ]]; then
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-				# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			elif [[ ${USER} == "rizzo" ]]; then
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-				# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			else
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-				# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			fi
-
+		if [[ ${USER} == "hans" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+		elif [[ ${USER} == "rizzo" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+		else
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		fi
 
-		if [[ -f "${FOLDER}/mcp_servers.json" ]]; then
+		# fi
 
-			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
+		# if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
 
-		fi
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
 
-		if [[ -f "${FOLDER}/model_dict.json" ]]; then
+		# fi
 
-			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
+		# if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
 
-		fi
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
+
+		# fi
 
 		if [[ -d "${FOLDER}/avatars" ]]; then
 
