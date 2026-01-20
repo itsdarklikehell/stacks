@@ -33,11 +33,13 @@ function SETUP_FOLDERS() {
 			"prompts"
 		)
 
+		CREATE_FOLDERS
+
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters"
 		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
 		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
@@ -77,8 +79,6 @@ function SETUP_FOLDERS() {
 		fi
 
 	fi
-
-	CREATE_FOLDERS
 
 }
 
