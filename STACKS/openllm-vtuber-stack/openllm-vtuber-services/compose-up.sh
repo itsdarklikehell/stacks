@@ -36,6 +36,7 @@ function SETUP_FOLDERS() {
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
@@ -44,6 +45,10 @@ function SETUP_FOLDERS() {
 
 		if [[ ! -d "${FOLDER}/models" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+		fi
+
+		if [[ ! -d "${FOLDER}/prompts" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
 		fi
 
 		if [[ ! -d "${FOLDER}/characters" ]]; then
