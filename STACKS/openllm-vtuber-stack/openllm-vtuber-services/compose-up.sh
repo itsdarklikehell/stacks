@@ -3,7 +3,7 @@
 
 cd "$(dirname "$0")" || exit 1
 
-sudo apt install -y unison unison-gtk
+sudo apt install -y # unison # unison-gtk
 
 COMPOSE_FILES=(
 	openllm-vtuber
@@ -72,41 +72,47 @@ function SETUP_FOLDERS() {
 
 		if [[ -d "${FOLDER}/avatars" ]]; then
 
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/avatars-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/avatars/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/avatars-${SERVICE_NAME}" "${SOURCE_FOLDER}/avatars"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/avatars-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/avatars/"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/avatars-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/avatars/"
+			# # unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/avatars-${SERVICE_NAME}" "${SOURCE_FOLDER}/avatars"
 		fi
 
 		if [[ -d "${FOLDER}/backgrounds" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/backgrounds-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/backgrounds/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/backgrounds-${SERVICE_NAME}" "${SOURCE_FOLDER}/backgrounds"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/backgrounds-${SERVICE_NAME}" "${SOURCE_FOLDER}/backgrounds"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/backgrounds-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/backgrounds/"
 		fi
 
 		if [[ -d "${FOLDER}/characters" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters/"
 
 		fi
 
 		if [[ -d "${FOLDER}/chat_history" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/chat_history-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/chat_history/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/chat_history-${SERVICE_NAME}" "${SOURCE_FOLDER}/chat_history"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/chat_history-${SERVICE_NAME}" "${SOURCE_FOLDER}/chat_history"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/chat_history-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/chat_history/"
 
 		fi
 
 		if [[ -d "${FOLDER}/live2d-models" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/live2d-models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/live2d-models/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/live2d-models-${SERVICE_NAME}" "${SOURCE_FOLDER}/live2d-models"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/live2d-models-${SERVICE_NAME}" "${SOURCE_FOLDER}/live2d-models"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/live2d-models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/live2d-models/"
 
 		fi
 
 		if [[ -d "${FOLDER}/logs" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/logs-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/logs/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/logs-${SERVICE_NAME}" "${SOURCE_FOLDER}/logs"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/logs-${SERVICE_NAME}" "${SOURCE_FOLDER}/logs"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/logs-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/logs/"
 
 		fi
 
@@ -121,14 +127,16 @@ function SETUP_FOLDERS() {
 			# rm "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models/"
 
 		fi
 
 		if [[ -d "${FOLDER}/prompts" ]]; then
 
 			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts/"
-			unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}" "${SOURCE_FOLDER}/prompts"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts/"
 
 		fi
 
