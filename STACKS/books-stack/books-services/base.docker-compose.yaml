@@ -42,7 +42,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/freshrss/freshrss_config
+      device: ../../../DATA/books-stack/freshrss/freshrss_config
 
   rsspub_config:
     name: rsspub_config

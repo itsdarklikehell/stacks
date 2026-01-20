@@ -1,4 +1,4 @@
-FROM lscr.io/linuxserver/webtop:ubuntu-xfce
+FROM lscr.io/linuxserver/webtop:ubuntu-kde
 
 # Zet hier de huidige versie als fallback
 ARG SUNVOX_VERSION

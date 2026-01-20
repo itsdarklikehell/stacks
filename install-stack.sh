@@ -361,11 +361,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -399,17 +399,17 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_CHAT_STACK
 	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
-
 	# echo ""
-	# SETUP_GAMESERVER_STACK
+	# SETUP_BOOKS_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_MEDIA_STACK
-	# echo ""
+	echo ""
+	SETUP_GAMESERVER_STACK
+	echo ""
+
+	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_SDR_STACK
