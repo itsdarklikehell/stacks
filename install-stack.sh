@@ -570,6 +570,9 @@ else
 	PULL_MODELS # >/dev/null 2>&1 &
 fi
 
+	if docker inspect -f '{{.State.Status}}' "pterodactyl-panel" | grep -q "running" || true; then
+		docker compose exec pterodactyl-panel php artisan p:user:make
+	fi
 # echo "Installation should be complete now.."
 # echo ""
 # echo "To start a browser opening tabs with all of the stacks services:"
