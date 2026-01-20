@@ -48,7 +48,7 @@ COMPOSE_FILES=(
 	# tautulli
 	# tvheadend
 	tvs-server
-	sunvox-webtop
+	# sunvox-webtop
 	# vlc
 	# webgrabplus
 	# your_spotify
