@@ -296,7 +296,7 @@ character_config:
       # 'en-US-en-US-AnaNeural'
       # 'en-US-AriaNeural'
       # 'en-ZA-LeahNeural'
-      #'zh-CN-XiaoxiaoNeural'
+      # 'zh-CN-XiaoxiaoNeural'
       # 'ja-JP-NanamiNeural'
       voice: 'en-US-en-US-AnaNeural'
 
