@@ -375,36 +375,37 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	# echo ""
-	# SETUP_DOWNLOADER_STACK
-	# echo ""
+	echo ""
+	SETUP_DOWNLOADER_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_AI_STACK
-	# echo ""
+	echo ""
+	SETUP_AI_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_OPENLLM_VTUBER_STACK
-	# echo ""
+	echo ""
+	SETUP_OPENLLM_VTUBER_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_ESSENTIALS_STACK
-	# echo ""
+	echo ""
+	SETUP_ESSENTIALS_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_BACKUPS_STACK
-	# echo ""
+	echo ""
+	SETUP_BACKUPS_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_CHAT_STACK
-	# echo ""
+	echo ""
+	SETUP_CHAT_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_BOOKS_STACK
-	# echo ""
+	echo ""
+	SETUP_BOOKS_STACK
+	echo ""
 
 	echo ""
 	SETUP_GAMESERVER_STACK
+    # # docker compose exec pterodactyl-panel php artisan p:user:make
 	echo ""
 
 	echo ""
@@ -516,6 +517,7 @@ else
 
 	echo ""
 	SETUP_GAMESERVER_STACK
+    # # docker compose exec pterodactyl-panel php artisan p:user:make
 	echo ""
 
 	echo ""
