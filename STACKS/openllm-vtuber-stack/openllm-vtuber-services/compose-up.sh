@@ -35,54 +35,55 @@ function SETUP_FOLDERS() {
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/models"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/prompts"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/characters"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters"
+
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
 
 		if [[ ! -d "${FOLDER}/models" ]]; then
 			mkdir -p "${SOURCE_FOLDER}/models"
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/models"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
 		fi
 
 		if [[ ! -d "${FOLDER}/prompts" ]]; then
 			mkdir -p "${SOURCE_FOLDER}/prompts"
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/prompts"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
 		fi
 
 		if [[ ! -d "${FOLDER}/characters" ]]; then
 			mkdir -p "${SOURCE_FOLDER}/characters"
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}/*" "${SOURCE_FOLDER}/characters"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/characters"
 		fi
 
 		if [[ ! -f "${FOLDER}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		fi
 
 		if [[ ! -f "${FOLDER}/autostart.sh" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
 		fi
 
 		if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 			if [[ ${USER} == "hans" ]]; then
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+				rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 			elif [[ ${USER} == "rizzo" ]]; then
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+				rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 			else
-				cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+				rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 			fi
 		fi
 
 		if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
 		fi
 
 		if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
 		fi
 
 	fi
