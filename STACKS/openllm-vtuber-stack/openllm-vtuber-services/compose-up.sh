@@ -22,26 +22,29 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
 
-		# FOLDERS=(
-		# 	"avatars"
-		# 	"backgrounds"
-		# 	"characters"
-		# 	"models"
-		# 	"chat_history"
-		# 	"live2d-models"
-		# 	"logs"
-		# 	"prompts"
-		# )
+		FOLDERS=(
+			"avatars"
+			"backgrounds"
+			"characters"
+			"models"
+			"chat_history"
+			"live2d-models"
+			"logs"
+			"prompts"
+		)
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${SOURCE_FOLDER}/autostart.sh"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
 
 		if [[ ! -d "${FOLDER}/models" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
 		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
 
 		if [[ ! -d "${FOLDER}/characters" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
@@ -75,14 +78,14 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	# CREATE_FOLDERS
+	CREATE_FOLDERS
 
 }
 
 ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}-DATA"
+	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 	if [[ ! -d ${FOLDER} ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
