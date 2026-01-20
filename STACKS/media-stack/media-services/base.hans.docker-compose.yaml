@@ -64,6 +64,23 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/rawtherapee/rawtherapee_config
 
+  birdnet-pi_config:
+    name: birdnet-pi_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_config
+  birdnet-pi_ssl:
+    name: birdnet-pi_ssl
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_ssl
+
   gimp_config:
     name: gimp_config
     driver: local

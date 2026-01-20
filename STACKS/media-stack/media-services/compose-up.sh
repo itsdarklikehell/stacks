@@ -104,6 +104,21 @@ function SETUP_FOLDERS() {
 		)
 
 	fi
+	
+	if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
+
+		FOLDERS=(
+			"config"
+			"ssl"
+		)
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+		fi
+
+	fi
 
 	if [[ ${SERVICE_NAME} == "blockbusterr" ]]; then
 

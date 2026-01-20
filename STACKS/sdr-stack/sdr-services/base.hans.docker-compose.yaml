@@ -44,23 +44,6 @@ volumes:
       o: bind
       device: ../../../DATA/sdr-stack/sdrangel-webtop/sdrangel-webtop_config
 
-  birdnet-pi_config:
-    name: birdnet-pi_config
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_config
-  birdnet-pi_ssl:
-    name: birdnet-pi_ssl
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_ssl
-
   rtl-tcp_config:
     name: rtl-tcp_config
     driver: local

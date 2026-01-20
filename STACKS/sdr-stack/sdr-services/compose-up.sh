@@ -4,11 +4,11 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	rtl-tcp
+	# rtl-tcp
 	# rtlsdrairband
-	# openwebrxplus
+	openwebrxplus
 	sdrangel-webtop
-	birdnet-pi
+	# birdnet-pi
 )
 
 function CREATE_FOLDERS() {
@@ -82,20 +82,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
 
-		FOLDERS=(
-			"config"
-			"ssl"
-		)
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
-
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
-		fi
-
-	fi
 
 	CREATE_FOLDERS
 
