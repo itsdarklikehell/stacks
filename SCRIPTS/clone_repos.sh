@@ -886,10 +886,10 @@ function CLONE_STRUDEL() {
 }
 
 function CLONE_SDR_TCP() {
-	
+
 	mkdir -p "${STACK_BASEPATH}/DATA/sdr-stack"
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
-	
+
 	if [[ ! -d rtl-tcp ]]; then
 		echo "Cloning rtl-tcp"
 		echo ""
@@ -922,20 +922,20 @@ function CLONE_BIRDNETPI_TCP() {
 
 CREATE_FOLDERS
 
-# CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
-# CLONE_CLAIR       # >/dev/null 2>&1 &
-# CLONE_COMFYUI     # >/dev/null 2>&1 &
-# CLONE_SYNCTUBE    # >/dev/null 2>&1 &
-# CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
-# CLONE_COMFYUIMINI # >/dev/null 2>&1 &
-# CLONE_COPYPARTY   # >/dev/null 2>&1 &
-CLONE_OLLMVT # >/dev/null 2>&1 &
-# CLONE_PUPPETEER   # >/dev/null 2>&1 &
-# CLONE_SCANOPY     # >/dev/null 2>&1 &
-# CLONE_SWARMUI     # >/dev/null 2>&1 &
-# CLONE_PYGOTCHI    # >/dev/null 2>&1 &
-# CLONE_STRUDEL # >/dev/null 2>&1 &
-CLONE_SDR_TCP       # >/dev/null 2>&1 &
-CLONE_BIRDNETPI_TCP # >/dev/null 2>&1 &
-# CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
+CLONE_ANYTHINGLLM    # >/dev/null 2>&1 &
+CLONE_CLAIR          # >/dev/null 2>&1 &
+CLONE_COMFYUI        # >/dev/null 2>&1 &
+CLONE_SYNCTUBE       # >/dev/null 2>&1 &
+CLONE_COMFYUI_MCP    # >/dev/null 2>&1 &
+CLONE_COMFYUIMINI    # >/dev/null 2>&1 &
+CLONE_COPYPARTY      # >/dev/null 2>&1 &
+CLONE_OLLMVT         # >/dev/null 2>&1 &
+CLONE_PUPPETEER      # >/dev/null 2>&1 &
+CLONE_SCANOPY        # >/dev/null 2>&1 &
+CLONE_SWARMUI        # >/dev/null 2>&1 &
+CLONE_PYGOTCHI       # >/dev/null 2>&1 &
+CLONE_STRUDEL        # >/dev/null 2>&1 &
+CLONE_SDR_TCP        # >/dev/null 2>&1 &
+CLONE_BIRDNETPI_TCP  # >/dev/null 2>&1 &
+CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
