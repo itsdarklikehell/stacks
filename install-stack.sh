@@ -431,13 +431,13 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
 	echo ""
 	SETUP_OPENLLM_VTUBER_STACK
