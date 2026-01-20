@@ -9,11 +9,11 @@ COMPOSE_FILES=(
 
 function CREATE_FOLDERS() {
 	for FOLDERNAME in "${FOLDERS[@]}"; do
-		if [[ ! -d "${FOLDER}/${SERVICE_NAME}/${FOLDERNAME}" ]]; then
-			echo "Creating folder: ${FOLDER}/${SERVICE_NAME}/${FOLDERNAME}"
-			mkdir -p "${FOLDER}/${SERVICE_NAME}/${FOLDERNAME}"
+		if [[ ! -d "${FOLDER}/${FOLDERNAME}" ]]; then
+			echo "Creating folder: ${FOLDER}/${FOLDERNAME}"
+			mkdir -p "${FOLDER}/${FOLDERNAME}"
 		# else
-		# 	echo "Folder already exists: ${FOLDER}/${SERVICE_NAME}/${FOLDERNAME}, skipping creation"
+		# 	echo "Folder already exists: ${FOLDER}/${FOLDERNAME}, skipping creation"
 		fi
 	done
 }
