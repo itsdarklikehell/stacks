@@ -53,27 +53,27 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       # - /var/run/docker.sock:/var/run/docker.sock:ro
 
-      - openllm-vtuber_avatars:/app/openllm-vtuber/avatars
-      - openllm-vtuber_backgrounds:/app/openllm-vtuber/backgrounds
-      - openllm-vtuber_chat_history:/app/openllm-vtuber/chat_history
-      - openllm-vtuber_characters:/app/openllm-vtuber/characters
-      - openllm-vtuber_live2d-models:/app/openllm-vtuber/live2d-models
-      - openllm-vtuber_logs:/app/openllm-vtuber/logs
-      - openllm-vtuber_models:/app/openllm-vtuber/models
-      - openllm-vtuber_prompts:/app/openllm-vtuber/prompts
+      - openllm-vtuber_avatars:/app/avatars
+      - openllm-vtuber_backgrounds:/app/backgrounds
+      - openllm-vtuber_chat_history:/app/chat_history
+      - openllm-vtuber_characters:/app/characters
+      - openllm-vtuber_live2d-models:/app/live2d-models
+      - openllm-vtuber_logs:/app/logs
+      - openllm-vtuber_models:/app/models
+      - openllm-vtuber_prompts:/app/prompts
 
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/openllm-vtuber/conf.yaml
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/openllm-vtuber/mcp_servers.json
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/openllm-vtuber/model_dict.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
 
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/openllm-vtuber/avatars
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/openllm-vtuber/backgrounds
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/openllm-vtuber/chat_history
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/openllm-vtuber/characters
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/openllm-vtuber/live2d-models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/openllm-vtuber/logs
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/models:/app/openllm-vtuber/models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts:/app/openllm-vtuber/prompts
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/backgrounds
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/chat_history
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/characters
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/live2d-models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/logs
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/models:/app/models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts:/app/prompts
 
     hostname: ${NAME:-openllm-vtuber}
 
