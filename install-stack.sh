@@ -545,19 +545,19 @@ export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-if command -v ollama >/dev/null 2>&1; then
-	echo ""
-	PULL_MODELS >/dev/null # 2>&1 &
-	echo ""
-elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-		echo ""
-		PULL_MODELS >/dev/null # 2>&1 &
-		echo ""
-	fi
-else
-	echo "Neither command ollama nor the container for ollama exists."
-fi
+# if command -v ollama >/dev/null 2>&1; then
+# 	echo ""
+# 	PULL_MODELS >/dev/null # 2>&1 &
+# 	echo ""
+# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+# 		echo ""
+# 		PULL_MODELS >/dev/null # 2>&1 &
+# 		echo ""
+# 	fi
+# else
+# 	echo "Neither command ollama nor the container for ollama exists."
+# fi
 
 # echo "Installation should be complete now.."
 # echo ""
