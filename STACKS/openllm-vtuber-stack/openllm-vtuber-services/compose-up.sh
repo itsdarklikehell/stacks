@@ -75,23 +75,23 @@ function SETUP_FOLDERS() {
 
 		fi
 
-		if [[ -d "${FOLDER}/prompts" ]]; then
-
-			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
-
-		fi
-
 		if [[ -d "${FOLDER}/models" ]]; then
 
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/models"
 
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 -O "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
+			wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 -O "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
 			tar xvf "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" -C "${SOURCE_FOLDER}/models"
 			rm "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
 
-			wget https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 -O "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+			wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 -O "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
 			tar xvf "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" -C "${SOURCE_FOLDER}/models"
 			rm "${SOURCE_FOLDER}/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+
+		fi
+
+		if [[ -d "${FOLDER}/prompts" ]]; then
+
+			rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/prompts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/prompts"
 
 		fi
 
