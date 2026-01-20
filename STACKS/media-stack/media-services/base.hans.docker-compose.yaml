@@ -71,7 +71,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_config
+      device: ../../../DATA/media-stack/birdnet-pi/birdnet-pi_config
   birdnet-pi_ssl:
     name: birdnet-pi_ssl
     driver: local
@@ -79,7 +79,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/sdr-stack/birdnet-pi/birdnet-pi_ssl
+      device: ../../../DATA/media-stack/birdnet-pi/birdnet-pi_ssl
 
   gimp_config:
     name: gimp_config
