@@ -9,7 +9,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_avatars
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars
   openllm-vtuber_backgrounds:
     name: openllm-vtuber_backgrounds
     driver: local
@@ -17,7 +17,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_backgrounds
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds
   openllm-vtuber_characters:
     name: openllm-vtuber_characters
     driver: local
@@ -25,7 +25,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_characters
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters
   openllm-vtuber_chat_history:
     name: openllm-vtuber_chat_history
     driver: local
@@ -33,7 +33,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_chat_history
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history
   openllm-vtuber_live2d-models:
     name: openllm-vtuber_live2d-models
     driver: local
@@ -41,7 +41,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_live2d-models
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models
   openllm-vtuber_logs:
     name: openllm-vtuber_logs
     driver: local
@@ -49,7 +49,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_logs
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs
   openllm-vtuber_prompts:
     name: openllm-vtuber_prompts
     driver: local
@@ -57,9 +57,18 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_prompts
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts
+  openllm-vtuber_models:
+    name: openllm-vtuber_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber/models
 
 networks:
   host:
   openllm-vtuber-services:
     external: true
+

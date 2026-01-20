@@ -58,8 +58,17 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_prompts
+  openllm-vtuber_models:
+    name: openllm-vtuber_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-DATA/openllm-vtuber_models
 
 networks:
   host:
   openllm-vtuber-services:
     external: true
+

@@ -22,17 +22,24 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
 
-		FOLDERS=(
-			"avatars"
-			"backgrounds"
-			"characters"
-			"chat_history"
-			"live2d-models"
-			"logs"
-			"prompts"
-		)
+		# FOLDERS=(
+		# 	"avatars"
+		# 	"backgrounds"
+		# 	"characters"
+		# 	"models"
+		# 	"chat_history"
+		# 	"live2d-models"
+		# 	"logs"
+		# 	"prompts"
+		# )
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+
+		if [[ ! -d "${FOLDER}/models" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/models-${SERVICE_NAME}" "${SOURCE_FOLDER}/models"
+		fi
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
 
@@ -68,7 +75,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	CREATE_FOLDERS
+	# CREATE_FOLDERS
 
 }
 
