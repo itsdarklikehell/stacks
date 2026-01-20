@@ -147,6 +147,7 @@ function SETUP_FOLDERS() {
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/scripts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/scripts/"
 
 		fi
+
 	fi
 
 }
