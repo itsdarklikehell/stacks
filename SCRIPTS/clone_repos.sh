@@ -886,8 +886,10 @@ function CLONE_STRUDEL() {
 }
 
 function CLONE_SDR_TCP() {
-
+	
+	mkdir -p "${STACK_BASEPATH}/DATA/sdr-stack"
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
+	
 	if [[ ! -d rtl-tcp ]]; then
 		echo "Cloning rtl-tcp"
 		echo ""
