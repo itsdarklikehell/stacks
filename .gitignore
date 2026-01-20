@@ -12,3 +12,11 @@ DATA/ai-custom_nodes/*
 SCRIPTS/rmlint.json
 SCRIPTS/rmlint.sh
 MEDIA/
+# SCRIPTS/avatars-openllm-vtuber/*
+# SCRIPTS/backgrounds-openllm-vtuber/*
+# SCRIPTS/characters-openllm-vtuber/*
+# SCRIPTS/chat_history-openllm-vtuber/*
+# SCRIPTS/live2d-models-openllm-vtuber/*
+# SCRIPTS/logs-openllm-vtuber/*
+# SCRIPTS/models-openllm-vtuber/*
+# SCRIPTS/prompts-openllm-vtuber/*
