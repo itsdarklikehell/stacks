@@ -140,6 +140,13 @@ function SETUP_FOLDERS() {
 
 		fi
 
+		if [[ -d "${FOLDER}/scripts" ]]; then
+
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/scripts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/scripts/"
+			# unison -batch -auto "${STACK_BASEPATH}/SCRIPTS/scripts-${SERVICE_NAME}" "${SOURCE_FOLDER}/scripts"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/scripts-${SERVICE_NAME}"/* "${SOURCE_FOLDER}/scripts/"
+
+		fi
 	fi
 
 }
