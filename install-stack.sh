@@ -413,9 +413,9 @@ if [[ ${USER} == "hans" ]]; then
 	# # # docker compose exec pterodactyl-panel php artisan p:user:make
 	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	echo ""
 	SETUP_SDR_STACK
