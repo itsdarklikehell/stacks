@@ -53,6 +53,12 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
 # 6. App setup & KasmVNC Audio Force
 WORKDIR /app
 COPY . /app
+
+WORKDIR /app/models
+RUN wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
+
+RUN wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+
 RUN mkdir -p /config/.kasms/ && \
     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
     chown -R 1000:1000 /config/.kasms/
