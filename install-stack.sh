@@ -265,12 +265,12 @@ function SETUP_AI_STACK() {
 
 	if command -v ollama >/dev/null 2>&1; then
 		echo ""
-		PULL_MODELS >/dev/null 2>&1 &
+		PULL_MODELS # >/dev/null 2>&1 &
 		echo ""
 	elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
 		if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
 			echo ""
-			PULL_MODELS >/dev/null 2>&1 &
+			PULL_MODELS # >/dev/null 2>&1 &
 			echo ""
 		fi
 	else
@@ -547,12 +547,12 @@ alias ollama='docker exec -it ${ollama_container_name} ollama'
 
 if command -v ollama >/dev/null 2>&1; then
 	echo ""
-	PULL_MODELS >/dev/null 2>&1 &
+	PULL_MODELS >/dev/null # 2>&1 &
 	echo ""
 elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
 		echo ""
-		PULL_MODELS >/dev/null 2>&1 &
+		PULL_MODELS >/dev/null # 2>&1 &
 		echo ""
 	fi
 else
