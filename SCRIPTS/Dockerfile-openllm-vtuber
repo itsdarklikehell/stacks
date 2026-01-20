@@ -80,5 +80,12 @@ RUN printf "#!/bin/bash\n\
 RUN printf "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh\n" > /etc/cron.d/vtuber-upgrade && \
     chmod 0644 /etc/cron.d/vtuber-upgrade
 
+# 9. Installeer Extra MCP server/clients.
+RUN git clone https://github.com/nbhansen/retroMCP.git /opt/retroMCP
+WORKDIR /opt/retroMCP
+# RUN uv sync
+# RUN source venv/bin/activate
+RUN uv pip install -e .
+
 EXPOSE 12393 3000 3001
 
