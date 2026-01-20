@@ -408,18 +408,18 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_GAMESERVER_STACK
-	# # # docker compose exec pterodactyl-panel php artisan p:user:make
-	# echo ""
-
-	# echo ""
-	# SETUP_MEDIA_STACK
-	# echo ""
+	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
 
 	echo ""
 	SETUP_SDR_STACK
 	echo ""
+
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# # # docker compose exec pterodactyl-panel php artisan p:user:make
+	# echo ""
 
 	########################
 
@@ -465,16 +465,16 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# echo ""
 
 	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
+
+	echo ""
 	SETUP_SDR_STACK
 	echo ""
 
 	# echo ""
 	# SETUP_GAMESERVER_STACK
 	# # # docker compose exec pterodactyl-panel php artisan p:user:make
-	# echo ""
-
-	# echo ""
-	# SETUP_MEDIA_STACK
 	# echo ""
 
 	########################
