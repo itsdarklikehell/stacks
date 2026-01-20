@@ -380,38 +380,38 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	# # docker compose exec pterodactyl-panel php artisan p:user:make
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# # # docker compose exec pterodactyl-panel php artisan p:user:make
+	# echo ""
 
 	echo ""
 	SETUP_MEDIA_STACK
@@ -436,46 +436,46 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
 	echo ""
 	SETUP_SDR_STACK
 	echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	# # docker compose exec pterodactyl-panel php artisan p:user:make
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# # # docker compose exec pterodactyl-panel php artisan p:user:make
+	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	########################
 
@@ -552,27 +552,27 @@ export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-if command -v ollama >/dev/null 2>&1; then
-	echo ""
-	PULL_MODELS # >/dev/null 2>&1 &
-	echo ""
-elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-		echo ""
-		PULL_MODELS # >/dev/null 2>&1 &
-		echo ""
-	fi
-else
-	# alias ollama='docker exec -it ollama ollama'
-	alias ollama='docker exec -it ${ollama_container_name} ollama'
-	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
-	sleep 20
-	PULL_MODELS # >/dev/null 2>&1 &
-fi
+# if command -v ollama >/dev/null 2>&1; then
+# 	echo ""
+# 	PULL_MODELS # >/dev/null 2>&1 &
+# 	echo ""
+# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+# 		echo ""
+# 		PULL_MODELS # >/dev/null 2>&1 &
+# 		echo ""
+# 	fi
+# else
+# 	# alias ollama='docker exec -it ollama ollama'
+# 	alias ollama='docker exec -it ${ollama_container_name} ollama'
+# 	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
+# 	sleep 20
+# 	PULL_MODELS # >/dev/null 2>&1 &
+# fi
 
-if docker inspect -f '{{.State.Status}}' "pterodactyl-panel" | grep -q "running" || true; then
-	docker compose exec pterodactyl-panel php artisan p:user:make
-fi
+# if docker inspect -f '{{.State.Status}}' "pterodactyl-panel" | grep -q "running" || true; then
+# 	docker compose exec pterodactyl-panel php artisan p:user:make
+# fi
 
 # echo "Installation should be complete now.."
 # echo ""

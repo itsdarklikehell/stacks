@@ -935,7 +935,7 @@ CLONE_OLLMVT # >/dev/null 2>&1 &
 # CLONE_SWARMUI        # >/dev/null 2>&1 &
 # CLONE_PYGOTCHI       # >/dev/null 2>&1 &
 # CLONE_STRUDEL        # >/dev/null 2>&1 &
-# CLONE_SDR_TCP        # >/dev/null 2>&1 &
+CLONE_SDR_TCP # >/dev/null 2>&1 &
 # CLONE_BIRDNETPI_TCP  # >/dev/null 2>&1 &
 # CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS

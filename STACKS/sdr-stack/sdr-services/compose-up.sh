@@ -54,12 +54,6 @@ function SETUP_FOLDERS() {
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
-
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
-		fi
-		
 	fi
 
 	if [[ ${SERVICE_NAME} == "rtl-tcp" ]]; then
