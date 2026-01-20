@@ -34,6 +34,12 @@ function SETUP_FOLDERS() {
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+
+		if [[ ! -d "${FOLDER}/characters" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/characters-${SERVICE_NAME}" "${SOURCE_FOLDER}/characters"
+		fi
+
 		if [[ ! -f "${FOLDER}/Dockerfile" ]]; then
 			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
 		fi
