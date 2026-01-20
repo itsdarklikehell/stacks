@@ -14,6 +14,7 @@ services:
         GID: ${PGID:-1000}
         # INSTALL_ORIGINAL_WHISPER: true
         # INSTALL_BARK: true
+
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
@@ -21,6 +22,11 @@ services:
       - autoheal-app=true
       - homarr-app=true
       - homarr
+
+    privileged: true
+
+    security_opt:
+      - seccomp:unconfined # Voorkomt Chromium startfouten
 
     environment:
       - PUID=${PUID:-1000}
@@ -31,11 +37,13 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-git|linuxserver/mods:universal-cron|lscr.io/linuxserver/mods:universal-unrar6
       # - DOCKER_HOST=
       - INSTALL_PACKAGES=libfuse2|git|gdb
-      - GUIAUTOSTART=true
       - RESTART_APP=true
       # Dit vertelt NVIDIA runtimes welke API's je nodig hebt
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
+
+      - GUIAUTOSTART=true
+      - VIDEO=true       # Activeert video ondersteuning in KasmVNC
 
       # - INSTALL_ORIGINAL_WHISPER=true
       # - INSTALL_BARK=true
@@ -95,7 +103,7 @@ services:
 
     stdin_open: true
 
-    # shm_size: 1gb
+    shm_size: 2gb
 
     # healthcheck:
     #   test:
@@ -111,6 +119,19 @@ services:
     #   timeout: 10s
     #   start_period: 30s
     #   retries: 3
+
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput:/dev/uinput
+      - /dev/uhid:/dev/uhid
+      - /dev/snd:/dev/snd
+      - /dev/kmsg:/dev/kmsg
+      - /dev/snd:/dev/snd
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
 
     logging:
       driver: json-file

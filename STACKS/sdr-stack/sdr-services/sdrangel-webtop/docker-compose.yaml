@@ -96,13 +96,17 @@ services:
       disable: true
 
     devices:
+      - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
-      # - /dev/bus/usb:/dev/bus/usb
-      - /dev/uinput
-      - /dev/uhid
-      - /dev/snd
-      - /dev/kmsg
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput:/dev/uinput
+      - /dev/uhid:/dev/uhid
+      - /dev/snd:/dev/snd
+      - /dev/kmsg:/dev/kmsg
+      - /dev/snd:/dev/snd
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
 
     # device_cgroup_rules:
     #   - c 189:* rwm
@@ -143,3 +147,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

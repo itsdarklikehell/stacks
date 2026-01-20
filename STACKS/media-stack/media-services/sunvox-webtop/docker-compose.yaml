@@ -72,12 +72,17 @@ services:
               capabilities: [gpu, compute, video, graphics, utility]
 
     devices:
-      - /dev/dri:/dev/dri
-      - /dev/snd:/dev/snd
+      - /dev/video0:/dev/video0
       - /dev/nvidia0:/dev/nvidia0
+      - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/uinput:/dev/uinput
+      - /dev/uhid:/dev/uhid
+      - /dev/snd:/dev/snd
+      - /dev/kmsg:/dev/kmsg
+      - /dev/snd:/dev/snd
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-modeset:/dev/nvidia-modeset
-      - /dev/bus/usb:/dev/bus/usb
 
     tty: true
 
