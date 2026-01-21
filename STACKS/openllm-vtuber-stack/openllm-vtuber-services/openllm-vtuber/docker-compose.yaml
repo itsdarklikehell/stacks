@@ -135,6 +135,9 @@ services:
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-modeset:/dev/nvidia-modeset
 
+    group_add:
+      - audio
+
     logging:
       driver: json-file
       options:
