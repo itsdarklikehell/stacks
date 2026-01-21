@@ -1,8 +1,5 @@
 services:
   openllm-vtuber:
-    # image: ${IMAGE:-t41372/open-llm-vtuber}
-    # image: ${IMAGE:-t41372/open-llm-vtuber:with-bark-and-oai-whisper}
-    # image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-kde}
     container_name: ${NAME:-openllm-vtuber}
     restart: ${RESTART:-unless-stopped}
 
@@ -12,8 +9,10 @@ services:
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-        # INSTALL_ORIGINAL_WHISPER: true
-        # INSTALL_BARK: true
+
+    privileged: true
+    security_opt:
+      - seccomp:unconfined
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -23,53 +22,38 @@ services:
       - homarr-app=true
       - homarr
 
-    privileged: true
-
-    security_opt:
-      - seccomp:unconfined # Voorkomt Chromium startfouten
-
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      # - DOCKER_HOST=
-
-      - RESTART_APP=true
-      # Dit vertelt NVIDIA runtimes welke API's je nodig hebt
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
-      - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
-
-      - GUIAUTOSTART=true
-      - VIDEO=true
-      - AUDIO=true
-
-      # - INSTALL_ORIGINAL_WHISPER=true
-      # - INSTALL_BARK=true
+      # # Audio integratie voor Webtop
+      # - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
+      # - AUDIO_IN_ADJ=100
+      # - AUDIO_OUT_ADJ=100
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - /etc/timezone:/etc/timezone:ro
-      # - /var/run/docker.sock:/var/run/docker.sock:ro
-      # Voor PulseAudio/PipeWire ondersteuning
+      # Audio & Hardware integratie
       - /run/user/${PUID:-1000}/pulse:/run/user/${PUID:-1000}/pulse
       - /var/run/dbus:/var/run/dbus
-      - ~/.config/pulse/cookie:/root/.config/pulse/cookie
+      - /dev/shm:/dev/shm
 
+      # Persistente data
       - openllm-vtuber_avatars:/app/avatars
       - openllm-vtuber_backgrounds:/app/backgrounds
       - openllm-vtuber_chat_history:/app/chat_history
       - openllm-vtuber_characters:/app/characters
       - openllm-vtuber_live2d-models:/app/live2d-models
       - openllm-vtuber_logs:/app/logs
-      # - openllm-vtuber_models:/app/models
       - openllm-vtuber_prompts:/app/prompts
 
+      # Config files (bind mounts)
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
+
 
       # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
       # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/backgrounds
@@ -85,7 +69,7 @@ services:
     # user: ${PUID:-1000}:${PGID:-1000}
 
     networks:
-      host:
+      # host:
       openllm-vtuber-services:
 
     ports:
@@ -98,7 +82,6 @@ services:
 
     runtime: nvidia
     deploy:
-      replicas: 1
       resources:
         reservations:
           devices:
@@ -129,18 +112,13 @@ services:
 
     devices:
       - /dev/video0:/dev/video0
-      - /dev/nvidia0:/dev/nvidia0
       - /dev/dri:/dev/dri
-      - /dev/bus/usb:/dev/bus/usb
-      - /dev/uinput:/dev/uinput
-      - /dev/uhid:/dev/uhid
       - /dev/snd:/dev/snd
-      - /dev/kmsg:/dev/kmsg
-      - /dev/nvidiactl:/dev/nvidiactl
-      - /dev/nvidia-modeset:/dev/nvidia-modeset
+      - /dev/bus/usb:/dev/bus/usb
 
     group_add:
       - audio
+      - video
 
     logging:
       driver: json-file
