@@ -62,7 +62,7 @@ RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/s
 
 # 10. S6 Services (Automatisering)
 RUN mkdir -p /etc/services.d/vtuber-server && \
-        printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 main.py\n" > /etc/services.d/vtuber-server/run && \
+        printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 run_server.py\n" > /etc/services.d/vtuber-server/run && \
         chmod +x /etc/services.d/vtuber-server/run
 
 # 11. Browser Autostart op poort 12393 (Web Mode)
