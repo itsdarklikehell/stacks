@@ -24,26 +24,40 @@ ENV PATH="/opt/venv/bin:$PATH"
 # 5. Open-LLM-VTuber installatie
 WORKDIR /app
 RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive . && \
-    # Verwijder versie-eis sherpa-onnx en installeer
     sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' requirements.txt && \
     uv pip install -r requirements.txt
 # OR: COPY . /app
 
-# 6. MeloTTS installatie (De Fix)
+# 6. EXTRA: ASR Backend Dependencies & Whisper-live
+# We voegen libcublas12 toe voor GPU versnelling en portaudio voor streaming
+RUN apt-get update && apt-get install -y libcublas12 portaudio19-dev libasound2-dev && \
+    uv pip install faster-whisper funasr whisper-live pyaudio shell-command-launcher
+
+# 7. Sherpa-ONNX & SenseVoice Integratie (Zoals in de docs)
+# SenseVoiceSmall is extreem snel en goed in emotie-detectie
+WORKDIR /app/models
+RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && \
+    tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && \
+    rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
+# WORKDIR /app/models
+# RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 && \
+#     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && \
+#     rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+
+# 8. MeloTTS installatie
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    # Forceer moderne tokenizers/transformers VOORDAT MeloTTS installeert
     uv pip install "tokenizers>=0.19" "transformers>=4.40" && \
     uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
 
-# 10. S6 Services (Automatisering)
+# 9. S6 Services (Automatisering)
 RUN mkdir -p /etc/services.d/vtuber-server && \
         printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 main.py\n" > /etc/services.d/vtuber-server/run && \
         chmod +x /etc/services.d/vtuber-server/run
 
-# Browser Autostart op poort 12393 (Web Mode)
+# 10. Browser Autostart op poort 12393 (Web Mode)
 RUN mkdir -p /custom-cont-init.d && \
         printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
         chmod +x /custom-cont-init.d/99-start-browser
