@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 2. Systeem dependencies + CUDA Repo
 RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
-    wget https://developer.download.nvidia.com && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && \
     apt-get install -y \
@@ -28,7 +28,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # 5. Python installatie in de Venv
 COPY requirements.txt /tmp/
-RUN uv pip install --index-url https://download.pytorch.org \
+RUN uv pip install --index-url https://download.pytorch.org/whl/cu124 \
     torch==2.5.1 torchaudio==2.5.1 && \
     grep -vE "torch|torchaudio|sherpa-onnx|edge-tts" /tmp/requirements.txt > /tmp/req_cleaned.txt && \
     uv pip install -r /tmp/req_cleaned.txt && \
@@ -36,7 +36,7 @@ RUN uv pip install --index-url https://download.pytorch.org \
 
 # 6. MeloTTS installatie
 WORKDIR /opt/MeloTTS
-RUN git clone https://github.com . && \
+RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
     uv pip install "numpy<2.0.0" && \
     uv pip install "tokenizers>=0.19" "transformers>=4.40" "setuptools>=65" \
     "Cython" "fugashi" "unidic" "unidic-lite" "mecab-python3" \
