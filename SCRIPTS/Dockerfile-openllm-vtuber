@@ -65,11 +65,37 @@ COPY . /app
 # RUN git clone https://github.com/nbhansen/retroMCP.git /opt/retroMCP && \
 #     cd /opt/retroMCP && uv pip install -e .
 
-WORKDIR /config
+# 10. S6 Services configureren (Automatisering)
 
+# 10a. Cron Service voor Auto-Upgrade
+RUN mkdir -p /etc/services.d/cron && \
+    printf "#!/bin/bash\nexec /usr/sbin/cron -f\n" > /etc/services.d/cron/run && \
+    chmod +x /etc/services.d/cron/run
+
+# 10b. VTuber Server Service
+RUN mkdir -p /etc/services.d/vtuber-server && \
+    printf "#!/bin/bash\nsleep 5\ncd /app\nexec /opt/venv/bin/python3 run_server.py\n" > /etc/services.d/vtuber-server/run && \
+    chmod +x /etc/services.d/vtuber-server/run
+
+# 10c. Browser Autostart Script
+RUN mkdir -p /custom-cont-init.d && \
+    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
+    chmod +x /custom-cont-init.d/99-start-browser
+
+# 10d. Upgrade Script Setup
+RUN printf "#!/bin/bash\nprintf \"--- Upgrade op \$(date) ---\n\" >> /var/log/vtuber_upgrade.log\ncd /app\n/opt/venv/bin/python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\npkill -f run_server.py\n" > /usr/local/bin/auto-upgrade.sh && \
+    chmod +x /usr/local/bin/auto-upgrade.sh && \
+    echo "0 4 * * 0 /usr/local/bin/auto-upgrade.sh" | crontab -
+
+# # Forceer KasmVNC om audio te gebruiken
 # RUN mkdir -p /config/.kasms/ && \
 #     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
 #     chown -R 1000:1000 /config/.kasms/
 
+# # Voorkom dat PulseAudio probeert te spawnen als root, wat crashes geeft in KDE
+# RUN sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf && \
+#     echo "default-server = unix:/run/user/1000/pulse/native" >> /etc/pulse/client.conf
+
+WORKDIR /config
 EXPOSE 3000 3001 12393
 
