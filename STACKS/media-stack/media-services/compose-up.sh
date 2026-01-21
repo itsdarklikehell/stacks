@@ -75,26 +75,6 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "sunvox-webtop" ]]; then
-
-		FOLDERS=(
-			"config"
-		)
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
-
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
-		fi
-
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
-
-		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
-		fi
-
-	fi
-
 	if [[ ${SERVICE_NAME} == "cinephage" ]]; then
 
 		FOLDERS=(
@@ -496,6 +476,26 @@ function SETUP_FOLDERS() {
 
 	fi
 
+	if [[ ${SERVICE_NAME} == "sunvox-webtop" ]]; then
+
+		FOLDERS=(
+			"config"
+		)
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/autostart.sh" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/autostart-${SERVICE_NAME}.sh" "${FOLDER}/autostart.sh"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+		fi
+
+	fi
+
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
 
 		FOLDERS=(
@@ -543,8 +543,6 @@ function SETUP_FOLDERS() {
 	fi
 
 	CREATE_FOLDERS
-
-	exit 1
 
 }
 
