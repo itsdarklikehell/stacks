@@ -183,7 +183,7 @@ character_config:
     # Faster whisper config
     faster_whisper:
       model_path: 'large-v3-turbo' # model path, name, or id from hf hub
-      download_root: '/app/models/whisper'
+      download_root: 'models/whisper'
       language: 'en' # en, zh, or something else. put nothing for auto-detect.
       device: 'auto' # cpu, cuda, or auto. faster-whisper doesn't support mps
       compute_type: 'int8'
@@ -192,7 +192,7 @@ character_config:
     whisper_cpp:
       # all available models are listed on https://abdeladim-s.github.io/pywhispercpp/#pywhispercpp.constants.AVAILABLE_MODELS
       model_name: 'small'
-      model_dir: '/app/models/whisper'
+      model_dir: 'models/whisper'
       print_realtime: False
       print_progress: False
       language: 'auto' # en, zh, auto,
@@ -200,7 +200,7 @@ character_config:
 
     whisper:
       name: 'medium'
-      download_root: '/app/models/whisper'
+      download_root: 'models/whisper'
       device: 'cpu'
       prompt: '' # You can put a prompt here to help the model understand the context of the audio
 
@@ -242,8 +242,8 @@ character_config:
       # --- For model_type: 'sense_voice' ---
       # I've coded so that the sense voice model will get automatically downloaded.
       # For other models, you need to download them yourself
-      sense_voice: '/app/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/model.int8.onnx' # Path to the SenseVoice model (e.g., 'path/to/model.onnx')
-      tokens: '/app/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/tokens.txt' # Path to tokens.txt (required for all model types)
+      sense_voice: 'models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/model.int8.onnx' # Path to the SenseVoice model (e.g., 'path/to/model.onnx')
+      tokens: 'models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/tokens.txt' # Path to tokens.txt (required for all model types)
       # --- Optional parameters (with defaults shown) ---
       # hotwords_file: ''     # Path to hotwords file (if using hotwords)
       # hotwords_score: 1.5   # Score for hotwords
@@ -317,7 +317,7 @@ character_config:
     # pyttsx3_tts doesn't have any config.
 
     piper_tts:
-      model_path: '/app/models/piper/zh_CN-huayan-medium.onnx'  # Path to the model file (.onnx)
+      model_path: 'models/piper/zh_CN-huayan-medium.onnx'  # Path to the model file (.onnx)
       speaker_id: 0             # Speaker ID (for multi-speaker models; keep 0 for single-speaker models)
       length_scale: 1.0         # Speech speed control (0.5 = 2x faster, 1.0 = normal, 2.0 = 2x slower)
       noise_scale: 0.667        # Degree of audio variation (0.0–1.0; higher = richer, more varied; recommended 0.667)
@@ -413,12 +413,12 @@ character_config:
     # TTS models download: https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models
     # see config_alts for more examples
     sherpa_onnx_tts:
-      vits_model: '/app/models/vits-melo-tts-zh_en/model.onnx' # Path to VITS model file
-      vits_lexicon: '/app/models/vits-melo-tts-zh_en/lexicon.txt' # Path to lexicon file (optional)
-      vits_tokens: '/app/models/vits-melo-tts-zh_en/tokens.txt' # Path to tokens file
-      vits_data_dir: '' # '/app/models/vits-piper-en_GB-cori-high/espeak-ng-data'  # Path to espeak-ng data (optional)
-      vits_dict_dir: '/app/models/vits-melo-tts-zh_en/dict' # Path to Jieba dict (optional, for Chinese)
-      tts_rule_fsts: '/app/models/vits-melo-tts-zh_en/number.fst,models/vits-melo-tts-zh_en/phone.fst,models/vits-melo-tts-zh_en/date.fst,models/vits-melo-tts-zh_en/new_heteronym.fst' # Path to rule FSTs file (optional)
+      vits_model: 'models/vits-melo-tts-zh_en/model.onnx' # Path to VITS model file
+      vits_lexicon: 'models/vits-melo-tts-zh_en/lexicon.txt' # Path to lexicon file (optional)
+      vits_tokens: 'models/vits-melo-tts-zh_en/tokens.txt' # Path to tokens file
+      vits_data_dir: '' # 'models/vits-piper-en_GB-cori-high/espeak-ng-data'  # Path to espeak-ng data (optional)
+      vits_dict_dir: 'models/vits-melo-tts-zh_en/dict' # Path to Jieba dict (optional, for Chinese)
+      tts_rule_fsts: 'models/vits-melo-tts-zh_en/number.fst,models/vits-melo-tts-zh_en/phone.fst,models/vits-melo-tts-zh_en/date.fst,models/vits-melo-tts-zh_en/new_heteronym.fst' # Path to rule FSTs file (optional)
       max_num_sentences: 2 # Max sentences per batch (or -1 for all)
       sid: 1 # Speaker ID (for multi-speaker models)
       provider: 'cpu' # Use 'cpu', 'cuda' (GPU), or 'coreml' (Apple)
