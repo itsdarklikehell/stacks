@@ -54,37 +54,35 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
 WORKDIR /app
 COPY . /app
 
-RUN mkdir -p /config/.kasms/ && \
-    printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
-    chown -R 1000:1000 /config/.kasms/
+# RUN mkdir -p /config/.kasms/ && \
+#     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
+#     chown -R 1000:1000 /config/.kasms/
 
 # 7a. SERVER SERVICE
 RUN mkdir -p /custom-services.d && \
     printf "#!/bin/bash\ncd /app\nexec python3 run_server.py\n" > /custom-services.d/vtuber-server && \
     chmod +x /custom-services.d/vtuber-server
 
-# 7b. BROWSER AUTOSTART (Gecorrigeerd)
-RUN mkdir -p /etc/cont-init.d && \
-    printf "#!/bin/bash\n\
-    sleep 20\n\
-    export DISPLAY=:1\n\
-    sudo -u abc chromium --no-sandbox --no-first-run --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 &\n" > /etc/cont-init.d/99-autostart-browser && \
-        chmod +x /etc/cont-init.d/99-autostart-browser
+# # 7b. BROWSER AUTOSTART (Gecorrigeerd)
+# RUN mkdir -p /etc/cont-init.d && \
+#     printf "#!/bin/bash\n\
+#     sleep 20\n\
+#     export DISPLAY=:1\n\
+#     sudo -u abc chromium --no-sandbox --no-first-run --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 &\n" > /etc/cont-init.d/99-autostart-browser && \
+#         chmod +x /etc/cont-init.d/99-autostart-browser
 
+# # 8. AUTO-UPGRADE SETUP
+# RUN printf "#!/bin/bash\n\
+#     printf \"--- Upgrade gestart op \$(date) ---\n\" >> /var/log/vtuber_upgrade.log\n\
+#     cd /app\n\
+#     yes | python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\n\
+#     printf \"Herstarten van server-service na upgrade...\n\" >> /var/log/vtuber_upgrade.log\n\
+#     pkill -f run_server.py\n" > /usr/local/bin/auto-upgrade.sh && \
+#         chmod +x /usr/local/bin/auto-upgrade.sh
 
-
-# 8. AUTO-UPGRADE SETUP
-RUN printf "#!/bin/bash\n\
-    printf \"--- Upgrade gestart op \$(date) ---\n\" >> /var/log/vtuber_upgrade.log\n\
-    cd /app\n\
-    yes | python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\n\
-    printf \"Herstarten van server-service na upgrade...\n\" >> /var/log/vtuber_upgrade.log\n\
-    pkill -f run_server.py\n" > /usr/local/bin/auto-upgrade.sh && \
-        chmod +x /usr/local/bin/auto-upgrade.sh
-
-# Voeg de cronjob toe
-RUN printf "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh\n" > /etc/cron.d/vtuber-upgrade && \
-    chmod 0644 /etc/cron.d/vtuber-upgrade
+# # Voeg de cronjob toe
+# RUN printf "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh\n" > /etc/cron.d/vtuber-upgrade && \
+#     chmod 0644 /etc/cron.d/vtuber-upgrade
 
 # 9. Installeer Extra MCP voice asr/stt/tts models.
 # WORKDIR /app/models
