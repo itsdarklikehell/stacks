@@ -34,8 +34,8 @@ RUN sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' /tmp/requirements.txt && \
 
 # 6. MeloTTS installatie
 WORKDIR /opt/MeloTTS
-RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    uv pip install -e . && \
+RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
+    uv pip install -e /opt/MeloTTS && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
 
