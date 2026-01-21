@@ -104,7 +104,7 @@ function SETUP_FOLDERS() {
 		)
 
 	fi
-	
+
 	if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
 
 		FOLDERS=(
@@ -498,39 +498,40 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
 
-		if [[ -f "${FOLDER}/tvs-server_content/config.tvs.yml" ]]; then
-			cp -rf "${FOLDER}/tvs-server_content/config.tvs.yml" "${FOLDER}/tvs-server_content/config.tvs.yml".bak
-		fi
-
-		mkdir -p "${FOLDER}/tvs-server_content"
-		# wget -c https://github.com/zshall/program-guide/releases/download/v5.7.0-beta/tvs-5.7.0-beta.zip >/dev/null 2>&1
-		# unzip -o tvs-5.7.0-beta.zip -d "${FOLDER}/tvs-server_content" >/dev/null 2>&1
-		# rm tvs-5.7.0-beta.zip
-
-		if [[ -f "${FOLDER}/tvs-server_content/config.tvs.yml.bak" ]]; then
-			mv -f "${FOLDER}/tvs-server_content/config.tvs.yml.bak" "${FOLDER}/tvs-server_content/config.tvs.yml"
-		fi
-
 		FOLDERS=(
 			"content"
 		)
+
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_content"
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" ]]; then
+			cp -rf "${FOLDER}/${SERVICE_NAME}_content/config.tvs" "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml"
+		fi
+
+		if [[ -f "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" ]]; then
+			cp -rf "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml".bak
+		fi
+
+		# wget -c https://github.com/zshall/program-guide/releases/download/v5.7.0-beta/tvs-5.7.0-beta.zip >/dev/null 2>&1
+		# unzip -o tvs-5.7.0-beta.zip -d "${FOLDER}/${SERVICE_NAME}_content" >/dev/null 2>&1
+		# rm tvs-5.7.0-beta.zip
 
 	fi
 
 	if [[ ${SERVICE_NAME} == "copyparty" ]]; then
 
-		mkdir -p "${FOLDER}/copyparty_configs"
+		mkdir -p "${FOLDER}/${SERVICE_NAME}_configs"
 
-		if [[ ! -f ${FOLDER}/copyparty_configs/config.conf ]]; then
-			cp -rf "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		if [[ ! -f ${FOLDER}/${SERVICE_NAME}_configs/config.conf ]]; then
+			cp -rf "${FOLDER}/docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${FOLDER}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
-		if [[ -f ${FOLDER}/copyparty_configs/config.conf ]]; then
-			cp -rf "${FOLDER}/copyparty_configs/config.conf" "${FOLDER}/copyparty_configs/config.conf".bak
+		if [[ -f ${FOLDER}/${SERVICE_NAME}_configs/config.conf ]]; then
+			cp -rf "${FOLDER}/${SERVICE_NAME}_configs/config.conf" "${FOLDER}/${SERVICE_NAME}_configs/config.conf".bak
 		fi
 
-		if [[ -f ${FOLDER}/copyparty_configs/config.conf.bak ]]; then
-			cp -rf "${FOLDER}/copyparty_configs/config.conf.bak" "${FOLDER}/copyparty_configs/config.conf"
+		if [[ -f ${FOLDER}/${SERVICE_NAME}_configs/config.conf.bak ]]; then
+			cp -rf "${FOLDER}/${SERVICE_NAME}_configs/config.conf.bak" "${FOLDER}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
 		FOLDERS=(

@@ -11,5 +11,4 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -s https://raw.githubusercontent.com/Nachtzuster/BirdNET-Pi/main/newinstaller.sh | bash || exit 1
 
 WORKDIR /config
-
 EXPOSE 80 8001

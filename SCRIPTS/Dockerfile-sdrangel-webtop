@@ -232,5 +232,4 @@ RUN chmod +x /custom-services.d/sdrangel
 # RUN chmod +x /etc/cont-init.d/99-sdrangel-start
 
 WORKDIR /config
-
 EXPOSE 3000 3001

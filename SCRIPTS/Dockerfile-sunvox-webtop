@@ -41,4 +41,4 @@ RUN mkdir -p /defaults/desktop && \
     cp /usr/share/applications/sunvox.desktop /defaults/desktop/
 
 WORKDIR /config
-
+EXPORT 3000 3001 8080 5004 4003
