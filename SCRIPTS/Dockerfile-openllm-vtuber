@@ -44,10 +44,15 @@ RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/s
 #     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && \
 #     rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
 
-# 8. MeloTTS installatie
+# 8. MeloTTS installatie (Geforceerde Patch voor Python 3.12)
 WORKDIR /opt/MeloTTS
-RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
+RUN git clone https://github.com . && \
+    # VERWIJDER de versienummers in de setup.py van MeloTTS zelf
+    sed -i 's/transformers==[0-9.]*/transformers/g' setup.py && \
+    sed -i 's/tokenizers==[0-9.]*/tokenizers/g' setup.py && \
+    # Eerst de moderne versies installeren (geen Rust nodig)
     uv pip install "tokenizers>=0.19" "transformers>=4.40" && \
+    # Nu MeloTTS installeren met de gepatchte setup.py
     uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
@@ -63,4 +68,4 @@ RUN mkdir -p /custom-cont-init.d && \
         chmod +x /custom-cont-init.d/99-start-browser
 
 WORKDIR /config
-EXPOSE 3000 3001 12393
+EXPOSE 3000 3001 9090 12393

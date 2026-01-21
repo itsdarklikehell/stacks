@@ -76,6 +76,7 @@ services:
       - 5350:3000
       - 5351:3001
       - 12393:12393
+      - 3855:9090
 
     env_file:
       - ./openllm-vtuber/.env
