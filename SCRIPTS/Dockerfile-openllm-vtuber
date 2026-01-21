@@ -31,14 +31,12 @@ COPY requirements.txt /tmp/
 RUN sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' /tmp/requirements.txt && \
     uv pip install -r /tmp/requirements.txt
 
-# Installeer Rust tijdelijk voor de compilatie van tokenizers
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-
-# 6. MeloTTS installatie
+# 6. MeloTTS installatie (inclusief tijdelijke Rust compiler)
 WORKDIR /opt/MeloTTS
-RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
-    uv pip install -e /opt/MeloTTS && \
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    . "$HOME/.cargo/env" && \
+    git clone https://github.com/myshell-ai/MeloTTS.git . && \
+    uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
 
