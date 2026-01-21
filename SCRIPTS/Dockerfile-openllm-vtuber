@@ -9,12 +9,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && \
-    apt-get install -y \
-    cuda-nvrtc-12-1 \
-    cuda-cudart-12-1 \
-    libcudnn8 \
-    python3-pip python3-venv python3-dev cmake \
-    build-essential gcc g++ ffmpeg libmecab-dev git cron && \
+    apt-get install -y cuda-nvrtc-12-1 cuda-cudart-12-1 libcudnn8 \
+    python3-pip python3-venv python3-dev cmake build-essential gcc g++ ffmpeg libmecab-dev git cron libusb-1.0-0 && \
     rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 3. Installeer 'uv' via de officiële binary
@@ -25,74 +21,31 @@ RUN uv venv /opt/venv
 ENV VIRTUAL_ENV="/opt/venv"
 ENV PATH="/opt/venv/bin:$PATH"
 
-# 5. Python installatie in de Venv
-COPY requirements.txt /tmp/
-# EERST aanpassen, DAN pas installeren
-RUN sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' /tmp/requirements.txt && \
-    uv pip install -r /tmp/requirements.txt
+# 5. Open-LLM-VTuber installatie
+WORKDIR /app
+RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive . && \
+    # Verwijder versie-eis sherpa-onnx en installeer
+    sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' requirements.txt && \
+    uv pip install -r requirements.txt
 
-# 6. MeloTTS installatie
+# 6. MeloTTS installatie (De Fix)
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    # Forceer moderne versies die wél pre-built wheels hebben voor Python 3.12
-    uv pip install "tokenizers>=0.19.1" "transformers>=4.40.0" && \
-    # Installeer MeloTTS (uv negeert nu de oude versies omdat er al nieuwere staan)
+    # Forceer moderne tokenizers/transformers VOORDAT MeloTTS installeert
+    uv pip install "tokenizers>=0.19" "transformers>=4.40" && \
     uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
 
-# 7. App setup
-WORKDIR /app
-COPY . /app
-# COPY . /app # or RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive /app
-
-# Zorg dat de abc gebruiker eigenaar is van de app bestanden
-RUN chown -R 1000:1000 /app /opt/venv
-
-# # 8. Extra Modellen (SenseVoice)
-# WORKDIR /app/models
-# RUN wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && \
-#     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && \
-#     rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && \
-#     wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 && \
-#     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && \
-#     rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
-
-# # 9. RetroMCP installatie
-# RUN git clone https://github.com/nbhansen/retroMCP.git /opt/retroMCP && \
-#     cd /opt/retroMCP && uv pip install -e .
-
-# 10. S6 Services configureren (Automatisering)
-
-# 10a. Cron Service voor Auto-Upgrade
-RUN mkdir -p /etc/services.d/cron && \
-    printf "#!/bin/bash\nexec /usr/sbin/cron -f\n" > /etc/services.d/cron/run && \
-    chmod +x /etc/services.d/cron/run
-
-# 10b. VTuber Server Service
+# 10. S6 Services (Automatisering)
 RUN mkdir -p /etc/services.d/vtuber-server && \
-    printf "#!/bin/bash\nsleep 5\ncd /app\nexec /opt/venv/bin/python3 run_server.py\n" > /etc/services.d/vtuber-server/run && \
-    chmod +x /etc/services.d/vtuber-server/run
+        printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 main.py\n" > /etc/services.d/vtuber-server/run && \
+        chmod +x /etc/services.d/vtuber-server/run
 
-# 10c. Browser Autostart Script
+# Browser Autostart op poort 12393 (Web Mode)
 RUN mkdir -p /custom-cont-init.d && \
-    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
-    chmod +x /custom-cont-init.d/99-start-browser
-
-# 10d. Upgrade Script Setup
-RUN printf "#!/bin/bash\nprintf \"--- Upgrade op \$(date) ---\n\" >> /var/log/vtuber_upgrade.log\ncd /app\n/opt/venv/bin/python3 upgrade.py >> /var/log/vtuber_upgrade.log 2>&1\npkill -f run_server.py\n" > /usr/local/bin/auto-upgrade.sh && \
-    chmod +x /usr/local/bin/auto-upgrade.sh && \
-    echo "0 4 * * 0 /usr/local/bin/auto-upgrade.sh" | crontab -
-
-# # Forceer KasmVNC om audio te gebruiken
-# RUN mkdir -p /config/.kasms/ && \
-#     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
-#     chown -R 1000:1000 /config/.kasms/
-
-# # Voorkom dat PulseAudio probeert te spawnen als root, wat crashes geeft in KDE
-# RUN sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf && \
-#     echo "default-server = unix:/run/user/1000/pulse/native" >> /etc/pulse/client.conf
+        printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
+        chmod +x /custom-cont-init.d/99-start-browser
 
 WORKDIR /config
 EXPOSE 3000 3001 12393
-
