@@ -44,6 +44,7 @@ services:
 
       - GUIAUTOSTART=true
       - VIDEO=true
+      - AUDIO=true
 
       # - INSTALL_ORIGINAL_WHISPER=true
       # - INSTALL_BARK=true
@@ -131,7 +132,6 @@ services:
       - /dev/uhid:/dev/uhid
       - /dev/snd:/dev/snd
       - /dev/kmsg:/dev/kmsg
-      - /dev/snd:/dev/snd
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-modeset:/dev/nvidia-modeset
 

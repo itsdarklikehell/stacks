@@ -104,7 +104,6 @@ services:
       - /dev/uhid:/dev/uhid
       - /dev/snd:/dev/snd
       - /dev/kmsg:/dev/kmsg
-      - /dev/snd:/dev/snd
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-modeset:/dev/nvidia-modeset
 
