@@ -20,31 +20,18 @@ RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
 # 3. Installeer 'uv' via de officiële binary
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# 4. Maak een Virtual Environment (VENV) - DIT VOORKOMT DE KDE CRASH
-# We gebruiken /opt/venv zodat de systeem-python van KDE veilig blijft
+# 4. Maak een Virtual Environment (VENV)
 RUN uv venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-# Geen UV_SYSTEM_PYTHON=1 meer gebruiken!
 
 # 5. Python installatie in de Venv
 COPY requirements.txt /tmp/
-RUN uv pip install --index-url https://download.pytorch.org/whl/cu124 \
-    torch==2.5.1 torchaudio==2.5.1 && \
-    grep -vE "torch|torchaudio|sherpa-onnx|edge-tts" /tmp/requirements.txt > /tmp/req_cleaned.txt && \
-    uv pip install -r /tmp/req_cleaned.txt && \
-    uv pip install sherpa-onnx funasr modelscope huggingface_hub pywhispercpp "edge-tts==7.2.1" azure-cognitiveservices-speech py3-tts
+RUN uv pip install -r /tmp/requirements.txt
 
 # 6. MeloTTS installatie
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    uv pip install "numpy<2.0.0" && \
-    uv pip install "tokenizers>=0.19" "transformers>=4.40" "setuptools>=65" \
-    "Cython" "fugashi" "unidic" "unidic-lite" "mecab-python3" \
-    "cn2an" "py3-tts" "jieba" "pypinyin" "anyascii" "librosa" \
-    "scipy" "jamo" "num2words" "tiktoken" "inflect" "pykakasi" \
-    "g2p_en" "gruut" "gruut-lang-en" "gruut-lang-fr" "gruut-lang-de" "gruut-lang-es" \
-    "cached-path" "alt-profanity-check" && \
-    uv pip install --no-deps -e . && \
+    uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
 
