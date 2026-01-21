@@ -47,12 +47,12 @@ RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/s
 # 8. MeloTTS installatie
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    # VERWIJDER de versienummers in de setup.py van MeloTTS zelf
-    sed -i 's/transformers==[0-9.]*/transformers/g' setup.py && \
-    sed -i 's/tokenizers==[0-9.]*/tokenizers/g' setup.py && \
-    # Eerst de moderne versies installeren (geen Rust nodig)
-    uv pip install "tokenizers>=0.19" "transformers>=4.40" && \
-    # Nu MeloTTS installeren met de gepatchte setup.py
+    # Forceer ALLE bestanden (setup.py én requirements.txt) naar moderne versies
+    find . -type f -exec sed -i 's/transformers==[0-9.]*/transformers>=4.40/g' {} + && \
+    find . -type f -exec sed -i 's/tokenizers==[0-9.]*/tokenizers>=0.19/g' {} + && \
+    # Installeer eerst de lastige jongens los in de venv
+    uv pip install "tokenizers>=0.19" "transformers>=4.40" "onnxruntime-gpu" && \
+    # Installeer nu de rest van MeloTTS
     uv pip install -e . && \
     python3 -m unidic download && \
     python3 melo/init_downloads.py
