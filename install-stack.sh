@@ -384,13 +384,13 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_DOWNLOADER_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_AI_STACK
-	# echo ""
+	echo ""
+	SETUP_AI_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_OPENLLM_VTUBER_STACK
-	# echo ""
+	echo ""
+	SETUP_OPENLLM_VTUBER_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_ESSENTIALS_STACK
@@ -408,9 +408,9 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_SDR_STACK
@@ -440,13 +440,13 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# SETUP_DOWNLOADER_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_AI_STACK
-	# echo ""
+	echo ""
+	SETUP_AI_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_OPENLLM_VTUBER_STACK
-	# echo ""
+	echo ""
+	SETUP_OPENLLM_VTUBER_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_ESSENTIALS_STACK
@@ -464,9 +464,9 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_SDR_STACK
