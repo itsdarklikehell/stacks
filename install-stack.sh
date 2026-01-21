@@ -615,4 +615,16 @@ alias ollama='docker exec -it ${ollama_container_name} ollama'
 # # START_BROWSER >/dev/null 2>&1 &
 # # echo ""
 
-# # "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+if [[ ${USER} == "rizzo" ]]; then
+	echo ""
+	"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+	echo ""
+elif [[ ${USER} == "hans" ]]; then
+	echo ""
+	# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+	echo ""
+else
+	echo ""
+	"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
+	echo ""
+fi
