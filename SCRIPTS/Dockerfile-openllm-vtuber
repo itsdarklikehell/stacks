@@ -63,10 +63,15 @@ RUN mkdir -p /custom-services.d && \
     printf "#!/bin/bash\ncd /app\nexec python3 run_server.py\n" > /custom-services.d/vtuber-server && \
     chmod +x /custom-services.d/vtuber-server
 
-# 7b. BROWSER AUTOSTART
-RUN mkdir -p /root/defaults && \
-    printf "bash -c 'sleep 20 && chromium --no-sandbox --no-first-run --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 https://app.letta.com'\n" > /root/defaults/autostart && \
-    chmod +x /root/defaults/autostart
+# 7b. BROWSER AUTOSTART (Gecorrigeerd)
+RUN mkdir -p /etc/cont-init.d && \
+    printf "#!/bin/bash\n\
+    sleep 20\n\
+    export DISPLAY=:1\n\
+    sudo -u abc chromium --no-sandbox --no-first-run --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --unsafely-treat-insecure-origin-as-secure=http://localhost:12393 --user-data-dir=/config/.config/chromium --password-store=basic http://localhost:12393 &\n" > /etc/cont-init.d/99-autostart-browser && \
+        chmod +x /etc/cont-init.d/99-autostart-browser
+
+
 
 # 8. AUTO-UPGRADE SETUP
 RUN printf "#!/bin/bash\n\
