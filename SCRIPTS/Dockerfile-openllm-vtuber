@@ -54,14 +54,10 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git /opt/MeloTTS && \
 WORKDIR /app
 COPY . /app
 
-# RUN mkdir -p /config/.kasms/ && \
-#     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
-#     chown -R 1000:1000 /config/.kasms/
-
-# 7a. SERVER SERVICE
-RUN mkdir -p /custom-services.d && \
-    printf "#!/bin/bash\ncd /app\nexec python3 run_server.py\n" > /custom-services.d/vtuber-server && \
-    chmod +x /custom-services.d/vtuber-server
+# # 7a. SERVER SERVICE
+# RUN mkdir -p /custom-services.d && \
+#     printf "#!/bin/bash\ncd /app\nexec python3 run_server.py\n" > /custom-services.d/vtuber-server && \
+#     chmod +x /custom-services.d/vtuber-server
 
 # # 7b. BROWSER AUTOSTART (Gecorrigeerd)
 # RUN mkdir -p /etc/cont-init.d && \
@@ -84,7 +80,7 @@ RUN mkdir -p /custom-services.d && \
 # RUN printf "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh\n" > /etc/cron.d/vtuber-upgrade && \
 #     chmod 0644 /etc/cron.d/vtuber-upgrade
 
-# 9. Installeer Extra MCP voice asr/stt/tts models.
+# # 9. Installeer Extra MCP voice asr/stt/tts models.
 # WORKDIR /app/models
 # RUN wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
 # RUN wget -c https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
@@ -97,5 +93,10 @@ RUN mkdir -p /custom-services.d && \
 # RUN uv pip install -e .
 
 WORKDIR /config
+
+# RUN mkdir -p /config/.kasms/ && \
+#     printf "encoding:\n  audio: true\n  audio_fixed: true\n" > /config/.kasms/kasmvnc.yaml && \
+#     chown -R 1000:1000 /config/.kasms/
+
 EXPOSE 3000 3001 12393
 

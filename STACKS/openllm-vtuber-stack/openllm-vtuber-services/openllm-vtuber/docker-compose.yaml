@@ -65,7 +65,7 @@ services:
       - openllm-vtuber_characters:/app/characters
       - openllm-vtuber_live2d-models:/app/live2d-models
       - openllm-vtuber_logs:/app/logs
-      - openllm-vtuber_models:/app/models
+      # - openllm-vtuber_models:/app/models
       - openllm-vtuber_prompts:/app/prompts
 
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
