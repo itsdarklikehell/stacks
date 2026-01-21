@@ -53,6 +53,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       # - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Voor PulseAudio/PipeWire ondersteuning
+      - /run/user/${PUID:-1000}/pulse:/run/user/${PUID:-1000}/pulse
+      - /var/run/dbus:/var/run/dbus
+      - ~/.config/pulse/cookie:/root/.config/pulse/cookie
 
       - openllm-vtuber_avatars:/app/avatars
       - openllm-vtuber_backgrounds:/app/backgrounds
