@@ -505,7 +505,7 @@ function SETUP_FOLDERS() {
 		mkdir -p "${FOLDER}/${SERVICE_NAME}_content"
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" ]]; then
-			cp -rf "${FOLDER}/${SERVICE_NAME}_content/config.tvs" "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml"
+			cp -rf "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml"
 		fi
 
 		if [[ -f "${FOLDER}/${SERVICE_NAME}_content/config.tvs.yml" ]]; then

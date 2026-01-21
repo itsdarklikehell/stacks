@@ -4,11 +4,10 @@
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	# rtl-tcp
+	rtl-tcp
 	# rtlsdrairband
-	openwebrxplus
+	# openwebrxplus
 	sdrangel-webtop
-	# birdnet-pi
 )
 
 function CREATE_FOLDERS() {
@@ -81,8 +80,6 @@ function SETUP_FOLDERS() {
 		fi
 
 	fi
-
-
 
 	CREATE_FOLDERS
 

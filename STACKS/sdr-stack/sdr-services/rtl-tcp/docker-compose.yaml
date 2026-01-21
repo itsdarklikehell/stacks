@@ -30,12 +30,10 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
 
-      - rtl-tcp_FREQS=${rtl-tcp_FREQS:-123.9}
-
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /dev/bus/usb:/dev/bus/usb:ro
 
       - rtl-tcp_config:/run/rtlsdir-airband

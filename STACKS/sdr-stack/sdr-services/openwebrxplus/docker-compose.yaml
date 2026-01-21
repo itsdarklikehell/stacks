@@ -52,7 +52,7 @@ services:
 
     ports:
       - ${PORT:-8073}:8073
-      - 1234:1234
+      # - 1234:1234
 
     env_file:
       - ./openwebrxplus/.env
