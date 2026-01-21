@@ -1,4 +1,4 @@
-#!/with-contenv bash
+#!/bin/bash
 
 # Wacht tot de grafische interface (X-server) up is
 sleep 5
