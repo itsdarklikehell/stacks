@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     apt-get update && \
     apt-get install -y cuda-nvrtc-12-1 cuda-cudart-12-1 libcudnn8 \
-    python3-pip python3-venv python3-dev cmake build-essential gcc g++ ffmpeg libmecab-dev git cron libusb-1.0-0 && \
+    python3-pip python3-venv python3-dev cmake build-essential gcc g++ ffmpeg libmecab-dev git cron libusb-1.0-0 \
+    libcublas12 portaudio19-dev libasound2-dev && \
     rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 3. Installeer 'uv' via de officiële binary
@@ -28,13 +29,28 @@ RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive
     uv pip install -r requirements.txt
 # OR: COPY . /app
 
-# 6. EXTRA: ASR Backend Dependencies & Whisper-live
-# We voegen libcublas12 toe voor GPU versnelling en portaudio voor streaming
-RUN apt-get update && apt-get install -y libcublas12 portaudio19-dev libasound2-dev && \
-    uv pip install faster-whisper funasr whisper-live pyaudio shell-command-launcher
+# 6. ASR Backend & Streaming Dependencies
+RUN uv pip install faster-whisper funasr whisper-live pyaudio shell-command-launcher
 
-# 7. Sherpa-ONNX & SenseVoice Integratie (Zoals in de docs)
-# SenseVoiceSmall is extreem snel en goed in emotie-detectie
+# 7. TTS Backends (MeloTTS Fix + Bark + Edge-TTS)
+WORKDIR /opt/MeloTTS
+RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
+    # Patch MeloTTS voor Python 3.12 (geen Rust nodig)
+    find . -type f -exec sed -i 's/transformers==[0-9.]*/transformers>=4.40/g' {} + && \
+    find . -type f -exec sed -i 's/tokenizers==[0-9.]*/tokenizers>=0.19/g' {} + && \
+    uv pip install "tokenizers>=0.19" "transformers>=4.40" onnxruntime-gpu && \
+    uv pip install -e . && \
+    python3 -m unidic download && \
+    python3 melo/init_downloads.py
+
+# 8. Extra TTS Libraries
+# RUN uv pip install py3-tts
+# RUN uv pip install fish-audio-sdk
+# RUN uv pip install edge-tts
+# RUN uv pip install git+https://github.com/suno-ai/bark.git
+# RUN uv pip install git+https://github.com/RVC-Boss/GPT-SoVITS
+
+# 9. Sherpa-ONNX & SenseVoice Modellen downloaden
 WORKDIR /app/models
 RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && \
     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && \
@@ -44,28 +60,18 @@ RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/s
 #     tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && \
 #     rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
 
-# 8. MeloTTS installatie
-WORKDIR /opt/MeloTTS
-RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
-    # Forceer ALLE bestanden (setup.py én requirements.txt) naar moderne versies
-    find . -type f -exec sed -i 's/transformers==[0-9.]*/transformers>=4.40/g' {} + && \
-    find . -type f -exec sed -i 's/tokenizers==[0-9.]*/tokenizers>=0.19/g' {} + && \
-    # Installeer eerst de lastige jongens los in de venv
-    uv pip install "tokenizers>=0.19" "transformers>=4.40" "onnxruntime-gpu" && \
-    # Installeer nu de rest van MeloTTS
-    uv pip install -e . && \
-    python3 -m unidic download && \
-    python3 melo/init_downloads.py
-
-# 9. S6 Services (Automatisering)
+# 10. S6 Services (Automatisering)
 RUN mkdir -p /etc/services.d/vtuber-server && \
         printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 main.py\n" > /etc/services.d/vtuber-server/run && \
         chmod +x /etc/services.d/vtuber-server/run
 
-# 10. Browser Autostart op poort 12393 (Web Mode)
+# 11. Browser Autostart op poort 12393 (Web Mode)
 RUN mkdir -p /custom-cont-init.d && \
         printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
         chmod +x /custom-cont-init.d/99-start-browser
 
+# Optioneel: Download Bark kleine modellen alvast om opstarttijd te verkorten
+# ENV BARK_FORCE_CPU=false
+# RUN python3 -c "from bark import PRETRAINED_MODELS_URL; import wget; [wget.download(url) for url in PRETRAINED_MODELS_URL.values()]"
 WORKDIR /config
 EXPOSE 3000 3001 9090 12393
