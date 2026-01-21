@@ -94,5 +94,5 @@ RUN printf "0 4 * * 0 root /usr/local/bin/auto-upgrade.sh\n" > /etc/cron.d/vtube
 # RUN uv pip install -e .
 
 WORKDIR /config
-EXPOSE 12393 3000 3001
+EXPOSE 3000 3001 12393
 

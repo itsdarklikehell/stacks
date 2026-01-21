@@ -43,7 +43,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
 
       - GUIAUTOSTART=true
-      - VIDEO=true       # Activeert video ondersteuning in KasmVNC
+      - VIDEO=true
 
       # - INSTALL_ORIGINAL_WHISPER=true
       # - INSTALL_BARK=true
@@ -84,9 +84,9 @@ services:
       openllm-vtuber-services:
 
     ports:
-      - 12393:12393
       - 5350:3000
       - 5351:3001
+      - 12393:12393
 
     env_file:
       - ./openllm-vtuber/.env
