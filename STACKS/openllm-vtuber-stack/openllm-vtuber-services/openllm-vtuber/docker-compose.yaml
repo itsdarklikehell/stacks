@@ -11,8 +11,19 @@ services:
         GID: ${PGID:-1000}
 
     privileged: true
+
     security_opt:
       - seccomp:unconfined
+
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+      - /dev/bus/usb:/dev/bus/usb
+
+    group_add:
+      - audio
+      - video
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -28,10 +39,12 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
-      # # Audio integratie voor Webtop
-      # - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
-      # - AUDIO_IN_ADJ=100
-      # - AUDIO_OUT_ADJ=100
+      # Audio integratie voor Webtop
+      - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
+      - AUDIO_IN_ADJ=100
+      - AUDIO_OUT_ADJ=100
+      # Forceren dat de desktop software-rendering gebruikt.
+      # - KASM_VNC_ARG_LIST=--disable-gpu
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -94,7 +107,7 @@ services:
 
     stdin_open: true
 
-    shm_size: 2gb
+    shm_size: 4gb
 
     # healthcheck:
     #   test:
@@ -111,15 +124,6 @@ services:
     #   start_period: 30s
     #   retries: 3
 
-    devices:
-      - /dev/video0:/dev/video0
-      - /dev/dri:/dev/dri
-      - /dev/snd:/dev/snd
-      - /dev/bus/usb:/dev/bus/usb
-
-    group_add:
-      - audio
-      - video
 
     logging:
       driver: json-file
