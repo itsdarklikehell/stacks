@@ -39,18 +39,14 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
-      # Audio integratie voor Webtop
-      - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
-      - AUDIO_IN_ADJ=100
-      - AUDIO_OUT_ADJ=100
+
       # Forceren dat de desktop software-rendering gebruikt.
-      - __GLX_VENDOR_LIBRARY_NAME=mesa
-      - KASM_VNC_ARG_LIST=--disable-gpu
+      # - __GLX_VENDOR_LIBRARY_NAME=mesa
+      # - KASM_VNC_ARG_LIST=--disable-gpu
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # Audio & Hardware integratie
-      - /run/user/${PUID:-1000}/pulse:/run/user/${PUID:-1000}/pulse
       # - /var/run/dbus:/var/run/dbus
       # - /dev/shm:/dev/shm
 
