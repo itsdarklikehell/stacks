@@ -69,22 +69,22 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
 # ENV BARK_FORCE_CPU=false
 # RUN python3 -c "from bark import PRETRAINED_MODELS_URL; import wget; [wget.download(url) for url in PRETRAINED_MODELS_URL.values()]"
 
-# 10. S6 Services (Automatisering)
-RUN mkdir -p /etc/services.d/vtuber-server && \
-    printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 run_server.py\n" > /etc/services.d/vtuber-server/run && \
-    chmod +x /etc/services.d/vtuber-server/run
+# # 10. S6 Services (Automatisering)
+# RUN mkdir -p /etc/services.d/vtuber-server && \
+#     printf "#!/bin/bash\ncd /app\nexec /opt/venv/bin/python3 run_server.py\n" > /etc/services.d/vtuber-server/run && \
+#     chmod +x /etc/services.d/vtuber-server/run
 
-# 11. Browser Autostart op poort 12393 (Web Mode)
-RUN mkdir -p /custom-cont-init.d && \
-    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
-    chmod +x /custom-cont-init.d/99-start-browser
+# # 11. Browser Autostart op poort 12393 (Web Mode)
+# RUN mkdir -p /custom-cont-init.d && \
+#     printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
+#     chmod +x /custom-cont-init.d/99-start-browser
 
-# Fix voor icoontjes en KDE cache (Noble compatible)
-RUN apt-get update && apt-get install -y libqt5svg5 && \
-    # Ververs de icon cache voor de 'abc' gebruiker (ID 1000)
-    sudo -u abc kbuildsycoca5 --noincremental || true && \
-    fc-cache -fv && \
-    chown -R 1000:1000 /config
+# # Fix voor icoontjes en KDE cache (Noble compatible)
+# RUN apt-get update && apt-get install -y libqt5svg5 && \
+#     # Ververs de icon cache voor de 'abc' gebruiker (ID 1000)
+#     sudo -u abc kbuildsycoca5 --noincremental || true && \
+#     fc-cache -fv && \
+#     chown -R 1000:1000 /config
 
 # # Forceer PulseAudio om geluid naar de KasmVNC bridge te sturen
 # RUN mkdir -p /config/.kasms/ && \
