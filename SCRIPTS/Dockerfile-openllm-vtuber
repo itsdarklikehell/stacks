@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
     apt-get update && \
     apt-get install -y cuda-nvrtc-12-1 cuda-cudart-12-1 libcudnn8 \
     python3-pip python3-venv python3-dev cmake build-essential gcc g++ ffmpeg libmecab-dev git cron libusb-1.0-0 \
-    libcublas12 portaudio19-dev libasound2-dev \
-    libqtsvg5 qtsvg5-examples fonts-noto-color-emoji && \
+    libcublas12 portaudio19-dev libasound2-dev libqt5svg5 qtsvg5-examples \
+    fonts-noto-color-emoji && \
     rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 3. Installeer 'uv' via de officiële binary
@@ -79,8 +79,10 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
 #         printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
 #         chmod +x /custom-cont-init.d/99-start-browser
 
-# --- FIX VOOR ICOONTJES EN KDE CACHE ---
-RUN kbuildsycoca5 --noincremental || true && \
+# Fix voor icoontjes en KDE cache (Noble compatible)
+RUN apt-get update && apt-get install -y libqt5svg5 && \
+    # Ververs de icon cache voor de 'abc' gebruiker (ID 1000)
+    sudo -u abc kbuildsycoca5 --noincremental || true && \
     fc-cache -fv && \
     chown -R 1000:1000 /config
 

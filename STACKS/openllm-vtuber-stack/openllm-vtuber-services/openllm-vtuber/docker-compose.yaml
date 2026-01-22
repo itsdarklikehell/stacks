@@ -44,8 +44,8 @@ services:
       - AUDIO_IN_ADJ=100
       - AUDIO_OUT_ADJ=100
       # Forceren dat de desktop software-rendering gebruikt.
+      - __GLX_VENDOR_LIBRARY_NAME=mesa
       - KASM_VNC_ARG_LIST=--disable-gpu
-      - LIBGL_ALWAYS_SOFTWARE=1
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
