@@ -4,6 +4,11 @@ FROM lscr.io/linuxserver/webtop:ubuntu-kde
 # Voorkom interactieve prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
+# --- STABILITEIT FIX VOOR KDE ---
+# Dwing de GUI om Mesa (software rendering) te gebruiken zodat de NVIDIA drivers de desktop niet laten crashen
+ENV __GLX_VENDOR_LIBRARY_NAME=mesa
+ENV LD_IGNORE_OPTIMIZATION=1
+
 # 2. Systeem dependencies + CUDA Repo
 RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
@@ -11,7 +16,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 curl ca-certificates && \
     apt-get update && \
     apt-get install -y cuda-nvrtc-12-1 cuda-cudart-12-1 libcudnn8 \
     python3-pip python3-venv python3-dev cmake build-essential gcc g++ ffmpeg libmecab-dev git cron libusb-1.0-0 \
-    libcublas12 portaudio19-dev libasound2-dev && \
+    libcublas12 portaudio19-dev libasound2-dev \
+    libqtsvg5 qtsvg5-examples fonts-noto-color-emoji && \
     rm -rf /var/lib/apt/lists/* cuda-keyring_1.1-1_all.deb
 
 # 3. Installeer 'uv' via de officiële binary
@@ -32,7 +38,7 @@ RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive
 # 6. ASR Backend & Streaming Dependencies
 RUN uv pip install faster-whisper funasr whisper-live pyaudio shell-command-launcher
 
-# 7. TTS Backends (MeloTTS Fix + Bark + Edge-TTS)
+# 7. TTS Backends (MeloTTS Fix)
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
     # Patch MeloTTS voor Python 3.12 (geen Rust nodig)
@@ -73,5 +79,10 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
 #         printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 2; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
 #         chmod +x /custom-cont-init.d/99-start-browser
 
-# WORKDIR /config
+# --- FIX VOOR ICOONTJES EN KDE CACHE ---
+RUN kbuildsycoca5 --noincremental || true && \
+    fc-cache -fv && \
+    chown -R 1000:1000 /config
+
+WORKDIR /config
 EXPOSE 3000 3001 9090 12393

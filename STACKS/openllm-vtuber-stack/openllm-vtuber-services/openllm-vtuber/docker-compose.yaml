@@ -51,8 +51,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # Audio & Hardware integratie
       - /run/user/${PUID:-1000}/pulse:/run/user/${PUID:-1000}/pulse
-      - /var/run/dbus:/var/run/dbus
-      - /dev/shm:/dev/shm
+      # - /var/run/dbus:/var/run/dbus
+      # - /dev/shm:/dev/shm
 
       # Persistente data
       - openllm-vtuber_avatars:/app/avatars
