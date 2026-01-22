@@ -38,13 +38,14 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=gpu,compute,video,graphics,utility
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
       # Audio integratie voor Webtop
       - PULSE_SERVER=unix:/run/user/${PUID:-1000}/pulse/native
       - AUDIO_IN_ADJ=100
       - AUDIO_OUT_ADJ=100
       # Forceren dat de desktop software-rendering gebruikt.
-      # - KASM_VNC_ARG_LIST=--disable-gpu
+      - KASM_VNC_ARG_LIST=--disable-gpu
+      - LIBGL_ALWAYS_SOFTWARE=1
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -101,7 +102,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu, compute, video, graphics, utility]
+              capabilities: [gpu, compute, video, utility]
 
     tty: true
 
