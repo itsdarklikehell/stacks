@@ -17,15 +17,15 @@ RUN apt-get update && apt-get install -y \
 # 4. Installeer 'uv'
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# 4. We maken GEEN venv in de Dockerfile.
+# 5. We maken GEEN venv in de Dockerfile.
 # We maken alleen de map aan met de juiste rechten.
 RUN mkdir -p /app_venv && chown -R 1000:1000 /app_venv
 
-# 5. Maak de venv en de app map (alles als root voor nu)
+# 6. Maak de venv en de app map (alles als root voor nu)
 RUN uv venv /app_venv && \
     mkdir -p /app
 
-# 6. Open-LLM-VTuber installatie
+# 7. Open-LLM-VTuber installatie
 WORKDIR /app
 RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive . && \
     # Verwijder de versie-eis in ALLE bestanden (requirements, pyproject.toml, setup.py)
@@ -34,9 +34,6 @@ RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive
     uv pip install --python /app_venv/bin/python "sherpa-onnx>=1.10.0" && \
     uv pip install --python /app_venv/bin/python . && \
     uv pip install --python /app_venv/bin/python edge-tts
-
-# 7. Herstel permissies voor de 'abc' gebruiker
-RUN chown -R 1000:1000 /app /app_venv /config
 
 # 8. MeloTTS installatie
 WORKDIR /opt/MeloTTS
@@ -48,18 +45,23 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git . && \
     uv pip install --python /app_venv/bin/python -e . && \
     /app_venv/bin/python -m unidic download
 
-# 9. S6 Service voor de VTuber Server (Automatisering)
-RUN mkdir -p /etc/services.d/vtuber-server && \
-    printf "#!/bin/bash\nsleep 10\ncd /app\nexec /app_venv/bin/python run_server.py\n" > /etc/services.d/vtuber-server/run && \
-    chmod +x /etc/services.d/vtuber-server/run
+# # 9. S6 Service voor de VTuber Server (Automatisering)
+# RUN mkdir -p /etc/services.d/vtuber-server && \
+#     printf "#!/bin/bash\nsleep 10\ncd /app\nexec /app_venv/bin/python run_server.py\n" > /etc/services.d/vtuber-server/run && \
+#     chmod +x /etc/services.d/vtuber-server/run
 
 # 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
 RUN mkdir -p /custom-cont-init.d && \
-    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox --autoplay-policy=no-user-gesture-required http://localhost:12393 ) &\n" > /custom-cont-init.d/99-start-browser && \
+    printf "#!/bin/bash\nexport DISPLAY=:1; sudo -u abc chromium https://nightride.fm/video http://localhost:12393 https://localhost:12393 &\n" > /custom-cont-init.d/99-start-browser && \
     chmod +x /custom-cont-init.d/99-start-browser
 
-# Zorg dat alle nieuwe bestanden de juiste rechten hebben
-RUN chown -R 1000:1000 /app /app_venv /opt/MeloTTS
+# # 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
+# RUN mkdir -p /custom-cont-init.d && \
+#     printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium https://nightride.fm/video http://localhost:12393 https://localhost:12393) &\n" > /custom-cont-init.d/99-start-browser && \
+#     chmod +x /custom-cont-init.d/99-start-browser
+
+# 11. Zorg dat alle nieuwe bestanden de juiste rechten hebben
+RUN chown -R 1000:1000 /app /app_venv /opt/MeloTTS /config
 
 WORKDIR /config
 EXPOSE 3000
