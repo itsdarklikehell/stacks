@@ -42,7 +42,6 @@ services:
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
       - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
 
-
       # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
       # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/backgrounds
       # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/chat_history
@@ -62,7 +61,6 @@ services:
 
     ports:
       - 12393:12393
-      - 3855:9090
 
     env_file:
       - ./openllm-vtuber/.env
@@ -97,7 +95,6 @@ services:
     #   timeout: 10s
     #   start_period: 30s
     #   retries: 3
-
 
     logging:
       driver: json-file

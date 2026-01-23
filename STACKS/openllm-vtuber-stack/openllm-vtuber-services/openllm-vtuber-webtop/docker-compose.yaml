@@ -1,10 +1,10 @@
 services:
-  openllm-vtuber:
-    container_name: ${NAME:-openllm-vtuber}
+  openllm-vtuber-webtop:
+    container_name: ${NAME:-openllm-vtuber-webtop}
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../../DATA/openllm-vtuber-stack/openllm-vtuber
+      context: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop
       dockerfile: Dockerfile
       # args:
       #   UID: ${PUID:-1000}
@@ -29,30 +29,29 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
       # Persistente data
-      - openllm-vtuber_avatars:/app/avatars
-      - openllm-vtuber_backgrounds:/app/backgrounds
-      - openllm-vtuber_chat_history:/app/chat_history
-      - openllm-vtuber_characters:/app/characters
-      - openllm-vtuber_live2d-models:/app/live2d-models
-      - openllm-vtuber_logs:/app/logs
-      - openllm-vtuber_prompts:/app/prompts
+      - openllm-vtuber-webtop_avatars:/app/avatars
+      - openllm-vtuber-webtop_backgrounds:/app/backgrounds
+      - openllm-vtuber-webtop_chat_history:/app/chat_history
+      - openllm-vtuber-webtop_characters:/app/characters
+      - openllm-vtuber-webtop_live2d-models:/app/live2d-models
+      - openllm-vtuber-webtop_logs:/app/logs
+      - openllm-vtuber-webtop_prompts:/app/prompts
 
       # Config files (bind mounts)
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/conf.yaml:/app/conf.yaml
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/mcp_servers.json:/app/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/model_dict.json:/app/model_dict.json
 
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/avatars:/app/avatars
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/backgrounds:/app/backgrounds
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/chat_history:/app/chat_history
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/characters:/app/characters
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/live2d-models:/app/live2d-models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/logs:/app/logs
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/models:/app/models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/prompts:/app/prompts
 
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/backgrounds
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/chat_history
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/characters
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/live2d-models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/logs
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/models:/app/models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts:/app/prompts
-
-    hostname: ${NAME:-openllm-vtuber}
+    hostname: ${NAME:-openllm-vtuber-webtop}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -62,9 +61,11 @@ services:
 
     ports:
       - 12393:12393
+      - 3000:3000
+      - 3001:3001
 
     env_file:
-      - ./openllm-vtuber/.env
+      - ./openllm-vtuber-webtop/.env
 
     # Gebruik de NVIDIA runtime voor AI-versnelling
     runtime: nvidia
@@ -96,7 +97,6 @@ services:
     #   timeout: 10s
     #   start_period: 30s
     #   retries: 3
-
 
     logging:
       driver: json-file
