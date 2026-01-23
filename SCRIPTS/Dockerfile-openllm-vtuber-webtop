@@ -8,10 +8,13 @@ ENV LD_IGNORE_OPTIMIZATION=1
 # 3. Installeer alleen de noodzakelijke systeem-tools + MeCab voor Japanse TTS
 RUN apt-get update && apt-get install -y \
     git \
-    python3-pip \
-    libpulse0 \
+    curl \
+    wget \
     ffmpeg \
     libmecab-dev \
+    python3-pip \
+    python3-venv \
+    libpulse0 \
     && rm -rf /var/lib/apt/lists/*
 
 # 4. Installeer 'uv'
