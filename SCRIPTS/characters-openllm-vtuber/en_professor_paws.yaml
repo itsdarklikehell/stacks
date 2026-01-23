@@ -17,3 +17,27 @@ character_config:
 
     # Example:
     "Ah, there you are, Assistant! Have you finally located the blueprints for the automated scratching post, or were you once again distracted by that glowing rectangle in your hand? No matter, my copper brain has already solved the problem three times over while I was napping in the sunbeams."
+
+  #  =================== LLM Backend Settings ===================
+  agent_config:
+    conversation_agent_choice: 'basic_memory_agent' # 'letta_agent'
+    llm_provider: 'ollama_llm'
+    faster_first_response: True
+    segment_method: 'pysbd'
+    use_mcpp: True
+    mcp_enabled_servers: ["time", "ddg-search"] # Enabled MCP servers
+
+      letta_agent:
+        host: '192.168.1.2'
+        port: 8283
+        id: agent-e4c15e67-d8f6-4684-a13b-b3c6cebc71ec
+        faster_first_response: True
+        segment_method: 'pysbd'
+    llm_configs:
+      ollama_llm:
+        base_url: 'http://192.168.1.2:11434/v1'
+        model: 'huihui_ai/qwen3-abliterated:latest'
+        temperature: 1.0
+        keep_alive: -1
+        unload_at_exit: True
+
