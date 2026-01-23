@@ -19,16 +19,16 @@ ENV PATH="/opt/venv/bin:$PATH"
 # 5. Open-LLM-VTuber broncode ophalen
 RUN git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git --recursive . && \
     # Patch alle versie-eisen die build-errors veroorzaken
-    find . -type f -exec sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' {} + && \
+    # find . -type f -exec sed -i 's/sherpa-onnx==[0-9.]*/sherpa-onnx/g' {} + && \
     # Installeer het project en de TTS backends
-    uv pip install . edge-tts
+    uv pip install .
 
 # 6. MeloTTS installatie (Geïsoleerd in de venv)
 WORKDIR /opt/MeloTTS
 RUN git clone https://github.com/myshell-ai/MeloTTS.git --recursive . && \
-    find . -type f -exec sed -i 's/transformers==[0-9.]*/transformers>=4.40/g' {} + && \
-    find . -type f -exec sed -i 's/tokenizers==[0-9.]*/tokenizers>=0.19/g' {} + && \
-    uv pip install "tokenizers>=0.19" "transformers>=4.40" onnxruntime-gpu && \
+    # find . -type f -exec sed -i 's/transformers==[0-9.]*/transformers>=4.40/g' {} + && \
+    # find . -type f -exec sed -i 's/tokenizers==[0-9.]*/tokenizers>=0.19/g' {} + && \
+    # uv pip install "tokenizers>=0.19" "transformers>=4.40" onnxruntime-gpu && \
     uv pip install -e . && \
     python3 -m unidic download
 
