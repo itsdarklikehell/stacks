@@ -62,7 +62,6 @@ services:
 
     ports:
       - 12393:12393
-      - 3855:9090
 
     env_file:
       - ./openllm-vtuber/.env
