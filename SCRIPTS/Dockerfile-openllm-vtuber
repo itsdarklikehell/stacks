@@ -43,3 +43,4 @@ EXPOSE 12393
 
 # Start de server direct
 CMD ["python3", "run_server.py"]
+
