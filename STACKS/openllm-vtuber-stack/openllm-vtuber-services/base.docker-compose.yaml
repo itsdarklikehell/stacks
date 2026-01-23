@@ -71,4 +71,6 @@ networks:
   host:
   openllm-vtuber-services:
     external: true
+  ai-services:
+    external: true
 

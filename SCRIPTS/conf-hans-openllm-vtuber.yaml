@@ -82,9 +82,9 @@ character_config:
         mcp_enabled_servers: ["time", "ddg-search"] # Enabled MCP servers
 
       letta_agent:
-        host: '192.168.178.63' # Host address
+        host: '92.168.178.63' # Host address
         port: 8283 # Port number
-        id: xxx # ID number of the Agent running on the Letta server
+        id: agent-e4c15e67-d8f6-4684-a13b-b3c6cebc71ec # ID number of the Agent running on the Letta server
         faster_first_response: True
         # Method for segmenting sentences: 'regex' or 'pysbd'
         segment_method: 'pysbd'

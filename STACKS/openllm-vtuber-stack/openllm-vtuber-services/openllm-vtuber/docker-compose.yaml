@@ -58,6 +58,7 @@ services:
     networks:
       host:
       openllm-vtuber-services:
+      ai-services:
 
     ports:
       - 12393:12393

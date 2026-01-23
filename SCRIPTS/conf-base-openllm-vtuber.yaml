@@ -84,7 +84,7 @@ character_config:
       letta_agent:
         host: '192.168.1.2' # Host address
         port: 8283 # Port number
-        id: 'agent-e4c15e67-d8f6-4684-a13b-b3c6cebc71ec' # ID number of the Agent running on the Letta server
+        id: agent-e4c15e67-d8f6-4684-a13b-b3c6cebc71ec # ID number of the Agent running on the Letta server
         faster_first_response: True
         # Method for segmenting sentences: 'regex' or 'pysbd'
         segment_method: 'pysbd'
