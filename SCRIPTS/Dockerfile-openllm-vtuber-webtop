@@ -45,20 +45,25 @@ RUN git clone https://github.com/myshell-ai/MeloTTS.git --recursive . && \
     uv pip install --python /app_venv/bin/python -e . && \
     /app_venv/bin/python -m unidic download
 
-# # 9. S6 Service voor de VTuber Server (Automatisering)
-# RUN mkdir -p /etc/services.d/vtuber-server && \
-#     printf "#!/bin/bash\nsleep 10\ncd /app\nexec /app_venv/bin/python run_server.py\n" > /etc/services.d/vtuber-server/run && \
-#     chmod +x /etc/services.d/vtuber-server/run
+# 8a. (Extra) Sherpa-ONNX Modellen downloaden
+WORKDIR /app/models
+RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2"
+RUN wget -q https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2 && tar xvf "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2" && rm "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+
+# 9. S6 Service voor de VTuber Server (Automatisering)
+RUN mkdir -p /etc/services.d/vtuber-server && \
+    printf "#!/bin/bash\nsleep 10\ncd /app\nexec /app_venv/bin/python run_server.py\n" > /etc/services.d/vtuber-server/run && \
+    chmod +x /etc/services.d/vtuber-server/run
 
 # 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
 RUN mkdir -p /custom-cont-init.d && \
     printf "#!/bin/bash\n( until curl -s https://nightride.fm > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium https://nightride.fm) &\n" > /custom-cont-init.d/99-start-browser-nightride && \
     chmod +x /custom-cont-init.d/99-start-browser-nightride
 
-# # 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
-# RUN mkdir -p /custom-cont-init.d && \
-#     printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium http://localhost:12393 https://localhost:12393) &\n" > /custom-cont-init.d/99-start-browser-vtuber && \
-#     chmod +x /custom-cont-init.d/99-start-browser-vtuber
+# 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
+RUN mkdir -p /custom-cont-init.d && \
+    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium http://localhost:12393 https://localhost:12393) &\n" > /custom-cont-init.d/99-start-browser-vtuber && \
+    chmod +x /custom-cont-init.d/99-start-browser-vtuber
 
 # 11. Zorg dat alle nieuwe bestanden de juiste rechten hebben
 RUN chown -R 1000:1000 /app /app_venv /opt/MeloTTS /config
