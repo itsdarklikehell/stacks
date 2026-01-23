@@ -65,7 +65,7 @@ RUN mkdir -p /etc/services.d/vtuber-server && \
 
 # 10. Browser Autostart (Opent de VTuber interface in de KDE desktop)
 RUN mkdir -p /custom-cont-init.d && \
-    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium http://localhost:12393 https://localhost:12393) &\n" > /custom-cont-init.d/99-start-browser-vtuber && \
+    printf "#!/bin/bash\n( until curl -s http://localhost:12393 > /dev/null; do sleep 5; done; export DISPLAY=:1; sudo -u abc chromium --no-sandbox http://localhost:12393) &\n" > /custom-cont-init.d/99-start-browser-vtuber && \
     chmod +x /custom-cont-init.d/99-start-browser-vtuber
 
 # 11. Zorg dat alle nieuwe bestanden de juiste rechten hebben

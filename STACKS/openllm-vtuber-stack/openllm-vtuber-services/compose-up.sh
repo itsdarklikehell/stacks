@@ -7,7 +7,7 @@ sudo apt install -y # unison # unison-gtk
 
 COMPOSE_FILES=(
 	openllm-vtuber
-	openllm-vtuber-webtop
+	# openllm-vtuber-webtop
 )
 
 function CREATE_FOLDERS() {
