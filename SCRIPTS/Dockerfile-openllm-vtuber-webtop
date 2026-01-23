@@ -65,3 +65,4 @@ RUN chown -R 1000:1000 /app /app_venv /opt/MeloTTS /config
 
 WORKDIR /config
 EXPOSE 3000 3001 12393
+

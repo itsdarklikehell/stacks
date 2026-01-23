@@ -60,9 +60,9 @@ services:
       openllm-vtuber-services:
 
     ports:
-      - 12393:12393
-      - 3000:3000
-      - 3001:3001
+      - 12394:12393
+      - 5527:3000
+      - 5528:3001
 
     env_file:
       - ./openllm-vtuber-webtop/.env
