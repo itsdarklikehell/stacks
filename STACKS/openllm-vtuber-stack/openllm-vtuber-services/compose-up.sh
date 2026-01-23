@@ -152,6 +152,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber-webtop" ]]; then
+		SERVICE_NAME=openllm-vtuber
 
 		FOLDERS=(
 			"avatars"
@@ -168,32 +169,32 @@ function SETUP_FOLDERS() {
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${SOURCE_FOLDER}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}-webtop" "${SOURCE_FOLDER}/Dockerfile-webtop"
 
 		# if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 
 		if [[ ${USER} == "hans" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		elif [[ ${USER} == "rizzo" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		else
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		fi
 
 		# fi
 
 		# if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-openllm-vtuber.json" "${SOURCE_FOLDER}/mcp_servers.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
 
 		# fi
 
 		# if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-openllm-vtuber.json" "${SOURCE_FOLDER}/model_dict.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
 
 		# fi
 

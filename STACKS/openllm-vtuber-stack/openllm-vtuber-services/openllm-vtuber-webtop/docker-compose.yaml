@@ -4,8 +4,8 @@ services:
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop
-      dockerfile: Dockerfile
+      context: ../../../DATA/openllm-vtuber-stack/openllm-vtuber
+      dockerfile: Dockerfile-webtop
       # args:
       #   UID: ${PUID:-1000}
       #   GID: ${PGID:-1000}
@@ -29,27 +29,27 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
       # Persistente data
-      - openllm-vtuber-webtop_avatars:/app/avatars
-      - openllm-vtuber-webtop_backgrounds:/app/backgrounds
-      - openllm-vtuber-webtop_chat_history:/app/chat_history
-      - openllm-vtuber-webtop_characters:/app/characters
-      - openllm-vtuber-webtop_live2d-models:/app/live2d-models
-      - openllm-vtuber-webtop_logs:/app/logs
-      - openllm-vtuber-webtop_prompts:/app/prompts
+      - openllm-vtuber_avatars:/app/avatars
+      - openllm-vtuber_backgrounds:/app/backgrounds
+      - openllm-vtuber_chat_history:/app/chat_history
+      - openllm-vtuber_characters:/app/characters
+      - openllm-vtuber_live2d-models:/app/live2d-models
+      - openllm-vtuber_logs:/app/logs
+      - openllm-vtuber_prompts:/app/prompts
 
       # Config files (bind mounts)
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/conf.yaml:/app/conf.yaml
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/mcp_servers.json:/app/mcp_servers.json
-      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/model_dict.json:/app/model_dict.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/conf.yaml:/app/conf.yaml
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/mcp_servers.json:/app/mcp_servers.json
+      - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/model_dict.json:/app/model_dict.json
 
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/avatars:/app/avatars
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/backgrounds:/app/backgrounds
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/chat_history:/app/chat_history
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/characters:/app/characters
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/live2d-models:/app/live2d-models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/logs:/app/logs
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/models:/app/models
-      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber-webtop/prompts:/app/prompts
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/avatars:/app/avatars
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/backgrounds:/app/backgrounds
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/chat_history:/app/chat_history
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/characters:/app/characters
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/live2d-models:/app/live2d-models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/logs:/app/logs
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/models:/app/models
+      # - ../../../DATA/openllm-vtuber-stack/openllm-vtuber/prompts:/app/prompts
 
     hostname: ${NAME:-openllm-vtuber-webtop}
 
