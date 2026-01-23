@@ -212,7 +212,7 @@
   {
     "name": "blackCat",
     "description": "",
-    "url": "https://cdn.jsdelivr.net/gh/journey-ad/blog-img/live2d/Ava/Ava.model3.json",
+    "url": "https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-hijiki/assets/hijiki.model.json",
     "kScale": 0.5,
     "initialXshift": 0,
     "initialYshift": 0,
