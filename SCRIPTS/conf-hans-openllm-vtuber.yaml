@@ -312,7 +312,7 @@ character_config:
       # 'en-ZA-LeahNeural'
       # 'zh-CN-XiaoxiaoNeural'
       # 'ja-JP-NanamiNeural'
-      voice: 'en-US-en-US-AnaNeural'
+      voice: 'en-US-AnaNeural'
 
     # pyttsx3_tts doesn't have any config.
 
