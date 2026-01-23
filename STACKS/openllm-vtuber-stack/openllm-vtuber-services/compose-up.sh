@@ -173,27 +173,27 @@ function SETUP_FOLDERS() {
 		# if [[ ! -f "${FOLDER}/conf.yaml" ]]; then
 
 		if [[ ${USER} == "hans" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-hans-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-hans-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		elif [[ ${USER} == "rizzo" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		else
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
-			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-${SERVICE_NAME}.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
+			# rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/conf-base-openllm-vtuber.yaml" "${SOURCE_FOLDER}/conf.yaml"
 		fi
 
 		# fi
 
 		# if [[ ! -f "${FOLDER}/mcp_servers.json" ]]; then
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/mcp_servers.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/mcp_servers-openllm-vtuber.json" "${SOURCE_FOLDER}/mcp_servers.json"
 
 		# fi
 
 		# if [[ ! -f "${FOLDER}/model_dict.json" ]]; then
 
-		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-${SERVICE_NAME}.json" "${SOURCE_FOLDER}/model_dict.json"
+		rsync -aHAX "${STACK_BASEPATH}/SCRIPTS/model_dict-openllm-vtuber.json" "${SOURCE_FOLDER}/model_dict.json"
 
 		# fi
 
