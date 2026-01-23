@@ -152,20 +152,19 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber-webtop" ]]; then
-		SERVICE_NAME=openllm-vtuber
+		SERVICE_NAME="openllm-vtuber"
 
-		FOLDERS=(
-			"avatars"
-			"backgrounds"
-			"characters"
-			"chat_history"
-			"live2d-models"
-			"logs"
-			"models"
-			"prompts"
-		)
-
-		CREATE_FOLDERS
+		# FOLDERS=(
+		# 	"avatars"
+		# 	"backgrounds"
+		# 	"characters"
+		# 	"chat_history"
+		# 	"live2d-models"
+		# 	"logs"
+		# 	"models"
+		# 	"prompts"
+		# )
+		# CREATE_FOLDERS
 
 		SOURCE_FOLDER="${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}" || exit 1
 
