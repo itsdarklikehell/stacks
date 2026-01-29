@@ -1,10 +1,10 @@
 services:
-  project-zomboid:
-    container_name: ${NAME:-project-zomboid}
+  showet:
+    container_name: ${NAME:-showet}
     restart: ${RESTART:-unless-stopped}
 
     build:
-      context: ../../../DATA/testing-stack/project-zomboid
+      context: ../../../DATA/testing-stack/showet
       dockerfile: Dockerfile
       args:
         UID: ${PUID:-1000}
@@ -27,18 +27,18 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
       - SUBFOLDER=/
-      - TITLE=project-zomboid
+      - TITLE=showet
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/testing-stack/project-zomboid/pz_install.sh:/config/Downloads/pz_install.sh
-      - project-zomboid_config:/config
-      - project-zomboid_scripts:/custom-cont-init.d
+      - ../../../DATA/testing-stack/showet/pz_install.sh:/config/Downloads/pz_install.sh
+      - showet_config:/config
+      - showet_scripts:/custom-cont-init.d
 
-    hostname: ${NAME:-project-zomboid}
+    hostname: ${NAME:-showet}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -47,12 +47,11 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-3940}:3000
-      - 3941:3001
-      - 16261:16261/udp
+      - ${PORT:-3944}:3000
+      - 3945:3001
 
     env_file:
-      - ./project-zomboid/.env
+      - ./showet/.env
 
     # runtime: nvidia
     # deploy:

@@ -26,7 +26,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "altus" ]]; then
+	if [[ "${SERVICE_NAME}" == "altus" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -34,7 +34,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "signal" ]]; then
+	if [[ "${SERVICE_NAME}" == "signal" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -42,7 +42,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "mastodon" ]]; then
+	if [[ "${SERVICE_NAME}" == "mastodon" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -50,7 +50,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "telegram" ]]; then
+	if [[ "${SERVICE_NAME}" == "telegram" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -58,7 +58,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "webcord" ]]; then
+	if [[ "${SERVICE_NAME}" == "webcord" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -66,7 +66,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "weixin" ]]; then
+	if [[ "${SERVICE_NAME}" == "weixin" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -74,7 +74,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ferdium" ]]; then
+	if [[ "${SERVICE_NAME}" == "ferdium" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -90,7 +90,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

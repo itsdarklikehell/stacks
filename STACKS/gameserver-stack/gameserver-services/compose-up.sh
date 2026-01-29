@@ -22,7 +22,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
+	if [[ "${SERVICE_NAME}" == "pterodactyl" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -35,7 +35,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "veloren-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "veloren-server" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -44,7 +44,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "linux-gsm-cs2" ]]; then
+	if [[ "${SERVICE_NAME}" == "linux-gsm-cs2" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -61,7 +61,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

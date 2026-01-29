@@ -26,7 +26,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "deluge" ]]; then
+	if [[ "${SERVICE_NAME}" == "deluge" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -36,7 +36,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "sabnzbd" ]]; then
+	if [[ "${SERVICE_NAME}" == "sabnzbd" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -46,7 +46,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "qbittorrent" ]]; then
+	if [[ "${SERVICE_NAME}" == "qbittorrent" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -56,7 +56,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "pyload-ng" ]]; then
+	if [[ "${SERVICE_NAME}" == "pyload-ng" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -66,7 +66,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "flexget" ]]; then
+	if [[ "${SERVICE_NAME}" == "flexget" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -76,7 +76,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nzbget" ]]; then
+	if [[ "${SERVICE_NAME}" == "nzbget" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -86,7 +86,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "transmission" ]]; then
+	if [[ "${SERVICE_NAME}" == "transmission" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -104,7 +104,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

@@ -25,7 +25,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
+	if [[ "${SERVICE_NAME}" == "openllm-vtuber" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -152,7 +152,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "openllm-vtuber-webtop" ]]; then
+	if [[ "${SERVICE_NAME}" == "openllm-vtuber-webtop" ]]; then
 		SERVICE_NAME="openllm-vtuber"
 
 		# FOLDERS=(
@@ -284,7 +284,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

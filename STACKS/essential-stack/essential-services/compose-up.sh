@@ -50,7 +50,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "dashy" ]]; then
+	if [[ "${SERVICE_NAME}" == "dashy" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -63,42 +63,42 @@ function SETUP_FOLDERS() {
 		fi
 	fi
 
-	if [[ ${SERVICE_NAME} == "homarr" ]]; then
+	if [[ "${SERVICE_NAME}" == "homarr" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "dock-dploy" ]]; then
+	if [[ "${SERVICE_NAME}" == "dock-dploy" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "dockhand" ]]; then
+	if [[ "${SERVICE_NAME}" == "dockhand" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "changedetection" ]]; then
+	if [[ "${SERVICE_NAME}" == "changedetection" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "socket-proxy" ]]; then
+	if [[ "${SERVICE_NAME}" == "socket-proxy" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "viseron" ]]; then
+	if [[ "${SERVICE_NAME}" == "viseron" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -110,7 +110,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "frigate" ]]; then
+	if [[ "${SERVICE_NAME}" == "frigate" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -118,14 +118,14 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "xpipe-webtop" ]]; then
+	if [[ "${SERVICE_NAME}" == "xpipe-webtop" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "hishtory-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "hishtory-server" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -135,7 +135,7 @@ function SETUP_FOLDERS() {
 		fi
 	fi
 
-	if [[ ${SERVICE_NAME} == "apprise-api" ]]; then
+	if [[ "${SERVICE_NAME}" == "apprise-api" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -143,7 +143,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "doublecommander" ]]; then
+	if [[ "${SERVICE_NAME}" == "doublecommander" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -151,7 +151,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "pingora-proxy-manager" ]]; then
+	if [[ "${SERVICE_NAME}" == "pingora-proxy-manager" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"logs"
@@ -159,21 +159,21 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "pulse" ]]; then
+	if [[ "${SERVICE_NAME}" == "pulse" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "heimdall" ]]; then
+	if [[ "${SERVICE_NAME}" == "heimdall" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "scanopy" ]]; then
+	if [[ "${SERVICE_NAME}" == "scanopy" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"server-data"
@@ -182,7 +182,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "jellyfin" ]]; then
+	if [[ "${SERVICE_NAME}" == "jellyfin" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
@@ -201,7 +201,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "beszel" ]]; then
+	if [[ "${SERVICE_NAME}" == "beszel" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -210,7 +210,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "dozzle" ]]; then
+	if [[ "${SERVICE_NAME}" == "dozzle" ]]; then
 
 		REMOTE_HOSTNAME=$(hostname)
 		export REMOTE_HOSTNAME
@@ -222,7 +222,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "motioneye" ]]; then
+	if [[ "${SERVICE_NAME}" == "motioneye" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -231,7 +231,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nextcloud" ]]; then
+	if [[ "${SERVICE_NAME}" == "nextcloud" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -240,7 +240,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "immich-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "immich-server" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
@@ -252,14 +252,14 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "portainer" ]]; then
+	if [[ "${SERVICE_NAME}" == "portainer" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "nginx-proxy-manager" ]]; then
+	if [[ "${SERVICE_NAME}" == "nginx-proxy-manager" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -267,7 +267,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "portracker" ]]; then
+	if [[ "${SERVICE_NAME}" == "portracker" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -282,7 +282,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

@@ -23,7 +23,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "rtlsdrairband" ]]; then
+	if [[ "${SERVICE_NAME}" == "rtlsdrairband" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -32,7 +32,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "openwebrxplus" ]]; then
+	if [[ "${SERVICE_NAME}" == "openwebrxplus" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -43,7 +43,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "sdrangel-webtop" ]]; then
+	if [[ "${SERVICE_NAME}" == "sdrangel-webtop" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -64,7 +64,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "rtl-tcp" ]]; then
+	if [[ "${SERVICE_NAME}" == "rtl-tcp" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -93,7 +93,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

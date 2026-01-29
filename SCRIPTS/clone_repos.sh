@@ -852,6 +852,18 @@ function CLONE_PYGOTCHI() {
 
 }
 
+function CLONE_PROJZOMB() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+
+	if [[ ! -d "project-zomboid" ]]; then
+		echo "Cloning project-zomboid"
+		echo ""
+		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O ${STACK_BASEPATH}/DATA/testing-stack/project-zomboid/pz_install.sh
+	fi
+
+}
+
 function CLONE_KASMWORKSPACES() {
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
@@ -931,6 +943,7 @@ CLONE_OLLMVT # >/dev/null 2>&1 &
 # CLONE_SCANOPY        # >/dev/null 2>&1 &
 CLONE_SWARMUI  # >/dev/null 2>&1 &
 CLONE_PYGOTCHI # >/dev/null 2>&1 &
+CLONE_PROJZOMB # >/dev/null 2>&1 &
 # CLONE_STRUDEL        # >/dev/null 2>&1 &
 CLONE_SDR_TCP       # >/dev/null 2>&1 &
 CLONE_BIRDNETPI_TCP # >/dev/null 2>&1 &

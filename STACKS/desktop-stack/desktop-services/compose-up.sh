@@ -25,7 +25,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "kasm" ]]; then
+	if [[ "${SERVICE_NAME}" == "kasm" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -35,7 +35,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "webtop" ]]; then
+	if [[ "${SERVICE_NAME}" == "webtop" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -43,7 +43,7 @@ function SETUP_FOLDERS() {
 		)
 
 	fi
-	if [[ ${SERVICE_NAME} == "sealskin" ]]; then
+	if [[ "${SERVICE_NAME}" == "sealskin" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -53,7 +53,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
+	if [[ "${SERVICE_NAME}" == "kali-linux" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -62,7 +62,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "rustdesk" ]]; then
+	if [[ "${SERVICE_NAME}" == "rustdesk" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -71,7 +71,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "remmina" ]]; then
+	if [[ "${SERVICE_NAME}" == "remmina" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -88,7 +88,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

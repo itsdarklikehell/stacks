@@ -23,7 +23,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "duplicati" ]]; then
+	if [[ "${SERVICE_NAME}" == "duplicati" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -33,7 +33,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "rsnapshot" ]]; then
+	if [[ "${SERVICE_NAME}" == "rsnapshot" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -43,7 +43,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "resilio-sync" ]]; then
+	if [[ "${SERVICE_NAME}" == "resilio-sync" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -53,7 +53,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "syncthing" ]]; then
+	if [[ "${SERVICE_NAME}" == "syncthing" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -70,7 +70,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

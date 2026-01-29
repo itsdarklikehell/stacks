@@ -28,7 +28,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "calibre-web" ]]; then
+	if [[ "${SERVICE_NAME}" == "calibre-web" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
@@ -39,7 +39,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "freshrss" ]]; then
+	if [[ "${SERVICE_NAME}" == "freshrss" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -48,7 +48,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "ubooquity" ]]; then
+	if [[ "${SERVICE_NAME}" == "ubooquity" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
@@ -61,7 +61,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "calibre" ]]; then
+	if [[ "${SERVICE_NAME}" == "calibre" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -71,7 +71,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "mylar3" ]]; then
+	if [[ "${SERVICE_NAME}" == "mylar3" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -80,14 +80,14 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "rsspub" ]]; then
+	if [[ "${SERVICE_NAME}" == "rsspub" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "cops" ]]; then
+	if [[ "${SERVICE_NAME}" == "cops" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -95,7 +95,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "kavita" ]]; then
+	if [[ "${SERVICE_NAME}" == "kavita" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -104,7 +104,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "lazylibrarian" ]]; then
+	if [[ "${SERVICE_NAME}" == "lazylibrarian" ]]; then
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
@@ -123,7 +123,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

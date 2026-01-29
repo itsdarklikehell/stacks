@@ -36,7 +36,7 @@ function CREATE_FOLDERS() {
 
 function SETUP_FOLDERS() {
 
-	if [[ ${SERVICE_NAME} == "anything-llm" ]]; then
+	if [[ "${SERVICE_NAME}" == "anything-llm" ]]; then
 
 		if [[ ! -f "${FOLDER}/${SERVICE_NAME}_storage/.env" ]]; then
 			echo "Downloading example anything-llm .env file"
@@ -60,7 +60,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
+	if [[ "${SERVICE_NAME}" == "InvokeAI" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -85,7 +85,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
+	if [[ "${SERVICE_NAME}" == "homeassistant" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
@@ -96,7 +96,7 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 	fi
 
-	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
+	if [[ "${SERVICE_NAME}" == "letta-server" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -104,7 +104,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "localai" ]]; then
+	if [[ "${SERVICE_NAME}" == "localai" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"cache"
@@ -120,7 +120,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "n8n" ]]; then
+	if [[ "${SERVICE_NAME}" == "n8n" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -128,7 +128,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "ollama" ]]; then
+	if [[ "${SERVICE_NAME}" == "ollama" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -143,21 +143,21 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
+	if [[ "${SERVICE_NAME}" == "open-webui" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "habridge" ]]; then
+	if [[ "${SERVICE_NAME}" == "habridge" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "searxng" ]]; then
+	if [[ "${SERVICE_NAME}" == "searxng" ]]; then
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
@@ -165,7 +165,7 @@ function SETUP_FOLDERS() {
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "SwarmUI" ]]; then
+	if [[ "${SERVICE_NAME}" == "SwarmUI" ]]; then
 		declare -a FOLDERS=()
 		# FOLDERS=(
 		# 	"models"
@@ -182,7 +182,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
+	if [[ "${SERVICE_NAME}" == "ComfyUI" ]]; then
 		declare -a FOLDERS=()
 		# FOLDERS=(
 		# 	"models"
@@ -202,7 +202,7 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ ${SERVICE_NAME} == "pygotchi" ]]; then
+	if [[ "${SERVICE_NAME}" == "pygotchi" ]]; then
 		declare -a FOLDERS=()
 		# FOLDERS=(
 		# 	"models"
@@ -227,7 +227,7 @@ ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
 	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
-	if [[ ! -d ${FOLDER} ]]; then
+	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"
 		mkdir -p "${FOLDER}"

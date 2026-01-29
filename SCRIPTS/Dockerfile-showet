@@ -1,0 +1,22 @@
+FROM lscr.io/linuxserver/webtop:ubuntu-xfce
+
+RUN apt-get update && apt-get install -y \
+    wget unzip lib32gcc-s1 libsdl2-2.0-0 default-jre \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /showet
+COPY . /showet
+
+# RUN git clone https://github.com/itsdarklikehell/showet.git /showet
+
+RUN install.sh --update && \
+    install.sh --install-showet && \
+    install.sh --install-emulators && \
+    debuild -us -uc -b
+
+
+WORKDIR /config
+
+RUN chown -R abc:abc /config
+
+EXPOSE 3000 3001 16261
