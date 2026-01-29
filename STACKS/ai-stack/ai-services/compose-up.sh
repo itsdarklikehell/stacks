@@ -6,20 +6,20 @@ export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	# anything-llm
-	# homeassistant
-	# InvokeAI
-	# letta-mcp-server
-	# letta-server
-	# localai
-	# n8n
-	# habridge
-	# ollama
-	# open-webui
-	# searxng
-	# puppeteer
-	# SwarmUI
+	anything-llm
 	ComfyUI
+	habridge
+	homeassistant
+	InvokeAI
+	letta-mcp-server
+	letta-server
+	localai
+	n8n
+	ollama
+	open-webui
+	# puppeteer
+	searxng
+	SwarmUI
 )
 
 function CREATE_FOLDERS() {
@@ -166,15 +166,15 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "SwarmUI" ]]; then
 		declare -a FOLDERS=()
-		FOLDERS=(
-			"backend"
-			"data"
-			"dlnodes"
-			"extensions"
-			"config"
-			"embeddings"
-			"workflows"
-		)
+		# FOLDERS=(
+		# 	"backend"
+		# 	"data"
+		# 	"dlnodes"
+		# 	"extensions"
+		# 	"config"
+		# 	"embeddings"
+		# 	"workflows"
+		# )
 
 		if [[ -d "${STACK_BASEPATH}/DATA/SwarmUI/.git" ]]; then
 			git pull
@@ -189,12 +189,12 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
 		declare -a FOLDERS=()
-		FOLDERS=(
-			"models"
-			"output"
-			"input"
-			"custom_nodes"
-		)
+		# FOLDERS=(
+		# 	"models"
+		# 	"output"
+		# 	"input"
+		# 	"custom_nodes"
+		# )
 
 		if [[ -d "${STACK_BASEPATH}/DATA/ComfyUI/.git" ]]; then
 			git pull

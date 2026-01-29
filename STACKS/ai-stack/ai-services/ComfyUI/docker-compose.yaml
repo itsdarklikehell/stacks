@@ -37,7 +37,7 @@ services:
       - ComfyUI_input:/ComfyUI/input
       # Tip: Koppel custom_nodes pas NA de eerste succesvolle start
       # als je de Manager in de image wilt behouden.
-      # - ComfyUI_custom_nodes:/ComfyUI/custom_nodes
+      - ComfyUI_custom_nodes:/ComfyUI/custom_nodes
 
     hostname: ${NAME:-ComfyUI}
 
