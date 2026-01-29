@@ -12,8 +12,7 @@ ARG GID=1000
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
     UV_HTTP_TIMEOUT=300 \
-    UV_SYSTEM_PYTHON=1 \
-    PATH="/home/comfyuser/.local/bin:$PATH"
+    UV_SYSTEM_PYTHON=1
 
 # Kopieer uv naar de nieuwe image
 COPY --from=uv_bin /uv /uvx /bin/
@@ -22,18 +21,13 @@ COPY --from=uv_bin /uv /uvx /bin/
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.10 \
     python3-pip \
+    python-is-python3 \
     git \
     libgl1-mesa-glx \
     libglib2.0-0 \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
-
-# Gebruiker aanmaken en directory structuur opzetten
-RUN groupadd -g $GID comfyuser && \
-    useradd -u $UID -g $GID -m comfyuser && \
-    mkdir -p /ComfyUI && \
-    chown -R comfyuser:comfyuser /ComfyUI
 
 # STAP 1: Installeer zware dependencies als ROOT om permissiefouten te voorkomen
 # We gebruiken --no-cache om de uiteindelijke image klein te houden
@@ -42,21 +36,23 @@ RUN uv pip install --no-cache \
     torch torchvision torchaudio \
     --extra-index-url https://download.pytorch.org/whl/cu121
 
-# STAP 2: Wissel naar de veilige gebruiker voor de rest van de setup
-USER comfyuser
 WORKDIR /ComfyUI
 
-COPY . /ComfyUI
+# Clone de officiële ComfyUI repository
+RUN git clone --recursive https://github.com/Comfy-Org/ComfyUI.git /ComfyUI
+# OPTIONEEL: Installeer de ComfyUI-Manager (aanbevolen)
+RUN git clone --recursive https://github.com/Comfy-Org/ComfyUI-Manager.git /ComfyUI/custom_nodes/ComfyUI-Manager
 
-# Installeer ComfyUI via de CLI in de huidige map
-RUN yes | comfy tracking enable
+# Installeer de Python requirements van ComfyUI
+RUN uv pip install --no-cache -r requirements.txt
+
+# Registreer de handmatige clone bij de CLI
 RUN comfy set-default /ComfyUI
-RUN comfy --install-completion
-RUN comfy --workspace=/ComdfyUI install
+RUN comfy --workspace=/ComfyUI install --nvidia
 
 # Gezondheidscontrole
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD curl -f http://localhost:8188/system_stats || exit 1
+    CMD curl -f http://localhost:8188/system_stats || exit 1
 
 EXPOSE 8188
 
