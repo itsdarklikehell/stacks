@@ -47,7 +47,7 @@ USER comfyuser
 WORKDIR /ComfyUI
 
 # Installeer ComfyUI via de CLI in de huidige map
-RUN yes | comfy set-default /ComfyUI && \
+RUN comfy set-default /ComfyUI && \
     yes | comfy --install-completion && \
     yes | comfy --workspace=/ComdfyUI install
 
