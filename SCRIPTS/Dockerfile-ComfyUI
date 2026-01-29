@@ -47,8 +47,8 @@ USER comfyuser
 WORKDIR /ComfyUI
 
 # Installeer ComfyUI via de CLI in de huidige map
+RUN comfy tracking enable
 RUN comfy set-default /ComfyUI
-RUN comfy tracking enable --no-prompt
 RUN comfy --install-completion
 RUN comfy --workspace=/ComdfyUI install
 
