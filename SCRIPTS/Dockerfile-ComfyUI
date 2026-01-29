@@ -46,6 +46,8 @@ RUN uv pip install --no-cache \
 USER comfyuser
 WORKDIR /ComfyUI
 
+COPY . /ComfyUI
+
 # Installeer ComfyUI via de CLI in de huidige map
 RUN yes | comfy tracking enable
 RUN comfy set-default /ComfyUI
