@@ -140,6 +140,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
+  ComfyUI_data:
+    name: ComfyUI_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/ComfyUI
   ComfyUI_models:
     name: ComfyUI_models
     driver: local
@@ -204,6 +212,23 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-custom_nodes
+
+  SwarmUI_models:
+    name: SwarmUI_models
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/SwarmUI/SwarmUI_models
+  # SwarmUI_models:
+  #   name: SwarmUI_models
+  #   driver: local
+  #   # external: true
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ../../../DATA/ai-stack/ComfyUI/models
 
   homeassistant-config:
     name: homeassistant-config
@@ -355,15 +380,6 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/ai-stack/searxng/searxng_cache
-
-  SwarmUI_data:
-    name: swarmui_data
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/SwarmUI
 
   ai_outputs:
     name: ai_outputs

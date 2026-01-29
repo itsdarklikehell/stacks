@@ -10,8 +10,8 @@ services:
       context: ../../../DATA/ai-stack/SwarmUI
       dockerfile: Dockerfile
       args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -26,15 +26,24 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
+      - HOST_UID=${HOST_UID:-1000}
+      - HOST_GID=${HOST_GID:-1000}
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - SwarmUI_data:/SwarmUI/Data
+      - ai_outputs:/SwarmUI/dlbuild/ComfyUI/output
+      - ai_inputs:/SwarmUI/dlbuild/ComfyUI/input
+      - ai_outputs:/SwarmUI/Input
+      - ai_inputs:/SwarmUI/Output
+
+      - ComfyUI_data:/SwarmUI/dlbuild/ComfyUI
+      - ComfyUI_custom_nodes:/SwarmUI/dlbuild/ComfyUI/custom_nodes
       - ComfyUI_models:/SwarmUI/dlbuild/ComfyUI/models
-      - ComfyUI_output:/SwarmUI/dlbuild/ComfyUI/output
+      # - ComfyUI_models:/SwarmUI/Models
+      - SwarmUI_models:/SwarmUI/Models
 
     hostname: ${NAME:-SwarmUI}
 
@@ -51,6 +60,8 @@ services:
 
     cap_drop:
       - ALL
+
+    entrypoint: [bash, /SwarmUI/launchtools/docker-standard-inner.sh]
 
     runtime: nvidia
     deploy:

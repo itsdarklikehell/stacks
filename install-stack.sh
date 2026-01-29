@@ -12,7 +12,7 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="false"                                                            # false, true/normal, all
+export PRUNE="true"                                                             # false, true/normal, all
 export BUILDING="true"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -529,23 +529,23 @@ export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-# if command -v ollama >/dev/null 2>&1; then
-# 	echo ""
-# 	PULL_MODELS # >/dev/null 2>&1 &
-# 	echo ""
-# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-# 		echo ""
-# 		PULL_MODELS # >/dev/null 2>&1 &
-# 		echo ""
-# 	fi
-# else
-# 	# alias ollama='docker exec -it ollama ollama'
-# 	alias ollama='docker exec -it ${ollama_container_name} ollama'
-# 	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
-# 	sleep 20
-# 	PULL_MODELS # >/dev/null 2>&1 &
-# fi
+if command -v ollama >/dev/null 2>&1; then
+	echo ""
+	PULL_MODELS >/dev/null 2>&1 &
+	echo ""
+elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+		echo ""
+		PULL_MODELS >/dev/null 2>&1 &
+		echo ""
+	fi
+else
+	# alias ollama='docker exec -it ollama ollama'
+	alias ollama='docker exec -it ${ollama_container_name} ollama'
+	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
+	sleep 20
+	PULL_MODELS >/dev/null 2>&1 &
+fi
 
 # export pterodactyl_container_name="pterodactyl-panel"
 # if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then

@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
 
-ARG UID=1000
-WORKDIR /app
+# ARG HOST_GID=1000
+# ARG HOST_UID=1000
 
 # 1. Installeer alle systeem-dependencies in één laag en schoon op
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,21 +9,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip ffmpeg libglib2.0-0 libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Gebruikersbeheer (veiligheid)
-RUN useradd -u $UID -m swarmui && \
-    git config --global --add safe.directory '*'
+# 2. Stel de werkmap in op /SwarmUI
+WORKDIR /SwarmUI
+# COPY . /SwarmUI
+RUN git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git /SwarmUI
 
-# 3. Kopieer broncode (nu pas, voor betere caching)
-COPY --chown=swarmui:swarmui . ./SwarmUI
+# RUN chown -R $HOST_UID:$HOST_UID /SwarmUI
 
-# 4. Opschonen van eventuele lokale build-artefacten
-RUN rm -rf ./SwarmUI/src/bin ./SwarmUI/src/obj
+# 3. Expose the port for other containers (to use Swarm as an API if you want)
+EXPOSE 7801 8188
 
-# Schakel over naar de niet-root gebruiker
-USER swarmui
-
-# Expose the port for other containers (to use Swarm as an API if you want)
-EXPOSE 7801
-
-# Start het launch-script
-ENTRYPOINT ["bash", "/app/SwarmUI/launchtools/docker-standard-inner.sh"]
+# 4. Start het launch-script
+# ENTRYPOINT ["bash", "/SwarmUI/launchtools/docker-standard-inner.sh"]
