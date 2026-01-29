@@ -34,6 +34,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
+      - /home/rizzo/Downloads/gog_project_zomboid_41_78_16_60901_linux/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh:/config/Downloads/pz_install.sh
       - project-zomboid_config:/config
       - project-zomboid_scripts:/custom-cont-init.d
 
@@ -46,8 +47,8 @@ services:
       testing-services:
 
     ports:
-      - ${PORT:-3000}:3000
-      - 3001:3001
+      - ${PORT:-3940}:3000
+      - 3941:3001
       - 16261:16261/udp
 
     env_file:

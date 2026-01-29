@@ -430,6 +430,10 @@ function SETUP_FOLDERS() {
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
+			"config"
+			"mods"
+			"scripts"
+			"saves"
 		)
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
