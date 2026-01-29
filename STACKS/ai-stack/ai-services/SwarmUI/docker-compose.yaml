@@ -34,11 +34,6 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ai_outputs:/SwarmUI/dlbuild/ComfyUI/output
-      - ai_inputs:/SwarmUI/dlbuild/ComfyUI/input
-      - ai_outputs:/SwarmUI/Input
-      - ai_inputs:/SwarmUI/Output
-
       - ComfyUI_data:/SwarmUI/dlbuild/ComfyUI
 
     hostname: ${NAME:-SwarmUI}
