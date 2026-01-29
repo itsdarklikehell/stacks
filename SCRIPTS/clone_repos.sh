@@ -276,16 +276,16 @@ function CREATE_FOLDERS() {
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
@@ -520,17 +520,14 @@ function CLONE_COMFYUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -rf "${STACK_BASEPATH}/SCRIPTS/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${COMFYUI_PATH}/Dockerfile"
 
 	}
 
-	LOCAL_SETUP  # >/dev/null 2>&1 &
+	# LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	INSTALL_DEFAULT_NODES=true
+	INSTALL_DEFAULT_NODES=false
 	INSTALL_EXTRA_NODES=false
 	UPDATE=false
 
@@ -924,7 +921,7 @@ CREATE_FOLDERS
 
 # CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
 # CLONE_CLAIR       # >/dev/null 2>&1 &
-# CLONE_COMFYUI     # >/dev/null 2>&1 &
+CLONE_COMFYUI # >/dev/null 2>&1 &
 # CLONE_SYNCTUBE    # >/dev/null 2>&1 &
 # CLONE_COMFYUI_MCP # >/dev/null 2>&1 &
 # CLONE_COMFYUIMINI # >/dev/null 2>&1 &

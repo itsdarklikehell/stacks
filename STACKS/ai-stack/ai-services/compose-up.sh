@@ -1,6 +1,8 @@
 #!/bin/bash
 # set -e
 
+export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
@@ -14,8 +16,9 @@ COMPOSE_FILES=(
 	habridge
 	ollama
 	open-webui
-	# puppeteer
 	searxng
+	# puppeteer
+	ComfyUI
 	# swarmui
 )
 
@@ -49,8 +52,8 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 	fi
@@ -61,11 +64,11 @@ function SETUP_FOLDERS() {
 			"models/anything-llm_models"
 			"models/localai_models"
 			"models/ollama_models"
-			"models/comfyui_models"
+			"models/ComfyUI_models"
 			"outputs/anything-llm_output"
 			"outputs/localai_output"
 			"outputs/ollama_output"
-			"outputs/comfyui_output"
+			"outputs/ComfyUI_output"
 			"outputs/motioneye_shared"
 		)
 
@@ -73,8 +76,8 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 	fi
@@ -105,8 +108,8 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 	fi
@@ -126,8 +129,8 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 	fi
@@ -165,11 +168,38 @@ function SETUP_FOLDERS() {
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
 
 	fi
+
+	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
+		FOLDERS=(
+			"models"
+			"output"
+			"input"
+			"custom_nodes"
+		)
+
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
+
+		if [[ -d ${COMFYUI_PATH}/.git ]]; then
+			git pull
+		else
+			git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${COMFYUI_PATH}/Dockerfile"
+
+	fi
+
+	# cd "${STACK_BASEPATH}/DATA/ai-stack/ai-services" || exit 1
 
 	CREATE_FOLDERS
 

@@ -76,7 +76,7 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
 
@@ -436,46 +436,46 @@ elif [[ ${USER} == "rizzo" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
 	echo ""
 	SETUP_AI_STACK
 	echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
+	# echo ""
+	# SETUP_GAMESERVER_STACK
 	# # docker compose exec pterodactyl-panel php artisan p:user:make
-	echo ""
+	# echo ""
 
 	########################
 

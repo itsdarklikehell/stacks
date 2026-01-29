@@ -12,6 +12,7 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
+      - autoheal=true
       - autoheal-app
       - autoheal-app=true
       - homarr-app=true
@@ -85,6 +86,7 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
+      - autoheal=true
       - autoheal-app
       - autoheal-app=true
       - homarr-app=true
@@ -163,6 +165,7 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
+      - autoheal=true
       - autoheal-app
       - autoheal-app=true
       - homarr-app=true

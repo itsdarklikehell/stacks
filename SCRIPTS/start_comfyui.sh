@@ -65,7 +65,7 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
 
@@ -105,7 +105,7 @@ function CREATE_FOLDERS() {
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/comfyui_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
@@ -113,7 +113,7 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/comfyui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"

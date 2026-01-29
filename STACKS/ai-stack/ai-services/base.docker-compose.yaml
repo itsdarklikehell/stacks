@@ -140,30 +140,38 @@ volumes:
       o: bind
       device: ../../../DATA/ai-inputs
 
-  comfyui_models:
-    name: comfyui_models
+  ComfyUI_models:
+    name: ComfyUI_models
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-models/comfyui_models
-  comfyui_input:
-    name: comfyui_input
+      device: ../../../DATA/ComfyUI/models
+  ComfyUI_input:
+    name: ComfyUI_input
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-inputs
-  comfyui_output:
-    name: comfyui_output
+      device: ../../../DATA/ComfyUI/input
+  ComfyUI_output:
+    name: ComfyUI_output
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-outputs/comfyui_output
+      device: ../../../DATA/ComfyUI/output
+  ComfyUI_custom_nodes:
+    name: ComfyUI_custom_nodes
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ComfyUI/custom_nodes
 
   homeassistant-config:
     name: homeassistant-config

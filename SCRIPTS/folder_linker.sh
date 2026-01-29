@@ -62,7 +62,7 @@ function SETUP_ENV() {
 	export DOCKER_BASEPATH
 	export STACK_BASEPATH
 	export IP_ADDRESS
-	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
 
@@ -131,8 +131,8 @@ function LINK_FOLDERS() {
 		SOURCE="${STACK_BASEPATH}/DATA/ai-workflows"
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/workflows"
 		LINKER
-		# ### ai-workflows > ai-models/comfyui_models/workflows
-		DEST="${STACK_BASEPATH}/DATA/ai-models/comfyui_models/workflows"
+		# ### ai-workflows > ai-models/ComfyUI_models/workflows
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models/workflows"
 		LINKER
 		# ### ai-workflows > ComfyUI/user/default/workflows
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/user/default/workflows"
@@ -167,21 +167,21 @@ function LINK_FOLDERS() {
 
 	}
 
-	function COMFYUI_MODELS() {
+	function ComfyUI_models() {
 
-		# ### comfyui_models > ComfyUI/models
-		SOURCE="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+		# ### ComfyUI_models > ComfyUI/models
+		SOURCE="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 		DEST="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI/models"
 		LINKER
 
-		# ### comfyui_models > anything-llm_models/comfyui_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/comfyui_models"
+		# ### ComfyUI_models > anything-llm_models/ComfyUI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/anything-llm_models/ComfyUI_models"
 		LINKER
-		# ### comfyui_models > localai_models/comfyui_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/comfyui_models"
+		# ### ComfyUI_models > localai_models/ComfyUI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/localai_models/ComfyUI_models"
 		LINKER
-		# ### comfyui_models > ollama_models/comfyui_models
-		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/comfyui_models"
+		# ### ComfyUI_models > ollama_models/ComfyUI_models
+		DEST="${STACK_BASEPATH}/DATA/ai-models/ollama_models/ComfyUI_models"
 		LINKER
 
 	}
@@ -228,7 +228,7 @@ function LINK_FOLDERS() {
 
 	}
 
-	COMFYUI_MODELS
+	ComfyUI_models
 	COMFYUI_NODES
 	COMFYUI_STYLES
 	COMFYUI_WORKFLOWS

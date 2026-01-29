@@ -166,7 +166,7 @@ function INSTALL_DOCKER() {
 			export DOCKER_BASEPATH
 			export STACK_BASEPATH
 			export IP_ADDRESS
-			# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+			# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 			cd "${STACK_BASEPATH}" || exit 1
 

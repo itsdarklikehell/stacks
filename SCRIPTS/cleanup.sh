@@ -60,7 +60,7 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
 

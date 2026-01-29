@@ -7,6 +7,7 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.ouroboros.enable=true
+      - autoheal=true
       - autoheal-app
       - autoheal-app=true
       - homarr-app=true
@@ -40,18 +41,18 @@ services:
       - ollama_models:/root/.ollama/models
 
       # - anything-llm_models:/root/.ollama/models/anything-llm_models
-      # - comfyui_models:/root/.ollama/models/comfyui_models
+      # - ComfyUI_models:/root/.ollama/models/ComfyUI_models
       # - InvokeAI_models:/root/.ollama/models/invokeai_models
       # - localai_models:/root/.ollama/models
 
       # OUTPUTS
       - anything-llm_output:/root/.ollama/output/anything-llm_output
-      - comfyui_output:/root/.ollama/output/comfyui_output
+      - ComfyUI_output:/root/.ollama/output/ComfyUI_output
       - InvokeAI_output:/root/.ollama/output/InvokeAI_output
       - localai_output:/root/.ollama/output
       # # INPUTS
       # - anything-llm_input:/root/.ollama/input/anything-llm_input
-      # - comfyui_input:/root/.ollama/input/comfyui_input
+      # - ComfyUI_input:/root/.ollama/input/ComfyUI_input
       # - InvokeAI_input:/root/.ollama/input/InvokeAI_input
       # - localai_input:/root/.ollama/input
 

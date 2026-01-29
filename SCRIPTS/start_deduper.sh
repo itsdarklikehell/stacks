@@ -62,7 +62,7 @@ function SETUP_ENV() {
 		exit 1
 	fi
 
-	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/comfyui_models"
+	# export COMFYUI_MODEL_PATH="${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
 
 	cd "${STACK_BASEPATH}" || exit 1
 
@@ -82,7 +82,7 @@ export AI_INPUTS_PATH="${STACK_BASEPATH}/DATA/ai-inputs"
 export AI_OUTPUTS_PATH="${STACK_BASEPATH}/DATA/ai-outputs"
 export AI_WORKFLOWS_PATH="${STACK_BASEPATH}/DATA/ai-workflows"
 
-export MAIN_MODELS_PATH="${AI_MODELS_PATH}/comfyui_models"
+export MAIN_MODELS_PATH="${AI_MODELS_PATH}/ComfyUI_models"
 
 cd "${STACK_BASEPATH}" || exit 1
 
@@ -98,7 +98,7 @@ modelfolders=(
 	"${AI_MODELS_PATH}/InvokeAI_models"
 	"${AI_MODELS_PATH}/localai_models"
 	"${AI_MODELS_PATH}/ollama_models"
-	"${AI_MODELS_PATH}/comfyui_models"
+	"${AI_MODELS_PATH}/ComfyUI_models"
 )
 
 for folder in "${folders[@]}"; do
