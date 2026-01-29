@@ -30,7 +30,7 @@ function SETUP_ENV() {
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -41,7 +41,7 @@ function SETUP_ENV() {
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
@@ -52,7 +52,7 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
@@ -88,7 +88,7 @@ function LINK_FOLDERS() {
 			echo "${DEST} is just a plain directory!"
 
 			# echo "Checking if ${SOURCE} exists"
-			if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
+			if [[ ! -d "${SOURCE}" ]] && [[ ! -L "${SOURCE}" ]]; then
 				# echo "Creating ${SOURCE}"
 				mkdir -p "${SOURCE}"
 			fi
@@ -106,7 +106,7 @@ function LINK_FOLDERS() {
 			# echo "${DEST} is not a symlink nor a existing directory"
 
 			# echo "Checking if folder ${SOURCE} exists"
-			if [[ ! -d ${SOURCE} ]] && [[ ! -L ${SOURCE} ]]; then
+			if [[ ! -d "${SOURCE}" ]] && [[ ! -L "${SOURCE}" ]]; then
 				echo "Creating ${SOURCE}"
 				mkdir -p "${SOURCE}"
 			fi
@@ -118,7 +118,7 @@ function LINK_FOLDERS() {
 			fi
 
 			# echo "symlinking ${DEST} to ${SOURCE}"
-			if [[ -d ${SOURCE} ]]; then
+			if [[ -d "${SOURCE}" ]]; then
 				ln -sf "${SOURCE}" "${DEST}"
 			fi
 		fi

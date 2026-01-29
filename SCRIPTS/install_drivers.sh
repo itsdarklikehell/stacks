@@ -65,7 +65,7 @@ function INSTALL_DRIVERS() {
 
 	fi
 
-	if [[ ${DOCKER_RUNTIME} != "nvidia-container-runtime" ]]; then
+	if [[ "${DOCKER_RUNTIME}" != "nvidia-container-runtime" ]]; then
 
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker

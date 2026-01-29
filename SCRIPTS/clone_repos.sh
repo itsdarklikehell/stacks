@@ -387,7 +387,7 @@ function CLONE_COMFYUI() {
 				if [[ -f ${ESSENTIAL_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 							uv run comfy-cli node install "${node_name}"
 						fi
 					done <"${ESSENTIAL_CUSTOM_NODELIST}"
@@ -408,7 +408,7 @@ function CLONE_COMFYUI() {
 				if [[ -f ${EXTRA_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 							uv run comfy-cli node install "${node_name}"
 						fi
 					done <"${EXTRA_CUSTOM_NODELIST}"
@@ -429,7 +429,7 @@ function CLONE_COMFYUI() {
 				if [[ -f ${DISABLED_CUSTOM_NODELIST} ]]; then
 					echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 							uv run comfy-cli node disable "${node_name}"
 						fi
 					done <"${DISABLED_CUSTOM_NODELIST}"
@@ -450,7 +450,7 @@ function CLONE_COMFYUI() {
 				if [[ -f ${REMOVED_CUSTOM_NODELIST} ]]; then
 					echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
-						if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+						if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 							uv run comfy-cli node disable "${node_name}"
 						fi
 					done <"${REMOVED_CUSTOM_NODELIST}"
@@ -488,7 +488,7 @@ function CLONE_COMFYUI() {
 		echo "Using Local setup"
 		# ./install.sh
 
-		if [[ -f .venv/bin/activate ]]; then
+		if [[ -f ".venv/bin/activate" ]]; then
 			# shellcheck source=/dev/null
 			source .venv/bin/activate
 		else
@@ -563,7 +563,7 @@ function CLONE_COMFYUI_MCP() {
 
 	function LOCAL_SETUP() {
 
-		if [[ -f .venv/bin/activate ]]; then
+		if [[ -f ".venv/bin/activate" ]]; then
 			# shellcheck source=/dev/null
 			source .venv/bin/activate
 		else
@@ -703,7 +703,7 @@ function CLONE_COPYPARTY() {
 
 		echo "Using Local setup"
 
-		# if [[ -f .venv/bin/activate ]]; then
+		# if [[ -f ".venv/bin/activate" ]]; then
 		# 	# shellcheck source=/dev/null
 		# 	source .venv/bin/activate
 		# else
@@ -782,7 +782,7 @@ function CLONE_SYNCTUBE() {
 
 		echo "Using Local setup"
 
-		# if [[ -f .venv/bin/activate ]]; then
+		# if [[ -f ".venv/bin/activate" ]]; then
 		# 	# shellcheck source=/dev/null
 		# 	source .venv/bin/activate
 		# else
@@ -859,7 +859,7 @@ function CLONE_PROJZOMB() {
 	if [[ ! -d "project-zomboid" ]]; then
 		echo "Cloning project-zomboid"
 		echo ""
-		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O ${STACK_BASEPATH}/DATA/testing-stack/project-zomboid/pz_install.sh
+		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/testing-stack/project-zomboid/pz_install.sh"
 	fi
 
 }

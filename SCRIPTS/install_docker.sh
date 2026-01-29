@@ -36,7 +36,7 @@ function REMOVE_DOCKER() {
 		DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
-		if [[ ${exitstatus} == 0 ]]; then
+		if [[ "${exitstatus}" == 0 ]]; then
 			echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 		else
 			echo "User selected Cancel."
@@ -49,7 +49,7 @@ function REMOVE_DOCKER() {
 		STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
-		if [[ ${exitstatus} == 0 ]]; then
+		if [[ "${exitstatus}" == 0 ]]; then
 			echo "User selected Ok and entered " "${STACK_BASEPATH}"
 		else
 			echo "User selected Cancel."
@@ -62,7 +62,7 @@ function REMOVE_DOCKER() {
 		IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
-		if [[ ${exitstatus} == 0 ]]; then
+		if [[ "${exitstatus}" == 0 ]]; then
 			echo "User selected Ok and entered " "${IP_ADDRESS}"
 		else
 			echo "User selected Cancel."
@@ -134,7 +134,7 @@ function INSTALL_DOCKER() {
 			DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
-			if [[ ${exitstatus} == 0 ]]; then
+			if [[ "${exitstatus}" == 0 ]]; then
 				echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 			else
 				echo "User selected Cancel."
@@ -145,7 +145,7 @@ function INSTALL_DOCKER() {
 			STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
-			if [[ ${exitstatus} == 0 ]]; then
+			if [[ "${exitstatus}" == 0 ]]; then
 				echo "User selected Ok and entered " "${STACK_BASEPATH}"
 			else
 				echo "User selected Cancel."
@@ -156,7 +156,7 @@ function INSTALL_DOCKER() {
 			IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
-			if [[ ${exitstatus} == 0 ]]; then
+			if [[ "${exitstatus}" == 0 ]]; then
 				echo "User selected Ok and entered " "${IP_ADDRESS}"
 			else
 				echo "User selected Cancel."
@@ -227,7 +227,7 @@ function INSTALL_DOCKER() {
 	sudo systemctl enable --now docker
 	sudo systemctl enable --now docker.socket
 
-	if [[ ${DOCKER_RUNTIME} != "nvidia-container-runtime" ]]; then
+	if [[ "${DOCKER_RUNTIME}" != "nvidia-container-runtime" ]]; then
 
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker

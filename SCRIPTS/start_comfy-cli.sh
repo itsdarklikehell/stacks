@@ -42,21 +42,21 @@ function SETUP_ENV() {
 	export STACK_BASEPATH
 	export IP_ADDRESS
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
@@ -187,7 +187,7 @@ function INSTALL_CUSTOM_NODES() {
 			if [[ -f ${ESSENTIAL_CUSTOM_NODELIST} ]]; then
 				echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${ESSENTIAL_CUSTOM_NODELIST}"
@@ -208,7 +208,7 @@ function INSTALL_CUSTOM_NODES() {
 			if [[ -f ${EXTRA_CUSTOM_NODELIST} ]]; then
 				echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node install "${node_name}"
 					fi
 				done <"${EXTRA_CUSTOM_NODELIST}"
@@ -229,7 +229,7 @@ function INSTALL_CUSTOM_NODES() {
 			if [[ -f ${DISABLED_CUSTOM_NODELIST} ]]; then
 				echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node disable "${node_name}"
 					fi
 				done <"${DISABLED_CUSTOM_NODELIST}"
@@ -250,7 +250,7 @@ function INSTALL_CUSTOM_NODES() {
 			if [[ -f ${REMOVED_CUSTOM_NODELIST} ]]; then
 				echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 				while IFS= read -r node_name; do
-					if [[ -n ${node_name} ]] && [[ ${node_name} != \#* ]]; then
+					if [[ -n "${node_name}" ]] && [[ "${node_name}" != \#* ]]; then
 						uv run comfy-cli node remove "${node_name}"
 					fi
 				done <"${REMOVED_CUSTOM_NODELIST}"
@@ -288,7 +288,7 @@ function LOCAL_SETUP() {
 	echo "Using Local setup"
 	# ./install.sh
 
-	if [[ -f .venv/bin/activate ]]; then
+	if [[ -f ".venv/bin/activate" ]]; then
 		# shellcheck source=/dev/null
 		source .venv/bin/activate
 	else
@@ -323,7 +323,7 @@ function RUN_COMFY_CLI() {
 
 	cd "${COMFYUI_PATH}" || exit 1
 
-	if [[ -f .venv/bin/activate ]]; then
+	if [[ -f ".venv/bin/activate" ]]; then
 		# shellcheck source=/dev/null
 		source .venv/bin/activate
 	else

@@ -41,21 +41,21 @@ function SETUP_ENV() {
 	export STACK_BASEPATH
 	export IP_ADDRESS
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
@@ -105,12 +105,12 @@ for folder in "${folders[@]}"; do
 
 	echo "Removing Leftovers and deduplicating ${folder}"
 
-	if [[ ! -d ${folder} ]]; then
+	if [[ ! -d "${folder}" ]]; then
 		echo "Folder ${folder} does not exist. Skipping..."
 		continue
 	fi
 
-	if [[ ${folder} == "${AI_MODELS_PATH}" ]]; then
+	if [[ "${folder}" == "${AI_MODELS_PATH}" ]]; then
 		for model_folder in "${modelfolders[@]}"; do
 			if [[ ${model_folder} == "${MAIN_MODELS_PATH}" ]]; then
 				echo "Processing model folder ${model_folder} ..."

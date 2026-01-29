@@ -55,21 +55,21 @@ function SETUP_ENV() {
 	export STACK_BASEPATH
 	export IP_ADDRESS
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${DOCKER_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${STACK_BASEPATH}"
 	else
 		echo "User selected Cancel."
 		exit 1
 	fi
 
-	if [[ ${exitstatus} == 0 ]]; then
+	if [[ "${exitstatus}" == 0 ]]; then
 		echo "User selected Ok and entered " "${IP_ADDRESS}"
 	else
 		echo "User selected Cancel."
