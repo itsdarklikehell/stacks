@@ -7,9 +7,8 @@ RUN apt-get update && apt-get install -y \
 
 # Alleen downloaden en klaarmaken
 RUN mkdir -p /config/Downloads && \
-    wget -O /config/Downloads/pz_install.sh \
-    "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" && \
-    chmod +x /config/Downloads/pz_install.sh
+    wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O /config/Downloads/pz_install.sh
+RUN chmod +x /config/Downloads/pz_install.sh
 
 # 2. Automatische installatie uitvoeren tijdens build (naar /config/ProjectZomboid)
 # Let op: Sommige GOG installers negeren silent flags in Docker;

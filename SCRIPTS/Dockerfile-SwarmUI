@@ -21,3 +21,4 @@ EXPOSE 7801 8188
 
 # 4. Start het launch-script
 # ENTRYPOINT ["bash", "/SwarmUI/launchtools/docker-standard-inner.sh"]
+# ENTRYPOINT ["bash", "/SwarmUI/launchtools/launch-standard-docker.sh fixch"]

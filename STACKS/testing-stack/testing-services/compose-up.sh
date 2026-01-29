@@ -432,7 +432,7 @@ function SETUP_FOLDERS() {
 			"data"
 		)
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
 
 	fi
 

@@ -35,8 +35,9 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
+      # - SwarmUI_data:/SwarmUI
       - ComfyUI_data:/SwarmUI/dlbackend/ComfyUI
-      - SwarmUI_models:/SwarmUI/Models
+      # - SwarmUI_models:/SwarmUI/Models
 
     hostname: ${NAME:-SwarmUI}
 
@@ -55,6 +56,7 @@ services:
       - ALL
 
     entrypoint: [bash, /SwarmUI/launchtools/docker-standard-inner.sh]
+    # entrypoint: [bash, /SwarmUI/launchtools/launch-standard-docker.sh, fixch]
 
     runtime: nvidia
     deploy:

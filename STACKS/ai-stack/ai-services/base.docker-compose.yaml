@@ -213,6 +213,14 @@ volumes:
       o: bind
       device: ../../../DATA/ai-custom_nodes
 
+  SwarmUI_data:
+    name: SwarmUI_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/SwarmUI
   SwarmUI_models:
     name: SwarmUI_models
     driver: local
