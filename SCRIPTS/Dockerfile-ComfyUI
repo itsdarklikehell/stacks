@@ -47,9 +47,9 @@ USER comfyuser
 WORKDIR /ComfyUI
 
 # Installeer ComfyUI via de CLI in de huidige map
-RUN comfy set-default /ComfyUI && \
-    comfy --install-completion && \
-    comfy --workspace=/ComdfyUI install
+RUN yes | comfy set-default /ComfyUI && \
+    yes | comfy --install-completion && \
+    yes | comfy --workspace=/ComdfyUI install
 
 # Gezondheidscontrole
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
