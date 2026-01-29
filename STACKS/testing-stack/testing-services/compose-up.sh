@@ -30,7 +30,6 @@ COMPOSE_FILES=(
 	owncast
 	obs-studio
 	pcsx2
-	pygotchi
 	retroarch
 	retrom
 	sunshine
