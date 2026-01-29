@@ -27,11 +27,11 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	if [[ ${USER} == "hans" ]]; then
+	if [[ "${USER}" == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
-	elif [[ ${USER} == "rizzo" ]]; then
+	elif [[ "${USER}" == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
@@ -353,7 +353,7 @@ PRUNING
 ### STACKS:
 CREATE_SECRETS
 
-if [[ ${USER} == "hans" ]]; then
+if [[ "${USER}" == "hans" ]]; then
 	# echo ""
 	# SETUP_AUTOSTART
 	# echo ""
@@ -409,7 +409,7 @@ if [[ ${USER} == "hans" ]]; then
 	# SETUP_TESTING_STACK
 	# echo ""
 
-elif [[ ${USER} == "rizzo" ]]; then
+elif [[ "${USER}" == "rizzo" ]]; then
 	# echo ""
 	# SETUP_AUTOSTART
 	# echo ""
@@ -593,11 +593,11 @@ fi
 # # START_BROWSER >/dev/null 2>&1 &
 # # echo ""
 
-if [[ ${USER} == "rizzo" ]]; then
+if [[ "${USER}" == "rizzo" ]]; then
 	echo ""
 	"${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 	echo ""
-elif [[ ${USER} == "hans" ]]; then
+elif [[ "${USER}" == "hans" ]]; then
 	echo ""
 	# "${STACK_BASEPATH}"/SCRIPTS/done_sound.sh
 	echo ""

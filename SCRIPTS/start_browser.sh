@@ -5,9 +5,9 @@ echo "Start browser script started."
 
 IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 export IP_ADDRESS
-if [[ ${USER} == "hans" ]]; then
+if [[ "${USER}" == "hans" ]]; then
 	export IP_ADDRESS
-elif [[ ${USER} == "rizzo" ]]; then
+elif [[ "${USER}" == "rizzo" ]]; then
 	export IP_ADDRESS
 	# export IP_ADDRESS=192.168.178.63
 else

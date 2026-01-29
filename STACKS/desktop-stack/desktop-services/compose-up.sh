@@ -107,19 +107,19 @@ function BUILDING() {
 	echo "Building is set to: ${BUILDING}"
 	echo ""
 
-	if [[ ${BUILDING} == "force_rebuild" ]]; then
-		if [[ ${USER} == "hans" ]]; then
+	if [[ "${BUILDING}" == "force_rebuild" ]]; then
+		if [[ "${USER}" == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d --build --force-recreate --remove-orphans
 		fi
-	elif [[ ${BUILDING} == "true" ]] || [[ ${BUILDING} == "normal" ]]; then
-		if [[ ${USER} == "hans" ]]; then
+	elif [[ "${BUILDING}" == "true" ]] || [[ "${BUILDING}" == "normal" ]]; then
+		if [[ "${USER}" == "hans" ]]; then
 			docker compose -f base.hans.docker-compose.yaml ${ARGS} up -d
 		else
 			docker compose -f base.docker-compose.yaml ${ARGS} up -d
 		fi
-	elif [[ ${BUILDING} == "false" ]]; then
+	elif [[ "${BUILDING}" == "false" ]]; then
 		echo "Skipping docker compose up"
 	fi
 

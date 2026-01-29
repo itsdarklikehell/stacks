@@ -13,11 +13,11 @@ function SETUP_ENV() {
 	IP_ADDRESS=$(hostname -I | awk '{print $1}') || true # get machine IP address
 	export IP_ADDRESS
 
-	if [[ ${USER} == "hans" ]]; then
+	if [[ "${USER}" == "hans" ]]; then
 		export STACK_BASEPATH="/media/hans/4-T/stacks"
 		export DOCKER_BASEPATH="/media/hans/4-T/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
-	elif [[ ${USER} == "rizzo" ]]; then
+	elif [[ "${USER}" == "rizzo" ]]; then
 		export STACK_BASEPATH="/media/rizzo/RAIDSTATION/stacks"
 		export DOCKER_BASEPATH="/media/rizzo/RAIDSTATION/docker"
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
