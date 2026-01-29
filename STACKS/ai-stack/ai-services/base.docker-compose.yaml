@@ -213,23 +213,6 @@ volumes:
       o: bind
       device: ../../../DATA/ai-custom_nodes
 
-  SwarmUI_models:
-    name: SwarmUI_models
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/SwarmUI/SwarmUI_models
-  # SwarmUI_models:
-  #   name: SwarmUI_models
-  #   driver: local
-  #   # external: true
-  #   driver_opts:
-  #     type: none
-  #     o: bind
-  #     device: ../../../DATA/ai-stack/ComfyUI/models
-
   homeassistant-config:
     name: homeassistant-config
     driver: local

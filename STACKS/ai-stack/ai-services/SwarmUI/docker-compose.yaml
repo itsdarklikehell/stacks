@@ -42,8 +42,6 @@ services:
       - ComfyUI_data:/SwarmUI/dlbuild/ComfyUI
       - ComfyUI_custom_nodes:/SwarmUI/dlbuild/ComfyUI/custom_nodes
       - ComfyUI_models:/SwarmUI/dlbuild/ComfyUI/models
-      # - ComfyUI_models:/SwarmUI/Models
-      - SwarmUI_models:/SwarmUI/Models
 
     hostname: ${NAME:-SwarmUI}
 
