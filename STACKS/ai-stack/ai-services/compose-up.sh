@@ -16,6 +16,7 @@ COMPOSE_FILES=(
 	localai
 	n8n
 	ollama
+	pygotchi
 	open-webui
 	# puppeteer
 	searxng
@@ -204,6 +205,23 @@ function SETUP_FOLDERS() {
 
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
 		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerignore-ComfyUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/.dockerignore"
+
+	fi
+
+	if [[ ${SERVICE_NAME} == "pygotchi" ]]; then
+		declare -a FOLDERS=()
+		# FOLDERS=(
+		# 	"models"
+		# 	"output"
+		# 	"input"
+		# 	"custom_nodes"
+		# )
+
+		if [[ -d "${STACK_BASEPATH}/DATA/ai-stack/pygotchi/.git" ]]; then
+			git pull
+		else
+			git clone --recursive https://github.com/almarch/pygotchi.git "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
+		fi
 
 	fi
 

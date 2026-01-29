@@ -1,0 +1,34 @@
+FROM lscr.io/linuxserver/webtop:ubuntu-xfce
+
+# Stap 1: Systeem dependencies
+RUN apt-get update && apt-get install -y \
+    wget unzip lib32gcc-s1 libsdl2-2.0-0 default-jre \
+    && rm -rf /var/lib/apt/lists/*
+
+# Alleen downloaden en klaarmaken
+RUN mkdir -p /config/Downloads && \
+    wget -O /config/Downloads/pz_install.sh \
+    "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" && \
+    chmod +x /config/Downloads/pz_install.sh
+
+# 2. Automatische installatie uitvoeren tijdens build (naar /config/ProjectZomboid)
+# Let op: Sommige GOG installers negeren silent flags in Docker;
+# als dit faalt, verplaatsen we dit naar het opstartscript hieronder.
+RUN /config/Downloads/pz_install.sh --prefix=/config/ProjectZomboid --accept-license --silent || true
+
+# Stap 3: Maak het autostart script aan
+# Dit script wordt door de LinuxServer base-image uitgevoerd bij boot
+RUN mkdir -p /custom-cont-init.d && \
+    echo '#!/bin/bash\n\
+    if [ -f "/config/ProjectZomboid/start.sh" ]; then\n\
+        echo "--- Project Zomboid wordt gestart ---"\n\
+        su abc -c "DISPLAY=:1 /config/ProjectZomboid/start.sh &"\n\
+    else\n\
+        echo "--- Game nog niet geïnstalleerd. Open de terminal in Webtop en run ~/Downloads/pz_install.sh ---"\n\
+    fi' > /custom-cont-init.d/start-zomboid.sh && \
+    chmod +x /custom-cont-init.d/start-zomboid.sh
+
+# Rechten goedzetten voor de standaard webtop-gebruiker (abc)
+RUN chown -R abc:abc /config /custom-cont-init.d
+
+EXPOSE 3000 3001 16261

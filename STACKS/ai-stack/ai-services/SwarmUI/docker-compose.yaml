@@ -44,7 +44,7 @@ services:
 
     ports:
       - ${PORT:-7801}:7801
-      - 8188:8188
+      - 8189:8188
 
     env_file:
       - ./SwarmUI/.env

@@ -574,6 +574,23 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/obs-studio/obs-studio_recordings
 
+  project-zomboid_config:
+    name: project-zomboid_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/project-zomboid/project-zomboid_config
+  project-zomboid_scripts:
+    name: project-zomboid_scripts
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/project-zomboid/project-zomboid_scripts
+
 networks:
   host:
   testing-services:
