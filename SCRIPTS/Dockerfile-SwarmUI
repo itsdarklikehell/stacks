@@ -1,23 +1,29 @@
-# Gebruik de officiële SwarmUI image als basis (meest stabiel)
-FROM mcmonkey/SwarmUI:latest
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
 
-# Gebruikersrechten instellen (zoals in je eerdere stack)
 ARG UID=1000
-ARG GID=1000
-
-USER root
-RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
-
-# Zorg dat de mappen de juiste eigenaar hebben voor jouw PUID/PGID
-RUN chown -R $UID:$GID /app
-
-USER $UID
 WORKDIR /app
 
-# SwarmUI poort
-EXPOSE 7801
-# ComfyUI backend poort (intern)
-EXPOSE 8188
+# 1. Installeer alle systeem-dependencies in één laag en schoon op
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git wget build-essential python3.11 python3.11-venv python3.11-dev \
+    python3-pip ffmpeg libglib2.0-0 libgl1 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Start het start-script van SwarmUI
-ENTRYPOINT ["/bin/bash", "/app/launch-linux.sh", "--no-vnet-lib"]
+# 2. Gebruikersbeheer (veiligheid)
+RUN useradd -u $UID -m swarmui && \
+    git config --global --add safe.directory '*'
+
+# 3. Kopieer broncode (nu pas, voor betere caching)
+COPY --chown=swarmui:swarmui . ./SwarmUI
+
+# 4. Opschonen van eventuele lokale build-artefacten
+RUN rm -rf ./SwarmUI/src/bin ./SwarmUI/src/obj
+
+# Schakel over naar de niet-root gebruiker
+USER swarmui
+
+# Expose the port for other containers (to use Swarm as an API if you want)
+EXPOSE 7801
+
+# Start het launch-script
+ENTRYPOINT ["bash", "/app/SwarmUI/launchtools/docker-standard-inner.sh"]

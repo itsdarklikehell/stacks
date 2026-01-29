@@ -1,0 +1,36 @@
+# Git & Docker
+.git
+.gitignore
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# SwarmUI Data & Modellen (Koppel deze via volumes!)
+dlbackend/
+Models/
+Output/
+Data/
+input/
+
+# SwarmUI Backend & Executables
+src/bin/
+src/obj/
+*/bin/
+*/obj/
+livebin/
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Specifieke SwarmUI configuratie (vaak lokaal uniek)
+SelfConfig.yaml
+webroot/HostConfig.js
+
+# OS & Logs
+*.log
+.DS_Store
+Thumbs.db

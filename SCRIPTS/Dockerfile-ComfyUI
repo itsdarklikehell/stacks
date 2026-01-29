@@ -9,40 +9,44 @@ ARG GID=1000
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
-    UV_HTTP_TIMEOUT=300
+    UV_HTTP_TIMEOUT=300 \
+    UV_SYSTEM_PYTHON=1 \
+    PATH="/home/comfyuser/.local/bin:$PATH"
 
 # Kopieer uv naar de nieuwe image
 COPY --from=uv_bin /uv /uvx /bin/
 
-# Installeer Python en systeem-dependencies
-RUN apt-get update && apt-get install -y \
-    python3.10 python3-pip git libgl1-mesa-glx libglib2.0-0 curl \
-    && rm -rf /var/lib/apt/lists/*
+# Systeem-dependencies (libglib2.0-0 en libgl1 zijn essentieel voor OpenCV/ComfyUI)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.10 python3-pip git libgl1-mesa-glx libglib2.0-0 curl ca-certificates \
+    && rm -rf /var/lib/apt/lists
 
+# Gebruiker aanmaken voor veiligheid (non-root)
+ARG UID=1000
+ARG GID=1000
 RUN groupadd -g $GID comfyuser && \
-    useradd -u $UID -g $GID -m comfyuser
-
-WORKDIR /ComfyUI
-
-# Installeer comfy-cli als systeem-tool
-RUN uv pip install --system comfy-cli
-
-# Installeer PyTorch met uv (specifiek voor CUDA 12.1)
-RUN uv pip install --system torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-
-# Gebruik comfy-cli voor de installatie
-# Dit installeert ComfyUI core en de Manager
-RUN comfy --skip-prompt --here install --nvidia
-
-# Rechten goedzetten voor de volumes
-RUN chown -R $UID:$GID /ComfyUI
+    useradd -u $UID -g $GID -m comfyuser && \
+    mkdir -p /ComfyUI && chown -R comfyuser:comfyuser /ComfyUI
 
 USER comfyuser
-# Healthcheck toevoegen (zoals eerder besproken)
+WORKDIR /ComfyUI
+
+# Installeer Comfy-CLI en PyTorch met CUDA 12.1 support via uv
+# Gebruik --no-cache om image klein te houden
+RUN uv pip install --no-cache \
+    comfy-cli \
+    torch torchvision torchaudio \
+    --extra-index-url https://download.pytorch.org/whl/cu121
+
+# Installeer ComfyUI via de CLI
+# --here installeert in de huidige WORKDIR (/ComfyUI)
+RUN comfy --skip-prompt install --here --nvidia
+
+# Gezondheidscontrole
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD curl -f http://localhost:8188/system_stats || exit 1
 
 EXPOSE 8188
 
-# Start ComfyUI met comfy-cli launch
+# Start met listen op 0.0.0.0 zodat Docker de poort kan mappen
 CMD ["comfy", "launch", "--", "--listen", "0.0.0.0"]

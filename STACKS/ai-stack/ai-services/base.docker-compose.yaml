@@ -324,7 +324,7 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/searxng/searxng_cache
 
-  swarmui_data:
+  SwarmUI_data:
     name: swarmui_data
     driver: local
     # external: true

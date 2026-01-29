@@ -18,8 +18,8 @@ COMPOSE_FILES=(
 	# open-webui
 	# searxng
 	# puppeteer
-	SwarmUI
-	# ComfyUI
+	# SwarmUI
+	ComfyUI
 )
 
 function CREATE_FOLDERS() {
@@ -179,10 +179,11 @@ function SETUP_FOLDERS() {
 		if [[ -d "${STACK_BASEPATH}/DATA/SwarmUI/.git" ]]; then
 			git pull
 		else
-			git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git "${STACK_BASEPATH}/DATA/SwarmUI"
+			git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-SwarmUI" "${STACK_BASEPATH}/DATA/SwarmUI/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-SwarmUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerignore-SwarmUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/.dockerignore"
 
 	fi
 
@@ -198,10 +199,11 @@ function SETUP_FOLDERS() {
 		if [[ -d "${STACK_BASEPATH}/DATA/ComfyUI/.git" ]]; then
 			git pull
 		else
-			git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${STACK_BASEPATH}/DATA/ComfyUI"
+			git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${STACK_BASEPATH}/DATA/ComfyUI/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerignore-ComfyUI" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/.dockerignore"
 
 	fi
 

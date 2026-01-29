@@ -1,0 +1,30 @@
+# Git en Docker
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# ComfyUI Modellen (Deze moet je via Volumes koppelen, niet in de image builden)
+models/
+input/
+output/
+temp/
+
+# Python & Dependencies
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# ComfyUI specifieke data
+custom_nodes/*/
+user/
+storage/
+
+# OS specifieke bestanden
+.DS_Store
+Thumbs.db
