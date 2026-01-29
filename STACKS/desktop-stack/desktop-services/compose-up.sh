@@ -27,6 +27,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "kasm" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"profiles"
@@ -36,6 +37,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "webtop" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -43,6 +45,7 @@ function SETUP_FOLDERS() {
 	fi
 	if [[ ${SERVICE_NAME} == "sealskin" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"storage"
@@ -52,6 +55,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "kali-linux" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -60,6 +64,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rustdesk" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -68,6 +73,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "remmina" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)

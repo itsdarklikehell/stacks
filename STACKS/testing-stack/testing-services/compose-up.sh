@@ -58,6 +58,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "azahar" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -66,6 +67,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sunshine" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -74,6 +76,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openttd" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"save"
@@ -83,6 +86,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "obs-studio" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"recordings"
@@ -92,6 +96,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "emulatorjs" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"data"
@@ -101,6 +106,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "retrom" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"roms"
@@ -111,6 +117,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "gamevault" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"files"
 			"media"
@@ -121,6 +128,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "romm" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"resources"
@@ -134,6 +142,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "gameyfin" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"database"
 			"data"
@@ -146,6 +155,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "gaseous-server" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"data"
@@ -155,6 +165,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "synctube" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"user"
 		)
@@ -163,6 +174,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "wolf" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"etc"
 		)
@@ -171,6 +183,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "owncast" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
@@ -179,6 +192,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "citron" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -187,6 +201,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "code-server" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -195,6 +210,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "dogwalk" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -203,6 +219,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "dolphin" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -211,6 +228,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "dosbox-staging" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -219,6 +237,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "duckstation" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -227,6 +246,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "flycast" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -235,6 +255,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "gzdoom" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"wads"
@@ -244,6 +265,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "healthchecks" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -252,6 +274,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "luanti" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -260,6 +283,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mame" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -268,6 +292,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "melonds" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -276,6 +301,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "modmanager" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"modcache"
 		)
@@ -284,6 +310,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "modrinth" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -292,6 +319,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "pcsx2" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -300,6 +328,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "retroarch" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -308,6 +337,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rpcs3" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -316,6 +346,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "steamos" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -324,6 +355,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "scummvm" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -332,6 +364,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "vscodium" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -340,6 +373,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "vscodium-web" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -348,6 +382,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "xemu" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -356,6 +391,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mpd" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"run"
 			"configdir"
@@ -373,6 +409,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mympd" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"run"
 			"configdir"

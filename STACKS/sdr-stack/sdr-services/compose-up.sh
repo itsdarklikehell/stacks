@@ -25,6 +25,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rtlsdrairband" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -33,6 +34,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openwebrxplus" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"plugins"
@@ -43,6 +45,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sdrangel-webtop" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -63,6 +66,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rtl-tcp" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)

@@ -8,7 +8,7 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 cd "${SCRIPT_DIR}/.." || exit 1
 
-docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t swarmui .
+docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t SwarmUI .
 
 # Run this script with 'fixch' to run as root in the container and chown to the correct user
 # SETUSER="--user ${UID}:$(id -g) --cap-drop=ALL"
@@ -21,7 +21,7 @@ docker build --build-arg UID="${UID}" -f launchtools/CustomDockerfile.docker -t 
 
 # add "--network=host" if you want to access other services on the host network (eg a separated comfy instance)
 
-# docker run -it"${SETUSER}"--name swarmui--mount source=swarmdata,target=/SwarmUI/Data--mount source=swarmbackend,target=/SwarmUI/dlbackend--mount source=swarmdlnodes,target=/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes--mount source=swarmextensions,target=/SwarmUI/src/Extensions-v "${PERM_DATA}/swarmui/data/Models:/SwarmUI/Models"-v "${PERM_DATA}/swarmui/data/Output:/SwarmUI/Output"-v "../src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"--gpus=all -p 7801:7801 swarmui "${POSTARG}"
+# docker run -it"${SETUSER}"--name SwarmUI--mount source=swarmdata,target=/SwarmUI/Data--mount source=swarmbackend,target=/SwarmUI/dlbackend--mount source=swarmdlnodes,target=/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes--mount source=swarmextensions,target=/SwarmUI/src/Extensions-v "${PERM_DATA}/SwarmUI/data/Models:/SwarmUI/Models"-v "${PERM_DATA}/SwarmUI/data/Output:/SwarmUI/Output"-v "../src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows"--gpus=all -p 7801:7801 SwarmUI "${POSTARG}"
 
 # if [[ $? == 42 ]]; then
 # 	exec "${SCRIPT_DIR}/custom-launch-docker.sh" "$@"

@@ -28,6 +28,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "deluge" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -37,6 +38,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sabnzbd" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -46,6 +48,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "qbittorrent" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -55,6 +58,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "pyload-ng" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -64,6 +68,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "flexget" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -73,6 +78,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "nzbget" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -82,6 +88,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "transmission" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"

@@ -1,17 +1,17 @@
 services:
   swarmui:
-    # image: ${IMAGE:-swarmui}
-    container_name: ${NAME:-swarmui}
+    # image: ${IMAGE:-SwarmUI}
+    container_name: ${NAME:-SwarmUI}
     restart: ${RESTART:-unless-stopped}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
     build:
-      context: ../../../DATA/ai-stack/swarmui
+      context: ../../../DATA/ai-stack/SwarmUI
+      dockerfile: Dockerfile
       args:
         UID: ${PUID:-1000}
         GID: ${PGID:-1000}
-      dockerfile: ./launchtools/CustomDockerfile.docker
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -27,26 +27,16 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1
-      - DOCKER_MODS=linuxserver/mods:universal-package-install|linuxserver/mods:universal-git|linuxserver/mods:universal-cron|lscr.io/linuxserver/mods:universal-unrar6
-      # - DOCKER_HOST=
-      - INSTALL_PACKAGES=libfuse2|git|gdb
-      - RESTART_APP=true
-
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - swarmui_backend:/SwarmUI/dlbackend
-      - swarmui_data:/SwarmUI/Data
-      - swarmui_dlnodes:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/DLNodes
-      - swarmui_extensions:/SwarmUI/src/Extensions
-      - swarmui_models:/SwarmUI/Models
-      - swarmui_output:/SwarmUI/Output
-      - swarmui_workflows:/SwarmUI/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows
+      - swarmui_data:/app/Data
+      - ComfyUI_models:/app/dlbuild/ComfyUI/models
+      - ComfyUI_output:/app/dlbuild/ComfyUI/output
 
-    hostname: ${NAME:-swarmui}
+    hostname: ${NAME:-SwarmUI}
 
     networks:
       host:
@@ -54,9 +44,10 @@ services:
 
     ports:
       - ${PORT:-7801}:7801
+      - 8188:8188
 
     env_file:
-      - ./swarmui/.env
+      - ./SwarmUI/.env
 
     cap_drop:
       - ALL
@@ -78,19 +69,11 @@ services:
     # shm_size: 1gb
 
     # healthcheck:
-    # test:
-    #   [
-    #     CMD,
-    #     wget,
-    #     --no-verbose,
-    #     --tries=3,
-    #     --spider,
-    #     http://localhost:${PORT:-7801}/api/health,
-    #   ]
-    #   interval: 30s
+    #   test: [CMD, curl, -f, http://localhost:7801/]
+    #   interval: 45s
     #   timeout: 10s
-    #   start_period: 30s
     #   retries: 3
+    #   start_period: 120s
 
     logging:
       driver: json-file

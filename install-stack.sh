@@ -259,28 +259,6 @@ function SETUP_AI_STACK() {
 
 	export STACK_NAME="ai"
 	INSTALL_STACK
-
-	# alias ollama='docker exec -it ollama ollama'
-	alias ollama='docker exec -it ${ollama_container_name} ollama'
-
-	if command -v ollama >/dev/null 2>&1; then
-		echo ""
-		PULL_MODELS # >/dev/null 2>&1 &
-		echo ""
-	elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-		if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-			echo ""
-			PULL_MODELS # >/dev/null 2>&1 &
-			echo ""
-		fi
-	else
-		# alias ollama='docker exec -it ollama ollama'
-		alias ollama='docker exec -it ${ollama_container_name} ollama'
-		echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
-		sleep 20
-		PULL_MODELS # >/dev/null 2>&1 &
-	fi
-
 }
 
 function SETUP_BOOKS_STACK() {
@@ -366,11 +344,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_SECRETS

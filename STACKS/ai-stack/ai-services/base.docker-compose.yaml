@@ -324,14 +324,6 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/searxng/searxng_cache
 
-  swarmui_backend:
-    name: swarmui_backend
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_backend
   swarmui_data:
     name: swarmui_data
     driver: local
@@ -339,47 +331,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_data
-  swarmui_dlnodes:
-    name: swarmui_dlnodes
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_dlnodes
-  swarmui_extensions:
-    name: swarmui_extensions
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_extensions
-  swarmui_models:
-    name: swarmui_models
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-models/swarmui_models
-  swarmui_output:
-    name: swarmui_output
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-outputs/swarmui_output
-  swarmui_workflows:
-    name: swarmui_workflows
-    driver: local
-    # external: true
-    driver_opts:
-      type: none
-      o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_workflows
+      device: ../../../DATA/ai-stack/SwarmUI
 
   ai_outputs:
     name: ai_outputs

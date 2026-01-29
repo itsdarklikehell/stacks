@@ -322,7 +322,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_backend
+      device: ../../../DATA/ai-stack/SwarmUI/swarmui_backend
   swarmui_data:
     name: swarmui_data
     driver: local
@@ -330,7 +330,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_data
+      device: ../../../DATA/ai-stack/SwarmUI/swarmui_data
   swarmui_dlnodes:
     name: swarmui_dlnodes
     driver: local
@@ -338,7 +338,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_dlnodes
+      device: ../../../DATA/ai-stack/SwarmUI/swarmui_dlnodes
   swarmui_extensions:
     name: swarmui_extensions
     driver: local
@@ -346,7 +346,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_extensions
+      device: ../../../DATA/ai-stack/SwarmUI/swarmui_extensions
   swarmui_models:
     name: swarmui_models
     driver: local
@@ -370,7 +370,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/ai-stack/swarmui/swarmui_workflows
+      device: ../../../DATA/ai-stack/SwarmUI/swarmui_workflows
 
   ai_outputs:
     name: ai_outputs

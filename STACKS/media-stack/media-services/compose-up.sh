@@ -69,6 +69,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ardour" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -77,6 +78,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "cinephage" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"logs"
@@ -87,6 +89,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "birdnet-pi" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"ssl"
@@ -102,6 +105,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "blockbusterr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -110,6 +114,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rawtherapee" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -118,6 +123,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "emby-wrapped" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -126,6 +132,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "gimp" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -134,6 +141,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "krita" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -142,6 +150,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "digikam" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -150,6 +159,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "kdenlive" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -158,6 +168,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openshot" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -166,6 +177,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "shotcut" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -174,6 +186,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "lychee" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"pictures"
@@ -183,6 +196,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "piwigo" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"pictures"
@@ -192,6 +206,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "lollypop" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -200,6 +215,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "darktable" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -208,6 +224,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "your_spotify" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -216,6 +233,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "spotube" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -224,6 +242,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "webgrabplus" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"data"
@@ -233,6 +252,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "tautulli" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -241,6 +261,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "tvheadend" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"recordings"
@@ -250,6 +271,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "oscam" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -258,6 +280,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "synclounge" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -266,6 +289,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "minisatip" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -274,6 +298,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "airsonic-advanced" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"playlists"
@@ -285,6 +310,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mstream" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"music"
@@ -300,6 +326,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "htpcmanager" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -308,6 +335,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "beets" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -318,6 +346,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "emby" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"movies"
@@ -328,6 +357,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "plex" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"movies"
@@ -338,6 +368,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "kometa" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -346,6 +377,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "overseerr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -354,6 +386,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "vlc" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -362,6 +395,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "medusa" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -372,6 +406,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sickgear" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -382,6 +417,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mediaelch" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -390,6 +426,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "handbrake" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -398,6 +435,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "audacity" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -406,6 +444,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "jellyseer" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -414,6 +453,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "doplarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -422,6 +462,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "prowlarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -430,6 +471,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "lidarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -440,6 +482,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "bazarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"tvseries"
@@ -450,6 +493,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "radarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -460,6 +504,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sonarr" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -470,6 +515,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ombi" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -478,6 +524,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "sunvox-webtop" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -498,6 +545,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "tvs-server" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"content"
 		)
@@ -534,6 +582,7 @@ function SETUP_FOLDERS() {
 			cp -rf "${FOLDER}/${SERVICE_NAME}_configs/config.conf.bak" "${FOLDER}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"db"
 			"uploads"

@@ -25,6 +25,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "duplicati" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"backups"
@@ -34,6 +35,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "rsnapshot" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"snapshots"
@@ -43,6 +45,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "resilio-sync" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"downloads"
@@ -52,6 +55,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "syncthing" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"data"

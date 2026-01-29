@@ -27,6 +27,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "openllm-vtuber" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"avatars"
 			"backgrounds"

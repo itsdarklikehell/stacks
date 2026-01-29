@@ -24,6 +24,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "pterodactyl" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"database"
 			"var"
@@ -36,6 +37,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "veloren-server" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"userdata"
 		)
@@ -44,6 +46,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "linux-gsm-cs2" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)

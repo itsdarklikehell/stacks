@@ -28,6 +28,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "altus" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -35,6 +36,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "signal" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -42,6 +44,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "mastodon" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -49,6 +52,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "telegram" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -56,6 +60,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "webcord" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -63,6 +68,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "weixin" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -70,6 +76,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "ferdium" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)

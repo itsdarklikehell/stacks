@@ -6,20 +6,20 @@ export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
-	anything-llm
-	homeassistant
-	InvokeAI
-	letta-mcp-server
-	letta-server
-	localai
-	n8n
-	habridge
-	ollama
-	open-webui
-	searxng
+	# anything-llm
+	# homeassistant
+	# InvokeAI
+	# letta-mcp-server
+	# letta-server
+	# localai
+	# n8n
+	# habridge
+	# ollama
+	# open-webui
+	# searxng
 	# puppeteer
-	ComfyUI
-	# swarmui
+	SwarmUI
+	# ComfyUI
 )
 
 function CREATE_FOLDERS() {
@@ -42,6 +42,7 @@ function SETUP_FOLDERS() {
 			sudo wget -c "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/.env.example" -O "${FOLDER}/${SERVICE_NAME}_storage/.env"
 		fi
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"storage"
@@ -59,6 +60,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "InvokeAI" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"models/anything-llm_models"
@@ -83,6 +85,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "homeassistant" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"media"
@@ -93,6 +96,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "letta-server" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
@@ -100,6 +104,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "localai" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"cache"
 			"configuration"
@@ -115,6 +120,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "n8n" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"local_files"
@@ -122,6 +128,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "ollama" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
@@ -136,25 +143,29 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "open-webui" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "habridge" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "searxng" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"cache"
 		)
 	fi
 
-	if [[ ${SERVICE_NAME} == "swarmui" ]]; then
+	if [[ ${SERVICE_NAME} == "SwarmUI" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"backend"
 			"data"
@@ -165,16 +176,18 @@ function SETUP_FOLDERS() {
 			"workflows"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
+		if [[ -d "${STACK_BASEPATH}/DATA/SwarmUI/.git" ]]; then
+			git pull
+		else
+			git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git "${STACK_BASEPATH}/DATA/SwarmUI"
+		fi
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-SwarmUI" "${STACK_BASEPATH}/DATA/SwarmUI/Dockerfile"
 
 	fi
 
 	if [[ ${SERVICE_NAME} == "ComfyUI" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"models"
 			"output"
@@ -182,24 +195,15 @@ function SETUP_FOLDERS() {
 			"custom_nodes"
 		)
 
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/${SERVICE_NAME}_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/${SERVICE_NAME}_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-models/${SERVICE_NAME}_models"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
-		mkdir -p "${STACK_BASEPATH}/DATA/books-stack/motioneye/motioneye_shared"
-
-		if [[ -d ${COMFYUI_PATH}/.git ]]; then
+		if [[ -d "${STACK_BASEPATH}/DATA/ComfyUI/.git" ]]; then
 			git pull
 		else
-			git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_PATH}"
+			git clone --recursive https://github.com/comfyanonymous/ComfyUI.git "${STACK_BASEPATH}/DATA/ComfyUI"
 		fi
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${COMFYUI_PATH}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${STACK_BASEPATH}/DATA/ComfyUI/Dockerfile"
 
 	fi
-
-	# cd "${STACK_BASEPATH}/DATA/ai-stack/ai-services" || exit 1
 
 	CREATE_FOLDERS
 

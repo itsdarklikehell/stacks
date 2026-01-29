@@ -32,6 +32,7 @@ function SETUP_FOLDERS() {
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"library"
@@ -40,6 +41,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "freshrss" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
@@ -50,6 +52,7 @@ function SETUP_FOLDERS() {
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"library"
@@ -59,6 +62,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "calibre" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"books"
@@ -68,6 +72,7 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "mylar3" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"comics"
@@ -76,12 +81,14 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ ${SERVICE_NAME} == "rsspub" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 		)
 	fi
 
 	if [[ ${SERVICE_NAME} == "cops" ]]; then
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
 			"books"
@@ -90,6 +97,7 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "kavita" ]]; then
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"library"
@@ -100,6 +108,7 @@ function SETUP_FOLDERS() {
 
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
 
+		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"
 			"library"

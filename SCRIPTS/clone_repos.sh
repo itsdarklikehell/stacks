@@ -230,14 +230,14 @@ function CLONE_SWARMUI() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "swarmui" ]]; then
-		echo "Cloning swarmui"
+	if [[ ! -d "SwarmUI" ]]; then
+		echo "Cloning SwarmUI"
 		echo ""
-		git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git swarmui
-		cd swarmui || exit 1
+		git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
+		cd SwarmUI || exit 1
 	else
-		echo "Checking swarmui for updates"
-		cd swarmui || exit 1
+		echo "Checking SwarmUI for updates"
+		cd SwarmUI || exit 1
 		git pull
 	fi
 
@@ -256,13 +256,13 @@ function CLONE_SWARMUI() {
 
 	function DOCKER_SETUP() {
 		echo "Using Docker setup"
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-uv" CustomDockerfile-swarmui-uv
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-conda" CustomDockerfile-swarmui-conda
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui-venv" CustomDockerfile-swarmui-venv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-uv" CustomDockerfile-SwarmUI-uv
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-conda" CustomDockerfile-SwarmUI-conda
+		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-venv" CustomDockerfile-SwarmUI-venv
 
-		cp -rf "${SCRIPT_DIR}/CustomDockerfile-swarmui" launchtools/CustomDockerfile.docker
+		cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI" launchtools/CustomDockerfile.docker
 		cp -rf "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
-		# docker build -t swarmui .
+		# docker build -t SwarmUI .
 		./launchtools/custom-launch-docker.sh
 
 	}

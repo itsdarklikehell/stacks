@@ -1,16 +1,22 @@
-# Gebruik een Python base image en installeer uv
-FROM ghcr.io/astral-sh/uv:python3.10-slim-ubuntu22.04
+# Gebruik de UV builder om de binary te lenen
+FROM ghcr.io/astral-sh/uv:latest AS uv_bin
+
+# Gebruik de juiste NVIDIA base voor GPU support
+FROM nvidia/cuda:12.1.1-base-ubuntu22.04
 
 ARG UID=1000
 ARG GID=1000
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
-    UV_COMPILE_BYTECODE=1
+    UV_HTTP_TIMEOUT=300
 
-# Installeer systeem-afhankelijkheden en maak de gebruiker aan
+# Kopieer uv naar de nieuwe image
+COPY --from=uv_bin /uv /uvx /bin/
+
+# Installeer Python en systeem-dependencies
 RUN apt-get update && apt-get install -y \
-    git libgl1-mesa-glx libglib2.0-0 curl \
+    python3.10 python3-pip git libgl1-mesa-glx libglib2.0-0 curl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -g $GID comfyuser && \
@@ -24,13 +30,17 @@ RUN uv pip install --system comfy-cli
 # Installeer PyTorch met uv (specifiek voor CUDA 12.1)
 RUN uv pip install --system torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
-# Gebruik comfy-cli om ComfyUI te installeren
-# --skip-prompt voorkomt interactieve vragen
-# --here installeert in de huidige WORKDIR
-RUN comfy --skip-prompt --here install --nvidia --fast-deps
+# Gebruik comfy-cli voor de installatie
+# Dit installeert ComfyUI core en de Manager
+RUN comfy --skip-prompt --here install --nvidia
 
 # Rechten goedzetten voor de volumes
 RUN chown -R $UID:$GID /ComfyUI
+
+USER comfyuser
+# Healthcheck toevoegen (zoals eerder besproken)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:8188/system_stats || exit 1
 
 EXPOSE 8188
 
