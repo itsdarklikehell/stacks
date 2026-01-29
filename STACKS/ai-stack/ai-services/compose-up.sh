@@ -167,12 +167,12 @@ function SETUP_FOLDERS() {
 
 	if [[ ${SERVICE_NAME} == "SwarmUI" ]]; then
 		declare -a FOLDERS=()
-		FOLDERS=(
-			"models"
-			"output"
-			"input"
-			"custom_nodes"
-		)
+		# FOLDERS=(
+		# 	"models"
+		# 	"output"
+		# 	"input"
+		# 	"custom_nodes"
+		# )
 
 		if [[ -d "${STACK_BASEPATH}/DATA/SwarmUI/.git" ]]; then
 			git pull
