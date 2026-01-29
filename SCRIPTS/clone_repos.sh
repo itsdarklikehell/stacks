@@ -98,7 +98,7 @@ function CLONE_SCANOPY() {
 
 }
 
-function CLONE_CLAIR() {
+# function CLONE_CLAIR() {
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
@@ -657,7 +657,7 @@ function CLONE_COMFYUIMINI() {
 
 function CLONE_COPYPARTY() {
 
-	cd "${STACK_BASEPATH}/DATA/media-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
 
 	if [[ ! -d "copyparty" ]]; then
 		echo "Cloning copyparty"
@@ -667,36 +667,36 @@ function CLONE_COPYPARTY() {
 
 		mkdir -p "copyparty_configs"
 
-		if [[ ! -f copyparty_configs/config.conf ]]; then
-			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
 		fi
 
-		if [[ -f copyparty_configs/config.conf ]]; then
-			cp -rf "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak
 		fi
 
-		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp -rf "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
 		fi
 
-		cd "copyparty" || exit 1
 	else
 		echo "Checking copyparty for updates"
 		cd "copyparty" || exit 1
 
-		if [[ ! -f copyparty_configs/config.conf ]]; then
-			cp -rf "${FOLDER}/docs/examples/docker/basic-docker-compose/copyparty.conf" "${FOLDER}/copyparty_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
 		fi
 
-		if [[ -f copyparty_configs/config.conf ]]; then
-			cp -rf "copyparty_configs/config.conf" "copyparty_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak
 		fi
 
 		git pull
 
-		if [[ -f copyparty_configs/config.conf.bak ]]; then
-			cp -rf "copyparty_configs/config.conf.bak" "copyparty_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
 		fi
+
 	fi
 
 	function LOCAL_SETUP() {
@@ -919,20 +919,20 @@ function CLONE_BIRDNETPI_TCP() {
 
 CREATE_FOLDERS
 
-CLONE_ANYTHINGLLM    # >/dev/null 2>&1 &
-CLONE_CLAIR          # >/dev/null 2>&1 &
+CLONE_ANYTHINGLLM # >/dev/null 2>&1 &
+# CLONE_CLAIR          # >/dev/null 2>&1 &
 CLONE_COMFYUI        # >/dev/null 2>&1 &
-CLONE_SYNCTUBE       # >/dev/null 2>&1 &
+# CLONE_SYNCTUBE       # >/dev/null 2>&1 &
 CLONE_COMFYUI_MCP    # >/dev/null 2>&1 &
 CLONE_COMFYUIMINI    # >/dev/null 2>&1 &
-CLONE_COPYPARTY      # >/dev/null 2>&1 &
+# CLONE_COPYPARTY      # >/dev/null 2>&1 &
 CLONE_OLLMVT         # >/dev/null 2>&1 &
-CLONE_PUPPETEER      # >/dev/null 2>&1 &
-CLONE_SCANOPY        # >/dev/null 2>&1 &
+# CLONE_PUPPETEER      # >/dev/null 2>&1 &
+# CLONE_SCANOPY        # >/dev/null 2>&1 &
 CLONE_SWARMUI        # >/dev/null 2>&1 &
 CLONE_PYGOTCHI       # >/dev/null 2>&1 &
-CLONE_STRUDEL        # >/dev/null 2>&1 &
+# CLONE_STRUDEL        # >/dev/null 2>&1 &
 CLONE_SDR_TCP        # >/dev/null 2>&1 &
 CLONE_BIRDNETPI_TCP  # >/dev/null 2>&1 &
-CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
+# CLONE_KASMWORKSPACES # >/dev/null 2>&1 &
 LINK_FOLDERS
