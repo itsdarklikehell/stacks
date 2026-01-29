@@ -1,60 +1,62 @@
-# Gebruik de UV builder om de binary te lenen
+# 1. Gebruik de UV builder om de binary te lenen
 FROM ghcr.io/astral-sh/uv:latest AS uv_bin
 
-# Gebruik de juiste NVIDIA base voor GPU support
-FROM nvidia/cuda:12.1.1-base-ubuntu22.04
+# 2. Gebruik de NVIDIA runtime (Ubuntu 22.04 + CUDA 12.1)
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
-# Argumenten voor user management
-ARG UID=1000
-ARG GID=1000
-
-# Omgevingsvariabelen
+# 3. Omgevingsvariabelen instellen
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
+    UV_SYSTEM_PYTHON=1 \
     UV_HTTP_TIMEOUT=300 \
-    UV_SYSTEM_PYTHON=1
+    PYTHONPATH="/ComfyUI"
 
-# Kopieer uv naar de nieuwe image
+# 4. Kopieer uv binaries van de builder stage
 COPY --from=uv_bin /uv /uvx /bin/
 
-# Systeem-dependencies installeren als ROOT
+# 5. Installeer systeem-dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.10 \
     python3-pip \
     python-is-python3 \
     git \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
     curl \
     ca-certificates \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# STAP 1: Installeer zware dependencies als ROOT om permissiefouten te voorkomen
-# We gebruiken --no-cache om de uiteindelijke image klein te houden
+# 6. Stel de werkmap in op /ComfyUI
+WORKDIR /ComfyUI
+
+# STAP 1: Installeer PyTorch (grootste laag, apart voor caching)
 RUN uv pip install --no-cache \
-    comfy-cli \
     torch torchvision torchaudio \
     --extra-index-url https://download.pytorch.org/whl/cu121
 
-WORKDIR /ComfyUI
+# STAP 2: Clone ComfyUI core naar de huidige map (.)
+RUN git clone --recursive https://github.com/Comfy-Org/ComfyUI.git . && \
+    uv pip install --no-cache -r requirements.txt
 
-# Clone de officiële ComfyUI repository
-RUN git clone --recursive https://github.com/Comfy-Org/ComfyUI.git /ComfyUI
-# OPTIONEEL: Installeer de ComfyUI-Manager (aanbevolen)
-RUN git clone --recursive https://github.com/Comfy-Org/ComfyUI-Manager.git /ComfyUI/custom_nodes/ComfyUI-Manager
+# STAP 3: Installeer ComfyUI-Manager
+RUN mkdir -p custom_nodes/ComfyUI-Manager && \
+    git clone --recursive https://github.com/Comfy-Org/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager && \
+    uv pip install --no-cache -r custom_nodes/ComfyUI-Manager/requirements.txt
 
-# Installeer de Python requirements van ComfyUI
-RUN uv pip install --no-cache -r requirements.txt
+# STAP 4: Installeer Comfy-CLI en configureer de workspace
+# We slaan --install-completion over omdat dit niet werkt in Docker (sh)
+# We gebruiken 'yes n' om de tracking prompt bij 'set-default' te passeren
+RUN uv pip install --no-cache comfy-cli && \
+    yes y | comfy set-default /ComfyUI
 
-# Registreer de handmatige clone bij de CLI
-RUN comfy set-default /ComfyUI
-RUN comfy --workspace=/ComfyUI install --nvidia
-
-# Gezondheidscontrole
+# STAP 5: Gezondheidscontrole
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8188/system_stats || exit 1
 
+# STAP 6: Poort openzetten
 EXPOSE 8188
 
-# Start met listen op 0.0.0.0 zodat Docker de poort kan mappen
+# STAP 7: Start ComfyUI
+# De '--' zorgt dat de argumenten daarna direct naar ComfyUI gaan
+# CMD ["python3", "main.py", "--listen", "0.0.0.0"]
 CMD ["comfy", "launch", "--", "--listen", "0.0.0.0"]
