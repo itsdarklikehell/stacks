@@ -36,6 +36,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
       - ComfyUI_data:/SwarmUI/dlbackend/ComfyUI
+      - ComfyUI_models:/SwarmUI/Models
 
     hostname: ${NAME:-SwarmUI}
 
