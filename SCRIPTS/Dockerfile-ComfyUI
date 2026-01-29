@@ -47,10 +47,10 @@ USER comfyuser
 WORKDIR /ComfyUI
 
 # Installeer ComfyUI via de CLI in de huidige map
-RUN comfy set-default /ComfyUI && \
-    comfy tracking enable && \
-    comfy --install-completion && \
-    comfy --workspace=/ComdfyUI install
+RUN comfy set-default /ComfyUI
+RUN comfy tracking enable --no-prompt
+RUN comfy --install-completion
+RUN comfy --workspace=/ComdfyUI install
 
 # Gezondheidscontrole
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
