@@ -84,12 +84,13 @@ function LINK_FOLDERS() {
 
 function CLONE_PUPPETEER() {
 	SERVICE_NAME="puppeteer"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -127,7 +128,7 @@ function CLONE_PUPPETEER() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -141,12 +142,13 @@ function CLONE_PUPPETEER() {
 
 function CLONE_ANYTHINGLLM() {
 	SERVICE_NAME="anything-llm"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -172,7 +174,7 @@ function CLONE_ANYTHINGLLM() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -186,12 +188,13 @@ function CLONE_ANYTHINGLLM() {
 
 function CLONE_SCANOPY() {
 	SERVICE_NAME="scanopy"
+	STACK_NAME="essential-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -214,7 +217,7 @@ function CLONE_SCANOPY() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -228,12 +231,13 @@ function CLONE_SCANOPY() {
 
 function CLONE_CLAIR() {
 	SERVICE_NAME="clair"
+	STACK_NAME="essential-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -256,7 +260,7 @@ function CLONE_CLAIR() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -270,12 +274,13 @@ function CLONE_CLAIR() {
 
 function CLONE_OLLMVT() {
 	SERVICE_NAME="openllm-vtuber"
+	STACK_NAME="openllm-vtuber-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack" ]]; then
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -317,7 +322,7 @@ function CLONE_OLLMVT() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -331,12 +336,13 @@ function CLONE_OLLMVT() {
 
 function CLONE_SWARMUI() {
 	SERVICE_NAME="SwarmUI"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -365,7 +371,7 @@ function CLONE_SWARMUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -375,12 +381,13 @@ function CLONE_SWARMUI() {
 
 function CLONE_COMFYUI() {
 	SERVICE_NAME="ComfyUI"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	export UV_LINK_MODE=copy
 	export BACKGROUND=true
@@ -594,7 +601,7 @@ function CLONE_COMFYUI() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -621,12 +628,13 @@ function CLONE_COMFYUI() {
 
 function CLONE_COMFYUI_MCP() {
 	SERVICE_NAME="comfyui-mcp-server"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -664,7 +672,7 @@ function CLONE_COMFYUI_MCP() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -678,12 +686,13 @@ function CLONE_COMFYUI_MCP() {
 
 function CLONE_COMFYUIMINI() {
 	SERVICE_NAME="ComfyUIMini"
+	STACK_NAME="ai-stack"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -721,7 +730,7 @@ function CLONE_COMFYUIMINI() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -742,8 +751,9 @@ function CLONE_COMFYUIMINI() {
 
 function CLONE_COPYPARTY() {
 	SERVICE_NAME="copyparty"
+	STACK_NAME="essential-stack"
 
-	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -753,34 +763,34 @@ function CLONE_COPYPARTY() {
 
 		mkdir -p "${SERVICE_NAME}_configs"
 
-		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
-			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
 	else
 		echo "Checking ${SERVICE_NAME} for updates"
 		cd "${SERVICE_NAME}" || exit 1
 
-		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
-			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak
 		fi
 
 		git pull
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}_configs/config.conf"
 		fi
 
 	fi
@@ -813,7 +823,7 @@ function CLONE_COPYPARTY() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -830,8 +840,9 @@ function CLONE_COPYPARTY() {
 
 function CLONE_SYNCTUBE() {
 	SERVICE_NAME="synctube"
+	STACK_NAME="testing-stack"
 
-	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -894,7 +905,7 @@ function CLONE_SYNCTUBE() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -908,8 +919,9 @@ function CLONE_SYNCTUBE() {
 
 function CLONE_PYGOTCHI() {
 	SERVICE_NAME="pygotchi"
+	STACK_NAME="ai-stack"
 
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -932,7 +944,7 @@ function CLONE_PYGOTCHI() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -946,15 +958,16 @@ function CLONE_PYGOTCHI() {
 
 function CLONE_PROJZOMB() {
 	SERVICE_NAME="project-zomboid"
+	STACK_NAME="testing-stack"
 
-	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/testing-stack/${SERVICE_NAME}/pz_install.sh"
+		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/pz_install.sh"
 	fi
-	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 
 	function LOCAL_SETUP() {
 
@@ -966,7 +979,7 @@ function CLONE_PROJZOMB() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -980,8 +993,9 @@ function CLONE_PROJZOMB() {
 
 function CLONE_SHOWET() {
 	SERVICE_NAME="showet"
+	STACK_NAME="testing-stack"
 
-	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -1004,7 +1018,7 @@ function CLONE_SHOWET() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -1018,8 +1032,9 @@ function CLONE_SHOWET() {
 
 function CLONE_KASMWORKSPACES() {
 	SERVICE_NAME="kasmworkspaces"
+	STACK_NAME="testing-stack"
 
-	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	cd /tmp || exit
 	curl -O https://kasm-static-content.s3.amazonaws.com/kasm_release_1.17.0.7f020d.tar.gz
@@ -1036,7 +1051,7 @@ function CLONE_KASMWORKSPACES() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -1050,8 +1065,9 @@ function CLONE_KASMWORKSPACES() {
 
 function CLONE_STRUDEL() {
 	SERVICE_NAME="strudel"
+	STACK_NAME="testing-stack"
 
-	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 	if [[ ! -d "${SERVICE_NAME}"-cli ]]; then
 		echo "Cloning ${SERVICE_NAME}-cli"
 		echo ""
@@ -1076,7 +1092,7 @@ function CLONE_STRUDEL() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -1090,9 +1106,10 @@ function CLONE_STRUDEL() {
 
 function CLONE_SDR_TCP() {
 	SERVICE_NAME="rtl-tcp"
+	STACK_NAME="sdr-stack"
 
-	mkdir -p "${STACK_BASEPATH}/DATA/sdr-stack"
-	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
+	mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
@@ -1116,7 +1133,7 @@ function CLONE_SDR_TCP() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
@@ -1130,8 +1147,9 @@ function CLONE_SDR_TCP() {
 
 function CLONE_BIRDNETPI_TCP() {
 	SERVICE_NAME="birdnet-pi"
+	STACK_NAME="sdr-stack"
 
-	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
 		echo "Cloning ${SERVICE_NAME}"
 		echo ""
@@ -1153,7 +1171,7 @@ function CLONE_BIRDNETPI_TCP() {
 
 		echo "Using Docker setup"
 		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
 		# else
 		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
 		fi
