@@ -255,15 +255,8 @@ function CLONE_SWARMUI() {
 	}
 
 	function DOCKER_SETUP() {
-		echo "Using Docker setup"
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-uv" CustomDockerfile-SwarmUI-uv
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-conda" CustomDockerfile-SwarmUI-conda
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI-venv" CustomDockerfile-SwarmUI-venv
 
-		cp -rf "${SCRIPT_DIR}/CustomDockerfile-SwarmUI" launchtools/CustomDockerfile.docker
-		cp -rf "${SCRIPT_DIR}/custom-launch-docker.sh" launchtools/custom-launch-docker.sh
-		# docker build -t SwarmUI .
-		./launchtools/custom-launch-docker.sh
+		echo "Using Docker setup"
 
 	}
 
@@ -636,10 +629,6 @@ function CLONE_COMFYUIMINI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
 
 	}
 
@@ -726,10 +715,6 @@ function CLONE_COPYPARTY() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
 
 	}
 
@@ -805,10 +790,6 @@ function CLONE_SYNCTUBE() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-uv" CustomDockerfile-whisperx-uv
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-conda" CustomDockerfile-whisperx-conda
-		# cp -rf "${SCRIPT_DIR}/CustomDockerfile-whisperx-venv" CustomDockerfile-whisperx-venv
-		# docker build -t whisperx .
 
 	}
 
@@ -860,6 +841,23 @@ function CLONE_PROJZOMB() {
 		echo "Cloning project-zomboid"
 		echo ""
 		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/testing-stack/project-zomboid/pz_install.sh"
+	fi
+
+}
+
+function CLONE_SHOWET() {
+
+	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
+
+	if [[ ! -d "showet" ]]; then
+		echo "Cloning showet"
+		echo ""
+		git clone --recursive https://github.com/itsdarklikehell/showet.git "showet"
+		cd "showet" || exit 1
+	else
+		echo "Checking showet for updates"
+		cd "showet" || exit 1
+		git pull
 	fi
 
 }
@@ -944,6 +942,7 @@ CLONE_OLLMVT # >/dev/null 2>&1 &
 CLONE_SWARMUI  # >/dev/null 2>&1 &
 CLONE_PYGOTCHI # >/dev/null 2>&1 &
 CLONE_PROJZOMB # >/dev/null 2>&1 &
+CLONE_SHOWET   # >/dev/null 2>&1 &
 # CLONE_STRUDEL        # >/dev/null 2>&1 &
 CLONE_SDR_TCP       # >/dev/null 2>&1 &
 CLONE_BIRDNETPI_TCP # >/dev/null 2>&1 &

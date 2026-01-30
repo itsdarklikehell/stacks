@@ -591,6 +591,23 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/project-zomboid/project-zomboid_scripts
 
+  showet_config:
+    name: showet_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/showet/showet_config
+  showet_scripts:
+    name: showet_scripts
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/showet/showet_scripts
+
 networks:
   host:
   testing-services:

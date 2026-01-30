@@ -70,7 +70,9 @@ function SETUP_FOLDERS() {
 
 		declare -a FOLDERS=()
 		FOLDERS=(
+			"data"
 			"config"
+			"scripts"
 		)
 
 	fi

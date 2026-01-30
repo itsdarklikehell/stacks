@@ -34,9 +34,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/testing-stack/showet/pz_install.sh:/config/Downloads/pz_install.sh
-      - showet_config:/config
-      - showet_scripts:/custom-cont-init.d
+      - ../../../DATA/testing-stack/showet/install.sh:/showet/install.sh
 
     hostname: ${NAME:-showet}
 
