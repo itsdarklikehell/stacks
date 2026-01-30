@@ -1,0 +1,100 @@
+services:
+  tes3mp-server:
+    image: ${IMAGE:-ich777/docker-openmw-tes3mp:latest}
+    container_name: ${NAME:-tes3mp-server}
+    restart: ${RESTART:-unless-stopped}
+
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.ouroboros.enable=true
+      - autoheal=true
+      - autoheal-app
+      - autoheal-app=true
+      - homarr-app=true
+      - homarr
+
+    environment:
+      - UID=${UID:-1000}
+      - GID=${GID:-1000}
+      - TZ=${TZ:-Europe/Amsterdam}
+
+      - UMASK=0000
+      - DATA_PERM=770
+      - GAME_V=latest
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      - tes3mp-server_data:/openmw
+
+    hostname: ${NAME:-tes3mp-server-server}
+
+    # user: ${PUID:-1000}:${PGID:-1000}
+
+    networks:
+      host:
+      gameserver-services:
+
+    ports:
+      - 25565:25565/tcp
+      - 25565:25565/udp
+
+    env_file:
+      - ./tes3mp-server-server/.env
+
+    # command:
+    #   - -iwad /usr/share/tes3mp-server-server/doom2.wad -file /usr/share/tes3mp-server-server/DOOM_Infinite_098_PP2_H3.pk3
+
+    # runtime: nvidia
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu, compute, video, graphics, utility]
+
+    tty: true
+
+    stdin_open: true
+
+    # shm_size: 1gb
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       CMD,
+    #       wget,
+    #       --no-verbose,
+    #       --tries=3,
+    #       --spider,
+    #       http://localhost:${PORT:-12393}/api/health,
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   start_period: 30s
+    #   retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  tes3mp-server-watchtower:
+    image: containrrr/watchtower
+    container_name: tes3mp-server-watchtower
+    hostname: tes3mp-server-watchtower
+    restart: ${RESTART:-unless-stopped}
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    command: --interval 30 --stop-timeout 130s --cleanup tes3mp-server-game-server-master
+
+    networks:
+      host:
+      gameserver-services:

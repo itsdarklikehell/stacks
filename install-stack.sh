@@ -414,46 +414,45 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	# echo ""
-	# SETUP_DOWNLOADER_STACK
-	# echo ""
+	echo ""
+	SETUP_DOWNLOADER_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_AI_STACK
-	# echo ""
+	echo ""
+	SETUP_AI_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_OPENLLM_VTUBER_STACK
-	# echo ""
+	echo ""
+	SETUP_OPENLLM_VTUBER_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_ESSENTIALS_STACK
-	# echo ""
+	echo ""
+	SETUP_ESSENTIALS_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_BACKUPS_STACK
-	# echo ""
+	echo ""
+	SETUP_BACKUPS_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_CHAT_STACK
-	# echo ""
+	echo ""
+	SETUP_CHAT_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_BOOKS_STACK
-	# echo ""
+	echo ""
+	SETUP_BOOKS_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_MEDIA_STACK
-	# echo ""
+	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_SDR_STACK
-	# echo ""
+	echo ""
+	SETUP_SDR_STACK
+	echo ""
 
-	# echo ""
-	# SETUP_GAMESERVER_STACK
-	# # docker compose exec pterodactyl-panel php artisan p:user:make
-	# echo ""
+	echo ""
+	SETUP_GAMESERVER_STACK
+	echo ""
 
 	########################
 
@@ -547,10 +546,10 @@ else
 	PULL_MODELS >/dev/null 2>&1 &
 fi
 
-# export pterodactyl_container_name="pterodactyl-panel"
-# if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
-# 	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
-# fi
+export pterodactyl_container_name="pterodactyl-panel"
+if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
+	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
+fi
 
 # echo "Installation should be complete now.."
 # echo ""

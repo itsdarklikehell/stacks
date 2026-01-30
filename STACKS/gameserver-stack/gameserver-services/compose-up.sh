@@ -5,6 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	veloren-server
+	tes3mp-server
 	# linux-gsm-cs2
 	# pterodactyl
 )
@@ -40,6 +41,15 @@ function SETUP_FOLDERS() {
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"userdata"
+		)
+
+	fi
+
+	if [[ "${SERVICE_NAME}" == "tes3mp-server" ]]; then
+
+		declare -a FOLDERS=()
+		FOLDERS=(
+			"data"
 		)
 
 	fi

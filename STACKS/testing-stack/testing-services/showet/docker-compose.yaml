@@ -34,7 +34,7 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/testing-stack/showet/install.sh:/showet/install.sh
+      # - ../../../DATA/testing-stack/showet/install.sh:/app/install.sh
 
     hostname: ${NAME:-showet}
 
@@ -51,15 +51,15 @@ services:
     env_file:
       - ./showet/.env
 
-    # runtime: nvidia
-    # deploy:
-    #   replicas: 1
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: all
-    #           capabilities: [gpu, compute, video, graphics, utility]
+    runtime: nvidia
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, video, graphics, utility]
 
     tty: true
 

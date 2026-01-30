@@ -19,6 +19,15 @@ volumes:
       o: bind
       device: ../../../DATA/gameserver-stack/veloren-server/veloren-server_userdata
 
+  tes3mp-server_userdata:
+    name: tes3mp-server_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/gameserver-stack/tes3mp-server/tes3mp-server_data
+
   pterodactyl_database:
     name: pterodactyl_database
     driver: local

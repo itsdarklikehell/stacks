@@ -1,4 +1,4 @@
-FROM lscr.io/linuxserver/webtop:ubuntu-xfce
+FROM lscr.io/linuxserver/webtop:ubuntu-kde
 
 # Stap 1: Systeem dependencies
 RUN apt-get update && apt-get install -y \

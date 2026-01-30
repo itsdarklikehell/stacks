@@ -1,6 +1,6 @@
 services:
   obs-studio:
-    image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-xfce}
+    image: ${IMAGE:-lscr.io/linuxserver/webtop:ubuntu-kde}
     container_name: ${NAME:-obs-studio}
     restart: ${RESTART:-unless-stopped}
 
