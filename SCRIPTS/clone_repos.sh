@@ -126,7 +126,11 @@ function CLONE_PUPPETEER() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -167,7 +171,11 @@ function CLONE_ANYTHINGLLM() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -205,7 +213,11 @@ function CLONE_SCANOPY() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -243,7 +255,11 @@ function CLONE_CLAIR() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -300,7 +316,11 @@ function CLONE_OLLMVT() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -573,7 +593,11 @@ function CLONE_COMFYUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -639,7 +663,11 @@ function CLONE_COMFYUI_MCP() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -692,7 +720,11 @@ function CLONE_COMFYUIMINI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -780,7 +812,11 @@ function CLONE_COPYPARTY() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -857,7 +893,11 @@ function CLONE_SYNCTUBE() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -891,7 +931,11 @@ function CLONE_PYGOTCHI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -921,7 +965,11 @@ function CLONE_PROJZOMB() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -955,7 +1003,11 @@ function CLONE_SHOWET() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -983,7 +1035,11 @@ function CLONE_KASMWORKSPACES() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -1019,7 +1075,11 @@ function CLONE_STRUDEL() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -1055,7 +1115,11 @@ function CLONE_SDR_TCP() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
@@ -1088,7 +1152,11 @@ function CLONE_BIRDNETPI_TCP() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+		# else
+		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+		fi
 
 	}
 
