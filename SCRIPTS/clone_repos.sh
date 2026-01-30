@@ -47,6 +47,34 @@ if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 fi
 
 # cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+function CREATE_FOLDERS() {
+
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
+	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
+
+}
 
 function LINK_FOLDERS() {
 
@@ -54,72 +82,8 @@ function LINK_FOLDERS() {
 
 }
 
-function CLONE_ANYTHINGLLM() {
-
-	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-	fi
-
-	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
-
-	if [[ ! -d "anything-llm" ]]; then
-		echo "Cloning anything-llm"
-		echo ""
-		git clone --recursive https://github.com/Mintplex-Labs/anything-llm.git anything-llm
-		cd anything-llm || exit 1
-	else
-		echo "Checking anything-llm for updates"
-		cd anything-llm || exit 1
-		git pull
-	fi
-
-	mkdir -p anything-llm_storage anything-llm_skills
-
-}
-
-function CLONE_SCANOPY() {
-
-	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-	fi
-
-	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
-
-	if [[ ! -d "scanopy" ]]; then
-		echo "Cloning scanopy"
-		echo ""
-		git clone --recursive https://github.com/scanopy/scanopy.git scanopy
-		cd scanopy || exit 1
-	else
-		echo "Checking scanopy for updates"
-		cd scanopy || exit 1
-		git pull
-	fi
-
-}
-
-function CLONE_CLAIR() {
-
-	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-	fi
-
-	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
-
-	if [[ ! -d "clair" ]]; then
-		echo "Cloning clair"
-		echo ""
-		git clone --recursive https://github.com/quay/clair.git clair
-		cd clair || exit 1
-	else
-		echo "Checking clair for updates"
-		cd clair || exit 1
-		git pull
-	fi
-
-}
-
 function CLONE_PUPPETEER() {
+	SERVICE_NAME="puppeteer"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
@@ -127,14 +91,14 @@ function CLONE_PUPPETEER() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "puppeteer" ]]; then
-		echo "Cloning puppeteer"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/puppeteer/puppeteer.git puppeteer
-		cd puppeteer || exit 1
+		git clone --recursive "https://github.com/${SERVICE_NAME}/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking puppeteer for updates"
-		cd puppeteer || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -143,43 +107,168 @@ function CLONE_PUPPETEER() {
 		echo "Using Local setup"
 		ni # >/dev/null 2>&1 &
 
-		ni puppeteer # Downloads compatible Chrome during installation.
-		yes | pnpm add puppeteer || true
+		ni "${SERVICE_NAME}" # Downloads compatible Chrome during installation.
+		yes | pnpm add "${SERVICE_NAME}" || true
 
-		ni puppeteer-core # Alternatively, install as a library, without downloading Chrome.
-		yes | pnpm add puppeteer-core || true
+		ni "${SERVICE_NAME}"-core # Alternatively, install as a library, without downloading Chrome.
+		yes | pnpm add "${SERVICE_NAME}"-core || true
 
-		npx puppeteer install chrome
+		npx "${SERVICE_NAME}" install chrome
 
 		yes | npx npm-check-updates -u || true # >/dev/null 2>&1 &
 		bash docker/pack.sh
 
 		# npm init --yes
-		# npm install puppeteer puppeteer-core @puppeteer/browsers
+		# npm install "${SERVICE_NAME}" "${SERVICE_NAME}"-core @"${SERVICE_NAME}"/browsers
 
 	}
 
-	LOCAL_SETUP # >/dev/null 2>&1 &
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
+function CLONE_ANYTHINGLLM() {
+	SERVICE_NAME="anything-llm"
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	fi
+
+	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
+		echo ""
+		git clone --recursive "https://github.com/Mintplex-Labs/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
+	else
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
+		git pull
+	fi
+
+	mkdir -p "${SERVICE_NAME}_storage"
+	mkdir -p "${SERVICE_NAME}_skills"
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
+function CLONE_SCANOPY() {
+	SERVICE_NAME="scanopy"
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	fi
+
+	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
+		echo ""
+		git clone --recursive "https://github.com/${SERVICE_NAME}/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
+	else
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
+		git pull
+	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
+function CLONE_CLAIR() {
+	SERVICE_NAME="clair"
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/essential-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
+	fi
+
+	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
+
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
+		echo ""
+		git clone --recursive "https://github.com/quay/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
+	else
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
+		git pull
+	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_OLLMVT() {
 	SERVICE_NAME="openllm-vtuber"
 
-	if [[ ! -d "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack"
 	fi
 
-	cd "${STACK_BASEPATH}/DATA/openllm-vtuber-stack" || exit 1
+	cd "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack" || exit 1
 
-	if [[ ! -d "openllm-vtuber" ]]; then
-		echo "Cloning openllm-vtuber"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git openllm-vtuber
-		cd openllm-vtuber || exit
+		git clone --recursive https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git ${SERVICE_NAME}
+		cd "${SERVICE_NAME}" || exit
 	else
-		echo "Checking openllm-vtuber for updates"
-		cd openllm-vtuber || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -211,18 +300,17 @@ function CLONE_OLLMVT() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-
-		# docker build -t open-llm-vtuber .
-		# --build-arg INSTALL_ORIGINAL_WHISPER=true --build-arg INSTALL_BARK=true
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
-	# DOCKER_SETUP # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_SWARMUI() {
+	SERVICE_NAME="SwarmUI"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
@@ -230,14 +318,14 @@ function CLONE_SWARMUI() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "SwarmUI" ]]; then
-		echo "Cloning SwarmUI"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/mcmonkeyprojects/SwarmUI.git SwarmUI
-		cd SwarmUI || exit 1
+		git clone --recursive "https://github.com/mcmonkeyprojects/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking SwarmUI for updates"
-		cd SwarmUI || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -257,7 +345,7 @@ function CLONE_SWARMUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -265,36 +353,8 @@ function CLONE_SWARMUI() {
 
 }
 
-function CREATE_FOLDERS() {
-
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/anything-llm_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/ComfyUI_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/InvokeAI_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/localai_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/swarmui_input"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Downloaded"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Favorites"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-inputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-models/ComfyUI_models"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/anything-llm_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ComfyUI_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/InvokeAI_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/localai_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/ollama_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/swarmui_output"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
-
-}
-
 function CLONE_COMFYUI() {
+	SERVICE_NAME="ComfyUI"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
@@ -307,13 +367,13 @@ function CLONE_COMFYUI() {
 	export COMFYUI_PORT=8188
 
 	if [[ ! -d ${COMFYUI_PATH} ]]; then
-		echo "Cloning ComfyUI"
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ComfyUI
-		cd ComfyUI || exit 1
+		git clone --recursive "https://github.com/comfyanonymous/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking ComfyUI for updates"
-		cd "${COMFYUI_PATH}" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -376,7 +436,7 @@ function CLONE_COMFYUI() {
 		function ESSENTIAL() {
 
 			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
-				echo "Installing ComfyUI custom nodes..."
+				echo "Installing ${SERVICE_NAME} custom nodes..."
 				if [[ -f ${ESSENTIAL_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${ESSENTIAL_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
@@ -389,7 +449,7 @@ function CLONE_COMFYUI() {
 					echo "No ${ESSENTIAL_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 				fi
 			else
-				echo "Skipping ComfyUI custom node install."
+				echo "Skipping ${SERVICE_NAME} custom node install."
 			fi
 
 		}
@@ -397,7 +457,7 @@ function CLONE_COMFYUI() {
 		function EXTRAS() {
 
 			if [[ ${INSTALL_EXTRA_NODES} == "true" ]]; then
-				echo "Installing ComfyUI extra nodes..."
+				echo "Installing ${SERVICE_NAME} extra nodes..."
 				if [[ -f ${EXTRA_CUSTOM_NODELIST} ]]; then
 					echo "Reinstalling custom nodes from ${EXTRA_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
@@ -410,7 +470,7 @@ function CLONE_COMFYUI() {
 					echo "No ${EXTRA_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 				fi
 			else
-				echo "Skipping ComfyUI extra node install."
+				echo "Skipping ${SERVICE_NAME} extra node install."
 			fi
 
 		}
@@ -418,7 +478,7 @@ function CLONE_COMFYUI() {
 		function DISABLED() {
 
 			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
-				echo "Disableing some ComfyUI custom nodes..."
+				echo "Disableing some ${SERVICE_NAME} custom nodes..."
 				if [[ -f ${DISABLED_CUSTOM_NODELIST} ]]; then
 					echo "Disableing custom nodes from ${DISABLED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
@@ -431,7 +491,7 @@ function CLONE_COMFYUI() {
 					echo "No ${DISABLED_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 				fi
 			else
-				echo "Skipping disableing some ComfyUI custom node install."
+				echo "Skipping disableing some ${SERVICE_NAME} custom node install."
 			fi
 
 		}
@@ -439,7 +499,7 @@ function CLONE_COMFYUI() {
 		function REMOVED() {
 
 			if [[ ${INSTALL_DEFAULT_NODES} == "true" ]]; then
-				echo "Removing some ComfyUI custom nodes..."
+				echo "Removing some ${SERVICE_NAME} custom nodes..."
 				if [[ -f ${REMOVED_CUSTOM_NODELIST} ]]; then
 					echo "Removing custom nodes from ${REMOVED_CUSTOM_NODELIST}"
 					while IFS= read -r node_name; do
@@ -452,7 +512,7 @@ function CLONE_COMFYUI() {
 					echo "No ${REMOVED_CUSTOM_NODELIST} file found. Skipping custom node reinstallation."
 				fi
 			else
-				echo "Skipping Removing some ComfyUI custom node install."
+				echo "Skipping Removing some ${SERVICE_NAME} custom node install."
 			fi
 
 		}
@@ -468,10 +528,10 @@ function CLONE_COMFYUI() {
 	function UPDATE_CUSTOM_NODES() {
 
 		if [[ ${UPDATE} == "true" ]]; then
-			echo "Updating all ComfyUI custom nodes..."
+			echo "Updating all ${SERVICE_NAME} custom nodes..."
 			uv run comfy-cli update all
 		else
-			echo "Skipping ComfyUI custom node update."
+			echo "Skipping ${SERVICE_NAME} custom node update."
 		fi
 
 	}
@@ -513,7 +573,7 @@ function CLONE_COMFYUI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-ComfyUI" "${COMFYUI_PATH}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
@@ -536,6 +596,7 @@ function CLONE_COMFYUI() {
 }
 
 function CLONE_COMFYUI_MCP() {
+	SERVICE_NAME="comfyui-mcp-server"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
@@ -543,14 +604,14 @@ function CLONE_COMFYUI_MCP() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "comfyui-mcp-server" ]]; then
-		echo "Cloning comfyui-mcp-server"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/joenorton/comfyui-mcp-server.git "comfyui-mcp-server"
-		cd "comfyui-mcp-server" || exit 1
+		git clone --recursive "https://github.com/joenorton/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking comfyui-mcp-server for updates"
-		cd "comfyui-mcp-server" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -578,6 +639,7 @@ function CLONE_COMFYUI_MCP() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
@@ -587,6 +649,7 @@ function CLONE_COMFYUI_MCP() {
 }
 
 function CLONE_COMFYUIMINI() {
+	SERVICE_NAME="ComfyUIMini"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
@@ -594,14 +657,14 @@ function CLONE_COMFYUIMINI() {
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "ComfyUIMini" ]]; then
-		echo "Cloning ComfyUIMini"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/ImDarkTom/ComfyUIMini.git "ComfyUIMini"
-		cd "ComfyUIMini" || exit 1
+		git clone --recursive "https://github.com/ImDarkTom/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking ComfyUIMini for updates"
-		cd "ComfyUIMini" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -629,6 +692,7 @@ function CLONE_COMFYUIMINI() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
@@ -636,7 +700,7 @@ function CLONE_COMFYUIMINI() {
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
 	# cd custom_nodes || exit 1
-	# git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git ComfyUI-Manager
+	# git clone --recursive https://github.com/ltdrdata/${SERVICE_NAME}-Manager.git ${SERVICE_NAME}-Manager
 	# cd ComfyUI-Manager || exit 1
 
 	# LOCAL_SETUP  # >/dev/null 2>&1 &
@@ -645,45 +709,46 @@ function CLONE_COMFYUIMINI() {
 }
 
 function CLONE_COPYPARTY() {
+	SERVICE_NAME="copyparty"
 
 	cd "${STACK_BASEPATH}/DATA/essential-stack" || exit 1
 
-	if [[ ! -d "copyparty" ]]; then
-		echo "Cloning copyparty"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/9001/copyparty.git "copyparty"
-		cd "copyparty" || exit 1
+		git clone --recursive "https://github.com/9001/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 
-		mkdir -p "copyparty_configs"
+		mkdir -p "${SERVICE_NAME}_configs"
 
-		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
-			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
 		fi
 
 	else
-		echo "Checking copyparty for updates"
-		cd "copyparty" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 
-		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
-			cp -rf "docs/examples/docker/basic-docker-compose/copyparty.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
+		if [[ ! -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "docs/examples/docker/basic-docker-compose/${SERVICE_NAME}.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
 		fi
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf" "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak
 		fi
 
 		git pull
 
-		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak ]]; then
-			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/copyparty_configs/config.conf"
+		if [[ -f "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak ]]; then
+			cp -rf "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf".bak "${STACK_BASEPATH}/DATA/essential-stack/${SERVICE_NAME}_configs/config.conf"
 		fi
 
 	fi
@@ -706,7 +771,7 @@ function CLONE_COPYPARTY() {
 		# 	uv sync --all-extras
 		#   export PRTY_CONFIG=config.conf
 		# 	uv pip install .
-		# 	uv pip install --user -U copyparty
+		# 	uv pip install --user -U ${SERVICE_NAME}
 
 		# fi
 
@@ -715,6 +780,7 @@ function CLONE_COPYPARTY() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
@@ -727,17 +793,18 @@ function CLONE_COPYPARTY() {
 }
 
 function CLONE_SYNCTUBE() {
+	SERVICE_NAME="synctube"
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
 
-	if [[ ! -d "synctube" ]]; then
-		echo "Cloning synctube"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/RblSb/SyncTube.git "synctube"
-		cd "synctube" || exit 1
+		git clone --recursive https://github.com/RblSb/SyncTube.git "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking synctube for updates"
-		cd "synctube" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
@@ -745,10 +812,10 @@ function CLONE_SYNCTUBE() {
 		echo "Cloning octosubs"
 		echo ""
 		git clone --recursive https://github.com/RblSb/SyncTube-octosubs.git "octosubs"
-		# cd "synctube" || exit 1
+		# cd "octosubs" || exit 1
 	else
 		echo "Checking octosubs for updates"
-		# cd "synctube" || exit 1
+		# cd "octosubs" || exit 1
 		git pull
 	fi
 
@@ -756,10 +823,10 @@ function CLONE_SYNCTUBE() {
 		echo "Cloning qswitcher"
 		echo ""
 		git clone --recursive https://github.com/aNNiMON/SyncTube-QSwitcher.git "qswitcher"
-		# cd "synctube" || exit 1
+		# cd "qswitcher" || exit 1
 	else
 		echo "Checking qswitcher for updates"
-		# cd "synctube" || exit 1
+		# cd "qswitcher" || exit 1
 		git pull
 	fi
 
@@ -790,79 +857,115 @@ function CLONE_SYNCTUBE() {
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
 	}
 
 	LOCAL_SETUP  # >/dev/null 2>&1 &
 	DOCKER_SETUP # >/dev/null 2>&1 &
 
-	# LOCAL_SETUP  # >/dev/null 2>&1 &
-	# DOCKER_SETUP # >/dev/null 2>&1 &
-
 }
 
 function CLONE_PYGOTCHI() {
+	SERVICE_NAME="pygotchi"
 
 	cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
 
-	if [[ ! -d "pygotchi" ]]; then
-		echo "Cloning pygotchi"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/almarch/pygotchi.git "pygotchi"
-		cd "pygotchi" || exit 1
+		git clone --recursive "https://github.com/almarch/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking pygotchi for updates"
-		cd "pygotchi" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
 
-	# function LOCAL_SETUP() {
+	function LOCAL_SETUP() {
 
-	# 	echo "Using Local setup"
+		echo "Using Local setup"
 
-	# }
+	}
 
-	# function DOCKER_SETUP() {
+	function DOCKER_SETUP() {
 
-	# 	echo "Using Docker setup"
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
 
-	# }
+	}
 
-	# LOCAL_SETUP  # >/dev/null 2>&1 &
-	# DOCKER_SETUP # >/dev/null 2>&1 &
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_PROJZOMB() {
+	SERVICE_NAME="project-zomboid"
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
 
-	if [[ ! -d "project-zomboid" ]]; then
-		echo "Cloning project-zomboid"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/testing-stack/project-zomboid/pz_install.sh"
+		wget -c "https://archive.org/download/gog_project_zomboid_41_78_16_60901_linux/project_zomboid_42_8_1_82488.sh" -O "${STACK_BASEPATH}/DATA/testing-stack/${SERVICE_NAME}/pz_install.sh"
 	fi
+	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_SHOWET() {
+	SERVICE_NAME="showet"
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
 
-	if [[ ! -d "showet" ]]; then
-		echo "Cloning showet"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/itsdarklikehell/showet.git "showet"
-		cd "showet" || exit 1
+		git clone --recursive "https://github.com/itsdarklikehell/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking showet for updates"
-		cd "showet" || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_KASMWORKSPACES() {
+	SERVICE_NAME="kasmworkspaces"
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
 
@@ -871,59 +974,126 @@ function CLONE_KASMWORKSPACES() {
 	tar -xf kasm_release_1.17.0.7f020d.tar.gz
 	yes | sudo bash kasm_release/install.sh -L 8443 || true
 
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
 }
 
 function CLONE_STRUDEL() {
+	SERVICE_NAME="strudel"
 
 	cd "${STACK_BASEPATH}/DATA/testing-stack" || exit 1
-	if [[ ! -d strudel-cli ]]; then
-		echo "Cloning strudel-cli"
+	if [[ ! -d "${SERVICE_NAME}"-cli ]]; then
+		echo "Cloning ${SERVICE_NAME}-cli"
 		echo ""
-		git clone --recursive https://codeberg.org/uzu/strudel.git strudel
-		cd strudel || exit 1
+		git clone --recursive "https://codeberg.org/uzu/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 		pnpm i
 		# pnpm dev
-		npm install -g strudel-cli
+		npm install -g "${SERVICE_NAME}"-cli
 	else
-		echo "Checking strudel for updates"
-		cd strudel || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_SDR_TCP() {
+	SERVICE_NAME="rtl-tcp"
 
 	mkdir -p "${STACK_BASEPATH}/DATA/sdr-stack"
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
 
-	if [[ ! -d rtl-tcp ]]; then
-		echo "Cloning rtl-tcp"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/LizenzFass78851/docker-rtl-tcp.git rtl-tcp
-		cd rtl-tcp || exit 1
+		git clone --recursive "https://github.com/LizenzFass78851/docker-${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 		echo -e 'blacklist dvb_usb_rtl28xxu\nblacklist rtl2832\nblacklist rtl2830' | sudo tee /lib/modprobe.d/blacklist-rtl.conf
 	else
-		echo "Checking rtl-tcp for updates"
-		cd rtl-tcp || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
 function CLONE_BIRDNETPI_TCP() {
+	SERVICE_NAME="birdnet-pi"
 
 	cd "${STACK_BASEPATH}/DATA/sdr-stack" || exit 1
-	if [[ ! -d birdnet-pi ]]; then
-		echo "Cloning birdnet-pi"
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
 		echo ""
-		git clone --recursive https://github.com/Nachtzuster/BirdNET-Pi.git birdnet-pi
-		cd birdnet-pi || exit 1
+		git clone --recursive https://github.com/Nachtzuster/BirdNET-Pi.git "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
 	else
-		echo "Checking birdnet-pi for updates"
-		cd birdnet-pi || exit 1
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
 		git pull
 	fi
+
+	function LOCAL_SETUP() {
+
+		echo "Using Local setup"
+
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/ai-stack/${SERVICE_NAME}/Dockerfile"
+
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
 
 }
 
