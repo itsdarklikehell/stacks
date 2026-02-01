@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 # Architecture en PPA's
 RUN dpkg --add-architecture i386 && apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common curl ca-certificates && \
+    apt-get install -y --no-install-recommends software-properties-common curl wget ca-certificates && \
     add-apt-repository -y ppa:libretro/stable
 
 # Installatie van RetroArch + Native Emulators
@@ -29,15 +29,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s /usr/bin/wine64 /usr/bin/wine || true
 RUN pip3 install --no-cache-dir requests psutil --break-system-packages
 
-# Download en extract BIOS files
-RUN wget -c http://hampa.ch/pub/software/ROM/Atari%20ST/TOS%202.06%20US.7z -O /config/Downloads/TOS206US.7z && \
-    7z x /config/Downloads/TOS206US.7z -o/config/Downloads/ && rm /config/Downloads/TOS206US.7z && \
-    cp /config/Downloads/TOS206US.img /config/.config/retroarch/system/tos.img && \
-    cp /config/Downloads/TOS206US.img /usr/share/hatari/tos.img
-
-    # https://archive.org/compress/RetroarchSystemFiles/formats=ZIP&file=/RetroarchSystemFiles.zip
-
 WORKDIR /app
+
+# # Download en extract BIOS files
+# RUN wget -c http://hampa.ch/pub/software/ROM/Atari%20ST/TOS%202.06%20US.7z -O /config/Downloads/TOS_US.7z
+# RUN 7z x /config/Downloads/TOS_US.7z -o/config/Downloads/
+# RUN cp /config/Downloads/TOS206US.img /config/.config/retroarch/system/tos.img
+# RUN cp /config/Downloads/TOS206US.img /usr/share/hatari/tos.img
+# RUN rm /config/Downloads/TOS206US.7z
+
+# Setup xdg-retroarch-favourites service
+RUN mkdir -p /config/.config/systemd/user /config/.local/bin
+RUN git clone https://github.com/drekbour/xdg-retroarch-favourites.git /app/xdg-retroarch-favourites
+RUN cp /app/xdg-retroarch-favourites/etc/systemd/* /config/.config/systemd/user
+RUN systemctl --user start xdg-retroarch-favourites.path
+RUN systemctl --user enable xdg-retroarch-favourites.path
+
+RUN cp /app/xdg-retroarch-favourites/xdg-retroarch-favourites /config/.local/bin
+RUN cp /app/xdg-retroarch-favourites/etc/xdg-retroarch-favourites-service /config/.local/bin
+# RUN /app/xdg-retroarch-favourites/xdg-retroarch-favourites
 
 # RetroArch Config (Zorg dat cores gevonden worden)
 RUN mkdir -p /config/.config/retroarch/system && \

@@ -12,8 +12,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="all"                                                              # false, true/normal, all
-export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
+export PRUNE="false"                                                            # false, true/normal, all
+export BUILDING="true"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_COMFYUI="true"                                                     # false, true
 export START_CUSHYSTUDIO="true"                                                 # false, true
@@ -418,9 +418,9 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	# SETUP_DOWNLOADER_STACK
 	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_OPENLLM_VTUBER_STACK
@@ -546,10 +546,10 @@ else
 	PULL_MODELS >/dev/null 2>&1 &
 fi
 
-export pterodactyl_container_name="pterodactyl-panel"
-if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
-	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
-fi
+# export pterodactyl_container_name="pterodactyl-panel"
+# if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
+# 	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
+# fi
 
 # echo "Installation should be complete now.."
 # echo ""
