@@ -752,7 +752,7 @@ def process(prod_id: Union[str, int]) -> None:
 
             logger.info("Launching application")
             launch(work_dir, {"name": prod['name'], "p_list": p_names})
-            input("\n[Enter] om terug te gaan naar het menu...")
+            # input("\n[Enter] om terug te gaan naar het menu...")
 
             # Cleanup
             logger.info("Cleaning up downloads")
