@@ -15,10 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wine64 wine32 winetricks \
     # RetroArch & Libretro cores
     retroarch libretro-core-info libretro-* \
-    # Native Emulators (als fallback of voor specifieke platforms)
-    vice hatari fuse-emulator-common fs-uae stella \
-    dosbox mednafen mame mupen64plus mupen64plus-core mupen64plus-ui-console \
-    pcsx2 ppsspp scummvm openmsx tic80 advancemame \
+    # Native Emulators (beperkte, betrouwbare set als fallback)
+    vice hatari fuse-emulator-common stella \
+    dosbox mednafen mame mame-extra visualboyadvance virtualjaguar yabause yabause-qt pcsx2-stable pcsxr mgba-qt vice fs-uae fs-uae-arcade mgba-sdl spectemu-x11 desmume dolphin-emu mame-tools dosbox dosbox-x mupen64plus-qt mupen64plus-audio-all mupen64plus-video-all nestopia scummvm openmsx \
     # Browser voor Web-based demo's
     firefox \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
