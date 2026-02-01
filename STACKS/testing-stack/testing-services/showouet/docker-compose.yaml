@@ -39,10 +39,10 @@ services:
       # - /etc/localtime:/etc/localtime:ro
       # - /var/run/docker.sock:/var/run/docker.sock:ro
       # - /etc/timezone:/etc/timezone:ro
-
       - showouet_config:/config
       - showouet_downloads:/config/Downloads
       - showouet_favorieten:/config/Favorieten
+      - ../../../DATA/testing-stack/showouet/showouet.py:/app/showouet.py
 
     hostname: ${NAME:-showouet}
 

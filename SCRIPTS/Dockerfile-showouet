@@ -3,30 +3,45 @@ FROM lscr.io/linuxserver/webtop:ubuntu-xfce
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 
+# Architecture en PPA's
 RUN dpkg --add-architecture i386 && apt-get update && \
     apt-get install -y --no-install-recommends software-properties-common curl ca-certificates && \
     add-apt-repository -y ppa:libretro/stable
 
+# Installatie van RetroArch + Native Emulators
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    jq unzip p7zip-full lhasa python3 python3-pip xfce4-terminal \
-    wine64 wine32 retroarch libretro-core-info \
-    libretro-* && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    jq unzip p7zip-full lhasa python3 python3-pip xfce4-terminal libvulkan1 libgl1-mesa-dri \
+    # Wine voor Windows demo's
+    wine64 wine32 winetricks \
+    # RetroArch & Libretro cores
+    retroarch libretro-core-info libretro-* \
+    # Native Emulators (als fallback of voor specifieke platforms)
+    vice hatari fuse-emulator-common fs-uae stella \
+    dosbox mednafen mame mupen64plus mupen64plus-core mupen64plus-ui-console \
+    pcsx2 ppsspp scummvm openmsx tic80 advancemame \
+    # Browser voor Web-based demo's
+    firefox \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/wine64 /usr/bin/wine || true
-RUN pip3 install --no-cache-dir requests --break-system-packages
+RUN pip3 install --no-cache-dir requests psutil --break-system-packages
 
 WORKDIR /app
 
-# RetroArch setup met info paden
+# RetroArch Config (Zorg dat cores gevonden worden)
 RUN mkdir -p /config/.config/retroarch/system && \
     echo 'libretro_directory = "/usr/lib/x86_64-linux-gnu/libretro"' > /config/.config/retroarch/retroarch.cfg && \
     echo 'libretro_info_path = "/usr/share/libretro/info"' >> /config/.config/retroarch/retroarch.cfg && \
-    echo 'system_directory = "/config/.config/retroarch/system"' >> /config/.config/retroarch/retroarch.cfg
+    echo 'system_directory = "/config/.config/retroarch/system"' >> /config/.config/retroarch/retroarch.cfg && \
+    echo 'video_fullscreen = "true"' >> /config/.config/retroarch/retroarch.cfg
 
 COPY showouet.py /app/showouet.py
 RUN chmod +x /app/showouet.py
 
+# Create logs directory
+RUN mkdir -p /config/logs
+
+# Autostart setup
 RUN mkdir -p /config/.config/autostart && \
     echo "[Desktop Entry]\n\
 Type=Application\n\
