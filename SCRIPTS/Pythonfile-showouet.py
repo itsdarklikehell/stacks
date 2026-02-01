@@ -7,8 +7,9 @@ DOWNLOAD_DIR = os.getenv('SHOWOUET_DOWNLOADS', '/config/Downloads')
 EXTRACT_DIR = os.path.join(DOWNLOAD_DIR, "current_demo")
 HEADERS = {'User-Agent': 'ShowouetJukebox/4.0', 'Accept': 'application/json'}
 CORE_DIR = "/usr/lib/x86_64-linux-gnu/libretro"
+INFO_DIR = "/usr/share/libretro/info"
 
-# Volledige mapping gesynchroniseerd met Ubuntu libretro-* pakketten
+# Mapping gesynchroniseerd met Ubuntu libretro-* pakketten
 PLATFORM_MAPPING = {
     "Windows": "wine",
     "MS-Dos": "dosbox_pure_libretro.so",
@@ -70,6 +71,25 @@ PLATFORM_MAPPING = {
     "Wonderswan": "mednafen_wswan_libretro.so"
 }
 
+def get_supported_extensions():
+    """Leest de supported_extensions uit libretro .info bestanden."""
+    exts = {'.exe', '.com'}
+    ignore = {'zip', '7z', 'rar', 'tar', 'gz', 'lha', 'lz'}
+    if os.path.exists(INFO_DIR):
+        for f in os.listdir(INFO_DIR):
+            if f.endswith(".info"):
+                try:
+                    with open(os.path.join(INFO_DIR, f), 'r') as info:
+                        for line in info:
+                            if line.startswith("supported_extensions"):
+                                raw = line.split('=')[-1].strip().replace('"', '')
+                                for p in raw.split('|'):
+                                    p = p.strip().lower()
+                                    if p and p not in ignore:
+                                        exts.add("." + p)
+                except: pass
+    return tuple(exts)
+
 def safe_get_json(url, params=None):
     if DEBUG: print(f"[DEBUG] AANROEP: {url} | PARAMS: {params}")
     try:
@@ -77,13 +97,13 @@ def safe_get_json(url, params=None):
         r.raise_for_status()
         return r.json()
     except Exception as e:
-        if DEBUG: print(f"[DEBUG] API FOUT: {e}")
+        print(f"\n[!] API FOUT: {e}")
         return None
 
 def launch(work_dir, meta):
     target = None
-    # Ondersteunde extensies voor emulatie en executables
-    exts = ('.exe', '.com', '.adf', '.d64', '.st', '.msa', '.lha', '.prg', '.tap', '.gb', '.nes', '.sfc', '.p8', '.tic', '.bin', '.z64', '.iso')
+    exts = get_supported_extensions()
+
     for root, _, files in os.walk(work_dir):
         for f in sorted(files):
             if f.lower().endswith(exts):
@@ -92,7 +112,8 @@ def launch(work_dir, meta):
         if target: break
 
     if not target:
-        print("\x1b[31m[!] Geen executable gevonden in extractie map.\x1b[0m"); return
+        print("\x1b[31m[!] Geen ondersteund bestand gevonden na extractie.\x1b[0m")
+        return
 
     p_list = meta.get('p_list', [])
     print(f"\n\x1b[32m▶ Starten: {meta['name']} ({', '.join(p_list)})\x1b[0m")
@@ -108,7 +129,6 @@ def launch(work_dir, meta):
             subprocess.run(["wine", target], cwd=os.path.dirname(target))
         elif core and core.endswith(".so"):
             c_path = os.path.join(CORE_DIR, core)
-            # Start met core-vlag indien core bestaat, anders auto-detect
             cmd = ["retroarch", "-L", c_path] if os.path.exists(c_path) else ["retroarch"]
             cmd.append(target)
             subprocess.run(cmd)
@@ -116,25 +136,23 @@ def launch(work_dir, meta):
             os.chmod(target, 0o755)
             subprocess.run([target], cwd=os.path.dirname(target))
         else:
-            # Fallback: probeer het bestand direct in RetroArch te gooien
             subprocess.run(["retroarch", target])
     except Exception as e:
-        print(f"Emulator error: {e}")
+        print(f"[!] Emulator error: {e}")
 
 def process(prod_id):
     # API v1 prod endpoint
-    data = safe_get_json("https://api.pouet.net", params={'id': prod_id})
+    data = safe_get_json("https://api.pouet.net/v1/prod/", params={'id': prod_id})
     prod = data.get('prod') if data else None
     if not prod:
-        print("[!] Kon details voor ID %s niet ophalen." % prod_id)
+        print(f"[!] Geen data gevonden voor ID {prod_id}")
         return
 
     url = prod.get('download')
     if not url:
-        print("[!] Geen download-URL voor deze demo.")
+        print("[!] Geen download-URL gevonden.")
         return
 
-    # Map opschonen en voorbereiden
     shutil.rmtree(EXTRACT_DIR, ignore_errors=True)
     os.makedirs(EXTRACT_DIR, exist_ok=True)
     tmp_path = os.path.join(DOWNLOAD_DIR, "file.tmp")
@@ -144,64 +162,57 @@ def process(prod_id):
         with requests.get(url, stream=True, timeout=30, headers=HEADERS) as r:
             r.raise_for_status()
             with open(tmp_path, 'wb') as f: shutil.copyfileobj(r.raw, f)
+
+        subprocess.run(["7z", "x", tmp_path, f"-o{EXTRACT_DIR}", "-y"], stdout=subprocess.DEVNULL)
+
+        # Verbeterde platform-extractie: handle zowel list als dict structuren
+        raw_platforms = prod.get('platforms', [])
+        p_names = []
+        if isinstance(raw_platforms, dict):
+            p_names = [p['name'] for p in raw_platforms.values() if 'name' in p]
+        elif isinstance(raw_platforms, list):
+            p_names = [p['name'] for p in raw_platforms if 'name' in p]
+
+        launch(EXTRACT_DIR, {"name": prod.get('name'), "p_list": p_names})
+        input("\n[Enter] voor menu...")
     except Exception as e:
-        print(f"[!] Download mislukt: {e}")
-        return
-
-    # Uitpakken (7z handelt bijna alle archieven af)
-    subprocess.run(["7z", "x", tmp_path, f"-o{EXTRACT_DIR}", "-y"], stdout=subprocess.DEVNULL)
-
-    # Platforms parsen (lijst van objects in v1)
-    p_names = [p['name'] for p in prod.get('platforms', [])]
-
-    launch(EXTRACT_DIR, {"name": prod.get('name'), "p_list": p_names})
-    input("\nKlaar met demo. Druk op Enter voor menu...")
+        print(f"[!] Verwerkingsfout: {e}")
 
 def main():
     while True:
-        os.system('clear')
+        print("\n===========================================")
+        print("    POUËT.NET JUKEBOX V4.0 (DYNAMIC)      ")
         print("===========================================")
-        print("    POUËT.NET JUKEBOX V4.0 (API v1)       ")
-        print("===========================================")
-        print("1. Random Demo")
-        print("2. Latest Released")
-        print("3. Top of the Month")
-        print("4. All-time Top")
-        print("5. Exit")
+        print("1. Random Demo\n2. Latest Released\n3. Top of the Month\n4. All-time Top\n5. Exit")
 
         c = input("\nKeuze: ")
 
         endpoints = {
-            "1": "https://api.pouet.net?random=true",
-            "2": "https://api.pouet.net",
-            "3": "https://api.pouet.net",
-            "4": "https://api.pouet.net"
+            "1": "https://api.pouet.net/v1/prod/?random=true",
+            "2": "https://api.pouet.net/v1/front-page/latest-released/",
+            "3": "https://api.pouet.net/v1/front-page/top-of-the-month/",
+            "4": "https://api.pouet.net/v1/front-page/alltime-top/"
         }
 
         if c == "1":
             res = safe_get_json(endpoints["1"])
+            # Voor random prods zit de data soms direct in 'prod'
             if res and 'prod' in res:
                 process(res['prod']['id'])
         elif c in ["2", "3", "4"]:
             data = safe_get_json(endpoints[c])
             if data:
-                # Dynamische lijst selectie (verschillende keys per endpoint)
+                # Zoek dynamisch naar de lijst met prods (keys variëren per endpoint)
                 items = next((v for v in data.values() if isinstance(v, list)), [])
                 if items:
                     print("\nSelecteer een demo:")
                     for i, item in enumerate(items[:15]):
                         print(f"{i+1:2}. {item['name']}")
-
-                    sel = input("\nNummer (of 'q' voor menu): ")
+                    sel = input("\nNummer (q=menu): ")
                     if sel.isdigit() and 0 < int(sel) <= len(items):
                         process(items[int(sel)-1]['id'])
-                else:
-                    print("[!] Geen lijst gevonden in API response.")
-                    time.sleep(2)
         elif c == "5":
-            print("Bye!")
             break
 
 if __name__ == "__main__":
     main()
-

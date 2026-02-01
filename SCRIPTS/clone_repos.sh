@@ -1035,10 +1035,10 @@ function CLONE_SHOWOUET() {
 
 		fi
 
-		# python3 -m venv venv
-		# source venv/bin/activate
-		# pip install -r requirements.txt
-		# python3 showouet.py --menu
+		python3 -m venv venv
+		source venv/bin/activate
+		pip install -r requirements.txt
+		# python3 showouet.py --debug
 
 	}
 
@@ -1066,10 +1066,10 @@ function CLONE_SHOWOUET() {
 
 		fi
 
-		# python3 -m venv venv
-		# source venv/bin/activate
-		# pip install -r requirements.txt
-		# python3 showouet.py --menu
+		python3 -m venv venv
+		source venv/bin/activate
+		pip install -r requirements.txt
+		# python3 showouet.py --debug
 
 	}
 

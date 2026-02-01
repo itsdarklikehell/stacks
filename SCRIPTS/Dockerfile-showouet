@@ -3,40 +3,30 @@ FROM lscr.io/linuxserver/webtop:ubuntu-xfce
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 
-# Architectuur toevoegen voor Wine en PPA voor RetroArch
 RUN dpkg --add-architecture i386 && apt-get update && \
     apt-get install -y --no-install-recommends software-properties-common curl ca-certificates && \
     add-apt-repository -y ppa:libretro/stable
 
-# Installatie van alle tools, RetroArch en ALLE beschikbare cores
 RUN apt-get update && apt-get install -y --no-install-recommends \
     jq unzip p7zip-full lhasa python3 python3-pip xfce4-terminal \
-    wine64 wine32 retroarch \
+    wine64 wine32 retroarch libretro-core-info \
     libretro-* && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Wine link fixen en Python dependencies
 RUN ln -s /usr/bin/wine64 /usr/bin/wine || true
 RUN pip3 install --no-cache-dir requests --break-system-packages
 
-# Werkmap instellen
 WORKDIR /app
 
-# Basis RetroArch configuratie forceren (Paden naar cores en BIOS)
-RUN mkdir -p /config/.config/retroarch/ && \
-    echo 'libretro_directory = "/usr/lib/x86_64-linux-gnu/libretro"' >> /config/.config/retroarch/retroarch.cfg && \
-    echo 'system_directory = "/config/.config/retroarch/system"' >> /config/.config/retroarch/retroarch.cfg && \
-    echo 'config_save_on_exit = "true"' >> /config/.config/retroarch/retroarch.cfg
+# RetroArch setup met info paden
+RUN mkdir -p /config/.config/retroarch/system && \
+    echo 'libretro_directory = "/usr/lib/x86_64-linux-gnu/libretro"' > /config/.config/retroarch/retroarch.cfg && \
+    echo 'libretro_info_path = "/usr/share/libretro/info"' >> /config/.config/retroarch/retroarch.cfg && \
+    echo 'system_directory = "/config/.config/retroarch/system"' >> /config/.config/retroarch/retroarch.cfg
 
-# Optioneel: Download basis BIOS bestanden (voorbeeld voor Amiga/Atari/etc)
-# Let op: Veel BIOS files zijn copyrighted, dit downloadt publieke/open-source varianten waar mogelijk
-RUN mkdir -p /config/.config/retroarch/system
-
-# Script kopiëren en rechten zetten
 COPY showouet.py /app/showouet.py
 RUN chmod +x /app/showouet.py
 
-# Autostart in XFCE terminal (geoptimaliseerd voor webtop)
 RUN mkdir -p /config/.config/autostart && \
     echo "[Desktop Entry]\n\
 Type=Application\n\
@@ -44,6 +34,4 @@ Name=Showouet\n\
 Exec=xfce4-terminal --maximize -e 'python3 /app/showouet.py'\n\
 Terminal=false" > /config/.config/autostart/showouet.desktop
 
-# Fix rechten voor de 'abc' gebruiker van linuxserver images
 RUN chown -R 1000:1000 /config /app
-
