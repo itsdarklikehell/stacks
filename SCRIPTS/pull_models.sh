@@ -23,6 +23,13 @@ models=(
 	'qwen3:latest'
 	'smallthinker:latest'
 	'smollm2:latest'
+	'codellama:latest'
+	'qwen2.5-coder:32b'
+	'deepseek-coder-v2:16b-lite-instruct'
+	'deepseek-coder:1.3b-base'
+	# 'qwen2.5-coder:1.5b-base'
+	# 'qwen2.5-coder:14b'
+	# 'qwen2.5-coder:7b'
 )
 
 # ollama_container_name to check if ollama docker service is running:

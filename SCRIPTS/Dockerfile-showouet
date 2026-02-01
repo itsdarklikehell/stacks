@@ -29,6 +29,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s /usr/bin/wine64 /usr/bin/wine || true
 RUN pip3 install --no-cache-dir requests psutil --break-system-packages
 
+# Download en extract BIOS files
+RUN wget -c http://hampa.ch/pub/software/ROM/Atari%20ST/TOS%202.06%20US.7z -O /config/Downloads/TOS206US.7z && \
+    7z x /config/Downloads/TOS206US.7z -o/config/Downloads/ && rm /config/Downloads/TOS206US.7z && \
+    cp /config/Downloads/TOS206US.img /config/.config/retroarch/system/tos.img && \
+    cp /config/Downloads/TOS206US.img /usr/share/hatari/tos.img
+
+    # https://archive.org/compress/RetroarchSystemFiles/formats=ZIP&file=/RetroarchSystemFiles.zip
+
 WORKDIR /app
 
 # RetroArch Config (Zorg dat cores gevonden worden)
