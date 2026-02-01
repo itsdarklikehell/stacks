@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     vice hatari fuse-emulator-common stella \
     dosbox mednafen mame mame-extra visualboyadvance \
     virtualjaguar yabause yabause-qt pcsxr mgba-qt \
-    vice fs-uae fs-uae-arcade mgba-sdl spectemu-x11 desmume \
+    vice fs-uae fs-uae-arcade mgba-sdl spectemu-x11 desmume cabextract \
     mame-tools dosbox dosbox-x mupen64plus-qt mupen64plus-audio-all \
     mupen64plus-video-all nestopia scummvm openmsx \
     # Browser voor Web-based demo's

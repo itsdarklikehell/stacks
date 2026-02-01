@@ -7,7 +7,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	anything-llm
-	ComfyUI
+	# ComfyUI
 	habridge
 	homeassistant
 	InvokeAI
@@ -20,7 +20,7 @@ COMPOSE_FILES=(
 	open-webui
 	# puppeteer
 	searxng
-	SwarmUI
+	# SwarmUI
 )
 
 function CREATE_FOLDERS() {
