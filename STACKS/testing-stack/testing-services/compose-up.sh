@@ -1,6 +1,8 @@
 #!/bin/bash
 # set -e
 
+export STACK_SUFFIX="-stack"
+
 cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
@@ -38,7 +40,7 @@ COMPOSE_FILES=(
 	# scummvm
 	# synctube
 	# project-zomboid
-	showet
+	showouet
 	# vscodium
 	# vscodium-web
 	# xemu
@@ -66,14 +68,27 @@ function SETUP_FOLDERS() {
 
 	fi
 
-	if [[ "${SERVICE_NAME}" == "showet" ]]; then
+	if [[ "${SERVICE_NAME}" == "showouet" ]]; then
 
 		declare -a FOLDERS=()
 		FOLDERS=(
-			"data"
 			"config"
-			"scripts"
+			"downloads"
+			"favorieten"
 		)
+
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}/Dockerfile"
+		fi
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" "${STACK_BASEPATH}/DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}/${SERVICE_NAME}.py"
+		fi
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" "${STACK_BASEPATH}/DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}/requirements.txt"
+		fi
+		if [[ -f "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" "${STACK_BASEPATH}/DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}/README.md"
+		fi
 
 	fi
 
@@ -448,7 +463,7 @@ function SETUP_FOLDERS() {
 			"saves"
 		)
 
-		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}/Dockerfile"
 
 	fi
 
@@ -459,7 +474,7 @@ function SETUP_FOLDERS() {
 ARGS=""
 for SERVICE_NAME in "${COMPOSE_FILES[@]}"; do
 	ARGS+="-f ${SERVICE_NAME}/docker-compose.yaml "
-	FOLDER="../../../DATA/${STACK_NAME}-stack/${SERVICE_NAME}"
+	FOLDER="../../../DATA/${STACK_NAME}${STACK_SUFFIX}/${SERVICE_NAME}"
 	if [[ ! -d "${FOLDER}" ]]; then
 		echo ""
 		echo "Creating folder: ${FOLDER}"

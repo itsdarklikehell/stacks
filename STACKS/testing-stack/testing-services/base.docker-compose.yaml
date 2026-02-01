@@ -591,24 +591,33 @@ volumes:
       o: bind
       device: ../../../DATA/testing-stack/project-zomboid/project-zomboid_scripts
 
-  showet_config:
-    name: showet_config
+  showouet_config:
+    name: showouet_config
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/showet/showet_config
-  showet_scripts:
-    name: showet_scripts
+      device: ../../../DATA/testing-stack/showouet/showouet_config
+  showouet_downloads:
+    name: showouet_downloads
     driver: local
     # external: true
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/testing-stack/showet/showet_scripts
+      device: ../../../DATA/testing-stack/showouet/showouet_downloads
+  showouet_favorieten:
+    name: showouet_favorieten
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/testing-stack/showouet/showouet_favorieten
 
 networks:
   host:
   testing-services:
     external: true
+

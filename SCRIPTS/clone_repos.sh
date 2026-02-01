@@ -5,7 +5,9 @@ echo "Clone repos script started."
 SCRIPT_DIR="$(dirname "$(realpath "$0")")" || true
 export SCRIPT_DIR
 
-export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
+export STACK_SUFFIX="-stack"
+
+export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai${STACK_SUFFIX}/ComfyUI"
 
 export UV_LINK_MODE=copy
 
@@ -42,11 +44,11 @@ EOF
 
 }
 
-if [[ ! -d "${STACK_BASEPATH}/DATA/ai-stack" ]]; then
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+if [[ ! -d "${STACK_BASEPATH}/DATA/ai${STACK_SUFFIX}" ]]; then
+	mkdir -p "${STACK_BASEPATH}/DATA/ai${STACK_SUFFIX}"
 fi
 
-# cd "${STACK_BASEPATH}/DATA/ai-stack" || exit 1
+# cd "${STACK_BASEPATH}/DATA/ai${STACK_SUFFIX}" || exit 1
 function CREATE_FOLDERS() {
 
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-backends"
@@ -68,10 +70,10 @@ function CREATE_FOLDERS() {
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Downloaded"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Favorites"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-outputs/variety/Fetched"
-	mkdir -p "${STACK_BASEPATH}/DATA/ai-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/ai${STACK_SUFFIX}"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-workflows"
-	mkdir -p "${STACK_BASEPATH}/DATA/essential-stack"
-	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber-stack"
+	mkdir -p "${STACK_BASEPATH}/DATA/essential${STACK_SUFFIX}"
+	mkdir -p "${STACK_BASEPATH}/DATA/openllm-vtuber${STACK_SUFFIX}"
 	mkdir -p "${STACK_BASEPATH}/DATA/ai-custom_nodes"
 
 }
@@ -84,7 +86,8 @@ function LINK_FOLDERS() {
 
 function CLONE_PUPPETEER() {
 	SERVICE_NAME="puppeteer"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -142,7 +145,8 @@ function CLONE_PUPPETEER() {
 
 function CLONE_ANYTHINGLLM() {
 	SERVICE_NAME="anything-llm"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -188,7 +192,8 @@ function CLONE_ANYTHINGLLM() {
 
 function CLONE_SCANOPY() {
 	SERVICE_NAME="scanopy"
-	STACK_NAME="essential-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="essential${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -231,7 +236,8 @@ function CLONE_SCANOPY() {
 
 function CLONE_CLAIR() {
 	SERVICE_NAME="clair"
-	STACK_NAME="essential-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="essential${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -274,10 +280,11 @@ function CLONE_CLAIR() {
 
 function CLONE_OLLMVT() {
 	SERVICE_NAME="openllm-vtuber"
-	STACK_NAME="openllm-vtuber-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="openllm-vtuber${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
-		mkdir -p "${STACK_BASEPATH}/DATA/${SERVICE_NAME}-stack"
+		mkdir -p "${STACK_BASEPATH}/DATA/${SERVICE_NAME}${STACK_SUFFIX}"
 	fi
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
@@ -336,7 +343,8 @@ function CLONE_OLLMVT() {
 
 function CLONE_SWARMUI() {
 	SERVICE_NAME="SwarmUI"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -381,7 +389,8 @@ function CLONE_SWARMUI() {
 
 function CLONE_COMFYUI() {
 	SERVICE_NAME="ComfyUI"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -628,7 +637,8 @@ function CLONE_COMFYUI() {
 
 function CLONE_COMFYUI_MCP() {
 	SERVICE_NAME="comfyui-mcp-server"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -686,7 +696,8 @@ function CLONE_COMFYUI_MCP() {
 
 function CLONE_COMFYUIMINI() {
 	SERVICE_NAME="ComfyUIMini"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
 		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
@@ -751,7 +762,8 @@ function CLONE_COMFYUIMINI() {
 
 function CLONE_COPYPARTY() {
 	SERVICE_NAME="copyparty"
-	STACK_NAME="essential-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="essential${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
@@ -840,7 +852,8 @@ function CLONE_COPYPARTY() {
 
 function CLONE_SYNCTUBE() {
 	SERVICE_NAME="synctube"
-	STACK_NAME="testing-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="testing${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
@@ -919,7 +932,8 @@ function CLONE_SYNCTUBE() {
 
 function CLONE_PYGOTCHI() {
 	SERVICE_NAME="pygotchi"
-	STACK_NAME="ai-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
@@ -958,7 +972,8 @@ function CLONE_PYGOTCHI() {
 
 function CLONE_PROJZOMB() {
 	SERVICE_NAME="project-zomboid"
-	STACK_NAME="testing-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="testing${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
@@ -991,37 +1006,70 @@ function CLONE_PROJZOMB() {
 
 }
 
-function CLONE_SHOWET() {
-	SERVICE_NAME="showet"
-	STACK_NAME="testing-stack"
-
-	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
-
-	if [[ ! -d "${SERVICE_NAME}" ]]; then
-		echo "Cloning ${SERVICE_NAME}"
-		echo ""
-		git clone --recursive "https://github.com/itsdarklikehell/${SERVICE_NAME}.git" "${SERVICE_NAME}"
-		cd "${SERVICE_NAME}" || exit 1
-	else
-		echo "Checking ${SERVICE_NAME} for updates"
-		cd "${SERVICE_NAME}" || exit 1
-		git pull
-	fi
+function CLONE_SHOWOUET() {
+	SERVICE_NAME="showouet"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="testing${STACK_SUFFIX}"
 
 	function LOCAL_SETUP() {
 
 		echo "Using Local setup"
+
+		if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}" ]]; then
+
+			mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}"
+			cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
+
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/${SERVICE_NAME}.py"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/requirements.txt"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/README.md"
+			# fi
+
+		fi
+
+		# python3 -m venv venv
+		# source venv/bin/activate
+		# pip install -r requirements.txt
+		# python3 showouet.py --menu
 
 	}
 
 	function DOCKER_SETUP() {
 
 		echo "Using Docker setup"
-		if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
-			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
-		# else
-		# 	echo "No Dockerfile found for ${SERVICE_NAME}, skipping copy."
+
+		if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}" ]]; then
+
+			mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}"
+			cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
+
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Pythonfile-${SERVICE_NAME}.py" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/${SERVICE_NAME}.py"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/Requirementsfile-${SERVICE_NAME}.txt" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/requirements.txt"
+			# fi
+			# if [[ -f "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" ]]; then
+			# 	cp -rf "${STACK_BASEPATH}/SCRIPTS/READMEfile-${SERVICE_NAME}.md" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/README.md"
+			# fi
+
 		fi
+
+		# python3 -m venv venv
+		# source venv/bin/activate
+		# pip install -r requirements.txt
+		# python3 showouet.py --menu
 
 	}
 
@@ -1032,7 +1080,8 @@ function CLONE_SHOWET() {
 
 function CLONE_KASMWORKSPACES() {
 	SERVICE_NAME="kasmworkspaces"
-	STACK_NAME="testing-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="testing${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
@@ -1065,7 +1114,8 @@ function CLONE_KASMWORKSPACES() {
 
 function CLONE_STRUDEL() {
 	SERVICE_NAME="strudel"
-	STACK_NAME="testing-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="testing${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 	if [[ ! -d "${SERVICE_NAME}"-cli ]]; then
@@ -1106,7 +1156,8 @@ function CLONE_STRUDEL() {
 
 function CLONE_SDR_TCP() {
 	SERVICE_NAME="rtl-tcp"
-	STACK_NAME="sdr-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="sdr${STACK_SUFFIX}"
 
 	mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
@@ -1147,7 +1198,8 @@ function CLONE_SDR_TCP() {
 
 function CLONE_BIRDNETPI_TCP() {
 	SERVICE_NAME="birdnet-pi"
-	STACK_NAME="sdr-stack"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="sdr${STACK_SUFFIX}"
 
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 	if [[ ! -d "${SERVICE_NAME}" ]]; then
@@ -1198,7 +1250,7 @@ CLONE_OLLMVT # >/dev/null 2>&1 &
 CLONE_SWARMUI  # >/dev/null 2>&1 &
 CLONE_PYGOTCHI # >/dev/null 2>&1 &
 CLONE_PROJZOMB # >/dev/null 2>&1 &
-CLONE_SHOWET   # >/dev/null 2>&1 &
+CLONE_SHOWOUET # >/dev/null 2>&1 &
 # CLONE_STRUDEL        # >/dev/null 2>&1 &
 CLONE_SDR_TCP       # >/dev/null 2>&1 &
 CLONE_BIRDNETPI_TCP # >/dev/null 2>&1 &

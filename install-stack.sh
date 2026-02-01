@@ -12,8 +12,8 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="true"                                                             # false, true/normal, all
-export BUILDING="true"                                                          # false, true, force_rebuild
+export PRUNE="all"                                                              # false, true/normal, all
+export BUILDING="force_rebuild"                                                 # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_COMFYUI="true"                                                     # false, true
 export START_CUSHYSTUDIO="true"                                                 # false, true
@@ -344,11 +344,11 @@ INSTALL_DOCKER
 CLEANUP_DATA
 PRUNING
 
-echo ""
-echo "Cloning repos"
-echo ""
-CLONE_REPOS # >/dev/null 2>&1
-echo ""
+# echo ""
+# echo "Cloning repos"
+# echo ""
+# CLONE_REPOS # >/dev/null 2>&1
+# echo ""
 
 ### STACKS:
 CREATE_SECRETS
@@ -415,44 +415,44 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	# echo ""
 
 	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# echo ""
 
 	########################
 
@@ -524,32 +524,32 @@ fi
 
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
-export ollama_container_name="ollama"
-# alias ollama='docker exec -it ollama ollama'
-alias ollama='docker exec -it ${ollama_container_name} ollama'
+# export ollama_container_name="ollama"
+# # alias ollama='docker exec -it ollama ollama'
+# alias ollama='docker exec -it ${ollama_container_name} ollama'
 
-if command -v ollama >/dev/null 2>&1; then
-	echo ""
-	PULL_MODELS >/dev/null 2>&1 &
-	echo ""
-elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
-	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
-		echo ""
-		PULL_MODELS >/dev/null 2>&1 &
-		echo ""
-	fi
-else
-	# alias ollama='docker exec -it ollama ollama'
-	alias ollama='docker exec -it ${ollama_container_name} ollama'
-	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
-	sleep 20
-	PULL_MODELS >/dev/null 2>&1 &
-fi
+# if command -v ollama >/dev/null 2>&1; then
+# 	echo ""
+# 	PULL_MODELS >/dev/null 2>&1 &
+# 	echo ""
+# elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
+# 	if docker inspect -f '{{.State.Status}}' "${ollama_container_name}" | grep -q "running" || true; then
+# 		echo ""
+# 		PULL_MODELS >/dev/null 2>&1 &
+# 		echo ""
+# 	fi
+# else
+# 	# alias ollama='docker exec -it ollama ollama'
+# 	alias ollama='docker exec -it ${ollama_container_name} ollama'
+# 	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
+# 	sleep 20
+# 	PULL_MODELS >/dev/null 2>&1 &
+# fi
 
-export pterodactyl_container_name="pterodactyl-panel"
-if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
-	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
-fi
+# export pterodactyl_container_name="pterodactyl-panel"
+# if docker inspect -f '{{.State.Status}}' "${pterodactyl_container_name}" | grep -q "running" || true; then
+# 	docker compose exec ${pterodactyl_container_name} php artisan p:user:make
+# fi
 
 # echo "Installation should be complete now.."
 # echo ""

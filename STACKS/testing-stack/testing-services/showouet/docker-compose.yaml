@@ -1,10 +1,12 @@
 services:
-  showet:
-    container_name: ${NAME:-showet}
+  showouet:
+    container_name: ${NAME:-showouet}
     restart: ${RESTART:-unless-stopped}
 
+    privileged: true
+
     build:
-      context: ../../../DATA/testing-stack/showet
+      context: ../../../DATA/testing-stack/showouet
       dockerfile: Dockerfile
       args:
         UID: ${PUID:-1000}
@@ -26,17 +28,23 @@ services:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
-      - SUBFOLDER=/
-      - TITLE=showet
+      - TITLE=showouet
+      - DEBUG=on  # Schakel debug output in
+
+      - SHOWOUET_DOWNLOADS=/config/Downloads
+      - SHOWOUET_FAVORIETEN=/config/Favorieten
+      - SHOWOUET_CORES=/usr/lib/x86_64-linux-gnu/libretro
 
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
       # - /etc/timezone:/etc/timezone:ro
-      - /var/run/docker.sock:/var/run/docker.sock
 
-      # - ../../../DATA/testing-stack/showet/install.sh:/app/install.sh
+      - showouet_config:/config
+      - showouet_downloads:/config/Downloads
+      - showouet_favorieten:/config/Favorieten
 
-    hostname: ${NAME:-showet}
+    hostname: ${NAME:-showouet}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -49,7 +57,7 @@ services:
       - 3945:3001
 
     env_file:
-      - ./showet/.env
+      - ./showouet/.env
 
     runtime: nvidia
     deploy:
@@ -61,11 +69,17 @@ services:
               count: all
               capabilities: [gpu, compute, video, graphics, utility]
 
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
+
     tty: true
 
     stdin_open: true
 
-    shm_size: 4gb
+    shm_size: 2gb
 
     # healthcheck:
     #   test:
@@ -87,3 +101,4 @@ services:
       options:
         max-size: 10m
         max-file: 3
+

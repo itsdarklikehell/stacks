@@ -1,0 +1,31 @@
+FROM lscr.io/linuxserver/webtop:ubuntu-xfce
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+RUN dpkg --add-architecture i386 && apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common curl ca-certificates && \
+    add-apt-repository -y ppa:libretro/stable
+
+# We installeren RetroArch EN de meest essentiële cores expliciet
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    jq unzip p7zip-full lhasa python3 python3-pip xfce4-terminal \
+    wine64 wine32 retroarch \
+    libretro-puae libretro-vice libretro-hatari libretro-fuse libretro-dosbox-pure && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/wine64 /usr/bin/wine || true
+RUN pip3 install --no-cache-dir requests --break-system-packages
+
+WORKDIR /app
+COPY showouet.py /app/showouet.py
+RUN chmod +x /app/showouet.py
+
+RUN mkdir -p /config/.config/autostart && \
+    echo "[Desktop Entry]\n\
+Type=Application\n\
+Name=Showouet\n\
+Exec=xfce4-terminal --maximize -e 'python3 /app/showouet.py'\n\
+Terminal=false" > /config/.config/autostart/showouet.desktop
+
+RUN chown -R 1000:1000 /config /app
