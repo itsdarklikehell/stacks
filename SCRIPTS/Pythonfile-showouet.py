@@ -8,7 +8,7 @@ EXTRACT_DIR = os.path.join(DOWNLOAD_DIR, "current_demo")
 HEADERS = {'User-Agent': 'ShowouetJukebox/4.0', 'Accept': 'application/json'}
 CORE_DIR = "/usr/lib/x86_64-linux-gnu/libretro"
 
-# Platform mapping (Matcht Docker libretro installaties)
+# Volledige mapping gesynchroniseerd met Ubuntu libretro-* pakketten
 PLATFORM_MAPPING = {
     "Windows": "wine",
     "MS-Dos": "dosbox_pure_libretro.so",
@@ -53,7 +53,6 @@ PLATFORM_MAPPING = {
     "Virtual Boy": "beetle_vb_libretro.so",
     "Playstation": "mednafen_psx_libretro.so",
     "Playstation 2": "pcsx2_libretro.so",
-    "Playstation 3": "rpcs3",
     "Playstation Portable": "ppsspp_libretro.so",
     "SEGA Genesis/Mega Drive": "genesis_plus_gx_libretro.so",
     "SEGA Master System": "genesis_plus_gx_libretro.so",
@@ -63,13 +62,12 @@ PLATFORM_MAPPING = {
     "Apple II": "apple2enh_libretro.so",
     "Apple II GS": "apple2enh_libretro.so",
     "Acorn": "arcem_libretro.so",
-    "BBC Micro": "beebem_libretro.so",
     "Oric": "oricutron_libretro.so",
     "Vectrex": "vecx_libretro.so",
     "PICO-8": "retro8_libretro.so",
     "TIC-80": "tic80_libretro.so",
     "NeoGeo Pocket": "mednafen_ngp_libretro.so",
-    "Wonderswan": "mednafen_wswan_libretro.so",
+    "Wonderswan": "mednafen_wswan_libretro.so"
 }
 
 def safe_get_json(url, params=None):
@@ -84,6 +82,7 @@ def safe_get_json(url, params=None):
 
 def launch(work_dir, meta):
     target = None
+    # Ondersteunde extensies voor emulatie en executables
     exts = ('.exe', '.com', '.adf', '.d64', '.st', '.msa', '.lha', '.prg', '.tap', '.gb', '.nes', '.sfc', '.p8', '.tic', '.bin', '.z64', '.iso')
     for root, _, files in os.walk(work_dir):
         for f in sorted(files):
@@ -93,7 +92,7 @@ def launch(work_dir, meta):
         if target: break
 
     if not target:
-        print("\x1b[31m[!] Geen executable gevonden.\x1b[0m"); return
+        print("\x1b[31m[!] Geen executable gevonden in extractie map.\x1b[0m"); return
 
     p_list = meta.get('p_list', [])
     print(f"\n\x1b[32m▶ Starten: {meta['name']} ({', '.join(p_list)})\x1b[0m")
@@ -109,7 +108,7 @@ def launch(work_dir, meta):
             subprocess.run(["wine", target], cwd=os.path.dirname(target))
         elif core and core.endswith(".so"):
             c_path = os.path.join(CORE_DIR, core)
-            # Gebruik de core als die bestaat, anders probeer RetroArch auto-detect
+            # Start met core-vlag indien core bestaat, anders auto-detect
             cmd = ["retroarch", "-L", c_path] if os.path.exists(c_path) else ["retroarch"]
             cmd.append(target)
             subprocess.run(cmd)
@@ -117,23 +116,25 @@ def launch(work_dir, meta):
             os.chmod(target, 0o755)
             subprocess.run([target], cwd=os.path.dirname(target))
         else:
+            # Fallback: probeer het bestand direct in RetroArch te gooien
             subprocess.run(["retroarch", target])
     except Exception as e:
         print(f"Emulator error: {e}")
 
 def process(prod_id):
-    # API v1 prod endpoint (GEFIXED)
+    # API v1 prod endpoint
     data = safe_get_json("https://api.pouet.net", params={'id': prod_id})
     prod = data.get('prod') if data else None
     if not prod:
-        print("[!] Kon product-details niet ophalen.")
+        print("[!] Kon details voor ID %s niet ophalen." % prod_id)
         return
 
     url = prod.get('download')
     if not url:
-        print("[!] Geen download-URL gevonden.")
+        print("[!] Geen download-URL voor deze demo.")
         return
 
+    # Map opschonen en voorbereiden
     shutil.rmtree(EXTRACT_DIR, ignore_errors=True)
     os.makedirs(EXTRACT_DIR, exist_ok=True)
     tmp_path = os.path.join(DOWNLOAD_DIR, "file.tmp")
@@ -147,22 +148,29 @@ def process(prod_id):
         print(f"[!] Download mislukt: {e}")
         return
 
-    # Uitpakken met 7z (zoals in Dockerfile geïnstalleerd)
+    # Uitpakken (7z handelt bijna alle archieven af)
     subprocess.run(["7z", "x", tmp_path, f"-o{EXTRACT_DIR}", "-y"], stdout=subprocess.DEVNULL)
 
-    # Platforms parsen (v1 API geeft lijst van objects)
+    # Platforms parsen (lijst van objects in v1)
     p_names = [p['name'] for p in prod.get('platforms', [])]
 
     launch(EXTRACT_DIR, {"name": prod.get('name'), "p_list": p_names})
-    input("\nKlaar. Druk Enter...")
+    input("\nKlaar met demo. Druk op Enter voor menu...")
 
 def main():
     while True:
-        print("\n=== POUËT.NET JUKEBOX V4.0 (API v1) ===")
-        print("1. Random Demo\n2. Latest Released\n3. Top of the Month\n4. All-time Top\n5. Exit")
+        os.system('clear')
+        print("===========================================")
+        print("    POUËT.NET JUKEBOX V4.0 (API v1)       ")
+        print("===========================================")
+        print("1. Random Demo")
+        print("2. Latest Released")
+        print("3. Top of the Month")
+        print("4. All-time Top")
+        print("5. Exit")
+
         c = input("\nKeuze: ")
 
-        # Endpoints gefixed naar v1 structuur
         endpoints = {
             "1": "https://api.pouet.net?random=true",
             "2": "https://api.pouet.net",
@@ -177,18 +185,23 @@ def main():
         elif c in ["2", "3", "4"]:
             data = safe_get_json(endpoints[c])
             if data:
-                # API v1 stuurt lijsten onder verschillende keys (bijv. latestReleasedProds)
+                # Dynamische lijst selectie (verschillende keys per endpoint)
                 items = next((v for v in data.values() if isinstance(v, list)), [])
                 if items:
+                    print("\nSelecteer een demo:")
                     for i, item in enumerate(items[:15]):
                         print(f"{i+1:2}. {item['name']}")
-                    sel = input("\nNummer: ")
+
+                    sel = input("\nNummer (of 'q' voor menu): ")
                     if sel.isdigit() and 0 < int(sel) <= len(items):
                         process(items[int(sel)-1]['id'])
                 else:
-                    print("[!] Geen resultaten gevonden.")
+                    print("[!] Geen lijst gevonden in API response.")
+                    time.sleep(2)
         elif c == "5":
+            print("Bye!")
             break
 
 if __name__ == "__main__":
     main()
+
