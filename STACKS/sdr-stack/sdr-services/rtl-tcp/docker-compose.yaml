@@ -4,12 +4,12 @@ services:
     container_name: ${NAME:-rtl-tcp}
     restart: ${RESTART:-unless-stopped}
 
-    build:
-      context: ../../../DATA/sdr-stack/rtl-tcp
-      dockerfile: Dockerfile
-      args:
-        UID: ${PUID:-1000}
-        GID: ${PGID:-1000}
+    # build:
+    #   context: ../../../DATA/sdr-stack/rtl-tcp
+    #   dockerfile: Dockerfile
+    #   args:
+    #     UID: ${PUID:-1000}
+    #     GID: ${PGID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -36,8 +36,6 @@ services:
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /dev/bus/usb:/dev/bus/usb:ro
-
-      - rtl-tcp_config:/run/rtlsdir-airband
 
     tmpfs:
       - /tmp:mode=1777

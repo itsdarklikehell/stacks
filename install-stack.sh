@@ -12,7 +12,7 @@ export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
 export CLEANUP="false"                                                          # false, true
-export PRUNE="false"                                                            # false, true/normal, all
+export PRUNE="true"                                                            # false, true/normal, all
 export BUILDING="true"                                                          # false, true, force_rebuild
 export PULL_MODELS="true"                                                       # false, true
 export START_COMFYUI="true"                                                     # false, true
@@ -358,46 +358,46 @@ if [[ "${USER}" == "hans" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_AI_STACK
-	echo ""
+	# echo ""
+	# SETUP_AI_STACK
+	# echo ""
 
-	echo ""
-	SETUP_OPENLLM_VTUBER_STACK
-	echo ""
+	# echo ""
+	# SETUP_OPENLLM_VTUBER_STACK
+	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	echo ""
 	SETUP_SDR_STACK
 	echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	# # docker compose exec pterodactyl-panel php artisan p:user:make
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# # # docker compose exec pterodactyl-panel php artisan p:user:make
+	# echo ""
 
 	########################
 
