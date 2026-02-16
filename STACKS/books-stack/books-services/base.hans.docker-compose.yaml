@@ -33,7 +33,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
 
   freshrss_config:
     name: freshrss_config
@@ -58,21 +58,21 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
   calibre_autoadd:
     name: calibre_autoadd
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/calibre/calibre_autoadd
+      device: /media/hans/beestation/Files/autoadd_bibliotheek
   calibre_config:
     name: calibre_config
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/calibre/calibre_config
+      device: /media/hans/beestation/Files/Calibre_config
 
   cops_config:
     name: cops_config
@@ -87,7 +87,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
 
   mylar3_config:
     name: mylar3_config
@@ -102,7 +102,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
   mylar3_downloads:
     name: mylar3_downloads
     driver: local
@@ -134,7 +134,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
 
   kavita_data:
     name: kavita_data
@@ -151,7 +151,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
 
   ubooquity_data:
     name: ubooquity_data
@@ -168,7 +168,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
   ubooquity_comics:
     name: ubooquity_comics
     driver: local
@@ -176,7 +176,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
   ubooquity_rawfiles:
     name: ubooquity_rawfiles
     driver: local

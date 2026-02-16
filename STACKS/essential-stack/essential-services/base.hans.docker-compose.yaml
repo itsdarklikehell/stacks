@@ -346,7 +346,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hans/Boeken
+      device: /media/hans/beestation/Files/Bibliotheek
 
   ai_outputs:
     name: ai_outputs
