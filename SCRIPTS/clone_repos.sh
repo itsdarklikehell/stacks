@@ -975,6 +975,8 @@ function CLONE_PROJZOMB() {
 	STACK_SUFFIX="-stack"
 	STACK_NAME="testing${STACK_SUFFIX}"
 
+	mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
+	
 	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
 
 	if [[ ! -d "${SERVICE_NAME}" ]]; then

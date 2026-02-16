@@ -16,7 +16,7 @@ COMPOSE_FILES=(
 	localai
 	n8n
 	ollama
-	pygotchi
+	# pygotchi
 	open-webui
 	# puppeteer
 	searxng
