@@ -43,6 +43,7 @@ COMPOSE_FILES=(
 	# shotcut
 	# sickgear
 	# sonarr
+	gpodder
 	# spotube
 	# synclounge
 	# tautulli
@@ -72,6 +73,16 @@ function SETUP_FOLDERS() {
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"config"
+		)
+
+	fi
+	
+	if [[ "${SERVICE_NAME}" == "gpodder" ]]; then
+
+		declare -a FOLDERS=()
+		FOLDERS=(
+			"config"
+			"downloads"
 		)
 
 	fi

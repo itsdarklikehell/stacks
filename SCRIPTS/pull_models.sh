@@ -4,8 +4,8 @@
 models=(
 	# --- Coding Kampioenen (Chat & Autocomplete) ---
 	'qwen2.5-coder:latest'
-	'qwen2.5-coder:32b'
-	'qwen2.5-coder:14b'
+	# 'qwen2.5-coder:32b'
+	# 'qwen2.5-coder:14b'
 	'qwen2.5-coder:7b'
 	'qwen2.5-coder:1.5b-base'
 	'qwen3-coder:latest'

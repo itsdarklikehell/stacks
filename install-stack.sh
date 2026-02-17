@@ -370,9 +370,9 @@ if [[ "${USER}" == "hans" ]]; then
 	# SETUP_OPENLLM_VTUBER_STACK
 	# echo ""
 
-	echo ""
-	SETUP_ESSENTIALS_STACK
-	echo ""
+	# echo ""
+	# SETUP_ESSENTIALS_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_BACKUPS_STACK
@@ -386,9 +386,9 @@ if [[ "${USER}" == "hans" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	# echo ""
-	# SETUP_MEDIA_STACK
-	# echo ""
+	echo ""
+	SETUP_MEDIA_STACK
+	echo ""
 
 	# echo ""
 	# SETUP_SDR_STACK

@@ -19,6 +19,23 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  gpodder_config:
+    name: gpodder_config
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/gpodder/gpodder_config
+  gpodder_downloads:
+    name: gpodder_downloads
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/minisatip/gpodder_downloads
+
   emby-wrapped_config:
     name: emby-wrapped_config
     driver: local
