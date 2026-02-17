@@ -262,6 +262,13 @@ volumes:
       type: none
       o: bind
       device: ../../../DATA/essential-stack/immich-server/immich-server_uploads
+  immich-server_fotos:
+    name: immich-server_fotos
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /media/hans/beestation/Photos
   immich-server_model-cache:
     name: immich-server_model-cache
     driver: local

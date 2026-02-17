@@ -35,7 +35,7 @@ services:
 
       - cops_config:/config
       - cops_books:/books
-      - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder

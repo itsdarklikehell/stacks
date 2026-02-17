@@ -30,7 +30,7 @@ function SETUP_FOLDERS() {
 
 	if [[ "${SERVICE_NAME}" == "calibre-web" ]]; then
 
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_library"
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -50,7 +50,7 @@ function SETUP_FOLDERS() {
 
 	if [[ "${SERVICE_NAME}" == "ubooquity" ]]; then
 
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_library"
 
 		declare -a FOLDERS=()
 		FOLDERS=(
@@ -106,7 +106,7 @@ function SETUP_FOLDERS() {
 
 	if [[ "${SERVICE_NAME}" == "lazylibrarian" ]]; then
 
-		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_books"
+		mkdir -p "${STACK_BASEPATH}/DATA/essential-stack/calibre/calibre_library"
 
 		declare -a FOLDERS=()
 		FOLDERS=(

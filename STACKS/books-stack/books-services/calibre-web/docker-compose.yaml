@@ -37,7 +37,7 @@ services:
 
       - calibre-web_data:/config
       - calibre-web_library:/books
-      - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
     hostname: ${NAME:-calibre-web}
 

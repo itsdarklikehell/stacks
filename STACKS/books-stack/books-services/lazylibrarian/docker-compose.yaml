@@ -35,7 +35,7 @@ services:
       - lazylibrarian_data:/config
       - lazylibrarian_library:/books
       - lazylibrarian_downloads:/downloads
-      - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
       - transmission_watchfolder:/transmission_watchfolder
 

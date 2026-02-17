@@ -35,7 +35,7 @@ services:
       - mylar3_config:/config
       - mylar3_comics:/comics
       - mylar3_downloads:/downloads
-      - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder

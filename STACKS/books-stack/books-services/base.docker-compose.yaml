@@ -52,13 +52,13 @@ volumes:
       o: bind
       device: ../../../DATA/books-stack/rsspub/rsspub_config
 
-  calibre_books:
-    name: calibre_books
+  calibre_library:
+    name: calibre_library
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/books-stack/calibre/calibre_books
+      device: ../../../DATA/books-stack/calibre/calibre_library
   calibre_autoadd:
     name: calibre_autoadd
     driver: local

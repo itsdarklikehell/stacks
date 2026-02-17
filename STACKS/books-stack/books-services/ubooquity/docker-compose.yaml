@@ -34,7 +34,7 @@ services:
       - ubooquity_library:/book
       - ubooquity_comics:/comics
       - ubooquity_rawfiles:/files
-      - calibre_books:/calibre_books
+      - calibre_library:/calibre_library
 
       - transmission_downloads:/downloads
       - transmission_watchfolder:/transmission_watchfolder
