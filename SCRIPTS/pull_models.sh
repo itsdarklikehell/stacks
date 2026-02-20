@@ -17,10 +17,11 @@ models=(
 	'granite-code:latest'
 	'starcoder2:latest'
 	'codellama:latest'
+	'gpt-oss:latest'
 
 	# --- Reasoning & Logic (Deep Thinking) ---
 	'deepseek-r1:latest'
-	'deepseek-v3:latest'
+	# 'deepseek-v3:latest'
 	'smallthinker:latest'
 	'marco-o1:latest'
 	'opencoder:latest'
@@ -32,11 +33,18 @@ models=(
 	'huihui_ai/smallthinker-abliterated:latest'
 	'llama2-uncensored:latest'
 	'dolphin-mistral:latest'
-	'dolphin-mixtral:latest'
+	'ministral-3:latest'
+	# 'dolphin-mixtral:latest'
 	'dolphin-phi:latest'
+	'granite4:latest'
+	'granite3.3:latest'
+	'granite3.2:latest'
+	'devstral-small-2:latest'
+	'functiongemma:latest'
+	'cogito:latest'
 
 	# --- General Purpose & Vision ---
-	'llama3.3:latest'
+	# 'llama3.3:latest'
 	'gemma3:latest'
 	'qwen3:latest'
 	'smollm2:latest'
@@ -46,12 +54,27 @@ models=(
 
 	# --- Embeddings & Utilities ---
 	'nomic-embed-text:latest'
+	'nomic-embed-text-v2-moe:latest'
 	'mxbai-embed-large:latest'
 	'embeddinggemma:latest'
+	'translategemma:latest'
+	'qwen3-embedding:latest'
+	'lfm2.5-thinking:latest'
+	'bge-m3:latest'
+	'all-minilm:latest'
+	'paraphrase-multilingual:latest'
+	'snowflake-arctic-embed:latest'
+	'snowflake-arctic-embed2:latest'
+	'granite-embedding:latest'
+	'bge-large:latest'
+	'hf.co/SicariusSicariiStuff/Assistant_Pepe_8B_GGUF'
+	'hf.co/adamo1139/Danube3-4b-4chan-HESOYAM-2510-GGUF'
+	'hf.co/mradermacher/GPT4chan-8B-GGUF'
 
 	# --- Long Context & Full Repository Analysis ---
 	'phi4:latest'
-	'command-r:latest'
+	'phi4-mini:latest'
+	# 'command-r:latest'
 	'command-r7b:latest'
 
 	# --- Tool Use & Function Calling Specialists ---
@@ -59,9 +82,11 @@ models=(
 	'hermes3:latest'
 
 	# --- Cutting Edge (New Releases 2025/2026) ---
+	'exaone3.5:latest'
 	'exaone:latest'
-	'athene-v2:latest'
-	'nemotron:latest'
+	'exaone-deep:latest'
+	# 'athene-v2:latest'
+	# 'nemotron:latest'
 
 	# --- Ultra-Lightweight & Specialised ---
 	'llama3.2:1b'
@@ -70,16 +95,18 @@ models=(
 	'phind-codellama:latest'
 
 	# --- Security, DevOps & Data ---
-	'hubert234/llama3-70b-instruct-scan:latest'
-	'ops-pilot:latest'
+	# 'hubert234/llama3-70b-instruct-scan:latest'
+	# 'ops-pilot:latest'
 	'duckdb-nsql:latest'
-	'open-interpreter:latest'
+	# 'open-interpreter:latest'
+	'wojtek/opencodeinterpreter:6.7b'
 
 	# --- Architectuur & Reasoning Varianten ---
 	'architect:latest'
 	'merit/code-explainer:latest'
 	'bespoke-minerva:latest'
-	'reflection:latest'
+	'bespoke-minicheck:latest'
+	# 'reflection:latest'
 )
 
 # ollama_container_name to check if ollama docker service is running:
