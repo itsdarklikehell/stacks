@@ -5,7 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 COMPOSE_FILES=(
 	veloren-server
-	tes3mp-server
+	# tes3mp-server
 	# linux-gsm-cs2
 	# pterodactyl
 )
