@@ -34,7 +34,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ../../../DATA/media-stack/minisatip/gpodder_downloads
+      device: ../../../DATA/essential-stack/jellyfin/jellyfin_podcasts
 
   emby-wrapped_config:
     name: emby-wrapped_config
