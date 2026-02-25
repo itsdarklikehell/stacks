@@ -44,6 +44,7 @@ COMPOSE_FILES=(
 	# sickgear
 	# sonarr
 	gpodder
+	pico_sorter
 	# spotube
 	# synclounge
 	# tautulli
@@ -85,6 +86,23 @@ function SETUP_FOLDERS() {
 			"downloads"
 		)
 
+	fi
+
+		if [[ "${SERVICE_NAME}" == "pico_sorter" ]]; then
+
+		declare -a FOLDERS=()
+		FOLDERS=(
+			"sorted_samples"
+			"unsorted_samples"
+		)
+
+		if [[ ! -f "${FOLDER}/${SERVICE_NAME}/Dockerfile" ]]; then
+			cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${FOLDER}/Dockerfile"
+		fi
+		
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/${SERVICE_NAME}.py" "${FOLDER}/${SERVICE_NAME}.py"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/${SERVICE_NAME}.md" "${FOLDER}/${SERVICE_NAME}.md"
+		
 	fi
 
 	if [[ "${SERVICE_NAME}" == "cinephage" ]]; then

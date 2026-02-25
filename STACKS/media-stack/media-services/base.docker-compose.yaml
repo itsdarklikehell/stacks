@@ -19,6 +19,23 @@ volumes:
       o: bind
       device: ../../../DATA/media-stack/minisatip/minisatip_config
 
+  pico_sorter_unsorted_samples:
+    name: pico_sorter_unsorted_samples
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/pico_sorter/unsorted_samples
+  pico_sorter_sorted_samples:
+    name: pico_sorter_sorted_samples
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/media-stack/pico_sorter/sorted_samples
+
   gpodder_config:
     name: gpodder_config
     driver: local

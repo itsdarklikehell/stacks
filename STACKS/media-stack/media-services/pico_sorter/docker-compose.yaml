@@ -1,9 +1,15 @@
 services:
-  pico-sorter:
+  pico_sorter:
     # image: ${IMAGE:-t41372/open-llm-vtuber}
-    image: ${IMAGE:-zshall/television-simulator:latest}
-    container_name: ${NAME:-pico-sorter}
+    container_name: ${NAME:-pico_sorter}
     restart: ${RESTART:-unless-stopped}
+
+    build:
+      context: ../../../DATA/media-stack/pico_sorter
+      dockerfile: Dockerfile
+      args:
+        UID: ${PUID:-1000}
+        GID: ${PGID:-1000}
 
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -20,17 +26,21 @@ services:
       - TZ=${TZ:-Europe/Amsterdam}
 
       - OLLAMA_URL=http://ollama:11434
-      - DRY_RUN=True  # Change to False for actual sorting
+      - OLLAMA_MODEL=llama3
+      - TARGET_GENRES=General Electronic, Jungle, Breakcore, Lo-Fi, Techno, Hip-hop, House
+      - INPUT_DIR=/app/unsorted_samples
+      - OUTPUT_DIR=/app/sorted_samples
+      - DRY_RUN=True  # Change to False for actual sorting and conversion
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
       # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
-      - ../../../DATA/media-stack/pico-sorter/unsorted_samples:/app/unsorted_samples
-      - ../../../DATA/media-stack/pico-sorter/sorted_samples:/app/sorted_samples
+      - pico-sorter_unsorted_samples:/app/unsorted_samples
+      - pico-sorter_sorted_samples:/app/sorted_samples
 
-    hostname: ${NAME:-pico-sorter}
+    hostname: ${NAME:-pico_sorter}
 
     # user: ${PUID:-1000}:${PGID:-1000}
 
@@ -42,7 +52,7 @@ services:
       - ${PORT:-3003}:3000
 
     env_file:
-      - ./pico-sorter/.env
+      - ./pico_sorter/.env
 
     runtime: nvidia
     deploy:
