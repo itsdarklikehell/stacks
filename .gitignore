@@ -20,3 +20,4 @@ MEDIA/
 # SCRIPTS/logs-openllm-vtuber/*
 SCRIPTS/models-openllm-vtuber/*
 # SCRIPTS/prompts-openllm-vtuber/*
+.agenticagents/

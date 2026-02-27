@@ -8,6 +8,7 @@ models=(
 	# 'qwen2.5-coder:14b'
 	'qwen2.5-coder:7b'
 	'qwen2.5-coder:1.5b-base'
+	'qwen2.5-coder:1.5b'
 	'qwen3-coder:latest'
 	'codestral:latest'
 	'deepseek-coder-v2:16b-lite-instruct'
