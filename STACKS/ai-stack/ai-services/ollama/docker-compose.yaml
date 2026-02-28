@@ -29,6 +29,7 @@ services:
       - COMFYUI_BASE_URL=${COMFYUI_BASE_URL:-http://${IP_ADDRESS}:8188}
       - OLLAMA_MODELS=/root/.ollama/models
       - OLLAMA_VULKAN=1
+      - OLLAMA_NUM_PARALLEL=4
 
     volumes:
       - /etc/localtime:/etc/localtime:ro

@@ -10,6 +10,7 @@ models=(
 	'qwen2.5-coder:1.5b-base'
 	'qwen2.5-coder:1.5b'
 	'qwen3-coder:latest'
+	'qwen3-coder:14b'
 	'codestral:latest'
 	'deepseek-coder-v2:16b-lite-instruct'
 	'deepseek-coder:1.3b-base'
@@ -19,9 +20,12 @@ models=(
 	'starcoder2:latest'
 	'codellama:latest'
 	'gpt-oss:latest'
+	'gpt-oss:20b'
 
 	# --- Reasoning & Logic (Deep Thinking) ---
 	'deepseek-r1:latest'
+	'deepseek-r1:14b'
+	'deepseek-r1:32b'
 	# 'deepseek-v3:latest'
 	'smallthinker:latest'
 	'marco-o1:latest'
@@ -45,9 +49,13 @@ models=(
 	'cogito:latest'
 
 	# --- General Purpose & Vision ---
-	# 'llama3.3:latest'
+	'llama3.2-vision:latest'
+	'llama3.2:latest'
+	'llama3.3:latest'
 	'gemma3:latest'
 	'qwen3:latest'
+	'qwen3:30b'
+	'qwen3:70b'
 	'smollm2:latest'
 	'llava:latest'
 	'llava-phi3:latest'
@@ -80,6 +88,8 @@ models=(
 
 	# --- Tool Use & Function Calling Specialists ---
 	'mistral-small:latest'
+	'mistral-small:22b'
+	'mistral-small:24b'
 	'hermes3:latest'
 
 	# --- Cutting Edge (New Releases 2025/2026) ---

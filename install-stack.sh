@@ -129,6 +129,12 @@ function INSTALL_DOCKER() {
 
 }
 
+function INSTALL_OPENCLAW() {
+
+	"${STACK_BASEPATH}"/SCRIPTS/install_openclaw.sh
+
+}
+
 function CREATE_SECRETS() {
 
 	"${STACK_BASEPATH}"/SCRIPTS/create_secrets.sh
@@ -341,6 +347,11 @@ echo "Installing Docker"
 echo ""
 INSTALL_DOCKER
 
+echo ""
+echo "Installing Openclaw"
+echo ""
+INSTALL_OPENCLAW
+
 CLEANUP_DATA
 PRUNING
 
@@ -414,9 +425,9 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	# SETUP_AUTOSTART
 	# echo ""
 
-	echo ""
-	SETUP_DOWNLOADER_STACK
-	echo ""
+	# echo ""
+	# SETUP_DOWNLOADER_STACK
+	# echo ""
 
 	echo ""
 	SETUP_AI_STACK
@@ -430,29 +441,29 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	SETUP_ESSENTIALS_STACK
 	echo ""
 
-	echo ""
-	SETUP_BACKUPS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BACKUPS_STACK
+	# echo ""
 
-	echo ""
-	SETUP_CHAT_STACK
-	echo ""
+	# echo ""
+	# SETUP_CHAT_STACK
+	# echo ""
 
-	echo ""
-	SETUP_BOOKS_STACK
-	echo ""
+	# echo ""
+	# SETUP_BOOKS_STACK
+	# echo ""
 
 	echo ""
 	SETUP_MEDIA_STACK
 	echo ""
 
-	echo ""
-	SETUP_SDR_STACK
-	echo ""
+	# echo ""
+	# SETUP_SDR_STACK
+	# echo ""
 
-	echo ""
-	SETUP_GAMESERVER_STACK
-	echo ""
+	# echo ""
+	# SETUP_GAMESERVER_STACK
+	# echo ""
 
 	########################
 
