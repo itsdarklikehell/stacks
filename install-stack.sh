@@ -7,7 +7,7 @@ export STACK_BASEPATH="${WD}" # set base path
 
 export LETTA_SANDBOX_MOUNT_PATH="${STACK_BASEPATH}/DATA/ai-stack/letta/sandbox" # set letta sandbox mount point
 export UV_LINK_MODE=copy                                                        # set uv link mode
-export OLLAMA="docker"                                                          # local, docker
+export OLLAMA="local"                                                          # local, docker
 export SECRETS_DIR="${STACK_BASEPATH}/SECRETS"                                  # folder that store secrets
 export PERM_DATA="${STACK_BASEPATH}/DATA"                                       # folders that store stack data
 export CONFIGS_DIR="${STACK_BASEPATH}/STACKS"                                   # folders that store stack configs
@@ -536,7 +536,7 @@ fi
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
 # export ollama_container_name="ollama"
-# # alias ollama='docker exec -it ollama ollama'
+# alias ollama='docker exec -it ollama ollama'
 # alias ollama='docker exec -it ${ollama_container_name} ollama'
 
 if command -v ollama >/dev/null 2>&1; then
@@ -551,7 +551,7 @@ elif docker inspect "${ollama_container_name}" >/dev/null 2>&1; then
 	fi
 else
 	# alias ollama='docker exec -it ollama ollama'
-	alias ollama='docker exec -it ${ollama_container_name} ollama'
+	# alias ollama='docker exec -it ${ollama_container_name} ollama'
 	echo "Could not pull models at the moment, Neither the ollama command nor the container for ollama exists, waiting 20s for container or services to start then trying to pull models once more."
 	sleep 20
 	PULL_MODELS >/dev/null 2>&1 &

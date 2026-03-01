@@ -15,7 +15,7 @@ COMPOSE_FILES=(
 	letta-server
 	localai
 	n8n
-	ollama
+	# ollama
 	# pygotchi
 	open-webui
 	# puppeteer
