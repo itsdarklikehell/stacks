@@ -266,7 +266,7 @@
   {
     "title": "Ollama",
     "colour": "#161b1f",
-    "url": "http://0.0.0.0:11434",
+    "url": "http://0.0.0.0:11444",
     "description": null,
     "appid": null,
     "appdescription": "Local LLM hosting and inference server (Ollama API)."

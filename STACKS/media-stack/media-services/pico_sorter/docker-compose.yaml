@@ -25,7 +25,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/Amsterdam}
 
-      - OLLAMA_URL=http://ollama:11434
+      - OLLAMA_URL=http://192.168.1.2:11444
       - OLLAMA_MODEL=llama3
       - TARGET_GENRES=General Electronic, Jungle, Breakcore, Lo-Fi, Techno, Hip-hop, House
       - INPUT_DIR=/app/unsorted_samples

@@ -31,7 +31,7 @@ URLS=(
 	"http://${IP_ADDRESS}:8283"  # letta
 	"http://${IP_ADDRESS}:8084"  # localai
 	"http://${IP_ADDRESS}:5678"  # n8n
-	"http://${IP_ADDRESS}:11434" # ollama
+	"http://${IP_ADDRESS}:11444" # ollama
 	"http://${IP_ADDRESS}:8080"  # open-webui
 	"http://${IP_ADDRESS}:8081"  # searxng
 )

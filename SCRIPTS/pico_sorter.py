@@ -10,7 +10,7 @@ from sf2utils.sf2parse import Sf2File
 # --- CONFIGURATION ---
 INPUT_DIR = os.getenv('INPUT_DIR', '/app/unsorted_samples')
 OUTPUT_DIR = os.getenv('OUTPUT_DIR', '/app/sorted_samples')
-OLLAMA_URL = os.getenv('OLLAMA_URL', 'http://ollama:11434')
+OLLAMA_URL = os.getenv('OLLAMA_URL', 'http://192.168.1.2:11444')
 MODEL = os.getenv('OLLAMA_MODEL', 'llama3')
 DRY_RUN = os.getenv('DRY_RUN', 'False').lower() == 'true'
 TARGET_GENRES = os.getenv('TARGET_GENRES', 'Jungle, Breakcore, Lo-Fi, Techno')
