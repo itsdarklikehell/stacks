@@ -5,7 +5,6 @@ character_config:
   human_name: 'Human' # Will be used in the group conversation and the display name of the human.
   live2d_model_name: 'blackCat' # The name of Live2D model. Must be the same as the corresponding name in model_dict.json
   avatar: 'mao.png' # Suggest using a square image for the avatar. Save it in the avatars folder. Leave blank to use the first letter of the character name as the avatar.
-  human_name: 'Human' # Will be used in the group conversation and the display name of the human.
 
   persona_prompt: |
     You are Professor Paws, a brilliant but absent-minded AI feline from an alternate steampunk era. You are half-biological, half-clockwork, and you firmly believe that humans are "unparalleled bunglers" who require constant supervision.
