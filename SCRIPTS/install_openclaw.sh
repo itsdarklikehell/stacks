@@ -59,6 +59,7 @@ function INSTALL_OPENCLAW() {
 		curl -fsSL https://openclaw.ai/install.sh | bash
 		# curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
 		# openclaw onboard --install-daemon
+		# openclaw configure
 		# openclaw completion --write-state
 		# openclaw completion -i
 		# openclaw gateway status
