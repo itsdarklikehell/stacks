@@ -27,7 +27,7 @@ URLS=(
 	"http://${IP_ADDRESS}:3001"  # anythingllm
 	"http://${IP_ADDRESS}:6013"  # habridge
 	"http://${IP_ADDRESS}:8123"  # home assistant
-	"http://${IP_ADDRESS}:9090"  # InvokeAI
+	"http://${IP_ADDRESS}:9190"  # InvokeAI
 	"http://${IP_ADDRESS}:8283"  # letta
 	"http://${IP_ADDRESS}:8084"  # localai
 	"http://${IP_ADDRESS}:5678"  # n8n

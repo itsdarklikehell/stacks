@@ -106,6 +106,10 @@ function SETUP_FOLDERS() {
 	fi
 
 	if [[ "${SERVICE_NAME}" == "litellm" ]]; then
+
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/Dockerfile"
+		cp -rf "${STACK_BASEPATH}/SCRIPTS/config-${SERVICE_NAME}.yaml" "${STACK_BASEPATH}/DATA/${STACK_NAME}-stack/${SERVICE_NAME}/config.yaml"
+
 		declare -a FOLDERS=()
 		FOLDERS=(
 			"data"

@@ -106,7 +106,7 @@
   {
     "title": "InvokeIA",
     "colour": "#161b1f",
-    "url": "http://0.0.0.0:9090",
+    "url": "http://0.0.0.0:9190",
     "description": null,
     "appid": "null",
     "appdescription": null

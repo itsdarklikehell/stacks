@@ -106,7 +106,7 @@
   {
     "title": "InvokeIA",
     "colour": "#161b1f",
-    "url": "http://192.168.178.63:9090",
+    "url": "http://192.168.178.63:9190",
     "description": null,
     "appid": "null",
     "appdescription": null

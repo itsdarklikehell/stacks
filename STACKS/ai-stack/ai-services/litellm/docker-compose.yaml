@@ -32,7 +32,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
       - RESTART_APP=true
       
-      - DATABASE_URL=postgresql://llmproxy:dbpassword9090@db:5432/litellm
+      - DATABASE_URL=postgresql://llmproxy:dbpassword9090@db:5433/litellm
       - STORE_MODEL_IN_DB=True
 
     volumes:
@@ -145,7 +145,7 @@ services:
       ai-services:
 
     ports:
-      - 5432:5432
+      - 5433:5432
 
     env_file:
       - ./litellm/.env
