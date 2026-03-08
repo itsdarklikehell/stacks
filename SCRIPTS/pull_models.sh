@@ -18,7 +18,6 @@ models=(
 	'llama3.2:3b'
 	'llama3.2:8b'
 	'llama3.2-vision:latest'
-	'deepseek-r1:8b'
 	'nemotron-mini:4b'
 	'glm4:9b'
 	'gpt-oss:latest'

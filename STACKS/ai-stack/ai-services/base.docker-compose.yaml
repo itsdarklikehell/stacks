@@ -107,6 +107,31 @@ volumes:
       o: bind
       device: ../../../DATA/ai-stack/habridge/habridge_config
 
+  litellm_data:
+    name: litellm_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/litellm/litellm_data
+  litellm_db_data:
+    name: litellm_db_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/litellm/litellm_db_data
+  litellm_prometheus_data:
+    name: litellm_prometheus_data
+    driver: local
+    # external: true
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../../DATA/ai-stack/litellm/litellm_prometheus_data
+
   InvokeAI_data:
     name: InvokeAI_data
     driver: local

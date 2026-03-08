@@ -1,6 +1,8 @@
 #!/bin/bash
 # set -e
 
+export HOMEBREW_NO_ENV_HINTS=1
+
 echo "Install openclaw script started."
 
 function UNINSTALL_OPENCLAW() {
@@ -19,9 +21,12 @@ function UNINSTALL_OPENCLAW() {
 	pnpm remove -g openclaw
 	bun remove -g openclaw
 
+	cp -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}" "$HOME/.openclaw_bkp"
 	sudo rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 	sudo rm -rf ~/.openclaw/workspace
 	sudo rm -rf ~/.openclaw-*
+
+	cp -rf "$HOME/openclaw" "$HOME/openclaw_bkp"
 	sudo rm -rf ~/openclaw
 
 }
@@ -53,22 +58,22 @@ function INSTALL_OPENCLAW() {
 		echo "openclaw is already installed"
 		openclaw security audit
 		openclaw doctor
-		# openclaw gateway status
-		# openclaw dashboard
+		openclaw gateway status
+		openclaw dashboard
 	else
 		curl -fsSL https://openclaw.ai/install.sh | bash
 		# curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
-		# openclaw onboard --install-daemon
-		# openclaw configure
+		openclaw onboard --install-daemon --force
+		openclaw configure
 		# openclaw completion --write-state
 		# openclaw completion -i
-		# openclaw gateway status
-		# openclaw dashboard
+		openclaw gateway status
+		openclaw dashboard
 		echo "openclaw installation completed."
 	fi
 
 }
 
 
-UNINSTALL_OPENCLAW
-# INSTALL_OPENCLAW
+# UNINSTALL_OPENCLAW
+INSTALL_OPENCLAW

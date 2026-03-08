@@ -14,6 +14,7 @@ COMPOSE_FILES=(
 	letta-mcp-server
 	letta-server
 	localai
+	litellm
 	n8n
 	# ollama
 	# pygotchi
@@ -101,6 +102,15 @@ function SETUP_FOLDERS() {
 		FOLDERS=(
 			"data"
 			"tool_execution_dir"
+		)
+	fi
+
+	if [[ "${SERVICE_NAME}" == "litellm" ]]; then
+		declare -a FOLDERS=()
+		FOLDERS=(
+			"data"
+			"db_data"
+			"prometheus_data"
 		)
 	fi
 

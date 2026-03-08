@@ -387,6 +387,51 @@ function CLONE_SWARMUI() {
 
 }
 
+function CLONE_LITELLM() {
+	SERVICE_NAME="litellm"
+	STACK_SUFFIX="-stack"
+	STACK_NAME="ai${STACK_SUFFIX}"
+
+	if [[ ! -d "${STACK_BASEPATH}/DATA/${STACK_NAME}" ]]; then
+		mkdir -p "${STACK_BASEPATH}/DATA/${STACK_NAME}"
+	fi
+
+	cd "${STACK_BASEPATH}/DATA/${STACK_NAME}" || exit 1
+
+	if [[ ! -d "${SERVICE_NAME}" ]]; then
+		echo "Cloning ${SERVICE_NAME}"
+		echo ""
+		git clone --recursive "https://github.com/BerriAI/${SERVICE_NAME}.git" "${SERVICE_NAME}"
+		cd "${SERVICE_NAME}" || exit 1
+	else
+		echo "Checking ${SERVICE_NAME} for updates"
+		cd "${SERVICE_NAME}" || exit 1
+		git pull
+	fi
+
+	function LOCAL_SETUP() {
+		# ./install.sh
+		uv venv --clear --seed
+		# shellcheck source=/dev/null
+		source .venv/bin/activate
+		#
+		uv sync --all-extras
+		uv pip install -e .
+		uv pip install -r requirements.txt
+		# chmod +x launch-linux.sh
+	}
+
+	function DOCKER_SETUP() {
+
+		echo "Using Docker setup"
+		# cp -rf "${STACK_BASEPATH}/SCRIPTS/Dockerfile-${SERVICE_NAME}" "${STACK_BASEPATH}/DATA/${STACK_NAME}/${SERVICE_NAME}/Dockerfile"
+	}
+
+	LOCAL_SETUP  # >/dev/null 2>&1 &
+	DOCKER_SETUP # >/dev/null 2>&1 &
+
+}
+
 function CLONE_COMFYUI() {
 	SERVICE_NAME="ComfyUI"
 	STACK_SUFFIX="-stack"
