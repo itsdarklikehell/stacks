@@ -453,9 +453,9 @@ elif [[ "${USER}" == "rizzo" ]]; then
 	# SETUP_BOOKS_STACK
 	# echo ""
 
-	echo ""
-	SETUP_MEDIA_STACK
-	echo ""
+	# echo ""
+	# SETUP_MEDIA_STACK
+	# echo ""
 
 	# echo ""
 	# SETUP_SDR_STACK

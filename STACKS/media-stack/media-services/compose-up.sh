@@ -44,7 +44,7 @@ COMPOSE_FILES=(
 	# sickgear
 	# sonarr
 	gpodder
-	pico_sorter
+	# pico_sorter
 	# spotube
 	# synclounge
 	# tautulli
