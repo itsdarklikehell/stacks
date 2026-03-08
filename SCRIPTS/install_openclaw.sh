@@ -56,17 +56,15 @@ function INSTALL_OPENCLAW() {
 	
 	if command -v openclaw &>/dev/null; then
 		echo "openclaw is already installed"
-		openclaw security audit
-		openclaw doctor
+		openclaw security audit --fix
+		openclaw doctor --fix
 		openclaw gateway status
 		openclaw dashboard
 	else
 		curl -fsSL https://openclaw.ai/install.sh | bash
 		# curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
-		openclaw onboard --install-daemon --force
-		openclaw configure
-		# openclaw completion --write-state
-		# openclaw completion -i
+		openclaw security audit --fix
+		openclaw doctor --fix
 		openclaw gateway status
 		openclaw dashboard
 		echo "openclaw installation completed."
