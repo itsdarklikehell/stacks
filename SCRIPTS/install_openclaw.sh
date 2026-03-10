@@ -16,17 +16,28 @@ function UNINSTALL_OPENCLAW() {
 		openclaw uninstall --all --yes --non-interactive
 	fi
 
-	npx -y openclaw uninstall --all --yes --non-interactive
 	npm rm -g openclaw
 	pnpm remove -g openclaw
 	bun remove -g openclaw
 
-	cp -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}" "$HOME/.openclaw_bkp"
+	if [[ ! -d "${HOME}/.openclaw_bkp" ]]; then
+		mkdir "${HOME}/.openclaw_bkp"
+	fi
+
+	# cp -rf "${OPENCLAW_STATE_DIR:-${HOME}/.openclaw/*}" "${HOME}/.openclaw_bkp/*"
+	mv -f "${OPENCLAW_STATE_DIR:-${HOME}/.openclaw}" "${HOME}/.openclaw_bkp"
+
 	sudo rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 	sudo rm -rf ~/.openclaw/workspace
 	sudo rm -rf ~/.openclaw-*
 
-	cp -rf "$HOME/openclaw" "$HOME/openclaw_bkp"
+	if [[ ! -d "${HOME}/openclaw_bkp" ]]; then
+		mkdir "${HOME}/openclaw_bkp"
+	fi
+
+	# cp -rf "${HOME}/openclaw" "${HOME}/openclaw_bkp"
+	mv -f "${HOME}/openclaw" "${HOME}/openclaw_bkp"
+
 	sudo rm -rf ~/openclaw
 
 }
@@ -61,11 +72,17 @@ function INSTALL_OPENCLAW() {
 		openclaw gateway status
 		openclaw dashboard
 	else
-		curl -fsSL https://openclaw.ai/install.sh | bash
-		# curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+
+		# pnpm add -g openclaw@latest
+		# pnpm approve-builds -g        # approve openclaw, node-llama-cpp, sharp, etc.
+		# openclaw onboard --install-daemon
+
+		# curl -fsSL https://openclaw.ai/install.sh | bash
+		curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
 		openclaw security audit --fix
 		openclaw doctor --fix
 		openclaw gateway status
+
 		openclaw dashboard
 		echo "openclaw installation completed."
 	fi
