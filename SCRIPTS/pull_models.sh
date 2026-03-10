@@ -188,3 +188,4 @@ REMOVE_MODELS() {
 # REMOVE_MODELS
 
 PULL_MODELS
+add_fallbacks.sh
