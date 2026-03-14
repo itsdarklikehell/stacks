@@ -69,12 +69,16 @@ function INSTALL_OPENCLAW() {
 	# fi
 
 	if [[ -d ~/openclaw ]]; then
+
 		cd ~/openclaw || exit 1
+
 		pnpm install
 		yes | pnpm approve-builds
 		pnpm build
 		pnpm link --global
+
 		openclaw onboard --install-daemon
+
 	fi
 
 }
