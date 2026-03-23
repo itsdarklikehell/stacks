@@ -1,0 +1,28 @@
+Television Simulator '99 Public Beta
+
+2017-2025 Zach Hall
+
+Get started quickly:
+
+* Deploy the files to a web server. You should be able to serve it out of a subdirectory or the root directory.
+* Visit index.html and it should load the example configuration.
+
+Basic keyboard controls:
+* M toggles mute
+* Up / Down control channels
+* Left / Right control volume
+
+In the browser you need to un-mute when the page loads because of autoplay restrictions.
+
+Edit the example configuration file (config.tvs.yml) and make it your own.
+
+Read the documentation: https://docs.tvs.gcpw.art
+(Old documentation) https://greenhillplaza.notion.site/Television-Simulator-99-c28584f069b94f58a71b5c9fe2484dcb
+
+Join our community to ask for help or report issues:
+(Discord) https://discord.com/invite/GkVG5yzYe3
+(Slack) https://join.slack.com/t/greenhillplaza/shared_invite/zt-2dq8mx6sm-3YnobHETTmxUNE02TOSPRg
+
+Always up to date list of 3rd party credits / contributors:
+
+https://docs.tvs.gcpw.art/credits-and-thanks/

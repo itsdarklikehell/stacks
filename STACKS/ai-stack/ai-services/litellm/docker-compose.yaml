@@ -85,14 +85,12 @@ services:
 
     # shm_size: 1gb
 
-    # healthcheck:  # Defines the health check configuration for the container
-    #   test:
-    #     - CMD-SHELL
-    #     - python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:4000/health/liveliness')"  # Command to execute for health check
-    #   interval: 30s  # Perform health check every 30 seconds
-    #   timeout: 10s   # Health check command times out after 10 seconds
-    #   retries: 3     # Retry up to 3 times if health check fails
-    #   start_period: 40s  # Wait 40 seconds after container start before beginning health checks
+    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:4000/health/liveliness || exit 1]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
 
     logging:
       driver: json-file

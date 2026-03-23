@@ -18,16 +18,16 @@ function UNINSTALL_OPENCLAW() {
 	fi
 
 	npm rm -g openclaw
-	pnpm remove -g openclaw
-	bun remove -g openclaw
+	pnpm rm -g openclaw
+	bun rm -g openclaw
 
-	if [[ ! -d "${HOME}/.openclaw_bkp" ]]; then
-		mkdir "${HOME}/.openclaw_bkp"
-	fi
+	# if [[ ! -d "${HOME}/.openclaw_bkp" ]]; then
+	# 	mkdir "${HOME}/.openclaw_bkp"
+	# fi
 
-	if [[ ! -d "${HOME}/openclaw_bkp" ]]; then
-		mkdir "${HOME}/openclaw_bkp"
-	fi
+	# if [[ ! -d "${HOME}/openclaw_bkp" ]]; then
+	# 	mkdir "${HOME}/openclaw_bkp"
+	# fi
 
 	# cp -rf "${OPENCLAW_STATE_DIR:-${HOME}/.openclaw/*}" "${HOME}/.openclaw_bkp/*"
 	# mv -f "${OPENCLAW_STATE_DIR:-${HOME}/.openclaw}" "${HOME}/.openclaw_bkp"
@@ -37,8 +37,8 @@ function UNINSTALL_OPENCLAW() {
 	sudo rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 	sudo rm -rf ~/.openclaw/workspace
 	sudo rm -rf ~/.openclaw-*
-
 	sudo rm -rf ~/openclaw
+	sudo rm -rf ~/.local/bin/openclaw
 
 }
 
@@ -72,10 +72,15 @@ function INSTALL_OPENCLAW() {
 
 		cd ~/openclaw || exit 1
 
-		pnpm install
-		yes | pnpm approve-builds
-		pnpm build
-		pnpm link --global
+		# pnpm install
+		# # pnpm approve-builds
+		# pnpm build
+		# pnpm link --global
+
+		curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+
+		openclaw completion --write-state && openclaw completion -i
+		source ~/.bashrc
 
 		openclaw onboard --install-daemon
 
@@ -83,8 +88,8 @@ function INSTALL_OPENCLAW() {
 
 }
 
-# source ~/.bashrc
-# UNINSTALL_OPENCLAW
+source ~/.bashrc
+UNINSTALL_OPENCLAW
 
 source ~/.bashrc
 INSTALL_OPENCLAW

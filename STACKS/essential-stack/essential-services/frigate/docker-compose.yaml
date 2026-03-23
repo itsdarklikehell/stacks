@@ -92,22 +92,13 @@ services:
 
     stdin_open: true
 
-    # shm_size: 1024mb
+    # shm_size: 1024mb    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:/ || exit 1]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
 
-    # healthcheck:
-    #   test:
-    #     [
-    #       CMD,
-    #       wget,
-    #       --no-verbose,
-    #       --tries=3,
-    #       --spider,
-    #       http://localhost:${PORT:-12393}/api/health,
-    #     ]
-    #   interval: 30s
-    #   timeout: 10s
-    #   start_period: 30s
-    #   retries: 3
 
     logging:
       driver: json-file

@@ -1,0 +1,56 @@
+groups:
+  - name: modelrelay
+    rules:
+      - alert: ModelRelayDown
+        expr: up{job="modelrelay"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "modelrelay is down"
+          description: "modelrelay has been down for more than 1 minute."
+
+      - alert: ModelRelayHighErrorRate
+        expr: rate(modelrelay_http_requests_total{status=~"5..",cache="miss"}[5m]) / rate(modelrelay_http_requests_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate on modelrelay"
+          description: "Error rate is {{ $value | humanizePercentage }} over 5 minutes."
+
+      - alert: ModelRelayCircuitBreakerOpen
+        expr: modelrelay_circuit_breaker_state == 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Circuit breaker open for provider {{ $labels.provider }}"
+          description: "Provider {{ $labels.provider }} has been circuit-breaking for 2 minutes."
+
+      - alert: ModelRelayCacheHitRateLow
+        expr: rate(modelrelay_cache_hits_total[5m]) / (rate(modelrelay_cache_hits_total[5m]) + rate(modelrelay_cache_misses_total[5m])) < 0.2
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Low cache hit rate"
+          description: "Cache hit rate is below 20% over 5 minutes. Consider increasing TTL or maxEntries."
+
+      - alert: ModelRelayHighLatency
+        expr: histogram_quantile(0.95, rate(modelrelay_request_duration_seconds_bucket[5m])) > 5
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High P95 latency on modelrelay"
+          description: "95th percentile latency is {{ $value }}s over 5 minutes."
+
+      - alert: ModelRelayUpstreamFailures
+        expr: rate(modelrelay_upstream_failures_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Frequent upstream failures"
+          description: "Upstream provider failures > 10/sec. Check provider status and API keys."

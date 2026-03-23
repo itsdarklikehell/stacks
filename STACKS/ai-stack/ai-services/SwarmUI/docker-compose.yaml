@@ -74,12 +74,12 @@ services:
 
     # shm_size: 1gb
 
-    # healthcheck:
-    #   test: [CMD, curl, -f, http://localhost:7801/]
-    #   interval: 45s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 120s
+    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:7801/ || exit 1]
+      interval: 45s
+      timeout: 10s
+      start_period: 120s
+      retries: 3
 
     logging:
       driver: json-file

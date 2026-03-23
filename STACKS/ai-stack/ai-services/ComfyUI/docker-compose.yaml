@@ -68,12 +68,12 @@ services:
     # shm_size: 1gb
 
     # # Activeer deze sectie voor Autoheal functionaliteit
-    # healthcheck:
-    #   test: [CMD, curl, -f, http://localhost:8188/system_stats]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 90s
+    healthcheck:
+      test: [CMD-SHELL, curl -f http://localhost:8188/system_stats || exit 1]
+      interval: 30s
+      timeout: 10s
+      start_period: 90s
+      retries: 3
 
     logging:
       driver: json-file
