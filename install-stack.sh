@@ -535,7 +535,7 @@ fi
 
 export HISHTORY_SERVER=http://${IP_ADDRESS}:5632
 
-# export ollama_container_name="ollama"
+export ollama_container_name="ollama"
 # alias ollama='docker exec -it ollama ollama'
 # alias ollama='docker exec -it ${ollama_container_name} ollama'
 
