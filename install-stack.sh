@@ -167,7 +167,7 @@ function SETUP_AUTOSTART() {
 	)
 
 	if [[ ! -d "/home/${USER}/bin" ]]; then
-		mkdir /home/${USER}/bin
+		mkdir /home/"${USER}"/bin
 	fi
 
 	for SCRIPT in "${bin_scripts[@]}"; do
