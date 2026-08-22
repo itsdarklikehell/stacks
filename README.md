@@ -13,13 +13,13 @@ Overview
 
 **Stacks**
 
-- **AI Stack**: [ai-stack/](ai-stack/) — Orchestrates AI/ML services including:
+- **AI Stack**: [STACKS/ai-stack/](STACKS/ai-stack/) — Orchestrates AI/ML services including:
   - **AnythingLLM**: Document processing and LLM integration.
   - **Ollama**: Local LLM hosting.
   - **Faster-Whisper**: GPU-accelerated speech recognition.
   - **Home Assistant**: IoT automation.
   - **LibreTranslate**: Self-hosted translation.
-- **Essentials Stack**: [essential-stack/](essential-stack/) — Foundational services and infrastructure.
+- **Essentials Stack**: [STACKS/essential-stack/](STACKS/essential-stack/) — Foundational services and infrastructure.
 
 **Key Commands**
 
@@ -38,18 +38,18 @@ docker-compose run --service ai-stack integration-tests
 **Configuration**
 
 - **Env vars**: Configuration is managed via environment variables.
-- **Datastores**: PostgreSQL is used for persistent storage; connection settings are in the compose configuration ([docker-compose.yml](docker-compose.yml) if present).
+- **Datastores**: PostgreSQL is used for persistent storage; connection settings live in each stack's compose files under `STACKS/<stack>/ai-services/<service>/docker-compose.yaml`.
 - **Networking**: Services communicate via gRPC where applicable.
 
 **Conventions**
 
 - **Naming**: Use snake_case for service names and variables.
-- **Files**: Docker Compose at the root level defines services and volumes.
+- **Files**: Each stack's services and volumes are defined via Docker Compose files under `STACKS/<stack-name>/`.
 - **Code style**: Follow existing project conventions per stack.
 
 **Integration Points**
 
-- **AnythingLLM**: Integrates with external APIs for document processing (check service definition in [ai-stack/](ai-stack/)).
+- **AnythingLLM**: Integrates with external APIs for document processing (check service definition in [STACKS/ai-stack/](STACKS/ai-stack/)).
 - **Ollama**: Requires an accessible Ollama server.
 - **gRPC**: Multiple services use gRPC; use `grpcurl` for service inspection and debugging.
 
@@ -62,7 +62,7 @@ docker-compose run --service ai-stack integration-tests
 **Testing**
 
 - **Integration tests**: In the `ai-stack` directory; run them with the `docker-compose run` command mentioned above.
-- **Test location**: [ai-stack/](ai-stack/) contains test configuration and scripts.
+- **Test location**: [STACKS/ai-stack/](STACKS/ai-stack/) contains test configuration and scripts.
 
 **Contributing**
 
@@ -75,4 +75,4 @@ docker-compose run --service ai-stack integration-tests
 
 **Dutch Version**
 
-For documentation in Dutch, see [LEESMIJ.md](LEESMIJ.md).
+- A Dutch translation is not yet available in this repository.
