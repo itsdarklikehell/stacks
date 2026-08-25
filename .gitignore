@@ -21,3 +21,9 @@ MEDIA/
 SCRIPTS/models-openllm-vtuber/*
 # SCRIPTS/prompts-openllm-vtuber/*
 .agenticagents/
+# Python cache (generated, never tracked)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
