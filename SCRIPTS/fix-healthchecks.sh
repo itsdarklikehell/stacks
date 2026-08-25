@@ -48,7 +48,6 @@ find "$STACKS_ROOT" -name "docker-compose.yaml" -type f | while read -r file; do
 
   # Use a temporary file to avoid issues with in-place editing
   tmp1="$TMP_DIR/$(echo "$file" | tr '/' '_').tmp1"
-  tmp2="$TMP_DIR/$(echo "$file" | tr '/' '_').tmp2"
 
   cp "$file" "$tmp1"
 
