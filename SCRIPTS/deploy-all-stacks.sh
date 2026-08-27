@@ -90,6 +90,7 @@ deploy_stack() {
       echo "  ℹ ai-stack: using targeted deployment (skipping ollama)"
       # Deploy other services manually via compose files in ai-services
       cd "$stack_dir/ai-services"
+      # shellcheck disable=SC2043  # intentional: deploy only base compose (ollama excluded by design)
       for compose in base.docker-compose.yaml; do
         echo "    docker compose -f $compose up -d (excluding ollama via profile or manual filter)"
         # We can start all services via docker compose, but ollama might fail due to GPU. We'll start all and ignore failures.
