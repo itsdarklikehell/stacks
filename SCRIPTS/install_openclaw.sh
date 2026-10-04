@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # set -e
 
 export HOMEBREW_NO_ENV_HINTS=1
@@ -34,11 +35,11 @@ function UNINSTALL_OPENCLAW() {
 	# cp -rf "${HOME}/openclaw" "${HOME}/openclaw_bkp"
 	# mv -f "${HOME}/openclaw" "${HOME}/openclaw_bkp"
 
-	sudo rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
-	sudo rm -rf ~/.openclaw/workspace
-	sudo rm -rf ~/.openclaw-*
-	sudo rm -rf ~/openclaw
-	sudo rm -rf ~/.local/bin/openclaw
+	if [ -d "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}" ]; then sudo rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"; fi
+	if [ -d ~/.openclaw/workspace ]; then sudo rm -rf ~/.openclaw/workspace; fi
+	for dir in ~/.openclaw-*; do [ -d "$dir" ] && sudo rm -rf "$dir"; done
+	if [ -d ~/openclaw ]; then sudo rm -rf ~/openclaw; fi
+	if [ -f ~/.local/bin/openclaw ]; then sudo rm -f ~/.local/bin/openclaw; fi
 
 }
 

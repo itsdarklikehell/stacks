@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # set -e
 
 echo "Install Docker script started."
@@ -32,7 +33,7 @@ function REMOVE_DOCKER() {
 			export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 		fi
 
-		eval "$(resize)" || true
+		resize 2>/dev/null || true
 		DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
@@ -45,7 +46,7 @@ function REMOVE_DOCKER() {
 
 		export DOCKER_BASEPATH
 
-		eval "$(resize)" || true
+		resize 2>/dev/null || true
 		STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
@@ -58,7 +59,7 @@ function REMOVE_DOCKER() {
 
 		export STACK_BASEPATH
 
-		eval "$(resize)" || true
+		resize 2>/dev/null || true
 		IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 
@@ -87,17 +88,17 @@ function REMOVE_DOCKER() {
 
 	sudo apt autoremove -y --purge docker-engine docker* docker.io docker-ce docker-ce-cli docker-compose-plugin docker-buildx-plugin docker-ce-rootless-extras docker-model-plugin containerd*
 
-	sudo rm -rf ~/.docker
+	if [ -d ~/.docker ]; then sudo rm -rf ~/.docker; fi
 
-	sudo rm -rf /etc/docker
-	sudo rm -rf /etc/apparmor.d/docker
+	if [ -d /etc/docker ]; then sudo rm -rf /etc/docker; fi
+	if [ -d /etc/apparmor.d/docker ]; then sudo rm -rf /etc/apparmor.d/docker; fi
 
-	sudo rm -rf /var/run/docker.sock
-	sudo rm -rf /var/lib/docker
-	sudo rm -rf /var/lib/containerd
+	if [ -S /var/run/docker.sock ]; then sudo rm -f /var/run/docker.sock; fi
+	if [ -d /var/lib/docker ]; then sudo rm -rf /var/lib/docker; fi
+	if [ -d /var/lib/containerd ]; then sudo rm -rf /var/lib/containerd; fi
 
 	if [[ -n "${DOCKER_BASEPATH:-}" && "${DOCKER_BASEPATH}" != "/" ]]; then
-		sudo rm -rf "${DOCKER_BASEPATH}"
+		if [ -d "${DOCKER_BASEPATH}" ]; then sudo rm -rf "${DOCKER_BASEPATH}"; fi
 	fi
 	sudo groupdel docker 2>/dev/null || true
 	sleep 1
@@ -132,7 +133,7 @@ function INSTALL_DOCKER() {
 				export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 			fi
 
-			eval "$(resize)" || true
+			resize 2>/dev/null || true
 			DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
@@ -143,7 +144,7 @@ function INSTALL_DOCKER() {
 				exit 1
 			fi
 
-			eval "$(resize)" || true
+			resize 2>/dev/null || true
 			STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
@@ -154,7 +155,7 @@ function INSTALL_DOCKER() {
 				exit 1
 			fi
 
-			eval "$(resize)" || true
+			resize 2>/dev/null || true
 			IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 			exitstatus=$?
 
