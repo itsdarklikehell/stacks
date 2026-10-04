@@ -96,8 +96,10 @@ function REMOVE_DOCKER() {
 	sudo rm -rf /var/lib/docker
 	sudo rm -rf /var/lib/containerd
 
-	sudo rm -rf "${DOCKER_BASEPATH}"
-	sudo groupdel docker
+	if [[ -n "${DOCKER_BASEPATH:-}" && "${DOCKER_BASEPATH}" != "/" ]]; then
+		sudo rm -rf "${DOCKER_BASEPATH}"
+	fi
+	sudo groupdel docker 2>/dev/null || true
 	sleep 1
 
 }

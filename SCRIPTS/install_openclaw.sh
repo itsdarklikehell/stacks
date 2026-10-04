@@ -44,7 +44,7 @@ function UNINSTALL_OPENCLAW() {
 
 function INSTALL_OPENCLAW() {
 
-	curl -o- https://deb.nodesource.com/setup_25.x | sudo bash
+	curl -fsSL https://deb.nodesource.com/setup_25.x -o /tmp/nodesource-setup.sh && sudo bash /tmp/nodesource-setup.sh && rm -f /tmp/nodesource-setup.sh
 	sudo apt upgrade -y
 	sudo apt install -y nodejs openjdk-25-jdk
 
@@ -77,7 +77,7 @@ function INSTALL_OPENCLAW() {
 		# pnpm build
 		# pnpm link --global
 
-		curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+		curl -fsSL https://openclaw.ai/install.sh -o /tmp/openclaw-install.sh && bash /tmp/openclaw-install.sh -s -- --install-method git && rm -f /tmp/openclaw-install.sh
 
 		openclaw completion --write-state && openclaw completion -i
 		source ~/.bashrc

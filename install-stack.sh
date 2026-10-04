@@ -41,13 +41,13 @@ function SETUP_ENV() {
 		export COMFYUI_PATH="${STACK_BASEPATH}/DATA/ai-stack/ComfyUI"
 	fi
 
-	eval "$(resize)" || true
+	resize || true
 	DOCKER_BASEPATH=$(whiptail --inputbox "What is your docker folder?" "${LINES}" "${COLUMNS}" "${DOCKER_BASEPATH}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	eval "$(resize)" || true
+	resize || true
 	STACK_BASEPATH=$(whiptail --inputbox "What is your stack basepath?" "${LINES}" "${COLUMNS}" "${STACK_BASEPATH}" --title "Stack basepath Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	eval "$(resize)" || true
+	resize || true
 	IP_ADDRESS=$(whiptail --inputbox "What is your hostname or ip address?" "${LINES}" "${COLUMNS}" "${IP_ADDRESS}" --title "Docker folder Dialog" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 
