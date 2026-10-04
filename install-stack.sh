@@ -19,7 +19,7 @@ export START_COMFYUI="true"                                                     
 export START_CUSHYSTUDIO="true"                                                 # false, true
 export START_BROWSER="true"                                                     # false, true
 export TWITCH_CLIENT_ID="your_client_id"                                        # set twitch client id
-export TWITCH_CLIENT_SECRET="your_client_secret"                                # set twitch client secret
+export TWITCH_CLIENT_SECRET="${TWITCH_CLIENT_SECRET:-}"  # Set via environment variable                                # set twitch client secret
 export AUTOSTART="disabled"                                                     # disabled, enabled
 
 function SETUP_ENV() {
